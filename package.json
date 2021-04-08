@@ -4,7 +4,6 @@
   "description": "Design definitions and components for Kiva's style guide",
   "workspaces": [
     "kv-components",
-    "kv-configs",
     "kv-tokens",
     "testapp"
   ],
