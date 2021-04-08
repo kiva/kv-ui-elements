@@ -1,0 +1,89 @@
+{
+    "colors": {
+        "white": "#FFFFFF",
+        "black": "#000000",
+        "greenBlue": "#00C5C5",
+        "red": "#E04848",
+        "redDark": "#BA342C",
+        "gray0": "#212121",
+        "gray1": "#757575",
+        "gray2": "#C4C4C4",
+        "gray3": "#F5F5F5",
+        "gray4": "#fafafa",
+        "green": {
+            "110": "#26985D",
+            "105": "#28A062",
+            "DEFAULT": "#2AA967",
+            "95": "#35AD6F",
+            "85": "#4AB67E",
+            "70": "#6AC395",
+            "50": "#95D4B3",
+            "30": "#BFE5D1",
+            "10": "#EAF6F0",
+            "5": "#F4FBF7"
+        }
+    },
+    "space": {
+        "gapDemi": 4,
+        "gapShort": 8,
+        "gapTall": 16,
+        "gapExtraTall": 24,
+        "gapGrande": 32,
+        "gapExtraGrande": 48,
+        "gapVenti": 64,
+        "gapTrenta": 128
+    },
+    "fonts": {
+        "sans": "PostGrotesk"
+    },
+    "fontSizes": {
+        "sm": 14,
+        "base": 17,
+        "lg": 24,
+        "xl": 32,
+        "2xl": 54
+    },
+    "fontWeights": {
+        "book": 300,
+        "medium": 400
+    },
+    "lineHeights": {
+        "tight": 1.25,
+        "normal": 1.5
+    },
+    "letterSpacings": {
+        "normal": 0,
+        "tight": -1,
+        "tighter": -2
+    },
+    "breakpoints": {
+        "md": 734,
+        "lg": 1024,
+        "xl": 1440
+    },
+    "borderWidths": {
+        "default": 1
+    },
+    "zIndices": {
+        "hide": -1,
+        "base": 0,
+        "docked": 10,
+        "dropdown": 1000,
+        "sticky": 1100,
+        "banner": 1200,
+        "overlay": 1300,
+        "modal": 1400,
+        "popover": 1500,
+        "skipLink": 1600,
+        "toast": 1700,
+        "tooltip": 1800
+    },
+    "shadows": {},
+    "radii": {
+        "default": 14
+    },
+    "opacity": {
+        "default": 1,
+        "low": 0.25
+    }
+}
