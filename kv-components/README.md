@@ -8,7 +8,7 @@
 * App-specific components that contain business logic
 * Pages - It can be nice to use Storybook for faster development when building out a screen. If desired that can be done in the app-specific repo rather than here.
 
-## Storybook Processes
+## Writing Stories
 * Write stories in the [CSF format](https://storybook.js.org/docs/vue/writing-stories/introduction). 
 * Build stories (permutations) that describe the intended look and feel given the components set of inputs (props or slots).
 * Use JsHint to document all props, slots and events so Storybook docs will pick them up.
