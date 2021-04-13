@@ -44,11 +44,14 @@ export default {
     },
     /**
      * Appearance of the button
-     * `primary (default), secondary, link, danger, ghost`
+     * `primary (default), secondary, link, danger`
      * */
     variant: {
       type: String,
       default: "primary",
+      validator: function (value) {
+        return ['primary', 'secondary', 'link', 'danger'].indexOf(value) !== -1;
+      },
     },
     loading: {
       type: Boolean,
