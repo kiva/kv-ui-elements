@@ -84,6 +84,6 @@
     },
     "opacity": {
         "default": 1,
-        "low": 0.25
+        "low": 0.3
     }
 }
