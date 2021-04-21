@@ -3,6 +3,7 @@ node_modules/
 dist/
 .nuxt/
 npm-debug.log*
+.eslintcache
 
 # Editor directories and files
 .idea
