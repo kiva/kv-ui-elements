@@ -1,2 +1,3 @@
-const tokens = import('./primitives.json');
+const tokens = require('./primitives.json');
+
 export default tokens;

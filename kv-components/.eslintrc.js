@@ -15,8 +15,8 @@ module.exports = {
 		// disallow non-void html elements to be self-closing
 		'vue/html-self-closing': ['error', {
 			html: {
-				normal: 'never'
-			}
+				normal: 'never',
+			},
 		}],
 	},
 };

@@ -7,8 +7,8 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'text-link']
-			}
+				options: ['primary', 'secondary', 'link', 'danger', 'text-link'],
+			},
 		},
 	},
 };
@@ -28,8 +28,8 @@ const Template = (args, { argTypes }) => ({
 			Find a borrower
 		</kv-button>`,
 	methods: {
-		onClick(e) { console.log(e) }
-	}
+		onClick(e) { console.log(e); },
+	},
 });
 
 export const Primary = Template.bind({});
