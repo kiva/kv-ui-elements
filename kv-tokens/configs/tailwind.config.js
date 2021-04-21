@@ -1,5 +1,5 @@
-const designtokens = require('../primitives.json');
 const plugin = require('tailwindcss/plugin');
+const designtokens = require('../primitives.json');
 
 const {
 	fonts,
@@ -12,7 +12,7 @@ const {
 	colors,
 	opacity,
 	space,
-	radii
+	radii,
 } = designtokens;
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 		screens: {
 			md: `${breakpoints.md / 16}rem`,
 			lg: `${breakpoints.lg / 16}rem`,
-			xl: `${breakpoints.xl / 16}rem`
+			xl: `${breakpoints.xl / 16}rem`,
 		},
 		colors: {
 			transparent: 'transparent',
@@ -34,7 +34,7 @@ module.exports = {
 				dark: colors.gray1,
 				DEFAULT: colors.gray2,
 				light: colors.gray3,
-				lightest: colors.gray4
+				lightest: colors.gray4,
 			},
 			green: {
 				110: colors.green['110'],
@@ -49,12 +49,12 @@ module.exports = {
 				5: colors.green['5'],
 			},
 			greenblue: {
-				DEFAULT: colors.greenBlue
+				DEFAULT: colors.greenBlue,
 			},
 			red: {
 				DEFAULT: colors.red,
 				dark: colors.redDark,
-			}
+			},
 		},
 		spacing: {
 			0: '0',
@@ -69,7 +69,6 @@ module.exports = {
 		},
 		fontFamily: {
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
-			// mono: [`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace`]
 		},
 		fontSize: {
 			sm: [`${fontSizes.sm / 16}rem`, { lineHeight: lineHeights.normal }],
@@ -85,12 +84,12 @@ module.exports = {
 		lineHeight: {
 			none: 1,
 			tight: lineHeights.tight,
-			normal: lineHeights.normal
+			normal: lineHeights.normal,
 		},
 		letterSpacing: {
 			normal: 0,
 			tight: `${letterSpacings.tight}px`,
-			tighter: `${letterSpacings.tighter}px`
+			tighter: `${letterSpacings.tighter}px`,
 		},
 		borderWidth: {
 			DEFAULT: `${borderWidths.default / 16}rem`,
@@ -111,9 +110,9 @@ module.exports = {
 			full: '500rem',
 		},
 		opacity: {
-			'0': '0',
-			'low': `${opacity.low}`,
-			'full': '1',
+			0: '0',
+			low: `${opacity.low}`,
+			full: '1',
 		},
 		container: (theme) => ({
 			center: true,
@@ -123,57 +122,57 @@ module.exports = {
 	variants: {
 		extend: {
 			opacity: ['disabled'],
-		}
+		},
 	},
 	plugins: [
-		plugin(function ({ addBase, theme }) {
+		plugin(({ addBase, theme }) => {
 			addBase({
-				'body': { fontWeight: theme('fontWeight.book') },
-				'h1': {
+				body: { fontWeight: theme('fontWeight.book') },
+				h1: {
 					fontSize: theme('fontSize.2xl'),
 					lineHeight: theme('lineHeights.tight'),
 					fontWeight: theme('fontWeight.medium'),
 					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter')
+					letterSpacing: theme('letterSpacing.tighter'),
 				},
-				'h2': {
+				h2: {
 					fontSize: theme('fontSize.xl'),
 					lineHeight: theme('lineHeights.tight'),
 					fontWeight: theme('fontWeight.medium'),
 					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight')
+					letterSpacing: theme('letterSpacing.tight'),
 				},
-				'h3': {
+				h3: {
 					fontSize: theme('fontSize.lg'),
 					lineHeight: theme('lineHeights.normal'),
 					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight')
-				}
-			})
+					letterSpacing: theme('letterSpacing.tight'),
+				},
+			});
 		}),
-		plugin(function ({ addUtilities, theme }) {
+		plugin(({ addUtilities, theme }) => {
 			addUtilities({
 				'.h1': {
 					fontSize: theme('fontSize.2xl'),
 					lineHeight: theme('lineHeights.tight'),
 					fontWeight: theme('fontWeight.medium'),
 					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter')
+					letterSpacing: theme('letterSpacing.tighter'),
 				},
 				'.h2': {
 					fontSize: theme('fontSize.xl'),
 					lineHeight: theme('lineHeights.tight'),
 					fontWeight: theme('fontWeight.medium'),
 					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight')
+					letterSpacing: theme('letterSpacing.tight'),
 				},
 				'.h3': {
 					fontSize: theme('fontSize.lg'),
 					lineHeight: theme('lineHeights.normal'),
 					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight')
-				}
-			})
-		})
-	]
-}
+					letterSpacing: theme('letterSpacing.tight'),
+				},
+			});
+		}),
+	],
+};

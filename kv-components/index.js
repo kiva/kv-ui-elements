@@ -1,3 +1,3 @@
-const placeholder = "This comes from components"
+const placeholder = 'This comes from components';
 
 export default placeholder;

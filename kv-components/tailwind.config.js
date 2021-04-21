@@ -1,3 +1,5 @@
+const sharedConfig = require('../kv-tokens/configs/tailwind.config');
+
 module.exports = {
-    presets: [require('../kv-tokens/configs/tailwind.config')],
-}
+	presets: [sharedConfig],
+};
