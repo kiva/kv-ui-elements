@@ -11,6 +11,7 @@ module.exports = {
 		'vue',
 	],
 	rules: {
+		'vue/html-indent': ['error', 'tab'],
 		// disallow non-void html elements to be self-closing
 		'vue/html-self-closing': ['error', {
 			html: {
