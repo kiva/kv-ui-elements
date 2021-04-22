@@ -48,7 +48,7 @@ export default {
 		 * */
 		variant: {
 			type: String,
-			default: 'primary',
+			default: "primary",
 			validator(value) {
 				return ['primary', 'secondary', 'link', 'danger'].indexOf(value) !== -1;
 			},
