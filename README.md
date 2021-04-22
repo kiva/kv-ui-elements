@@ -42,8 +42,17 @@ export default {
 }
 </script>
 ```
-## Consuming Design Tokens
+## Design tokens and Tailwind configs
+### Design tokens
+Importing:
 $ `import tokens from kv-ui-elements/kv-tokens/primitives.json`
+
+### Tailwind config viewer
+For Node versions 15.13.x you can run the [Tailwind Config Viewer](https://github.com/rogden/tailwind-config-viewer) from the root directory
+$ `npm run tailwind-config-viewer`;
+
+Otherwise,
+$ `cd kv-tokens && npm run tailwind-config-viewer`
 
 ## Developing
 Pull down and $ `npm install`
