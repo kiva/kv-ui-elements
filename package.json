@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.vue ./",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "npm run storybook -w ./kv-components"	  
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
