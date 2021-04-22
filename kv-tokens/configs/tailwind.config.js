@@ -58,14 +58,14 @@ module.exports = {
 		},
 		spacing: {
 			0: '0',
+			0.5: `${space['0.5'] / 16}rem`,
 			1: `${space['1'] / 16}rem`,
 			2: `${space['2'] / 16}rem`,
 			3: `${space['3'] / 16}rem`,
 			4: `${space['4'] / 16}rem`,
-			5: `${space['5'] / 16}rem`,
 			6: `${space['6'] / 16}rem`,
-			7: `${space['7'] / 16}rem`,
 			8: `${space['8'] / 16}rem`,
+			16: `${space['16'] / 16}rem`,
 		},
 		fontFamily: {
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
