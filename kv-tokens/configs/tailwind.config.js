@@ -98,6 +98,7 @@ module.exports = {
 			// 4: '4px',
 			// 8: '8px',
 		},
+		boxShadow: {},
 		borderRadius: {
 			none: '0px',
 			// sm: '0.125rem',
