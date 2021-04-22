@@ -49,8 +49,8 @@ $ `import tokens from kv-ui-elements/kv-tokens/primitives.json`
 Pull down and $ `npm install`
 
 ### Developing Components with Storybook
-For Node versions 15.13.x you can run Storybook from the root directory
-$ `npm run storybook`;
+For Node versions 15.13.x and above you can run Storybook from the root directory
+$ `npm run storybook`
 
 Otherwise,
 $ `cd kv-components && npm run storybook`
