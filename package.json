@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.vue ./",
     "prepare": "husky install",
-    "storybook": "npm run storybook -w ./kv-components"	  
+    "storybook": "npm run storybook -w ./kv-components",
+    "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

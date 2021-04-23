@@ -3,7 +3,13 @@
     "version": "0.0.1",
     "private": true,
     "main": "index.js",
-	"dependencies": {
-		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
-	}
+	"scripts": {
+		"tailwind-config-viewer": "tailwind-config-viewer -o -c ./configs/tailwind.config.js"
+	},
+    "dependencies": {
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+    },
+    "devDependencies": {
+        "tailwind-config-viewer": "^1.5.1"
+    }
 }
