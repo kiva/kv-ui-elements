@@ -7,7 +7,13 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'text-link'],
+				options: ['primary', 'secondary', 'link', 'danger'],
+			},
+		},
+		state: {
+			control: {
+				type: 'select',
+				options: ['', 'disabled', 'loading'],
 			},
 		},
 	},
@@ -19,8 +25,7 @@ const Template = (args, { argTypes }) => ({
 	template: `
 		<kv-button
 			:variant="variant"
-			:disabled="disabled"
-			:loading="loading"
+			:state="state"
 			:to="to"
 			:href="href"
 			@click="onClick"
@@ -32,19 +37,29 @@ const Template = (args, { argTypes }) => ({
 	},
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const VariantPrimary = Template.bind({});
+VariantPrimary.args = {
 	variant: 'primary',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const VariantSecondary = Template.bind({});
+VariantSecondary.args = {
 	variant: 'secondary',
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
+export const VariantDanger = Template.bind({});
+VariantDanger.args = {
 	variant: 'danger',
+};
+
+export const StateLoading = Template.bind({});
+StateLoading.args = {
+	state: 'loading',
+};
+
+export const StateDisabled = Template.bind({});
+StateDisabled.args = {
+	state: 'disabled',
 };
 
 // export const Alert = () => ({

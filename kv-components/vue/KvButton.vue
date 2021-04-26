@@ -4,7 +4,10 @@
 		:to="to"
 		:href="href"
 		:disabled="isDisabled"
-		:class="{ 'opacity-low pointer-events-none': disabled, 'pointer-events-none': loading }"
+		:class="{
+			'opacity-low pointer-events-none': state === 'disabled',
+			'pointer-events-none': state === 'loading'
+		}"
 		@click="onClick"
 	>
 		<span
@@ -17,10 +20,10 @@
 				'bg-red hover:bg-red-dark text-white': variant === 'danger',
 			}"
 		>
-			<template v-if="loading">
+			<template v-if="state === 'loading'">
 				<span class="absolute w-full text-center -mx-4">kv-loading</span>
 			</template>
-			<span :class="{ 'invisible': loading }">
+			<span :class="{ 'invisible': state === 'loading' }">
 				<slot></slot>
 			</span>
 		</span>
@@ -30,17 +33,19 @@
 <script>
 export default {
 	props: {
+		/**
+		 * Use if linking to a Vue route
+		 * */
 		to: {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Use if linking to an external link or old-stack page
+		 * */
 		href: {
 			type: String,
 			default: null,
-		},
-		disabled: {
-			type: Boolean,
-			default: false,
 		},
 		/**
 		 * Appearance of the button
@@ -50,24 +55,27 @@ export default {
 			type: String,
 			default: 'primary',
 			validator(value) {
-				return ['primary', 'secondary', 'link', 'danger'].indexOf(value) !== -1;
+				return ['primary', 'secondary', 'link', 'danger'].includes(value);
 			},
 		},
-		loading: {
-			type: Boolean,
-			default: false,
+		/**
+		 * State of the button
+		 * `'' (default), disabled, loading, active(?)`
+		 * */
+		state: {
+			type: String,
+			default: '',
+			validator(value) {
+				return ['', 'disabled', 'loading'].includes(value);
+			},
 		},
-		// icon: {
-		//   type: String,
-		//   default: "",
-		// },
 	},
 	data() {
 		return {};
 	},
 	computed: {
 		isDisabled() {
-			return this.disabled || this.loading;
+			return this.state === 'disabled' || this.state === 'loading';
 		},
 		tag() {
 			if (this.to) {
