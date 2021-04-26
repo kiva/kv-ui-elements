@@ -126,6 +126,47 @@ module.exports = {
 		},
 	},
 	plugins: [
+		plugin(({ addBase }) => {
+			const kivaFonts = [
+				{
+					'@font-face': {
+						fontFamily: 'PostGrotesk',
+						fontWeight: '400',
+						fontStyle: 'normal',
+						fontDisplay: 'swap',
+						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.592afe4.woff) format(woff)',
+					},
+				},
+				{
+					'@font-face': {
+						fontFamily: 'PostGrotesk',
+						fontWeight: '400',
+						fontStyle: 'italic',
+						fontDisplay: 'swap',
+						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-MediumItalic.0953ed2.woff) format(woff)',
+					},
+				},
+				{
+					'@font-face': {
+						fontFamily: 'PostGrotesk',
+						fontWeight: '300',
+						fontStyle: 'normal',
+						fontDisplay: 'swap',
+						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.3b43709.woff) format(woff)',
+					},
+				},
+				{
+					'@font-face': {
+						fontFamily: 'PostGrotesk',
+						fontWeight: '300',
+						fontStyle: 'italic',
+						fontDisplay: 'swap',
+						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.ec5d4ab.woff) format(woff)',
+					},
+				},
+			];
+			return addBase(kivaFonts);
+		}),
 		plugin(({ addBase, theme }) => {
 			addBase({
 				body: { fontWeight: theme('fontWeight.book') },
