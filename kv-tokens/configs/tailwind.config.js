@@ -190,6 +190,9 @@ module.exports = {
 					fontWeight: theme('fontWeight.medium'),
 					letterSpacing: theme('letterSpacing.tight'),
 				},
+				'button:focus': {
+					outline: 'revert', // undo tailwind button focus styling
+				},
 			});
 		}),
 		plugin(({ addUtilities, theme }) => {
