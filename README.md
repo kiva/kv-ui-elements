@@ -16,11 +16,15 @@ module.exports = {
   presets: [
     require('kv-ui-elements/kv-tokens/configs/tailwind.config.js')
   ],
-
   // Project-specific customizations
   theme: {
     //...
   },
+  purge: [
+    './src/**/*.html',
+    './src/**/*.vue',
+    //...
+  ],
   // ...
 }
 ```
@@ -48,7 +52,7 @@ Importing:
 $ `import tokens from kv-ui-elements/kv-tokens/primitives.json`
 
 ### Tailwind config viewer
-For Node versions 15.13.x you can run the [Tailwind Config Viewer](https://github.com/rogden/tailwind-config-viewer) from the root directory
+For Node versions 15.13.x and above you can run the [Tailwind Config Viewer](https://github.com/rogden/tailwind-config-viewer) from the root directory
 $ `npm run tailwind-config-viewer`;
 
 Otherwise,
