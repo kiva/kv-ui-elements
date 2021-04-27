@@ -51,9 +51,9 @@ module.exports = {
 			// greenblue: {
 			// 	DEFAULT: colors.greenBlue,
 			// },
-			red: {
-				DEFAULT: colors.red,
-				dark: colors.redDark,
+			danger: {
+				700: colors.danger['700'],
+				DEFAULT: colors.danger,
 			},
 		},
 		spacing: {
