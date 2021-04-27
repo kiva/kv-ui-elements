@@ -53,7 +53,7 @@ module.exports = {
 			// },
 			danger: {
 				700: colors.danger['700'],
-				DEFAULT: colors.danger,
+				DEFAULT: colors.danger.DEFAULT,
 			},
 		},
 		spacing: {
