@@ -3,8 +3,10 @@
         "white": "#FFFFFF",
         "black": "#000000",
         "greenBlue": "#00C5C5",
-        "red": "#E04848",
-        "redDark": "#BA342C",
+		"danger": {
+			"700": "#BA342C",
+			"DEFAULT": "#E04848"
+		},
         "gray": {
             "800": "#212121",
             "500": "#757575",
