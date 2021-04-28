@@ -18,6 +18,10 @@ const {
 module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
+	corePlugins: {
+		fontSize: false,
+		boxShadow: false,
+	},
 	theme: {
 		screens: {
 			md: `${breakpoints.md / 16}rem`,
@@ -98,7 +102,6 @@ module.exports = {
 			// 4: '4px',
 			// 8: '8px',
 		},
-		boxShadow: {},
 		borderRadius: {
 			none: '0px',
 			// sm: '0.125rem',
