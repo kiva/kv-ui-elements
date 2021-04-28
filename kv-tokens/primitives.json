@@ -41,11 +41,41 @@
         "sans": "PostGrotesk"
     },
     "fontSizes": {
-        "sm": 14,
-        "base": 17,
-        "lg": 24,
-        "xl": 32,
-        "2xl": 54
+		"base": {
+			"DEFAULT": 16,
+			"md": 16,
+			"lg": 17
+		},
+		"title": {
+			"DEFAULT": 64,
+			"md": 96,
+			"lg": 112
+		},
+		"h1": {
+			"DEFAULT": 40,
+			"md": 50,
+			"lg": 54
+		},
+		"h2": {
+			"DEFAULT": 24,
+			"md": 28,
+			"lg": 32
+		},
+		"h3": {
+			"DEFAULT": 20,
+			"md": 22,
+			"lg": 24
+		},
+		"h4": {
+			"DEFAULT": 12,
+			"md": 14,
+			"lg": 14
+		},
+		"subhead": {
+			"DEFAULT": 20,
+			"md": 22,
+			"lg": 24
+		}
     },
     "fontWeights": {
         "book": 300,
@@ -57,8 +87,9 @@
     },
     "letterSpacings": {
         "normal": 0,
-        "tight": -1,
-        "tighter": -2
+		"-0.3": -0.3,
+        "-1": -1,
+        "-2": -2
     },
     "breakpoints": {
         "md": 734,

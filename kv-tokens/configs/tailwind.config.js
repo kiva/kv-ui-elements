@@ -15,6 +15,8 @@ const {
 	radii,
 } = designtokens;
 
+const remCalc = (px) => `${px / 16}rem`;
+
 module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
@@ -74,26 +76,9 @@ module.exports = {
 		fontFamily: {
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
 		},
-		fontSize: {
-			sm: [`${fontSizes.sm / 16}rem`, { lineHeight: lineHeights.normal }],
-			base: [`${fontSizes.base / 16}rem`, { lineHeight: lineHeights.normal }],
-			lg: [`${fontSizes.lg / 16}rem`, { lineHeight: lineHeights.normal }],
-			xl: [`${fontSizes.xl / 16}rem`, { lineHeight: lineHeights.tight }],
-			'2xl': [`${fontSizes['2xl'] / 16}rem`, { lineHeight: lineHeights.tight }],
-		},
 		fontWeight: {
 			book: `${fontWeights.book}`,
 			medium: `${fontWeights.medium}`,
-		},
-		lineHeight: {
-			none: '1',
-			tight: `${lineHeights.tight}`,
-			normal: `${lineHeights.normal}`,
-		},
-		letterSpacing: {
-			normal: 0,
-			tight: `${letterSpacings.tight}px`,
-			tighter: `${letterSpacings.tighter}px`,
 		},
 		borderWidth: {
 			DEFAULT: `${borderWidths.default / 16}rem`,
@@ -129,8 +114,8 @@ module.exports = {
 		},
 	},
 	plugins: [
-		plugin(({ addBase }) => {
-			const kivaFonts = [
+		plugin(({ addBase, addUtilities, theme }) => {
+			const kivaWebFonts = [
 				{
 					'@font-face': {
 						fontFamily: 'PostGrotesk',
@@ -168,54 +153,127 @@ module.exports = {
 					},
 				},
 			];
-			return addBase(kivaFonts);
-		}),
-		plugin(({ addBase, theme }) => {
+			addBase(kivaWebFonts);
+
+			// Kiva Specific Typography
+			const textBase = {
+				fontWeight: theme('fontWeight.book'),
+				fontSize: remCalc(fontSizes.base.DEFAULT),
+				lineHeight: lineHeights.normal,
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.base.lg),
+				},
+			};
+
+			const textH1 = {
+				fontSize: remCalc(fontSizes.h1.DEFAULT),
+				fontWeight: fontWeights.medium,
+				letterSpacing: remCalc(letterSpacings['-0.3']),
+				lineHeight: lineHeights.tight,
+				'@screen md': {
+					fontSize: remCalc(fontSizes.h1.md),
+					letterSpacing: remCalc(letterSpacings['-1']),
+				},
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.h1.lg),
+					letterSpacing: remCalc(letterSpacings['-2']),
+				},
+			};
+
+			const textH2 = {
+				fontSize: remCalc(fontSizes.h2.DEFAULT),
+				fontWeight: fontWeights.medium,
+				letterSpacing: remCalc(letterSpacings['-2']),
+				lineHeight: lineHeights.tight,
+				'@screen md': {
+					fontSize: remCalc(fontSizes.h2.md),
+					letterSpacing: remCalc(letterSpacings['-1']),
+				},
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.h2.lg),
+				},
+			};
+
+			const textH3 = {
+				fontSize: remCalc(fontSizes.h3.DEFAULT),
+				fontWeight: fontWeights.medium,
+				letterSpacing: remCalc(letterSpacings['-1']),
+				lineHeight: lineHeights.normal,
+				'@screen md': {
+					fontSize: remCalc(fontSizes.h3.md),
+					letterSpacing: remCalc(letterSpacings['-0.3']),
+				},
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.h3.lg),
+					letterSpacing: remCalc(letterSpacings['-1']),
+				},
+			};
+
+			const textH4 = {
+				fontSize: remCalc(fontSizes.h4.DEFAULT),
+				fontWeight: fontWeights.medium,
+				lineHeight: lineHeights.normal,
+				textTransform: 'uppercase',
+				'@screen md': {
+					fontSize: remCalc(fontSizes.h4.md),
+				},
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.h4.lg),
+				},
+			};
+
+			const textSubhead = {
+				...textH3,
+				fontWeight: fontWeights.book,
+			};
+
+			const textTitle = {
+				fontWeight: theme('fontWeight.medium'),
+				fontSize: remCalc(fontSizes.title.DEFAULT),
+				letterSpacing: letterSpacings['-2'],
+				lineHeight: lineHeights.tight,
+				'@screen md': {
+					fontSize: remCalc(fontSizes.title.md),
+				},
+				'@screen lg': {
+					fontSize: remCalc(fontSizes.title.lg),
+				},
+			};
+
 			addBase({
-				body: { fontWeight: theme('fontWeight.book') },
-				h1: {
-					fontSize: theme('fontSize.2xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter'),
-				},
-				h2: {
-					fontSize: theme('fontSize.xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight'),
-				},
-				h3: {
-					fontSize: theme('fontSize.lg'),
-					lineHeight: theme('lineHeights.normal'),
-					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight'),
-				},
+				body: textBase,
+				h1: textH1,
+				h2: textH2,
+				h3: textH3,
+				h4: textH4,
 			});
-		}),
-		plugin(({ addUtilities, theme }) => {
+
 			addUtilities({
-				'.h1': {
-					fontSize: theme('fontSize.2xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter'),
+				'.text-base': textBase,
+				'.text-h1': textH1,
+				'.text-h2': textH2,
+				'.text-h3': textH3,
+				'.text-h4': textH4,
+				'.text-subhead': textSubhead,
+				'.text-title': textTitle,
+			}, ['responsive']);
+
+			// Non-typography global stypes
+			addBase({
+				'button:focus': {
+					outline: 'revert', // undo tailwind button focus styling
 				},
-				'.h2': {
-					fontSize: theme('fontSize.xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight'),
+				a: {
+					color: colors.brand.DEFAULT,
+					textDecoration: 'none',
 				},
-				'.h3': {
-					fontSize: theme('fontSize.lg'),
-					lineHeight: theme('lineHeights.normal'),
-					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight'),
+				'a:hover': {
+					color: colors.brand['700'],
+					textDecoration: 'underline',
+				},
+				'a:focus': {
+					color: colors.brand['700'],
+					textDecoration: 'underline',
 				},
 			});
 		}),
