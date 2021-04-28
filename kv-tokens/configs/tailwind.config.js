@@ -260,6 +260,9 @@ module.exports = {
 
 			// Non-typography global stypes
 			addBase({
+				body: {
+					color: colors.gray['800'],
+				},
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
