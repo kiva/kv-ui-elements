@@ -46,7 +46,7 @@
 			"md": 16,
 			"lg": 17
 		},
-		"title": {
+		"jumbo": {
 			"DEFAULT": 64,
 			"md": 96,
 			"lg": 112
