@@ -183,7 +183,7 @@ module.exports = {
 			const textH2 = {
 				fontSize: remCalc(fontSizes.h2.DEFAULT),
 				fontWeight: fontWeights.medium,
-				letterSpacing: remCalc(letterSpacings['-2']),
+				letterSpacing: remCalc(letterSpacings['-1']),
 				lineHeight: lineHeights.tight,
 				'@screen md': {
 					fontSize: remCalc(fontSizes.h2.md),
