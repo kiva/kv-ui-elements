@@ -22,6 +22,8 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	corePlugins: {
 		fontSize: false,
+		lineHeight: false,
+		letterSpacing: false,
 		boxShadow: false,
 	},
 	theme: {
