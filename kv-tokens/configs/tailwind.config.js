@@ -227,16 +227,16 @@ module.exports = {
 				fontWeight: fontWeights.book,
 			};
 
-			const textTitle = {
+			const textJumbo = {
 				fontWeight: theme('fontWeight.medium'),
-				fontSize: remCalc(fontSizes.title.DEFAULT),
+				fontSize: remCalc(fontSizes.jumbo.DEFAULT),
 				letterSpacing: letterSpacings['-2'],
 				lineHeight: lineHeights.tight,
 				'@screen md': {
-					fontSize: remCalc(fontSizes.title.md),
+					fontSize: remCalc(fontSizes.jumbo.md),
 				},
 				'@screen lg': {
-					fontSize: remCalc(fontSizes.title.lg),
+					fontSize: remCalc(fontSizes.jumbo.lg),
 				},
 			};
 
@@ -255,7 +255,7 @@ module.exports = {
 				'.text-h3': textH3,
 				'.text-h4': textH4,
 				'.text-subhead': textSubhead,
-				'.text-title': textTitle,
+				'.text-jumbo': textJumbo,
 			}, ['responsive']);
 
 			// Non-typography global stypes
