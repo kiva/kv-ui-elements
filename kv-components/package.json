@@ -25,7 +25,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006 -c vue/.storybook",
-    "build-storybook": "build-storybook -c vue/.storybook -o /public",
+    "build-storybook": "build-storybook -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./"
   }
 }
