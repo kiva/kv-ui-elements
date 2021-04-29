@@ -115,6 +115,7 @@
 	},
 	"shadows": {},
 	"radii": {
+		"sm": 4,
 		"default": 14
 	},
 	"opacity": {

@@ -91,8 +91,8 @@ module.exports = {
 		},
 		borderRadius: {
 			none: '0px',
-			// sm: '0.125rem',
-			DEFAULT: `${radii.default / 16}rem`,
+			sm: remCalc(radii.sm),
+			DEFAULT: remCalc(radii.default),
 			// md: '0.375rem',
 			// lg: '0.5rem',
 			// xl: '0.75rem',
