@@ -1,46 +1,46 @@
 {
-    "colors": {
-        "white": "#FFFFFF",
-        "black": "#000000",
-        "greenBlue": "#00C5C5",
+	"colors": {
+		"white": "#FFFFFF",
+		"black": "#000000",
+		"greenBlue": "#00C5C5",
 		"danger": {
 			"700": "#BA342C",
 			"DEFAULT": "#E04848"
 		},
-        "gray": {
-            "800": "#212121",
-            "500": "#757575",
-            "300": "#C4C4C4",
-            "100": "#F5F5F5",
-            "50": "#fafafa"
-        },
-        "brand": {
-            "700": "#26985D",
-            "650": "#28A062",
-            "DEFAULT": "#2AA967",
-            "550": "#35AD6F",
-            "500": "#4AB67E",
-            "400": "#6AC395",
-            "300": "#95D4B3",
-            "200": "#BFE5D1",
-            "100": "#EAF6F0",
-            "50": "#F4FBF7"
-        }
-    },
-    "space": {
-        "0.5": 4,
-        "1": 8,
-        "2": 16,
-        "3": 24,
-        "4": 32,
-        "6": 48,
-        "8": 64,
-        "16": 128
-    },
-    "fonts": {
-        "sans": "PostGrotesk"
-    },
-    "fontSizes": {
+		"gray": {
+			"800": "#212121",
+			"500": "#757575",
+			"300": "#C4C4C4",
+			"100": "#F5F5F5",
+			"50": "#fafafa"
+		},
+		"brand": {
+			"700": "#26985D",
+			"650": "#28A062",
+			"DEFAULT": "#2AA967",
+			"550": "#35AD6F",
+			"500": "#4AB67E",
+			"400": "#6AC395",
+			"300": "#95D4B3",
+			"200": "#BFE5D1",
+			"100": "#EAF6F0",
+			"50": "#F4FBF7"
+		}
+	},
+	"space": {
+		"0.5": 4,
+		"1": 8,
+		"2": 16,
+		"3": 24,
+		"4": 32,
+		"6": 48,
+		"8": 64,
+		"16": 128
+	},
+	"fonts": {
+		"sans": "PostGrotesk"
+	},
+	"fontSizes": {
 		"base": {
 			"DEFAULT": 16,
 			"md": 16,
@@ -76,49 +76,49 @@
 			"md": 22,
 			"lg": 24
 		}
-    },
-    "fontWeights": {
-        "book": 300,
-        "medium": 400
-    },
-    "lineHeights": {
-        "tight": 1.25,
-        "normal": 1.5
-    },
-    "letterSpacings": {
-        "normal": 0,
+	},
+	"fontWeights": {
+		"book": 300,
+		"medium": 400
+	},
+	"lineHeights": {
+		"tight": 1.25,
+		"normal": 1.5
+	},
+	"letterSpacings": {
+		"normal": 0,
 		"-0.3": -0.3,
-        "-1": -1,
-        "-2": -2
-    },
-    "breakpoints": {
-        "md": 734,
-        "lg": 1024,
-        "xl": 1440
-    },
-    "borderWidths": {
-        "default": 1
-    },
-    "zIndices": {
-        "hide": -1,
-        "base": 0,
-        "docked": 10,
-        "dropdown": 1000,
-        "sticky": 1100,
-        "banner": 1200,
-        "overlay": 1300,
-        "modal": 1400,
-        "popover": 1500,
-        "skipLink": 1600,
-        "toast": 1700,
-        "tooltip": 1800
-    },
-    "shadows": {},
-    "radii": {
-        "default": 14
-    },
-    "opacity": {
-        "default": 1,
-        "low": 0.3
-    }
+		"-1": -1,
+		"-2": -2
+	},
+	"breakpoints": {
+		"md": 734,
+		"lg": 1024,
+		"xl": 1440
+	},
+	"borderWidths": {
+		"default": 1
+	},
+	"zIndices": {
+		"hide": -1,
+		"base": 0,
+		"docked": 10,
+		"dropdown": 1000,
+		"sticky": 1100,
+		"banner": 1200,
+		"overlay": 1300,
+		"modal": 1400,
+		"popover": 1500,
+		"skipLink": 1600,
+		"toast": 1700,
+		"tooltip": 1800
+	},
+	"shadows": {},
+	"radii": {
+		"default": 14
+	},
+	"opacity": {
+		"default": 1,
+		"low": 0.3
+	}
 }
