@@ -28,9 +28,9 @@ module.exports = {
 	},
 	theme: {
 		screens: {
-			md: `${breakpoints.md / 16}rem`,
-			lg: `${breakpoints.lg / 16}rem`,
-			xl: `${breakpoints.xl / 16}rem`,
+			md: remCalc(breakpoints.md),
+			lg: remCalc(breakpoints.lg),
+			xl: remCalc(breakpoints.xl),
 		},
 		colors: {
 			transparent: 'transparent',
@@ -66,14 +66,14 @@ module.exports = {
 		},
 		spacing: {
 			0: '0',
-			0.5: `${space['0.5'] / 16}rem`,
-			1: `${space['1'] / 16}rem`,
-			2: `${space['2'] / 16}rem`,
-			3: `${space['3'] / 16}rem`,
-			4: `${space['4'] / 16}rem`,
-			6: `${space['6'] / 16}rem`,
-			8: `${space['8'] / 16}rem`,
-			16: `${space['16'] / 16}rem`,
+			0.5: remCalc(space['0.5']),
+			1: remCalc(space['1']),
+			2: remCalc(space['2']),
+			3: remCalc(space['3']),
+			4: remCalc(space['4']),
+			6: remCalc(space['6']),
+			8: remCalc(space['8']),
+			16: remCalc(space['16']),
 		},
 		fontFamily: {
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
@@ -83,7 +83,7 @@ module.exports = {
 			medium: `${fontWeights.medium}`,
 		},
 		borderWidth: {
-			DEFAULT: `${borderWidths.default / 16}rem`,
+			DEFAULT: remCalc(borderWidths.default),
 			0: '0px',
 			// 2: '2px',
 			// 4: '4px',

@@ -30,5 +30,9 @@
   "license": "ISC",
   "lint-staged": {
     "*.{js,vue}": "eslint --cache --fix"
+  },
+  "engines": {
+    "node": ">= 15.13.0",
+    "npm": ">= 7.7.6"
   }
 }
