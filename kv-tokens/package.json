@@ -3,10 +3,11 @@
     "version": "0.0.1",
     "private": true,
     "main": "index.js",
-	"scripts": {
-		"tailwind-config-viewer": "tailwind-config-viewer -o -c ./configs/tailwind.config.js"
-	},
+    "scripts": {
+        "tailwind-config-viewer": "tailwind-config-viewer -o -c ./configs/tailwind.config.js"
+    },
     "dependencies": {
+        "@tailwindcss/typography": "^0.4.0",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
     },
     "devDependencies": {
