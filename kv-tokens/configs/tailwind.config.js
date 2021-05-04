@@ -142,11 +142,11 @@ module.exports = {
 					outline: 'revert', // undo tailwind button focus styling
 				},
 				a: {
-					color: colors.brand.DEFAULT,
+					color: colors.action.DEFAULT,
 					textDecoration: 'none',
 				},
 				'a:hover, a:focus': {
-					color: colors.brand['700'],
+					color: colors.action['700'],
 					textDecoration: 'underline',
 				},
 				'strong, b': {
