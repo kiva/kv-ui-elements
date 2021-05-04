@@ -54,6 +54,10 @@ module.exports = {
 				100: colors.brand['100'],
 				50: colors.brand['50'],
 			},
+			action: {
+				700: colors.action['700'],
+				DEFAULT: colors.action.DEFAULT,
+			},
 			// greenblue: {
 			// 	DEFAULT: colors.greenBlue,
 			// },
