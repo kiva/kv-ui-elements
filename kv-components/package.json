@@ -2,6 +2,9 @@
   "name": "kv-components",
   "version": "0.0.1",
   "main": "index.js",
+  "dependencies": {
+	  "kv-tokens": "^0.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@storybook/addon-a11y": "^6.2.7",
