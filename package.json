@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "prepare": "husky install",
     "storybook": "npm run storybook -w ./kv-components",
+    "build-storybook": "npm run build-storybook -w ./kv-components",
     "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens"
   },
   "devDependencies": {
@@ -30,5 +31,9 @@
   "license": "ISC",
   "lint-staged": {
     "*.{js,vue}": "eslint --cache --fix"
+  },
+  "engines": {
+    "node": ">= 15.13.0",
+    "npm": ">= 7.7.6"
   }
 }

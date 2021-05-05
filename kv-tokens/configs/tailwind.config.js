@@ -1,12 +1,12 @@
 const plugin = require('tailwindcss/plugin');
+const typographyPlugin = require('@tailwindcss/typography');
+const kivaTypography = require('./kivaTypography.js');
 const designtokens = require('../primitives.json');
+const { rem } = require('./util');
 
 const {
 	fonts,
-	fontSizes,
 	fontWeights,
-	lineHeights,
-	letterSpacings,
 	borderWidths,
 	breakpoints,
 	colors,
@@ -18,11 +18,17 @@ const {
 module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
+	corePlugins: {
+		fontSize: false,
+		lineHeight: false,
+		letterSpacing: false,
+		boxShadow: false,
+	},
 	theme: {
 		screens: {
-			md: `${breakpoints.md / 16}rem`,
-			lg: `${breakpoints.lg / 16}rem`,
-			xl: `${breakpoints.xl / 16}rem`,
+			md: rem(breakpoints.md),
+			lg: rem(breakpoints.lg),
+			xl: rem(breakpoints.xl),
 		},
 		colors: {
 			transparent: 'transparent',
@@ -48,61 +54,47 @@ module.exports = {
 				100: colors.brand['100'],
 				50: colors.brand['50'],
 			},
+			action: {
+				700: colors.action['700'],
+				DEFAULT: colors.action.DEFAULT,
+			},
 			// greenblue: {
 			// 	DEFAULT: colors.greenBlue,
 			// },
-			red: {
-				DEFAULT: colors.red,
-				dark: colors.redDark,
+			danger: {
+				700: colors.danger['700'],
+				DEFAULT: colors.danger.DEFAULT,
 			},
 		},
 		spacing: {
 			0: '0',
-			0.5: `${space['0.5'] / 16}rem`,
-			1: `${space['1'] / 16}rem`,
-			2: `${space['2'] / 16}rem`,
-			3: `${space['3'] / 16}rem`,
-			4: `${space['4'] / 16}rem`,
-			6: `${space['6'] / 16}rem`,
-			8: `${space['8'] / 16}rem`,
-			16: `${space['16'] / 16}rem`,
+			0.5: rem(space['0.5']),
+			1: rem(space['1']),
+			2: rem(space['2']),
+			3: rem(space['3']),
+			4: rem(space['4']),
+			6: rem(space['6']),
+			8: rem(space['8']),
+			16: rem(space['16']),
 		},
 		fontFamily: {
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
-		},
-		fontSize: {
-			sm: [`${fontSizes.sm / 16}rem`, { lineHeight: lineHeights.normal }],
-			base: [`${fontSizes.base / 16}rem`, { lineHeight: lineHeights.normal }],
-			lg: [`${fontSizes.lg / 16}rem`, { lineHeight: lineHeights.normal }],
-			xl: [`${fontSizes.xl / 16}rem`, { lineHeight: lineHeights.tight }],
-			'2xl': [`${fontSizes['2xl'] / 16}rem`, { lineHeight: lineHeights.tight }],
 		},
 		fontWeight: {
 			book: `${fontWeights.book}`,
 			medium: `${fontWeights.medium}`,
 		},
-		lineHeight: {
-			none: '1',
-			tight: `${lineHeights.tight}`,
-			normal: `${lineHeights.normal}`,
-		},
-		letterSpacing: {
-			normal: 0,
-			tight: `${letterSpacings.tight}px`,
-			tighter: `${letterSpacings.tighter}px`,
-		},
 		borderWidth: {
-			DEFAULT: `${borderWidths.default / 16}rem`,
+			DEFAULT: rem(borderWidths.default),
 			0: '0px',
 			// 2: '2px',
 			// 4: '4px',
 			// 8: '8px',
 		},
-		boxShadow: {},
 		borderRadius: {
 			none: '0px',
-			// sm: '0.125rem',
-			DEFAULT: `${radii.default / 16}rem`,
+			sm: rem(radii.sm),
+			DEFAULT: rem(radii.default),
 			// md: '0.375rem',
 			// lg: '0.5rem',
 			// xl: '0.75rem',
@@ -119,6 +111,9 @@ module.exports = {
 			center: true,
 			padding: theme('spacing.4'), // To add horizontal padding by default
 		}),
+		extend: {
+			typography: kivaTypography.proseOverrides, // prose plugin overrides
+		},
 	},
 	variants: {
 		extend: {
@@ -126,98 +121,55 @@ module.exports = {
 		},
 	},
 	plugins: [
-		plugin(({ addBase }) => {
-			const kivaFonts = [
-				{
-					'@font-face': {
-						fontFamily: 'PostGrotesk',
-						fontWeight: '400',
-						fontStyle: 'normal',
-						fontDisplay: 'swap',
-						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.592afe4.woff) format(\'woff\')',
-					},
-				},
-				{
-					'@font-face': {
-						fontFamily: 'PostGrotesk',
-						fontWeight: '400',
-						fontStyle: 'italic',
-						fontDisplay: 'swap',
-						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-MediumItalic.0953ed2.woff) format(\'woff\')',
-					},
-				},
-				{
-					'@font-face': {
-						fontFamily: 'PostGrotesk',
-						fontWeight: '300',
-						fontStyle: 'normal',
-						fontDisplay: 'swap',
-						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.3b43709.woff) format(\'woff\')',
-					},
-				},
-				{
-					'@font-face': {
-						fontFamily: 'PostGrotesk',
-						fontWeight: '300',
-						fontStyle: 'italic',
-						fontDisplay: 'swap',
-						src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.ec5d4ab.woff) format(\'woff\')',
-					},
-				},
-			];
-			return addBase(kivaFonts);
-		}),
-		plugin(({ addBase, theme }) => {
+		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
+		plugin(({ addBase, addUtilities }) => {
+			const { webFonts, textStyles } = kivaTypography;
+			addBase(webFonts);
 			addBase({
-				body: { fontWeight: theme('fontWeight.book') },
-				h1: {
-					fontSize: theme('fontSize.2xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter'),
+				body: {
+					...textStyles.textBase,
+					color: textStyles.textBaseColor,
 				},
-				h2: {
-					fontSize: theme('fontSize.xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight'),
+				h1: textStyles.textH1,
+				h2: textStyles.textH2,
+				h3: textStyles.textH3,
+				h4: textStyles.textH4,
+				small: textStyles.textSmall,
+				code: {
+					fontSize: '0.875em',
 				},
-				h3: {
-					fontSize: theme('fontSize.lg'),
-					lineHeight: theme('lineHeights.normal'),
-					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight'),
+				'button:focus': {
+					outline: 'revert', // undo tailwind button focus styling
+				},
+				a: {
+					color: colors.action.DEFAULT,
+					textDecoration: 'none',
+				},
+				'a:hover, a:focus': {
+					color: colors.action['700'],
+					textDecoration: 'underline',
+				},
+				'strong, b': {
+					fontWeight: fontWeights.medium,
+				},
+				hr: {
+					borderColor: colors.gray['500'],
+					borderTopWidth: borderWidths.default,
 				},
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
 			});
-		}),
-		plugin(({ addUtilities, theme }) => {
 			addUtilities({
-				'.h1': {
-					fontSize: theme('fontSize.2xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tighter'),
-				},
-				'.h2': {
-					fontSize: theme('fontSize.xl'),
-					lineHeight: theme('lineHeights.tight'),
-					fontWeight: theme('fontWeight.medium'),
-					marginBottom: theme('spacing.5'),
-					letterSpacing: theme('letterSpacing.tight'),
-				},
-				'.h3': {
-					fontSize: theme('fontSize.lg'),
-					lineHeight: theme('lineHeights.normal'),
-					fontWeight: theme('fontWeight.medium'),
-					letterSpacing: theme('letterSpacing.tight'),
-				},
-			});
+				'.text-base': textStyles.textBase,
+				'.text-h1': textStyles.textH1,
+				'.text-h2': textStyles.textH2,
+				'.text-h3': textStyles.textH3,
+				'.text-h4': textStyles.textH4,
+				'.text-subhead': textStyles.textSubhead,
+				'.text-jumbo': textStyles.textJumbo,
+				'.text-small': textStyles.textSmall,
+			}, ['responsive']);
 		}),
 	],
 };
