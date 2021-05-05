@@ -45,37 +45,42 @@
 	},
 	"fontSizes": {
 		"base": {
-			"DEFAULT": 16,
+			"sm": 16,
 			"md": 16,
 			"lg": 17
 		},
 		"jumbo": {
-			"DEFAULT": 64,
+			"sm": 64,
 			"md": 96,
 			"lg": 112
 		},
+		"small": {
+			"sm": 12,
+			"md": 12,
+			"lg": 13
+		},
 		"h1": {
-			"DEFAULT": 40,
+			"sm": 40,
 			"md": 50,
 			"lg": 54
 		},
 		"h2": {
-			"DEFAULT": 24,
+			"sm": 24,
 			"md": 28,
 			"lg": 32
 		},
 		"h3": {
-			"DEFAULT": 20,
+			"sm": 20,
 			"md": 22,
 			"lg": 24
 		},
 		"h4": {
-			"DEFAULT": 12,
+			"sm": 12,
 			"md": 14,
 			"lg": 14
 		},
 		"subhead": {
-			"DEFAULT": 20,
+			"sm": 20,
 			"md": 22,
 			"lg": 24
 		}
