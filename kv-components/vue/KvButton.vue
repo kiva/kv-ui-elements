@@ -4,6 +4,7 @@
 		ref="buttonRef"
 		:to="to"
 		:href="href"
+		:type="type"
 		:disabled="isDisabled"
 		:class="{
 			'opacity-low': state === 'disabled',
@@ -56,6 +57,17 @@ export default {
 		href: {
 			type: String,
 			default: null,
+		},
+		/**
+		 * The behavior of the button when used in an HTML form.
+		 * `button (default), submit, reset`
+		 * */
+		type: {
+			type: String,
+			default: 'button',
+			validator(value) {
+				return ['button', 'submit', 'reset'].includes(value);
+			},
 		},
 		/**
 		 * Appearance of the button
