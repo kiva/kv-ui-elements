@@ -15,17 +15,17 @@
 		<span
 			ref="buttonInnerRef"
 			class="inline-flex w-full justify-center items-center rounded
-				min-h-6 relative overflow-hidden border"
+				min-h-6 relative overflow-hidden border font-medium"
 			:class="{
 				'bg-action hover:bg-action-700 text-white border-action hover:border-action-700'
 					: variant === 'primary',
-				'bg-white hover:bg-gray-100 border-gray-500 hover:border-gray-800'
+				'bg-white hover:bg-gray-100 text-gray-800 border-gray-500 hover:border-gray-800'
 					: variant === 'secondary',
 				'bg-danger hover:bg-danger-700 text-white border-danger hover:border-danger-700'
 					: variant === 'danger',
 				'bg-gray-800 hover:bg-gray-500 text-white border-gray-800 hover:borde-gray-500'
 					: variant === 'link',
-				'bg-white hover:bg-gray-light border-white hover:bg-gray-100'
+				'bg-white hover:bg-gray-light text-gray-800 border-white hover:bg-gray-100'
 					: variant === 'ghost',
 			}"
 		>
