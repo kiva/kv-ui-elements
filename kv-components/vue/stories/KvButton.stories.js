@@ -52,6 +52,16 @@ VariantDanger.args = {
 	variant: 'danger',
 };
 
+export const VariantLink = Template.bind({});
+VariantLink.args = {
+	variant: 'link',
+};
+
+export const VariantGhost = Template.bind({});
+VariantGhost.args = {
+	variant: 'ghost',
+};
+
 export const StateLoading = Template.bind({});
 StateLoading.args = {
 	state: 'loading',
@@ -62,42 +72,64 @@ StateDisabled.args = {
 	state: 'disabled',
 };
 
-// export const Alert = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="alert">Alert</kv-button>'
-// });
-
-// export const Secondary = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary">Secondary</kv-button>'
-// });
-
-// export const SecondarySmaller = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary smaller">Secondary Smaller</kv-button>'
-// });
-
-// export const SecondarySmallest = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary smallest">Secondary Smallest</kv-button>'
-// });
-
-// export const TextLink = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="text-link">Text Link Button</kv-button>'
-// });
-
-// export const Disabled = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button disabled>Button</kv-button>'
-// });
-
-// export const Expanded = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="expanded">Button</kv-button>'
-// });
-
-// export const AsALink = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button href="http://www.google.com">Button</kv-button>'
-// });
+export const KitchenSink = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvButton },
+	template: `
+		<div>
+			<kv-button
+				variant="primary"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Primary
+			</kv-button>
+			<kv-button
+				variant="secondary"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+			<kv-button
+				variant="danger"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+			<kv-button
+				variant="link"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+			<kv-button
+				variant="ghost"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+			<kv-button
+				variant="danger"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower Eu cillum consectetur mollit cillum nostrud veniam in laboris tempor Lorem id nulla fugiat.
+			</kv-button>
+		</div>`,
+});
