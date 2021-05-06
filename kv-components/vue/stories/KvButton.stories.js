@@ -136,4 +136,7 @@ export const KitchenSink = (args, { argTypes }) => ({
 				Find a borrower Eu cillum consectetur mollit cillum nostrud veniam in laboris tempor Lorem id nulla fugiat.
 			</kv-button>
 		</div>`,
+	methods: {
+		onClick(e) { console.log(e); },
+	},
 });
