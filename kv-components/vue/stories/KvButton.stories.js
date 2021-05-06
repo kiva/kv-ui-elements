@@ -38,6 +38,28 @@ const Template = (args, { argTypes }) => ({
 	},
 });
 
+const VariantTemplate = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvButton },
+	template: `
+		<div class="inline-grid gap-2">
+			<kv-button
+				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+				:key="variant"
+				:variant="variant"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+		</div>`,
+	methods: {
+		onClick(e) { console.log(e); },
+	},
+});
+
 // Variants
 export const VariantPrimary = Template.bind({});
 VariantPrimary.args = {
@@ -65,78 +87,12 @@ VariantGhost.args = {
 };
 
 // States
-export const StateLoading = Template.bind({});
+export const StateLoading = VariantTemplate.bind({});
 StateLoading.args = {
 	state: 'loading',
 };
 
-export const StateDisabled = Template.bind({});
+export const StateDisabled = VariantTemplate.bind({});
 StateDisabled.args = {
 	state: 'disabled',
 };
-
-// Kitchen Sink
-export const KitchenSink = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { KvButton },
-	template: `
-		<div>
-			<kv-button
-				variant="primary"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Primary
-			</kv-button>
-			<kv-button
-				variant="secondary"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Find a borrower
-			</kv-button>
-			<kv-button
-				variant="danger"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Find a borrower
-			</kv-button>
-			<kv-button
-				variant="link"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Find a borrower
-			</kv-button>
-			<kv-button
-				variant="ghost"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Find a borrower
-			</kv-button>
-			<kv-button
-				variant="danger"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
-			>
-				Find a borrower Eu cillum consectetur mollit cillum nostrud veniam in laboris tempor Lorem id nulla fugiat.
-			</kv-button>
-		</div>`,
-	methods: {
-		onClick(e) { console.log(e); },
-	},
-});
