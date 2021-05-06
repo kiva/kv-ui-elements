@@ -84,7 +84,7 @@ export default {
 		},
 		/**
 		 * State of the button
-		 * `'' (default), disabled, loading, active(?)`
+		 * `'' (default), disabled, loading`
 		 * */
 		state: {
 			type: String,
