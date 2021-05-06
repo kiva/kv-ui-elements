@@ -23,7 +23,7 @@
 					: variant === 'secondary',
 				'bg-danger hover:bg-danger-700 text-white border-danger hover:border-danger-700'
 					: variant === 'danger',
-				'bg-gray-800 hover:bg-gray-500 text-white border-gray-800 hover:borde-gray-500'
+				'bg-gray-800 hover:bg-gray-500 text-white border-gray-800 hover:border-gray-500'
 					: variant === 'link',
 				'bg-white hover:bg-gray-light text-gray-800 border-white hover:bg-gray-100'
 					: variant === 'ghost',
