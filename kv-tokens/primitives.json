@@ -21,9 +21,9 @@
 			"100": "#EAF6F0",
 			"50": "#F4FBF7"
 		},
-		"renamedaction": {
-			"700": "#277056",
-			"DEFAULT": "#2B7C5F"
+		"action": {
+			"700": "hotpink",
+			"DEFAULT": "pink"
 		},
 		"danger": {
 			"700": "#BA342C",
