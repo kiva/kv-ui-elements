@@ -115,7 +115,7 @@ export default {
 		onClick(event) {
 			// emit a vue event and prevent native event
 			// so we don't have to write @click.native in our templates
-			if (this.tag === 'button' && this.$attrs.type !== 'submit') {
+			if (this.tag === 'button' && this.type !== 'submit') {
 				event.preventDefault();
 				this.$emit('click', event);
 			}
