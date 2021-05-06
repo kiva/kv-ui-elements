@@ -25,6 +25,8 @@
 					: variant === 'danger',
 				'bg-gray-800 hover:bg-gray-500 text-white border-gray-800 hover:borde-gray-500'
 					: variant === 'link',
+				'bg-white hover:bg-gray-light border-white hover:bg-gray-100'
+					: variant === 'ghost',
 			}"
 		>
 			<template v-if="state === 'loading'">
@@ -71,13 +73,13 @@ export default {
 		},
 		/**
 		 * Appearance of the button
-		 * `primary (default), secondary, link, danger`
+		 * `primary (default), secondary, danger, link, ghost`
 		 * */
 		variant: {
 			type: String,
 			default: 'primary',
 			validator(value) {
-				return ['primary', 'secondary', 'link', 'danger'].includes(value);
+				return ['primary', 'secondary', 'link', 'ghost', 'danger'].includes(value);
 			},
 		},
 		/**
