@@ -7,13 +7,14 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger'],
+				options: ['primary', 'secondary', 'link', 'danger', 'ghost'],
 			},
 		},
 		state: {
 			control: {
 				type: 'select',
 				options: ['', 'disabled', 'loading'],
+				defaultValue: null,
 			},
 		},
 	},
@@ -37,6 +38,7 @@ const Template = (args, { argTypes }) => ({
 	},
 });
 
+// Variants
 export const VariantPrimary = Template.bind({});
 VariantPrimary.args = {
 	variant: 'primary',
@@ -62,6 +64,7 @@ VariantGhost.args = {
 	variant: 'ghost',
 };
 
+// States
 export const StateLoading = Template.bind({});
 StateLoading.args = {
 	state: 'loading',
@@ -72,6 +75,7 @@ StateDisabled.args = {
 	state: 'disabled',
 };
 
+// Kitchen Sink
 export const KitchenSink = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvButton },
