@@ -15,7 +15,7 @@
 		<span
 			ref="buttonInnerRef"
 			class="inline-flex w-full justify-center items-center rounded
-				min-h-6 relative overflow-hidden"
+				min-h-6 relative overflow-hidden border"
 			:class="{
 				'bg-action hover:bg-action-700 text-white border-action hover:border-action-700'
 					: variant === 'primary',
