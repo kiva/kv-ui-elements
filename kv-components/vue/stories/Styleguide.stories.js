@@ -34,6 +34,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 		<main class="prose">
 			<section id="sections" class="my-6">
 				<header>
+					<h2>Oh hi there 👋</h2>
 					<h3 class="mb-2"><a href="#sections">#</a> Sections</h3>
 					<p>
 						Elements <code>article</code>, <code>aside</code>, <code>nav</code>,
