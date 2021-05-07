@@ -18,7 +18,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 			<h3 class="mb-2"><a href="#headings">#</a> Headings and pangrams</h3>
 			<h1 class="text-jumbo">.text-jumbo - The quick brown fox jumps over a lazy dog</h1>
 			<h1 class="mb-4 mt-4">.text-h1 - A wizard’s job is to vex chumps quickly in fog.</h1>
-			<h2 class="mb-4">.text-h2 - Amazingly few discotheques provide jukeboxes</h2>
+			<h2 class="mb-4">.text-h2 - Amazingly few discotheques provide jukeboxes.</h2>
 			<h3 class="mb-2">.text-h3 - Sixty zippers were quickly picked from the woven jute bag</h3>
 			<h4>.text-h4 - Five or six big jet planes zoomed quickly by the new tower.</h4>
 			<p class="text-subhead">.text-subhead - Sphinx of black quartz, judge my vow.</p>
@@ -267,10 +267,10 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 				</dl>
 				<p><code>figure</code>:</p>
 				<figure>
-					<img src="https://www.fillmurray.com/402/295" />
+					<img src="https://via.placeholder.com/402x295" />
 					<figcaption>
-						Figure 1: A picture of Bill Murray from
-						<a href="https://www.fillmurray.com/">fillmurray.com</a>
+						Figure 1: A picture from
+						<a href="https://via.placeholder.com/">placeholder.com</a>
 					</figcaption>
 				</figure>
 				<br /><br />
@@ -686,7 +686,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 				</p>
 				<p>
 					<code>img</code>:
-					<img src="https://www.fillmurray.com/150/150" alt="Bill Murray" />
+					<img src="https://via.placeholder.com/150x150" alt="Placeholder image" />
 				</p>
 				<p><code>math</code>:</p>
 				<math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -732,10 +732,10 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 					<code>picture</code>:
 					<picture>
 						<source srcset="
-					https://www.fillmurray.com/240/300 2x,
-					https://www.fillmurray.com/120/150 1x
+					https://via.placeholder.com/240x300 2x,
+					https://via.placeholder.com/120x150 1x
 				" />
-						<img src="https://www.fillmurray.com/120/150" alt="Bill Murray" />
+						<img src="https://via.placeholder.com/120x150" alt="Placeholder image" />
 					</picture>
 				</p>
 				<p>
