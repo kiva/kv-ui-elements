@@ -18,7 +18,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 			<h3 class="mb-2"><a href="#headings">#</a> Headings and pangrams</h3>
 			<h1 class="text-jumbo">.text-jumbo - The quick brown fox jumps over a lazy dog</h1>
 			<h1 class="mb-4 mt-4">.text-h1 - A wizard’s job is to vex chumps quickly in fog.</h1>
-			<h2 class="mb-4">.text-h2 - Amazingly few discotheques provide jukeboxes</h2>
+			<h2 class="mb-4">.text-h2 - Amazingly few discotheques provide jukeboxes.</h2>
 			<h3 class="mb-2">.text-h3 - Sixty zippers were quickly picked from the woven jute bag</h3>
 			<h4>.text-h4 - Five or six big jet planes zoomed quickly by the new tower.</h4>
 			<p class="text-subhead">.text-subhead - Sphinx of black quartz, judge my vow.</p>
