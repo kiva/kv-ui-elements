@@ -1,7 +1,7 @@
 # kv-ui-elements
 Design definitions and components for Kiva's style guide
-* View our component library here: TBD
-* View our Tailwind config viewer here: TBD
+* View our [component library](https://main--608b4cf87f686c00213841b1.chromatic.com)
+* View our Tailwind config viewer: TBD
 
 ## Installing
 $ `npm install https://github.com/kiva/kv-ui-elements`
@@ -49,7 +49,7 @@ export default {
 ## Design tokens and Tailwind configs
 ### Design tokens
 Importing:
-$ `import tokens from kv-ui-elements/kv-tokens/primitives.json`
+`import tokens from kv-ui-elements/kv-tokens/primitives.json`
 
 ### Tailwind config viewer
 For Node versions 15.13.x and above you can run the [Tailwind Config Viewer](https://github.com/rogden/tailwind-config-viewer) from the root directory
