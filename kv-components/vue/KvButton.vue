@@ -6,6 +6,7 @@
 		:href="href"
 		:type="type"
 		:disabled="isDisabled"
+		class="hover:no-underline"
 		:class="{
 			'opacity-low': state === 'disabled',
 			'pointer-events-none': state === 'loading' || isDisabled

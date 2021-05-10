@@ -96,3 +96,9 @@ export const StateDisabled = VariantTemplate.bind({});
 StateDisabled.args = {
 	state: 'disabled',
 };
+
+// Misc
+export const WithHref = VariantTemplate.bind({});
+WithHref.args = {
+	href: 'https://www.google.com',
+};
