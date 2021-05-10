@@ -147,7 +147,7 @@ export default {
 			blipEl.classList.add(blipBgColor);
 
 			// position the blip where the pointer click is or center it if keyboard
-			const fromClick = event.detail === 1; // determine if click came from pointer or keyboard
+			const fromClick = event.detail !== 0; // determine if click came from pointer or keyboard
 			const { clientX, clientY } = event;
 			const {
 				offsetLeft, offsetTop, offsetWidth, offsetHeight,
