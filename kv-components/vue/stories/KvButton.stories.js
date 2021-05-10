@@ -42,19 +42,22 @@ const VariantTemplate = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvButton },
 	template: `
-		<div class="inline-grid gap-2">
-			<kv-button
+		<ul>
+			<li
 				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
 				:key="variant"
-				:variant="variant"
-				:state="state"
-				:to="to"
-				:href="href"
-				@click="onClick"
+				class="mb-2"
 			>
-				Find a borrower
-			</kv-button>
-		</div>`,
+				<kv-button
+					:variant="variant"
+					:state="state"
+					:to="to"
+					:href="href"
+				>
+					Find a borrower
+				</kv-button>
+			</li>
+		</ul>`,
 	methods: {
 		onClick(e) { console.log(e); },
 	},
@@ -102,3 +105,30 @@ export const WithHref = VariantTemplate.bind({});
 WithHref.args = {
 	href: 'https://www.google.com',
 };
+
+export const FullWidth = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvButton },
+	template: `
+	<ul>
+		<li
+			v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+			:key="variant"
+			class="mb-2"
+		>
+			<kv-button
+				class="w-full"
+				:variant="variant"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+		</li>
+	</ul>`,
+	methods: {
+		onClick(e) { console.log(e); },
+	},
+});
