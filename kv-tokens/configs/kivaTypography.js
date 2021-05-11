@@ -99,7 +99,7 @@ const textStyles = (() => {
 		fontSize: rem(fontSizes.h3.sm),
 		fontWeight: fontWeights.medium,
 		letterSpacing: rem(letterSpacings['-1']),
-		lineHeight: lineHeights.normal,
+		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h3.md),
 			letterSpacing: rem(letterSpacings['-0.3']),
