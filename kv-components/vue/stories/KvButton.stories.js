@@ -7,7 +7,14 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'text-link'],
+				options: ['primary', 'secondary', 'link', 'danger', 'ghost'],
+			},
+		},
+		state: {
+			control: {
+				type: 'select',
+				options: ['', 'disabled', 'loading'],
+				defaultValue: null,
 			},
 		},
 	},
@@ -19,8 +26,7 @@ const Template = (args, { argTypes }) => ({
 	template: `
 		<kv-button
 			:variant="variant"
-			:disabled="disabled"
-			:loading="loading"
+			:state="state"
 			:to="to"
 			:href="href"
 			@click="onClick"
@@ -32,57 +38,97 @@ const Template = (args, { argTypes }) => ({
 	},
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
+const VariantTemplate = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvButton },
+	template: `
+		<ul>
+			<li
+				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+				:key="variant"
+				class="mb-2"
+			>
+				<kv-button
+					:variant="variant"
+					:state="state"
+					:to="to"
+					:href="href"
+				>
+					Find a borrower
+				</kv-button>
+			</li>
+		</ul>`,
+	methods: {
+		onClick(e) { console.log(e); },
+	},
+});
+
+// Variants
+export const VariantPrimary = Template.bind({});
+VariantPrimary.args = {
 	variant: 'primary',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const VariantSecondary = Template.bind({});
+VariantSecondary.args = {
 	variant: 'secondary',
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
+export const VariantDanger = Template.bind({});
+VariantDanger.args = {
 	variant: 'danger',
 };
 
-// export const Alert = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="alert">Alert</kv-button>'
-// });
+export const VariantLink = Template.bind({});
+VariantLink.args = {
+	variant: 'link',
+};
 
-// export const Secondary = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary">Secondary</kv-button>'
-// });
+export const VariantGhost = Template.bind({});
+VariantGhost.args = {
+	variant: 'ghost',
+};
 
-// export const SecondarySmaller = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary smaller">Secondary Smaller</kv-button>'
-// });
+// States
+export const StateLoading = VariantTemplate.bind({});
+StateLoading.args = {
+	state: 'loading',
+};
 
-// export const SecondarySmallest = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="secondary smallest">Secondary Smallest</kv-button>'
-// });
+export const StateDisabled = VariantTemplate.bind({});
+StateDisabled.args = {
+	state: 'disabled',
+};
 
-// export const TextLink = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="text-link">Text Link Button</kv-button>'
-// });
+// Misc
+export const WithHref = VariantTemplate.bind({});
+WithHref.args = {
+	href: 'https://www.google.com',
+};
 
-// export const Disabled = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button disabled>Button</kv-button>'
-// });
-
-// export const Expanded = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button class="expanded">Button</kv-button>'
-// });
-
-// export const AsALink = () => ({
-// 	components: { KvButton },
-// 	template: '<kv-button href="http://www.google.com">Button</kv-button>'
-// });
+export const FullWidth = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvButton },
+	template: `
+	<ul>
+		<li
+			v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+			:key="variant"
+			class="mb-2"
+		>
+			<kv-button
+				class="w-full"
+				:variant="variant"
+				:state="state"
+				:to="to"
+				:href="href"
+				@click="onClick"
+			>
+				Find a borrower
+			</kv-button>
+		</li>
+	</ul>`,
+	methods: {
+		onClick(e) { console.log(e); },
+	},
+});
