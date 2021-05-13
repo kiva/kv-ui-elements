@@ -115,6 +115,24 @@ module.exports = {
 		}),
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
+			minHeight: (theme) => ({
+				...theme('spacing'),
+			}),
+			keyframes: {
+				ripple: {
+					'0%': {
+						transform: 'translateX(-50%) translateY(-50%) scale(1)',
+						opacity: 0.3,
+					},
+					'100%': {
+						transform: 'translateX(-50%) translateY(-50%) scale(15)',
+						opacity: 0,
+					},
+				},
+			},
+			animation: {
+				ripple: 'ripple 750ms ease-out 1 forwards',
+			},
 		},
 	},
 	variants: {

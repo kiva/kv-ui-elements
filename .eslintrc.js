@@ -8,8 +8,9 @@ module.exports = {
 	extends: [
 		'airbnb-base',
 	],
+	parser: '@babel/eslint-parser',
 	parserOptions: {
-		parser: 'babel-eslint',
+		requireConfigFile: false,
 	},
 	rules: {
 		// tabs not spaces
