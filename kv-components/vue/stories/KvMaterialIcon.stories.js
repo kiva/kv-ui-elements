@@ -139,6 +139,7 @@ export const StarsDemo = (args, { argTypes }) => ({
 				class="text-black hover:text-action-700"
 			>
 				<kv-material-icon :name="getStarIcon(i)"/>
+				<span class="sr-only">Set rating to {{i}}</span>
 			</button>
 		</div>`,
 	data() {
