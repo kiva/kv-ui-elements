@@ -12,7 +12,8 @@
     "prepare": "husky install",
     "storybook": "npm run storybook -w ./kv-components",
     "build-storybook": "npm run build-storybook -w ./kv-components",
-    "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens"
+    "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens",
+    "bootstrap": "lerna bootstrap --hoist"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
@@ -22,6 +23,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.9.0",
     "husky": "^6.0.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.4"
   },
   "repository": {

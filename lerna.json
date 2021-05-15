@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "kv-components",
+	"kv-tokens"
+  ],
+  "version": "independent"
+}
