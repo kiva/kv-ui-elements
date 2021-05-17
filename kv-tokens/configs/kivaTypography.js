@@ -60,12 +60,16 @@ const textBaseColor = colors.gray['800'];
  REUSABLE TYPE STYLES
 */
 const textStyles = (() => {
-	const textBase = {
-		fontWeight: fontWeights.book,
-		fontSize: rem(fontSizes.base.sm),
-		lineHeight: lineHeights.normal,
+	const textJumbo = {
+		fontWeight: fontWeights.medium,
+		fontSize: rem(fontSizes.jumbo.sm),
+		letterSpacing: letterSpacings['-2'],
+		lineHeight: lineHeights.tight,
+		'@screen md': {
+			fontSize: rem(fontSizes.jumbo.md),
+		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.base.lg),
+			fontSize: rem(fontSizes.jumbo.lg),
 		},
 	};
 
@@ -131,16 +135,12 @@ const textStyles = (() => {
 		fontWeight: fontWeights.book,
 	};
 
-	const textJumbo = {
-		fontWeight: fontWeights.medium,
-		fontSize: rem(fontSizes.jumbo.sm),
-		letterSpacing: letterSpacings['-2'],
-		lineHeight: lineHeights.tight,
-		'@screen md': {
-			fontSize: rem(fontSizes.jumbo.md),
-		},
+	const textBase = {
+		fontWeight: fontWeights.book,
+		fontSize: rem(fontSizes.base.sm),
+		lineHeight: lineHeights.normal,
 		'@screen lg': {
-			fontSize: rem(fontSizes.jumbo.lg),
+			fontSize: rem(fontSizes.base.lg),
 		},
 	};
 
@@ -154,14 +154,14 @@ const textStyles = (() => {
 	};
 
 	return {
-		textBase,
+		textJumbo,
 		textH1,
 		textH2,
 		textH3,
 		textH4,
-		textJumbo,
-		textSmall,
 		textSubhead,
+		textBase,
+		textSmall,
 	};
 })();
 
