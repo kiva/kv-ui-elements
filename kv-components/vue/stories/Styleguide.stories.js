@@ -249,6 +249,9 @@ export const Primitives = (args, { argTypes }) => ({
 		},
 	},
 });
+
+/* eslint-disable max-len */
+/*
 export const HTMLKitchenSink = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
@@ -1020,6 +1023,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 	</div>
 	`,
 });
+*/
 
 export const ProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -1227,6 +1231,8 @@ export const ProseDemo = (args, { argTypes }) => ({
 	`,
 });
 
+/* eslint-disable max-len */
+/*
 export const NoProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
@@ -1431,3 +1437,4 @@ export const NoProseDemo = (args, { argTypes }) => ({
 	</div>
 	`,
 });
+*/
