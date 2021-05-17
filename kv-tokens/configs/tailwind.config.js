@@ -143,12 +143,12 @@ module.exports = {
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
 		plugin(({ addBase, addUtilities }) => {
-			const { webFonts, textStyles } = kivaTypography;
+			const { webFonts, textStyles, textBaseColor } = kivaTypography;
 			addBase(webFonts);
 			addBase({
 				body: {
 					...textStyles.textBase,
-					color: textStyles.textBaseColor,
+					color: textBaseColor,
 				},
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,

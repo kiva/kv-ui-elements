@@ -53,6 +53,9 @@ const webFonts = [
 	},
 ];
 
+/** BASE TEXT COLOR */
+const textBaseColor = colors.gray['800'];
+
 /**
  REUSABLE TYPE STYLES
 */
@@ -151,7 +154,6 @@ const textStyles = (() => {
 	};
 
 	return {
-		textBaseColor: colors.gray['800'],
 		textBase,
 		textH1,
 		textH2,
@@ -186,7 +188,7 @@ const proseOverrides = () => ({
 				color: false,
 			},
 			'ul > li::before': {
-				backgroundColor: textStyles.textBaseColor,
+				backgroundColor: textBaseColor,
 			},
 			hr: {
 				borderColor: false,
@@ -367,6 +369,7 @@ const proseOverrides = () => ({
 
 module.exports = {
 	webFonts,
+	textBaseColor,
 	textStyles,
 	proseOverrides,
 };
