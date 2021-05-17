@@ -58,9 +58,6 @@ module.exports = {
 				700: colors.action['700'],
 				DEFAULT: colors.action.DEFAULT,
 			},
-			// greenblue: {
-			// 	DEFAULT: colors.greenBlue,
-			// },
 			danger: {
 				700: colors.danger['700'],
 				DEFAULT: colors.danger.DEFAULT,
@@ -143,12 +140,12 @@ module.exports = {
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
 		plugin(({ addBase, addUtilities }) => {
-			const { webFonts, textStyles } = kivaTypography;
+			const { webFonts, textStyles, textBaseColor } = kivaTypography;
 			addBase(webFonts);
 			addBase({
 				body: {
 					...textStyles.textBase,
-					color: textStyles.textBaseColor,
+					color: textBaseColor,
 				},
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,
