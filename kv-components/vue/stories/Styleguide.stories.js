@@ -72,6 +72,7 @@ export const Primitives = (args, { argTypes }) => ({
 				<li
 					v-for="typeStyle in kivaTypography"
 					:key="buildClassName('text', typeStyle)"
+					class="overflow-x-auto w-full"
 				>
 					<button
 						class="text-left font-book hover:text-action-700"
@@ -80,8 +81,9 @@ export const Primitives = (args, { argTypes }) => ({
 						<p
 							class="mb-1"
 							:class="buildClassName('text', typeStyle)"
+							style="width: 12em;"
 						>
-							The quick brown fox <br>jumps over the lazy dog
+							The quick brown fox jumps over the lazy dog
 						</p>
 						<span>.{{buildClassName('text', typeStyle)}}</span>
 					</button>
