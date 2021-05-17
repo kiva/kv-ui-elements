@@ -58,9 +58,6 @@ module.exports = {
 				700: colors.action['700'],
 				DEFAULT: colors.action.DEFAULT,
 			},
-			// greenblue: {
-			// 	DEFAULT: colors.greenBlue,
-			// },
 			danger: {
 				700: colors.danger['700'],
 				DEFAULT: colors.danger.DEFAULT,
