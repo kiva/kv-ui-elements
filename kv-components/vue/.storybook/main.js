@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   stories: [
-    '../stories/Styleguide.stories.js', // show the base styleguide first
     '../stories/**/*.stories.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)'
   ],
