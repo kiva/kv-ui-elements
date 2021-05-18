@@ -3,65 +3,100 @@ import KvSelect from '../KvSelect.vue';
 export default {
 	title: 'KvSelect',
 	component: KvSelect,
+	argTypes: {
+		variant: {
+			control: {
+				type: 'select',
+				options: ['default'],
+			},
+		},
+		state: {
+			control: {
+				type: 'select',
+				options: ['', 'disabled'],
+				defaultValue: null,
+			},
+		},
+	},
 };
 
-export const Default = () => ({
+const Template = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
 	components: { KvSelect },
-	data: () => ({
-		exampleModel: 'example3',
-	}),
-	template: `
-		<div>
-			<label></label>
-			<kv-select v-model="exampleModel">
-				<option class="px-3 py-2" value="example1">Example one</option>
-				<option class="px-3 py-2" value="example2">Example two</option>
-				<option class="px-3 py-2" value="example3">Example three</option>
-			</kv-select>
-		</div>
-	`,
-});
-
-export const Disabled = () => ({
-	components: {
-		KvSelect,
-	},
-	data: () => ({
-		exampleModel: 'example2',
-	}),
-	template: `
-		<div>
-			<label></label>
-			<kv-select disabled v-model="exampleModel">
-				<option value="example1">Example one</option>
-				<option value="example2">Example two</option>
-				<option value="example3">Example three</option>
-			</kv-select>
-		</div>
-	`,
-});
-
-export const withLabel = () => ({
-	components: {
-		KvSelect,
-	},
 	data: () => ({
 		exampleModel: 'example1',
 	}),
-	props: {
-		id: {
-			type: String,
-			default: 'thisDropdown',
-		},
-		labelText: {
-			type: String,
-			default: 'This is a label',
-		},
+	template: `
+		<kv-select
+			:id="id"
+			:variant="variant"
+			:state="state"
+			@change="onChange"
+			v-model="exampleModel"
+		>
+				<option class="px-3 py-2" value="example1">Example one</option>
+				<option class="px-3 py-2" value="example2">Example two</option>
+				<option class="px-3 py-2" value="example3">Example three</option>
+		</kv-select>`,
+	methods: {
+		onChange(e) { console.log(e); },
 	},
+});
+
+const VariantTemplate = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvSelect },
+	data: () => ({
+		exampleModel: 'example1',
+	}),
+	template: `
+		<kv-select
+			:id="id"
+			:variant="variant"
+			:state="state"
+			@change="onChange"
+			v-model="exampleModel"
+		>
+				<option class="px-3 py-2" value="example1">Example one</option>
+				<option class="px-3 py-2" value="example2">Example two</option>
+				<option class="px-3 py-2" value="example3">Example three</option>
+		</kv-select>`,
+	methods: {
+		onChange(e) { console.log(e); },
+	},
+});
+
+export const VariantDefault = Template.bind({});
+VariantDefault.args = {
+	variant: 'default',
+};
+
+// States
+export const StateDisabled = VariantTemplate.bind({});
+StateDisabled.args = {
+	state: 'disabled',
+};
+
+export const withLabel = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvSelect },
+	data: () => ({
+		exampleModel: 'example1',
+	}),
 	template: `
 		<div>
-			<label :for="id" class="uppercase text-small pb-4">{{ labelText }}</label>
-			<kv-select :id="id" v-model="exampleModel" class="mt-2">
+			<label
+				:for="id"
+				class="text-h4 block"
+			>
+				This is a label
+			</label>
+
+			<kv-select
+				v-model="exampleModel"
+				:id="id"
+				class="mt-2"
+			>
 				<option value="example1">Example one</option>
 				<option value="example2">Example two</option>
 				<option value="example3">Example three</option>
@@ -70,15 +105,30 @@ export const withLabel = () => ({
 	`,
 });
 
-export const withSetWidth = () => ({
+export const withSetWidth = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
 	components: { KvSelect },
 	data: () => ({
-		exampleModel: 'example3',
+		exampleModel: 'example1',
+		widthClass: 'w-16',
 	}),
 	template: `
-		<div>
-			<label></label>
-			<kv-select :width="" v-model="exampleModel">
+		<div
+			:id="id"
+			:class="widthClass"
+		>
+			<label
+				:for="id"
+				class="uppercase text-small"
+			>
+				This is a label
+			</label>
+
+			<kv-select
+				:id="id"
+				class="mt-2 w-full"
+				v-model="exampleModel"
+			>
 				<option class="px-3 py-2" value="example1">Example one</option>
 				<option class="px-3 py-2" value="example2">Example two</option>
 				<option class="px-3 py-2" value="example3">Example three</option>
