@@ -117,16 +117,9 @@ export const withSetWidth = (args, { argTypes }) => ({
 			:id="id"
 			:class="widthClass"
 		>
-			<label
-				:for="id"
-				class="uppercase text-small"
-			>
-				This is a label
-			</label>
-
 			<kv-select
 				:id="id"
-				class="mt-2 w-full"
+				class="w-full"
 				v-model="exampleModel"
 			>
 				<option class="px-3 py-2" value="example1">Example one</option>
