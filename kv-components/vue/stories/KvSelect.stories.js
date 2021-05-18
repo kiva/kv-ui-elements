@@ -15,13 +15,13 @@ const Template = (args, { argTypes }) => ({
 	template: `
 		<div>
 			<label
-				:for="id"
+				for="first-example"
 				class="text-h4 block"
 			>
 				Choose an example
 			</label>
 			<kv-select
-				:id="id"
+				id="first-example"
 				:disabled="disabled"
 				@change="onChange"
 				v-model="exampleModel"
@@ -57,7 +57,7 @@ export const LabelHidden = (args, {
 	template: `
 		<div>
 			<label
-				:for="id"
+				for="this-example"
 				class="text-h4 block sr-only"
 			>
 				Choose an example
@@ -65,7 +65,7 @@ export const LabelHidden = (args, {
 
 			<kv-select
 				v-model="exampleModel"
-				:id="id"
+				id="this-example"
 				:disabled="disabled"
 			>
 				<option value="example1">Example one</option>
@@ -84,14 +84,14 @@ export const WidthSet = (args, { argTypes }) => ({
 	template: `
 		<div class="w-full">
 			<label
-				:for="id"
+				for="another-example"
 				class="text-h4 block"
 			>
 				Choose an example
 			</label>
 
 			<kv-select
-				:id="id"
+				id="another-example"
 				:disabled="disabled"
 				class="mt-2 w-full"
 				v-model="exampleModel"
