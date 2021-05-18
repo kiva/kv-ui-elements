@@ -9,6 +9,7 @@ const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvSelect },
 	data: () => ({
+		id: 'example',
 		exampleModel: 'example1',
 	}),
 	template: `
@@ -24,7 +25,6 @@ const Template = (args, { argTypes }) => ({
 				:disabled="disabled"
 				@change="onChange"
 				v-model="exampleModel"
-				aria-label="example"
 				class="mt-2"
 			>
 					<option class="px-3 py-2" value="example1">Example one</option>
@@ -58,7 +58,7 @@ export const LabelHidden = (args, {
 		<div>
 			<label
 				:for="id"
-				class="text-h4 block hidden"
+				class="text-h4 block sr-only"
 			>
 				Choose an example
 			</label>
@@ -67,7 +67,6 @@ export const LabelHidden = (args, {
 				v-model="exampleModel"
 				:id="id"
 				:disabled="disabled"
-				aria-label="example"
 			>
 				<option value="example1">Example one</option>
 				<option value="example2">Example two</option>
@@ -95,7 +94,6 @@ export const WidthSet = (args, { argTypes }) => ({
 				:id="id"
 				:disabled="disabled"
 				class="mt-2 w-full"
-				aria-label="example"
 				v-model="exampleModel"
 			>
 				<option class="px-3 py-2" value="example1">Example one</option>

@@ -2,7 +2,6 @@
 	<select
 		:id="id"
 		:disabled="disabled"
-		aria-label=""
 		class="text-base h-6 pl-1 border border-gray-300 rounded-sm"
 		:class="{ 'opacity-low': disabled }"
 		@change="onChange"
