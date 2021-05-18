@@ -3,81 +3,9 @@ import KvSelect from '../KvSelect.vue';
 export default {
 	title: 'KvSelect',
 	component: KvSelect,
-	argTypes: {
-		variant: {
-			control: {
-				type: 'select',
-				options: ['default'],
-			},
-		},
-		state: {
-			control: {
-				type: 'select',
-				options: ['', 'disabled'],
-				defaultValue: null,
-			},
-		},
-	},
 };
 
 const Template = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { KvSelect },
-	data: () => ({
-		exampleModel: 'example1',
-	}),
-	template: `
-		<kv-select
-			:id="id"
-			:variant="variant"
-			:state="state"
-			@change="onChange"
-			v-model="exampleModel"
-		>
-				<option class="px-3 py-2" value="example1">Example one</option>
-				<option class="px-3 py-2" value="example2">Example two</option>
-				<option class="px-3 py-2" value="example3">Example three</option>
-		</kv-select>`,
-	methods: {
-		onChange(e) { console.log(e); },
-	},
-});
-
-const VariantTemplate = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { KvSelect },
-	data: () => ({
-		exampleModel: 'example1',
-	}),
-	template: `
-		<kv-select
-			:id="id"
-			:variant="variant"
-			:state="state"
-			@change="onChange"
-			v-model="exampleModel"
-		>
-				<option class="px-3 py-2" value="example1">Example one</option>
-				<option class="px-3 py-2" value="example2">Example two</option>
-				<option class="px-3 py-2" value="example3">Example three</option>
-		</kv-select>`,
-	methods: {
-		onChange(e) { console.log(e); },
-	},
-});
-
-export const VariantDefault = Template.bind({});
-VariantDefault.args = {
-	variant: 'default',
-};
-
-// States
-export const StateDisabled = VariantTemplate.bind({});
-StateDisabled.args = {
-	state: 'disabled',
-};
-
-export const withLabel = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvSelect },
 	data: () => ({
@@ -89,43 +17,90 @@ export const withLabel = (args, { argTypes }) => ({
 				:for="id"
 				class="text-h4 block"
 			>
-				This is a label
+				Choose an example
+			</label>
+			<kv-select
+				:id="id"
+				:disabled="disabled"
+				@change="onChange"
+				v-model="exampleModel"
+				aria-label="example"
+				class="mt-2"
+			>
+					<option class="px-3 py-2" value="example1">Example one</option>
+					<option class="px-3 py-2" value="example2">Example two</option>
+					<option class="px-3 py-2" value="example3">Example three</option>
+			</kv-select>
+		</div>`,
+	methods: {
+		onChange(e) { console.log(e); },
+	},
+});
+
+export const Default = Template.bind({});
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+	disabled: true,
+};
+
+export const LabelHidden = (args, {
+	argTypes,
+}) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvSelect,
+	},
+	data: () => ({
+		exampleModel: 'example1',
+	}),
+	template: `
+		<div>
+			<label
+				:for="id"
+				class="text-h4 block hidden"
+			>
+				Choose an example
 			</label>
 
 			<kv-select
 				v-model="exampleModel"
 				:id="id"
-				class="mt-2"
+				:disabled="disabled"
+				aria-label="example"
 			>
 				<option value="example1">Example one</option>
 				<option value="example2">Example two</option>
 				<option value="example3">Example three</option>
 			</kv-select>
-		</div>
-	`,
+		</div>`,
 });
 
-export const withSetWidth = (args, { argTypes }) => ({
+export const WidthSet = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvSelect },
 	data: () => ({
 		exampleModel: 'example1',
-		widthClass: 'w-16',
 	}),
 	template: `
-		<div
-			:id="id"
-			:class="widthClass"
-		>
+		<div class="w-full">
+			<label
+				:for="id"
+				class="text-h4 block"
+			>
+				Choose an example
+			</label>
+
 			<kv-select
 				:id="id"
-				class="w-full"
+				:disabled="disabled"
+				class="mt-2 w-full"
+				aria-label="example"
 				v-model="exampleModel"
 			>
 				<option class="px-3 py-2" value="example1">Example one</option>
 				<option class="px-3 py-2" value="example2">Example two</option>
 				<option class="px-3 py-2" value="example3">Example three</option>
 			</kv-select>
-		</div>
-	`,
+		</div>`,
 });
