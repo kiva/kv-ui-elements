@@ -38,15 +38,17 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
+Default.args = {
+	id: 'example-id',
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+	id: 'example-id',
 	disabled: true,
 };
 
-export const LabelHidden = (args, {
-	argTypes,
-}) => ({
+export const LabelHidden = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvSelect,
@@ -76,6 +78,10 @@ export const LabelHidden = (args, {
 		</div>`,
 });
 
+LabelHidden.args = {
+	id: 'example-id',
+};
+
 export const WidthSet = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvSelect },
@@ -104,3 +110,7 @@ export const WidthSet = (args, { argTypes }) => ({
 			</kv-select>
 		</div>`,
 });
+
+WidthSet.args = {
+	id: 'example-id',
+};
