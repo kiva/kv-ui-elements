@@ -1,7 +1,259 @@
+import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
+import tailwindConfig from 'kv-tokens/configs/tailwind.config';
+import { textStyles } from 'kv-tokens/configs/kivaTypography';
+
+const config = resolveConfig(tailwindConfig);
+const { theme } = config;
+
+const buildValuesFromThemeObj = (initialObj) => {
+	const arr = [];
+	const iterate = (obj, prefix = '') => {
+		Object.keys(obj).forEach((key) => {
+			if (typeof obj[key] === 'object') {
+				iterate(obj[key], key);
+			} else {
+				const niceKey = prefix ? `${prefix}-${key}` : key;
+				arr.push([niceKey, obj[key]]);
+			}
+		});
+	};
+	iterate(initialObj);
+	return arr;
+};
+
+const kebabCase = (str) => str.split('').map((letter, idx) => (letter.toUpperCase() === letter
+	? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
+	: letter)).join('');
+
+const headerNumberCase = (str) => str
+	.replace('h-1', 'h1')
+	.replace('h-2', 'h2')
+	.replace('h-3', 'h3')
+	.replace('h-4', 'h4')
+	.replace('h-5', 'h5');
+
 export default {
 	title: 'BaseStyling',
 };
 
+export const Primitives = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	template: `
+	<div class="container">
+		<h1 class="mt-4">Primitives</h1>
+		<section class="py-8">
+			<h2 class="mb-4">Colors</h2>
+			<ul class="flex flex-wrap gap-4">
+				<li
+					v-for="color in colors"
+					:key="buildClassName('bg', color[0])"
+				>
+					<button
+						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
+						@click="copy(buildClassName('bg', color[0]))"
+					>
+						<div
+							class="w-16 h-16 block mb-1"
+							:class="buildClassName('bg', color[0])"
+						>
+						</div>
+						<div>
+							.{{buildClassName('bg', color[0])}}
+							<br><small class="text-gray-500">{{color[1]}}</small>
+						</div>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Text Styles</h2>
+			<ul class="flex flex-wrap flex-col gap-4">
+				<li
+					v-for="typeStyle in kivaTypography"
+					:key="buildClassName('text', typeStyle)"
+					class="overflow-x-auto w-full"
+				>
+					<button
+						class="text-left font-book hover:text-action-700"
+						@click="copy(buildClassName('text', typeStyle))"
+					>
+						<p
+							class="mb-1"
+							:class="buildClassName('text', typeStyle)"
+							style="width: 12em;"
+						>
+							The quick brown fox jumps over the lazy dog
+						</p>
+						<span>.{{buildClassName('text', typeStyle)}}</span>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Font Weights</h2>
+			<ul class="flex flex-wrap flex-col gap-4">
+				<li
+					v-for="fontWeight in fontWeights"
+					:key="buildClassName('font', fontWeight[0])"
+				>
+					<button
+						class="text-left font-book hover:text-action-700"
+						@click="copy(buildClassName('font', fontWeight[0]))"
+					>
+						<p :class="buildClassName('font', fontWeight[0])">
+							The quick brown fox jumps over the lazy dog
+						</p>
+						<span>.{{buildClassName('font', fontWeight[0])}}</span>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Radii</h2>
+			<ul class="flex flex-wrap gap-4">
+				<li
+					v-for="radius in radii"
+					:key="buildClassName('rounded', radius[0])"
+				>
+					<button
+						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
+						@click="copy(buildClassName('rounded', radius[0]))"
+					>
+						<div
+							class="bg-gray-300 w-16 h-16 mb-1"
+							:class="buildClassName('rounded', radius[0])"
+						></div>
+						<div>
+							.{{buildClassName('rounded', radius[0])}}
+							<br><small class="text-gray-500">({{remToPx(radius[1])}}px)</small>
+						</div>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Opacity</h2>
+			<ul class="flex flex-wrap gap-4">
+				<li
+					v-for="opacityItem in opacity"
+					:key="buildClassName('opacity', opacityItem[0])"
+				>
+					<button
+						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
+						@click="copy(buildClassName('opacity', opacityItem[0]))"
+					>
+						<div class="w-16 h-16 mb-1">
+						<div
+							style="background-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);"
+							class="w-16 h-16 mb-1"
+							:class="buildClassName('opacity', opacityItem[0])"
+						></div>
+						</div>
+						<div>
+							.{{buildClassName('opacity', opacityItem[0])}}<br>
+							<small class="text-gray-500">({{opacityItem[1]}})</small>
+						</div>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Space</h2>
+			<ul class="flex flex-wrap flex-col gap-4">
+				<li
+					v-for="spaceItem in space"
+					class="block"
+					:key="buildClassName('w', spaceItem[0])"
+				>
+					<button
+						class="text-left font-book hover:text-action-700"
+						@click="copy(buildClassName('w', spaceItem[0]))"
+					>
+						<div
+							class="bg-gray-300 h-3 inline-block"
+							:class="buildClassName('w', spaceItem[0])"
+						></div>
+						<div>
+							.{{buildClassName('w', spaceItem[0])}}
+							<small class="text-gray-500">({{remToPx(spaceItem[1])}}px)</small>
+						</div>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="py-8">
+			<h2 class="mb-4">Breakpoints</h2>
+			<ul class="flex flex-wrap flex-col gap-4 overflow-x-auto">
+				<li
+					v-for="breakpoint in breakpoints"
+					:key="buildClassName('breakpoint', breakpoint[0])"
+				>
+					<div
+						class="w-8 h-4 bg-gray-300 mb-1"
+						:style="{ 'width': breakpoint[1] }"
+					></div>
+					<span>
+						{{breakpoint[0]}}
+						<small class="text-gray-500">({{remToPx(breakpoint[1])}}px)</small>
+					</span>
+				</li>
+			</ul>
+		</section>
+
+		<!-- TODO: replace with KvToast -->
+		<div
+			aria-hidden="isToastVisible"
+			class="fixed bottom-0 left-1/2 transform -translate-x-1/2  px-3 py-2 bg-gray-500 text-white rounded transition-all"
+			:class="isToastVisible ? 'opacity-full -translate-y-2' : 'opacity-0 -translate-y-0'"
+		>
+			<span>{{ toastMessage }}</span>
+		</div>
+	</div>
+	`,
+	data() {
+		return {
+			colors: buildValuesFromThemeObj(theme.colors),
+			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]), // sort ascending
+			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
+			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
+			breakpoints: buildValuesFromThemeObj(theme.screens),
+			radii: buildValuesFromThemeObj(theme.borderRadius),
+			opacity: buildValuesFromThemeObj(theme.opacity),
+			isToastVisible: false,
+			toastMessage: '',
+		};
+	},
+	methods: {
+		async copy(val) {
+			await navigator.clipboard.writeText(val);
+			this.showToast(`copied: ${val}`);
+		},
+		showToast(message) {
+			this.toastMessage = message;
+			this.isToastVisible = true;
+			setTimeout(() => {
+				this.isToastVisible = false;
+			}, 4000);
+		},
+		remToPx(rem) {
+			return parseFloat(rem) * 16;
+		},
+		buildClassName(prefix, value) {
+			let name = `${prefix}-${value}`;
+			name = name.replace('-DEFAULT', '');
+			return name;
+		},
+	},
+});
+
+/* eslint-disable max-len */
+/*
 export const HTMLKitchenSink = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
@@ -773,6 +1025,7 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 	</div>
 	`,
 });
+*/
 
 export const ProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -980,6 +1233,8 @@ export const ProseDemo = (args, { argTypes }) => ({
 	`,
 });
 
+/* eslint-disable max-len */
+/*
 export const NoProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
@@ -1184,3 +1439,4 @@ export const NoProseDemo = (args, { argTypes }) => ({
 	</div>
 	`,
 });
+*/
