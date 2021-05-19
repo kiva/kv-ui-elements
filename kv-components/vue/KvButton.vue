@@ -31,8 +31,10 @@
 			}"
 		>
 			<template v-if="state === 'loading'">
-				<!-- TODO replace with kvloading element -->
-				<span class="absolute w-full text-center -mx-4 z-0">🕣</span>
+				<kv-loading-spinner
+					class="absolute w-full text-center -mx-4 z-0"
+					:color="loadingColor"
+				/>
 			</template>
 			<span
 				class="py-1 px-3 z-10"
@@ -45,7 +47,12 @@
 </template>
 
 <script>
+import KvLoadingSpinner from './KvLoadingSpinner.vue';
+
 export default {
+	components: {
+		KvLoadingSpinner,
+	},
 	props: {
 		/**
 		 * Use if linking to a Vue route
@@ -99,6 +106,16 @@ export default {
 		return {};
 	},
 	computed: {
+		loadingColor() {
+			switch (this.variant) {
+				case 'secondary':
+					return 'black';
+				case 'ghost':
+					return 'brand';
+				default:
+					return 'white';
+			}
+		},
 		isDisabled() {
 			return this.state === 'disabled' || this.state === 'loading';
 		},
