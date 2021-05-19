@@ -1,0 +1,12 @@
+{
+	"version": "independent",
+	"packages": [
+		"kv-components",
+		"kv-tokens"
+	],
+	"command": {
+		"version": {
+			"conventionalCommits": true
+		}
+	}
+}

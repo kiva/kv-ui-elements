@@ -1,7 +1,9 @@
 {
-    "name": "kv-tokens",
+    "name": "@kiva/kv-tokens",
     "version": "0.0.1",
-    "private": true,
+	"publishConfig": {
+		"access": "public"
+	},
     "main": "index.js",
     "scripts": {
         "tailwind-config-viewer": "tailwind-config-viewer -o -c ./configs/tailwind.config.js"
