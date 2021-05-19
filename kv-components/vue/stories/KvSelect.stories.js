@@ -1,6 +1,4 @@
-import { mdiChevronUp } from '@mdi/js';
 import KvSelect from '../KvSelect.vue';
-import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
 	title: 'KvSelect',
@@ -9,7 +7,7 @@ export default {
 
 const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { KvSelect, KvMaterialIcon },
+	components: { KvSelect },
 	data: () => ({
 		exampleModel: 'example2',
 	}),
@@ -47,10 +45,7 @@ Disabled.args = {
 
 export const LabelHidden = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: {
-		KvSelect,
-		mdiChevronUp,
-	},
+	components: { KvSelect },
 	data: () => ({
 		exampleModel: 'example1',
 	}),

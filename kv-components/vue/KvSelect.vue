@@ -1,22 +1,20 @@
 <template>
-	<div>
-		<span class="relative">
-			<select
-				:id="id"
-				:disabled="disabled"
-				:value="value"
-				class="text-base h-6 pr-4 pl-1 border border-gray-300 rounded-sm appearance-none"
-				:class="{ 'opacity-low': disabled }"
-				@change="onChange"
-			>
-				<slot></slot>
-			</select>
-			<kv-material-icon
-				:icon="mdiChevronUp"
-				class="absolute right-0 pt-1.5 pr-1 pointer-events-none"
-				:class="{ 'opacity-low': disabled }"
-			/>
-		</span>
+	<div class="relative inline-grid">
+		<select
+			:id="id"
+			:disabled="disabled"
+			:value="value"
+			class="text-base h-6 pr-4 pl-1 border border-gray-300 rounded-sm appearance-none"
+			:class="{ 'opacity-low': disabled }"
+			@change="onChange"
+		>
+			<slot></slot>
+		</select>
+		<kv-material-icon
+			:icon="mdiChevronUp"
+			class="absolute right-0 pt-1.5 pr-1 pointer-events-none"
+			:class="{ 'opacity-low': disabled }"
+		/>
 	</div>
 </template>
 
