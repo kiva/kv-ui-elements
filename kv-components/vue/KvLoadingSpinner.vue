@@ -24,12 +24,11 @@
 			stroke-width="2"
 		>
 			<circle
-				class="opacity-low"
+				class="stroke-current text-gray-300 opacity-low"
 				cx="12"
 				cy="12"
 				r="8"
 				transform="rotate(135 12 12)"
-				stroke="#C4C4C4"
 			/>
 			<path
 				d="M17.447 17.866c3.24-3.24 3.334-8.399.21-11.523-3.125-3.124-8.284-3.03-11.524.21"
