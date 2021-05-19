@@ -1,7 +1,20 @@
 <template>
 	<svg
 		class="animate-spin"
-		:class="`${cssClassSize} ${cssClassColor}`"
+		:class="{
+			'h-3 w-3'
+				: size === 'small',
+			'h-4 w-4'
+				: size === 'medium',
+			'h-8 w-8'
+				: size === 'large',
+			'text-brand'
+				: color === 'brand',
+			'text-white'
+				: color === 'white',
+			'text-black'
+				: color === 'black',
+		}"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
@@ -63,32 +76,6 @@ export default {
 			validator(value) {
 				return ['brand', 'white', 'black'].includes(value);
 			},
-		},
-	},
-	computed: {
-		cssClassSize() {
-			switch (this.size) {
-				case 'small':
-					return 'h-3 w-3';
-				case 'medium':
-					return 'h-4 w-4';
-				case 'large':
-					return 'h-8 w-8';
-				default:
-					return 'h-4 w-4';
-			}
-		},
-		cssClassColor() {
-			switch (this.color) {
-				case 'brand':
-					return 'text-brand';
-				case 'white':
-					return 'text-white';
-				case 'black':
-					return 'text-black';
-				default:
-					return 'text-brand';
-			}
 		},
 	},
 };
