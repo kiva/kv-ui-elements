@@ -1,6 +1,6 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
-import tailwindConfig from 'kv-tokens/configs/tailwind.config';
-import { textStyles } from 'kv-tokens/configs/kivaTypography';
+import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config';
+import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
 
 const config = resolveConfig(tailwindConfig);
 const { theme } = config;
