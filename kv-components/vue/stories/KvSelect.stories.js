@@ -1,4 +1,6 @@
+import { mdiChevronUp } from '@mdi/js';
 import KvSelect from '../KvSelect.vue';
+import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
 	title: 'KvSelect',
@@ -7,10 +9,9 @@ export default {
 
 const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { KvSelect },
+	components: { KvSelect, KvMaterialIcon },
 	data: () => ({
-		id: 'example',
-		exampleModel: 'example1',
+		exampleModel: 'example2',
 	}),
 	template: `
 		<div>
@@ -48,6 +49,7 @@ export const LabelHidden = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvSelect,
+		mdiChevronUp,
 	},
 	data: () => ({
 		exampleModel: 'example1',
@@ -72,6 +74,9 @@ export const LabelHidden = (args, { argTypes }) => ({
 				<option value="example3">Example three</option>
 			</kv-select>
 		</div>`,
+	methods: {
+		onChange(e) { console.log(e); },
+	},
 });
 
 export const WidthSet = (args, { argTypes }) => ({
@@ -101,4 +106,7 @@ export const WidthSet = (args, { argTypes }) => ({
 				<option class="px-3 py-2" value="example3">Example three</option>
 			</kv-select>
 		</div>`,
+	methods: {
+		onChange(e) { console.log(e); },
+	},
 });
