@@ -12,7 +12,7 @@
 				<slot></slot>
 			</select>
 			<kv-material-icon
-				:icon="mdiChevronUp"
+				:icon="mdiChevronDown"
 				class="absolute right-0 pt-1.5 pr-1 pointer-events-none"
 				:class="{ 'opacity-low': disabled }"
 			/>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mdiChevronUp } from '@mdi/js';
+import { mdiChevronDown } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
@@ -59,7 +59,7 @@ export default {
 	},
 	data() {
 		return {
-			mdiChevronUp,
+			mdiChevronDown,
 		};
 	},
 	methods: {
