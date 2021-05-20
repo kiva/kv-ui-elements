@@ -63,12 +63,12 @@ export default {
 		};
 	},
 	methods: {
-		/**
-		 * The value that the select has changed to
-		 * @event change
-		 * @type {Event}
-		 */
 		onChange(event) {
+			/**
+			* The value that the select has changed to
+			* @event change
+			* @type {Event}
+			*/
 			this.$emit('change', event.target.value);
 		},
 	},
