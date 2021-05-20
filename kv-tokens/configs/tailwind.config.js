@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
-const kivaTypography = require('./kivaTypography.js');
+const kivaTypography = require('./kivaTypography');
 const designtokens = require('../primitives.json');
 const { rem } = require('./util');
 
