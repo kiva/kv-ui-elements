@@ -96,9 +96,9 @@ export const WidthSet = (args, { argTypes }) => ({
 				v-model="exampleModel"
 				class="mt-2 w-full"
 			>
-				<option class="px-3 py-2" value="example1">Example one</option>
-				<option class="px-3 py-2" value="example2">Example two</option>
-				<option class="px-3 py-2" value="example3">Example three</option>
+				<option value="example1">Example one</option>
+				<option value="example2">Example two</option>
+				<option value="example3">Example three</option>
 			</kv-select>
 		</div>`,
 	methods: {
