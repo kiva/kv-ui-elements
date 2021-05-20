@@ -5,7 +5,7 @@
 				:id="id"
 				:disabled="disabled"
 				:value="value"
-				class="text-base h-6 pr-4 pl-1 border border-gray-300 rounded-sm appearance-none w-full"
+				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full"
 				:class="{ 'opacity-low': disabled }"
 				@change="onChange"
 			>
@@ -63,8 +63,12 @@ export default {
 		};
 	},
 	methods: {
+		/**
+		 * The value that the select has changed to
+		 * @event change
+		 * @type {Event}
+		 */
 		onChange(event) {
-			// emit a vue event
 			this.$emit('change', event.target.value);
 		},
 	},
