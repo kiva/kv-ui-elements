@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: '15.x'
         # 👇 Version 2 of the action
@@ -22,9 +22,16 @@ jobs:
         run: npm ci
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        # uses: chromaui/action@v1
+        # Temporarily use canary version of chromaui/action due to breakage in currently published version
+        # ref. https://github.com/chromaui/chromatic-cli/blob/next/.github/workflows/chromatic-staging-action.yml
+        uses: chromaui/action-canary@v1
+        env:
+          LOG_LEVEL: debug
+          DEBUG: chromatic-cli
         # Options required to the GitHub Chromatic Action
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
