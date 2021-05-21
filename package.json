@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "publish-release": "lerna publish",
     "storybook": "npm run storybook -w ./kv-components",
-    "build-storybook": "build-storybook -w ./kv-components",
+    "build-storybook": "npm run build-storybook -w ./kv-components",
     "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens"
   },
   "devDependencies": {
