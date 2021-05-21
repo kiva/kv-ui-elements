@@ -22,8 +22,9 @@ jobs:
         run: npm ci
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        # uses: chromaui/action-canary@v1
+        # uses: chromaui/action@v1
+        # Temporarily use canary version of chromaui/action due to breakage in currently published version
+        uses: chromaui/action-canary@v1
         env:
           LOG_LEVEL: debug
           DEBUG: chromatic-cli
