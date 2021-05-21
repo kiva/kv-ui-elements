@@ -22,14 +22,14 @@ jobs:
         run: npm ci
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        # uses: chromaui/action@v1
+        uses: chromaui/action-canary@v1
+        env:
+          LOG_LEVEL: debug
+          DEBUG: chromatic-cli
         # Options required to the GitHub Chromatic Action
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          ci: true
-          allowConsoleErrors: true
-          debug: true
-          # exitZeroOnChanges: true # 👈 Option to prevent the workflow from failing
-          # exitOnceUploaded: true # 👈 Exit with status 0 (OK) once the build has been sent to Chromatic
+          exitZeroOnChanges: true
