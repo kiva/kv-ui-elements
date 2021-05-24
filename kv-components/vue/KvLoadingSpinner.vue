@@ -1,6 +1,6 @@
 <template>
 	<svg
-		class="animate-spin"
+		class="animate-spin-eased"
 		:class="{
 			'h-3 w-3'
 				: size === 'small',

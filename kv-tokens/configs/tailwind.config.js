@@ -140,6 +140,7 @@ module.exports = {
 			},
 			animation: {
 				ripple: 'ripple 750ms ease-out 1 forwards',
+				'spin-eased': 'spin 1.5s ease-in-out infinite',
 			},
 		},
 	},
