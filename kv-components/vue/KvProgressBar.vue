@@ -1,41 +1,39 @@
 <template>
 	<div
 		role="progressbar"
-		:aria-valuemin="0"
-		:aira-valuemax="max"
-		:aira-valuenow="value"
-		:onLoad="animateProgressBar"
-		class="h-1 w-full rounded-full bg-gray-300"
+		class="h-1 w-full rounded-full bg-gray-300 overflow-hidden"
 	>
 		<div
-			class="h-1 rounded-full absolute w-1/2"
+			ref="progressBarRef"
+			:max="max"
+			:value="value"
+			class="h-1 rounded-full transition-all duration-1000 origin-left"
 			:class="{
-				'bg-brand'
-					: variant === 'brand',
-				'bg-gray-800'
-					: variant === 'black',
+				'bg-brand' : variant === 'brand',
+				'bg-gray-800' : variant === 'black'
 			}"
+			:style="{width: loaded ? `${value}%` : '0' }"
 		>
 		</div>
 	</div>
 </template>
 
 <script>
-
 export default {
 	props: {
 		/**
-		 * The max value to display on bar
+		 * The max value of the progress bar
 		 * */
 		max: {
-			type: String,
-			default: '100',
+			type: Number,
+			default: 100,
 		},
 		/**
-		 * The min value to display on bar
+		 * The current value to display
 		 * */
 		value: {
-			type: String,
+			type: Number,
+			default: 0,
 			required: true,
 		},
 		/**
@@ -51,14 +49,19 @@ export default {
 		},
 	},
 	data() {
-		return {};
+		return {
+			loaded: false,
+		};
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.animateProgressBar();
+		});
 	},
 	methods: {
 		animateProgressBar() {
-			console.log('animateProgressBar triggered');
+			this.loaded = true;
 		},
 	},
-
 };
-
 </script>

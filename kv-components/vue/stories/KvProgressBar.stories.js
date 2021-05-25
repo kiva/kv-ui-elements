@@ -4,26 +4,23 @@ export default {
 	title: 'KvProgressBar',
 	component: KvProgressBar,
 	args: {
-		value: '30',
-		max: '100',
+		value: 50,
+		max: 100,
 	},
 	argTypes: {
-		variant: {
-			control: {
-				type: 'select',
-				options: ['brand', 'black'],
-			},
-		},
 		value: {
 			control: 'range',
 			options: {
 				min: 0,
 				max: 100,
-				// ????
-				step: 1,
 			},
 		},
-
+		variant: {
+			control: {
+				type: 'select',
+			},
+			options: ['brand', 'black'],
+		},
 	},
 };
 
@@ -32,14 +29,11 @@ const Template = (args, { argTypes }) => ({
 	components: { KvProgressBar },
 	template: `
 		<kv-progress-bar
-			class="w-full"
-		>
-			<div
-				:max="min"
-				:value="value"
-				:variant="variant"
-			></div>
-		</kv-progress-bar>`,
+			ref="progressBarRef"
+			:max="max"
+			:value="value"
+			:variant="variant"
+		></kv-progress-bar>`,
 });
 
 // Default
