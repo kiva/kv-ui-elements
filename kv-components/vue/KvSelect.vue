@@ -6,7 +6,7 @@
 				:id="id"
 				:disabled="disabled"
 				:value="value"
-				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full ring-inset focus:outline-none focus:ring-1 focus:ring-action"
+				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full ring-inset focus:outline-none focus:ring-1 focus:ring-action focus:border-white"
 				:class="{ 'opacity-low': disabled }"
 				@change="onChange"
 			>
