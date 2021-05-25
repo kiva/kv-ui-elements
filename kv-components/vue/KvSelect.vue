@@ -1,14 +1,16 @@
 <template>
 	<div class="inline-flex">
 		<div class="relative w-full">
+			<!-- eslint-disable max-len -->
 			<select
 				:id="id"
 				:disabled="disabled"
 				:value="value"
-				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full"
+				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full ring-inset focus:outline-none focus:ring-1 focus:ring-action"
 				:class="{ 'opacity-low': disabled }"
 				@change="onChange"
 			>
+				<!-- eslint-enabled max-len -->
 				<slot></slot>
 			</select>
 			<kv-material-icon
