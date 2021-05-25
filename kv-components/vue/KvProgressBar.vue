@@ -7,7 +7,7 @@
 			ref="progressBarRef"
 			:max="max"
 			:value="value"
-			class="h-1 rounded-full transition-all duration-1000 origin-left"
+			class="h-1 rounded-full transition-all duration-1000 origin-left ease-in"
 			:class="{
 				'bg-brand' : variant === 'brand',
 				'bg-gray-800' : variant === 'black'
