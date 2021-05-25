@@ -13,6 +13,9 @@
 				'bg-gray-800' : variant === 'black'
 			}"
 			:style="{width: loaded ? `${value}%` : '0' }"
+			:aria-valuemax="value"
+			:aria-valuenow="max"
+			aria-valuemin="0"
 		>
 		</div>
 	</div>
