@@ -1,6 +1,7 @@
 <template>
 	<div
 		role="progressbar"
+		aria-label="progress meter"
 		class="h-1 w-full rounded-full bg-gray-300 overflow-hidden"
 	>
 		<div
