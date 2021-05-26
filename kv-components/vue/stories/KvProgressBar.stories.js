@@ -23,7 +23,6 @@ const Template = (args, { argTypes }) => ({
 	components: { KvProgressBar },
 	template: `
 		<kv-progress-bar
-			ref="progressBarRef"
 			:max="max"
 			:value="value"
 

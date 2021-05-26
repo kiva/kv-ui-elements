@@ -5,13 +5,12 @@
 		class="h-1 w-full rounded-full bg-gray-300 bg-opacity-low overflow-hidden"
 	>
 		<div
-			ref="progressBarRef"
 			:max="max"
 			:value="value"
 			class="h-1 rounded-full transition-all duration-1000 origin-left ease-in bg-brand"
 			:style="{width: loaded ? `${value}%` : '0' }"
-			:aria-valuemax="value"
-			:aria-valuenow="max"
+			:aria-valuemax="max"
+			:aria-valuenow="value"
 			aria-valuemin="0"
 		>
 		</div>
