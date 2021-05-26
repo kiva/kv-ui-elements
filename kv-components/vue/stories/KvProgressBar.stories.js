@@ -15,12 +15,6 @@ export default {
 				max: 100,
 			},
 		},
-		variant: {
-			control: {
-				type: 'select',
-			},
-			options: ['brand', 'black'],
-		},
 	},
 };
 
@@ -32,17 +26,9 @@ const Template = (args, { argTypes }) => ({
 			ref="progressBarRef"
 			:max="max"
 			:value="value"
-			:variant="variant"
+
 		></kv-progress-bar>`,
 });
 
 // Default
-export const VariantBrand = Template.bind({});
-VariantBrand.args = {
-	variant: 'brand',
-};
-
-export const VariantBlack = Template.bind({});
-VariantBlack.args = {
-	variant: 'black',
-};
+export const Brand = Template.bind({});

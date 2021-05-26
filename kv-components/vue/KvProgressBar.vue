@@ -8,11 +8,7 @@
 			ref="progressBarRef"
 			:max="max"
 			:value="value"
-			class="h-1 rounded-full transition-all duration-1000 origin-left ease-in"
-			:class="{
-				'bg-brand' : variant === 'brand',
-				'bg-gray-800' : variant === 'black'
-			}"
+			class="h-1 rounded-full transition-all duration-1000 origin-left ease-in bg-brand"
 			:style="{width: loaded ? `${value}%` : '0' }"
 			:aria-valuemax="value"
 			:aria-valuenow="max"
@@ -39,17 +35,6 @@ export default {
 			type: Number,
 			default: 0,
 			required: true,
-		},
-		/**
-		 * Appearance of the button
-		 * `brand (default), black`
-		 * */
-		variant: {
-			type: String,
-			default: 'brand',
-			validator(value) {
-				return ['brand', 'black'].includes(value);
-			},
 		},
 	},
 	data() {
