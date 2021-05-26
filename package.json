@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "description": "Design definitions and components for Kiva's style guide",
   "workspaces": [
-    "kv-components",
-    "kv-tokens"
+    "@kiva/kv-components",
+    "@kiva/kv-tokens"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js,.vue ./",
     "prepare": "husky install",
     "publish-release": "lerna publish",
-    "storybook": "npm run storybook -w ./kv-components",
-    "build-storybook": "npm run build-storybook -w ./kv-components",
-    "tailwind-config-viewer": "npm run tailwind-config-viewer -w ./kv-tokens"
+    "storybook": "npm run storybook -w @kiva/kv-components",
+    "build-storybook": "npm run build-storybook -w @kiva/kv-components",
+    "tailwind-config-viewer": "npm run tailwind-config-viewer -w @kiva/kv-tokens"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

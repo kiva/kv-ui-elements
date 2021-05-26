@@ -1,8 +1,8 @@
 {
 	"version": "independent",
 	"packages": [
-		"kv-components",
-		"kv-tokens"
+		"@kiva/kv-components",
+		"@kiva/kv-tokens"
 	],
 	"command": {
 		"version": {
