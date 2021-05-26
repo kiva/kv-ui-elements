@@ -3,12 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.1.0...@kiva/kv-tokens@0.1.1) (2021-05-26)
+# [0.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.1.0...@kiva/kv-tokens@0.2.0) (2021-05-26)
 
 
 ### Bug Fixes
 
 * **build:** Move scoped workspaces to directory matching scope ([#53](https://github.com/kiva/kv-ui-elements/issues/53)) ([a86c7a1](https://github.com/kiva/kv-ui-elements/commit/a86c7a1e339b549a717d4efa4c5216b1a6ec751b))
+* Removed unnecessary import extension ([70a1905](https://github.com/kiva/kv-ui-elements/commit/70a1905d5d5a11c90924e02e0eb0d118ddee8d65))
+
+
+### Features
+
+* **KvLoadingSpinner:** Modify the animation timing for KvLoadingSpinner ([#56](https://github.com/kiva/kv-ui-elements/issues/56)) ([39c19b6](https://github.com/kiva/kv-ui-elements/commit/39c19b6a9a1e5eeddb95769ba2d91ea90eedf054))
 
 
 

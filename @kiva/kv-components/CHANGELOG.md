@@ -3,12 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.1.0...@kiva/kv-components@0.1.1) (2021-05-26)
+# [0.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.1.0...@kiva/kv-components@0.2.0) (2021-05-26)
 
 
 ### Bug Fixes
 
 * **build:** Move scoped workspaces to directory matching scope ([#53](https://github.com/kiva/kv-ui-elements/issues/53)) ([a86c7a1](https://github.com/kiva/kv-ui-elements/commit/a86c7a1e339b549a717d4efa4c5216b1a6ec751b))
+
+
+### Features
+
+* **build:** KvSelect focus styles ([43b9818](https://github.com/kiva/kv-ui-elements/commit/43b981810a18d27b48ed0856f584413d476a632e))
+* **build:** KvSelect increasing focus state ring thickness ([2547155](https://github.com/kiva/kv-ui-elements/commit/25471551a7ba625e80a3eba339ca4bc938d6b9c5))
+* **build:** KvSelect removing grey border on focus ([bb028b8](https://github.com/kiva/kv-ui-elements/commit/bb028b8c786871796b6cba91b5b6f49e9bfedc4d))
+* **KvContentfulImg:** Component that renders image from contentful ([#57](https://github.com/kiva/kv-ui-elements/issues/57)) ([0dfccb5](https://github.com/kiva/kv-ui-elements/commit/0dfccb5f60f50262b7f58703e08b631c17201bb0))
+* **KvLoadingSpinner:** Modify the animation timing for KvLoadingSpinner ([#56](https://github.com/kiva/kv-ui-elements/issues/56)) ([39c19b6](https://github.com/kiva/kv-ui-elements/commit/39c19b6a9a1e5eeddb95769ba2d91ea90eedf054))
+* KvSelect component and storybook story ([0db8bed](https://github.com/kiva/kv-ui-elements/commit/0db8bed4530da9ab9f4fe04a1e0f26e57835a8ab))
+* **KvLoadingSpinner:** KvLoadingSpinner component ([#48](https://github.com/kiva/kv-ui-elements/issues/48)) ([9647064](https://github.com/kiva/kv-ui-elements/commit/9647064852876f58bd226a610fe07af7d937301d))
 
 
 
