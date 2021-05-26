@@ -1,0 +1,78 @@
+<template>
+	<div class="inline-flex">
+		<div class="relative w-full">
+			<!-- eslint-disable max-len -->
+			<select
+				:id="id"
+				:disabled="disabled"
+				:value="value"
+				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full ring-inset focus:outline-none focus:ring-2 focus:ring-action focus:border-white"
+				:class="{ 'opacity-low': disabled }"
+				@change="onChange"
+			>
+				<!-- eslint-enabled max-len -->
+				<slot></slot>
+			</select>
+			<kv-material-icon
+				:icon="mdiChevronDown"
+				class="absolute right-0 pt-1.5 pr-1 pointer-events-none"
+				:class="{ 'opacity-low': disabled }"
+			/>
+		</div>
+	</div>
+</template>
+
+<script>
+import { mdiChevronDown } from '@mdi/js';
+import KvMaterialIcon from './KvMaterialIcon.vue';
+
+export default {
+	components: {
+		KvMaterialIcon,
+	},
+	// v-model will change when select value updates
+	model: {
+		prop: 'value',
+		event: 'change',
+	},
+	props: {
+		/**
+		 * Unique id to connect label and select
+		 * */
+		id: {
+			type: String,
+			required: true,
+			default: '',
+		},
+		/**
+		 * Initial selected value
+		 * */
+		value: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * Use if select is disabled
+		 * */
+		disabled: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	data() {
+		return {
+			mdiChevronDown,
+		};
+	},
+	methods: {
+		onChange(event) {
+			/**
+			* The value that the select has changed to
+			* @event change
+			* @type {Event}
+			*/
+			this.$emit('change', event.target.value);
+		},
+	},
+};
+</script>
