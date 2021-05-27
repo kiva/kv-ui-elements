@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.2.0...@kiva/kv-components@0.3.0) (2021-05-27)
+
+
+### Features
+
+* **KvProgressBar:** Accessible progress bar with animation on load ([#58](https://github.com/kiva/kv-ui-elements/issues/58)) ([b01f8a4](https://github.com/kiva/kv-ui-elements/commit/b01f8a4376fb771c76df74a0569b9bba77ba2cc3))
+
+
+
+
+
 # [0.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.1.0...@kiva/kv-components@0.2.0) (2021-05-26)
 
 
