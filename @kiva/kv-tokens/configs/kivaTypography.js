@@ -99,6 +99,7 @@ const textStyles = (() => {
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
 		},
 	};
 
