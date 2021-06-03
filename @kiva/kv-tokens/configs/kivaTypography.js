@@ -76,44 +76,45 @@ const textStyles = (() => {
 	const textH1 = {
 		fontSize: rem(fontSizes.h1.sm),
 		fontWeight: fontWeights.medium,
-		letterSpacing: rem(letterSpacings['-0.3']),
+		letterSpacing: em(letterSpacings['-0.3'], fontSizes.h1.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h1.md),
-			letterSpacing: rem(letterSpacings['-1']),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h1.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h1.lg),
-			letterSpacing: rem(letterSpacings['-2']),
+			letterSpacing: em(letterSpacings['-2'], fontSizes.h1.lg),
 		},
 	};
 
 	const textH2 = {
 		fontSize: rem(fontSizes.h2.sm),
 		fontWeight: fontWeights.medium,
-		letterSpacing: rem(letterSpacings['-1']),
+		letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h2.md),
-			letterSpacing: rem(letterSpacings['-1']),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
 		},
 	};
 
 	const textH3 = {
 		fontSize: rem(fontSizes.h3.sm),
 		fontWeight: fontWeights.medium,
-		letterSpacing: rem(letterSpacings['-1']),
+		letterSpacing: em(letterSpacings['-1'], fontSizes.h3.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h3.md),
-			letterSpacing: rem(letterSpacings['-0.3']),
+			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h3.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h3.lg),
-			letterSpacing: rem(letterSpacings['-1']),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h3.lg),
 		},
 	};
 
