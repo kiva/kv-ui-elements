@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.2.0...@kiva/kv-tokens@0.2.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* convert letter-spacing of h1,h2,h3,h4s to ems so the existing UI type will look OK. ([3682882](https://github.com/kiva/kv-ui-elements/commit/36828828793b6a4a751dcdf0a938c0d1461c8d83))
+
+
+
+
+
 # [0.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.1.0...@kiva/kv-tokens@0.2.0) (2021-05-26)
 
 

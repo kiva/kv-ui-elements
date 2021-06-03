@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
@@ -33,7 +33,7 @@
     "lint": "eslint --ext .js,.vue ./"
   },
   "dependencies": {
-    "@kiva/kv-tokens": "^0.2.0",
+    "@kiva/kv-tokens": "^0.2.1",
     "@mdi/js": "^5.9.55",
     "vue": "^2.6.12"
   }
