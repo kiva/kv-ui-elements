@@ -109,3 +109,43 @@ ResponsiveImageSet.args = {
 	],
 	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7mY5ZujL9UfbluRkVkHgkX/5ec83a74e7c1dc387f3fa35af34f5243/mg-hppromo-1-wxga-retina.jpg',
 };
+
+export const AdaptiveImageSet = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	template: `
+		<kv-contentful-img
+			:contentful-src="contentfulSrc"
+			:fallback-format="fallbackFormat"
+			:alt="alt"
+			:loading="loading"
+			:height="540"
+			:source-sizes="sourceSizes"
+		/>
+	`,
+});
+AdaptiveImageSet.args = {
+	sourceSizes: [
+		{
+			width: 1186,
+			height: 948,
+			media: 'min-width: 1025px',
+			url: '//images.ctfassets.net/j0p9a6ql0rn7/V0FQ3TmvSVVX5zXCX9l9A/363cf644709b838f2e3478facd0a6959/wrd2021-hero-lg-2x.jpg',
+		},
+		{
+			width: 670,
+			height: 915,
+			media: 'min-width: 735px',
+			url: '//images.ctfassets.net/j0p9a6ql0rn7/2co41o2KujCSIIAIFc63DH/4fe9fe22b521a590911704e2c42a6cfc/wrd2021-hero-med-2x.jpg',
+		},
+		{
+			width: 670,
+			height: 914,
+			media: 'min-width: 0px',
+			url: '//images.ctfassets.net/j0p9a6ql0rn7/28iKvNatAphyTreO5XQM8V/70246776d7b24ddcc638af696ca10bad/wrd2021-hero-sm-2x.jpg',
+		},
+	],
+	contentfulSrc: '//images.ctfassets.net/j0p9a6ql0rn7/V0FQ3TmvSVVX5zXCX9l9A/363cf644709b838f2e3478facd0a6959/wrd2021-hero-lg-2x.jpg',
+};

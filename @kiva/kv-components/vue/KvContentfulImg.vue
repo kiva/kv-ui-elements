@@ -12,19 +12,17 @@
 					:media="'('+image.media+')'"
 					type="image/webp"
 					:srcset="`
-					${buildUrl(image.width * 2, image.height * 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl(image.width, image.height)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
 				>
 				<!-- browser doesn't support webp -->
-				<!-- eslint-disable max-len  -->
 				<source
 					:key="'fallback-image'+index"
 					:media="'('+image.media+')'"
 					:srcset="`
-						${buildUrl(image.width * 2, image.height * 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-						${buildUrl(image.width, image.height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
 				>
-				<!-- eslint-enable max-len  -->
 			</template>
 			<!-- browser doesn't support picture element -->
 			<img
@@ -41,16 +39,16 @@
 			<source
 				type="image/webp"
 				:srcset="`
-					${buildUrl(width * 2, height * 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+					${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
 			>
 			<!-- browser doesn't support webp or browser doesn't support picture element -->
 			<img
 				class="max-w-full max-h-full"
 				:srcset="`
-					${buildUrl(width * 2, height * 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-					${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
-				:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
+					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
+					${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+				:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
 				:width="width ? width : null"
 				:height="height ? height : null"
 				:alt="alt"
@@ -160,6 +158,7 @@ export default {
 					width: 1440,
 					height: 620,
 					media: 'min-width: 1025px',
+					url: '//some-protocol-relative-contentful-url'
 				}
 		* */
 		sourceSizes: {
@@ -169,16 +168,19 @@ export default {
 		},
 	},
 	methods: {
-		buildUrl(width, height) {
-			let src = `${this.contentfulSrc}?`;
+		buildUrl(image = null, multiplier = 1) {
+			let src = image && image.url ? `${image.url}?` : `${this.contentfulSrc}?`;
+			const width = image ? image.width : this.width;
+			const height = image ? image.height : this.height;
+
 			if (width) {
-				src += `w=${width}`;
+				src += `w=${width * multiplier}`;
 			}
 			if (width && height) {
 				src += '&';
 			}
 			if (height) {
-				src += `h=${height}`;
+				src += `h=${height * multiplier}`;
 			}
 			return src;
 		},
