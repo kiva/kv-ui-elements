@@ -6,39 +6,41 @@
 		:href="href"
 		:type="type"
 		:disabled="isDisabled"
-		class="hover:no-underline"
+		class="hover:tw-no-underline"
 		:class="{
-			'opacity-low': state === 'disabled',
-			'pointer-events-none': state === 'loading' || isDisabled
+			'tw-opacity-low': state === 'disabled',
+			'tw-pointer-events-none': state === 'loading' || isDisabled
 		}"
 		@click="onClick"
 	>
+		<!-- eslint-disable max-len -->
 		<span
 			ref="buttonInnerRef"
-			class="inline-flex w-full justify-center items-center rounded
-				min-h-6 relative overflow-hidden border font-medium"
+			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
+				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium"
 			:class="{
-				'bg-action hover:bg-action-700 text-white border-action hover:border-action-700'
+				'tw-bg-action hover:tw-bg-action-700 tw-text-white tw-border-action hover:tw-border-action-700'
 					: variant === 'primary',
-				'bg-white hover:bg-gray-100 text-gray-800 border-gray-500 hover:border-gray-800'
+				'tw-bg-white hover:tw-bg-gray-100 tw-text-gray-800 tw-border-gray-500 hover:tw-border-gray-800'
 					: variant === 'secondary',
-				'bg-danger hover:bg-danger-700 text-white border-danger hover:border-danger-700'
+				'tw-bg-danger hover:tw-bg-danger-700 tw-text-white tw-border-danger hover:tw-border-danger-700'
 					: variant === 'danger',
-				'bg-gray-800 hover:bg-gray-500 text-white border-gray-800 hover:border-gray-500'
+				'tw-bg-gray-800 tw-hover:bg-gray-500 tw-text-white tw-border-gray-800 hover:tw-border-gray-500'
 					: variant === 'link',
-				'bg-white hover:bg-gray-light text-gray-800 border-white hover:bg-gray-100'
+				'tw-bg-white hover:tw-bg-gray-light tw-text-gray-800 tw-border-white hover:tw-bg-gray-100'
 					: variant === 'ghost',
 			}"
 		>
+			<!-- eslint-enable max-len -->
 			<template v-if="state === 'loading'">
 				<kv-loading-spinner
-					class="absolute w-full text-center -mx-4 z-0"
+					class="tw-absolute tw-w-full tw-text-center tw--mx-4 tw-z-0"
 					:color="loadingColor"
 				/>
 			</template>
 			<span
-				class="py-1 px-3 z-10"
-				:class="{ 'invisible': state === 'loading' }"
+				class="tw-py-1 tw-px-3 tw-z-10"
+				:class="{ 'tw-invisible': state === 'loading' }"
 			>
 				<slot></slot>
 			</span>

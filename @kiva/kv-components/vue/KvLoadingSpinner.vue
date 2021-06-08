@@ -1,18 +1,18 @@
 <template>
 	<svg
-		class="animate-spin-eased"
+		class="tw-animate-spin-eased"
 		:class="{
-			'h-3 w-3'
+			'tw-h-3 tw-w-3'
 				: size === 'small',
-			'h-4 w-4'
+			'tw-h-4 tw-w-4'
 				: size === 'medium',
-			'h-8 w-8'
+			'tw-h-8 tw-w-8'
 				: size === 'large',
-			'text-brand'
+			'tw-text-brand'
 				: color === 'brand',
-			'text-white'
+			'tw-text-white'
 				: color === 'white',
-			'text-black'
+			'tw-text-black'
 				: color === 'black',
 		}"
 		fill="none"
@@ -24,7 +24,7 @@
 			stroke-width="2"
 		>
 			<circle
-				class="stroke-current text-gray-300 opacity-low"
+				class="tw-stroke-current tw-text-gray-300 tw-opacity-low"
 				cx="12"
 				cy="12"
 				r="8"

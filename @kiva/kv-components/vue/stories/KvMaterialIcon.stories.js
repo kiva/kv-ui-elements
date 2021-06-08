@@ -52,7 +52,7 @@ export const Common = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
 	template: `
-		<div class="flex gap-1">
+		<div class="tw-flex tw-gap-1">
 			<kv-material-icon
 				v-for="(icon, i) in [
 					mdiAlertCircleOutline,
@@ -102,14 +102,14 @@ export const Colored = (args, { argTypes }) => ({
 	components: { KvMaterialIcon },
 	template: `
 		<div>
-			<p class="mb-2">Use text-color to set the icon color</p>
+			<p class="tw-mb-2">Use text-color to set the icon color</p>
 			<kv-material-icon
 				:icon="mdiCheck"
-				class="text-brand-500"
+				class="tw-text-brand-500"
 			/>
 			<kv-material-icon
 				:icon="mdiAlertCircleOutline"
-				class="text-danger"
+				class="tw-text-danger"
 			/>
 		</div>`,
 	data() {
@@ -124,9 +124,9 @@ export const InlineWithText = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
 	template: `
-		<a href="#" class="inline-flex">
-			<span class="text-h4">He went thataway</span>
-			<kv-material-icon class="w-2.5" :icon="mdiChevronRight" />
+		<a href="#" class="tw-inline-flex">
+			<span class="tw-text-h4">He went thataway</span>
+			<kv-material-icon class="tw-w-2.5" :icon="mdiChevronRight" />
 		</a>`,
 	data() {
 		return {
@@ -140,11 +140,11 @@ export const Sizing = (args, { argTypes }) => ({
 	components: { KvMaterialIcon },
 	template: `
 		<div>
-			<p class="mb-2">Icons can be sized using any of the standard sizing classes (.w-2, .w-3, .w-full, etc.). By default they are 24 x 24 (.w-3).</p>
-			<kv-material-icon class="bg-gray-100 w-2" :icon="mdiChevronRight" />
-			<kv-material-icon class="bg-gray-100 w-4" :icon="mdiChevronRight" />
-			<kv-material-icon class="bg-gray-100 w-8" :icon="mdiChevronRight" />
-			<kv-material-icon class="bg-gray-100 w-16" :icon="mdiChevronRight" />
+			<p class="tw-mb-2">Icons can be sized using any of the standard sizing classes (.tw-w-2, .tw-w-3, .tw-w-full, etc.). By default they are 24 x 24 (.tw-w-3).</p>
+			<kv-material-icon class="tw-bg-gray-100 tw-w-2" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-gray-100 tw-w-4" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-gray-100 tw-w-8" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-gray-100 tw-w-16" :icon="mdiChevronRight" />
 		</div>`,
 	data() {
 		return {
@@ -158,10 +158,10 @@ export const WithAccessibleText = (args, { argTypes }) => ({
 	components: { KvMaterialIcon },
 	template: `
 		<div>
-			<p class="mb-2">If you don't include text and your icon is not decorative, be sure to include screen-reader text</p>
-			<button class="rounded-sm bg-gray-100 hover:bg-gray-300 p-1 inline-flex">
-				<kv-material-icon class="w-3" :icon="mdiClose" />
-				<span class="sr-only">Close modal</span>
+			<p class="tw-mb-2">If you don't include text and your icon is not decorative, be sure to include screen-reader text</p>
+			<button class="tw-rounded-sm tw-bg-gray-100 hover:tw-bg-gray-300 tw-p-1 tw-inline-flex">
+				<kv-material-icon class="tw-w-3" :icon="mdiClose" />
+				<span class="tw-sr-only">Close modal</span>
 			</button>
 		</div>`,
 	data() {
@@ -175,15 +175,15 @@ export const StarsDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
 	template: `
-		<div class="flex">
+		<div class="tw-flex">
 			<button
 				v-for="i in 5"
 				:key="i"
 				@click="rating = i"
-				class="text-black hover:text-action-700"
+				class="tw-text-black hover:tw-text-action-700"
 			>
 				<kv-material-icon :icon="getStarIcon(i)"/>
-				<span class="sr-only">Set rating to {{i}}</span>
+				<span class="tw-sr-only">Set rating to {{i}}</span>
 			</button>
 		</div>`,
 	data() {

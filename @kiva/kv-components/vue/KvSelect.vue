@@ -1,22 +1,22 @@
 <template>
-	<div class="inline-flex">
-		<div class="relative w-full">
+	<div class="tw-inline-flex">
+		<div class="tw-relative tw-w-full">
 			<!-- eslint-disable max-len -->
 			<select
 				:id="id"
 				:disabled="disabled"
 				:value="value"
-				class="text-base h-6 pr-4 pl-2 border border-gray-300 rounded-sm appearance-none w-full ring-inset focus:outline-none focus:ring-2 focus:ring-action focus:border-white"
-				:class="{ 'opacity-low': disabled }"
+				class="tw-text-base tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-gray-300 tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-white"
+				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
 			>
-				<!-- eslint-enabled max-len -->
+				<!-- eslint-enable max-len -->
 				<slot></slot>
 			</select>
 			<kv-material-icon
 				:icon="mdiChevronDown"
-				class="absolute right-0 pt-1.5 pr-1 pointer-events-none"
-				:class="{ 'opacity-low': disabled }"
+				class="tw-absolute tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
+				:class="{ 'tw-opacity-low': disabled }"
 			/>
 		</div>
 	</div>
