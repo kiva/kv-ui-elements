@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.3.1...@kiva/kv-components@0.4.0) (2021-06-08)
+
+
+### Features
+
+* Add ability to set custom image sources across source sets. This enables an adaptive image setup for using different images across viewport sizes. ([9fd8c9a](https://github.com/kiva/kv-ui-elements/commit/9fd8c9a34559019c62e32b943b5759570f9f5cde))
+
+
+
+
+
 ## [0.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.3.0...@kiva/kv-components@0.3.1) (2021-06-03)
 
 **Note:** Version bump only for package @kiva/kv-components
