@@ -5,6 +5,11 @@
     "access": "public"
   },
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./tailwind.config.js": "./tailwind.config.js",
+    "./vue/": "./vue/"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/eslint-parser": "^7.13.14",
