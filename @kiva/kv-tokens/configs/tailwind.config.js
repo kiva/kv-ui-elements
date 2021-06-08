@@ -18,6 +18,7 @@ const {
 module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
+	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-text-gray-800'
 	corePlugins: {
 		fontSize: false,
 		lineHeight: false,

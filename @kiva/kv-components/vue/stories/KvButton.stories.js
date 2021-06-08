@@ -46,7 +46,7 @@ const VariantTemplate = (args, { argTypes }) => ({
 			<li
 				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
 				:key="variant"
-				class="mb-2"
+				class="tw-mb-2"
 			>
 				<kv-button
 					:variant="variant"
@@ -114,10 +114,10 @@ export const FullWidth = (args, { argTypes }) => ({
 		<li
 			v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
 			:key="variant"
-			class="mb-2"
+			class="tw-mb-2"
 		>
 			<kv-button
-				class="w-full"
+				class="tw-w-full"
 				:variant="variant"
 				:state="state"
 				:to="to"

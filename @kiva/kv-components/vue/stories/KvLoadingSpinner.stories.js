@@ -40,7 +40,7 @@ export const AllVariants = (args, { argTypes }) => ({
 				<li
 					v-for="size in ['small', 'medium', 'large']"
 					:key="size"
-					class="mb-2"
+					class="tw-mb-2"
 				>
 					<kv-loading-spinner
 						:size="size"

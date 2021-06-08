@@ -39,168 +39,168 @@ export default {
 export const Primitives = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
-	<div class="container">
-		<h1 class="mt-4">Primitives</h1>
-		<section class="py-8">
-			<h2 class="mb-4">Colors</h2>
-			<ul class="flex flex-wrap gap-4">
+	<div class="tw-container">
+		<h1 class="tw-mt-4">Primitives</h1>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Colors</h2>
+			<ul class="tw-flex tw-flex-wrap tw-gap-4">
 				<li
 					v-for="color in colors"
 					:key="buildClassName('bg', color[0])"
 				>
 					<button
-						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
-						@click="copy(buildClassName('bg', color[0]))"
+						class="tw-flex tw-flex-col tw-h-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						@click="copy(buildClassName('tw-bg', color[0]))"
 					>
 						<div
-							class="w-16 h-16 block mb-1"
-							:class="buildClassName('bg', color[0])"
+							class="tw-w-16 tw-h-16 tw-block tw-mb-1"
+							:class="buildClassName('tw-bg', color[0])"
 						>
 						</div>
-						<div>
-							.{{buildClassName('bg', color[0])}}
-							<br><small class="text-gray-500">{{color[1]}}</small>
+						<div class="tw-w-16">
+							.{{buildClassName('tw-bg', color[0])}}
+							<br><small class="tw-text-gray-500">{{color[1]}}</small>
 						</div>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Text Styles</h2>
-			<ul class="flex flex-wrap flex-col gap-4">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Text Styles</h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="typeStyle in kivaTypography"
 					:key="buildClassName('text', typeStyle)"
-					class="overflow-x-auto w-full"
+					class="tw-overflow-x-auto tw-w-full"
 				>
 					<button
-						class="text-left font-book hover:text-action-700"
+						class="tw-text-left tw-font-book hover:tw-text-action-700"
 						@click="copy(buildClassName('text', typeStyle))"
 					>
 						<p
-							class="mb-1"
-							:class="buildClassName('text', typeStyle)"
+							class="tw-mb-1"
+							:class="buildClassName('tw-text', typeStyle)"
 							style="width: 12em;"
 						>
 							The quick brown fox jumps over the lazy dog
 						</p>
-						<span>.{{buildClassName('text', typeStyle)}}</span>
+						<span>.{{buildClassName('tw-text', typeStyle)}}</span>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Font Weights</h2>
-			<ul class="flex flex-wrap flex-col gap-4">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Font Weights</h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="fontWeight in fontWeights"
-					:key="buildClassName('font', fontWeight[0])"
+					:key="buildClassName('tw-font', fontWeight[0])"
 				>
 					<button
-						class="text-left font-book hover:text-action-700"
-						@click="copy(buildClassName('font', fontWeight[0]))"
+						class="tw-text-left tw-font-book hover:tw-text-action-700"
+						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
-						<p :class="buildClassName('font', fontWeight[0])">
+						<p :class="buildClassName('tw-font', fontWeight[0])">
 							The quick brown fox jumps over the lazy dog
 						</p>
-						<span>.{{buildClassName('font', fontWeight[0])}}</span>
+						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Radii</h2>
-			<ul class="flex flex-wrap gap-4">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Radii</h2>
+			<ul class="tw-flex tw-flex-wrap tw-gap-4">
 				<li
 					v-for="radius in radii"
-					:key="buildClassName('rounded', radius[0])"
+					:key="buildClassName('tw-rounded', radius[0])"
 				>
 					<button
-						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
-						@click="copy(buildClassName('rounded', radius[0]))"
+						class="tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						@click="copy(buildClassName('tw-rounded', radius[0]))"
 					>
 						<div
-							class="bg-gray-300 w-16 h-16 mb-1"
-							:class="buildClassName('rounded', radius[0])"
+							class="tw-bg-gray-300 tw-w-16 tw-h-16 tw-mb-1"
+							:class="buildClassName('tw-rounded', radius[0])"
 						></div>
 						<div>
-							.{{buildClassName('rounded', radius[0])}}
-							<br><small class="text-gray-500">({{remToPx(radius[1])}}px)</small>
+							.{{buildClassName('tw-rounded', radius[0])}}
+							<br><small class="tw-text-gray-500">({{remToPx(radius[1])}}px)</small>
 						</div>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Opacity</h2>
-			<ul class="flex flex-wrap gap-4">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Opacity</h2>
+			<ul class="tw-flex tw-flex-wrap tw-gap-4">
 				<li
 					v-for="opacityItem in opacity"
-					:key="buildClassName('opacity', opacityItem[0])"
+					:key="buildClassName('tw-opacity', opacityItem[0])"
 				>
 					<button
-						class="text-left border rounded p-1.5 border-gray-300 font-book hover:text-action-700"
-						@click="copy(buildClassName('opacity', opacityItem[0]))"
+						class="tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						@click="copy(buildClassName('tw-opacity', opacityItem[0]))"
 					>
-						<div class="w-16 h-16 mb-1">
+						<div class="tw-w-16 tw-h-16 tw-mb-1">
 						<div
 							style="background-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);"
-							class="w-16 h-16 mb-1"
-							:class="buildClassName('opacity', opacityItem[0])"
+							class="tw-w-16 tw-h-16 tw-mb-1"
+							:class="buildClassName('tw-opacity', opacityItem[0])"
 						></div>
 						</div>
 						<div>
-							.{{buildClassName('opacity', opacityItem[0])}}<br>
-							<small class="text-gray-500">({{opacityItem[1]}})</small>
+							.{{buildClassName('tw-opacity', opacityItem[0])}}<br>
+							<small class="tw-text-gray-500">({{opacityItem[1]}})</small>
 						</div>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Space</h2>
-			<ul class="flex flex-wrap flex-col gap-4">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Space</h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="spaceItem in space"
 					class="block"
-					:key="buildClassName('w', spaceItem[0])"
+					:key="buildClassName('tw-w', spaceItem[0])"
 				>
 					<button
-						class="text-left font-book hover:text-action-700"
-						@click="copy(buildClassName('w', spaceItem[0]))"
+						class="tw-text-left tw-font-book hover:tw-text-action-700"
+						@click="copy(buildClassName('tw-w', spaceItem[0]))"
 					>
 						<div
-							class="bg-gray-300 h-3 inline-block"
-							:class="buildClassName('w', spaceItem[0])"
+							class="tw-bg-gray-300 tw-h-3 tw-inline-block"
+							:class="buildClassName('tw-w', spaceItem[0])"
 						></div>
 						<div>
-							.{{buildClassName('w', spaceItem[0])}}
-							<small class="text-gray-500">({{remToPx(spaceItem[1])}}px)</small>
+							.{{buildClassName('tw-w', spaceItem[0])}}
+							<small class="tw-text-gray-500">({{remToPx(spaceItem[1])}}px)</small>
 						</div>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<hr>
-		<section class="py-8">
-			<h2 class="mb-4">Breakpoints</h2>
-			<ul class="flex flex-wrap flex-col gap-4 overflow-x-auto">
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Breakpoints</h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4 tw-overflow-x-auto">
 				<li
 					v-for="breakpoint in breakpoints"
-					:key="buildClassName('breakpoint', breakpoint[0])"
+					:key="buildClassName('tw-breakpoint', breakpoint[0])"
 				>
 					<div
-						class="w-8 h-4 bg-gray-300 mb-1"
+						class="tw-w-8 tw-h-4 tw-bg-gray-300 tw-mb-1"
 						:style="{ 'width': breakpoint[1] }"
 					></div>
 					<span>
 						{{breakpoint[0]}}
-						<small class="text-gray-500">({{remToPx(breakpoint[1])}}px)</small>
+						<small class="tw-text-gray-500">({{remToPx(breakpoint[1])}}px)</small>
 					</span>
 				</li>
 			</ul>
@@ -209,8 +209,8 @@ export const Primitives = (args, { argTypes }) => ({
 		<!-- TODO: replace with KvToast -->
 		<div
 			aria-hidden="isToastVisible"
-			class="fixed bottom-0 left-1/2 transform -translate-x-1/2  px-3 py-2 bg-gray-500 text-white rounded transition-all"
-			:class="isToastVisible ? 'opacity-full -translate-y-2' : 'opacity-0 -translate-y-0'"
+			class="tw-fixed tw-bottom-0 tw-left-1/2 tw-transform tw--left tw--translate-x-1/2 tw-px-3 tw-py-2 tw-bg-gray-500 tw-text-white tw-rounded tw-transition-all"
+			:class="isToastVisible ? 'tw-opacity-full tw--translate-y-2' : 'tw-opacity-0 tw--translate-y-0'"
 		>
 			<span>{{ toastMessage }}</span>
 		</div>
@@ -257,7 +257,7 @@ export const Primitives = (args, { argTypes }) => ({
 export const HTMLKitchenSink = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
-	<div class="container">
+	<div class="tw-container">
 		<header role="banner">
 			<h1>HTML Kitchen Sink</h1>
 			<small>Jump to: <a href="#headings">Headings</a> |
@@ -1030,10 +1030,10 @@ export const HTMLKitchenSink = (args, { argTypes }) => ({
 export const ProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
-	<div class="container max-w-2xl">
-		<div class="prose">
+	<div class="tw-container tw-max-w-2xl">
+		<div class="tw-prose">
 			<h1>Typography</h1>
-			<p class="text-subhead">Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</p>
+			<p class="tw-text-subhead">Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</p>
 			<p>By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you <em>really are</em> just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.</p>
 			<p>We get lots of complaints about it actually, with people regularly asking us things like:</p>
 			<blockquote>
@@ -1238,7 +1238,7 @@ export const ProseDemo = (args, { argTypes }) => ({
 export const NoProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	template: `
-	<div class="container max-w-2xl">
+	<div class="tw-container tw-max-w-2xl">
 		<h1 class="mb-4">Typography</h1>
 		<p class="text-subhead mb-4">Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</p>
 		<p class="mb-4">By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you <em>really are</em> just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.</p>

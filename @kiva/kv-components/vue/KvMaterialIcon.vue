@@ -1,11 +1,11 @@
 <template>
 	<span
-		class="inline-flex"
+		class="tw-inline-flex"
 		aria-hidden="true"
 		role="img"
 	>
 		<svg
-			class="w-full h-full fill-current"
+			class="tw-w-full tw-h-full tw-fill-current"
 			width="24"
 			height="24"
 			viewBox="0 0 24 24"

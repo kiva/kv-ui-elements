@@ -19,7 +19,7 @@ const Template = (args, {
 		<div>
 			<label
 				for="example-id"
-				class="text-h4 block"
+				class="tw-text-h4 tw-block"
 			>
 				Choose an example
 			</label>
@@ -28,7 +28,7 @@ const Template = (args, {
 				:disabled="disabled"
 				@change="onChange"
 				v-model="exampleModel"
-				class="mt-2"
+				class="tw-mt-2"
 			>
 					<option value="example1">Example one</option>
 					<option value="example2">Example two</option>
@@ -63,7 +63,7 @@ export const LabelHidden = (args, {
 		<div>
 			<label
 				for="example-id"
-				class="text-h4 block sr-only"
+				class="tw-text-h4 tw-block tw-sr-only"
 			>
 				Choose an example
 			</label>
@@ -100,7 +100,7 @@ export const WidthSet = (args, {
 		<div class="w-full">
 			<label
 				for="example-id"
-				class="text-h4 block"
+				class="tw-text-h4 tw-block"
 			>
 				Choose an example
 			</label>
@@ -110,7 +110,7 @@ export const WidthSet = (args, {
 				:disabled="disabled"
 				@change="onChange"
 				v-model="exampleModel"
-				class="mt-2 w-full"
+				class="tw-mt-2 tw-w-full"
 			>
 				<option value="example1">Example one</option>
 				<option value="example2">Example two</option>

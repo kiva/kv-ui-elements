@@ -2,12 +2,15 @@
 	<div
 		role="progressbar"
 		aria-label="progress meter"
-		class="h-1 w-full rounded-full bg-gray-300 bg-opacity-low overflow-hidden"
+		class="tw-h-1 tw-w-full tw-rounded-full tw-bg-gray-300 tw-bg-opacity-low tw-overflow-hidden"
 	>
 		<div
 			:max="max"
 			:value="value"
-			class="h-1 rounded-full transition-all duration-1000 origin-left ease-in bg-brand"
+			class="
+				tw-h-1 tw-rounded-full tw-bg-brand
+				tw-transition-all tw-duration-1000 tw-origin-left tw-ease-in
+			"
 			:style="{width: loaded ? `${value}%` : '0' }"
 			:aria-valuemax="max"
 			:aria-valuenow="value"

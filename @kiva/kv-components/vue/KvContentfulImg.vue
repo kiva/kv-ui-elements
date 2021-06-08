@@ -1,7 +1,7 @@
 <template>
 	<picture
 		v-if="(width || height) && contentfulSrc && fallbackFormat"
-		class="inline-block"
+		class="tw-inline-block"
 	>
 		<!-- Set of image sources -->
 		<template v-if="sourceSizes.length > 0">
@@ -26,7 +26,7 @@
 			</template>
 			<!-- browser doesn't support picture element -->
 			<img
-				class="max-w-full max-h-full"
+				class="tw-max-w-full tw-max-h-full"
 				:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
 				:alt="alt"
 				:loading="loading"
@@ -44,7 +44,7 @@
 			>
 			<!-- browser doesn't support webp or browser doesn't support picture element -->
 			<img
-				class="max-w-full max-h-full"
+				class="tw-max-w-full tw-max-h-full"
 				:srcset="`
 					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
 					${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
