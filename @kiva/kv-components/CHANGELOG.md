@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.4.1...@kiva/kv-components@0.4.2) (2021-06-10)
+
+
+### Bug Fixes
+
+* adding tailwinds override for foundation classes applied globally in /ui ([866efe8](https://github.com/kiva/kv-ui-elements/commit/866efe84029928b82fbf2c3207cb16cde1ac676e))
+
+
+
+
+
 ## [0.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.4.0...@kiva/kv-components@0.4.1) (2021-06-08)
 
 **Note:** Version bump only for package @kiva/kv-components
