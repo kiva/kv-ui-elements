@@ -48,8 +48,8 @@ export default {
 		 * Initial selected value
 		 * */
 		value: {
-			type: String,
-			default: '',
+			type: [Number, String],
+			default: 0,
 		},
 		/**
 		 * Use if select is disabled
