@@ -91,7 +91,6 @@ export default {
 		* */
 		fallbackFormat: {
 			type: String,
-			required: true,
 			default: 'jpg',
 			validator(value) {
 				// The value must match one of these strings
