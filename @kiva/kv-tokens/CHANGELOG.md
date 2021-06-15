@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.2.2...@kiva/kv-tokens@0.3.0) (2021-06-15)
+
+
+### Features
+
+* Add height classes for 320px (h-40) and 460px (h-57.5) ([3a6b373](https://github.com/kiva/kv-ui-elements/commit/3a6b373d2167d0b0afa90192229f33234fb0eb1b))
+
+
+
+
+
 ## [0.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.2.1...@kiva/kv-tokens@0.2.2) (2021-06-08)
 
 **Note:** Version bump only for package @kiva/kv-tokens

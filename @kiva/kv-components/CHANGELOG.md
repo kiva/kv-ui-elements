@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.4.2...@kiva/kv-components@0.5.0) (2021-06-15)
+
+
+### Bug Fixes
+
+* **KvContentfulImg:** Fallback format does not need to be required because it has a default value ([342b4b1](https://github.com/kiva/kv-ui-elements/commit/342b4b1dd564e94e7c6cdacc812354e73bc3016e))
+* KvSelect, updating value to accept number and string ([ab12bcb](https://github.com/kiva/kv-ui-elements/commit/ab12bcbced19e6a5e209028fb616cb490ce67c8a))
+
+
+### Features
+
+* **KvContentfulImg:** Make child img element inherit width, height, and object-fit styles from parent ([3c6dc3c](https://github.com/kiva/kv-ui-elements/commit/3c6dc3c303a477c01c57a92b10cf465414bcb3ef))
+
+
+
+
+
 ## [0.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.4.1...@kiva/kv-components@0.4.2) (2021-06-10)
 
 
