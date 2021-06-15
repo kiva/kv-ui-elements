@@ -124,6 +124,10 @@ module.exports = {
 		}),
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
+			height: {
+				40: rem(320),
+				57.5: rem(460),
+			},
 			minHeight: (theme) => ({
 				...theme('spacing'),
 			}),
