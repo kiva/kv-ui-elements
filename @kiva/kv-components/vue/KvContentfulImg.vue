@@ -27,6 +27,11 @@
 			<!-- browser doesn't support picture element -->
 			<img
 				class="tw-max-w-full tw-max-h-full"
+				style="
+					width: inherit;
+					height: inherit;
+					object-fit: inherit;
+				"
 				:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
 				:alt="alt"
 				:loading="loading"
