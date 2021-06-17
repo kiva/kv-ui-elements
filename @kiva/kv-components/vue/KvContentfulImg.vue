@@ -99,7 +99,7 @@ export default {
 			default: 'jpg',
 			validator(value) {
 				// The value must match one of these strings
-				return ['jpg', 'png', 'webp'].indexOf(value) !== -1;
+				return ['jpg', 'png', 'gif'].indexOf(value) !== -1;
 			},
 		},
 		/**
