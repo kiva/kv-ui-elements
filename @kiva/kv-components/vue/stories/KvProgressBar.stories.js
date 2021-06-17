@@ -4,17 +4,10 @@ export default {
 	title: 'KvProgressBar',
 	component: KvProgressBar,
 	args: {
-		value: 50,
+		min: 0,
 		max: 100,
-	},
-	argTypes: {
-		value: {
-			control: 'range',
-			options: {
-				min: 0,
-				max: 100,
-			},
-		},
+		value: 50,
+		ariaLabel: '',
 	},
 };
 
@@ -23,11 +16,15 @@ const Template = (args, { argTypes }) => ({
 	components: { KvProgressBar },
 	template: `
 		<kv-progress-bar
+			:aria-label="ariaLabel"
+			:min="min"
 			:max="max"
 			:value="value"
 
 		></kv-progress-bar>`,
 });
 
-// Default
-export const Brand = Template.bind({});
+export const Default = Template.bind({});
+Default.args = {
+	ariaLabel: 'Amount the loan has fundraised',
+};
