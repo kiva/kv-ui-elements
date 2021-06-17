@@ -1,7 +1,10 @@
 <template>
 	<div
+		class="
+			tw-h-1 tw-w-full tw-rounded-full tw-overflow-hidden tw-relative
+			tw-bg-gray-300 tw-bg-opacity-low
+		"
 		role="progressbar"
-		class="tw-h-1 tw-w-full tw-rounded-full tw-bg-gray-300 tw-bg-opacity-low tw-overflow-hidden"
 		:aria-label="ariaLabel"
 		:aria-valuemin="min"
 		:aria-valuemax="max"
@@ -9,10 +12,10 @@
 	>
 		<div
 			class="
-				tw-h-1 tw-rounded-full tw-bg-brand
-				tw-transition-all tw-duration-1000 tw-origin-left tw-ease-in
+				tw-h-1 tw-w-full tw-absolute tw--left-full tw-rounded-full tw-bg-brand
+				tw-transition-all tw-duration-1000 tw-origin-left tw-ease-out
 			"
-			:style="{width: loaded ? `${value}%` : '0' }"
+			:style="{transform: loaded ? `translateX(${percent}%)` : 'translateX(0)' }"
 		>
 		</div>
 	</div>
@@ -56,6 +59,14 @@ export default {
 		return {
 			loaded: false,
 		};
+	},
+	computed: {
+		percent() {
+			const percent = ((this.value - this.min) / (this.max - this.min)) * 100;
+			const rounded = Math.round(percent * 10) / 10; // Keep percents to 1 demical places (12.3%)
+			const clamped = Math.min(Math.max(rounded, 0), 100); // Always between 0 and 100%
+			return clamped;
+		},
 	},
 	mounted() {
 		this.$nextTick(() => {
