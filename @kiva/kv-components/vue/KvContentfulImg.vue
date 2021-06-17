@@ -1,6 +1,6 @@
 <template>
 	<picture
-		v-if="(width || height) && contentfulSrc && fallbackFormat"
+		v-if="(width || height) && contentfulSrc"
 		class="tw-inline-block"
 	>
 		<!-- Set of image sources -->
@@ -11,14 +11,18 @@
 					:key="'webp-image'+index"
 					:media="'('+image.media+')'"
 					type="image/webp"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
 					:srcset="`
-					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
 				>
 				<!-- browser doesn't support webp -->
 				<source
 					:key="'fallback-image'+index"
 					:media="'('+image.media+')'"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
 					:srcset="`
 						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
 						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
@@ -99,7 +103,7 @@ export default {
 			default: 'jpg',
 			validator(value) {
 				// The value must match one of these strings
-				return ['jpg', 'png', 'webp'].indexOf(value) !== -1;
+				return ['jpg', 'png', 'gif'].indexOf(value) !== -1;
 			},
 		},
 		/**
