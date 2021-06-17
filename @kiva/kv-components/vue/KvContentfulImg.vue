@@ -1,6 +1,6 @@
 <template>
 	<picture
-		v-if="(width || height) && contentfulSrc && fallbackFormat"
+		v-if="(width || height) && contentfulSrc"
 		class="tw-inline-block"
 	>
 		<!-- Set of image sources -->
