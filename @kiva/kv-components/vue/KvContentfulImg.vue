@@ -11,6 +11,8 @@
 					:key="'webp-image'+index"
 					:media="'('+image.media+')'"
 					type="image/webp"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
 					:srcset="`
 						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
 						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
@@ -19,6 +21,8 @@
 				<source
 					:key="'fallback-image'+index"
 					:media="'('+image.media+')'"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
 					:srcset="`
 						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
 						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
