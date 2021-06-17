@@ -12,8 +12,8 @@
 					:media="'('+image.media+')'"
 					type="image/webp"
 					:srcset="`
-					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
 				>
 				<!-- browser doesn't support webp -->
 				<source
