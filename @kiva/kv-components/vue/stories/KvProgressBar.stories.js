@@ -9,15 +9,6 @@ export default {
 		value: 50,
 		ariaLabel: '',
 	},
-	argTypes: {
-		value: {
-			control: 'range',
-			options: {
-				min: 0,
-				max: 100,
-			},
-		},
-	},
 };
 
 const Template = (args, { argTypes }) => ({
