@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.3.0...@kiva/kv-tokens@0.3.1) (2021-06-17)
+
+
+### Bug Fixes
+
+* **typography:** H2 line height is supposed to be 150% for large and up ([ae63d5a](https://github.com/kiva/kv-ui-elements/commit/ae63d5afbba0c8265501e68a59e535f3ce7cead2))
+
+
+
+
+
 # [0.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.2.2...@kiva/kv-tokens@0.3.0) (2021-06-15)
 
 

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.5.0...@kiva/kv-components@0.6.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* **KvContentfulImg:** Allow gif as fallback format. Remove webp since that's the non-fallback. ([6358209](https://github.com/kiva/kv-ui-elements/commit/635820947e52e18a964e4ac49efa583153cba647))
+* **KvContentfulImg:** Ensure inline-styles are included on both img elements ([45dfce1](https://github.com/kiva/kv-ui-elements/commit/45dfce1a5b821e62dc8c2b19d235360f90921a7a))
+* **KvContentfulImg:** Remove need for fallback format since it's no longer required ([0785d60](https://github.com/kiva/kv-ui-elements/commit/0785d609f7c44d78320f4e672b805c700d022634))
+* **KvProgressBar:** Add ariaLabel prop, fix aria attribute DOM placement, add min prop in case it's non-zero. ([941b923](https://github.com/kiva/kv-ui-elements/commit/941b923b1419d561951eabbc65b7653b91bbed3a))
+
+
+### Features
+
+* **KvGrid:** A component that sets the grid gaps as specified by design ([3886aff](https://github.com/kiva/kv-ui-elements/commit/3886aff12d185adb2f921f7d37676236dde9066e))
+* **KvPageContainer:** A component that adds margins, centers and contains content per design specs ([d007e1b](https://github.com/kiva/kv-ui-elements/commit/d007e1b3e1bb770782fe84f78802cdbdbf0e8fd4))
+
+
+### Performance Improvements
+
+* **KvContentfulImg:** Set width and height attributes on source elements to prevent content layout shift ([b381662](https://github.com/kiva/kv-ui-elements/commit/b3816624dea23b74735cb5abdf6620a53b9a044e))
+* **KvProgressBar:** Animate using css transforms instead of width ([cf5a917](https://github.com/kiva/kv-ui-elements/commit/cf5a917d54442a04c6dae7893483868c5f5fcff4))
+
+
+
+
+
 # [0.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.4.2...@kiva/kv-components@0.5.0) (2021-06-15)
 
 
