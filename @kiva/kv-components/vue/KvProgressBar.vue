@@ -22,6 +22,10 @@
 </template>
 
 <script>
+/**
+ * Horizontal progress bar which communicates to the user the progress of a particular process
+ */
+
 export default {
 	props: {
 		/**
