@@ -1,7 +1,7 @@
 <template>
 	<component
 		:is="as"
-		class="tw-grid tw-gap-x-2 md:tw-gap-x-3 lg:tw-gap-x-3.5"
+		class="tw-grid tw-gap-2 md:tw-gap-3 lg:tw-gap-3.5"
 	>
 		<slot></slot>
 	</component>
