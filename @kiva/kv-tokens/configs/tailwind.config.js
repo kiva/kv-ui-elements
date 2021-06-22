@@ -20,10 +20,11 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-text-gray-800'
 	corePlugins: {
-		fontSize: false,
-		lineHeight: false,
-		letterSpacing: false,
 		boxShadow: false,
+		container: false,
+		fontSize: false,
+		letterSpacing: false,
+		lineHeight: false,
 	},
 	theme: {
 		screens: {
@@ -118,10 +119,6 @@ module.exports = {
 			low: `${opacity.low}`,
 			full: '1',
 		},
-		container: (theme) => ({
-			center: true,
-			padding: theme('spacing.4'), // To add horizontal padding by default
-		}),
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
 			height: {
