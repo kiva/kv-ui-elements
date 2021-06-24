@@ -16,11 +16,12 @@
 			<div
 				class="
 					tw-absolute tw-bottom-0 tw-h-0.5 tw-left-0
-					tw-origin-left tw-transition-all tw-bg-gray-800 tw-duration-300
+					tw-bg-gray-800 tw-rounded-full
+					tw-origin-left tw-transition-all tw-duration-300
 				"
 				:style="`
-					width: 1px;
-					transform: ${getIndicatorTransform()};
+					width: ${selectedTabEl ? selectedTabEl.clientWidth : 0}px;
+					transform: ${selectedTabEl ? `translateX(${selectedTabEl.offsetLeft}px)` : null};
 				`"
 			></div>
 		</div>
@@ -99,7 +100,7 @@ export default {
 	methods: {
 		setTab(index) {
 			this.tabContext.selectedIndex = index;
-			this.selectedTabEl.scrollIntoView({ behavior: 'smooth' });
+			this.selectedTabEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
 			/**
 			 * Triggers when the selected tab changes
@@ -145,14 +146,6 @@ export default {
 				this.setTab(count - 1);
 				focusActiveTab();
 			}
-		},
-		getIndicatorTransform() {
-			const selectedTabWidth = this.selectedTabEl?.clientWidth;
-			const selectedTabOffsetLeft = this.selectedTabEl?.offsetLeft;
-			if (selectedTabWidth) {
-				return `scaleX(${selectedTabWidth}) translateX(${selectedTabOffsetLeft / selectedTabWidth}px)`;
-			}
-			return 'scaleX(0)';
 		},
 	},
 };
