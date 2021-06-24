@@ -25,7 +25,7 @@
 			></div>
 		</div>
 		<div class="tw-relative">
-			<!-- @slot Tab Content -->
+			<!-- @slot Tab Panels -->
 			<slot name="tabPanels"></slot>
 		</div>
 	</div>
@@ -99,6 +99,8 @@ export default {
 	methods: {
 		setTab(index) {
 			this.tabContext.selectedIndex = index;
+			this.selectedTabEl.scrollIntoView({ behavior: 'smooth' });
+
 			/**
 			 * Triggers when the selected tab changes
 			 *
