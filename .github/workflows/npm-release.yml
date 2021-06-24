@@ -1,0 +1,47 @@
+name: NPM Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # 'Automation' type NPM access token used for publishing packages to NPM
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      # Configure npmrc file and node installation
+      - name: Configure Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '15.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Check that the NODE_AUTH_TOKEN is valid
+      - name: Confirm NPM authentication
+        run: npm whoami
+
+      # Configure git user access token and fetch latest changes
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # Required in order to publish all the commits since the last release
+          fetch-depth: 0
+          # Personal Access Token with the 'public_repo' scope, to allow tagging the latest release
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      # Configure Git user email and name for the release tags
+      - name: Configure Git user
+        run: |
+          git config --global user.email "ci@kiva.org"
+          git config --global user.name "ci@$GITHUB_ACTOR"
+
+      # Install dependencies for release scripts
+      - name: Install dependencies
+        run: npm ci
+
+      # Tag release and publish to NPM
+      - name: Publish release
+        run: npm run publish-release -- --yes
