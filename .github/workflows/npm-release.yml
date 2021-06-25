@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     env:
       # 'Automation' type NPM access token used for publishing packages to NPM
@@ -44,4 +44,4 @@ jobs:
 
       # Tag release and publish to NPM
       - name: Publish release
-        run: npm run publish-release -- --yes
+        run: npm run publish-release -- --yes --no-verify-access
