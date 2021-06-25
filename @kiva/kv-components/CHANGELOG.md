@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.6.0...@kiva/kv-components@0.7.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* **KvGrid:** Set a grid gap for both x and y directions ([099581b](https://github.com/kiva/kv-ui-elements/commit/099581bbf94515dd9f2348fad7643d016ecf243f))
+
+
+### Features
+
+* **KvGrid:** Allow the grid container element to be elements other than divs ([e940032](https://github.com/kiva/kv-ui-elements/commit/e9400328eb45c9d14c2b557ed3666232d08fd136))
+* **KvTabs:** Accessible components for implementing a tab UI pattern ([2d3dd50](https://github.com/kiva/kv-ui-elements/commit/2d3dd502507b3c5f7844ad4b6510dd9fc926753f))
+
+
+
+
+
 # [0.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.5.0...@kiva/kv-components@0.6.0) (2021-06-17)
 
 
