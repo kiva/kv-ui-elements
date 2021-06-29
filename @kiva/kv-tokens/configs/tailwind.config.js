@@ -150,6 +150,7 @@ module.exports = {
 			},
 			minHeight: (theme) => ({
 				...theme('spacing'),
+				'half-screen': '50vh',
 			}),
 			keyframes: {
 				ripple: {
