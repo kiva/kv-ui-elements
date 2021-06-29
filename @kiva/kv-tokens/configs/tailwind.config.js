@@ -13,6 +13,7 @@ const {
 	opacity,
 	space,
 	radii,
+	zIndices,
 } = designtokens;
 
 module.exports = {
@@ -118,6 +119,28 @@ module.exports = {
 			0: '0',
 			low: `${opacity.low}`,
 			full: '1',
+		},
+		zIndex: {
+			hide: zIndices.hide,
+			auto: 'auto',
+			base: zIndices.base,
+			1: zIndices['1'],
+			2: zIndices['2'],
+			3: zIndices['3'],
+			4: zIndices['4'],
+			5: zIndices['5'],
+			docked: zIndices.docked,
+			dropdown: zIndices.dropdown,
+			sticky: zIndices.sticky,
+			banner: zIndices.banner,
+			overlay: zIndices.overlay,
+			modal: zIndices.modal,
+			popover: zIndices.popover,
+			skipLink: zIndices.skipLink,
+			toast: zIndices.toast,
+			tooltip: zIndices.tooltip,
+			troposphere: zIndices.troposphere,
+			stratosphere: zIndices.stratosphere,
 		},
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides

@@ -123,6 +123,11 @@
 	"zIndices": {
 		"hide": -1,
 		"base": 0,
+		"1": 1,
+		"2": 2,
+		"3": 3,
+		"4": 4,
+		"5": 5,
 		"docked": 10,
 		"dropdown": 1000,
 		"sticky": 1100,
@@ -132,7 +137,9 @@
 		"popover": 1500,
 		"skipLink": 1600,
 		"toast": 1700,
-		"tooltip": 1800
+		"tooltip": 1800,
+		"troposphere": 2000,
+		"stratosphere": 3000
 	},
 	"shadows": {},
 	"radii": {
