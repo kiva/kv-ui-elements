@@ -218,11 +218,35 @@ export const Primitives = (args, { argTypes }) => ({
 				</li>
 			</ul>
 		</section>
+		<hr>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Z-Indices</h2>
+			<ul class="tw-relative">
+				<li
+					v-for="(zIndex, index) in zIndices"
+					:key="buildClassName('tw-z', zIndex[0])"
+					class="tw-absolute"
+					:class="buildClassName('tw-z', zIndex[0])"
+					:style="{left: 'calc(' + index/zIndices.length * 100 + '% - ' + (index/zIndices.length * 250) + 'px)', top: index * 50 + 'px'}"
+				>
+					<button
+						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-700 tw-h-12 tw-bg-gray-300 tw-outline-white"
+						style="width: 250px;"
+						@click="copy(buildClassName('tw-z', zIndex[0]))"
+					>
+						<span>
+							{{buildClassName('tw-z', zIndex[0])}}
+							<small class="tw-text-gray-500">({{zIndex[1]}})</small>
+						</span>
+					</button>
+				</li>
+			</ul>
+		</section>
 
 		<!-- TODO: replace with KvToast -->
 		<div
 			aria-hidden="isToastVisible"
-			class="tw-fixed tw-bottom-0 tw-left-1/2 tw-transform tw--left tw--translate-x-1/2 tw-px-3 tw-py-2 tw-bg-gray-500 tw-text-white tw-rounded tw-transition-all"
+			class="tw-fixed tw-z-toast tw-bottom-0 tw-left-1/2 tw-transform tw--left tw--translate-x-1/2 tw-px-3 tw-py-2 tw-bg-gray-500 tw-text-white tw-rounded tw-transition-all"
 			:class="isToastVisible ? 'tw-opacity-full tw--translate-y-2' : 'tw-opacity-0 tw--translate-y-0'"
 		>
 			<span>{{ toastMessage }}</span>
@@ -232,12 +256,13 @@ export const Primitives = (args, { argTypes }) => ({
 	data() {
 		return {
 			colors: buildValuesFromThemeObj(theme.colors),
-			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]), // sort ascending
+			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[1] - b[1]),
 			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
 			breakpoints: buildValuesFromThemeObj(theme.screens),
 			radii: buildValuesFromThemeObj(theme.borderRadius),
 			opacity: buildValuesFromThemeObj(theme.opacity),
+			zIndices: buildValuesFromThemeObj(theme.zIndex).sort((a, b) => a[1] - b[1]),
 			isToastVisible: false,
 			toastMessage: '',
 		};
