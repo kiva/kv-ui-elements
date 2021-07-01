@@ -17,7 +17,14 @@ const {
 } = designtokens;
 
 module.exports = {
-	purge: [],
+	purge: {
+		safelist: [
+			'print:tw-invisible', // print classes applied using javascript
+			'print:tw-visible',
+			'print:tw-overflow-auto',
+			'print:tw-overflow-hidden',
+		],
+	},
 	darkMode: false, // or 'media' or 'class'
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-text-gray-800'
 	corePlugins: {
@@ -32,6 +39,7 @@ module.exports = {
 			md: rem(breakpoints.md),
 			lg: rem(breakpoints.lg),
 			xl: rem(breakpoints.xl),
+			print: { raw: 'print' }, // https://tailwindcss.com/docs/breakpoints#styling-for-print
 		},
 		colors: {
 			transparent: 'transparent',
