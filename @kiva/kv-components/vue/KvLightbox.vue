@@ -50,11 +50,8 @@
 						}"
 						style="max-width: 55.55rem"
 						aria-modal="true"
-						:aria-label="title ? 'lightbox-title' : null"
-						:role="{
-							'dialog' : variant === 'lightbox',
-							'alertDialog' : variant === 'alert',
-						}"
+						:aria-label="title ? title : null"
+						:role="role"
 						@click.stop
 					>
 						<!-- header -->
@@ -121,13 +118,19 @@
 /**
  * Alert or a lightbox
  *
+ * UX
+ * - [ ] Swipe gesture hides the dialog on mobile
+ *
  * Accesibility: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  * - [x] Tab and Shift + Tab do not move focus outside the dialog
  * - [x] focus is initially set on the first focusable element.
- * - [x] focus is returned to the element that opened the dialog
- * + [x] role = dialog || alertDialog
- * + [x] aria-label is the title of the dialog
+ * - [x] focus is returned to the element that opened the dialog on close
+ * - [x] role = dialog || alertDialog
+ * - [x] aria-label is the title of the dialog
  * - [x] Adds aria-hidden=true to all elements other than this dialog when open.
+ *
+ * Alert dialog - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_alertdialog_role
+ * - [ ] focus moves to the least destructive control, not the close button
  *
  * Printing
  * - [x] Only prints the contents of the lightbox when open
@@ -196,6 +199,14 @@ export default {
 			mdiClose,
 			hideOthers() {}, // reference to aria-hide function
 		};
+	},
+	computed: {
+		role() {
+			if (this.variant === 'alert') {
+				return 'alertdialog';
+			}
+			return 'dialog';
+		},
 	},
 	watch: {
 		visible() {
