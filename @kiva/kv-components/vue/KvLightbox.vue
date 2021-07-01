@@ -126,9 +126,8 @@
  * - [x] focus is initially set on the first focusable element.
  * - [x] focus is returned to the element that opened the dialog
  * + [x] role = dialog || alertDialog
- * + [x] aria labeled by
+ * + [x] aria-label is the title of the dialog
  * - [x] Adds aria-hidden=true to all elements other than this dialog when open.
- *   This constrains screen readers to the lightbox
  *
  * Printing
  * - [x] Only prints the contents of the lightbox when open
@@ -217,12 +216,11 @@ export default {
 
 				this.$nextTick(() => {
 					const lightboxBodyRef = this.$refs.kvLightboxBody;
-					lockScroll();
-					this.hideOthers = hideOthers(lightboxBodyRef);
-					lockPrintSingleEl(lightboxBodyRef);
-					if (this.initialFocusRef) {
-						this.initialFocusRef.focus();
+					if (lightboxBodyRef) {
+						this.hideOthers = hideOthers(lightboxBodyRef);
+						lockPrintSingleEl(lightboxBodyRef);
 					}
+					lockScroll();
 				});
 			}
 		},
@@ -234,11 +232,7 @@ export default {
 					lightboxBodyRef.scrollTop = 0;
 					unlockPrintSingleEl(lightboxBodyRef);
 				}
-
-				// allow the body to scroll
 				unlockScroll();
-
-				// undo aria-hidden on everything
 				if (this.hideOthers) {
 					this.hideOthers();
 				}
