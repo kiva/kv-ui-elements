@@ -17,7 +17,7 @@
 				tw-inset-0
 			"
 			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
-			@click.stop.prevent="hide"
+			@click.stop.prevent="onScreenClick"
 		>
 			<focus-lock
 				v-if="visible"
@@ -117,7 +117,6 @@
 <script>
 /**
  * Alert or a lightbox
- *
  * UX
  * - [ ] Swipe gesture hides the dialog on mobile
  *
@@ -236,28 +235,31 @@ export default {
 			}
 		},
 		hide() {
-			if (!this.preventClose) {
-				// scroll any content inside the lightbox back to top
-				const lightboxBodyRef = this.$refs.kvLightboxBody;
-				if (lightboxBodyRef) {
-					lightboxBodyRef.scrollTop = 0;
-					unlockPrintSingleEl(lightboxBodyRef);
-				}
-				unlockScroll();
-				if (this.hideOthers) {
-					this.hideOthers();
-				}
+			// scroll any content inside the lightbox back to top
+			const lightboxBodyRef = this.$refs.kvLightboxBody;
+			if (lightboxBodyRef) {
+				lightboxBodyRef.scrollTop = 0;
+				unlockPrintSingleEl(lightboxBodyRef);
+			}
+			unlockScroll();
+			if (this.hideOthers) {
+				this.hideOthers();
+			}
 
-				/**
-				 * Triggered when the lightbox is closed
-				 * @event lightbox-closed
-				 * @type {Event}
-				*/
-				this.$emit('lightbox-closed');
+			/**
+			 * Triggered when the lightbox is closed
+			 * @event lightbox-closed
+			 * @type {Event}
+			*/
+			this.$emit('lightbox-closed');
+		},
+		onScreenClick() {
+			if (!this.preventClose) {
+				this.hide();
 			}
 		},
 		onKeyUp(e) {
-			if (e.key === 'Escape') {
+			if (e.key === 'Escape' && !this.preventClose) {
 				this.hide();
 			}
 		},

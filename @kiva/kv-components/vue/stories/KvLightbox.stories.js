@@ -19,6 +19,7 @@ export default {
 		visible: false,
 		title: '',
 		variant: 'lightbox',
+		preventClose: false,
 	},
 };
 
