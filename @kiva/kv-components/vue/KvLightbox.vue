@@ -11,11 +11,11 @@
 		<div
 			v-show="visible"
 			class="
-				tw-bg-gray-800 tw-bg-opacity-low
 				tw-z-modal
 				tw-fixed
 				tw-inset-0
 			"
+			style="background-color: rgba(33,33,33,0.75)"
 			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
 			@click.stop.prevent="onScreenClick"
 		>
