@@ -17,14 +17,7 @@ const {
 } = designtokens;
 
 module.exports = {
-	purge: {
-		safelist: [
-			'print:tw-invisible', // print classes applied using javascript
-			'print:tw-visible',
-			'print:tw-overflow-auto',
-			'print:tw-overflow-hidden',
-		],
-	},
+	purge: [],
 	darkMode: false, // or 'media' or 'class'
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-text-gray-800'
 	corePlugins: {
