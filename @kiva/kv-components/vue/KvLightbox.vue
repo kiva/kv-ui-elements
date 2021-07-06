@@ -208,7 +208,7 @@ export default {
 	data() {
 		return {
 			mdiClose,
-			hideOthers() {}, // reference to aria-hide function
+			makePageInert() {}, // reference to aria-hide function
 		};
 	},
 	computed: {
