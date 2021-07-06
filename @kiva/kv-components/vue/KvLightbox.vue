@@ -140,8 +140,9 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
  * - [x] role = dialog
  * - [x] aria-label is set to its title.
  * - [x] aria-describedby is set to the id of the dialog body
- * - [x] Adds aria-hidden=true to all elements other than this dialog when open.
- *
+ * - [x] adds aria-hidden=true to all elements other than this dialog when open.
+ * - [x] scrolling only scrolls the lightbox contents, not the page itself
+
  * Alert dialog - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_alertdialog_role
  *
  * - [x] focus moves to the first non-destructive control, rather than the close button
