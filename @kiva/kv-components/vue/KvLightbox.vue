@@ -42,7 +42,6 @@
 						data-test="kv-lightbox"
 						class="
 							tw-bg-white
-							tw-max-h-full
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
 						"
@@ -52,7 +51,7 @@
 							'tw-rounded-t md:tw-rounded' : variant === 'lightbox',
 							'tw-my-auto tw-rounded' : variant === 'alert',
 						}"
-						style="max-width: 55.55rem"
+						style="max-width: 55.55rem; max-height: 90vh"
 						aria-modal="true"
 						:aria-label="title ? title : null"
 						:aria-describedby="variant === 'alert' ? kvLightboxBody : null"
