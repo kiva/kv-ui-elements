@@ -184,6 +184,9 @@ export default {
 		variant: {
 			type: String,
 			default: 'lightbox',
+			validator(value) {
+				return ['lightbox', 'alert'].includes(value);
+			},
 		},
 		/**
 		 * The title of the dialog which describes the dialog to screenreaders, and if no
