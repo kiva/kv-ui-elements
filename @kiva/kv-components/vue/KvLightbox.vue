@@ -29,8 +29,11 @@
 						tw-flex
 						tw-absolute
 						tw-inset-0
-						md:tw-px-2
 					"
+					:class="{
+						'md:tw-px-2' : variant === 'lightbox',
+						'tw-px-2' : variant === 'alert',
+					}"
 				>
 					<!-- the lightbox itself -->
 					<div
@@ -39,19 +42,20 @@
 						data-test="kv-lightbox"
 						class="
 							tw-bg-white
-							tw-rounded-t md:tw-rounded
-							tw-min-h-half-screen md:tw-min-h-0 tw-max-h-full
+							tw-max-h-full
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
 						"
 						:class="{
-							'tw-mt-auto md:tw-my-auto ' : variant === 'lightbox',
-							'tw-my-auto ' : variant === 'alert',
+							'tw-mt-auto md:tw-my-auto' : variant === 'lightbox',
+							'w-min-h-half-screen md:tw-min-h-0' : variant === 'lightbox',
+							'tw-rounded-t md:tw-rounded' : variant === 'lightbox',
+							'tw-my-auto tw-rounded' : variant === 'alert',
 						}"
 						style="max-width: 55.55rem"
 						aria-modal="true"
 						:aria-label="title ? title : null"
-						aria-describedby="kvLightboxBody"
+						:aria-describedby="variant === 'alert' ? kvLightboxBody : null"
 						:role="role"
 						@click.stop
 					>
@@ -87,6 +91,7 @@
 								<span class="tw-sr-only">Close</span>
 							</button>
 						</div>
+
 						<!-- body -->
 						<div
 							id="kvLightboxBody"
@@ -101,6 +106,7 @@
 							<!-- @slot default -->
 							<slot>Lightbox body</slot>
 						</div>
+
 						<!-- controls -->
 						<div
 							v-if="$slots.controls"
@@ -124,7 +130,7 @@
 
 import { mdiClose } from '@mdi/js';
 import FocusLock from 'vue-focus-lock';
-import { hideOthers } from 'aria-hidden';
+import { hideOthers as makePageInert } from 'aria-hidden';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
 
@@ -139,14 +145,14 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
  * - [x] focus is returned to the element that opened the dialog on close
  * - [x] role = dialog
  * - [x] aria-label is set to its title.
- * - [x] aria-describedby is set to the id of the dialog body
- * - [x] adds aria-hidden=true to all elements other than this dialog when open.
+ * - [x] adds aria-hidden=true to all elements other than this dialog when open. - https://github.com/theKashey/vue-focus-lock/issues/16
  * - [x] scrolling only scrolls the lightbox contents, not the page itself
 
  * Alert dialog - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_alertdialog_role
  *
  * - [x] focus moves to the first non-destructive control, rather than the close button
  * - [x] role = alertDialog
+ * - [x] aria-describedby is set to the id of the dialog body
  *
  * Printing
  *
@@ -188,7 +194,8 @@ export default {
 			required: true,
 		},
 		/**
-		 * User is prevented from closing the dialog
+		 * The dialog has no close X button, clicking the screen does not close,
+		 * pressing ESC does not close.
 		 * */
 		preventClose: {
 			type: Boolean,
@@ -229,7 +236,7 @@ export default {
 				this.$nextTick(() => {
 					const lightboxBodyRef = this.$refs.kvLightboxBody;
 					if (lightboxBodyRef) {
-						this.hideOthers = hideOthers(lightboxBodyRef);
+						this.makePageInert = makePageInert(lightboxBodyRef);
 						lockPrintSingleEl(lightboxBodyRef);
 					}
 					lockScroll();
@@ -252,8 +259,8 @@ export default {
 				unlockPrintSingleEl(lightboxBodyRef);
 			}
 			unlockScroll();
-			if (this.hideOthers) {
-				this.hideOthers();
+			if (this.makePageInert) {
+				this.makePageInert();
 			}
 
 			/**
