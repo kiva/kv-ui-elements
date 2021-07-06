@@ -51,6 +51,7 @@
 						style="max-width: 55.55rem"
 						aria-modal="true"
 						:aria-label="title ? title : null"
+						aria-describedby="kvLightboxBody"
 						:role="role"
 						@click.stop
 					>
@@ -61,12 +62,14 @@
 								tw-p-2.5 md:tw-px-4 md:tw-pt-4 md:tw-pb-3.5
 							"
 						>
-							<h2
-								v-if="title"
-								class="tw-text-h3 tw-flex-1"
-							>
-								{{ title }}
-							</h2>
+							<div>
+								<!-- @slot header -->
+								<slot name="header">
+									<h2	class="tw-text-h3 tw-flex-1">
+										{{ title }}
+									</h2>
+								</slot>
+							</div>
 							<button
 								v-if="!preventClose"
 								class="
@@ -86,10 +89,12 @@
 						</div>
 						<!-- body -->
 						<div
+							id="kvLightboxBody"
 							ref="kvLightboxBody"
 							class="
 								tw-flex-1
 								tw-px-2.5 md:tw-px-4
+								tw-pb-2.5 md:tw-pb-4
 								tw-overflow-auto
 							"
 						>
@@ -99,6 +104,7 @@
 						<!-- controls -->
 						<div
 							v-if="$slots.controls"
+							ref="controlsRef"
 							class="
 								tw-flex-shrink-0 tw-flex tw-justify-end tw-gap-x-2.5
 								tw-p-2.5 md:tw-px-4 md:tw-pb-4 md:tw-pt-1
@@ -115,23 +121,34 @@
 </template>
 
 <script>
+
+import { mdiClose } from '@mdi/js';
+import FocusLock from 'vue-focus-lock';
+import { hideOthers } from 'aria-hidden';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
+import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
+
+import KvMaterialIcon from './KvMaterialIcon.vue';
+
 /**
  * Alert or a lightbox
- * UX
- * - [ ] Swipe gesture hides the dialog on mobile
- *
  * Accesibility: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
+ *
  * - [x] Tab and Shift + Tab do not move focus outside the dialog
- * - [x] focus is initially set on the first focusable element.
+ * - [x] focus is initially set on the first focusable element (close button).
  * - [x] focus is returned to the element that opened the dialog on close
- * - [x] role = dialog || alertDialog
- * - [x] aria-label is the title of the dialog
+ * - [x] role = dialog
+ * - [x] aria-label is set to its title.
+ * - [x] aria-describedby is set to the id of the dialog body
  * - [x] Adds aria-hidden=true to all elements other than this dialog when open.
  *
  * Alert dialog - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_alertdialog_role
- * - [ ] focus moves to the least destructive control, not the close button
+ *
+ * - [x] focus moves to the first non-destructive control, rather than the close button
+ * - [x] role = alertDialog
  *
  * Printing
+ *
  * - [x] Only prints the contents of the lightbox when open
  * TODO: ensure purge doesn't remove these classes
  * 'print:tw-invisible',
@@ -139,28 +156,6 @@
  * 'print:tw-overflow-auto',
  * 'print:tw-overflow-hidden',
  */
-
-import { mdiClose } from '@mdi/js';
-
-import FocusLock from 'vue-focus-lock';
-import { hideOthers } from 'aria-hidden';
-import { lockScroll, unlockScroll } from '../utils/scrollLock';
-
-import KvMaterialIcon from './KvMaterialIcon.vue';
-
-const lockPrintSingleEl = (el) => {
-	if (typeof window !== 'undefined' && el) {
-		document.body.classList.add('print:tw-invisible', 'print:tw-overflow-hidden');
-		el.classList.add('print:tw-visible', 'print:tw-overflow-auto');
-	}
-};
-
-const unlockPrintSingleEl = (el) => {
-	if (typeof window !== 'undefined' && el) {
-		document.body.classList.remove('print:tw-invisible', 'print:tw-overflow-hidden');
-		el.classList.remove('print:tw-visible', 'print:tw-overflow-auto');
-	}
-};
 
 export default {
 	components: {
@@ -184,11 +179,12 @@ export default {
 			default: 'lightbox',
 		},
 		/**
-		 * The title of the dialog
+		 * The title of the dialog which describes the dialog to screenreaders, and if no
+		 * content is in the `header` slot, will be displayed at the top of the lightbox.
 		 * */
 		title: {
 			type: String,
-			default: '',
+			required: true,
 		},
 		/**
 		 * User is prevented from closing the dialog
@@ -236,6 +232,14 @@ export default {
 						lockPrintSingleEl(lightboxBodyRef);
 					}
 					lockScroll();
+
+					// alerts should send focus to the first actionable item in the controls
+					if (this.variant === 'alert') {
+						const firstControlEl = this.$refs.controlsRef.querySelector('button');
+						if (firstControlEl) {
+							firstControlEl.focus();
+						}
+					}
 				});
 			}
 		},
