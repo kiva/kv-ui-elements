@@ -34,6 +34,12 @@ const headerNumberCase = (str) => str
 	.replace('h-4', 'h4')
 	.replace('h-5', 'h5');
 
+const removeObjectProperty = (object, key) => {
+	const ret = { ...object };
+	delete ret[key];
+	return ret;
+};
+
 export default {
 	title: 'BaseStyling',
 };
@@ -259,7 +265,7 @@ export const Primitives = (args, { argTypes }) => ({
 			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[1] - b[1]),
 			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
-			breakpoints: buildValuesFromThemeObj(theme.screens),
+			breakpoints: buildValuesFromThemeObj(removeObjectProperty(theme.screens, 'print')),
 			radii: buildValuesFromThemeObj(theme.borderRadius),
 			opacity: buildValuesFromThemeObj(theme.opacity),
 			zIndices: buildValuesFromThemeObj(theme.zIndex).sort((a, b) => a[1] - b[1]),
