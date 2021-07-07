@@ -156,11 +156,6 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
  * Printing
  *
  * - [x] Only prints the contents of the lightbox when open
- * TODO: ensure purge doesn't remove these classes
- * 'print:tw-invisible',
- * 'print:tw-visible',
- * 'print:tw-overflow-auto',
- * 'print:tw-overflow-hidden',
  */
 
 export default {
