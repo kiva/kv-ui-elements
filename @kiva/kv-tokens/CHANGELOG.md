@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.3.3...@kiva/kv-tokens@0.4.0) (2021-07-07)
+
+
+### Features
+
+* **KvLightbox:** Accessible lightbox/alert component ([165a087](https://github.com/kiva/kv-ui-elements/commit/165a087af1a0b9adc1f4b8d165e6492e5c54c92c))
+
+
+
+
+
 ## [0.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.3.2...@kiva/kv-tokens@0.3.3) (2021-06-29)
 
 **Note:** Version bump only for package @kiva/kv-tokens
