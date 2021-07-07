@@ -32,6 +32,7 @@ module.exports = {
 			md: rem(breakpoints.md),
 			lg: rem(breakpoints.lg),
 			xl: rem(breakpoints.xl),
+			print: { raw: 'print' }, // https://tailwindcss.com/docs/breakpoints#styling-for-print
 		},
 		colors: {
 			transparent: 'transparent',
@@ -150,6 +151,7 @@ module.exports = {
 			},
 			minHeight: (theme) => ({
 				...theme('spacing'),
+				'half-screen': '50vh',
 			}),
 			keyframes: {
 				ripple: {
