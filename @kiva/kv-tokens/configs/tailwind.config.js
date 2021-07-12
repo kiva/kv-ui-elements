@@ -171,11 +171,6 @@ module.exports = {
 			},
 		},
 	},
-	variants: {
-		extend: {
-			opacity: ['disabled'],
-		},
-	},
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
 		plugin(({ addBase, addUtilities }) => {
