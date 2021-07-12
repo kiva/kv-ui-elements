@@ -4,10 +4,12 @@ import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
+const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils');
+
 const config = resolveConfig(tailwindConfig);
 const { theme } = config;
 
-const buildValuesFromThemeObj = (initialObj) => {
+function buildValuesFromThemeObj(initialObj) {
 	const arr = [];
 	const iterate = (obj, prefix = '') => {
 		Object.keys(obj).forEach((key) => {
@@ -21,24 +23,7 @@ const buildValuesFromThemeObj = (initialObj) => {
 	};
 	iterate(initialObj);
 	return arr;
-};
-
-const kebabCase = (str) => str.split('').map((letter, idx) => (letter.toUpperCase() === letter
-	? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
-	: letter)).join('');
-
-const headerNumberCase = (str) => str
-	.replace('h-1', 'h1')
-	.replace('h-2', 'h2')
-	.replace('h-3', 'h3')
-	.replace('h-4', 'h4')
-	.replace('h-5', 'h5');
-
-const removeObjectProperty = (object, key) => {
-	const ret = { ...object };
-	delete ret[key];
-	return ret;
-};
+}
 
 export default {
 	title: 'BaseStyling',
