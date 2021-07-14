@@ -16,50 +16,51 @@
 				data-test="tip-message"
 				class="tw-mx-2.5"
 			>
-				<div
-					class="
-						tw-rounded tw-overflow-hidden
-						tw-flex
-						tw-bg-gray-50
-						tw-mx-auto
-						tw-w-full md:tw-w-max lg:tw-max-w-screen-lg md:tw-min-w-[27rem] lg:tw-min-w-[32.5rem]
-					"
-				>
+				<kv-page-container>
 					<div
 						class="
+							tw-rounded tw-overflow-hidden
+							tw-flex
+							tw-bg-gray-50
+							tw-mx-auto
+							tw-w-full md:tw-w-max md:tw-max-w-full md:tw-min-w-1/2
+						"
+					>
+						<div
+							class="
 							tw-w-5
 							tw-flex-shrink-0
 							tw-flex
 							tw-items-center tw-justify-center
 						"
-						:class="{
-							'tw-bg-brand tw-text-white' : messageType === 'confirmation',
-							'tw-bg-danger tw-text-white' : messageType === 'error',
-							'tw-bg-caution' : messageType === 'warning',
-						}"
-					>
-						<kv-material-icon
-							class="tw-w-2.5 tw-h-2.5"
-							:icon="icon"
-						/>
-					</div>
-					<div
-						ref="messageRef"
-						class="
+							:class="{
+								'tw-bg-brand tw-text-white' : messageType === 'confirmation',
+								'tw-bg-danger tw-text-white' : messageType === 'error',
+								'tw-bg-caution' : messageType === 'warning',
+							}"
+						>
+							<kv-material-icon
+								class="tw-w-2.5 tw-h-2.5"
+								:icon="icon"
+							/>
+						</div>
+						<div
+							ref="messageRef"
+							class="
 							tw-flex-1
 							tw-px-1 tw-py-2
 							tw-flex
 						"
-					>
-						<p
-							class="tw-inline-block tw-m-auto"
-							v-html="message"
 						>
-						</p>
-					</div>
+							<p
+								class="tw-inline-block tw-m-auto"
+								v-html="message"
+							>
+							</p>
+						</div>
 
-					<button
-						class="
+						<button
+							class="
 							tw-w-5
 							tw-flex-shrink-0
 							tw-flex
@@ -67,15 +68,16 @@
 							tw-bg-gray-100
 							hover:tw-text-action-700
 						"
-						@click="close"
-					>
-						<kv-material-icon
-							class="tw-w-2.5 tw-h-2.5"
-							:icon="mdiClose"
-						/>
-						<span class="tw-sr-only">Close notification</span>
-					</button>
-				</div>
+							@click="close"
+						>
+							<kv-material-icon
+								class="tw-w-2.5 tw-h-2.5"
+								:icon="mdiClose"
+							/>
+							<span class="tw-sr-only">Close notification</span>
+						</button>
+					</div>
+				</kv-page-container>
 			</div>
 		</transition>
 	</div>
@@ -87,6 +89,7 @@ import {
 	mdiClose, mdiAlertCircle, mdiAlert, mdiCheckCircle,
 } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import KvPageContainer from './KvPageContainer.vue';
 
 /**
  * A component which displays a temporary notice to the user.
@@ -109,6 +112,7 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 export default {
 	components: {
 		KvMaterialIcon,
+		KvPageContainer,
 	},
 	data() {
 		return {
