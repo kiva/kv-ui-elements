@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.8.1...@kiva/kv-components@0.9.0) (2021-07-16)
+
+
+### Features
+
+* **KvTextLink:** animate the icon on hover ([93fa540](https://github.com/kiva/kv-ui-elements/commit/93fa5407248d27d01dac804917679ad5f2d3a0fb))
+* add 'text-link' utility class ([27a15f8](https://github.com/kiva/kv-ui-elements/commit/27a15f822b48e5a7ad0cfafa3f2c493580320086))
+* **KvTextLink:** A component for a stylized text link with icon option ([afc7123](https://github.com/kiva/kv-ui-elements/commit/afc71232ed7f95990ff9852d2d89f5c41f2358d3))
+
+
+
+
+
 ## [0.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.8.0...@kiva/kv-components@0.8.1) (2021-07-12)
 
 **Note:** Version bump only for package @kiva/kv-components
