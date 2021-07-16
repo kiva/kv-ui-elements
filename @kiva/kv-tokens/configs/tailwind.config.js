@@ -192,14 +192,7 @@ module.exports = {
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
-				a: {
-					color: colors.action.DEFAULT,
-					textDecoration: 'none',
-				},
-				'a:hover, a:focus': {
-					color: colors.action['700'],
-					textDecoration: 'underline',
-				},
+				a: textStyles.textLink,
 				'strong, b': {
 					fontWeight: fontWeights.medium,
 				},
@@ -217,6 +210,7 @@ module.exports = {
 				'.text-subhead': textStyles.textSubhead,
 				'.text-jumbo': textStyles.textJumbo,
 				'.text-small': textStyles.textSmall,
+				'.text-link': textStyles.textLink,
 			}, ['responsive']);
 		}),
 	],

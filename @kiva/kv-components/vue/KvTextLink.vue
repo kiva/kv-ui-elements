@@ -6,7 +6,7 @@
 		:disabled="state === 'disabled'"
 		class="
 			tw-text-h4
-			tw-text-action-700 hover:tw-text-action-700 hover:tw-underline
+			tw-text-link
 			tw-inline-flex tw-items-center tw-gap-x-0.5
 		"
 		:class="{

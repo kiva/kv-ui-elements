@@ -155,6 +155,15 @@ const textStyles = (() => {
 		},
 	};
 
+	const textLink = {
+		color: colors.action.DEFAULT,
+		textDecoration: 'none',
+		'&:hover, &:focus': {
+			color: colors.action['700'],
+			textDecoration: 'underline',
+		},
+	};
+
 	return {
 		textJumbo,
 		textH1,
@@ -164,6 +173,7 @@ const textStyles = (() => {
 		textSubhead,
 		textBase,
 		textSmall,
+		textLink,
 	};
 })();
 
