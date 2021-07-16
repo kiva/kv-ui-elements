@@ -4,13 +4,10 @@
 		:to="to"
 		:href="href"
 		:disabled="state === 'disabled'"
-		class="
-			tw-text-h4
-			tw-text-link
-			tw-inline-flex tw-items-center tw-gap-x-0.5
-		"
+		class="tw-text-h4 tw-text-link"
 		:class="{
 			'tw-opacity-low tw-pointer-events-none': state === 'disabled',
+			'tw-group tw-inline-flex tw-items-center tw-gap-x-0.5': icon
 		}"
 		@click="onClick"
 	>
@@ -18,7 +15,11 @@
 		<kv-material-icon
 			v-if="icon"
 			:icon="icon"
-			class="tw-w-1.5 tw-h-1.5 md:tw-w-2 md:tw-h-2"
+			class="
+				tw-w-1.5 tw-h-1.5 md:tw-w-2 md:tw-h-2
+				tw-transition-transform tw-ease-in-out tw-duration-200
+				group-hover:tw-translate-x-[0.125rem] group-focus:tw-translate-x-[0.125rem]
+			"
 		/>
 	</component>
 </template>
