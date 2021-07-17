@@ -62,6 +62,9 @@ module.exports = {
 				700: colors.action['700'],
 				DEFAULT: colors.action.DEFAULT,
 			},
+			caution: {
+				DEFAULT: colors.caution.DEFAULT,
+			},
 			danger: {
 				700: colors.danger['700'],
 				DEFAULT: colors.danger.DEFAULT,
@@ -152,6 +155,10 @@ module.exports = {
 			minHeight: (theme) => ({
 				...theme('spacing'),
 				'half-screen': '50vh',
+			}),
+			minWidth: (theme) => ({
+				...theme('spacing'),
+				'1/2': '50%',
 			}),
 			keyframes: {
 				ripple: {

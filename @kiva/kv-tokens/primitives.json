@@ -25,6 +25,9 @@
 			"700": "#277056",
 			"DEFAULT": "#2B7C5F"
 		},
+		"caution": {
+			"DEFAULT": "#FEE16E"
+		},
 		"danger": {
 			"700": "#BA342C",
 			"DEFAULT": "#E04848"
