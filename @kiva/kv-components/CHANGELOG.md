@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.9.0...@kiva/kv-components@0.10.0) (2021-07-17)
+
+
+### Bug Fixes
+
+* **KvToast:** wrap toast in page container, set min-width to 50% ([2357e4b](https://github.com/kiva/kv-ui-elements/commit/2357e4b0abb5eddbb15b234a96f0180282008ba1))
+
+
+### Features
+
+* **KvToast:** Component for displaying a temporary message to the user ([993fb91](https://github.com/kiva/kv-ui-elements/commit/993fb91aa74e5b3a60502802b7a0cb7c11125022))
+
+
+
+
+
 # [0.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.8.1...@kiva/kv-components@0.9.0) (2021-07-16)
 
 

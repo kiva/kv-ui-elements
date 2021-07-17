@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.5.0...@kiva/kv-tokens@0.6.0) (2021-07-17)
+
+
+### Features
+
+* **KvToast:** Component for displaying a temporary message to the user ([993fb91](https://github.com/kiva/kv-ui-elements/commit/993fb91aa74e5b3a60502802b7a0cb7c11125022))
+
+
+
+
+
 # [0.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.4.1...@kiva/kv-tokens@0.5.0) (2021-07-16)
 
 
