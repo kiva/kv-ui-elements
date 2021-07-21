@@ -23,7 +23,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.9.0",
     "postcss": "^7.0.35",
-    "tailwindcss": "^2.2.4",
+    "tailwindcss": "2.2.4",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12"
   },
