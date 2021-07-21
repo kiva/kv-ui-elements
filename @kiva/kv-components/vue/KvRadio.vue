@@ -90,10 +90,9 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		modelValue: { default: '' },
 		value: {
 			type: String,
-			default: '',
+			required: true,
 		},
 		name: {
 			type: String,
@@ -102,6 +101,10 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false,
+		},
+		modelValue: {
+			type: String,
+			default: '',
 		},
 	},
 	computed: {

@@ -1,8 +1,8 @@
-import KvToggle from '../KvToggle.vue';
+import KvSwitch from '../KvSwitch.vue';
 
 export default {
-	title: 'KvToggle',
-	component: KvToggle,
+	title: 'KvSwitch',
+	component: KvSwitch,
 	args: {
 		checked: false,
 		disabled: false,
@@ -14,14 +14,14 @@ const Template = (args, {
 }) => ({
 	props: Object.keys(argTypes),
 	components: {
-		KvToggle,
+		KvSwitch,
 	},
 	data: () => ({
 		exampleModel: false,
 	}),
 	template: `
 		<div>
-			<kv-toggle :disabled="disabled" v-model="exampleModel" @change="onChange">Test Toggle {{exampleModel}}</kv-toggle>
+			<kv-switch :disabled="disabled" v-model="exampleModel" @change="onChange">Test Toggle {{exampleModel}}</kv-switch>
 		</div>`,
 	methods: {
 		onChange(e) {

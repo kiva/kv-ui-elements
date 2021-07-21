@@ -89,14 +89,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		 * Visual state of this input
-		 * @values '', valid, invalid
-		 * */
-		validationState: {
-			type: String,
-			default: '',
-		},
 	},
 	computed: {
 		inputListeners() {
