@@ -8,6 +8,7 @@
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				:aria-checked="checked"
+				:checked="checked"
 				:value="value"
 				:disabled="disabled"
 				v-bind="$attrs"
@@ -18,9 +19,10 @@
 			<div
 				class="
 					tw-w-3 tw-h-3
+					tw-flex-shrink-0
 					tw-rounded-sm
 					tw-border
-					tw-flex tw-justify-center tw-overflow-hidden
+					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 				"
@@ -63,6 +65,7 @@
 
 <script>
 /**
+ * Use as you would an <input type="checkbox" />
  * https://material-ui.com/components/radio-buttons/#radiogroup
  * https://headlessui.dev/vue/radio-group
 */
