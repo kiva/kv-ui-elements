@@ -21,10 +21,21 @@ const Template = (args, {
 	}),
 	template: `
 		<div>
-			<kv-checkbox :disabled="disabled" v-model="exampleModel" @change="onChange">Test Toggle {{exampleModel}}</kv-checkbox>
+			<kv-checkbox
+				:disabled="disabled"
+				:checked="checked"
+				v-model="exampleModel"
+				@change="onChange"
+				@focus="onFocus"
+			>
+				Test Toggle {{exampleModel}}
+			</kv-checkbox>
 		</div>`,
 	methods: {
 		onChange(e) {
+			console.log(e);
+		},
+		onFocus(e) {
 			console.log(e);
 		},
 	},
