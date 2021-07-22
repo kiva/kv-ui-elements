@@ -148,21 +148,22 @@ export default {
 			// build an element to animate
 			const blipEl = document.createElement('span');
 			blipEl.classList = `
-				absolute
-				inline-block
-				h-2 w-2
-				rounded-full
-				transform
-				-translate-x-1/2
-				-translate-y-1/2
-				opacity-0
-				animate-ripple
-				motion-reduce:animate-none
+				tw-absolute
+				tw-inline-block
+				tw-h-2
+				tw-w-2
+				tw-rounded-full
+				tw-transform
+				tw--translate-x-1/2
+				tw--translate-y-1/2
+				tw-opacity-0
+				tw-animate-ripple
+				motion-reduce:tw-animate-none
 			`;
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];
-			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'bg-gray-300' : 'bg-white';
+			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-gray-300' : 'tw-bg-white';
 			blipEl.classList.add(blipBgColor);
 
 			// position the blip where the pointer click is or center it if keyboard
