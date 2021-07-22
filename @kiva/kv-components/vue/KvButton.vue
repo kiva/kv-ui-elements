@@ -166,6 +166,7 @@ export default {
 				tw-animate-ripple
 				motion-reduce:tw-animate-none
 			`;
+			blipEl.dataset.testid = 'ripple'; // for accessing in tests
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];

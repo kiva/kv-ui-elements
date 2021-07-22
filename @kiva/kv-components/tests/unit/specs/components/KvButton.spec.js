@@ -1,35 +1,37 @@
-import { mount } from '@vue/test-utils';
+import { render, fireEvent } from '@testing-library/vue';
 import KvButton from '../../../../vue/KvButton.vue';
-import { VariantPrimary, WithHref, StateLoading } from '../../../../vue/stories/KvButton.stories';
 
 describe('Default Button', () => {
 	it('renders as a button tag', () => {
-		const wrapper = mount(KvButton, {
-			propsData: VariantPrimary.args,
+		const { getByRole } = render(KvButton, {
+			slots: { default: 'Test Button' },
 		});
-		expect(wrapper.element.tagName).toBe('BUTTON');
+		getByRole('button', { name: 'Test Button' });
 	});
 
 	it('when passed an href prop, it renders as an anchor tag', () => {
-		const wrapper = mount(KvButton, {
-			propsData: WithHref.args,
+		const { getByRole } = render(KvButton, {
+			props: { href: 'https://www.example.com' },
+			slots: { default: 'Test Button' },
 		});
-		expect(wrapper.element.tagName).toBe('A');
+		getByRole('link', { name: 'Test Button' });
 	});
 
 	it('shows a ripple animation when clicked', async () => {
-		const wrapper = mount(KvButton, {
-			propsData: VariantPrimary.args,
+		const { getByText, getByTestId } = render(KvButton, {
+			slots: { default: 'Test Button' },
 		});
-		await wrapper.trigger('click');
-		const rippleSpan = wrapper.find('.tw-animate-ripple');
-		expect(rippleSpan.exists()).toBe(true);
+		const btnEl = getByText('Test Button');
+		await fireEvent.click(btnEl);
+		getByTestId('ripple');
 	});
 
 	it('when passed a loading prop, the button is disabled', () => {
-		const wrapper = mount(KvButton, {
-			propsData: StateLoading.args,
+		const { getByRole } = render(KvButton, {
+			props: { state: 'loading' },
+			slots: { default: 'Test Button' },
 		});
-		expect(wrapper.attributes('disabled')).toBeTruthy();
+		const btnEl = getByRole('button', { name: 'Test Button' });
+		expect(btnEl.disabled).toBeTruthy();
 	});
 });
