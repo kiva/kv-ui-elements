@@ -6,7 +6,7 @@
 		:href="href"
 		:type="computedType"
 		:disabled="isDisabled"
-		class="hover:tw-no-underline"
+		class="hover:tw-no-underline tw-inline-block"
 		:class="{
 			'tw-opacity-low': state === 'disabled',
 			'tw-pointer-events-none': state === 'loading' || isDisabled
