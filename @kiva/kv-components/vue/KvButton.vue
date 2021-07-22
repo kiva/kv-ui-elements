@@ -4,7 +4,7 @@
 		ref="buttonRef"
 		:to="to"
 		:href="href"
-		:type="type"
+		:type="computedType"
 		:disabled="isDisabled"
 		class="hover:tw-no-underline"
 		:class="{
@@ -129,6 +129,12 @@ export default {
 				return 'a';
 			}
 			return 'button';
+		},
+		computedType() {
+			if (this.to || this.href) {
+				return null;
+			}
+			return this.type;
 		},
 	},
 	methods: {
