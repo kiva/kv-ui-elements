@@ -20,7 +20,7 @@ const Template = (args, {
 		radioExampleModel1: 'one',
 	}),
 	template: `
-		<div class="tw-flex tw-flex-col tw-gap-3">
+		<div class="tw-flex tw-flex-col tw-gap-1">
 			<kv-radio
 				:disabled="disabled"
 				value="one"
