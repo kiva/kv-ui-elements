@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<label
-			class="tw-inline-flex tw-gap-2"
+			class="tw-inline-flex tw-items-center tw-align-middle"
 			:class="{ 'tw-opacity-low': disabled }"
 		>
 			<input
 				v-bind="$attrs"
 				ref="radioRef"
-				class="tw-peer tw-appearance-none"
+				class="tw-peer tw-appearance-none tw-w-max"
 				type="radio"
 				:aria-checked="isChecked"
 				:checked="isChecked"
@@ -19,12 +19,12 @@
 			>
 			<div
 				class="
-					tw-w-3 tw-h-3
+					tw-w-2.5 tw-h-2.5 tw-mr-2
 					tw-rounded-full
 					tw-border
 					tw-flex-shrink-0
 					tw-overflow-hidden
-					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
+					tw-flex tw-justify-center tw-items-center
 					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 				"
@@ -32,13 +32,11 @@
 					'tw-border-gray-500' : !isChecked,
 					'tw-border-action' : isChecked
 				}"
-				style="line-height: 0;"
 			>
-
 				<div
 					v-if="isChecked"
-					class="tw-rounded-full tw-w-2 tw-h-2 tw-bg-action"
-					style="line-height: 0;"
+					class="tw-rounded-full tw-bg-action"
+					style="width: 0.625rem; height: 0.625rem;"
 				></div>
 			</div>
 

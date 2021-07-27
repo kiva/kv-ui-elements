@@ -47,7 +47,6 @@ export default {
 		id: {
 			type: String,
 			required: true,
-			default: '',
 		},
 		/**
 		 * Initial selected value
