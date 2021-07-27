@@ -5,13 +5,14 @@
 			:class="{ 'tw-opacity-low': disabled }"
 		>
 			<input
-				class="tw-sr-only tw-peer"
+				v-bind="$attrs"
+				ref="checkboxRef"
+				class="tw-peer tw-appearance-none"
 				type="checkbox"
 				:aria-checked="checked"
 				:checked="checked"
 				:value="value"
 				:disabled="disabled"
-				v-bind="$attrs"
 				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
@@ -66,6 +67,7 @@
 <script>
 /**
  * Use as you would an <input type="checkbox" />
+ * Does not handle 'indeterminate' state at this time.
  * https://material-ui.com/components/radio-buttons/#radiogroup
  * https://headlessui.dev/vue/radio-group
 */
@@ -104,6 +106,12 @@ export default {
 	methods: {
 		onChange(event) {
 			this.$emit('change', event.target.checked);
+		},
+		focus() {
+			this.$refs.checkboxRef.focus();
+		},
+		blur() {
+			this.$refs.checkboxRef.blur();
 		},
 	},
 };

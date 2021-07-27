@@ -1,7 +1,7 @@
 import KvRadio from '../KvRadio.vue';
 
 export default {
-	title: 'KvRadio',
+	title: 'Forms/KvRadio',
 	component: KvRadio,
 	args: {
 		checked: false,
@@ -17,78 +17,79 @@ const Template = (args, {
 		KvRadio,
 	},
 	data: () => ({
-		exampleModel: 'one',
-		exampleModel2: 'three',
+		radioExampleModel1: 'one',
+		radioExampleModel2: 'three',
 	}),
 	template: `
 		<div>
 			<kv-radio
 				:disabled="disabled"
 				value="one"
-				v-model="exampleModel"
+				v-model="radioExampleModel1"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				One {{exampleModel}}
+				One
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="two"
-				v-model="exampleModel"
+				v-model="radioExampleModel1"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Two {{exampleModel}}
+				Two
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="three"
-				v-model="exampleModel"
+				v-model="radioExampleModel1"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Three {{exampleModel}}
+				Three
 			</kv-radio>
+			{{radioExampleModel1}}
 			<br><br>
-
 
 			<kv-radio
 				:disabled="disabled"
 				value="one"
 				name="group2"
-				:checked="exampleModel2 == 'one'"
+				:checked="radioExampleModel2 == 'one'"
 				@change="onChange2"
 				@focus="onFocus"
 			>
-				One {{exampleModel2}}
+				One
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="two"
 				name="group2"
-				:checked="exampleModel2 == 'two'"
+				:checked="radioExampleModel2 == 'two'"
 				@change="onChange2"
 				@focus="onFocus"
 			>
-				Two {{exampleModel2}}
+				Two
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="three"
 				name="group2"
-				:checked="exampleModel2 == 'three'"
+				:checked="radioExampleModel2 == 'three'"
 				@change="onChange2"
 				@focus="onFocus"
 			>
-				Three {{exampleModel2}}
+				Three
 			</kv-radio>
+			{{radioExampleModel2}}
 		</div>`,
 	methods: {
 		onChange(val) {
 			console.log(val);
 		},
 		onChange2(val) {
-			this.exampleModel2 = val;
+			this.radioExampleModel2 = val;
 		},
 		onFocus(e) {
 			console.log(e);

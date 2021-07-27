@@ -5,7 +5,9 @@
 			:class="{ 'tw-opacity-low': disabled }"
 		>
 			<input
-				class="tw-sr-only tw-peer"
+				v-bind="$attrs"
+				ref="radioRef"
+				class="tw-peer tw-appearance-none"
 				type="radio"
 				:aria-checked="isChecked"
 				:checked="isChecked"
@@ -124,6 +126,12 @@ export default {
 	methods: {
 		onChange(event) {
 			this.$emit('change', event.target.value);
+		},
+		focus() {
+			this.$refs.radioRef.focus();
+		},
+		blur() {
+			this.$refs.radioRef.blur();
 		},
 	},
 };

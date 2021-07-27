@@ -1,32 +1,40 @@
 <template>
 	<div>
 		<label
-			class="tw-inline-flex tw-gap-3"
+			class="tw-inline-flex tw-gap-2 tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
 		>
-			<div class="tw-w-10 tw-h-6 tw-bg-gray-300 tw-rounded-full tw-relative">
-				<input
-					class="tw-sr-only tw-peer"
-					type="checkbox"
-					:aria-checked="checked"
-					:value="value"
-					:disabled="disabled"
-					@change.prevent="onChange"
-				>
-				<div
-					class="
-						tw-bg-gray-500 tw-w-6 tw-h-6 tw-rounded-full tw-flex-shrink-0
-						peer-checked:tw-bg-action peer-checked:tw-translate-x-4
-						tw-transform tw-transition-all tw-ease-in-out
-					"
-				></div>
-				<div
-					class="
-						peer-focus-visible:tw-bg-danger
-					"
-				>peer</div>
+			<input
+				ref="switchRef"
+				class="tw-sr-only tw-peer"
+				type="checkbox"
+				role="switch"
+				:aria-checked="checked"
+				:value="value"
+				:disabled="disabled"
+				@change.prevent="onChange"
+			>
+
+			<div
+				class="
+					tw-w-7 tw-h-4 tw-rounded-full tw-relative tw-overflow-hidden
+					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
+					tw-bg-gray-300 peer-checked:tw-bg-action
+					tw-transition-all tw-ease-in-out
+				"
+			>
 			</div>
-			<div class="tw-flex-1">
+			<div
+				class="
+						tw-flex-shrink-0 tw-w-3 tw-h-3
+						tw-absolute tw-m-0.5
+						tw-rounded-full
+						tw-bg-white
+						tw-transform tw-transition-all tw-ease-in-out
+						peer-checked:tw-translate-x-3
+					"
+			></div>
+			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
 				<slot></slot>
 			</div>
 		</label>
@@ -39,6 +47,7 @@
  * KvSwitch
  * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Switch_role
  * https://headlessui.dev/react/switch#labels
+ * https://scottaohara.github.io/a11y_styled_form_controls/src/checkbox--switch/
  *
  * https://www.w3.org/TR/wai-aria-practices-1.2/#checkbox
  * The checkbox has role checkbox.
@@ -87,6 +96,12 @@ export default {
 	methods: {
 		onChange(event) {
 			this.$emit('change', event.target.checked);
+		},
+		focus() {
+			this.$refs.switchRef.focus();
+		},
+		blur() {
+			this.$refs.switchRef.blur();
 		},
 	},
 };

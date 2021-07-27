@@ -1,7 +1,7 @@
 import KvCheckbox from '../KvCheckbox.vue';
 
 export default {
-	title: 'KvCheckbox',
+	title: 'Forms/KvCheckbox',
 	component: KvCheckbox,
 	args: {
 		checked: false,
@@ -17,18 +17,18 @@ const Template = (args, {
 		KvCheckbox,
 	},
 	data: () => ({
-		exampleModel: false,
+		checkboxExampleModel: false,
 	}),
 	template: `
 		<div>
 			<kv-checkbox
 				:disabled="disabled"
 				:checked="checked"
-				v-model="exampleModel"
+				v-model="checkboxExampleModel"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Test Toggle {{exampleModel}}
+				Checkbox is checked: {{checkboxExampleModel}}
 			</kv-checkbox>
 		</div>`,
 	methods: {

@@ -1,7 +1,7 @@
 import KvSwitch from '../KvSwitch.vue';
 
 export default {
-	title: 'KvSwitch',
+	title: 'Forms/KvSwitch',
 	component: KvSwitch,
 	args: {
 		checked: false,
@@ -17,11 +17,11 @@ const Template = (args, {
 		KvSwitch,
 	},
 	data: () => ({
-		exampleModel: false,
+		switchExampleModel: false,
 	}),
 	template: `
 		<div>
-			<kv-switch :disabled="disabled" v-model="exampleModel" @change="onChange">Test Toggle {{exampleModel}}</kv-switch>
+			<kv-switch :disabled="disabled" v-model="switchExampleModel" @change="onChange">Test Toggle {{switchExampleModel}}</kv-switch>
 		</div>`,
 	methods: {
 		onChange(e) {
