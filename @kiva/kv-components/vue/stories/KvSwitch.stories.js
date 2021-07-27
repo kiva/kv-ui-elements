@@ -21,7 +21,7 @@ const Template = (args, {
 	}),
 	template: `
 		<div>
-			<kv-switch :disabled="disabled" v-model="switchExampleModel" @change="onChange">Test Toggle {{switchExampleModel}}</kv-switch>
+			<kv-switch :disabled="disabled" v-model="switchExampleModel" @change="onChange">Switch is switched: {{switchExampleModel}}</kv-switch>
 		</div>`,
 	methods: {
 		onChange(e) {
