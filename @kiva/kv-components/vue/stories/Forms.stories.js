@@ -10,6 +10,10 @@ import { Default as SwitchDefault } from './KvSwitch.stories';
 
 export default {
 	title: 'Forms',
+	args: {
+		checked: false,
+		disabled: false,
+	},
 };
 
 const Template = (args, {
