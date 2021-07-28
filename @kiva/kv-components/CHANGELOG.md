@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.2...@kiva/kv-components@0.10.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **KvToast:** Show green checkbox if no messageType is passed in ([0dae691](https://github.com/kiva/kv-ui-elements/commit/0dae69110d37c8618cbc74e4e13c1b4a69d565e0))
+
+
+
+
+
 ## [0.10.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.1...@kiva/kv-components@0.10.2) (2021-07-22)
 
 
