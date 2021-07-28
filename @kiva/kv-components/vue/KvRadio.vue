@@ -19,7 +19,7 @@
 			>
 			<div
 				class="
-					tw-w-2.5 tw-h-2.5 tw-mr-2
+					tw-w-3 tw-h-3 tw-mr-2
 					tw-rounded-full
 					tw-border
 					tw-flex-shrink-0
@@ -36,7 +36,7 @@
 				<div
 					v-if="isChecked"
 					class="tw-rounded-full tw-bg-action"
-					style="width: 0.625rem; height: 0.625rem;"
+					style="width: 0.75rem; height: 0.75rem;"
 				></div>
 			</div>
 

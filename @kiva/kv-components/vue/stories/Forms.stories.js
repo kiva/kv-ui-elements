@@ -3,8 +3,8 @@ import KvRadio from '../KvRadio.vue';
 import KvSelect from '../KvSelect.vue';
 import KvSwitch from '../KvSwitch.vue';
 
-import { Default as CheckboxDefault } from './KvCheckbox.stories';
-import { Default as RadioDefault } from './KvRadio.stories';
+import { Multiple as CheckboxDefault } from './KvCheckbox.stories';
+import { WithoutVModel as RadioDefault } from './KvRadio.stories';
 import { Default as SelectDefault } from './KvSelect.stories';
 import { Default as SwitchDefault } from './KvSwitch.stories';
 

@@ -17,47 +17,46 @@ const Template = (args, {
 		KvRadio,
 	},
 	data: () => ({
-		radioExampleModel1: 'one',
+		radioExampleModel: 'one',
 	}),
 	template: `
-		<div class="tw-flex tw-flex-col tw-gap-1">
+		<div class="tw-flex tw-flex-col tw-gap-2">
 			<kv-radio
 				:disabled="disabled"
 				value="one"
-				v-model="radioExampleModel1"
+				v-model="radioExampleModel"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				One
+				One radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
-				:disabled="true"
+				:disabled="disabled"
 				value="two"
-				v-model="radioExampleModel1"
+				v-model="radioExampleModel"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Two
+				Two radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="three"
-				v-model="radioExampleModel1"
+				v-model="radioExampleModel"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Three
+				Three radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="four"
-				v-model="radioExampleModel1"
+				v-model="radioExampleModel"
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Four
+				Four is long lorem ipsum nulla duis velit occaecat consectetur pariatur enim eu nostrud. <a href="https://placeholder.com">Irure et cupidatat</a> veniam sit enim proident exercitation ut Lorem do. Commodo ad veniam commodo est amet pariatur: {{checkboxExampleModel3}}
 			</kv-radio>
-			<p>Selected: {{radioExampleModel1}}</p>
 		</div>`,
 	methods: {
 		onChange(val) {
@@ -76,7 +75,7 @@ Disabled.args = {
 	disabled: true,
 };
 
-const ManualTemplate = (args, {
+export const WithoutVModel = (args, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
@@ -84,48 +83,45 @@ const ManualTemplate = (args, {
 		KvRadio,
 	},
 	data: () => ({
-		radioExampleModel2: '',
+		radioExampleModel: '',
 	}),
 	template: `
-		<div>
+		<div class="tw-flex tw-flex-col tw-gap-2">
 			<kv-radio
 				:disabled="disabled"
 				value="one"
 				name="my_group"
-				:checked="radioExampleModel2 === 'one'"
-				@change="(val) => radioExampleModel2 = val"
+				:checked="radioExampleModel === 'one'"
+				@change="(val) => radioExampleModel = val"
 			>
-				One
+				One radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
 				:disabled="true"
 				value="two"
 				name="my_group"
-				:checked="radioExampleModel2 === 'two'"
-				@change="(val) => radioExampleModel2 = val"
+				:checked="radioExampleModel === 'two'"
+				@change="(val) => radioExampleModel = val"
 			>
-				Two
+				Two radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="three"
 				name="my_group"
-				:checked="radioExampleModel2 === 'three'"
-				@change="(val) => radioExampleModel2 = val"
+				:checked="radioExampleModel === 'three'"
+				@change="(val) => radioExampleModel = val"
 			>
-				Three
+				Three radio button: {{radioExampleModel}}
 			</kv-radio>
 			<kv-radio
 				:disabled="disabled"
 				value="four"
 				name="my_group"
-				:checked="radioExampleModel2 === 'four'"
-				@change="(val) => radioExampleModel2 = val"
+				:checked="radioExampleModel === 'four'"
+				@change="(val) => radioExampleModel = val"
 			>
-				Four
+				Four is long lorem ipsum nulla duis velit occaecat consectetur pariatur enim eu nostrud. <a href="https://placeholder.com">Irure et cupidatat</a> veniam sit enim proident exercitation ut Lorem do. Commodo ad veniam commodo est amet pariatur
 			</kv-radio>
-			<p>Selected: {{radioExampleModel2}}</p>
 		</div>`,
 });
-
-export const Manual = ManualTemplate.bind({});

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<label
-			class="tw-inline-flex tw-items-center tw-align-middle"
+			class="tw-inline-flex tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
 		>
 			<input
@@ -29,14 +29,6 @@
 					peer-checked:tw-bg-action peer-checked:tw-border-action
 				"
 			>
-				<!-- <transition
-					enter-active-class="tw-transition tw-ease-out tw-duration-300"
-					leave-active-class="tw-transition tw-ease-out tw-duration-300"
-					enter-class="tw-scale-50"
-					enter-to-class="tw-scale-100"
-					leave-class="tw-scale-50"
-					leave-to-class="tw-scale-100"
-				> -->
 				<svg
 					v-if="checked"
 					class="tw-w-1.5 tw-h-auto"
@@ -51,7 +43,6 @@
 					/>
 					<!-- eslint-enable max-len -->
 				</svg>
-				<!-- </transition> -->
 			</div>
 
 			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
