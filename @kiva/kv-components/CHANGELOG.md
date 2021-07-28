@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.3...@kiva/kv-components@0.10.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* Locks page scroll when the lightbox is open on UI ([b2f4be5](https://github.com/kiva/kv-ui-elements/commit/b2f4be519b53b3f8f2785d5e0013a4d2266ea1a8))
+
+
+
+
+
+## [0.10.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.2...@kiva/kv-components@0.10.3) (2021-07-28)
+
+
+### Bug Fixes
+
+* **KvToast:** Show green checkbox if no messageType is passed in ([0dae691](https://github.com/kiva/kv-ui-elements/commit/0dae69110d37c8618cbc74e4e13c1b4a69d565e0))
+
+
+
+
+
+## [0.10.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.1...@kiva/kv-components@0.10.2) (2021-07-22)
+
+
+### Bug Fixes
+
+* **KvButton:** bring back ripple animation on click ([649704d](https://github.com/kiva/kv-ui-elements/commit/649704d9fdc0a87f7a83293033c5563e1f07c3a5))
+
+
+
+
+
 ## [0.10.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.0...@kiva/kv-components@0.10.1) (2021-07-21)
 
 **Note:** Version bump only for package @kiva/kv-components
