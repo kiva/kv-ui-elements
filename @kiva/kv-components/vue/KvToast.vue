@@ -34,7 +34,9 @@
 							tw-items-center tw-justify-center
 						"
 							:class="{
-								'tw-bg-brand tw-text-white' : messageType === 'confirmation',
+								'tw-bg-brand tw-text-white' : (
+									messageType === '' || messageType === 'confirmation'
+								),
 								'tw-bg-danger tw-text-white' : messageType === 'error',
 								'tw-bg-caution' : messageType === 'warning',
 							}"
