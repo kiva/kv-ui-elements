@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.3...@kiva/kv-components@0.10.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* Locks page scroll when the lightbox is open on UI ([b2f4be5](https://github.com/kiva/kv-ui-elements/commit/b2f4be519b53b3f8f2785d5e0013a4d2266ea1a8))
+
+
+
+
+
 ## [0.10.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.2...@kiva/kv-components@0.10.3) (2021-07-28)
 
 
