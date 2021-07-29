@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.5...@kiva/kv-components@0.10.6) (2021-07-29)
+
+
+### Bug Fixes
+
+* **KvButton:** Fix accessibility issue where links might have role=button ([e72312e](https://github.com/kiva/kv-ui-elements/commit/e72312e3488273f9408804900c78f789d93bee7b))
+* **KvButton:** fix default display when the button is a link ([db18d1d](https://github.com/kiva/kv-ui-elements/commit/db18d1dd2d200bea354784536c05ccc6caa9fef0))
+
+
+
+
+
 ## [0.10.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.4...@kiva/kv-components@0.10.5) (2021-07-29)
 
 **Note:** Version bump only for package @kiva/kv-components
