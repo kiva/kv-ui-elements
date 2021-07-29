@@ -247,7 +247,7 @@ export const Primitives = (args, { argTypes }) => ({
 	data() {
 		return {
 			colors: buildValuesFromThemeObj(theme.colors),
-			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[1] - b[1]),
+			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]),
 			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
 			breakpoints: buildValuesFromThemeObj(removeObjectProperty(theme.screens, 'print')),

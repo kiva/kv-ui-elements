@@ -133,8 +133,18 @@ const textStyles = (() => {
 	};
 
 	const textSubhead = {
-		...textH3,
+		fontSize: rem(fontSizes.subhead.sm),
 		fontWeight: fontWeights.book,
+		letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.sm),
+		lineHeight: lineHeights.normal,
+		'@screen md': {
+			fontSize: rem(fontSizes.subhead.md),
+			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.md),
+		},
+		'@screen lg': {
+			fontSize: rem(fontSizes.subhead.lg),
+			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.lg),
+		},
 	};
 
 	const textBase = {
@@ -218,7 +228,7 @@ const proseOverrides = () => ({
 				lineHeight: 1,
 				color: colors.gray['300'],
 				position: 'absolute',
-				top: 0,
+				top: em(-2, 16),
 				left: 0,
 			},
 			'blockquote p:last-of-type::after': {
@@ -246,7 +256,7 @@ const proseOverrides = () => ({
 			blockquote: {
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
-				paddingLeft: rem(space['6']),
+				padding: `0 0 0 ${rem(space['6'])}`,
 			},
 			h1: {
 				fontSize: false,
