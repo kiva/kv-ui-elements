@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.6.0...@kiva/kv-tokens@0.6.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **typography:** Update textSubhead styles to match design. Blockquote fixes which inherit textSubhead styles. ([460bb9b](https://github.com/kiva/kv-ui-elements/commit/460bb9b80902d6e694098dadfcb09d9b6cdbcf16))
+
+
+
+
+
 # [0.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.5.0...@kiva/kv-tokens@0.6.0) (2021-07-17)
 
 
