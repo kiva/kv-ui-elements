@@ -55,7 +55,7 @@ const Template = (args, {
 				@change="onChange"
 				@focus="onFocus"
 			>
-				Four is long lorem ipsum nulla duis velit occaecat consectetur pariatur enim eu nostrud. <a href="https://placeholder.com">Irure et cupidatat</a> veniam sit enim proident exercitation ut Lorem do. Commodo ad veniam commodo est amet pariatur: {{checkboxExampleModel3}}
+				Four is long lorem ipsum nulla duis velit occaecat consectetur pariatur enim eu nostrud. <a href="https://placeholder.com">Irure et cupidatat</a> veniam sit enim proident exercitation ut Lorem do. Commodo ad veniam commodo est amet pariatur: {{radioExampleModel}}
 			</kv-radio>
 		</div>`,
 	methods: {
