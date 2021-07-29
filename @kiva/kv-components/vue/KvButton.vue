@@ -4,9 +4,9 @@
 		ref="buttonRef"
 		:to="to"
 		:href="href"
-		:type="type"
+		:type="computedType"
 		:disabled="isDisabled"
-		class="hover:tw-no-underline"
+		class="hover:tw-no-underline tw-inline-block"
 		:class="{
 			'tw-opacity-low': state === 'disabled',
 			'tw-pointer-events-none': state === 'loading' || isDisabled
@@ -130,6 +130,12 @@ export default {
 			}
 			return 'button';
 		},
+		computedType() {
+			if (this.to || this.href) {
+				return null;
+			}
+			return this.type;
+		},
 	},
 	methods: {
 		onClick(event) {
@@ -160,6 +166,7 @@ export default {
 				tw-animate-ripple
 				motion-reduce:tw-animate-none
 			`;
+			blipEl.dataset.testid = 'ripple'; // for accessing in tests
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];
