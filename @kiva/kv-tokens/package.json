@@ -1,7 +1,6 @@
 {
     "name": "@kiva/kv-tokens",
     "version": "0.6.2",
-    "sideEffects": false,
     "publishConfig": {
         "access": "public"
     },
