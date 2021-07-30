@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.6...@kiva/kv-components@0.10.7) (2021-07-30)
+
+
+### Performance Improvements
+
+* Try adding sideEffects:false to improve tree shaking ([b87be7e](https://github.com/kiva/kv-ui-elements/commit/b87be7e1d27baf646249a34add8d4a49eeb69f85))
+
+
+
+
+
 ## [0.10.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.5...@kiva/kv-components@0.10.6) (2021-07-29)
 
 
