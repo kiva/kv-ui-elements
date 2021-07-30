@@ -2,6 +2,7 @@
   "name": "kv-ui-elements",
   "version": "0.0.1",
   "description": "Design definitions and components for Kiva's style guide",
+  "sideEffects": false,
   "workspaces": [
     "@kiva/kv-components",
     "@kiva/kv-tokens"
