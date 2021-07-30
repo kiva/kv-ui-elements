@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +40,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@kiva/kv-tokens": "^0.6.1",
+    "@kiva/kv-tokens": "^0.6.2",
     "@mdi/js": "^5.9.55",
     "aria-hidden": "^1.1.3",
     "vue": "^2.6.12",

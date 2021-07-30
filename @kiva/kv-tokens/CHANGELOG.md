@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.6.1...@kiva/kv-tokens@0.6.2) (2021-07-30)
+
+
+### Performance Improvements
+
+* Try adding sideEffects:false to improve tree shaking ([b87be7e](https://github.com/kiva/kv-ui-elements/commit/b87be7e1d27baf646249a34add8d4a49eeb69f85))
+
+
+
+
+
 ## [0.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.6.0...@kiva/kv-tokens@0.6.1) (2021-07-29)
 
 
