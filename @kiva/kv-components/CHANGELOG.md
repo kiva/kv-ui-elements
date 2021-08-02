@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.8...@kiva/kv-components@0.11.0) (2021-08-02)
+
+
+### Features
+
+* **KvSwitch:** UI for an on/off toggle ([a01aa65](https://github.com/kiva/kv-ui-elements/commit/a01aa6537c782439870cfb0a896e192e808f09f5))
+
+
+
+
+
 ## [0.10.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.7...@kiva/kv-components@0.10.8) (2021-07-30)
 
 **Note:** Version bump only for package @kiva/kv-components
