@@ -13,6 +13,7 @@
 				role="switch"
 				:value="value"
 				:disabled="disabled"
+				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<!-- switch background -->
@@ -96,6 +97,17 @@ export default {
 		return {
 			generatedId: `kvs-${nanoid(10)}`,
 		};
+	},
+	computed: {
+		inputListeners() {
+			return {
+				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
+				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
+				...this.$listeners,
+				// ...except for the listener to the 'change' event which is emitted by this component
+				change: () => {},
+			};
+		},
 	},
 	methods: {
 		onChange(event) {
