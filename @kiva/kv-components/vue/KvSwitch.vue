@@ -79,14 +79,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Value of the input if this component is used within a form submission
-		 * */
-		value: {
-			type: String,
-			default: '',
-		},
-		/**
-		 * Prevents the switch from being toggled
+		 * Prevents the switch from being toggled or focused
 		 * */
 		disabled: {
 			type: Boolean,
