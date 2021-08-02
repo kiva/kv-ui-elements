@@ -7,6 +7,7 @@
 		>
 			<input
 				:id="generatedId"
+				v-bind="$attrs"
 				ref="switchRef"
 				class="tw-sr-only tw-peer"
 				type="checkbox"
