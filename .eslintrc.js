@@ -21,4 +21,5 @@ module.exports = {
 		// // allow console during development
 		'no-console': isProd ? ['warn', { allow: ['error'] }] : 'off',
 	},
+	root: true,
 };

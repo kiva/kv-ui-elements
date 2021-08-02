@@ -1,5 +1,8 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import KvButton from '../../../../vue/KvButton.vue';
+
+expect.extend(toHaveNoViolations);
 
 describe('Default Button', () => {
 	it('renders as a button tag', () => {
@@ -33,5 +36,13 @@ describe('Default Button', () => {
 		});
 		const btnEl = getByRole('button', { name: 'Test Button' });
 		expect(btnEl.disabled).toBeTruthy();
+	});
+
+	it('has no automated accessibility violations', async () => {
+		const { container } = render(KvButton, {
+			slots: { default: 'Test Button' },
+		});
+		const results = await axe(container);
+		expect(results).toHaveNoViolations();
 	});
 });
