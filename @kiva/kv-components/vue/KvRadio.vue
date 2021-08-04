@@ -3,9 +3,11 @@
 		<label
 			class="tw-inline-flex tw-items-center tw-align-middle"
 			:class="{ 'tw-opacity-low': disabled }"
+			:for="uuid"
 		>
 			<input
 				v-bind="$attrs"
+				:id="uuid"
 				ref="radioRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="radio"
@@ -47,6 +49,8 @@
 </template>
 
 <script>
+import { nanoid } from 'nanoid';
+
 /* eslint-disable max-len */
 
 /**
@@ -119,6 +123,11 @@ export default {
 			type: [String, Number, Boolean],
 			default: false,
 		},
+	},
+	data() {
+		return {
+			uuid: `kvr-${nanoid(10)}`,
+		};
 	},
 	computed: {
 		isChecked() {
