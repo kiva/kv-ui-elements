@@ -1,43 +1,52 @@
 <template>
 	<div>
 		<label
-			class="tw-inline-flex tw-gap-2 tw-items-center"
+			class="tw-inline-flex tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
 			<input
-				:id="uuid"
 				v-bind="$attrs"
-				ref="switchRef"
-				class="tw-sr-only tw-peer"
+				:id="uuid"
+				ref="checkboxRef"
+				class="tw-peer tw-appearance-none tw-w-max"
 				type="checkbox"
-				role="switch"
+				:checked="checked"
 				:value="value"
 				:disabled="disabled"
 				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
-			<!-- switch background -->
+			<!-- checkbox square background -->
 			<div
 				class="
-					tw-w-7 tw-h-4 tw-rounded-full tw-relative tw-overflow-hidden
+					tw-w-3 tw-h-3 tw-mr-2
+					tw-flex-shrink-0
+					tw-rounded-sm
+					tw-border
+					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
+					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
-					tw-bg-gray-300 peer-checked:tw-bg-action
-					tw-transition-all tw-ease-in-out
+					tw-bg-white tw-border-gray-500
+					peer-checked:tw-bg-action peer-checked:tw-border-action
 				"
 			>
+				<!-- checkbox icon  -->
+				<svg
+					v-if="checked"
+					class="tw-w-1.5 tw-h-auto"
+					viewBox="0 0 12 9"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<!-- eslint-disable max-len -->
+					<path
+						d="M3.99975 6.79988L1.66642 4.46655C1.40642 4.20655 0.993086 4.20655 0.733086 4.46655C0.473086 4.72655 0.473086 5.13988 0.733086 5.39988L3.52642 8.19322C3.78642 8.45322 4.20642 8.45322 4.46642 8.19322L11.5331 1.13322C11.7931 0.873216 11.7931 0.459883 11.5331 0.199883C11.2731 -0.0601172 10.8598 -0.0601172 10.5998 0.199883L3.99975 6.79988Z"
+						fill="white"
+					/>
+					<!-- eslint-enable max-len -->
+				</svg>
 			</div>
-			<!-- switch inner circle -->
-			<div
-				class="
-						tw-flex-shrink-0 tw-w-3 tw-h-3
-						tw-absolute tw-m-0.5
-						tw-rounded-full
-						tw-bg-white
-						tw-transform tw-transition-all tw-ease-in-out
-						peer-checked:tw-translate-x-3
-					"
-			></div>
 			<!-- label -->
 			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
 				<slot></slot>
@@ -50,21 +59,10 @@
 import { nanoid } from 'nanoid';
 
 /**
- * KvSwitch
- * A visual treatment of a checkbox element for handling on/off states in UI.
- *
- * A11y considerations:
- *
- * - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Switch_role
- *
- * Prior art:
- *
- * - https://scottaohara.github.io/a11y_styled_form_controls/src/checkbox--switch/
- * - https://adrianroselli.com/2019/08/under-engineered-toggles-too.html
- * - https://headlessui.dev/react/switch#labels
- * - https://react-spectrum.adobe.com/react-spectrum/Switch.html
- *
+ * Use as you would an <input type="checkbox" />
+ * Does not handle 'indeterminate' state at this time.
 */
+
 export default {
 	inheritAttrs: false,
 	// v-model will change when checked value changes
@@ -74,14 +72,14 @@ export default {
 	},
 	props: {
 		/**
-		 * Whether the switch is on or off
+		 * Whether the checkbox is checked or not
 		 * */
 		checked: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Prevents the switch from being toggled or focused
+		 * Prevents the checkbox from being toggled or focused
 		 * */
 		disabled: {
 			type: Boolean,
@@ -90,7 +88,7 @@ export default {
 	},
 	data() {
 		return {
-			uuid: `kvs-${nanoid(10)}`,
+			uuid: `kvc-${nanoid(10)}`,
 		};
 	},
 	computed: {
@@ -109,10 +107,10 @@ export default {
 			this.$emit('change', event.target.checked);
 		},
 		focus() {
-			this.$refs.switchRef.focus();
+			this.$refs.checkboxRef.focus();
 		},
 		blur() {
-			this.$refs.switchRef.blur();
+			this.$refs.checkboxRef.blur();
 		},
 	},
 };
