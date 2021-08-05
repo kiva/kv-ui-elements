@@ -3,10 +3,10 @@
 		<label
 			class="tw-inline-flex tw-gap-2 tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
-			:for="generatedId"
+			:for="uuid"
 		>
 			<input
-				:id="generatedId"
+				:id="uuid"
 				v-bind="$attrs"
 				ref="switchRef"
 				class="tw-sr-only tw-peer"
@@ -66,6 +66,7 @@ import { nanoid } from 'nanoid';
  *
 */
 export default {
+	inheritAttrs: false,
 	// v-model will change when checked value changes
 	model: {
 		prop: 'checked',
@@ -89,7 +90,7 @@ export default {
 	},
 	data() {
 		return {
-			generatedId: `kvs-${nanoid(10)}`,
+			uuid: `kvs-${nanoid(10)}`,
 		};
 	},
 	computed: {
