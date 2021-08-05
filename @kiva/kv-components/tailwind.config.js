@@ -1,7 +1,11 @@
 const resolveConfig = require('tailwindcss/resolveConfig'); // eslint-disable-line import/no-extraneous-dependencies
 const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config');
 const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography');
+/* eslint-disable-next-line */
+const plugin = require('tailwindcss/plugin'); // TODO
 const { headerNumberCase, kebabCase, buildTailwindClassName } = require('./utils/themeUtils');
+
+const tokens = require('../kv-tokens/primitives.json');
 
 const config = resolveConfig(sharedConfig);
 const { theme } = config;
@@ -54,4 +58,40 @@ module.exports = {
 		],
 		safelist,
 	},
+	theme: { // MOVE ALL OF THIS INTO TOKENS CONFIG AND BUMP IT
+		extend: {
+			typography: kivaTypography.proseOverrides, // prose plugin overrides
+			textColor: {
+				primary: 'var(--text-color-primary)',
+				secondary: 'var(--text-color-secondary)',
+				action: tokens.colors.theme.DEFAULT.text.action,
+				'action-hover': tokens.colors.theme.DEFAULT.text['action-hover'],
+			},
+			backgroundColor: {
+				primary: tokens.colors.theme.DEFAULT.background.primary,
+				secondary: tokens.colors.theme.DEFAULT.background.primary,
+			},
+		},
+	},
+	plugins: [ // MOVE ALL OF THIS INTO TOKENS CONFIG AND BUMP IT
+		plugin(({ addBase, addUtilities }) => {
+			addBase({
+				':root': {
+					'--text-color-primary': tokens.colors.theme.DEFAULT.text.primary,
+					'--text-color-secondary': tokens.colors.theme.DEFAULT.text.secondary,
+				},
+				body: {
+					color: 'var(--text-color-primary)',
+				},
+			});
+			addUtilities({
+				'.theme-dark': {
+					'--text-color-primary': tokens.colors.theme.dark.text.primary,
+					'--text-color-secondary': tokens.colors.theme.dark.text.secondary,
+
+					color: 'var(--text-color-primary)',
+				},
+			});
+		}),
+	],
 };

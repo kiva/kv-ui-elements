@@ -281,6 +281,39 @@ export const Primitives = (args, { argTypes }) => ({
 	},
 });
 
+export const Theming = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvPageContainer, KvGrid },
+	template: `
+	<kv-page-container>
+		<h1 class="tw-mt-4">Theming</h1>
+
+		<section class="tw-py-4">
+			<h2 class="tw-text-primary">Primary</h2>
+			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+		</section>
+
+		<section class="tw-py-4 tw-theme-dark">
+			<h2 class="tw-text-primary">Primary</h2>
+			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+		</section>
+
+		<section class="tw-py-4" style="
+			--text-color-primary: pink;
+			--text-color-secondary: blue;
+
+			color: var(--text-color-primary);
+		">
+			<h2 class="tw-text-primary">Primary</h2>
+			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+		</section>
+	</kv-page-container>
+	`,
+});
+
 /* eslint-disable max-len */
 /*
 export const HTMLKitchenSink = (args, { argTypes }) => ({

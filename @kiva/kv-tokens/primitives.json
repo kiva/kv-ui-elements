@@ -31,6 +31,32 @@
 		"danger": {
 			"700": "#BA342C",
 			"DEFAULT": "#E04848"
+		},
+		"theme": {
+			"DEFAULT": {
+				"text": {
+					"primary": "#212121",
+					"secondary": "#757575",
+					"action": "#277056",
+					"action-hover": "#277056"
+				},
+				"background": {
+					"primary": "#FFFFFF",
+					"secondary": "#F5F5F5"
+				}
+			},
+			"dark": {
+				"text": {
+					"primary": "#F5F5F5",
+					"secondary": "#C4C4C4",
+					"action": "#BFE5D1",
+					"action-hover": "#6AC395"
+				},
+				"background": {
+					"primary": "#212121",
+					"secondary": "#757575"
+				}
+			}
 		}
 	},
 	"space": {
