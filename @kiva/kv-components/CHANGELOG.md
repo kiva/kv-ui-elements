@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.12.0...@kiva/kv-components@0.13.0) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvCheckbox:** fix binding attributes to the input element ([39fa56b](https://github.com/kiva/kv-ui-elements/commit/39fa56bf0f3ed0317241b2c0c44762c999325387))
+
+
+### Features
+
+* **KvCheckbox:** Styled vue component for checkbox UI ([18a83da](https://github.com/kiva/kv-ui-elements/commit/18a83da0ac53978ce3cc4d27c2ca31fe6c713bfe))
+* **KvSwitch:**  Add input listeners so we get blur and focus events ([f720630](https://github.com/kiva/kv-ui-elements/commit/f720630e188375d5daeac3b4a0885c718117ca7c))
+* **KvSwitch:** Allow for passing attributes like required, value, etc. to the input element ([4a80136](https://github.com/kiva/kv-ui-elements/commit/4a80136a51608f74042bfcfb8d8d571f1a5a0627))
+* **KvSwitch:** remove value prop since it's never used in Vue. ([dea9ac9](https://github.com/kiva/kv-ui-elements/commit/dea9ac95e19cc772b238c47b962404ac1080cb1d))
+
+
+
+
+
 # [0.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.11.0...@kiva/kv-components@0.12.0) (2021-08-05)
 
 
