@@ -64,6 +64,7 @@ import { nanoid } from 'nanoid';
 */
 
 export default {
+	inheritAttrs: false,
 	// v-model will change when checked value changes
 	model: {
 		prop: 'checked',
