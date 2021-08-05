@@ -14,36 +14,23 @@ describe('KvCheckbox', () => {
 		expect(checkboxEl).toBeDefined();
 	});
 
-	it('toggles the checkbox when the label is clicked', async () => {
-		const { getByRole, getByLabelText } = render(KvCheckbox, {
-			slots: { default: 'Test Checkbox' },
-		});
-		const checkboxEl = getByRole('checkbox', { name: 'Test Checkbox' });
-		const labelEl = getByLabelText('Test Checkbox');
-
-		expect(checkboxEl.checked).toEqual(false);
-		await labelEl.click();
-		expect(checkboxEl.checked).toEqual(true);
-	});
-
 	it('can\'t be toggled when the disabled prop is true', async () => {
-		const { getByRole, getByLabelText } = render(KvCheckbox, {
+		const { getByLabelText } = render(KvCheckbox, {
 			props: { disabled: true },
 			slots: { default: 'Test Checkbox' },
 		});
-		const checkboxEl = getByRole('checkbox', { name: 'Test Checkbox' });
-		const labelEl = getByLabelText('Test Checkbox');
+		const checkboxEl = getByLabelText('Test Checkbox');
 
 		expect(checkboxEl.checked).toEqual(false);
-		await labelEl.click();
+		await checkboxEl.click();
 		expect(checkboxEl.checked).toEqual(false);
 	});
 
 	it('emits a change event when toggled', async () => {
-		const { getByRole, emitted } = render(KvCheckbox, {
+		const { getByLabelText, emitted } = render(KvCheckbox, {
 			slots: { default: 'Test Checkbox' },
 		});
-		const checkboxEl = getByRole('checkbox', { name: 'Test Checkbox' });
+		const checkboxEl = getByLabelText('Test Checkbox');
 
 		await checkboxEl.click();
 		expect(emitted().change[0]).toEqual([true]);

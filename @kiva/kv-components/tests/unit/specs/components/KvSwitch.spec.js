@@ -9,41 +9,39 @@ describe('KvSwitch', () => {
 		const { getByRole } = render(KvSwitch, {
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByRole('switch', { name: 'Test Switch' });
+		const switchEl = getByRole('switch');
 
 		expect(switchEl).toBeDefined();
 	});
 
 	it('toggles the switch when the label is clicked', async () => {
-		const { getByRole, getByLabelText } = render(KvSwitch, {
+		const { getByLabelText } = render(KvSwitch, {
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByRole('switch', { name: 'Test Switch' });
-		const labelEl = getByLabelText('Test Switch');
+		const switchEl = getByLabelText('Test Switch');
 
 		expect(switchEl.checked).toEqual(false);
-		await labelEl.click();
+		await switchEl.click();
 		expect(switchEl.checked).toEqual(true);
 	});
 
 	it('can\'t be toggled when the disabled prop is true', async () => {
-		const { getByRole, getByLabelText } = render(KvSwitch, {
+		const { getByLabelText } = render(KvSwitch, {
 			props: { disabled: true },
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByRole('switch', { name: 'Test Switch' });
-		const labelEl = getByLabelText('Test Switch');
+		const switchEl = getByLabelText('Test Switch');
 
 		expect(switchEl.checked).toEqual(false);
-		await labelEl.click();
+		await switchEl.click();
 		expect(switchEl.checked).toEqual(false);
 	});
 
 	it('emits a change event when toggled', async () => {
-		const { getByRole, emitted } = render(KvSwitch, {
+		const { getByLabelText, emitted } = render(KvSwitch, {
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByRole('switch', { name: 'Test Switch' });
+		const switchEl = getByLabelText('Test Switch');
 
 		await switchEl.click();
 		expect(emitted().change[0]).toEqual([true]);
