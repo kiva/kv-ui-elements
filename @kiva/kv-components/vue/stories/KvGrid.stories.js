@@ -2,7 +2,7 @@ import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
-	title: 'KvGrid',
+	title: 'Layout/KvGrid',
 	component: KvGrid,
 	parameters: {
 		layout: 'fullscreen',
