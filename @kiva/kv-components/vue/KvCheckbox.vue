@@ -3,11 +3,11 @@
 		<label
 			class="tw-inline-flex tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
-			:for="generatedId"
+			:for="uuid"
 		>
 			<input
 				v-bind="$attrs"
-				:id="generatedId"
+				:id="uuid"
 				ref="checkboxRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="checkbox"
@@ -87,7 +87,7 @@ export default {
 	},
 	data() {
 		return {
-			generatedId: `kvc-${nanoid(10)}`,
+			uuid: `kvc-${nanoid(10)}`,
 		};
 	},
 	computed: {
