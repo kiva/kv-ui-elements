@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.11.0...@kiva/kv-components@0.12.0) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvRadio:** Add a unique ID for labels and inputs ([f2c2838](https://github.com/kiva/kv-ui-elements/commit/f2c2838af57f09eb3482d6c9a76d33b32594044e))
+
+
+### Features
+
+* **KvRadio:** Kiva Classic Vue component of <input type="radio"> ([d7af81c](https://github.com/kiva/kv-ui-elements/commit/d7af81c5a390305b22eb8f03954f84b8b3c36b81))
+
+
+
+
+
 # [0.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.8...@kiva/kv-components@0.11.0) (2021-08-02)
 
 
