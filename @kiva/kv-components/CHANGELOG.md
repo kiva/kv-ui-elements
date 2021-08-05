@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.0...@kiva/kv-components@0.13.1) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvTabs:** Prevent different height tab contents from overflowing their container during a transition ([a5ae332](https://github.com/kiva/kv-ui-elements/commit/a5ae3320d19589e35523b3b156237ec4b14071eb))
+
+
+
+
+
 # [0.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.12.0...@kiva/kv-components@0.13.0) (2021-08-05)
 
 
