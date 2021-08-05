@@ -3,7 +3,9 @@ const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config');
 const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography');
 /* eslint-disable-next-line */
 const plugin = require('tailwindcss/plugin'); // TODO
-const { headerNumberCase, kebabCase, buildTailwindClassName } = require('./utils/themeUtils');
+const {
+	headerNumberCase, kebabCase, buildTailwindClassName, hexToRGB,
+} = require('./utils/themeUtils');
 
 const tokens = require('../kv-tokens/primitives.json');
 
@@ -47,6 +49,17 @@ const safelist = [
 	...zIndices.map((zIndex) => buildTailwindClassName(`${themePrefix}z`, zIndex)),
 ];
 
+const defaultTheme = tokens.colors.theme.DEFAULT;
+const darkTheme = tokens.colors.theme.dark;
+function withOpacity(variableName) {
+	return ({ opacityValue }) => {
+		if (opacityValue !== undefined) {
+			return `rgba(var(${variableName}), ${opacityValue})`;
+		}
+		return `rgb(var(${variableName}), ${opacityValue})`;
+	};
+}
+
 module.exports = {
 	mode: 'jit',
 	presets: [sharedConfig],
@@ -62,14 +75,14 @@ module.exports = {
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
 			textColor: {
-				primary: 'var(--text-color-primary)',
-				secondary: 'var(--text-color-secondary)',
-				action: tokens.colors.theme.DEFAULT.text.action,
-				'action-hover': tokens.colors.theme.DEFAULT.text['action-hover'],
+				'color-primary': withOpacity('--text-color-primary'),
+				'color-secondary': withOpacity('--text-color-secondary'),
+				'color-action': withOpacity('--text-color-action'),
+				'action-hover': withOpacity('--text-color-action-hover'),
 			},
 			backgroundColor: {
-				primary: tokens.colors.theme.DEFAULT.background.primary,
-				secondary: tokens.colors.theme.DEFAULT.background.primary,
+				primary: defaultTheme.background.primary,
+				secondary: defaultTheme.background.primary,
 			},
 		},
 	},
@@ -77,18 +90,21 @@ module.exports = {
 		plugin(({ addBase, addUtilities }) => {
 			addBase({
 				':root': {
-					'--text-color-primary': tokens.colors.theme.DEFAULT.text.primary,
-					'--text-color-secondary': tokens.colors.theme.DEFAULT.text.secondary,
+					'--text-color-primary': hexToRGB(defaultTheme.text.primary),
+					'--text-color-secondary': hexToRGB(defaultTheme.text.secondary),
+					'--text-color-action': hexToRGB(defaultTheme.text.action),
+					'--text-color-action-hover': hexToRGB(defaultTheme.text['action-hover']),
 				},
 				body: {
-					color: 'var(--text-color-primary)',
+					color: withOpacity('--text-color-primary'),
 				},
 			});
 			addUtilities({
 				'.theme-dark': {
-					'--text-color-primary': tokens.colors.theme.dark.text.primary,
-					'--text-color-secondary': tokens.colors.theme.dark.text.secondary,
-
+					'--text-color-primary': hexToRGB(darkTheme.text.primary),
+					'--text-color-secondary': hexToRGB(darkTheme.text.secondary),
+					'--text-color-action': hexToRGB(darkTheme.text.action),
+					'--text-color-action-hover': hexToRGB(darkTheme.text['action-hover']),
 					color: 'var(--text-color-primary)',
 				},
 			});

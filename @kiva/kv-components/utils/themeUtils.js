@@ -21,22 +21,14 @@ const removeObjectProperty = (object, key) => {
 	return ret;
 };
 
-const hexToRGB = (hex) => {
-	let r = 0;
-	let g = 0;
-	let	b = 0;
+function hexToRGB(hex) {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	const replacedHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
 
-	if (hex.length === 4) { // 3 digits
-		r = `0x${hex[1]}${hex[1]}`;
-		g = `0x${hex[2]}${hex[2]}`;
-		b = `0x${hex[3]}${hex[3]}`;
-	} else if (hex.length === 7) { // 6 digits
-		r = `0x${hex[1]}${hex[2]}`;
-		g = `0x${hex[3]}${hex[4]}`;
-		b = `0x${hex[5]}${hex[6]}`;
-	}
-	return { r, g, b };
-};
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(replacedHex);
+	return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
+}
 
 module.exports = {
 	buildTailwindClassName,

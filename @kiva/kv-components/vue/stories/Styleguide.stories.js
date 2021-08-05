@@ -289,14 +289,14 @@ export const Theming = (args, { argTypes }) => ({
 		<h1 class="tw-mt-4">Theming</h1>
 
 		<section class="tw-py-4">
-			<h2 class="tw-text-primary">Primary</h2>
-			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<h2 class="tw-text-color-primary tw-text-opacity-low">Primary</h2>
+			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
 			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
 
 		<section class="tw-py-4 tw-theme-dark">
-			<h2 class="tw-text-primary">Primary</h2>
-			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<h2 class="tw-text-color-primary">Primary</h2>
+			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
 			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
 
@@ -306,8 +306,8 @@ export const Theming = (args, { argTypes }) => ({
 
 			color: var(--text-color-primary);
 		">
-			<h2 class="tw-text-primary">Primary</h2>
-			<h3 class="tw-text-secondary tw-text-h4">Secondary</h3>
+			<h2 class="tw-text-color-primary">Primary</h2>
+			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
 			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
 	</kv-page-container>
