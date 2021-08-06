@@ -2,7 +2,7 @@
 	<button
 		:id="`kv-tab-${this.for}`"
 		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap"
-		:class="{ 'tw-text-gray-300  hover:tw-text-action-700' : !isActive }"
+		:class="{ 'tw-text-gray-500  hover:tw-text-action-700' : !isActive }"
 		role="tab"
 		:aria-selected="isActive"
 		:aria-controls="`kv-tab-panel-${this.for}`"

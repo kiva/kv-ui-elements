@@ -47,7 +47,7 @@
 						"
 						:class="{
 							'tw-mt-auto md:tw-my-auto' : variant === 'lightbox',
-							'w-min-h-half-screen md:tw-min-h-0' : variant === 'lightbox',
+							'tw-min-h-half-screen md:tw-min-h-0' : variant === 'lightbox',
 							'tw-rounded-t md:tw-rounded' : variant === 'lightbox',
 							'tw-my-auto tw-rounded' : variant === 'alert',
 						}"
