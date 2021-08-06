@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.1...@kiva/kv-components@0.13.2) (2021-08-06)
+
+
+### Bug Fixes
+
+* **KvLightbox:** Fix minimum height 50% of screen on mobile. ([6abcd6b](https://github.com/kiva/kv-ui-elements/commit/6abcd6b432a42c7ab1133e2bee05f05e06f001d1))
+* **KvSelect:** fixes issue where chevron wasn't visible in safari ([f01c9f5](https://github.com/kiva/kv-ui-elements/commit/f01c9f502035cdc9d2d39dd493121879afb3eff1))
+* **KvTabs:** fix unselected tab panel color ([3b5146a](https://github.com/kiva/kv-ui-elements/commit/3b5146afe22a95b2dadb7cd0580873f0d26d602c))
+
+
+
+
+
 ## [0.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.0...@kiva/kv-components@0.13.1) (2021-08-05)
 
 
