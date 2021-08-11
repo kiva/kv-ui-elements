@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.3...@kiva/kv-components@0.14.0) (2021-08-11)
+
+
+### Features
+
+* **KvTabs:** Make inactive tab color black to prevent users from thinking its disabled ([ec28ce2](https://github.com/kiva/kv-ui-elements/commit/ec28ce26f43716b1d5290b23676a1d7b9c24302f))
+
+
+
+
+
 ## [0.13.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.2...@kiva/kv-components@0.13.3) (2021-08-11)
 
 **Note:** Version bump only for package @kiva/kv-components
