@@ -1,7 +1,7 @@
 import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
-	title: 'KvPageContainer',
+	title: 'Layout/KvPageContainer',
 	component: KvPageContainer,
 	parameters: {
 		layout: 'fullscreen',
