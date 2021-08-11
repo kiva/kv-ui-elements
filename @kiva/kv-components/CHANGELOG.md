@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.2...@kiva/kv-components@0.13.3) (2021-08-11)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
 ## [0.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.1...@kiva/kv-components@0.13.2) (2021-08-06)
 
 
