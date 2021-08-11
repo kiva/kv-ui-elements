@@ -29,8 +29,8 @@
 			"DEFAULT": "#FEE16E"
 		},
 		"danger": {
-			"700": "#BA342C",
-			"DEFAULT": "#E04848"
+			"700": "#CE2626",
+			"DEFAULT": "#E42A2A"
 		}
 	},
 	"space": {
