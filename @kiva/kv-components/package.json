@@ -16,6 +16,8 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-storysource": "^6.3.2",
     "@storybook/vue": "^6.3.2",
+    "@testing-library/dom": "^8.1.0",
+    "@testing-library/user-event": "^13.2.1",
     "@testing-library/vue": "^5.8.1",
     "autoprefixer": "^9.8.6",
     "babel-core": "^7.0.0-bridge.0",
