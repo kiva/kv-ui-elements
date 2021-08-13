@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.6.3...@kiva/kv-tokens@0.7.0) (2021-08-13)
+
+
+### Features
+
+* Update danger colors ([146b1d4](https://github.com/kiva/kv-ui-elements/commit/146b1d4210b8cd896c75905900173995a5164a34))
+
+
+
+
+
 ## [0.6.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.6.2...@kiva/kv-tokens@0.6.3) (2021-07-30)
 
 **Note:** Version bump only for package @kiva/kv-tokens

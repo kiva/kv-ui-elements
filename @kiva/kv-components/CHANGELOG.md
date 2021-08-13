@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.14.0...@kiva/kv-components@0.15.0) (2021-08-13)
+
+
+### Features
+
+* **KvTextInput:** Kiva Classic input type=text ([6d17b96](https://github.com/kiva/kv-ui-elements/commit/6d17b96c7b397f2764e45a97029c36a47012654e))
+
+
+
+
+
 # [0.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.3...@kiva/kv-components@0.14.0) (2021-08-11)
 
 
