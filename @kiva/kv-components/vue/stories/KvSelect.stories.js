@@ -1,7 +1,7 @@
 import KvSelect from '../KvSelect.vue';
 
 export default {
-	title: 'KvSelect',
+	title: 'Forms/KvSelect',
 	component: KvSelect,
 };
 

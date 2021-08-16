@@ -1,10 +1,10 @@
 <template>
 	<transition
-		enter-active-class="tw-transition-opacity tw-duration-300 tw-delay-300"
-		leave-active-class="tw-transition-opacity tw-duration-300"
+		enter-active-class="tw-transition-opacity tw-duration-700"
+		leave-active-class=""
 		enter-class="tw-opacity-0 tw-absolute tw-top-0"
 		enter-to-class="tw-opacity-full"
-		leave-class="tw-opacity-full"
+		leave-class=""
 		leave-to-class="tw-opacity-0 tw-absolute tw-top-0"
 	>
 		<div

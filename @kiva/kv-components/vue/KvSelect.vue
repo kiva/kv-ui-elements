@@ -15,7 +15,7 @@
 			</select>
 			<kv-material-icon
 				:icon="mdiChevronDown"
-				class="tw-absolute tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
+				class="tw-absolute tw-top-0 tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
 				:class="{ 'tw-opacity-low': disabled }"
 			/>
 		</div>

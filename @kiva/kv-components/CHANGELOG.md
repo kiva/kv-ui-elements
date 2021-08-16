@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.14.0...@kiva/kv-components@0.15.0) (2021-08-13)
+
+
+### Features
+
+* **KvTextInput:** Kiva Classic input type=text ([6d17b96](https://github.com/kiva/kv-ui-elements/commit/6d17b96c7b397f2764e45a97029c36a47012654e))
+
+
+
+
+
+# [0.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.3...@kiva/kv-components@0.14.0) (2021-08-11)
+
+
+### Features
+
+* **KvTabs:** Make inactive tab color black to prevent users from thinking its disabled ([ec28ce2](https://github.com/kiva/kv-ui-elements/commit/ec28ce26f43716b1d5290b23676a1d7b9c24302f))
+
+
+
+
+
+## [0.13.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.2...@kiva/kv-components@0.13.3) (2021-08-11)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [0.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.1...@kiva/kv-components@0.13.2) (2021-08-06)
+
+
+### Bug Fixes
+
+* **KvLightbox:** Fix minimum height 50% of screen on mobile. ([6abcd6b](https://github.com/kiva/kv-ui-elements/commit/6abcd6b432a42c7ab1133e2bee05f05e06f001d1))
+* **KvSelect:** fixes issue where chevron wasn't visible in safari ([f01c9f5](https://github.com/kiva/kv-ui-elements/commit/f01c9f502035cdc9d2d39dd493121879afb3eff1))
+* **KvTabs:** fix unselected tab panel color ([3b5146a](https://github.com/kiva/kv-ui-elements/commit/3b5146afe22a95b2dadb7cd0580873f0d26d602c))
+
+
+
+
+
+## [0.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.13.0...@kiva/kv-components@0.13.1) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvTabs:** Prevent different height tab contents from overflowing their container during a transition ([a5ae332](https://github.com/kiva/kv-ui-elements/commit/a5ae3320d19589e35523b3b156237ec4b14071eb))
+
+
+
+
+
+# [0.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.12.0...@kiva/kv-components@0.13.0) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvCheckbox:** fix binding attributes to the input element ([39fa56b](https://github.com/kiva/kv-ui-elements/commit/39fa56bf0f3ed0317241b2c0c44762c999325387))
+
+
+### Features
+
+* **KvCheckbox:** Styled vue component for checkbox UI ([18a83da](https://github.com/kiva/kv-ui-elements/commit/18a83da0ac53978ce3cc4d27c2ca31fe6c713bfe))
+* **KvSwitch:**  Add input listeners so we get blur and focus events ([f720630](https://github.com/kiva/kv-ui-elements/commit/f720630e188375d5daeac3b4a0885c718117ca7c))
+* **KvSwitch:** Allow for passing attributes like required, value, etc. to the input element ([4a80136](https://github.com/kiva/kv-ui-elements/commit/4a80136a51608f74042bfcfb8d8d571f1a5a0627))
+* **KvSwitch:** remove value prop since it's never used in Vue. ([dea9ac9](https://github.com/kiva/kv-ui-elements/commit/dea9ac95e19cc772b238c47b962404ac1080cb1d))
+
+
+
+
+
+# [0.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.11.0...@kiva/kv-components@0.12.0) (2021-08-05)
+
+
+### Bug Fixes
+
+* **KvRadio:** Add a unique ID for labels and inputs ([f2c2838](https://github.com/kiva/kv-ui-elements/commit/f2c2838af57f09eb3482d6c9a76d33b32594044e))
+
+
+### Features
+
+* **KvRadio:** Kiva Classic Vue component of <input type="radio"> ([d7af81c](https://github.com/kiva/kv-ui-elements/commit/d7af81c5a390305b22eb8f03954f84b8b3c36b81))
+
+
+
+
+
 # [0.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.10.8...@kiva/kv-components@0.11.0) (2021-08-02)
 
 
