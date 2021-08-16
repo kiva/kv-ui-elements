@@ -4,7 +4,9 @@
 		"black": "#000000",
 		"gray": {
 			"800": "#212121",
+			"600": "#505050",
 			"500": "#757575",
+			"400": "#9E9E9E",
 			"300": "#C4C4C4",
 			"100": "#F5F5F5",
 			"50": "#fafafa"
@@ -37,6 +39,8 @@
 				"text": {
 					"primary": "#212121",
 					"secondary": "#757575",
+					"tertiary": "#9E9E9E",
+					"quaternary": "#C4C4C4",
 					"action": "#277056",
 					"action-hover": "#277056"
 				},
@@ -48,12 +52,14 @@
 			"dark": {
 				"text": {
 					"primary": "#F5F5F5",
-					"secondary": "#C4C4C4",
+					"secondary": "#9E9E9E",
+					"tertiary": "#757575",
+					"quaternary": "#505050",
 					"action": "#BFE5D1",
 					"action-hover": "#6AC395"
 				},
 				"background": {
-					"primary": "#212121",
+					"primary": "#000000",
 					"secondary": "#757575"
 				}
 			}

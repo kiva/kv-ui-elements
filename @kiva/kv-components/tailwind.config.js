@@ -51,14 +51,14 @@ const safelist = [
 
 const defaultTheme = tokens.colors.theme.DEFAULT;
 const darkTheme = tokens.colors.theme.dark;
-function withOpacity(variableName) {
-	return ({ opacityValue }) => {
-		if (opacityValue !== undefined) {
-			return `rgba(var(${variableName}), ${opacityValue})`;
-		}
-		return `rgb(var(${variableName}), ${opacityValue})`;
-	};
-}
+
+// function to allow background opacity and text opacity with tailwind colors
+const withOpacity = (variableName) => ({ opacityValue }) => {
+	if (opacityValue !== undefined) {
+		return `rgba(var(${variableName}), ${opacityValue})`;
+	}
+	return `rgb(var(${variableName}))`;
+};
 
 module.exports = {
 	mode: 'jit',
@@ -77,12 +77,13 @@ module.exports = {
 			textColor: {
 				'color-primary': withOpacity('--text-color-primary'),
 				'color-secondary': withOpacity('--text-color-secondary'),
+				'color-tertiary': withOpacity('--text-color-tertiary'),
 				'color-action': withOpacity('--text-color-action'),
 				'action-hover': withOpacity('--text-color-action-hover'),
 			},
 			backgroundColor: {
-				primary: defaultTheme.background.primary,
-				secondary: defaultTheme.background.primary,
+				primary: withOpacity('--bg-color-primary'),
+				secondary: withOpacity('--bg-color-secondary'),
 			},
 		},
 	},
@@ -92,20 +93,26 @@ module.exports = {
 				':root': {
 					'--text-color-primary': hexToRGB(defaultTheme.text.primary),
 					'--text-color-secondary': hexToRGB(defaultTheme.text.secondary),
+					'--text-color-tertiary': hexToRGB(defaultTheme.text.tertiary),
 					'--text-color-action': hexToRGB(defaultTheme.text.action),
 					'--text-color-action-hover': hexToRGB(defaultTheme.text['action-hover']),
+					'--bg-color-primary': hexToRGB(defaultTheme.background.primary),
+					'--bg-color-secondary': hexToRGB(defaultTheme.background.secondary),
 				},
 				body: {
-					color: withOpacity('--text-color-primary'),
+					color: 'rgb(var(--text-color-primary))',
 				},
 			});
 			addUtilities({
 				'.theme-dark': {
 					'--text-color-primary': hexToRGB(darkTheme.text.primary),
 					'--text-color-secondary': hexToRGB(darkTheme.text.secondary),
+					'--text-color-tertiary': hexToRGB(darkTheme.text.tertiary),
 					'--text-color-action': hexToRGB(darkTheme.text.action),
 					'--text-color-action-hover': hexToRGB(darkTheme.text['action-hover']),
-					color: 'var(--text-color-primary)',
+					'--bg-color-primary': hexToRGB(darkTheme.background.primary),
+					'--bg-color-secondary': hexToRGB(darkTheme.background.secondary),
+					color: 'rgb(var(--text-color-primary))',
 				},
 			});
 		}),

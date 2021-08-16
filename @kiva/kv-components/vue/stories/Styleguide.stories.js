@@ -288,27 +288,33 @@ export const Theming = (args, { argTypes }) => ({
 	<kv-page-container>
 		<h1 class="tw-mt-4">Theming</h1>
 
-		<section class="tw-py-4">
-			<h2 class="tw-text-color-primary tw-text-opacity-low">Primary</h2>
-			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
-			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+		<section class="tw-mb-4 tw-p-4 tw-rounded tw-bg-primary">
+			<h1 class="tw-text-color-primary tw-text-opacity-low">Primary Default</h1>
+			<h2 class="tw-text-color-secondary tw-text-opacity-low">Secondary Default</h2>
+			<div class="tw-bg-secondary tw-p-4">
+				<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+			</div>
 		</section>
 
-		<section class="tw-py-4 tw-theme-dark">
-			<h2 class="tw-text-color-primary">Primary</h2>
-			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
-			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+		<section class="tw-mb-4 tw-p-4 tw-rounded tw-bg-primary tw-theme-dark">
+			<h1 class="tw-text-color-primary">Primary Dark</h1>
+			<h2 class="tw-text-color-secondary tw-text-opacity-low">Secondary Dark</h2>
+			<div class="tw-bg-secondary tw-p-4">
+				<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+			</div>
 		</section>
 
-		<section class="tw-py-4" style="
-			--text-color-primary: pink;
-			--text-color-secondary: blue;
-
-			color: var(--text-color-primary);
+		<section class="tw-mb-4 tw-p-4 tw-rounded tw-bg-primary" style="
+			--text-color-primary: red;
+			--text-color-secondary: 0, 255, 255;
+			--bg-color-primary: 191, 229, 209;
+			color: rgb(var(--text-color-primary));
 		">
-			<h2 class="tw-text-color-primary">Primary</h2>
-			<h3 class="tw-text-color-secondary tw-text-opacity-low tw-text-h4">Secondary</h3>
-			<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+			<h1 class="tw-text-color-primary">Primary Mint</h1>
+			<h2 class="tw-text-color-secondary tw-text-opacity-low">Secondary Mint</h2>
+			<div class="tw-bg-secondary tw-p-4">
+				<p>Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
+			</div>
 		</section>
 	</kv-page-container>
 	`,
