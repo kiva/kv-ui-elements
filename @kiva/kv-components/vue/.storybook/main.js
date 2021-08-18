@@ -12,6 +12,7 @@ module.exports = {
 	'@storybook/addon-a11y',
 	'@storybook/addon-storysource',
 	'@storybook/addon-postcss',
+	'storybook-dark-mode',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

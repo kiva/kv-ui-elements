@@ -8,6 +8,10 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  darkMode: {
+	darkClass: 'tw-theme-dark',
+    stylePreview: true
+  }
 }
 
 
