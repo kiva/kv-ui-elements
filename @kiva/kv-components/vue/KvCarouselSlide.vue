@@ -1,5 +1,8 @@
 <template>
-	<div class="tw-flex-none tw-w-full tw-relative">
+	<div
+		class="tw-flex-none tw-relative"
+		role="group"
+	>
 		<slot></slot>
 	</div>
 </template>

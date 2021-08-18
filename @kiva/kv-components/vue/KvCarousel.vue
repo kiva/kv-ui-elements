@@ -1,20 +1,33 @@
 <template>
-	<div
+	<section
 		ref="KvCarousel"
 		class="tw-overflow-hidden tw-w-full"
+		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
 		<div
 			class="tw-flex"
 			@click.capture="onCarouselContainerClick"
 		>
-			<slot></slot>
+			<kv-carousel-slide
+				v-for="index in numberOfSlides"
+				:key="index"
+				:aria-label="`slide ${index} of ${numberOfSlides}`"
+				:aria-current="true ? currentIndex + 1 === index : false"
+				:aria-hidden="ariaHidden(index)"
+				:tab-index="ariaHidden(index) ? '-1' : false"
+				:class="multipleSlidesVisible ? 'tw-mx-2 last:tw-mr-0 first:tw-ml-0' : 'tw-w-full'"
+			>
+				<slot
+					:name="`slide`+index"
+				></slot>
+			</kv-carousel-slide>
 		</div>
 		<!-- Carousel Controls -->
 		<div
 			class="tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
-			tw-mt-3 tw-w-full"
+			tw-mt-4 tw-w-full"
 		>
 			<button
 				class="tw-text-gray-800 disabled:tw-text-gray-300
@@ -50,7 +63,7 @@
 				<span class="tw-sr-only">Show next slide</span>
 			</button>
 		</div>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -59,12 +72,30 @@ import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import { throttle } from '../utils/throttle';
 
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import KvCarouselSlide from './KvCarouselSlide.vue';
 
 export default {
 	components: {
 		KvMaterialIcon,
+		KvCarouselSlide,
 	},
 	props: {
+		/**
+		 * Should multiple slides be visible at a time.
+		 * Used to set margin left/right for an individual carousel slide.
+		 * */
+		multipleSlidesVisible: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Number of slides the carousel contains
+		 * */
+		numberOfSlides: {
+			type: Number,
+			default: 0,
+			required: true,
+		},
 		/**
 		 * Options for the embla carousel - // https://davidcetinkaya.github.io/embla-carousel/api#options
 		 * */
@@ -82,6 +113,7 @@ export default {
 		slidesToScroll: {
 			type: String,
 			default: 'auto',
+			validator: (value) => ['visible', 'auto'].indexOf(value) !== -1,
 		},
 	},
 	data() {
@@ -117,7 +149,7 @@ export default {
 		this.embla = EmblaCarousel(this.$refs.KvCarousel, {
 			loop: true,
 			containScroll: 'trimSnaps',
-			inViewThreshold: 0.9,
+			inViewThreshold: 0.1,
 			...this.emblaOptions,
 		});
 
@@ -129,7 +161,7 @@ export default {
 				throttle(() => {
 					this.embla.reInit({
 						slidesToScroll: this.embla.slidesInView(true).length,
-						inViewThreshold: 0.9,
+						inViewThreshold: 0.1,
 					});
 				}, 250),
 			);
@@ -197,7 +229,7 @@ export default {
 			if (slidesInView) {
 				this.embla.reInit({
 					slidesToScroll: slidesInView,
-					inViewThreshold: 0.9,
+					inViewThreshold: 0.1,
 				});
 			}
 		},
@@ -207,6 +239,13 @@ export default {
 				e.preventDefault();
 				e.stopPropagation();
 			}
+		},
+		ariaHidden(index) {
+			// index starts at 1, embla starts at 0
+			if (this.embla) {
+				return !this.embla.slidesInView(true).includes(index - 1);
+			}
+			return false;
 		},
 	},
 };
