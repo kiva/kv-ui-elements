@@ -31,11 +31,7 @@
 			<!-- browser doesn't support picture element -->
 			<img
 				class="tw-max-w-full tw-max-h-full"
-				style="
-					width: inherit;
-					height: inherit;
-					object-fit: inherit;
-				"
+				style="width: inherit; height: inherit; object-fit: inherit;"
 				:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
 				:alt="alt"
 				:loading="loading"
@@ -54,11 +50,7 @@
 			<!-- browser doesn't support webp or browser doesn't support picture element -->
 			<img
 				class="tw-max-w-full tw-max-h-full"
-				style="
-					width: inherit;
-					height: inherit;
-					object-fit: inherit;
-				"
+				style="width: inherit; height: inherit; object-fit: inherit;"
 				:srcset="`
 					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
 					${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
