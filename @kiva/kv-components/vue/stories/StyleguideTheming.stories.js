@@ -22,6 +22,7 @@ const bgVariables = [
 	'tw-bg-primary',
 	'tw-bg-primary-inverse',
 	'tw-bg-secondary',
+	'tw-bg-tertiary',
 	'tw-bg-action',
 	'tw-bg-action-highlight',
 	'tw-bg-danger',

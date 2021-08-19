@@ -58,7 +58,7 @@ export const Primitives = (args, { argTypes }) => ({
 						</div>
 						<div class="tw-w-full">
 							.{{buildClassName('tw-bg', color[0])}}
-							<br><small class="tw-text-gray-500">{{color[1]}}</small>
+							<br><small class="tw-text-color-tertiary">{{color[1]}}</small>
 						</div>
 					</button>
 				</li>
@@ -133,7 +133,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-rounded', radius[0])}}
-							<br><small class="tw-text-gray-500">({{remToPx(radius[1])}}px)</small>
+							<br><small class="tw-text-color-tertiary">({{remToPx(radius[1])}}px)</small>
 						</div>
 					</button>
 				</li>
@@ -159,7 +159,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-opacity', opacityItem[0])}}<br>
-							<small class="tw-text-gray-500">({{opacityItem[1]}})</small>
+							<small class="tw-text-color-tertiary">({{opacityItem[1]}})</small>
 						</div>
 					</button>
 				</li>
@@ -184,7 +184,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-w', spaceItem[0])}}
-							<small class="tw-text-gray-500">({{remToPx(spaceItem[1])}}px)</small>
+							<small class="tw-text-color-tertiary">({{remToPx(spaceItem[1])}}px)</small>
 						</div>
 					</button>
 				</li>
@@ -204,7 +204,7 @@ export const Primitives = (args, { argTypes }) => ({
 					></div>
 					<span>
 						{{breakpoint[0]}}
-						<small class="tw-text-gray-500">({{remToPx(breakpoint[1])}}px)</small>
+						<small class="tw-text-color-tertiary">({{remToPx(breakpoint[1])}}px)</small>
 					</span>
 				</li>
 			</ul>
@@ -227,7 +227,7 @@ export const Primitives = (args, { argTypes }) => ({
 					>
 						<span>
 							{{buildClassName('tw-z', zIndex[0])}}
-							<small class="tw-text-gray-500">({{zIndex[1]}})</small>
+							<small class="tw-text-color-tertiary">({{zIndex[1]}})</small>
 						</span>
 					</button>
 				</li>

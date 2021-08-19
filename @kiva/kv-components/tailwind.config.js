@@ -88,6 +88,7 @@ module.exports = {
 				primary: withOpacity('--bg-primary'),
 				'primary-inverse': withOpacity('--bg-primary-inverse'),
 				secondary: withOpacity('--bg-secondary'),
+				tertiary: withOpacity('--bg-tertiary'),
 				action: withOpacity('--bg-action'),
 				'action-highlight': withOpacity('--bg-action-highlight'),
 				danger: withOpacity('--bg-danger'),
@@ -111,6 +112,7 @@ module.exports = {
 					'--bg-primary': hexToRGB(defaultTheme.background.primary),
 					'--bg-primary-inverse': hexToRGB(defaultTheme.background['primary-inverse']), // Q: maybe just 'color-inverse'?
 					'--bg-secondary': hexToRGB(defaultTheme.background.secondary),
+					'--bg-tertiary': hexToRGB(defaultTheme.background.tertiary),
 					'--bg-action': hexToRGB(defaultTheme.background.action),
 					'--bg-action-highlight': hexToRGB(defaultTheme.background['action-highlight']),
 					'--bg-danger': hexToRGB(defaultTheme.background.danger),
@@ -134,6 +136,7 @@ module.exports = {
 					'--bg-primary': hexToRGB(darkTheme.background.primary),
 					'--bg-primary-inverse': hexToRGB(darkTheme.background['primary-inverse']), // Q: maybe just 'color-inverse' ?
 					'--bg-secondary': hexToRGB(darkTheme.background.secondary),
+					'--bg-tertiary': hexToRGB(darkTheme.background.tertiary),
 					'--bg-action': hexToRGB(darkTheme.background.action),
 					'--bg-action-highlight': hexToRGB(darkTheme.background['action-highlight']),
 					'--bg-danger': hexToRGB(darkTheme.background.danger),

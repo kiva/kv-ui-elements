@@ -39,6 +39,7 @@
 					"primary": "#FFFFFF",
 					"primary-inverse": "#000000",
 					"secondary": "#F5F5F5",
+					"tertiary": "#E0E0E0",
 					"action": "#2B7C5F",
 					"action-highlight": "#277056",
 					"danger": "#E42A2A",
@@ -60,7 +61,8 @@
 				"background": {
 					"primary": "#000000",
 					"primary-inverse": "#FFFFFF",
-					"secondary": "#757575",
+					"secondary": "#212121",
+					"tertiary": "#454545",
 					"action": "#4AB67E",
 					"action-highlight": "#6AC395",
 					"danger": "#E42A2A",
