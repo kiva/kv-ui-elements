@@ -3,6 +3,7 @@ import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config';
 import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
 import KvPageContainer from '../KvPageContainer.vue';
 import KvGrid from '../KvGrid.vue';
+import KvToast from '../KvToast.vue';
 
 const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils');
 
@@ -31,7 +32,11 @@ export default {
 
 export const Primitives = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
-	components: { KvPageContainer, KvGrid },
+	components: {
+		KvPageContainer,
+		KvGrid,
+		KvToast,
+	},
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Primitives</h1>
@@ -234,13 +239,11 @@ export const Primitives = (args, { argTypes }) => ({
 			</ul>
 		</section>
 
-		<!-- TODO: replace with KvToast -->
-		<div
-			aria-hidden="isToastVisible"
-			class="tw-fixed tw-z-toast tw-bottom-0 tw-left-1/2 tw-transform tw--left tw--translate-x-1/2 tw-px-3 tw-py-2 tw-bg-gray-500 tw-text-white tw-rounded tw-transition-all"
-			:class="isToastVisible ? 'tw-opacity-full tw--translate-y-2' : 'tw-opacity-0 tw--translate-y-0'"
-		>
-			<span>{{ toastMessage }}</span>
+		<!-- Toast -->
+		<div class="tw-fixed tw-inset-0 tw-pointer-events-none">
+			<div class="tw-fixed tw-z-toast tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
+				<kv-toast ref="toastRef" />
+			</div>
 		</div>
 	</kv-page-container>
 	`,
@@ -264,11 +267,7 @@ export const Primitives = (args, { argTypes }) => ({
 			this.showToast(`copied: ${val}`);
 		},
 		showToast(message) {
-			this.toastMessage = message;
-			this.isToastVisible = true;
-			setTimeout(() => {
-				this.isToastVisible = false;
-			}, 4000);
+			this.$refs.toastRef.show(message);
 		},
 		remToPx(rem) {
 			return parseFloat(rem) * 16;
