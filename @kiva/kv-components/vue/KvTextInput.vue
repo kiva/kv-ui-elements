@@ -20,7 +20,7 @@
 					tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action
 				"
 				:class="{
-					'tw-pr-6 tw-bg-danger tw-border-danger-700 tw-bg-opacity-low focus:tw-ring-danger-700'
+					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight' // eslint-disable-line max-len
 						: !valid,
 					'tw-bg-gray-100'
 						: disabled,

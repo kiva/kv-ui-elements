@@ -115,12 +115,12 @@ export const Theming = (args, { argTypes }) => ({
 			--text-color-primary: 255, 0, 0;
 			--text-color-secondary: 0, 255, 255;
 			--text-color-action: 255, 255, 0;
-			--text-color-action-hover: 255, 200, 0;
+			--text-color-action-highlight: 255, 200, 0;
 			--bg-color-primary: 191, 229, 209;
 			--bg-color-secondary: 191, 255, 191;
 			--bg-color-secondary: 191, 255, 191;
 			--bg-color-action: 0, 0, 100;
-			--bg-color-action-hover: 0, 0, 150;
+			--bg-color-action-highlight: 0, 0, 150;
 			color: rgb(var(--text-color-primary));
 		">
 			<h2 class="tw-text-h4 tw-mb-1">Custom</h2>

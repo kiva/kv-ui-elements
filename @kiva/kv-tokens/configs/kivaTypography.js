@@ -169,7 +169,7 @@ const textStyles = (() => {
 		color: 'rgb(var(--text-color-action))', // TODO: remove rgb?
 		textDecoration: 'none',
 		'&:hover, &:focus': {
-			color: 'rgb(var(--text-color-action-hover))',
+			color: 'rgb(var(--text-color-action-highlight))',
 			textDecoration: 'underline',
 		},
 	};
