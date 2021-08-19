@@ -54,7 +54,7 @@ export const Default = () => ({
 		KvCarouselSlide,
 	},
 	template: `
-		<kv-carousel style="max-width: 400px;" :number-of-slides="4">
+		<kv-carousel style="max-width: 400px;">
 			${defaultCarouselSlides}
 		</kv-carousel>
 	`,
@@ -66,7 +66,7 @@ export const LoopFalse = () => ({
 		KvCarouselSlide,
 	},
 	template: `
-		<kv-carousel style="max-width: 400px;" :embla-options="{ loop: false }" :number-of-slides="4">
+		<kv-carousel style="max-width: 400px;" :embla-options="{ loop: false }">
 			${defaultCarouselSlides}
 		</kv-carousel>
 	`,
@@ -81,7 +81,6 @@ export const MultipleLoanCards = () => ({
 	template: `
 		<kv-carousel
 			:embla-options="{ loop: false }"
-			:number-of-slides="5"
 			:multiple-slides-visible="true"
 			style="max-width: 600px;"
 			class="tw-w-full"
@@ -114,7 +113,6 @@ export const MultipleLoanCards2 = () => ({
 	template: `
 		<kv-carousel
 			:embla-options="{ loop: false }"
-			:number-of-slides="9"
 			:multiple-slides-visible="true"
 			slides-to-scroll="visible"
 			style="max-width: 1072px;"
@@ -167,7 +165,6 @@ export const loadingLoanCardExample = () => ({
 	template: `
 		<kv-carousel
 			:embla-options="{ loop: false }"
-			:number-of-slides="3"
 			:multiple-slides-visible="false"
 			style="max-width: 336px;"
 			@change="onCarouselSlideChange"
@@ -188,16 +185,16 @@ export const loadingLoanCardExample = () => ({
 				</div>
 			</template>
 			<template #slide3>
-			<div style="width: 336px">
-				<div v-if="loan3Loaded">
-					Loan card goes here
+				<div style="width: 336px">
+					<div v-if="loan3Loaded">
+						Loan card goes here
+					</div>
+					<div v-else
+						style="display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; right: 0; left: 0;"
+					>
+						<kv-loading-spinner  color="black" size="small" />
+					</div>
 				</div>
-				<div v-else
-					style="display: flex; align-items: center; justify-content: center; position: absolute; top: 0; bottom: 0; right: 0; left: 0;"
-				>
-					<kv-loading-spinner  color="black" size="small" />
-				</div>
-			</div>
 			</template>
 		</kv-carousel>
 	`,

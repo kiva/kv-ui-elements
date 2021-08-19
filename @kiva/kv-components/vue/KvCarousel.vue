@@ -6,20 +6,20 @@
 	>
 		<!-- Carousel Content -->
 		<div
-			class="tw-flex"
+			class="tw-flex tw-gap-x-4"
 			@click.capture="onCarouselContainerClick"
 		>
 			<kv-carousel-slide
-				v-for="index in numberOfSlides"
+				v-for="(slotName, index) in componentSlotKeys"
 				:key="index"
-				:aria-label="`slide ${index} of ${numberOfSlides}`"
+				:aria-label="`slide ${index} of ${componentSlotKeys.length}`"
 				:aria-current="true ? currentIndex + 1 === index : false"
-				:aria-hidden="ariaHidden(index)"
-				:tab-index="ariaHidden(index) ? '-1' : false"
-				:class="multipleSlidesVisible ? 'tw-mx-2 last:tw-mr-0 first:tw-ml-0' : 'tw-w-full'"
+				:aria-hidden="isAriaHidden(index)"
+				:tab-index="isAriaHidden(index) ? '-1' : false"
+				:class="{ 'tw-w-full': !multipleSlidesVisible }"
 			>
 				<slot
-					:name="`slide`+index"
+					:name="slotName"
 				></slot>
 			</kv-carousel-slide>
 		</div>
@@ -45,7 +45,7 @@
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
 			<div class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible">
-				{{ currentIndex + 1 }}/{{ slideIndicatorList.length }}
+				{{ currentIndex + 1 }}/{{ slideIndicatorListLength() }}
 			</div>
 			<button
 				class="tw-text-gray-800 disabled:tw-text-gray-300
@@ -82,19 +82,11 @@ export default {
 	props: {
 		/**
 		 * Should multiple slides be visible at a time.
-		 * Used to set margin left/right for an individual carousel slide.
+		 * Used to set width for an individual carousel slide.
 		 * */
 		multipleSlidesVisible: {
 			type: Boolean,
 			default: false,
-		},
-		/**
-		 * Number of slides the carousel contains
-		 * */
-		numberOfSlides: {
-			type: Number,
-			default: 0,
-			required: true,
 		},
 		/**
 		 * Options for the embla carousel - // https://davidcetinkaya.github.io/embla-carousel/api#options
@@ -126,6 +118,9 @@ export default {
 		};
 	},
 	computed: {
+		componentSlotKeys() {
+			return Object.keys(this.$slots);
+		},
 		nextIndex() {
 			const nextSlideIndex = this.currentIndex + 1;
 			if (nextSlideIndex < this.slides.length) {
@@ -140,16 +135,15 @@ export default {
 			}
 			return this.slides.length - 1;
 		},
-		slideIndicatorList() {
-			return this.embla ? this.embla.scrollSnapList() : 0;
-		},
+
 	},
 	mounted() {
 		// initialize Embla
 		this.embla = EmblaCarousel(this.$refs.KvCarousel, {
 			loop: true,
 			containScroll: 'trimSnaps',
-			inViewThreshold: 0.1,
+			inViewThreshold: 0.9,
+			align: 'start',
 			...this.emblaOptions,
 		});
 
@@ -161,8 +155,9 @@ export default {
 				throttle(() => {
 					this.embla.reInit({
 						slidesToScroll: this.embla.slidesInView(true).length,
-						inViewThreshold: 0.1,
+						inViewThreshold: 0.9,
 					});
+					this.$forceUpdate();
 				}, 250),
 			);
 		}
@@ -229,7 +224,7 @@ export default {
 			if (slidesInView) {
 				this.embla.reInit({
 					slidesToScroll: slidesInView,
-					inViewThreshold: 0.1,
+					inViewThreshold: 0.9,
 				});
 			}
 		},
@@ -240,12 +235,28 @@ export default {
 				e.stopPropagation();
 			}
 		},
-		ariaHidden(index) {
-			// index starts at 1, embla starts at 0
+		/**
+		 * If the slide is not completely in view in the carousel
+		 * it should be aria-hidden
+		 *
+		 * @param {Number} index The current index of the slide (starts at 1)
+		 * @returns {Boolean}
+		 */
+		isAriaHidden(index) {
+			// Index starts at 1
+			// Embla starts at 0
 			if (this.embla) {
 				return !this.embla.slidesInView(true).includes(index - 1);
 			}
 			return false;
+		},
+		/**
+		 * Returns number of slides in the carousel
+		 *
+		 * @returns {Number}
+		 */
+		slideIndicatorListLength() {
+			return this.embla ? this.embla.scrollSnapList().length : 0;
 		},
 	},
 };
