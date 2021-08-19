@@ -26,7 +26,7 @@ function buildValuesFromThemeObj(initialObj) {
 }
 
 export default {
-	title: 'BaseStyling',
+	title: 'Base Styling/Primitives',
 };
 
 export const Primitives = (args, { argTypes }) => ({

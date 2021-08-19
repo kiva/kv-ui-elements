@@ -37,7 +37,7 @@
 								'tw-bg-brand tw-text-white' : (
 									messageType === '' || messageType === 'confirmation'
 								),
-								'tw-bg-danger tw-text-white' : messageType === 'error',
+								'tw-bg-danger tw-text-color-primary-inverse' : messageType === 'error',
 								'tw-bg-caution' : messageType === 'warning',
 							}"
 						>

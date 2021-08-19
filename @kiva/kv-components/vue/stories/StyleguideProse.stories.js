@@ -2,7 +2,7 @@ import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
-	title: 'BaseStyling',
+	title: 'Base Styling/Prose Demo',
 };
 
 export const ProseDemo = (args, { argTypes }) => ({

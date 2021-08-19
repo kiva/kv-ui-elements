@@ -105,11 +105,11 @@ export const Colored = (args, { argTypes }) => ({
 			<p class="tw-mb-2">Use text-color to set the icon color</p>
 			<kv-material-icon
 				:icon="mdiCheck"
-				class="tw-text-brand-500"
+				class="tw-text-color-action"
 			/>
 			<kv-material-icon
 				:icon="mdiAlertCircleOutline"
-				class="tw-text-danger"
+				class="tw-text-color-danger"
 			/>
 		</div>`,
 	data() {
@@ -141,10 +141,10 @@ export const Sizing = (args, { argTypes }) => ({
 	template: `
 		<div>
 			<p class="tw-mb-2">Icons can be sized using any of the standard sizing classes (.tw-w-2, .tw-w-3, .tw-w-full, etc.). By default they are 24 x 24 (.tw-w-3).</p>
-			<kv-material-icon class="tw-bg-gray-100 tw-w-2" :icon="mdiChevronRight" />
-			<kv-material-icon class="tw-bg-gray-100 tw-w-4" :icon="mdiChevronRight" />
-			<kv-material-icon class="tw-bg-gray-100 tw-w-8" :icon="mdiChevronRight" />
-			<kv-material-icon class="tw-bg-gray-100 tw-w-16" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-secondary tw-w-2" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-secondary tw-w-4" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-secondary tw-w-8" :icon="mdiChevronRight" />
+			<kv-material-icon class="tw-bg-secondary tw-w-16" :icon="mdiChevronRight" />
 		</div>`,
 	data() {
 		return {
@@ -159,7 +159,7 @@ export const WithAccessibleText = (args, { argTypes }) => ({
 	template: `
 		<div>
 			<p class="tw-mb-2">If you don't include text and your icon is not decorative, be sure to include screen-reader text</p>
-			<button class="tw-rounded-sm tw-bg-gray-100 hover:tw-bg-gray-300 tw-p-1 tw-inline-flex">
+			<button class="tw-rounded-sm tw-bg-secondary hover:tw-bg-gray-300 tw-p-1 tw-inline-flex">
 				<kv-material-icon class="tw-w-3" :icon="mdiClose" />
 				<span class="tw-sr-only">Close modal</span>
 			</button>
@@ -180,7 +180,7 @@ export const StarsDemo = (args, { argTypes }) => ({
 				v-for="i in 5"
 				:key="i"
 				@click="rating = i"
-				class="tw-text-black hover:tw-text-action-700"
+				class="hover:tw-text-color-action-highlight"
 			>
 				<kv-material-icon :icon="getStarIcon(i)"/>
 				<span class="tw-sr-only">Set rating to {{i}}</span>

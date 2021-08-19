@@ -19,15 +19,15 @@
 			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
 				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium"
 			:class="{
-				'tw-bg-action hover:tw-bg-action-700 tw-text-white tw-border-action hover:tw-border-action-700'
+				'tw-bg-action hover:tw-bg-action-hover tw-text-color-primary-inverse tw-border-action hover:tw-border-action-hover'
 					: variant === 'primary',
-				'tw-bg-white hover:tw-bg-gray-100 tw-text-gray-800 tw-border-gray-500 hover:tw-border-gray-800'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-gray-500 hover:tw-border-gray-800'
 					: variant === 'secondary',
-				'tw-bg-danger hover:tw-bg-danger-700 tw-text-white tw-border-danger hover:tw-border-danger-700'
+				'tw-bg-danger hover:tw-bg-danger-700 tw-text-color-primary-inverse tw-border-danger hover:tw-border-danger-700'
 					: variant === 'danger',
-				'tw-bg-gray-800 tw-hover:bg-gray-500 tw-text-white tw-border-gray-800 hover:tw-border-gray-500'
+				'tw-bg-primary-inverse tw-text-color-primary-inverse tw-border-gray-800 hover:tw-border-gray-500'
 					: variant === 'link',
-				'tw-bg-white hover:tw-bg-gray-light tw-text-gray-800 tw-border-white hover:tw-bg-gray-100'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-transparent'
 					: variant === 'ghost',
 			}"
 		>

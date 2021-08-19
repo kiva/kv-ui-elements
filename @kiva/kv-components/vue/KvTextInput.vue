@@ -15,6 +15,7 @@
 					tw-rounded-sm
 					tw-appearance-none
 					tw-text-base
+					tw-bg-primary
 					tw-placeholder-gray-300
 					tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action
 				"

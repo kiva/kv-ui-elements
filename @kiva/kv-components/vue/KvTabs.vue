@@ -16,7 +16,7 @@
 			<div
 				class="
 					tw-absolute tw-bottom-0 tw-h-0.5 tw-left-0
-					tw-bg-gray-800 tw-rounded-full
+					tw-bg-primary-inverse tw-rounded-full
 					tw-origin-left tw-transition-all tw-duration-300
 				"
 				:style="`

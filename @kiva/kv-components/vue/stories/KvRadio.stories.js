@@ -62,7 +62,7 @@ const Template = (args, {
 					</kv-radio>
 				</div>
 			</fieldset>
-			<p>Selected: {{radioExampleModel}}
+			<p>Selected: {{radioExampleModel}}</p>
 		</div>`,
 	methods: {
 		onChange(val) {

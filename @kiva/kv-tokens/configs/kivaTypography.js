@@ -54,7 +54,7 @@ const webFonts = [
 ];
 
 /** BASE TEXT COLOR */
-const textBaseColor = colors.gray['800'];
+const textBaseColor = 'rgb(var(--text-color-primary))';
 
 /**
  REUSABLE TYPE STYLES
@@ -166,10 +166,10 @@ const textStyles = (() => {
 	};
 
 	const textLink = {
-		color: colors.action.DEFAULT,
+		color: 'rgb(var(--text-color-action))', // TODO: remove rgb?
 		textDecoration: 'none',
 		'&:hover, &:focus': {
-			color: colors.action['700'],
+			color: 'rgb(var(--text-color-action-hover))',
 			textDecoration: 'underline',
 		},
 	};

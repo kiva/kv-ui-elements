@@ -58,17 +58,18 @@ module.exports = {
 				100: colors.brand['100'],
 				50: colors.brand['50'],
 			},
-			action: {
-				700: colors.action['700'],
-				DEFAULT: colors.action.DEFAULT,
-			},
-			caution: {
-				DEFAULT: colors.caution.DEFAULT,
-			},
-			danger: {
-				700: colors.danger['700'],
-				DEFAULT: colors.danger.DEFAULT,
-			},
+
+			// action: {
+			// 	700: colors.action['700'],
+			// 	DEFAULT: colors.action.DEFAULT,
+			// },
+			// caution: {
+			// 	DEFAULT: colors.caution.DEFAULT,
+			// },
+			// danger: {
+			// 	700: colors.danger['700'],
+			// 	DEFAULT: colors.danger.DEFAULT,
+			// },
 		},
 		spacing: {
 			0: '0',
