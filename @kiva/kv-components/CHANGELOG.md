@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.15.1...@kiva/kv-components@0.16.0) (2021-08-19)
+
+
+### Features
+
+* Adds KvCarousel component ([#100](https://github.com/kiva/kv-ui-elements/issues/100)) ([05a57b5](https://github.com/kiva/kv-ui-elements/commit/05a57b552d1e884a2cebb3d4e1b9a093d8c9834e))
+
+
+
+
+
 ## [0.15.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.15.0...@kiva/kv-components@0.15.1) (2021-08-18)
 
 **Note:** Version bump only for package @kiva/kv-components
