@@ -9,9 +9,11 @@
 			class="tw-flex tw-gap-x-4"
 			@click.capture="onCarouselContainerClick"
 		>
-			<kv-carousel-slide
+			<div
 				v-for="(slotName, index) in componentSlotKeys"
 				:key="index"
+				class="tw-flex-none tw-relative"
+				role="group"
 				:aria-label="`slide ${index} of ${componentSlotKeys.length}`"
 				:aria-current="true ? currentIndex + 1 === index : false"
 				:aria-hidden="isAriaHidden(index)"
@@ -21,7 +23,7 @@
 				<slot
 					:name="slotName"
 				></slot>
-			</kv-carousel-slide>
+			</div>
 		</div>
 		<!-- Carousel Controls -->
 		<div
@@ -72,12 +74,10 @@ import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import { throttle } from '../utils/throttle';
 
 import KvMaterialIcon from './KvMaterialIcon.vue';
-import KvCarouselSlide from './KvCarouselSlide.vue';
 
 export default {
 	components: {
 		KvMaterialIcon,
-		KvCarouselSlide,
 	},
 	props: {
 		/**

@@ -1,5 +1,4 @@
 import KvCarousel from '../KvCarousel.vue';
-import KvCarouselSlide from '../KvCarouselSlide.vue';
 import KvLoadingSpinner from '../KvLoadingSpinner.vue';
 import KvButton from '../KvButton.vue';
 
@@ -51,7 +50,6 @@ export default {
 export const Default = () => ({
 	components: {
 		KvCarousel,
-		KvCarouselSlide,
 	},
 	template: `
 		<kv-carousel style="max-width: 400px;">
@@ -63,7 +61,6 @@ export const Default = () => ({
 export const LoopFalse = () => ({
 	components: {
 		KvCarousel,
-		KvCarouselSlide,
 	},
 	template: `
 		<kv-carousel style="max-width: 400px;" :embla-options="{ loop: false }">
@@ -75,7 +72,6 @@ export const LoopFalse = () => ({
 export const MultipleLoanCards = () => ({
 	components: {
 		KvCarousel,
-		KvCarouselSlide,
 		KvButton,
 	},
 	template: `
@@ -107,7 +103,6 @@ export const MultipleLoanCards = () => ({
 export const MultipleLoanCards2 = () => ({
 	components: {
 		KvCarousel,
-		KvCarouselSlide,
 		KvButton,
 	},
 	template: `
@@ -152,7 +147,6 @@ export const MultipleLoanCards2 = () => ({
 export const loadingLoanCardExample = () => ({
 	components: {
 		KvCarousel,
-		KvCarouselSlide,
 		KvLoadingSpinner,
 		KvButton,
 	},
