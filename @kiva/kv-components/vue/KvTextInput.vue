@@ -22,7 +22,7 @@
 				:class="{
 					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight' // eslint-disable-line max-len
 						: !valid,
-					'tw-bg-gray-100'
+					'tw-bg-tertiary'
 						: disabled,
 					'tw-pl-6' : icon,
 				}"

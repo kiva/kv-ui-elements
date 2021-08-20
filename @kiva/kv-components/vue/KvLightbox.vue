@@ -14,14 +14,14 @@
 				tw-z-modal
 				tw-fixed
 				tw-inset-0
+				tw-bg-primary-inverse
+				tw-bg-opacity-[75%]
 			"
-			style="background-color: rgba(33,33,33,0.75)"
 			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
 			@click.stop.prevent="onScreenClick"
 		>
 			<focus-lock
 				v-if="visible"
-				class="kv-lightbox__focus-lock"
 				:return-focus="true"
 			>
 				<div
@@ -41,7 +41,7 @@
 						tabindex="-1"
 						data-test="kv-lightbox"
 						class="
-							tw-bg-white
+							tw-bg-primary
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
 						"
@@ -79,7 +79,7 @@
 									tw-grid tw-content-center tw-justify-center
 									tw-ml-auto
 									tw-w-6 tw-h-6 tw--m-2
-									hover:tw-text-action-700
+									hover:tw-text-action-highlight
 								"
 								@click.stop.prevent="hide"
 							>

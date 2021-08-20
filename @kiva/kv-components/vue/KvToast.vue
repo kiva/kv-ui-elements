@@ -21,7 +21,7 @@
 						class="
 							tw-rounded tw-overflow-hidden
 							tw-flex
-							tw-bg-gray-50
+							tw-bg-secondary
 							tw-mx-auto
 							tw-w-full md:tw-w-max md:tw-max-w-full md:tw-min-w-1/2
 						"
@@ -38,7 +38,7 @@
 									messageType === '' || messageType === 'confirmation'
 								),
 								'tw-bg-danger tw-text-color-primary-inverse' : messageType === 'error',
-								'tw-bg-caution' : messageType === 'warning',
+								'tw-bg-caution tw-text-black' : messageType === 'warning',
 							}"
 						>
 							<kv-material-icon
@@ -67,8 +67,8 @@
 							tw-flex-shrink-0
 							tw-flex
 							tw-items-center tw-justify-center
-							tw-bg-gray-100
-							hover:tw-text-action-700
+							tw-bg-secondary
+							hover:tw-text-action-highlight
 						"
 							@click="close"
 						>

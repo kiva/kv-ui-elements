@@ -43,16 +43,17 @@ export const Primitives = (args, { argTypes }) => ({
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Colors</h2>
 
+			<h3>Backgrounds</h3>
 			<kv-grid
 				as="ul"
 				class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5"
 			>
 				<li
-					v-for="color in colors"
+					v-for="color in backgroundColor"
 					:key="buildClassName('bg', color[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-bg', color[0]))"
 					>
 						<div
@@ -63,12 +64,28 @@ export const Primitives = (args, { argTypes }) => ({
 						</div>
 						<div class="tw-w-full">
 							.{{buildClassName('tw-bg', color[0])}}
-							<br><small class="tw-text-color-tertiary">{{color[1]}}</small>
+							<br><small class="tw-text-color-tertiary">var({{buildClassName('--bg', color[0])}})</small>
 						</div>
 					</button>
 				</li>
 			</kv-grid>
 
+			<h3>Text</h3>
+			<table>
+				<tbody>
+					<tr
+						v-for="color in textColor"
+						:key="buildClassName('text-color', color[0])"
+					>
+						<td :class="buildClassName('tw-text', color[0])">
+							<span>.{{buildClassName('tw-text', color[0])}}</span>
+						</td>
+						<td>
+							<small class="tw-text-color-tertiary">var({{buildClassName('--text', color[0])}})</small>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</section>
 		<hr>
 		<section class="tw-py-8">
@@ -80,7 +97,7 @@ export const Primitives = (args, { argTypes }) => ({
 					class="tw-overflow-x-auto tw-w-full"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-700"
+						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('text', typeStyle))"
 					>
 						<p
@@ -104,7 +121,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-font', fontWeight[0])"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-700"
+						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
 						<p :class="buildClassName('tw-font', fontWeight[0])">
@@ -128,11 +145,11 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-rounded', radius[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-rounded', radius[0]))"
 					>
 						<div
-							class="tw-bg-gray-300 tw-w-full tw-h-0 tw-mb-1"
+							class="tw-bg-tertiary tw-w-full tw-h-0 tw-mb-1"
 							style="padding-bottom: 100%;"
 							:class="buildClassName('tw-rounded', radius[0])"
 						></div>
@@ -154,11 +171,11 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-opacity', opacityItem[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-action-700"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-opacity', opacityItem[0]))"
 					>
 						<div
-							class="tw-bg-gray-300 tw-w-full tw-h-0 tw-mb-1"
+							class="tw-bg-tertiary tw-w-full tw-h-0 tw-mb-1"
 							:class="buildClassName('tw-opacity', opacityItem[0])"
 							style="background-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red); padding-bottom: 100%;"
 						></div>
@@ -180,11 +197,11 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-w', spaceItem[0])"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-700"
+						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-w', spaceItem[0]))"
 					>
 						<div
-							class="tw-bg-gray-300 tw-h-3 tw-inline-block"
+							class="tw-bg-tertiary tw-h-3 tw-inline-block"
 							:class="buildClassName('tw-w', spaceItem[0])"
 						></div>
 						<div>
@@ -204,7 +221,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-breakpoint', breakpoint[0])"
 				>
 					<div
-						class="tw-w-8 tw-h-4 tw-bg-gray-300 tw-mb-1"
+						class="tw-w-8 tw-h-4 tw-bg-tertiary tw-mb-1"
 						:style="{ 'width': breakpoint[1] }"
 					></div>
 					<span>
@@ -226,7 +243,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:style="{left: 'calc(' + index/zIndices.length * 100 + '% - ' + (index/zIndices.length * 250) + 'px)', top: index * 50 + 'px'}"
 				>
 					<button
-						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-700 tw-h-12 tw-bg-gray-300 tw-outline-white"
+						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-color-action-highlight tw-h-12 tw-bg-tertiary tw-outline-white"
 						style="width: 250px;"
 						@click="copy(buildClassName('tw-z', zIndex[0]))"
 					>
@@ -240,8 +257,8 @@ export const Primitives = (args, { argTypes }) => ({
 		</section>
 
 		<!-- Toast -->
-		<div class="tw-fixed tw-inset-0 tw-pointer-events-none">
-			<div class="tw-fixed tw-z-toast tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
+		<div class="tw-fixed tw-inset-0 tw-z-toast tw-pointer-events-none">
+			<div class="tw-fixed tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
 				<kv-toast ref="toastRef" />
 			</div>
 		</div>
@@ -249,7 +266,8 @@ export const Primitives = (args, { argTypes }) => ({
 	`,
 	data() {
 		return {
-			colors: buildValuesFromThemeObj(theme.colors),
+			backgroundColor: buildValuesFromThemeObj(theme.backgroundColor),
+			textColor: buildValuesFromThemeObj(theme.textColor),
 			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]),
 			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),

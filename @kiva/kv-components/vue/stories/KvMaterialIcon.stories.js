@@ -159,7 +159,7 @@ export const WithAccessibleText = (args, { argTypes }) => ({
 	template: `
 		<div>
 			<p class="tw-mb-2">If you don't include text and your icon is not decorative, be sure to include screen-reader text</p>
-			<button class="tw-rounded-sm tw-bg-secondary hover:tw-bg-gray-300 tw-p-1 tw-inline-flex">
+			<button class="tw-rounded-sm tw-bg-secondary hover:tw-bg-tertiary tw-p-1 tw-inline-flex">
 				<kv-material-icon class="tw-w-3" :icon="mdiClose" />
 				<span class="tw-sr-only">Close modal</span>
 			</button>

@@ -170,7 +170,7 @@ export default {
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];
-			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-gray-300' : 'tw-bg-white';
+			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-tertiary' : 'tw-bg-white';
 			blipEl.classList.add(blipBgColor);
 
 			// position the blip where the pointer click is or center it if keyboard
