@@ -18,7 +18,8 @@
 				:aria-current="true ? currentIndex + 1 === index : false"
 				:aria-hidden="isAriaHidden(index)"
 				:tab-index="isAriaHidden(index) ? '-1' : false"
-				:class="{ 'tw-w-full': !multipleSlidesVisible }"
+				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth }"
+				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
 			>
 				<slot
 					:name="slotName"
@@ -82,7 +83,9 @@ export default {
 	props: {
 		/**
 		 * Should multiple slides be visible at a time.
-		 * Used to set width for an individual carousel slide.
+		 * If true, a width must be set for each individual
+		 * carousel slide or slideMaxWidth must
+		 * be used.
 		 * */
 		multipleSlidesVisible: {
 			type: Boolean,
@@ -106,6 +109,15 @@ export default {
 			type: String,
 			default: 'auto',
 			validator: (value) => ['visible', 'auto'].indexOf(value) !== -1,
+		},
+		/**
+		 * CSS value and unit to set the max width on responsive slides.
+		 * Slide will be responsive full width until the max width value
+		 * is reached - example value: '32.5rem'
+		 * */
+		slideMaxWidth: {
+			type: String,
+			default: '',
 		},
 	},
 	data() {
