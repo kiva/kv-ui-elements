@@ -199,3 +199,22 @@ export const loadingLoanCardExample = () => ({
 		},
 	},
 });
+
+export const ResponsiveSlides = () => ({
+	components: {
+		KvCarousel,
+		KvButton,
+	},
+	template: `
+		<kv-carousel
+			:embla-options="{ loop: false }"
+			:multiple-slides-visible="true"
+			slides-to-scroll="visible"
+			style="max-width: 1072px;"
+			class="tw-w-full"
+			slide-max-width="32.5rem"
+		>
+			${defaultCarouselSlides}
+		</kv-carousel>
+	`,
+});
