@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.17.1...@kiva/kv-components@0.18.0) (2021-08-23)
+
+
+### Features
+
+* modify KvCarousel to allow for responsive slides ([#104](https://github.com/kiva/kv-ui-elements/issues/104)) ([8abf536](https://github.com/kiva/kv-ui-elements/commit/8abf53614190ee8ca6bb9480b0fb22cbd47aecc3))
+
+
+
+
+
 ## [0.17.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.17.0...@kiva/kv-components@0.17.1) (2021-08-20)
 
 **Note:** Version bump only for package @kiva/kv-components
