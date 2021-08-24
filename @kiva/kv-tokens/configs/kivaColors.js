@@ -1,18 +1,15 @@
+const { hexToRGB } = require('./util');
 const designtokens = require('../primitives.json');
 
 const defaultTheme = designtokens.colors.theme.DEFAULT;
 const darkTheme = designtokens.colors.theme.dark;
-const { hexToRGB } = require('./util');
 
-// function to allow background opacity and text opacity with tailwind colors
-const withOpacity = (variableName) => ({ opacityValue }) => {
-	if (opacityValue !== undefined) {
-		return `rgba(var(${variableName}), ${opacityValue})`;
-	}
-	return `rgb(var(${variableName}))`;
-};
-
-// a set of CSS custom properties
+/**
+ * An object containg CSS custom properties.
+ * These properties can be set on the :root,
+ * or inside a class like .theme-dark { ...customProperties }
+ * within the tailwind.config file.
+ */
 const kivaThemes = {
 	static: {
 		'--text-color-black': hexToRGB(designtokens.colors.black),
@@ -27,7 +24,7 @@ const kivaThemes = {
 	},
 	default: {
 		'--text-color-primary': hexToRGB(defaultTheme.text.primary),
-		'--text-color-primary-inverse': hexToRGB(defaultTheme.text['primary-inverse']), // Q: maybe  just 'color-inverse'?
+		'--text-color-primary-inverse': hexToRGB(defaultTheme.text['primary-inverse']),
 		'--text-color-secondary': hexToRGB(defaultTheme.text.secondary),
 		'--text-color-tertiary': hexToRGB(defaultTheme.text.tertiary),
 		'--text-color-action': hexToRGB(defaultTheme.text.action),
@@ -36,7 +33,7 @@ const kivaThemes = {
 		'--text-color-danger-highlight': hexToRGB(defaultTheme.text['danger-highlight']),
 
 		'--bg-primary': hexToRGB(defaultTheme.background.primary),
-		'--bg-primary-inverse': hexToRGB(defaultTheme.background['primary-inverse']), // Q: maybe just 'color-inverse'?
+		'--bg-primary-inverse': hexToRGB(defaultTheme.background['primary-inverse']),
 		'--bg-secondary': hexToRGB(defaultTheme.background.secondary),
 		'--bg-tertiary': hexToRGB(defaultTheme.background.tertiary),
 		'--bg-action': hexToRGB(defaultTheme.background.action),
@@ -46,7 +43,7 @@ const kivaThemes = {
 		'--bg-caution': hexToRGB(defaultTheme.background.caution),
 
 		'--border-color-primary': hexToRGB(defaultTheme.border.primary),
-		'--border-color-primary-inverse': hexToRGB(defaultTheme.border['primary-inverse']), // Q: maybe  just 'color-inverse'?
+		'--border-color-primary-inverse': hexToRGB(defaultTheme.border['primary-inverse']),
 		'--border-color-secondary': hexToRGB(defaultTheme.border.secondary),
 		'--border-color-tertiary': hexToRGB(defaultTheme.border.tertiary),
 		'--border-color-action': hexToRGB(defaultTheme.border.action),
@@ -56,7 +53,7 @@ const kivaThemes = {
 	},
 	dark: {
 		'--text-color-primary': hexToRGB(darkTheme.text.primary),
-		'--text-color-primary-inverse': hexToRGB(darkTheme.text['primary-inverse']), // Q: maybe just 'color-inverse' ?
+		'--text-color-primary-inverse': hexToRGB(darkTheme.text['primary-inverse']),
 		'--text-color-secondary': hexToRGB(darkTheme.text.secondary),
 		'--text-color-tertiary': hexToRGB(darkTheme.text.tertiary),
 		'--text-color-action': hexToRGB(darkTheme.text.action),
@@ -65,7 +62,7 @@ const kivaThemes = {
 		'--text-color-danger-highlight': hexToRGB(darkTheme.text['danger-highlight']),
 
 		'--bg-primary': hexToRGB(darkTheme.background.primary),
-		'--bg-primary-inverse': hexToRGB(darkTheme.background['primary-inverse']), // Q: maybe just 'color-inverse' ?
+		'--bg-primary-inverse': hexToRGB(darkTheme.background['primary-inverse']),
 		'--bg-secondary': hexToRGB(darkTheme.background.secondary),
 		'--bg-tertiary': hexToRGB(darkTheme.background.tertiary),
 		'--bg-action': hexToRGB(darkTheme.background.action),
@@ -75,7 +72,7 @@ const kivaThemes = {
 		'--bg-caution': hexToRGB(darkTheme.background.caution),
 
 		'--border-color-primary': hexToRGB(darkTheme.border.primary),
-		'--border-color-primary-inverse': hexToRGB(darkTheme.border['primary-inverse']), // Q: maybe  just 'color-inverse'?
+		'--border-color-primary-inverse': hexToRGB(darkTheme.border['primary-inverse']),
 		'--border-color-secondary': hexToRGB(darkTheme.border.secondary),
 		'--border-color-tertiary': hexToRGB(darkTheme.border.tertiary),
 		'--border-color-action': hexToRGB(darkTheme.border.action),
@@ -85,14 +82,29 @@ const kivaThemes = {
 	},
 };
 
-// tailwind specific properties that reference the css custom properties in kivaThemes
+// function to allow background opacity and text opacity with tailwind colors
+// https://www.youtube.com/watch?v=MAtaT8BZEAo
+const withOpacity = (variableName) => ({ opacityValue }) => {
+	if (opacityValue !== undefined) {
+		return `rgba(var(${variableName}), ${opacityValue})`;
+	}
+	return `rgb(var(${variableName}))`;
+};
+
+/**
+ * These are used to set Tailwind specific properties so you can write classes like
+ * tw-text-color-primary, tw-border-color-primary, etc.
+ * The values (e.g., --text-color-primary) need to match the keys in the kivaThemes object above.
+ */
 const tailwindProperties = {
 	textColor: {
+		// static
 		'color-transparent': 'transparent',
 		'color-current': 'currentColor',
 		'color-black': withOpacity('--text-color-black'),
 		'color-white': withOpacity('--text-color-white'),
 		'color-brand': withOpacity('--text-color-brand'),
+
 		// themable
 		'color-primary': withOpacity('--text-color-primary'),
 		'color-primary-inverse': withOpacity('--text-color-primary-inverse'),
@@ -104,10 +116,13 @@ const tailwindProperties = {
 		'color-danger-highlight': withOpacity('--text-color-danger-highlight'),
 	},
 	backgroundColor: {
+		// static
 		transparent: 'transparent',
 		current: 'currentColor',
 		black: withOpacity('--bg-black'),
 		white: withOpacity('--bg-white'),
+
+		// themable
 		brand: withOpacity('--bg-brand'),
 		primary: withOpacity('--bg-primary'),
 		'primary-inverse': withOpacity('--bg-primary-inverse'),
@@ -120,11 +135,13 @@ const tailwindProperties = {
 		caution: withOpacity('--bg-caution'),
 	},
 	borderColor: {
+		// static
 		'color-transparent': 'transparent',
 		'color-current': 'currentColor',
 		'color-black': withOpacity('--border-color-black'),
 		'color-white': withOpacity('--border-color-white'),
 		'color-brand': withOpacity('--border-color-brand'),
+
 		// themable
 		'color-primary': withOpacity('--border-color-primary'),
 		'color-primary-inverse': withOpacity('--border-color-primary-inverse'),

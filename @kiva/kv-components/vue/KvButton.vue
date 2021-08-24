@@ -27,7 +27,7 @@
 					: variant === 'danger',
 				'tw-bg-primary-inverse tw-text-color-primary-inverse tw-border-color-primary hover:tw-border-color-secondary'
 					: variant === 'link',
-				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-transparent'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-color-transparent'
 					: variant === 'ghost',
 			}"
 		>
