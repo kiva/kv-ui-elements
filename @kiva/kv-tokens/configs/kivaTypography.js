@@ -165,7 +165,7 @@ const textStyles = (() => {
 	};
 
 	const textLink = {
-		color: 'rgb(var(--text-color-action))', // TODO: remove rgb?
+		color: 'rgb(var(--text-color-action))',
 		textDecoration: 'none',
 		'&:hover, &:focus': {
 			color: 'rgb(var(--text-color-action-highlight))',

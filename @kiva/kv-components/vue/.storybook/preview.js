@@ -9,9 +9,7 @@ export const parameters = {
     },
   },
   darkMode: {
-	darkClass: 'tw-theme-dark',
+    darkClass: 'tw-theme-dark',
     stylePreview: true
   }
 }
-
-
