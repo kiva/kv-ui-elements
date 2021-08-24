@@ -17,12 +17,12 @@
 					tw-appearance-none
 					tw-text-base
 					tw-bg-primary
-					tw-placeholder-gray-300
+					tw-placeholder-color-tertiary
 					tw-ring-inset
 					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-color-action focus:tw-border-color-transparent
 				"
 				:class="{
-					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight'
+					'tw-pr-6 tw-bg-danger tw-border-color-danger-highlight tw-bg-opacity-low focus:tw-ring-color-danger-highlight'
 						: !valid,
 					'tw-bg-tertiary'
 						: disabled,
@@ -44,11 +44,11 @@
 			<kv-material-icon
 				v-if="!valid"
 				:icon="mdiAlertCircleOutline"
-				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-danger"
+				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-color-danger"
 			/>
 			<div
 				v-if="$slots.error"
-				class="tw-text-danger tw-text-small tw-mt-1"
+				class="tw-text-color-danger tw-text-small tw-mt-1"
 			>
 				<!-- @slot Used in conjuction with the `valid` prop to tell the user what must be fixed -->
 				<slot name="error"></slot>

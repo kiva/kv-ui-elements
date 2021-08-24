@@ -144,6 +144,7 @@ module.exports = {
 			},
 			// custom color classes for text, background, border, etc.
 			textColor: kivaColors.tailwindProperties.textColor,
+			placeholderColor: kivaColors.tailwindProperties.textColor,
 			backgroundColor: kivaColors.tailwindProperties.backgroundColor,
 			borderColor: kivaColors.tailwindProperties.borderColor,
 			divideColor: kivaColors.tailwindProperties.borderColor,
