@@ -17,10 +17,13 @@ const kivaThemes = {
 	static: {
 		'--text-color-black': hexToRGB(designtokens.colors.black),
 		'--text-color-white': hexToRGB(designtokens.colors.white),
+		'--text-color-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 		'--bg-black': hexToRGB(designtokens.colors.black),
 		'--bg-white': hexToRGB(designtokens.colors.white),
+		'--bg-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 		'--border-color-black': hexToRGB(designtokens.colors.black),
 		'--border-color-white': hexToRGB(designtokens.colors.white),
+		'--border-color-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 	},
 	default: {
 		'--text-color-primary': hexToRGB(defaultTheme.text.primary),
