@@ -14,7 +14,7 @@
 				tw-z-modal
 				tw-fixed
 				tw-inset-0
-				tw-bg-primary-inverse
+				tw-bg-black
 				tw-bg-opacity-[75%]
 			"
 			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
