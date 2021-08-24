@@ -2,7 +2,6 @@ const { rem, em } = require('./util');
 const designtokens = require('../primitives.json');
 
 const {
-	colors,
 	fontSizes,
 	fontWeights,
 	letterSpacings,
@@ -226,7 +225,7 @@ const proseOverrides = () => ({
 			'blockquote p:first-of-type::before': {
 				fontSize: '3em',
 				lineHeight: 1,
-				color: colors.gray['300'],
+				color: 'rgb(var(--text-color-tertiary))',
 				position: 'absolute',
 				top: em(-2, 16),
 				left: 0,
@@ -300,8 +299,8 @@ const proseOverrides = () => ({
 			'h2 code': false,
 			'h3 code': false,
 			pre: {
-				color: colors.gray['100'],
-				backgroundColor: colors.gray['800'],
+				color: 'rgb(var(--text-color-primary))',
+				backgroundColor: 'rgb(var(--bg-primary-inverse))',
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
 				borderRadius: rem(radii.sm),
