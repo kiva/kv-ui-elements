@@ -45,6 +45,16 @@
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626",
 					"caution": "#FEE16E"
+				},
+				"border": {
+					"primary": "#212121",
+					"primary-inverse": "#FFFFFF",
+					"secondary": "#757575",
+					"tertiary": "#C4C4C4",
+					"action": "#2B7C5F",
+					"action-highlight": "#277056",
+					"danger": "#E42A2A",
+					"danger-highlight": "#CE2626"
 				}
 			},
 			"dark": {
@@ -68,6 +78,16 @@
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626",
 					"caution": "#FEE16E"
+				},
+				"border": {
+					"primary": "#F5F5F5",
+					"primary-inverse": "#212121",
+					"secondary": "#9E9E9E",
+					"tertiary": "#757575",
+					"action": "#4AB67E",
+					"action-highlight": "#6AC395",
+					"danger": "#E42A2A",
+					"danger-highlight": "#CE2626"
 				}
 			}
 		}

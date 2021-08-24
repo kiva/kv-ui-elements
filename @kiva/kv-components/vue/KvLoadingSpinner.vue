@@ -10,9 +10,9 @@
 				: size === 'large',
 			'tw-text-brand'
 				: color === 'brand',
-			'tw-text-white'
+			'tw-text-color-white'
 				: color === 'white',
-			'tw-text-black'
+			'tw-text-color-black'
 				: color === 'black',
 		}"
 		fill="none"

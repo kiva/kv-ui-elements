@@ -21,11 +21,11 @@
 			:class="{
 				'tw-bg-action hover:tw-bg-action-highlight tw-text-color-primary-inverse tw-border-action hover:tw-border-action-highlight'
 					: variant === 'primary',
-				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-gray-500 hover:tw-border-gray-800'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-color-secondary hover:tw-border-color-primary'
 					: variant === 'secondary',
 				'tw-bg-danger hover:tw-bg-danger-highlight tw-text-color-primary-inverse tw-border-danger hover:tw-border-danger-highlight'
 					: variant === 'danger',
-				'tw-bg-primary-inverse tw-text-color-primary-inverse tw-border-gray-800 hover:tw-border-gray-500'
+				'tw-bg-primary-inverse tw-text-color-primary-inverse tw-border-color-primary hover:tw-border-color-secondary'
 					: variant === 'link',
 				'tw-bg-primary hover:tw-bg-secondary tw-text-color-primary tw-border-transparent'
 					: variant === 'ghost',

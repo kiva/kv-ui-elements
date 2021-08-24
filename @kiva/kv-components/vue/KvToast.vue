@@ -34,11 +34,11 @@
 							tw-items-center tw-justify-center
 						"
 							:class="{
-								'tw-bg-brand tw-text-white' : (
+								'tw-bg-brand tw-text-color-white' : (
 									messageType === '' || messageType === 'confirmation'
 								),
 								'tw-bg-danger tw-text-color-primary-inverse' : messageType === 'error',
-								'tw-bg-caution tw-text-black' : messageType === 'warning',
+								'tw-bg-caution tw-text-color-black' : messageType === 'warning',
 							}"
 						>
 							<kv-material-icon

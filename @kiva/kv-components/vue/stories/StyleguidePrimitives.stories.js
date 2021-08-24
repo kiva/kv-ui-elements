@@ -43,7 +43,7 @@ export const Primitives = (args, { argTypes }) => ({
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Colors</h2>
 
-			<h3>Backgrounds</h3>
+			<h3>Background Color</h3>
 			<kv-grid
 				as="ul"
 				class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5"
@@ -53,7 +53,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('bg', color[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-bg', color[0]))"
 					>
 						<div
@@ -70,18 +70,41 @@ export const Primitives = (args, { argTypes }) => ({
 				</li>
 			</kv-grid>
 
-			<h3>Text</h3>
+			<h3>Text Color</h3>
 			<table>
 				<tbody>
 					<tr
 						v-for="color in textColor"
 						:key="buildClassName('text-color', color[0])"
 					>
-						<td :class="buildClassName('tw-text', color[0])">
-							<span>.{{buildClassName('tw-text', color[0])}}</span>
+						<td class="tw-py-1 tw-min-w-[300px]">
+							<span
+								:class="buildClassName('tw-text', color[0])"
+							>.{{buildClassName('tw-text', color[0])}}</span>
 						</td>
 						<td>
 							<small class="tw-text-color-tertiary">var({{buildClassName('--text', color[0])}})</small>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<h3>Border Color</h3>
+			<table>
+				<tbody>
+					<tr
+						v-for="color in borderColor"
+						:key="buildClassName('border-color', color[0])"
+					>
+						<td class="tw-py-1 tw-min-w-[300px]">
+							<span
+								class="tw-border"
+								:class="buildClassName('tw-border', color[0])"
+							>.{{buildClassName('tw-border', color[0])}}</span>
+						</td>
+						<td>
+							<small class="tw-text-color-tertiary">var({{buildClassName('--border', color[0])}})</small>
 						</td>
 					</tr>
 				</tbody>
@@ -145,7 +168,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-rounded', radius[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-rounded', radius[0]))"
 					>
 						<div
@@ -171,7 +194,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-opacity', opacityItem[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-gray-300 tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
 						@click="copy(buildClassName('tw-opacity', opacityItem[0]))"
 					>
 						<div
@@ -268,6 +291,7 @@ export const Primitives = (args, { argTypes }) => ({
 		return {
 			backgroundColor: buildValuesFromThemeObj(theme.backgroundColor),
 			textColor: buildValuesFromThemeObj(theme.textColor),
+			borderColor: buildValuesFromThemeObj(theme.borderColor),
 			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]),
 			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
