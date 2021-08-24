@@ -8,7 +8,7 @@
 				: size === 'medium',
 			'tw-h-8 tw-w-8'
 				: size === 'large',
-			'tw-text-brand'
+			'tw-text-color-brand'
 				: color === 'brand',
 			'tw-text-color-white'
 				: color === 'white',
