@@ -1,9 +1,9 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
 const kivaTypography = require('./kivaTypography');
+const kivaColors = require('./kivaColors');
 const designtokens = require('../primitives.json');
 const { rem } = require('./util');
-const { hexToRGB } = require('../../kv-components/utils/themeUtils'); // TODO
 
 const {
 	fonts,
@@ -16,57 +16,6 @@ const {
 	radii,
 	zIndices,
 } = designtokens;
-
-const defaultTheme = designtokens.colors.theme.DEFAULT;
-const darkTheme = designtokens.colors.theme.dark;
-
-// function to allow background opacity and text opacity with tailwind colors
-const withOpacity = (variableName) => ({ opacityValue }) => {
-	if (opacityValue !== undefined) {
-		return `rgba(var(${variableName}), ${opacityValue})`;
-	}
-	return `rgb(var(${variableName}))`;
-};
-
-const textColor = {
-	'color-black': withOpacity('--text-color-black'),
-	'color-white': withOpacity('--text-color-white'),
-	'color-primary': withOpacity('--text-color-primary'),
-	'color-primary-inverse': withOpacity('--text-color-primary-inverse'),
-	'color-secondary': withOpacity('--text-color-secondary'),
-	'color-tertiary': withOpacity('--text-color-tertiary'),
-	'color-action': withOpacity('--text-color-action'),
-	'color-action-highlight': withOpacity('--text-color-action-highlight'),
-	'color-danger': withOpacity('--text-color-danger'),
-	'color-danger-highlight': withOpacity('--text-color-danger-highlight'),
-};
-
-const backgroundColor = {
-	black: withOpacity('--bg-black'),
-	white: withOpacity('--bg-white'),
-	primary: withOpacity('--bg-primary'),
-	'primary-inverse': withOpacity('--bg-primary-inverse'),
-	secondary: withOpacity('--bg-secondary'),
-	tertiary: withOpacity('--bg-tertiary'),
-	action: withOpacity('--bg-action'),
-	'action-highlight': withOpacity('--bg-action-highlight'),
-	danger: withOpacity('--bg-danger'),
-	'danger-highlight': withOpacity('--bg-danger-highlight'),
-	caution: withOpacity('--bg-caution'),
-};
-
-const borderColor = {
-	'color-black': withOpacity('--border-color-black'),
-	'color-white': withOpacity('--border-color-white'),
-	'color-primary': withOpacity('--border-color-primary'),
-	'color-primary-inverse': withOpacity('--border-color-primary-inverse'),
-	'color-secondary': withOpacity('--border-color-secondary'),
-	'color-tertiary': withOpacity('--border-color-tertiary'),
-	'color-action': withOpacity('--border-color-action'),
-	'color-action-highlight': withOpacity('--border-color-action-highlight'),
-	'color-danger': withOpacity('--border-color-danger'),
-	'color-danger-highlight': withOpacity('--border-color-danger-highlight'),
-};
 
 module.exports = {
 	purge: [],
@@ -86,43 +35,7 @@ module.exports = {
 			xl: rem(breakpoints.xl),
 			print: { raw: 'print' }, // https://tailwindcss.com/docs/breakpoints#styling-for-print
 		},
-		colors: {
-			transparent: 'transparent',
-			current: 'currentColor',
-			black: colors.black,
-			white: colors.white,
-			gray: {
-				800: colors.gray['800'],
-				500: colors.gray['500'],
-				300: colors.gray['300'],
-				100: colors.gray['100'],
-				50: colors.gray['50'],
-			},
-			brand: {
-				700: colors.brand['700'],
-				650: colors.brand['650'],
-				DEFAULT: colors.brand.DEFAULT,
-				550: colors.brand['550'],
-				500: colors.brand['500'],
-				400: colors.brand['400'],
-				300: colors.brand['300'],
-				200: colors.brand['200'],
-				100: colors.brand['100'],
-				50: colors.brand['50'],
-			},
-
-			// action: {
-			// 	700: colors.action['700'],
-			// 	DEFAULT: colors.action.DEFAULT,
-			// },
-			// caution: {
-			// 	DEFAULT: colors.caution.DEFAULT,
-			// },
-			// danger: {
-			// 	700: colors.danger['700'],
-			// 	DEFAULT: colors.danger.DEFAULT,
-			// },
-		},
+		colors: false, // colors are defined as custom properties below
 		spacing: {
 			0: '0',
 			0.5: rem(space['0.5']),
@@ -229,13 +142,13 @@ module.exports = {
 				ripple: 'ripple 750ms ease-out 1 forwards',
 				'spin-eased': 'spin 1.5s ease-in-out infinite',
 			},
-			// theming
-			textColor,
-			backgroundColor,
-			borderColor,
-			divideColor: borderColor,
-			ringColor: borderColor,
-			// end theming
+			// custom color classes for text, background, border, etc.
+			textColor: kivaColors.tailwindProperties.textColor,
+			backgroundColor: kivaColors.tailwindProperties.backgroundColor,
+			borderColor: kivaColors.tailwindProperties.borderColor,
+			divideColor: kivaColors.tailwindProperties.borderColor,
+			ringColor: kivaColors.tailwindProperties.borderColor,
+			// end custom colors
 		},
 	},
 	plugins: [
@@ -268,36 +181,12 @@ module.exports = {
 					borderTopWidth: borderWidths.default,
 				},
 			});
-			// Theming
+			// themes
 			addBase({
 				':root': {
-					'--text-color-primary': hexToRGB(defaultTheme.text.primary),
-					'--text-color-primary-inverse': hexToRGB(defaultTheme.text['primary-inverse']), // Q: maybe  just 'color-inverse'?
-					'--text-color-secondary': hexToRGB(defaultTheme.text.secondary),
-					'--text-color-tertiary': hexToRGB(defaultTheme.text.tertiary),
-					'--text-color-action': hexToRGB(defaultTheme.text.action),
-					'--text-color-action-highlight': hexToRGB(defaultTheme.text['action-highlight']),
-					'--text-color-danger': hexToRGB(defaultTheme.text.danger),
-					'--text-color-danger-highlight': hexToRGB(defaultTheme.text['danger-highlight']),
-
-					'--bg-primary': hexToRGB(defaultTheme.background.primary),
-					'--bg-primary-inverse': hexToRGB(defaultTheme.background['primary-inverse']), // Q: maybe just 'color-inverse'?
-					'--bg-secondary': hexToRGB(defaultTheme.background.secondary),
-					'--bg-tertiary': hexToRGB(defaultTheme.background.tertiary),
-					'--bg-action': hexToRGB(defaultTheme.background.action),
-					'--bg-action-highlight': hexToRGB(defaultTheme.background['action-highlight']),
-					'--bg-danger': hexToRGB(defaultTheme.background.danger),
-					'--bg-danger-highlight': hexToRGB(defaultTheme.background['danger-highlight']),
-					'--bg-caution': hexToRGB(defaultTheme.background.caution),
-
-					'--border-color-primary': hexToRGB(defaultTheme.border.primary),
-					'--border-color-primary-inverse': hexToRGB(defaultTheme.border['primary-inverse']), // Q: maybe  just 'color-inverse'?
-					'--border-color-secondary': hexToRGB(defaultTheme.border.secondary),
-					'--border-color-tertiary': hexToRGB(defaultTheme.border.tertiary),
-					'--border-color-action': hexToRGB(defaultTheme.border.action),
-					'--border-color-action-highlight': hexToRGB(defaultTheme.border['action-highlight']),
-					'--border-color-danger': hexToRGB(defaultTheme.border.danger),
-					'--border-color-danger-highlight': hexToRGB(defaultTheme.border['danger-highlight']),
+					...kivaColors.kivaThemes.static,
+					...kivaColors.kivaThemes.default,
+					color: 'rgb(var(--text-color-primary))',
 				},
 				body: {
 					color: 'rgb(var(--text-color-primary))',
@@ -305,37 +194,11 @@ module.exports = {
 			});
 			addUtilities({
 				'.theme-dark': {
-					'--text-color-primary': hexToRGB(darkTheme.text.primary),
-					'--text-color-primary-inverse': hexToRGB(darkTheme.text['primary-inverse']), // Q: maybe just 'color-inverse' ?
-					'--text-color-secondary': hexToRGB(darkTheme.text.secondary),
-					'--text-color-tertiary': hexToRGB(darkTheme.text.tertiary),
-					'--text-color-action': hexToRGB(darkTheme.text.action),
-					'--text-color-action-highlight': hexToRGB(darkTheme.text['action-highlight']),
-					'--text-color-danger': hexToRGB(darkTheme.text.danger),
-					'--text-color-danger-highlight': hexToRGB(darkTheme.text['danger-highlight']),
-
-					'--bg-primary': hexToRGB(darkTheme.background.primary),
-					'--bg-primary-inverse': hexToRGB(darkTheme.background['primary-inverse']), // Q: maybe just 'color-inverse' ?
-					'--bg-secondary': hexToRGB(darkTheme.background.secondary),
-					'--bg-tertiary': hexToRGB(darkTheme.background.tertiary),
-					'--bg-action': hexToRGB(darkTheme.background.action),
-					'--bg-action-highlight': hexToRGB(darkTheme.background['action-highlight']),
-					'--bg-danger': hexToRGB(darkTheme.background.danger),
-					'--bg-danger-highlight': hexToRGB(darkTheme.background['danger-highlight']),
-					'--bg-caution': hexToRGB(darkTheme.background.caution),
-
-					'--border-color-primary': hexToRGB(darkTheme.border.primary),
-					'--border-color-primary-inverse': hexToRGB(darkTheme.border['primary-inverse']), // Q: maybe  just 'color-inverse'?
-					'--border-color-secondary': hexToRGB(darkTheme.border.secondary),
-					'--border-color-tertiary': hexToRGB(darkTheme.border.tertiary),
-					'--border-color-action': hexToRGB(darkTheme.border.action),
-					'--border-color-action-highlight': hexToRGB(darkTheme.border['action-highlight']),
-					'--border-color-danger': hexToRGB(darkTheme.border.danger),
-					'--border-color-danger-highlight': hexToRGB(darkTheme.border['danger-highlight']),
+					...kivaColors.kivaThemes.dark,
 					color: 'rgb(var(--text-color-primary))',
 				},
 			});
-			// end theming
+			// end themes
 			addUtilities({
 				'.text-base': textStyles.textBase,
 				'.text-h1': textStyles.textH1,
