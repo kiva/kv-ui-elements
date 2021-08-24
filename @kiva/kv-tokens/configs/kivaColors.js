@@ -2,7 +2,7 @@ const designtokens = require('../primitives.json');
 
 const defaultTheme = designtokens.colors.theme.DEFAULT;
 const darkTheme = designtokens.colors.theme.dark;
-const { hexToRGB } = require('../../kv-components/utils/themeUtils'); // TODO
+const { hexToRGB } = require('./util');
 
 // function to allow background opacity and text opacity with tailwind colors
 const withOpacity = (variableName) => ({ opacityValue }) => {
