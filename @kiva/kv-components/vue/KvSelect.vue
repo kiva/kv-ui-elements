@@ -6,7 +6,7 @@
 				:id="id"
 				:disabled="disabled"
 				:value="value"
-				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-color-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-color-action focus:tw-border-transparent"
+				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-color-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-color-action focus:tw-border-color-transparent"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
 			>

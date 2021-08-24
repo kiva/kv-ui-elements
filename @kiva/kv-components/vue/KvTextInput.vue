@@ -19,7 +19,7 @@
 					tw-bg-primary
 					tw-placeholder-gray-300
 					tw-ring-inset
-					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-color-action focus:tw-border-transparent
+					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-color-action focus:tw-border-color-transparent
 				"
 				:class="{
 					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight'
