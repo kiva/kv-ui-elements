@@ -14,8 +14,10 @@
 import { kivaThemes } from '@kiva/kv-tokens/configs/kivaColors';
 
 /**
+ * A wrapper component that sets CSS custom properties to theme its children.
+ * Most of the time you'll be using predefined themes defined in primitives.
  *
- * All available themable CSS custom properties, set to white, below
+ * For custom theming, see all available custom properties, set to white in RGB, below
  *
  * ```
  * {
@@ -56,14 +58,26 @@ import { kivaThemes } from '@kiva/kv-tokens/configs/kivaColors';
 export default {
 	props: {
 		/**
-		 * An pre-defined theme object coming from kivaColors
+		 * The name of a pre-defined theme defined in our primitives file
+		 * @values '', dark, mint
 		 * */
 		theme: {
 			type: String,
 			default: '',
+			validator(value) {
+				return ['', 'dark', 'mint'].includes(value);
+			},
 		},
 		/**
-		 * An object containing CSS custom properties
+		 * An object containing CSS custom properties set to rgb values.
+		 * @usage ```
+		 * {
+		 *    --text-primary: '255, 255, 255',
+		 *    --bg-secondary: '255, 255, 255',
+		 *    --border-primary: '255, 255, 255',
+		 *    --border-primary-inverse: '255, 255, 255',
+		 * }
+		 * ```
 		 * */
 		customTheme: {
 			type: Object,
