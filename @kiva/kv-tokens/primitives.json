@@ -101,6 +101,16 @@
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626"
 				}
+			},
+			"mint": {
+				"text": {
+					"primary": "#212121",
+					"secondary": "#1D7748",
+					"accent": "#1D7748"
+				},
+				"background": {
+					"primary": "#95D4B3"
+				}
 			}
 		}
 	},
