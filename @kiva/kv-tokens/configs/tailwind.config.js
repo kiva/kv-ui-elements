@@ -187,16 +187,6 @@ module.exports = {
 				':root': {
 					...kivaColors.kivaThemes.static,
 					...kivaColors.kivaThemes.default,
-					color: 'rgb(var(--text-primary))',
-				},
-				body: {
-					color: 'rgb(var(--text-primary))',
-				},
-			});
-			addUtilities({
-				'.theme-dark': {
-					...kivaColors.kivaThemes.dark,
-					color: 'rgb(var(--text-primary))',
 				},
 			});
 			// end themes
