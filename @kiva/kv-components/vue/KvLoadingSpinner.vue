@@ -8,11 +8,11 @@
 				: size === 'medium',
 			'tw-h-8 tw-w-8'
 				: size === 'large',
-			'tw-text-color-brand'
+			'tw-text-brand'
 				: color === 'brand',
-			'tw-text-color-white'
+			'tw-text-white'
 				: color === 'white',
-			'tw-text-color-black'
+			'tw-text-black'
 				: color === 'black',
 		}"
 		fill="none"
@@ -24,7 +24,7 @@
 			stroke-width="2"
 		>
 			<circle
-				class="tw-stroke-current tw-text-color-tertiary tw-opacity-low"
+				class="tw-stroke-current tw-text-tertiary tw-opacity-low"
 				cx="12"
 				cy="12"
 				r="8"

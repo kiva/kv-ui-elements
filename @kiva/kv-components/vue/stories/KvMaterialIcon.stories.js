@@ -105,11 +105,11 @@ export const Colored = (args, { argTypes }) => ({
 			<p class="tw-mb-2">Use text-color to set the icon color</p>
 			<kv-material-icon
 				:icon="mdiCheck"
-				class="tw-text-color-action"
+				class="tw-text-action"
 			/>
 			<kv-material-icon
 				:icon="mdiAlertCircleOutline"
-				class="tw-text-color-danger"
+				class="tw-text-danger"
 			/>
 		</div>`,
 	data() {
@@ -180,7 +180,7 @@ export const StarsDemo = (args, { argTypes }) => ({
 				v-for="i in 5"
 				:key="i"
 				@click="rating = i"
-				class="hover:tw-text-color-action-highlight"
+				class="hover:tw-text-action-highlight"
 			>
 				<kv-material-icon :icon="getStarIcon(i)"/>
 				<span class="tw-sr-only">Set rating to {{i}}</span>

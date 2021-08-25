@@ -27,11 +27,11 @@
 					tw-overflow-hidden
 					tw-flex tw-justify-center tw-items-center
 					tw-transition-all tw-duration-100
-					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-color-action
+					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 				"
 				:class="{
-					'tw-border-color-secondary' : !isChecked,
-					'tw-border-color-action' : isChecked
+					'tw-border-secondary' : !isChecked,
+					'tw-border-action' : isChecked
 				}"
 			>
 				<div
@@ -41,7 +41,7 @@
 				></div>
 			</div>
 
-			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-color-action">
+			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
 				<slot></slot>
 			</div>
 		</label>

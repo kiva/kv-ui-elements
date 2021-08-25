@@ -53,7 +53,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('bg', color[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('tw-bg', color[0]))"
 					>
 						<div
@@ -64,7 +64,7 @@ export const Primitives = (args, { argTypes }) => ({
 						</div>
 						<div class="tw-w-full">
 							.{{buildClassName('tw-bg', color[0])}}
-							<br><small class="tw-text-color-tertiary">var({{buildClassName('--bg', color[0])}})</small>
+							<br><small class="tw-text-tertiary">var({{buildClassName('--bg', color[0])}})</small>
 						</div>
 					</button>
 				</li>
@@ -78,12 +78,14 @@ export const Primitives = (args, { argTypes }) => ({
 						:key="buildClassName('text-color', color[0])"
 					>
 						<td class="tw-py-1 tw-min-w-[300px]">
-							<span
+							<button
+								class="hover:tw-text-action-highlight"
 								:class="buildClassName('tw-text', color[0])"
-							>.{{buildClassName('tw-text', color[0])}}</span>
+								@click="copy(buildClassName('tw-text', color[0]))"
+							>.{{buildClassName('tw-text', color[0])}}</button>
 						</td>
 						<td>
-							<small class="tw-text-color-tertiary">var({{buildClassName('--text', color[0])}})</small>
+							<small class="tw-text-tertiary">var({{buildClassName('--text', color[0])}})</small>
 						</td>
 					</tr>
 				</tbody>
@@ -98,13 +100,14 @@ export const Primitives = (args, { argTypes }) => ({
 						:key="buildClassName('border-color', color[0])"
 					>
 						<td class="tw-py-1 tw-min-w-[300px]">
-							<span
-								class="tw-border"
+							<button
+								class="tw-border hover:tw-text-action-highlight"
 								:class="buildClassName('tw-border', color[0])"
-							>.{{buildClassName('tw-border', color[0])}}</span>
+								@click="copy(buildClassName('tw-border', color[0]))"
+							>.{{buildClassName('tw-border', color[0])}}</button>
 						</td>
 						<td>
-							<small class="tw-text-color-tertiary">var({{buildClassName('--border', color[0])}})</small>
+							<small class="tw-text-tertiary">var({{buildClassName('--border', color[0])}})</small>
 						</td>
 					</tr>
 				</tbody>
@@ -120,7 +123,7 @@ export const Primitives = (args, { argTypes }) => ({
 					class="tw-overflow-x-auto tw-w-full"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('text', typeStyle))"
 					>
 						<p
@@ -144,7 +147,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-font', fontWeight[0])"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
 						<p :class="buildClassName('tw-font', fontWeight[0])">
@@ -168,7 +171,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-rounded', radius[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('tw-rounded', radius[0]))"
 					>
 						<div
@@ -178,7 +181,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-rounded', radius[0])}}
-							<br><small class="tw-text-color-tertiary">({{remToPx(radius[1])}}px)</small>
+							<br><small class="tw-text-tertiary">({{remToPx(radius[1])}}px)</small>
 						</div>
 					</button>
 				</li>
@@ -194,7 +197,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-opacity', opacityItem[0])"
 				>
 					<button
-						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-color-tertiary tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-flex tw-flex-col tw-text-left tw-border tw-rounded tw-p-1.5 tw-w-full tw-h-full tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('tw-opacity', opacityItem[0]))"
 					>
 						<div
@@ -204,7 +207,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-opacity', opacityItem[0])}}<br>
-							<small class="tw-text-color-tertiary">({{opacityItem[1]}})</small>
+							<small class="tw-text-tertiary">({{opacityItem[1]}})</small>
 						</div>
 					</button>
 				</li>
@@ -220,7 +223,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:key="buildClassName('tw-w', spaceItem[0])"
 				>
 					<button
-						class="tw-text-left tw-font-book hover:tw-text-color-action-highlight"
+						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
 						@click="copy(buildClassName('tw-w', spaceItem[0]))"
 					>
 						<div
@@ -229,7 +232,7 @@ export const Primitives = (args, { argTypes }) => ({
 						></div>
 						<div>
 							.{{buildClassName('tw-w', spaceItem[0])}}
-							<small class="tw-text-color-tertiary">({{remToPx(spaceItem[1])}}px)</small>
+							<small class="tw-text-tertiary">({{remToPx(spaceItem[1])}}px)</small>
 						</div>
 					</button>
 				</li>
@@ -249,7 +252,7 @@ export const Primitives = (args, { argTypes }) => ({
 					></div>
 					<span>
 						{{breakpoint[0]}}
-						<small class="tw-text-color-tertiary">({{remToPx(breakpoint[1])}}px)</small>
+						<small class="tw-text-tertiary">({{remToPx(breakpoint[1])}}px)</small>
 					</span>
 				</li>
 			</ul>
@@ -266,13 +269,13 @@ export const Primitives = (args, { argTypes }) => ({
 					:style="{left: 'calc(' + index/zIndices.length * 100 + '% - ' + (index/zIndices.length * 250) + 'px)', top: index * 50 + 'px'}"
 				>
 					<button
-						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-color-action-highlight tw-h-12 tw-bg-tertiary tw-outline-white"
+						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-highlight tw-h-12 tw-bg-tertiary tw-outline-white"
 						style="width: 250px;"
 						@click="copy(buildClassName('tw-z', zIndex[0]))"
 					>
 						<span>
 							{{buildClassName('tw-z', zIndex[0])}}
-							<small class="tw-text-color-tertiary">({{zIndex[1]}})</small>
+							<small class="tw-text-tertiary">({{zIndex[1]}})</small>
 						</span>
 					</button>
 				</li>

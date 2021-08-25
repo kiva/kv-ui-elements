@@ -8,15 +8,15 @@ export default {
 };
 
 const textVariables = [
-	'tw-text-color-primary',
-	'tw-text-color-primary-inverse',
-	'tw-text-color-secondary',
-	'tw-text-color-tertiary',
-	'tw-text-color-accent',
-	'tw-text-color-action',
-	'tw-text-color-action-highlight',
-	'tw-text-color-danger',
-	'tw-text-color-danger-highlight',
+	'tw-text-primary',
+	'tw-text-primary-inverse',
+	'tw-text-secondary',
+	'tw-text-tertiary',
+	'tw-text-accent',
+	'tw-text-action',
+	'tw-text-action-highlight',
+	'tw-text-danger',
+	'tw-text-danger-highlight',
 ];
 
 const bgVariables = [
@@ -104,7 +104,7 @@ export const Theming = (args, { argTypes }) => ({
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Theming</h1>
-		<p>Note when making a custom theme, you must specify the colors in rgb format. E.g., <code>--text-color-primary: 255, 0, 0;</code></p>
+		<p>Note when making a custom theme, you must specify the colors in rgb format. E.g., <code>--text-primary: 255, 0, 0;</code></p>
 			${demoTemplate}
 
 		<p>For a dark theme, add <code>.tw-theme-dark</code> class.</p>
@@ -115,16 +115,16 @@ export const Theming = (args, { argTypes }) => ({
 		<p>For a one-off theme, add CSS custom properties to an inline style tag. You must use RGB values so tailwind's text and background opacity classes will still work.:
 		<code>.tw-theme-dark</code> class.</p>
 		<div style="
-			--text-color-primary: 255, 0, 0;
-			--text-color-secondary: 0, 255, 255;
-			--text-color-action: 255, 255, 0;
-			--text-color-action-highlight: 255, 200, 0;
-			--bg-color-primary: 191, 229, 209;
-			--bg-color-secondary: 191, 255, 191;
-			--bg-color-secondary: 191, 255, 191;
-			--bg-color-action: 0, 0, 100;
-			--bg-color-action-highlight: 0, 0, 150;
-			color: rgb(var(--text-color-primary));
+			--text-primary: 255, 0, 0;
+			--text-secondary: 0, 255, 255;
+			--text-action: 255, 255, 0;
+			--text-action-highlight: 255, 200, 0;
+			--bg-primary: 191, 229, 209;
+			--bg-secondary: 191, 255, 191;
+			--bg-secondary: 191, 255, 191;
+			--bg-action: 0, 0, 100;
+			--bg-action-highlight: 0, 0, 150;
+			color: rgb(var(--text-primary));
 		">
 			<h2 class="tw-text-h4 tw-mb-1">Custom</h2>
 			${demoTemplate}

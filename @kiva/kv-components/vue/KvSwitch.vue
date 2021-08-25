@@ -21,7 +21,7 @@
 			<div
 				class="
 					tw-w-7 tw-h-4 tw-rounded-full tw-relative tw-overflow-hidden
-					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-color-action
+					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 					tw-bg-tertiary peer-checked:tw-bg-action
 					tw-transition-all tw-ease-in-out
 				"
@@ -39,7 +39,7 @@
 					"
 			></div>
 			<!-- label -->
-			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-color-action">
+			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
 				<slot></slot>
 			</div>
 		</label>

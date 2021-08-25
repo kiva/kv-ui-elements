@@ -53,7 +53,7 @@ const webFonts = [
 ];
 
 /** BASE TEXT COLOR */
-const textBaseColor = 'rgb(var(--text-color-primary))';
+const textBaseColor = 'rgb(var(--text-primary))';
 
 /**
  REUSABLE TYPE STYLES
@@ -165,10 +165,10 @@ const textStyles = (() => {
 	};
 
 	const textLink = {
-		color: 'rgb(var(--text-color-action))',
+		color: 'rgb(var(--text-action))',
 		textDecoration: 'none',
 		'&:hover, &:focus': {
-			color: 'rgb(var(--text-color-action-highlight))',
+			color: 'rgb(var(--text-action-highlight))',
 			textDecoration: 'underline',
 		},
 	};
@@ -225,7 +225,7 @@ const proseOverrides = () => ({
 			'blockquote p:first-of-type::before': {
 				fontSize: '3em',
 				lineHeight: 1,
-				color: 'rgb(var(--text-color-tertiary))',
+				color: 'rgb(var(--text-tertiary))',
 				position: 'absolute',
 				top: em(-2, 16),
 				left: 0,
@@ -299,7 +299,7 @@ const proseOverrides = () => ({
 			'h2 code': false,
 			'h3 code': false,
 			pre: {
-				color: 'rgb(var(--text-color-primary))',
+				color: 'rgb(var(--text-primary))',
 				backgroundColor: 'rgb(var(--bg-primary-inverse))',
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),

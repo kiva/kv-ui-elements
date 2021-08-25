@@ -12,28 +12,28 @@ const darkTheme = designtokens.colors.theme.dark;
  */
 const kivaThemes = {
 	static: {
-		'--text-color-black': hexToRGB(designtokens.colors.black),
-		'--text-color-white': hexToRGB(designtokens.colors.white),
-		'--text-color-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
+		'--text-black': hexToRGB(designtokens.colors.black),
+		'--text-white': hexToRGB(designtokens.colors.white),
+		'--text-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 
 		'--bg-black': hexToRGB(designtokens.colors.black),
 		'--bg-white': hexToRGB(designtokens.colors.white),
 		'--bg-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 
-		'--border-color-black': hexToRGB(designtokens.colors.black),
-		'--border-color-white': hexToRGB(designtokens.colors.white),
-		'--border-color-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
+		'--border-black': hexToRGB(designtokens.colors.black),
+		'--border-white': hexToRGB(designtokens.colors.white),
+		'--border-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
 	},
 	default: {
-		'--text-color-primary': hexToRGB(defaultTheme.text.primary),
-		'--text-color-primary-inverse': hexToRGB(defaultTheme.text['primary-inverse']),
-		'--text-color-secondary': hexToRGB(defaultTheme.text.secondary),
-		'--text-color-tertiary': hexToRGB(defaultTheme.text.tertiary),
-		'--text-color-accent': hexToRGB(defaultTheme.text.accent),
-		'--text-color-action': hexToRGB(defaultTheme.text.action),
-		'--text-color-action-highlight': hexToRGB(defaultTheme.text['action-highlight']),
-		'--text-color-danger': hexToRGB(defaultTheme.text.danger),
-		'--text-color-danger-highlight': hexToRGB(defaultTheme.text['danger-highlight']),
+		'--text-primary': hexToRGB(defaultTheme.text.primary),
+		'--text-primary-inverse': hexToRGB(defaultTheme.text['primary-inverse']),
+		'--text-secondary': hexToRGB(defaultTheme.text.secondary),
+		'--text-tertiary': hexToRGB(defaultTheme.text.tertiary),
+		'--text-accent': hexToRGB(defaultTheme.text.accent),
+		'--text-action': hexToRGB(defaultTheme.text.action),
+		'--text-action-highlight': hexToRGB(defaultTheme.text['action-highlight']),
+		'--text-danger': hexToRGB(defaultTheme.text.danger),
+		'--text-danger-highlight': hexToRGB(defaultTheme.text['danger-highlight']),
 
 		'--bg-primary': hexToRGB(defaultTheme.background.primary),
 		'--bg-primary-inverse': hexToRGB(defaultTheme.background['primary-inverse']),
@@ -46,26 +46,26 @@ const kivaThemes = {
 		'--bg-danger-highlight': hexToRGB(defaultTheme.background['danger-highlight']),
 		'--bg-caution': hexToRGB(defaultTheme.background.caution),
 
-		'--border-color-primary': hexToRGB(defaultTheme.border.primary),
-		'--border-color-primary-inverse': hexToRGB(defaultTheme.border['primary-inverse']),
-		'--border-color-secondary': hexToRGB(defaultTheme.border.secondary),
-		'--border-color-tertiary': hexToRGB(defaultTheme.border.tertiary),
-		'--border-color-accent': hexToRGB(defaultTheme.border.accent),
-		'--border-color-action': hexToRGB(defaultTheme.border.action),
-		'--border-color-action-highlight': hexToRGB(defaultTheme.border['action-highlight']),
-		'--border-color-danger': hexToRGB(defaultTheme.border.danger),
-		'--border-color-danger-highlight': hexToRGB(defaultTheme.border['danger-highlight']),
+		'--border-primary': hexToRGB(defaultTheme.border.primary),
+		'--border-primary-inverse': hexToRGB(defaultTheme.border['primary-inverse']),
+		'--border-secondary': hexToRGB(defaultTheme.border.secondary),
+		'--border-tertiary': hexToRGB(defaultTheme.border.tertiary),
+		'--border-accent': hexToRGB(defaultTheme.border.accent),
+		'--border-action': hexToRGB(defaultTheme.border.action),
+		'--border-action-highlight': hexToRGB(defaultTheme.border['action-highlight']),
+		'--border-danger': hexToRGB(defaultTheme.border.danger),
+		'--border-danger-highlight': hexToRGB(defaultTheme.border['danger-highlight']),
 	},
 	dark: {
-		'--text-color-primary': hexToRGB(darkTheme.text.primary),
-		'--text-color-primary-inverse': hexToRGB(darkTheme.text['primary-inverse']),
-		'--text-color-secondary': hexToRGB(darkTheme.text.secondary),
-		'--text-color-tertiary': hexToRGB(darkTheme.text.tertiary),
-		'--text-color-accent': hexToRGB(darkTheme.text.accent),
-		'--text-color-action': hexToRGB(darkTheme.text.action),
-		'--text-color-action-highlight': hexToRGB(darkTheme.text['action-highlight']),
-		'--text-color-danger': hexToRGB(darkTheme.text.danger),
-		'--text-color-danger-highlight': hexToRGB(darkTheme.text['danger-highlight']),
+		'--text-primary': hexToRGB(darkTheme.text.primary),
+		'--text-primary-inverse': hexToRGB(darkTheme.text['primary-inverse']),
+		'--text-secondary': hexToRGB(darkTheme.text.secondary),
+		'--text-tertiary': hexToRGB(darkTheme.text.tertiary),
+		'--text-accent': hexToRGB(darkTheme.text.accent),
+		'--text-action': hexToRGB(darkTheme.text.action),
+		'--text-action-highlight': hexToRGB(darkTheme.text['action-highlight']),
+		'--text-danger': hexToRGB(darkTheme.text.danger),
+		'--text-danger-highlight': hexToRGB(darkTheme.text['danger-highlight']),
 
 		'--bg-primary': hexToRGB(darkTheme.background.primary),
 		'--bg-primary-inverse': hexToRGB(darkTheme.background['primary-inverse']),
@@ -78,15 +78,15 @@ const kivaThemes = {
 		'--bg-danger-highlight': hexToRGB(darkTheme.background['danger-highlight']),
 		'--bg-caution': hexToRGB(darkTheme.background.caution),
 
-		'--border-color-primary': hexToRGB(darkTheme.border.primary),
-		'--border-color-primary-inverse': hexToRGB(darkTheme.border['primary-inverse']),
-		'--border-color-secondary': hexToRGB(darkTheme.border.secondary),
-		'--border-color-tertiary': hexToRGB(darkTheme.border.tertiary),
-		'--border-color-accent': hexToRGB(darkTheme.border.accent),
-		'--border-color-action': hexToRGB(darkTheme.border.action),
-		'--border-color-action-highlight': hexToRGB(darkTheme.border['action-highlight']),
-		'--border-color-danger': hexToRGB(darkTheme.border.danger),
-		'--border-color-danger-highlight': hexToRGB(darkTheme.border['danger-highlight']),
+		'--border-primary': hexToRGB(darkTheme.border.primary),
+		'--border-primary-inverse': hexToRGB(darkTheme.border['primary-inverse']),
+		'--border-secondary': hexToRGB(darkTheme.border.secondary),
+		'--border-tertiary': hexToRGB(darkTheme.border.tertiary),
+		'--border-accent': hexToRGB(darkTheme.border.accent),
+		'--border-action': hexToRGB(darkTheme.border.action),
+		'--border-action-highlight': hexToRGB(darkTheme.border['action-highlight']),
+		'--border-danger': hexToRGB(darkTheme.border.danger),
+		'--border-danger-highlight': hexToRGB(darkTheme.border['danger-highlight']),
 	},
 };
 
@@ -100,29 +100,29 @@ const withOpacity = (variableName) => ({ opacityValue }) => {
 };
 
 /**
- * These are used to set Tailwind specific properties so you can write classes like
- * tw-text-color-primary, tw-border-color-primary, etc.
- * The values (e.g., --text-color-primary) need to match the keys in the kivaThemes object above.
+ * These are used to set Tailwind config properties so you can write classes like
+ * tw-text-primary, tw-border-primary, etc.
+ * The values (e.g., --text-primary) need to match the keys in the kivaThemes object above.
  */
 const tailwindProperties = {
 	textColor: {
 		// static
-		'color-transparent': 'transparent',
-		'color-current': 'currentColor',
-		'color-black': withOpacity('--text-color-black'),
-		'color-white': withOpacity('--text-color-white'),
-		'color-brand': withOpacity('--text-color-brand'),
+		transparent: 'transparent',
+		current: 'currentColor',
+		black: withOpacity('--text-black'),
+		white: withOpacity('--text-white'),
+		brand: withOpacity('--text-brand'),
 
 		// themable
-		'color-primary': withOpacity('--text-color-primary'),
-		'color-primary-inverse': withOpacity('--text-color-primary-inverse'),
-		'color-secondary': withOpacity('--text-color-secondary'),
-		'color-tertiary': withOpacity('--text-color-tertiary'),
-		'color-accent': withOpacity('--text-color-accent'),
-		'color-action': withOpacity('--text-color-action'),
-		'color-action-highlight': withOpacity('--text-color-action-highlight'),
-		'color-danger': withOpacity('--text-color-danger'),
-		'color-danger-highlight': withOpacity('--text-color-danger-highlight'),
+		primary: withOpacity('--text-primary'),
+		'primary-inverse': withOpacity('--text-primary-inverse'),
+		secondary: withOpacity('--text-secondary'),
+		tertiary: withOpacity('--text-tertiary'),
+		accent: withOpacity('--text-accent'),
+		action: withOpacity('--text-action'),
+		'action-highlight': withOpacity('--text-action-highlight'),
+		danger: withOpacity('--text-danger'),
+		'danger-highlight': withOpacity('--text-danger-highlight'),
 	},
 	backgroundColor: {
 		// static
@@ -146,22 +146,22 @@ const tailwindProperties = {
 	},
 	borderColor: {
 		// static
-		'color-transparent': 'transparent',
-		'color-current': 'currentColor',
-		'color-black': withOpacity('--border-color-black'),
-		'color-white': withOpacity('--border-color-white'),
-		'color-brand': withOpacity('--border-color-brand'),
+		transparent: 'transparent',
+		current: 'currentColor',
+		black: withOpacity('--border-black'),
+		white: withOpacity('--border-white'),
+		brand: withOpacity('--border-brand'),
 
 		// themable
-		'color-primary': withOpacity('--border-color-primary'),
-		'color-primary-inverse': withOpacity('--border-color-primary-inverse'),
-		'color-secondary': withOpacity('--border-color-secondary'),
-		'color-tertiary': withOpacity('--border-color-tertiary'),
-		'color-accent': withOpacity('--border-color-accent'),
-		'color-action': withOpacity('--border-color-action'),
-		'color-action-highlight': withOpacity('--border-color-action-highlight'),
-		'color-danger': withOpacity('--border-color-danger'),
-		'color-danger-highlight': withOpacity('--border-color-danger-highlight'),
+		primary: withOpacity('--border-primary'),
+		'primary-inverse': withOpacity('--border-primary-inverse'),
+		secondary: withOpacity('--border-secondary'),
+		tertiary: withOpacity('--border-tertiary'),
+		accent: withOpacity('--border-accent'),
+		action: withOpacity('--border-action'),
+		'action-highlight': withOpacity('--border-action-highlight'),
+		danger: withOpacity('--border-danger'),
+		'danger-highlight': withOpacity('--border-danger-highlight'),
 	},
 };
 
