@@ -2,7 +2,7 @@
 	<div
 		class="
 			tw-h-1 tw-w-full tw-rounded-full tw-overflow-hidden tw-relative
-			tw-bg-tertiary tw-bg-opacity-low
+			tw-bg-secondary
 		"
 		role="progressbar"
 		:aria-label="ariaLabel"
