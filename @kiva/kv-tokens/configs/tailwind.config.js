@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
 const kivaTypography = require('./kivaTypography');
-const kivaColors = require('./kivaColors');
+const { kivaThemes, buildColorChoices } = require('./kivaColors');
 const designtokens = require('../primitives.json');
 const { rem } = require('./util');
 
@@ -142,14 +142,13 @@ module.exports = {
 				ripple: 'ripple 750ms ease-out 1 forwards',
 				'spin-eased': 'spin 1.5s ease-in-out infinite',
 			},
-			// custom color classes for text, background, border, etc.
-			textColor: kivaColors.tailwindProperties.textColor,
-			placeholderColor: kivaColors.tailwindProperties.textColor,
-			backgroundColor: kivaColors.tailwindProperties.backgroundColor,
-			borderColor: kivaColors.tailwindProperties.borderColor,
-			divideColor: kivaColors.tailwindProperties.borderColor,
-			ringColor: kivaColors.tailwindProperties.borderColor,
-			// end custom colors
+			// Color options since we aren't using the normal Tailwind color system.
+			textColor: buildColorChoices('text'),
+			placeholderColor: buildColorChoices('text'),
+			backgroundColor: buildColorChoices('background'),
+			borderColor: buildColorChoices('border'),
+			divideColor: buildColorChoices('border'),
+			ringColor: buildColorChoices('border'),
 		},
 	},
 	plugins: [
@@ -182,14 +181,14 @@ module.exports = {
 					borderTopWidth: borderWidths.default,
 				},
 			});
-			// themes
 			addBase({
+				// add our default theme CSS color properties to the root
+				// so they'll available for Tailwind classes
 				':root': {
-					...kivaColors.kivaThemes.static,
-					...kivaColors.kivaThemes.default,
+					...kivaThemes.static, // static colors
+					...kivaThemes.default, // themable colors
 				},
 			});
-			// end themes
 			addUtilities({
 				'.text-base': textStyles.textBase,
 				'.text-h1': textStyles.textH1,

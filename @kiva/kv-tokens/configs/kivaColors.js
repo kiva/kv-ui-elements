@@ -7,7 +7,6 @@ const mintTheme = designtokens.colors.theme.mint;
 
 /**
  * Loops through a theme object and builds a set of CSS custom properties
- * These custom properties can then be set on the :root, or a component.
  * They will be referenced by Tailwind classes.
  */
 const buildCSSCustomPropertiesFromTheme = (theme) => {
@@ -59,14 +58,33 @@ const withOpacity = (variableName) => ({ opacityValue }) => {
 	return `rgb(var(${variableName}))`;
 };
 
-const buildTailwindProperty = (prefix) => {
-	let twPrefix = prefix;
-	if (prefix === 'background') {
+/**
+ * By default, Tailwind creates classes automatically for coloring text, backgrounds,
+ * borders, etc. using its color system.
+ * Since we're not using the built-in color system, we need tell Tailwind the names of our colors
+ * and point them to a CSS custom property name.
+ *
+ * This function loops through the categories in our default theme,
+ * and returns a set of names and points them to the appropriate CSS property. e.g.,
+ * {
+ *   'text-primary': 'rgb(var(--text-primary))',
+ *   'text-secondary': 'rgb(var(--text-secondary))',
+ *   ...
+ *   'bg-primary': 'rgb(var(--bg-primary))',
+ *   'bg-secondary': 'rgb(var(--bg-secondary))',
+ *   ...
+ *   'border-primary': 'rgb(var(--border-primary))',
+ *   ...
+ * }
+ */
+const buildColorChoices = (themeProperty) => {
+	let twPrefix = themeProperty;
+	if (themeProperty === 'background') {
 		twPrefix = 'bg';
 	}
 
 	const property = {
-		// static properties that never change
+		// Colors that aren't themable
 		transparent: 'transparent',
 		current: 'currentColor',
 		black: withOpacity(`--${twPrefix}-black`),
@@ -75,25 +93,14 @@ const buildTailwindProperty = (prefix) => {
 	};
 
 	// themable properties
-	//  Read from the default theme since it will have all of the keys
-	Object.keys(defaultTheme[prefix]).forEach((key) => {
+	// Read from the default theme since it will have all of the keys
+	Object.keys(defaultTheme[themeProperty]).forEach((key) => {
 		property[key] = withOpacity(`--${twPrefix}-${key}`);
 	});
 	return property;
 };
 
-/**
- * These are used to set Tailwind config properties so you can write classes like
- * tw-text-primary, tw-border-primary, etc.
- * The values (e.g., --text-primary) need to match the keys in the kivaThemes object above.
- */
-const tailwindProperties = {
-	textColor: buildTailwindProperty('text'),
-	backgroundColor: buildTailwindProperty('background'),
-	borderColor: buildTailwindProperty('border'),
-};
-
 module.exports = {
+	buildColorChoices,
 	kivaThemes,
-	tailwindProperties,
 };
