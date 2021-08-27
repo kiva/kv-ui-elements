@@ -38,7 +38,7 @@
 									messageType === '' || messageType === 'confirmation'
 								),
 								'tw-bg-danger tw-text-primary-inverse' : messageType === 'error',
-								'tw-bg-caution tw-text-black' : messageType === 'warning',
+								'tw-bg-caution tw-text-primary' : messageType === 'warning',
 							}"
 						>
 							<kv-material-icon
