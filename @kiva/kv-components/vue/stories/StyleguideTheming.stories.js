@@ -106,22 +106,28 @@ export const Theming = (args, { argTypes }) => ({
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Theming</h1>
+		<h2>Default</h2>
 		${demoTemplate}
 
-		<p>Dark</p>
+		<h2>Dark</h2>
 		<kv-theme-provider theme="dark">
 			${demoTemplate}
 		</kv-theme-provider>
 
+		<h2>Mint</h2>
+		<kv-theme-provider theme="mint">
+			${demoTemplate}
+		</kv-theme-provider>
+
+		<h2>Custom</h2>
 		<p>For a one-off theme, pass an object of CSS custom properties to an inline style tag. You must use RGB values so tailwind's text and background opacity classes will still work.:
 		<p>Note when making a custom theme, you must specify the colors in rgb format. E.g., <code>--text-primary: 255, 0, 0;</code></p>
-		<h2 class="tw-text-h4 tw-mb-1">Custom</h2>
 		<kv-theme-provider :custom-theme="{
 			'--text-primary': '255, 0, 0',
 			'--text-secondary': '0, 255, 255',
 			'--text-action': '255, 255, 0',
 			'--text-action-highlight': '255, 200, 0',
-			'--bg-primary': '191, 229, 209',
+			'--bg-primary': '255, 255, 20',
 			'--bg-secondary': '191, 255, 191',
 			'--bg-secondary': '191, 255, 191',
 			'--bg-action': '0, 0, 100',
