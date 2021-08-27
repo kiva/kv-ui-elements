@@ -33,7 +33,7 @@
 			"DEFAULT": {
 				"text": {
 					"primary": "#212121",
-					"primary-inverse": "#FFFFFF",
+					"primary-inverse": "#F5F5F5",
 					"secondary": "#757575",
 					"tertiary": "#9E9E9E",
 					"accent": "#2AA967",
@@ -45,9 +45,9 @@
 				"background": {
 					"primary": "#FFFFFF",
 					"primary-inverse": "#000000",
-					"secondary": "#F5F5F5",
+					"secondary": "#C4C4C4",
 					"tertiary": "#E0E0E0",
-					"accent": "#2AA967",
+					"accent": "#F4FBF7",
 					"action": "#2B7C5F",
 					"action-highlight": "#277056",
 					"danger": "#E42A2A",
@@ -68,7 +68,7 @@
 			},
 			"dark": {
 				"text": {
-					"primary": "#F5F5F5",
+					"primary": "#C4C4C4",
 					"primary-inverse": "#212121",
 					"secondary": "#9E9E9E",
 					"tertiary": "#757575",
@@ -83,7 +83,7 @@
 					"primary-inverse": "#FFFFFF",
 					"secondary": "#212121",
 					"tertiary": "#454545",
-					"accent": "#2AA967",
+					"accent": "#19653E",
 					"action": "#4AB67E",
 					"action-highlight": "#6AC395",
 					"danger": "#E42A2A",
@@ -104,9 +104,9 @@
 			},
 			"mint": {
 				"text": {
-					"primary": "#212121",
-					"secondary": "#1D7748",
-					"accent": "#1D7748"
+					"secondary": "#228752",
+					"tertiary": "#28A062",
+					"accent": "#228752"
 				},
 				"background": {
 					"primary": "#95D4B3"
