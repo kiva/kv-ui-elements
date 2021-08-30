@@ -21,7 +21,7 @@
 			:class="{
 				'tw-bg-action hover:tw-bg-action-highlight tw-text-primary-inverse tw-border-action hover:tw-border-action-highlight'
 					: variant === 'primary',
-				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-secondary hover:tw-border-primary'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-tertiary hover:tw-border-primary'
 					: variant === 'secondary',
 				'tw-bg-danger hover:tw-bg-danger-highlight tw-text-primary-inverse tw-border-danger hover:tw-border-danger-highlight'
 					: variant === 'danger',
