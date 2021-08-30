@@ -42,8 +42,8 @@ const Template = (args, {
 			<kv-button @click="showToast(message, type, persist)">Show Toast</kv-button>
 
 			<!-- div below is a kludge for storybook docs -->
-			<div class="tw-fixed tw-inset-0 tw-pointer-events-none">
-				<div class="tw-fixed tw-z-toast tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
+			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
+				<div class="tw-fixed tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
 					<kv-toast ref="toastRef" @close="onClose" />
 				</div>
 			</div>

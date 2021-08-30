@@ -24,7 +24,7 @@
 			stroke-width="2"
 		>
 			<circle
-				class="tw-stroke-current tw-text-gray-300 tw-opacity-low"
+				class="tw-stroke-current tw-text-tertiary tw-opacity-low"
 				cx="12"
 				cy="12"
 				r="8"

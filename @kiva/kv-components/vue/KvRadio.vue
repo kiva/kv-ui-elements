@@ -30,7 +30,7 @@
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 				"
 				:class="{
-					'tw-border-gray-500' : !isChecked,
+					'tw-border-secondary' : !isChecked,
 					'tw-border-action' : isChecked
 				}"
 			>

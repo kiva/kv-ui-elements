@@ -22,5 +22,8 @@ const removeObjectProperty = (object, key) => {
 };
 
 module.exports = {
-	buildTailwindClassName, headerNumberCase, kebabCase, removeObjectProperty,
+	buildTailwindClassName,
+	headerNumberCase,
+	kebabCase,
+	removeObjectProperty,
 };

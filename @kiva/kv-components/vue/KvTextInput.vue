@@ -4,6 +4,7 @@
 			class="tw-relative tw-w-full "
 			:class="{ 'tw-opacity-low': disabled }"
 		>
+			<!-- eslint-disable max-len -->
 			<input
 				:id="id"
 				ref="textInputRef"
@@ -11,17 +12,19 @@
 				class="
 					tw-h-6 tw-w-full
 					tw-px-2
-					tw-border tw-border-gray-300 focus:tw-border-white
+					tw-border tw-border-tertiary
 					tw-rounded-sm
 					tw-appearance-none
 					tw-text-base
-					tw-placeholder-gray-300
-					tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action
+					tw-bg-primary
+					tw-placeholder-tertiary
+					tw-ring-inset
+					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent
 				"
 				:class="{
-					'tw-pr-6 tw-bg-danger tw-border-danger-700 tw-bg-opacity-low focus:tw-ring-danger-700'
+					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight'
 						: !valid,
-					'tw-bg-gray-100'
+					'tw-bg-tertiary'
 						: disabled,
 					'tw-pl-6' : icon,
 				}"
@@ -32,6 +35,7 @@
 				@input="onInput"
 				v-on="inputListeners"
 			>
+			<!-- eslint-enable max-len -->
 			<kv-material-icon
 				v-if="icon"
 				:icon="icon"

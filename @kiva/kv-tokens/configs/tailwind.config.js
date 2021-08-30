@@ -1,6 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
 const kivaTypography = require('./kivaTypography');
+const { kivaThemes, buildColorChoices } = require('./kivaColors');
 const designtokens = require('../primitives.json');
 const { rem } = require('./util');
 
@@ -19,7 +20,7 @@ const {
 module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
-	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-text-gray-800'
+	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-mb-2'
 	corePlugins: {
 		boxShadow: false,
 		container: false,
@@ -34,42 +35,7 @@ module.exports = {
 			xl: rem(breakpoints.xl),
 			print: { raw: 'print' }, // https://tailwindcss.com/docs/breakpoints#styling-for-print
 		},
-		colors: {
-			transparent: 'transparent',
-			current: 'currentColor',
-			black: colors.black,
-			white: colors.white,
-			gray: {
-				800: colors.gray['800'],
-				500: colors.gray['500'],
-				300: colors.gray['300'],
-				100: colors.gray['100'],
-				50: colors.gray['50'],
-			},
-			brand: {
-				700: colors.brand['700'],
-				650: colors.brand['650'],
-				DEFAULT: colors.brand.DEFAULT,
-				550: colors.brand['550'],
-				500: colors.brand['500'],
-				400: colors.brand['400'],
-				300: colors.brand['300'],
-				200: colors.brand['200'],
-				100: colors.brand['100'],
-				50: colors.brand['50'],
-			},
-			action: {
-				700: colors.action['700'],
-				DEFAULT: colors.action.DEFAULT,
-			},
-			caution: {
-				DEFAULT: colors.caution.DEFAULT,
-			},
-			danger: {
-				700: colors.danger['700'],
-				DEFAULT: colors.danger.DEFAULT,
-			},
-		},
+		colors: false, // colors are defined as custom properties below
 		spacing: {
 			0: '0',
 			0.5: rem(space['0.5']),
@@ -176,6 +142,13 @@ module.exports = {
 				ripple: 'ripple 750ms ease-out 1 forwards',
 				'spin-eased': 'spin 1.5s ease-in-out infinite',
 			},
+			// Color options since we aren't using the normal Tailwind color system.
+			textColor: buildColorChoices('text'),
+			placeholderColor: buildColorChoices('text'),
+			backgroundColor: buildColorChoices('background'),
+			borderColor: buildColorChoices('border'),
+			divideColor: buildColorChoices('border'),
+			ringColor: buildColorChoices('border'),
 		},
 	},
 	plugins: [
@@ -206,6 +179,14 @@ module.exports = {
 				hr: {
 					borderColor: colors.gray['500'],
 					borderTopWidth: borderWidths.default,
+				},
+			});
+			addBase({
+				// add our default theme CSS color properties to the root
+				// so they'll available for Tailwind classes
+				':root': {
+					...kivaThemes.static, // static colors
+					...kivaThemes.default, // themable colors
 				},
 			});
 			addUtilities({

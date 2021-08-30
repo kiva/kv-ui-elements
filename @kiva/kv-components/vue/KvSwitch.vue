@@ -22,7 +22,7 @@
 				class="
 					tw-w-7 tw-h-4 tw-rounded-full tw-relative tw-overflow-hidden
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
-					tw-bg-gray-300 peer-checked:tw-bg-action
+					tw-bg-tertiary peer-checked:tw-bg-action
 					tw-transition-all tw-ease-in-out
 				"
 			>

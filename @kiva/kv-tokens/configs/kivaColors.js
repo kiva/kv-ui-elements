@@ -1,0 +1,106 @@
+const { hexToRGB } = require('./util');
+const designtokens = require('../primitives.json');
+
+const defaultTheme = designtokens.colors.theme.DEFAULT;
+const darkTheme = designtokens.colors.theme.dark;
+const mintTheme = designtokens.colors.theme.mint;
+
+/**
+ * Loops through a theme object and builds a set of CSS custom properties
+ * They will be referenced by Tailwind classes.
+ */
+const buildCSSCustomPropertiesFromTheme = (theme) => {
+	const customProperties = {};
+	const themeCategories = Object.keys(theme);
+
+	themeCategories.forEach((category) => {
+		let twPrefix = category;
+		if (category === 'background') {
+			twPrefix = 'bg';
+		}
+
+		const properties = Object.keys(theme[category]);
+		properties.forEach((property) => {
+			customProperties[`--${twPrefix}-${property}`] = hexToRGB(theme[category][property]);
+		});
+	});
+	return customProperties;
+};
+
+/**
+ * An object containing CSS custom properties for all themes in our primitives file.
+ */
+const kivaThemes = {
+	static: {
+		'--text-black': hexToRGB(designtokens.colors.black),
+		'--text-white': hexToRGB(designtokens.colors.white),
+		'--text-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
+
+		'--bg-black': hexToRGB(designtokens.colors.black),
+		'--bg-white': hexToRGB(designtokens.colors.white),
+		'--bg-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
+
+		'--border-black': hexToRGB(designtokens.colors.black),
+		'--border-white': hexToRGB(designtokens.colors.white),
+		'--border-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
+	},
+	default: buildCSSCustomPropertiesFromTheme(defaultTheme),
+	dark: buildCSSCustomPropertiesFromTheme(darkTheme),
+	mint: buildCSSCustomPropertiesFromTheme(mintTheme),
+};
+
+// function to allow background opacity and text opacity with tailwind colors
+// https://www.youtube.com/watch?v=MAtaT8BZEAo
+const withOpacity = (variableName) => ({ opacityValue }) => {
+	if (opacityValue !== undefined) {
+		return `rgba(var(${variableName}), ${opacityValue})`;
+	}
+	return `rgb(var(${variableName}))`;
+};
+
+/**
+ * By default, Tailwind creates classes automatically for coloring text, backgrounds,
+ * borders, etc. using its color system.
+ * Since we're not using the built-in color system, we need tell Tailwind the names of our colors
+ * and point them to a CSS custom property name.
+ *
+ * This function loops through the categories in our default theme,
+ * and returns a set of names and points them to the appropriate CSS property. e.g.,
+ * {
+ *   'text-primary': 'rgb(var(--text-primary))',
+ *   'text-secondary': 'rgb(var(--text-secondary))',
+ *   ...
+ *   'bg-primary': 'rgb(var(--bg-primary))',
+ *   'bg-secondary': 'rgb(var(--bg-secondary))',
+ *   ...
+ *   'border-primary': 'rgb(var(--border-primary))',
+ *   ...
+ * }
+ */
+const buildColorChoices = (themeProperty) => {
+	let twPrefix = themeProperty;
+	if (themeProperty === 'background') {
+		twPrefix = 'bg';
+	}
+
+	const property = {
+		// Colors that aren't themable
+		transparent: 'transparent',
+		current: 'currentColor',
+		black: withOpacity(`--${twPrefix}-black`),
+		white: withOpacity(`--${twPrefix}-white`),
+		brand: withOpacity(`--${twPrefix}-brand`),
+	};
+
+	// themable properties
+	// Read from the default theme since it will have all of the keys
+	Object.keys(defaultTheme[themeProperty]).forEach((key) => {
+		property[key] = withOpacity(`--${twPrefix}-${key}`);
+	});
+	return property;
+};
+
+module.exports = {
+	buildColorChoices,
+	kivaThemes,
+};

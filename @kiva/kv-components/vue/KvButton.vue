@@ -19,15 +19,15 @@
 			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
 				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium"
 			:class="{
-				'tw-bg-action hover:tw-bg-action-700 tw-text-white tw-border-action hover:tw-border-action-700'
+				'tw-bg-action hover:tw-bg-action-highlight tw-text-primary-inverse tw-border-action hover:tw-border-action-highlight'
 					: variant === 'primary',
-				'tw-bg-white hover:tw-bg-gray-100 tw-text-gray-800 tw-border-gray-500 hover:tw-border-gray-800'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-secondary hover:tw-border-primary'
 					: variant === 'secondary',
-				'tw-bg-danger hover:tw-bg-danger-700 tw-text-white tw-border-danger hover:tw-border-danger-700'
+				'tw-bg-danger hover:tw-bg-danger-highlight tw-text-primary-inverse tw-border-danger hover:tw-border-danger-highlight'
 					: variant === 'danger',
-				'tw-bg-gray-800 tw-hover:bg-gray-500 tw-text-white tw-border-gray-800 hover:tw-border-gray-500'
+				'tw-bg-primary-inverse tw-text-primary-inverse tw-border-primary hover:tw-border-secondary'
 					: variant === 'link',
-				'tw-bg-white hover:tw-bg-gray-light tw-text-gray-800 tw-border-white hover:tw-bg-gray-100'
+				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-transparent'
 					: variant === 'ghost',
 			}"
 		>
@@ -170,7 +170,7 @@ export default {
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];
-			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-gray-300' : 'tw-bg-white';
+			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-tertiary' : 'tw-bg-primary';
 			blipEl.classList.add(blipBgColor);
 
 			// position the blip where the pointer click is or center it if keyboard

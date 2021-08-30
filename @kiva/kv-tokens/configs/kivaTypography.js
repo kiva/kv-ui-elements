@@ -2,7 +2,6 @@ const { rem, em } = require('./util');
 const designtokens = require('../primitives.json');
 
 const {
-	colors,
 	fontSizes,
 	fontWeights,
 	letterSpacings,
@@ -54,7 +53,7 @@ const webFonts = [
 ];
 
 /** BASE TEXT COLOR */
-const textBaseColor = colors.gray['800'];
+const textBaseColor = 'rgb(var(--text-primary))';
 
 /**
  REUSABLE TYPE STYLES
@@ -166,10 +165,10 @@ const textStyles = (() => {
 	};
 
 	const textLink = {
-		color: colors.action.DEFAULT,
+		color: 'rgb(var(--text-action))',
 		textDecoration: 'none',
 		'&:hover, &:focus': {
-			color: colors.action['700'],
+			color: 'rgb(var(--text-action-highlight))',
 			textDecoration: 'underline',
 		},
 	};
@@ -226,7 +225,7 @@ const proseOverrides = () => ({
 			'blockquote p:first-of-type::before': {
 				fontSize: '3em',
 				lineHeight: 1,
-				color: colors.gray['300'],
+				color: 'rgb(var(--text-tertiary))',
 				position: 'absolute',
 				top: em(-2, 16),
 				left: 0,
@@ -262,20 +261,24 @@ const proseOverrides = () => ({
 				fontSize: false,
 				marginTop: '0',
 				marginBottom: rem(space[4]),
+				color: textBaseColor,
 			},
 			h2: {
 				fontSize: false,
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
+				color: textBaseColor,
 			},
 			h3: {
 				fontSize: false,
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[2]),
+				color: textBaseColor,
 			},
 			h4: {
 				marginTop: false,
 				marginBottom: rem(space[4]),
+				color: textBaseColor,
 			},
 			img: false,
 			video: false,
@@ -296,8 +299,8 @@ const proseOverrides = () => ({
 			'h2 code': false,
 			'h3 code': false,
 			pre: {
-				color: colors.gray['100'],
-				backgroundColor: colors.gray['800'],
+				color: 'rgb(var(--text-primary))',
+				backgroundColor: 'rgb(var(--bg-primary-inverse))',
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
 				borderRadius: rem(radii.sm),

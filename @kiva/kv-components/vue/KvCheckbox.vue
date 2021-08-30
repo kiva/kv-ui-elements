@@ -27,7 +27,7 @@
 					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
-					tw-bg-white tw-border-gray-500
+					tw-bg-white tw-border-secondary
 					peer-checked:tw-bg-action peer-checked:tw-border-action
 				"
 			>
