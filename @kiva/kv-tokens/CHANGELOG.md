@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.9.0...@kiva/kv-tokens@0.10.0) (2021-08-30)
+
+
+### Features
+
+* **Theming:** Change tailwind class names to be themable. Adds KvThemeProvider component to set themes. ([0759c66](https://github.com/kiva/kv-ui-elements/commit/0759c669721acab61ca145b500f0860749aa85eb))
+
+
+
+
+
 # [0.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.7.0...@kiva/kv-tokens@0.9.0) (2021-08-19)
 
 
