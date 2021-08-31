@@ -8,12 +8,12 @@ export default {
 	title: 'Base Styling/Theming',
 };
 
+// TODO: build these from primitives file
 const textVariables = [
 	'tw-text-primary',
 	'tw-text-primary-inverse',
 	'tw-text-secondary',
 	'tw-text-tertiary',
-	'tw-text-accent',
 	'tw-text-action',
 	'tw-text-action-highlight',
 	'tw-text-danger',
@@ -25,7 +25,6 @@ const bgVariables = [
 	'tw-bg-primary-inverse',
 	'tw-bg-secondary',
 	'tw-bg-tertiary',
-	'tw-bg-accent',
 	'tw-bg-action',
 	'tw-bg-action-highlight',
 	'tw-bg-danger',

@@ -86,16 +86,23 @@ export default {
 	},
 	computed: {
 		themeStyles() {
+			let theme = {};
+			if (this.theme === '' || this.theme === 'default') { // Kludge until we remove the kv-tailwind prefix from UI
+				theme = kivaThemes.default;
+			}
 			if (this.theme === 'dark') {
-				return kivaThemes.dark;
+				theme = kivaThemes.dark;
 			}
 			if (this.theme === 'mint') {
-				return kivaThemes.mint;
+				theme = kivaThemes.mint;
 			}
 			if (this.customTheme) {
-				return this.customTheme;
+				theme = this.customTheme;
 			}
-			return {};
+			return {
+				...kivaThemes.static, // Kludge until we remove the kv-tailwind prefix from UI
+				...theme,
+			};
 		},
 	},
 };
