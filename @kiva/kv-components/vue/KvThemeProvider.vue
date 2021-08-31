@@ -99,10 +99,7 @@ export default {
 			if (this.customTheme) {
 				theme = this.customTheme;
 			}
-			return {
-				...kivaThemes.static, // Kludge until we remove the kv-tailwind prefix from UI
-				...theme,
-			};
+			return theme;
 		},
 	},
 };

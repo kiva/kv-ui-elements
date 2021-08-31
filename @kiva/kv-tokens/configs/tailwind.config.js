@@ -35,7 +35,15 @@ module.exports = {
 			xl: rem(breakpoints.xl),
 			print: { raw: 'print' }, // https://tailwindcss.com/docs/breakpoints#styling-for-print
 		},
-		colors: false, // colors are defined as custom properties below
+		colors: {
+			// static colors
+			transparent: 'transparent',
+			current: 'currentColor',
+			black: colors.black,
+			white: colors.white,
+			brand: colors.brand,
+			// themable colors are defined in the 'extend' section as custom properties
+		},
 		spacing: {
 			0: '0',
 			0.5: rem(space['0.5']),
