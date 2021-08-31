@@ -31,19 +31,6 @@ const buildCSSCustomPropertiesFromTheme = (theme) => {
  * An object containing CSS custom properties for all themes in our primitives file.
  */
 const kivaThemes = {
-	static: {
-		'--text-black': hexToRGB(designtokens.colors.black),
-		'--text-white': hexToRGB(designtokens.colors.white),
-		'--text-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
-
-		'--bg-black': hexToRGB(designtokens.colors.black),
-		'--bg-white': hexToRGB(designtokens.colors.white),
-		'--bg-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
-
-		'--border-black': hexToRGB(designtokens.colors.black),
-		'--border-white': hexToRGB(designtokens.colors.white),
-		'--border-brand': hexToRGB(designtokens.colors.brand.DEFAULT),
-	},
 	default: buildCSSCustomPropertiesFromTheme(defaultTheme),
 	dark: buildCSSCustomPropertiesFromTheme(darkTheme),
 	mint: buildCSSCustomPropertiesFromTheme(mintTheme),
@@ -83,15 +70,7 @@ const buildColorChoices = (themeProperty) => {
 		twPrefix = 'bg';
 	}
 
-	const property = {
-		// Colors that aren't themable
-		transparent: 'transparent',
-		current: 'currentColor',
-		black: withOpacity(`--${twPrefix}-black`),
-		white: withOpacity(`--${twPrefix}-white`),
-		brand: withOpacity(`--${twPrefix}-brand`),
-	};
-
+	const property = {};
 	// themable properties
 	// Read from the default theme since it will have all of the keys
 	Object.keys(defaultTheme[themeProperty]).forEach((key) => {
