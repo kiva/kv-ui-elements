@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.10.1...@kiva/kv-tokens@0.11.0) (2021-08-31)
+
+
+### Features
+
+* Add themable gradient and ring offset colors to Tailwind ([dd40c1e](https://github.com/kiva/kv-ui-elements/commit/dd40c1e4ab3781def735057730baea414b451190))
+
+
+
+
+
 ## [0.10.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.10.0...@kiva/kv-tokens@0.10.1) (2021-08-31)
 
 **Note:** Version bump only for package @kiva/kv-tokens
