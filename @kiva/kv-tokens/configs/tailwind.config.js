@@ -154,9 +154,11 @@ module.exports = {
 			textColor: buildColorChoices('text'),
 			placeholderColor: buildColorChoices('text'),
 			backgroundColor: buildColorChoices('background'),
+			gradientColorStops: buildColorChoices('background'),
 			borderColor: buildColorChoices('border'),
 			divideColor: buildColorChoices('border'),
 			ringColor: buildColorChoices('border'),
+			ringOffsetColor: buildColorChoices('border'),
 		},
 	},
 	plugins: [
