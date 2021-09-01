@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.11.0...@kiva/kv-tokens@0.11.1) (2021-09-01)
+
+
+### Bug Fixes
+
+* **typography:** Add missing letter spacing value used by text-subhead ([b62d96a](https://github.com/kiva/kv-ui-elements/commit/b62d96a629b793cd92b6bc827e47249c44cafaea))
+
+
+
+
+
 # [0.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.10.1...@kiva/kv-tokens@0.11.0) (2021-08-31)
 
 
