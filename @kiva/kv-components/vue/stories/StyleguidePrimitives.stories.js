@@ -1,8 +1,11 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
 import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config';
 import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
-import KvPageContainer from '../KvPageContainer.vue';
 import KvGrid from '../KvGrid.vue';
+import KvPageContainer from '../KvPageContainer.vue';
+import KvTab from '../KvTab.vue';
+import KvTabs from '../KvTabs.vue';
+import KvTabPanel from '../KvTabPanel.vue';
 import KvToast from '../KvToast.vue';
 
 const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils');
@@ -33,85 +36,194 @@ export default {
 export const Primitives = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
-		KvPageContainer,
 		KvGrid,
+		KvPageContainer,
+		KvTab,
+		KvTabs,
+		KvTabPanel,
 		KvToast,
 	},
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Primitives</h1>
 		<section class="tw-py-8">
-			<h2 class="tw-mb-4">Colors</h2>
-
-			<h3>Background Color</h3>
-			<kv-grid
-				as="ul"
-				class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5"
-			>
-				<li
-					v-for="color in backgroundColor"
-					:key="buildClassName('bg', color[0])"
-				>
-					<button
-						class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-bg', color[0]))"
-					>
-						<div
-							class="tw-w-full tw-h-0 tw-block tw-mb-1"
-							style="padding-bottom: 100%;"
-							:class="buildClassName('tw-bg', color[0])"
+			<h2 class="tw-mb-4">Background Colors</h2>
+			<kv-tabs>
+				<template #tabNav>
+					<kv-tab for="bg_themable">Themable</kv-tab>
+					<kv-tab for="bg_static">Static</kv-tab>
+				</template>
+				<template #tabPanels>
+					<kv-tab-panel id="bg_themable">
+						<kv-grid
+							as="ul"
+							class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5"
 						>
-						</div>
-						<div class="tw-w-full">
-							.{{buildClassName('tw-bg', color[0])}}
-							<br><small class="tw-text-tertiary">var({{buildClassName('--bg', color[0])}})</small>
-						</div>
-					</button>
-				</li>
-			</kv-grid>
-
-			<h3>Text Color</h3>
-			<table>
-				<tbody>
-					<tr
-						v-for="color in textColor"
-						:key="buildClassName('text-color', color[0])"
-					>
-						<td class="tw-py-1 tw-min-w-[300px]">
-							<button
-								class="hover:tw-text-action-highlight"
-								:class="buildClassName('tw-text', color[0])"
-								@click="copy(buildClassName('tw-text', color[0]))"
-							>.{{buildClassName('tw-text', color[0])}}</button>
-						</td>
-						<td>
-							<small class="tw-text-tertiary">var({{buildClassName('--text', color[0])}})</small>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-
-
-			<h3>Border Color</h3>
-			<table>
-				<tbody>
-					<tr
-						v-for="color in borderColor"
-						:key="buildClassName('border-color', color[0])"
-					>
-						<td class="tw-py-1 tw-min-w-[300px]">
-							<button
-								class="tw-border hover:tw-text-action-highlight"
-								:class="buildClassName('tw-border', color[0])"
-								@click="copy(buildClassName('tw-border', color[0]))"
-							>.{{buildClassName('tw-border', color[0])}}</button>
-						</td>
-						<td>
-							<small class="tw-text-tertiary">var({{buildClassName('--border', color[0])}})</small>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+							<li
+								v-for="color in backgroundColor"
+								v-if="!isStaticColor(color)"
+								:key="buildClassName('bg', color[0])"
+							>
+								<button
+									class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-bg', color[0]))"
+								>
+									<div
+										class="tw-w-full tw-h-0 tw-block tw-mb-1"
+										style="padding-bottom: 100%;"
+										:class="buildClassName('tw-bg', color[0])"
+									>
+									</div>
+									<div class="tw-w-full">
+										.{{buildClassName('tw-bg', color[0])}}
+										<br><small class="tw-text-tertiary">var({{buildClassName('--bg', color[0])}})</small>
+									</div>
+								</button>
+							</li>
+						</kv-grid>
+					</kv-tab-panel>
+					<kv-tab-panel id="bg_static">
+						<kv-grid
+							as="ul"
+							class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5"
+						>
+							<li
+								v-for="color in backgroundColor"
+								v-if="isStaticColor(color)"
+								:key="buildClassName('bg', color[0])"
+							>
+								<button
+									class="tw-flex tw-flex-col tw-h-full tw-w-full tw-text-left tw-border tw-rounded tw-p-1.5 tw-border-tertiary tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-bg', color[0]))"
+								>
+									<div
+										class="tw-w-full tw-h-0 tw-block tw-mb-1"
+										style="padding-bottom: 100%;"
+										:class="buildClassName('tw-bg', color[0])"
+									>
+									</div>
+									<div class="tw-w-full">
+										.{{buildClassName('tw-bg', color[0])}}
+										<br><small class="tw-text-tertiary">{{color[1]}}</small>
+									</div>
+								</button>
+							</li>
+						</kv-grid>
+					</kv-tab-panel>
+				</template>
+			</kv-tabs>
+		</section>
+		<hr>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Text Colors</h2>
+			<kv-tabs>
+				<template #tabNav>
+					<kv-tab for="text_themable">Themable</kv-tab>
+					<kv-tab for="text_static">Static</kv-tab>
+				</template>
+				<template #tabPanels>
+					<kv-tab-panel id="text_themable">
+						<table>
+							<tbody>
+								<tr
+									v-for="color in textColor"
+									v-if="!isStaticColor(color)"
+									:key="buildClassName('text-color', color[0])"
+								>
+									<td class="tw-py-1 tw-min-w-[300px]">
+										<button
+											class="hover:tw-text-action-highlight"
+											:class="buildClassName('tw-text', color[0])"
+											@click="copy(buildClassName('tw-text', color[0]))"
+										>.{{buildClassName('tw-text', color[0])}}</button>
+									</td>
+									<td>
+										<small class="tw-text-tertiary">var({{buildClassName('--text', color[0])}})</small>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</kv-tab-panel>
+					<kv-tab-panel id="text_static">
+						<table>
+							<tbody>
+								<tr
+									v-for="color in textColor"
+									v-if="isStaticColor(color)"
+									:key="buildClassName('text-color', color[0])"
+								>
+									<td class="tw-py-1 tw-min-w-[300px]">
+										<button
+											class="hover:tw-text-action-highlight"
+											:class="buildClassName('tw-text', color[0])"
+											@click="copy(buildClassName('tw-text', color[0]))"
+										>.{{buildClassName('tw-text', color[0])}}</button>
+									</td>
+									<td>
+										<small class="tw-text-tertiary">var({{buildClassName('--text', color[0])}})</small>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</kv-tab-panel>
+				</template>
+			</kv-tabs>
+		</section>
+		<hr>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Border/Ring Colors</h2>
+			<kv-tabs>
+				<template #tabNav>
+					<kv-tab for="border_themable">Themable</kv-tab>
+					<kv-tab for="border_static">Static</kv-tab>
+				</template>
+				<template #tabPanels>
+					<kv-tab-panel id="border_themable">
+						<table>
+							<tbody>
+								<tr
+									v-for="color in borderColor"
+									v-if="!isStaticColor(color)"
+									:key="buildClassName('border-color', color[0])"
+								>
+									<td class="tw-py-2 tw-min-w-[300px]">
+										<button
+											class="tw-ring-4 hover:tw-text-action-highlight"
+											:class="buildClassName('tw-ring', color[0])"
+											@click="copy(buildClassName('tw-border', color[0]))"
+										>.{{buildClassName('tw-border', color[0])}}</button>
+									</td>
+									<td>
+										<small class="tw-text-tertiary">var({{buildClassName('--border', color[0])}})</small>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</kv-tab-panel>
+					<kv-tab-panel id="border_static">
+						<table>
+							<tbody>
+								<tr
+									v-for="color in borderColor"
+									v-if="isStaticColor(color)"
+									:key="buildClassName('border-color', color[0])"
+								>
+									<td class="tw-py-2 tw-min-w-[300px]">
+										<button
+											class="tw-ring-4 hover:tw-text-action-highlight"
+											:class="buildClassName('tw-ring', color[0])"
+											@click="copy(buildClassName('tw-border', color[0]))"
+										>.{{buildClassName('tw-border', color[0])}}</button>
+									</td>
+									<td>
+										<small class="tw-text-tertiary">var({{buildClassName('--border', color[0])}})</small>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</kv-tab-panel>
+				</template>
+			</kv-tabs>
 		</section>
 		<hr>
 		<section class="tw-py-8">
@@ -321,6 +433,11 @@ export const Primitives = (args, { argTypes }) => ({
 			let name = `${prefix}-${value}`;
 			name = name.replace('-DEFAULT', '');
 			return name;
+		},
+		isStaticColor(colorName) {
+			const staticColors = ['transparent', 'current', 'brand', 'black', 'white'];
+			const isStatic = staticColors.some((staticColor) => colorName[0].includes(staticColor));
+			return isStatic;
 		},
 	},
 });

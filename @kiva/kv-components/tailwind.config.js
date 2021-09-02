@@ -29,6 +29,7 @@ function buildValuesFromThemeObj(initialObj) {
 // generated dynamically and JIT purge won't see those class names.
 const backgroundColor = buildValuesFromThemeObj(theme.backgroundColor);
 const borderColor = buildValuesFromThemeObj(theme.borderColor);
+const ringColor = buildValuesFromThemeObj(theme.ringColor);
 const textColor = buildValuesFromThemeObj(theme.textColor);
 const space = buildValuesFromThemeObj(theme.spacing);
 const kivaTypography = Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', ''));
@@ -40,6 +41,7 @@ const zIndices = buildValuesFromThemeObj(theme.zIndex);
 const safelist = [
 	...backgroundColor.map((color) => buildTailwindClassName(`${themePrefix}bg`, color)),
 	...borderColor.map((color) => buildTailwindClassName(`${themePrefix}border`, color)),
+	...ringColor.map((color) => buildTailwindClassName(`${themePrefix}ring`, color)),
 	...textColor.map((color) => buildTailwindClassName(`${themePrefix}text`, color)),
 	...space.map((spaceVal) => buildTailwindClassName(`${themePrefix}w`, spaceVal)),
 	...kivaTypography.map((type) => buildTailwindClassName(`${themePrefix}text`, type)),
