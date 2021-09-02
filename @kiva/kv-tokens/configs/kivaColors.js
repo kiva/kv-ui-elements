@@ -1,15 +1,17 @@
 const { hexToRGB } = require('./util');
 const designtokens = require('../primitives.json');
 
-const defaultTheme = designtokens.colors.theme.DEFAULT;
-const darkTheme = designtokens.colors.theme.dark;
-const mintTheme = designtokens.colors.theme.mint;
+const {
+	DEFAULT: defaultThemeTokens,
+	dark: darkThemeTokens,
+	mint: mintThemeTokens,
+} = designtokens.colors.theme;
 
 /**
  * Loops through a theme object and builds a set of CSS custom properties
  * They will be referenced by Tailwind classes.
  */
-const buildCSSCustomPropertiesFromTheme = (theme) => {
+const buildCSSVarsFromTokens = (theme) => {
 	const customProperties = {};
 	const themeCategories = Object.keys(theme);
 
@@ -27,14 +29,9 @@ const buildCSSCustomPropertiesFromTheme = (theme) => {
 	return customProperties;
 };
 
-/**
- * An object containing CSS custom properties for all themes in our primitives file.
- */
-const kivaThemes = {
-	default: buildCSSCustomPropertiesFromTheme(defaultTheme),
-	dark: buildCSSCustomPropertiesFromTheme(darkTheme),
-	mint: buildCSSCustomPropertiesFromTheme(mintTheme),
-};
+const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
+const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
+const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
 
 // function to allow background opacity and text opacity with tailwind colors
 // https://www.youtube.com/watch?v=MAtaT8BZEAo
@@ -73,7 +70,7 @@ const buildColorChoices = (themeProperty) => {
 	const property = {};
 	// themable properties
 	// Read from the default theme since it will have all of the keys
-	Object.keys(defaultTheme[themeProperty]).forEach((key) => {
+	Object.keys(defaultThemeTokens[themeProperty]).forEach((key) => {
 		property[key] = withOpacity(`--${twPrefix}-${key}`);
 	});
 	return property;
@@ -81,5 +78,7 @@ const buildColorChoices = (themeProperty) => {
 
 module.exports = {
 	buildColorChoices,
-	kivaThemes,
+	defaultTheme,
+	darkTheme,
+	mintTheme,
 };
