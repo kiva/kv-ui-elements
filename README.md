@@ -3,8 +3,8 @@
 Monorepo containing design definitions and UI components for Kiva's style guide.
 
 -   [Storybook](https://main--608b4cf87f686c00213841b1.chromatic.com/?path=/docs/base-styling-primitives--primitives)
--   [Design definitions and Tailwind Config](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-components)
--   [UI Component library](https://github.com/kiva/kv-ui-elements/@kiva/kv-components)
+-   [Design definitions and Tailwind Config](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-tokens)
+-   [UI Component library](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-components)
 
 ## Contribution Guidelines
 
