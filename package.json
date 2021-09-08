@@ -12,8 +12,7 @@
     "prepare": "husky install",
     "publish-release": "lerna publish",
     "storybook": "npm run storybook -w @kiva/kv-components",
-    "build-storybook": "npm run build-storybook -w @kiva/kv-components",
-    "tailwind-config-viewer": "npm run tailwind-config-viewer -w @kiva/kv-tokens"
+    "build-storybook": "npm run build-storybook -w @kiva/kv-components"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",

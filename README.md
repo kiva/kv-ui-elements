@@ -1,77 +1,13 @@
 # kv-ui-elements
-Design definitions and components for Kiva's style guide
-* View our [component library](https://main--608b4cf87f686c00213841b1.chromatic.com)
-* View our Tailwind config viewer: TBD
 
-## Installing
-$ `npm install https://github.com/kiva/kv-ui-elements`
-## Consuming Components
-To use these Vue components within into your project, you'll need to install Tailwind, use our config as a preset, then import the components you like.
+Monorepo containing design definitions and UI components for Kiva's style guide.
 
-1. [Install tailwind](https://tailwindcss.com/docs/installation) into your project
-2. Add our tailwind config as a [preset](https://tailwindcss.com/docs/configuration#presets) in your tailwind.config.js
-```
-// tailwind.config.js
-module.exports = {
-  presets: [
-    require('kv-ui-elements/kv-tokens/configs/tailwind.config.js')
-  ],
-  // Project-specific customizations
-  theme: {
-    //...
-  },
-  purge: [
-    './src/**/*.html',
-    './src/**/*.vue',
-    //...
-  ],
-  // ...
-}
-```
-3. Import and use the Vue SFC components
-```
-<template>
-  <div class="container">
-    <h2 class="text-2xl">Test</h2>
-    <kv-button>Lend today</kv-button>
-  </div>
-</template>
-
-<script>
-import KvButton from 'kv-ui-elements/kv-components/vue/KvButton.vue';
-export default {
-  components: {
-    KvButton
-  }
-}
-</script>
-```
-## Design tokens and Tailwind configs
-### Design tokens
-Importing:
-`import tokens from kv-ui-elements/kv-tokens/primitives.json`
-
-### Tailwind config viewer
-For Node versions 15.13.x and above you can run the [Tailwind Config Viewer](https://github.com/rogden/tailwind-config-viewer) from the root directory
-$ `npm run tailwind-config-viewer`;
-
-Otherwise,
-$ `cd kv-tokens && npm run tailwind-config-viewer`
-
-## Developing
-Pull down and $ `npm install`
-
-### Developing Components with Storybook
-For Node versions 15.13.x and above you can run Storybook from the root directory
-$ `npm run storybook`
-
-Otherwise,
-$ `cd kv-components && npm run storybook`
-
-You can now edit Vue components or their stories and see the changes with live reload. If you edit `kv-tokens/primitives.json` or `kv-tokens/configs/tailwind.config.js` you'll need to rebuild storybook to see those changes.
-
+-   [Storybook](https://main--608b4cf87f686c00213841b1.chromatic.com/?path=/docs/base-styling-primitives--primitives)
+-   [Design definitions and Tailwind Config](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-components)
+-   [UI Component library](https://github.com/kiva/kv-ui-elements/@kiva/kv-components)
 
 ## Contribution Guidelines
+
 The Kiva UI project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
 
 Kiva welcomes outside contributions to our UI repository. If you have any ideas for a feature or improvement, create an issue and we can discuss whether it makes sense to create a pull request. Thanks for the help!
