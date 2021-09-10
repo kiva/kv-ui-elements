@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.19.5...@kiva/kv-components@0.19.6) (2021-09-10)
+
+
+### Bug Fixes
+
+* fixes randomness in storybook stories for kvCarousel ([#111](https://github.com/kiva/kv-ui-elements/issues/111)) ([2ccbee2](https://github.com/kiva/kv-ui-elements/commit/2ccbee234b47f422caa4c4b93b992ae96efb0c26))
+
+
+
+
+
 ## [0.19.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.19.4...@kiva/kv-components@0.19.5) (2021-09-08)
 
 **Note:** Version bump only for package @kiva/kv-components
