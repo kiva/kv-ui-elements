@@ -2,11 +2,31 @@ import KvCarousel from '../KvCarousel.vue';
 import KvLoadingSpinner from '../KvLoadingSpinner.vue';
 import KvButton from '../KvButton.vue';
 
-const randomHexColor = () => Math.floor(Math.random() * 16777215).toString(16);
+const randomHexColor = (index) => {
+	const defaultColor = '96d4b3';
+	const colorArray = [
+		'D5573B',
+		'885053',
+		'777DA7',
+		'94C9A9',
+		'C6ECAE',
+		'C490D1',
+		'A0D2DB',
+		'7D8CC4',
+		'726DA8',
+	];
+	return colorArray?.[index] || defaultColor;
+};
 
 // This is not an actual loan card template, just a vague
 // approximation to make testing in the stories nicer
-const generateLoanCardTemplate = () => {
+const generateLoanCardTemplate = (index) => {
+	const amounts = [
+		'100',
+		'2,255',
+		'50',
+		'41,900',
+	];
 	const cardCopy = [
 		'A loan of $5,450 helps a member to buy flour, eggs, lard, sugar, sweets and other...',
 		'A loan of $1,125 helps to face the financial problem of covering tuition fees.',
@@ -15,10 +35,10 @@ const generateLoanCardTemplate = () => {
 
 	return `
 		<div style="width: 336px">
-			<img src="https://via.placeholder.com/336x252/${randomHexColor()}/000000" class="tw-w-full tw-rounded tw-mb-2">
+			<img src="https://via.placeholder.com/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
 			<h3>Card Title</h3>
-			<h4 class="tw-my-1">$${Math.floor(Math.random() * (10000 - 50) + 50)} to go</h4>
-			<p class="tw-mt-1 tw-mb-9">${cardCopy[Math.floor(Math.random() * cardCopy.length)]}</p>
+			<h4 class="tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
+			<p class="tw-mt-1 tw-mb-9">${cardCopy?.[index] || cardCopy?.[1]}</p>
 			<kv-button
 				variant="primary"
 			>
@@ -29,16 +49,16 @@ const generateLoanCardTemplate = () => {
 
 const defaultCarouselSlides = `
 	<template #slide1>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor()}/000000" class="tw-w-full">
+		<img src="https://via.placeholder.com/300x220/${randomHexColor(1)}/000000" class="tw-w-full">
 	</template>
 	<template #slide2>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor()}/000000" class="tw-w-full">
+		<img src="https://via.placeholder.com/300x220/${randomHexColor(2)}/000000" class="tw-w-full">
 	</template>
 	<template #slide3>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor()}/000000" class="tw-w-full">
+		<img src="https://via.placeholder.com/300x220/${randomHexColor(3)}/000000" class="tw-w-full">
 	</template>
 	<template #slide4>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor()}/000000" class="tw-w-full">
+		<img src="https://via.placeholder.com/300x220/${randomHexColor(4)}/000000" class="tw-w-full">
 	</template>
 `;
 
@@ -82,19 +102,19 @@ export const MultipleLoanCards = () => ({
 			class="tw-w-full"
 		>
 			<template #slide1>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(1)}
 			</template>
 			<template #slide2>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(2)}
 			</template>
 			<template #slide3>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(3)}
 			</template>
 			<template #slide4>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(4)}
 			</template>
 			<template #slide5>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(5)}
 			</template>
 		</kv-carousel>
 	`,
@@ -114,31 +134,31 @@ export const MultipleLoanCards2 = () => ({
 			class="tw-w-full"
 		>
 			<template #slide1>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(1)}
 			</template>
 			<template #slide2>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(2)}
 			</template>
 			<template #slide3>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(3)}
 			</template>
 			<template #slide4>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(4)}
 			</template>
 			<template #slide5>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(5)}
 			</template>
 			<template #slide6>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(6)}
 			</template>
 			<template #slide7>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(7)}
 			</template>
 			<template #slide8>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(8)}
 			</template>
 			<template #slide9>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(9)}
 			</template>
 		</kv-carousel>
 	`,
@@ -164,7 +184,7 @@ export const loadingLoanCardExample = () => ({
 			@change="onCarouselSlideChange"
 		>
 			<template #slide1>
-				${generateLoanCardTemplate()}
+				${generateLoanCardTemplate(1)}
 			</template>
 			<template #slide2>
 				<div style="width: 336px">
