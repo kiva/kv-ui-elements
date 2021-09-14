@@ -33,7 +33,7 @@
     "jest-axe": "^5.0.1",
     "postcss": "^8.3.0",
     "storybook-dark-mode": "^1.0.8",
-    "tailwindcss": "2.2.4",
+    "tailwindcss": "2.2.15",
     "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12"
