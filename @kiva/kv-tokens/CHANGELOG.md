@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.11.3...@kiva/kv-tokens@0.12.0) (2021-09-14)
+
+
+### Features
+
+* **KvThemeProvider:** Add darkGreen theme ([8eaf80c](https://github.com/kiva/kv-ui-elements/commit/8eaf80cd9063d6f4468b131464ca1b7f5d127360))
+
+
+
+
+
 ## [0.11.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.11.2...@kiva/kv-tokens@0.11.3) (2021-09-14)
 
 **Note:** Version bump only for package @kiva/kv-tokens
