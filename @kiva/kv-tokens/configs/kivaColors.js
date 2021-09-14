@@ -4,6 +4,7 @@ const designtokens = require('../primitives.json');
 const {
 	DEFAULT: defaultThemeTokens,
 	dark: darkThemeTokens,
+	'dark-green': darkGreenThemeTokens,
 	mint: mintThemeTokens,
 } = designtokens.colors.theme;
 
@@ -32,6 +33,7 @@ const buildCSSVarsFromTokens = (theme) => {
 const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
 const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
 const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
+const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
 
 // function to allow background opacity and text opacity with tailwind colors
 // https://www.youtube.com/watch?v=MAtaT8BZEAo
@@ -80,5 +82,6 @@ module.exports = {
 	buildColorChoices,
 	defaultTheme,
 	darkTheme,
+	darkGreenTheme,
 	mintTheme,
 };
