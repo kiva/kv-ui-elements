@@ -1,18 +1,19 @@
 import primitives from '@kiva/kv-tokens/primitives.json';
+import { defaultTheme, darkTheme, mintTheme } from '@kiva/kv-tokens/configs/kivaColors';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 import KvTextLink from '../KvTextLink.vue';
 import KvThemeProvider from '../KvThemeProvider.vue';
 
-const defaultTheme = primitives.colors.theme.DEFAULT;
+const defaultThemeTokens = primitives.colors.theme.DEFAULT;
 
 const buildTailwindClasses = (prefix) => {
 	let twPrefix = prefix;
 	if (prefix === 'background') {
 		twPrefix = 'bg';
 	}
-	return Object.keys(defaultTheme[prefix]).map((key) => `tw-${twPrefix}-${key}`);
+	return Object.keys(defaultThemeTokens[prefix]).map((key) => `tw-${twPrefix}-${key}`);
 };
 
 export default {
@@ -98,10 +99,13 @@ const Template = (args, {
 			bgVariables: buildTailwindClasses('background'),
 			textVariables: buildTailwindClasses('text'),
 			borderVariables: buildTailwindClasses('border'),
+			defaultTheme,
+			darkTheme,
+			mintTheme,
 		};
 	},
 	template: `
-		<kv-theme-provider :theme="theme" :custom-theme="customTheme">
+		<kv-theme-provider :theme="theme">
 			${demoTemplate}
 		</kv-theme-provider>`,
 });
@@ -110,18 +114,17 @@ export const Default = Template.bind({});
 
 export const Dark = Template.bind({});
 Dark.args = {
-	theme: 'dark',
+	theme: darkTheme,
 };
 
 export const Mint = Template.bind({});
 Mint.args = {
-	theme: 'mint',
+	theme: mintTheme,
 };
 
 export const Custom = Template.bind({});
 Custom.args = {
-	theme: '',
-	customTheme: {
+	theme: {
 		'--text-primary': '255, 0, 0',
 		'--text-secondary': '0, 255, 255',
 		'--text-action': '255, 255, 0',

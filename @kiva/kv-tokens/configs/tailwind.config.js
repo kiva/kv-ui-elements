@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
 const kivaTypography = require('./kivaTypography');
-const { kivaThemes, buildColorChoices } = require('./kivaColors');
+const { defaultTheme, buildColorChoices } = require('./kivaColors');
 const designtokens = require('../primitives.json');
 const { rem } = require('./util');
 
@@ -194,10 +194,7 @@ module.exports = {
 			addBase({
 				// add our default theme CSS color properties to the root
 				// so they'll available for Tailwind classes
-				':root': {
-					...kivaThemes.static, // static colors
-					...kivaThemes.default, // themable colors
-				},
+				':root': defaultTheme, // themable colors
 			});
 			addUtilities({
 				'.text-base': textStyles.textBase,
