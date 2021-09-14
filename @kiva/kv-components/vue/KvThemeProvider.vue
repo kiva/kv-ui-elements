@@ -16,7 +16,12 @@
  *
  * @usage
  * ```
- * import { darkTheme, mintTheme, defaultTheme } from '@kiva/kv-tokens/configs/kivaColors';
+ * import {
+ *   darkTheme,
+ *   darkGreenTheme,
+ *   mintTheme,
+ *   defaultTheme
+ * } from '@kiva/kv-tokens/configs/kivaColors';
  * ...
  * data() { return darkTheme },
  * ...
