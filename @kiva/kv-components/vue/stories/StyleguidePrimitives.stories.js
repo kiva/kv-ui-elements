@@ -236,7 +236,7 @@ export const Primitives = (args, { argTypes }) => ({
 				>
 					<button
 						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('text', typeStyle))"
+						@click="copy(buildClassName('tw-text', typeStyle))"
 					>
 						<p
 							class="tw-mb-1"
