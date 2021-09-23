@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.20.3...@kiva/kv-components@0.20.4) (2021-09-23)
+
+
+### Bug Fixes
+
+* Fix lightboxes being cut off vertically on mobile ([#116](https://github.com/kiva/kv-ui-elements/issues/116)) ([23dd4d9](https://github.com/kiva/kv-ui-elements/commit/23dd4d91ba9aa4178644afe1cbd2bdf98de0d05a))
+
+
+
+
+
 ## [0.20.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.20.2...@kiva/kv-components@0.20.3) (2021-09-23)
 
 **Note:** Version bump only for package @kiva/kv-components
