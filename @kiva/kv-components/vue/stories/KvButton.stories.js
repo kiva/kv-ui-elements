@@ -95,6 +95,11 @@ StateLoading.args = {
 	state: 'loading',
 };
 
+export const StateActive = VariantTemplate.bind({});
+StateActive.args = {
+	state: 'active',
+};
+
 export const StateDisabled = VariantTemplate.bind({});
 StateDisabled.args = {
 	state: 'disabled',

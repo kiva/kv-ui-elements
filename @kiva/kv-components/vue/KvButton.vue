@@ -18,18 +18,7 @@
 			ref="buttonInnerRef"
 			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
 				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium"
-			:class="{
-				'tw-bg-action hover:tw-bg-action-highlight tw-text-primary-inverse tw-border-action hover:tw-border-action-highlight'
-					: variant === 'primary',
-				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-tertiary hover:tw-border-primary'
-					: variant === 'secondary',
-				'tw-bg-danger hover:tw-bg-danger-highlight tw-text-primary-inverse tw-border-danger hover:tw-border-danger-highlight'
-					: variant === 'danger',
-				'tw-bg-primary-inverse tw-text-primary-inverse tw-border-primary hover:tw-border-secondary'
-					: variant === 'link',
-				'tw-bg-primary hover:tw-bg-secondary tw-text-primary tw-border-transparent'
-					: variant === 'ghost',
-			}"
+			:class="computedClass"
 		>
 			<!-- eslint-enable max-len -->
 			<template v-if="state === 'loading'">
@@ -94,13 +83,13 @@ export default {
 		},
 		/**
 		 * State of the button
-		 * `'' (default), disabled, loading`
+		 * `'' (default), active, disabled, loading`
 		 * */
 		state: {
 			type: String,
 			default: '',
 			validator(value) {
-				return ['', 'disabled', 'loading'].includes(value);
+				return ['', 'active', 'disabled', 'loading'].includes(value);
 			},
 		},
 	},
@@ -117,6 +106,53 @@ export default {
 				default:
 					return 'white';
 			}
+		},
+		computedClass() {
+			let classes = '';
+			switch (this.variant) {
+				case 'primary':
+				default:
+					classes = 'tw-text-primary-inverse';
+					if (this.state === 'active') {
+						classes = `${classes} tw-bg-action-highlight tw-border-action-highlight`;
+					} else {
+						classes = `${classes} tw-bg-action hover:tw-bg-action-highlight tw-border-action hover:tw-border-action-highlight`;
+					}
+					break;
+				case 'secondary':
+					classes = 'tw-text-primary';
+					if (this.state === 'active') {
+						classes = `${classes} tw-bg-secondary tw-border-primary`;
+					} else {
+						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-tertiary hover:tw-border-primary`;
+					}
+					break;
+				case 'danger':
+					classes = 'tw-text-primary-inverse';
+					if (this.state === 'active') {
+						classes = `${classes} tw-bg-danger-highlight tw-border-danger-highlight`;
+					} else {
+						classes = `${classes} tw-bg-danger hover:tw-bg-danger-highlight tw-border-danger hover:tw-border-danger-highlight`;
+					}
+					break;
+				case 'link':
+					classes = 'tw-bg-primary-inverse tw-text-primary-inverse';
+					if (this.state === 'active') {
+						classes = `${classes} tw-border-secondary`;
+					} else {
+						classes = `${classes} tw-border-primary hover:tw-border-secondary`;
+					}
+					break;
+				case 'ghost':
+					classes = 'tw-text-primary tw-border-transparent';
+					if (this.state === 'active') {
+						classes = `${classes} tw-bg-secondary`;
+					} else {
+						classes = `${classes} tw-bg-primary hover:tw-bg-secondary`;
+					}
+					break;
+			}
+			return classes;
 		},
 		isDisabled() {
 			return this.state === 'disabled' || this.state === 'loading';
