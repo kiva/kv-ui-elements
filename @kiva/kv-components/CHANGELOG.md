@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.20.4...@kiva/kv-components@0.20.5) (2021-09-23)
+
+
+### Bug Fixes
+
+* Remove unnecessary lightbox class and webkit fix, make lightbox stories initialize with open lightboxes for better visual diffs ([#117](https://github.com/kiva/kv-ui-elements/issues/117)) ([1aa4f33](https://github.com/kiva/kv-ui-elements/commit/1aa4f33c1d9425874e54058930a753d7aab6773e))
+
+
+
+
+
 ## [0.20.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.20.3...@kiva/kv-components@0.20.4) (2021-09-23)
 
 
