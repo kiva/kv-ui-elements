@@ -18,7 +18,7 @@ export default {
 		},
 	},
 	args: {
-		visible: false,
+		visible: true,
 		title: '',
 		variant: 'lightbox',
 		preventClose: false,

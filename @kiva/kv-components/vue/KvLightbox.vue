@@ -17,8 +17,6 @@
 				tw-bg-black
 				tw-bg-opacity-[75%]
 			"
-			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
-			:style="webkitCSSFix"
 			@click.stop.prevent="onScreenClick"
 		>
 			<focus-lock
@@ -209,13 +207,6 @@ export default {
 		};
 	},
 	computed: {
-		// Reference: https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/
-		webkitCSSFix() {
-			if (this.variant === 'lightbox') {
-				return 'min-height: -webkit-fill-available';
-			}
-			return '';
-		},
 		role() {
 			if (this.variant === 'alert') {
 				return 'alertdialog';
