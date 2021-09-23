@@ -1,6 +1,7 @@
 import './tailwind.css';
 import addons from '@storybook/addons';
 import KvThemeProvider from '../KvThemeProvider.vue';
+import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -32,7 +33,7 @@ export const decorators = [(story) => ({
 	},
 	methods: {
 		setTheme(darkMode) {
-			darkMode ? this.theme = 'dark' : this.theme = ''
+			darkMode ? this.theme = darkTheme : this.theme = defaultTheme
 		}
 	},
 	mounted() {
