@@ -18,6 +18,7 @@
 				tw-bg-opacity-[75%]
 			"
 			:class="{'tw-min-h-screen' : variant === 'lightbox'}"
+			:style="webkitCSSFix"
 			@click.stop.prevent="onScreenClick"
 		>
 			<focus-lock
@@ -44,17 +45,19 @@
 							tw-bg-primary
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
+
 						"
 						:class="{
+							'tw-w-full md:tw-w-auto' : variant === 'lightbox',
 							'tw-mt-auto md:tw-my-auto' : variant === 'lightbox',
 							'tw-min-h-half-screen md:tw-min-h-0' : variant === 'lightbox',
 							'tw-rounded-t md:tw-rounded' : variant === 'lightbox',
 							'tw-my-auto tw-rounded' : variant === 'alert',
 						}"
-						style="max-width: 55.55rem; max-height: 90vh"
+						style="max-width: 55.55rem; max-height: 90%"
 						aria-modal="true"
 						:aria-label="title ? title : null"
-						:aria-describedby="variant === 'alert' ? kvLightboxBody : null"
+						:aria-describedby="variant === 'alert' ? 'kvLightboxBody' : null"
 						:role="role"
 						@click.stop
 					>
@@ -206,6 +209,13 @@ export default {
 		};
 	},
 	computed: {
+		// Reference: https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/
+		webkitCSSFix() {
+			if (this.variant === 'lightbox') {
+				return 'min-height: -webkit-fill-available';
+			}
+			return '';
+		},
 		role() {
 			if (this.variant === 'alert') {
 				return 'alertdialog';
