@@ -28,7 +28,7 @@ export const decorators = [(story) => ({
 	template: '<kv-theme-provider :theme="theme"><story /></kv-theme-provider>',
 	data() {
 		return {
-			theme: ''
+			theme: {}
 		}
 	},
 	methods: {
