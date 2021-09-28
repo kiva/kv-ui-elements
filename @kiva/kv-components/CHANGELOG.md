@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.0...@kiva/kv-components@0.21.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* **KvButton:** prevent underline on focus when button is an anchor tag ([10199ba](https://github.com/kiva/kv-ui-elements/commit/10199badc4bec6ae0badc420df5b0c2d7fed59e3))
+* Use themable class names. Change to low-opacity instead of text-color for disabled state. ([6aa9f0d](https://github.com/kiva/kv-ui-elements/commit/6aa9f0dc9d0952e172848fdbd834fecb94cd0bc2))
+
+
+
+
+
 # [0.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.20.5...@kiva/kv-components@0.21.0) (2021-09-23)
 
 
