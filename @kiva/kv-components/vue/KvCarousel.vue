@@ -33,11 +33,12 @@
 			tw-mt-4 tw-w-full"
 		>
 			<button
-				class="tw-text-gray-800 disabled:tw-text-gray-300
+				class="tw-text-primary
 					tw-rounded-full
-					tw-border-2 tw-border-text-gray-800
+					tw-border-2 tw-border-primary
 					tw-h-4 tw-w-4
-					tw-flex tw-items-center tw-justify-center"
+					tw-flex tw-items-center tw-justify-center
+					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
 			>
@@ -51,11 +52,12 @@
 				{{ currentIndex + 1 }}/{{ slideIndicatorListLength() }}
 			</div>
 			<button
-				class="tw-text-gray-800 disabled:tw-text-gray-300
+				class="tw-text-primary
 					tw-rounded-full
-					tw-border-2 tw-border-text-gray-800
+					tw-border-2 tw-border-primary
 					tw-h-4 tw-w-4
-					tw-flex tw-items-center tw-justify-center"
+					tw-flex tw-items-center tw-justify-center
+					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
 			>
