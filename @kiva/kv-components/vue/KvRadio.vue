@@ -146,6 +146,9 @@ export default {
 			};
 		},
 	},
+	mounted() {
+		this.uuid = `kvr-${nanoid(10)}`;
+	},
 	methods: {
 		onChange(event) {
 			/**

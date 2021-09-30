@@ -116,6 +116,9 @@ export default {
 			this.setChecked();
 		},
 	},
+	mounted() {
+		this.uuid = `kvc-${nanoid(10)}`;
+	},
 	created() {
 		this.setChecked();
 	},
