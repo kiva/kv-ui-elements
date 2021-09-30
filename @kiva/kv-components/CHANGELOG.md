@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.2...@kiva/kv-components@0.21.3) (2021-09-30)
+
+
+### Bug Fixes
+
+* **KvCheckbox:** Background color now reliably changes when checkbox is clicked ([fc509b2](https://github.com/kiva/kv-ui-elements/commit/fc509b20fbed89e39df729090aa97beedd684636))
+
+
+
+
+
 ## [0.21.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.1...@kiva/kv-components@0.21.2) (2021-09-30)
 
 
