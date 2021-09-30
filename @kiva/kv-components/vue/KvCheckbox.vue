@@ -26,9 +26,11 @@
 					tw-border
 					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
-					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
-					tw-bg-white tw-border-secondary"
-				:class="{'tw-bg-action tw-border-action' : isChecked }"
+					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action"
+				:class="{
+					'tw-bg-white tw-border-secondary' : !isChecked,
+					'tw-bg-action tw-border-action' : isChecked,
+				}"
 			>
 				<!-- checkbox icon  -->
 				<svg
