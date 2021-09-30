@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.1...@kiva/kv-components@0.21.2) (2021-09-30)
+
+
+### Bug Fixes
+
+* **KvCheckbox:** Allow checkboxes to use an array in v-model ([39b2e92](https://github.com/kiva/kv-ui-elements/commit/39b2e92a3c71ebb94e6da0f7133ae67d40758035))
+
+
+
+
+
 ## [0.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.0...@kiva/kv-components@0.21.1) (2021-09-28)
 
 
