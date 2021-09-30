@@ -111,3 +111,46 @@ export const Multiple = (args, {
 			</kv-checkbox>
 		</div>`,
 });
+
+const ArrayModelTemplate = (args, {
+	argTypes,
+}) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvCheckbox,
+	},
+	data: () => ({
+		checkboxExampleModel: ['item1', 'item2'],
+	}),
+	template: `
+	<div class="tw-flex tw-flex-col tw-gap-2">
+			<kv-checkbox
+				value="item1"
+				v-model="checkboxExampleModel"
+				@change="onChange"
+			>
+				item1
+			</kv-checkbox>
+			<kv-checkbox
+				value="item2"
+				v-model="checkboxExampleModel"
+				@change="onChange"
+			>
+				item2
+			</kv-checkbox>
+			<kv-checkbox
+				value="item3"
+				v-model="checkboxExampleModel"
+				@change="onChange"
+			>
+				item3
+			</kv-checkbox>
+			<div>Checked items: <span v-for="item in checkboxExampleModel" :key="item">{{item}} </span></div>
+		</div>`,
+	methods: {
+		onChange(e) {
+			console.log(e);
+		},
+	},
+});
+export const ArrayModel = ArrayModelTemplate.bind({});

@@ -11,7 +11,7 @@
 				ref="checkboxRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="checkbox"
-				:checked="checked"
+				:checked="isChecked"
 				:value="value"
 				:disabled="disabled"
 				v-on="inputListeners"
@@ -27,13 +27,12 @@
 					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
-					tw-bg-white tw-border-secondary
-					peer-checked:tw-bg-action peer-checked:tw-border-action
-				"
+					tw-bg-white tw-border-secondary"
+				:class="{'tw-bg-action tw-border-action' : isChecked }"
 			>
 				<!-- checkbox icon  -->
 				<svg
-					v-if="checked"
+					v-if="isChecked"
 					class="tw-w-1.5 tw-h-auto"
 					viewBox="0 0 12 9"
 					fill="none"
@@ -75,7 +74,7 @@ export default {
 		 * Whether the checkbox is checked or not
 		 * */
 		checked: {
-			type: Boolean,
+			type: [Boolean, Array],
 			default: false,
 		},
 		/**
@@ -85,10 +84,18 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Value of the checkbox if v-model is an array
+		 * */
+		value: {
+			type: String,
+			default: '',
+		},
 	},
 	data() {
 		return {
 			uuid: `kvc-${nanoid(10)}`,
+			isChecked: false,
 		};
 	},
 	computed: {
@@ -102,9 +109,46 @@ export default {
 			};
 		},
 	},
+	watch: {
+		checked() {
+			this.setChecked();
+		},
+	},
+	created() {
+		this.setChecked();
+	},
 	methods: {
 		onChange(event) {
-			this.$emit('change', event.target.checked);
+			// get the input[type=checkbox] state
+			const isChecked = event.target.checked;
+
+			let checkboxValue;
+
+			if (Array.isArray(this.checked)) {
+				// if the model is an array, add or remove our value from it
+				if (isChecked) {
+					checkboxValue = [...this.checked, event.target.value];
+				} else {
+					checkboxValue = this.checked.filter((item) => item !== this.value);
+				}
+			} else {
+				checkboxValue = isChecked;
+			}
+
+			// emit the change event to update the model
+			this.$emit('change', checkboxValue);
+		},
+		/**
+		 * Updates the visual state of the checkbox
+		 * */
+		setChecked() {
+			if (Array.isArray(this.checked)) {
+				// if the model is array like <kv-checkbox v-model="['item1', 'item2']" value="item1">
+				this.isChecked = this.checked.includes(this.value);
+			} else {
+				// else it's a boolean like <kv-checkbox v-model="true">
+				this.isChecked = this.checked;
+			}
 		},
 		focus() {
 			this.$refs.checkboxRef.focus();
