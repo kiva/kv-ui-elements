@@ -104,6 +104,9 @@ export default {
 			};
 		},
 	},
+	mounted() {
+		this.uuid = `kvs-${nanoid(10)}`;
+	},
 	methods: {
 		onChange(event) {
 			this.$emit('change', event.target.checked);
