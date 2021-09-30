@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.3...@kiva/kv-components@0.21.4) (2021-09-30)
+
+
+### Bug Fixes
+
+* **KvCheckbox, KvRadio, KvSwitch:** Avoid SSR problems when setting the UUID ([ff55726](https://github.com/kiva/kv-ui-elements/commit/ff55726e7052908c58dc71ea6d14d6bffb922da7))
+
+
+
+
+
 ## [0.21.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.2...@kiva/kv-components@0.21.3) (2021-09-30)
 
 
