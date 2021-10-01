@@ -103,6 +103,9 @@
 				},
 				"background": {
 					"primary": "#95D4B3"
+				},
+				"border": {
+					"tertiary": "#4AB67E"
 				}
 			},
 			"dark-green": {
