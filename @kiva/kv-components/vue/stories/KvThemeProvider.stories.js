@@ -69,6 +69,24 @@ const demoTemplate = `
 				</div>
 			</template>
 		</kv-grid>
+		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2">
+			<template
+				v-for="borderVariable in borderVariables"
+			>
+				<div
+					class="tw-border-2 tw-h-4"
+					:class="borderVariable"
+				>
+					{{ borderVariable }}
+				</div>
+				<div
+					class="tw-border-2 tw-h-4 tw-border-opacity-low"
+					:class="borderVariable"
+				>
+					{{ borderVariable }}
+				</div>
+			</template>
+		</kv-grid>
 		<section>
 			<ul>
 				<li

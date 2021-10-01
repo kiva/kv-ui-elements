@@ -103,6 +103,9 @@
 				},
 				"background": {
 					"primary": "#95D4B3"
+				},
+				"border": {
+					"tertiary": "#4AB67E"
 				}
 			},
 			"dark-green": {
@@ -234,7 +237,8 @@
 	"shadows": {},
 	"radii": {
 		"sm": 4,
-		"default": 14
+		"default": 14,
+		"lg": 40
 	},
 	"opacity": {
 		"default": 1,
