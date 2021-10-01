@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.12.0...@kiva/kv-tokens@0.13.0) (2021-10-01)
+
+
+### Features
+
+* **KvTokens:** Add lg (40px) border radius ([9aa3c89](https://github.com/kiva/kv-ui-elements/commit/9aa3c89de329ad434b7022a2288aaa38af91056b))
+* **KvTokens:** Improve border-tertiary visibility in mint theme ([b216817](https://github.com/kiva/kv-ui-elements/commit/b216817e6132c8d3cbc8246feb3d61da724ff319))
+
+
+
+
+
 # [0.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.11.3...@kiva/kv-tokens@0.12.0) (2021-09-14)
 
 
