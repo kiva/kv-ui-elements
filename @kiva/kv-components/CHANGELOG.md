@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.5...@kiva/kv-components@0.22.0) (2021-10-04)
+
+
+### Features
+
+* Add placeholder styling to our base styles ([ab42188](https://github.com/kiva/kv-ui-elements/commit/ab421881420c6698717930dca49f5b72e89da115))
+
+
+
+
+
 ## [0.21.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.21.4...@kiva/kv-components@0.21.5) (2021-10-01)
 
 **Note:** Version bump only for package @kiva/kv-components
