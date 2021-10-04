@@ -173,6 +173,12 @@ const textStyles = (() => {
 		},
 	};
 
+	const textPlaceholder = {
+		color: 'rgb(var(--text-tertiary))',
+		opacity: 1,
+		fontWeight: fontWeights.book,
+	};
+
 	return {
 		textJumbo,
 		textH1,
@@ -183,6 +189,7 @@ const textStyles = (() => {
 		textBase,
 		textSmall,
 		textLink,
+		textPlaceholder,
 	};
 })();
 

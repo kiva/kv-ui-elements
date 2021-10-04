@@ -17,7 +17,6 @@
 					tw-appearance-none
 					tw-text-base
 					tw-bg-primary
-					tw-placeholder-tertiary
 					tw-ring-inset
 					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent
 				"

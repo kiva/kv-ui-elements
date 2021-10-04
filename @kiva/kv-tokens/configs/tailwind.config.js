@@ -190,6 +190,11 @@ module.exports = {
 					borderColor: colors.gray['500'],
 					borderTopWidth: borderWidths.default,
 				},
+				'input::-webkit-input-placeholder, textarea::-webkit-input-placeholder': textStyles.textPlaceholder,
+				'input::-moz-placeholder, textarea::-moz-placeholder': textStyles.textPlaceholder,
+				'input::-ms-input-placeholder, textarea::-ms-input-placeholder': textStyles.textPlaceholder,
+				'input:-ms-input-placeholder, textarea:-ms-input-placeholder': textStyles.textPlaceholder,
+				'input::placeholder, textarea::placeholder': textStyles.textPlaceholder,
 			});
 			addBase({
 				// add our default theme CSS color properties to the root
