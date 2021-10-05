@@ -23,7 +23,7 @@
  *   defaultTheme
  * } from '@kiva/kv-tokens/configs/kivaColors';
  * ...
- * data() { return darkTheme },
+ * data() { return { darkTheme }; }
  * ...
  * <kv-theme-provider :theme="darkTheme">...</kv-theme-provider>
  * ```
