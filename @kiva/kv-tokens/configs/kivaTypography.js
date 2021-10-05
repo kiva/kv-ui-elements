@@ -303,10 +303,12 @@ const proseOverrides = () => ({
 				marginTop: rem(space[4]),
 			},
 			code: false,
+			'code::before': false,
+			'code::after': false,
 			'h2 code': false,
 			'h3 code': false,
 			pre: {
-				color: 'rgb(var(--text-primary))',
+				color: 'rgb(var(--text-primary-inverse))',
 				backgroundColor: 'rgb(var(--bg-primary-inverse))',
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
