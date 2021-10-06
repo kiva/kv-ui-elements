@@ -39,7 +39,7 @@ export default {
 		 * Use if linking to a Vue route
 		 * */
 		to: {
-			type: String,
+			type: [String, Object],
 			default: null,
 		},
 		/**
