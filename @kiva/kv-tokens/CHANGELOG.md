@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.14.0...@kiva/kv-tokens@0.14.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* Make code text color visible against the background. Remove before/after backticks. ([5848830](https://github.com/kiva/kv-ui-elements/commit/5848830bbeff27d6a399dee2f8cb8a304c075bec))
+
+
+
+
+
 # [0.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@0.13.0...@kiva/kv-tokens@0.14.0) (2021-10-04)
 
 
