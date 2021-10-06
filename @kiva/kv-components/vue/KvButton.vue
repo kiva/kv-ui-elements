@@ -17,7 +17,7 @@
 		<span
 			ref="buttonInnerRef"
 			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
-				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium"
+				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium tw-text-center"
 			:class="computedClass"
 		>
 			<!-- eslint-enable max-len -->
