@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.22.2...@kiva/kv-components@0.22.3) (2021-10-07)
+
+
+### Bug Fixes
+
+* **KvButton, KvTextLink:** Allow a route object to be passed to the "to" prop ([db3eda7](https://github.com/kiva/kv-ui-elements/commit/db3eda79215dc61a9700febf6117a572473f81cf))
+* **KvButton:** align text center in case it wraps ([2b13157](https://github.com/kiva/kv-ui-elements/commit/2b131574451fef54ccb2d7bd98076fcdfb20bc04))
+
+
+
+
+
 ## [0.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.22.1...@kiva/kv-components@0.22.2) (2021-10-06)
 
 **Note:** Version bump only for package @kiva/kv-components
