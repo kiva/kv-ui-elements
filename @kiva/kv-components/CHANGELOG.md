@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.0.0...@kiva/kv-components@1.1.0) (2021-10-20)
+
+
+### Features
+
+* allow font weight for 'text-small' class to be set on case-by-case basis ([3a33b4b](https://github.com/kiva/kv-ui-elements/commit/3a33b4b5eaad7f97b3e5579fedbc4f6095d6d12f))
+
+
+
+
+
 # [1.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@0.22.3...@kiva/kv-components@1.0.0) (2021-10-07)
 
 **Note:** Version bump only for package @kiva/kv-components
