@@ -156,7 +156,6 @@ const textStyles = (() => {
 	};
 
 	const textSmall = {
-		fontWeight: fontWeights.medium,
 		fontSize: rem(fontSizes.small.sm),
 		lineHeight: lineHeights.normal,
 		'@screen lg': {
