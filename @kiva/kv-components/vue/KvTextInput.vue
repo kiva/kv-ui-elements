@@ -47,7 +47,7 @@
 			/>
 			<div
 				v-if="$slots.error"
-				class="tw-text-danger tw-text-small tw-mt-1"
+				class="tw-text-danger tw-text-small tw-font-medium tw-mt-1"
 			>
 				<!-- @slot Used in conjuction with the `valid` prop to tell the user what must be fixed -->
 				<slot name="error"></slot>
