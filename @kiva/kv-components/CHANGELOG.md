@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.1.0...@kiva/kv-components@1.1.1) (2021-10-21)
+
+
+### Bug Fixes
+
+* **KvButton, KvTextLink:** Allow route objects to be passed to the :to prop ([505c125](https://github.com/kiva/kv-ui-elements/commit/505c1259b688a18a3dc4ed00c9768129d4123677))
+
+
+
+
+
 # [1.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.0.0...@kiva/kv-components@1.1.0) (2021-10-20)
 
 
