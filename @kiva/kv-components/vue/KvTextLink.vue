@@ -1,8 +1,8 @@
 <template>
 	<component
 		:is="tag"
+		ref="buttonRef"
 		:to="to"
-		:href="href"
 		:disabled="state === 'disabled'"
 		class="tw-text-h4 tw-text-link"
 		:class="{
@@ -84,6 +84,10 @@ export default {
 			return 'button';
 		},
 	},
+	watch: { href() { this.setHref(); } },
+	mounted() {
+		this.setHref();
+	},
 	methods: {
 		onClick(event) {
 			// emit a vue event and prevent native event
@@ -97,6 +101,14 @@ export default {
 				 * @param {Event}
 				 */
 				this.$emit('click', event);
+			}
+		},
+		setHref() {
+			// if the component is a router-link, router-link will set the href
+			// if the href is passed as a prop, use that instead
+			if (this.href) {
+				const { buttonRef } = this.$refs;
+				buttonRef.href = this.href;
 			}
 		},
 	},

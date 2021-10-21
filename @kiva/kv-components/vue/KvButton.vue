@@ -3,7 +3,6 @@
 		:is="tag"
 		ref="buttonRef"
 		:to="to"
-		:href="href"
 		:type="computedType"
 		:disabled="isDisabled"
 		class="hover:tw-no-underline focus:tw-no-underline tw-inline-block"
@@ -173,6 +172,10 @@ export default {
 			return this.type;
 		},
 	},
+	watch: { href() { this.setHref(); } },
+	mounted() {
+		this.setHref();
+	},
 	methods: {
 		onClick(event) {
 			// emit a vue event and prevent native event
@@ -233,6 +236,14 @@ export default {
 				buttonInnerRef.removeChild(blipEl);
 				blipEl.removeEventListener('animationend', animationComplete);
 			});
+		},
+		setHref() {
+			// if the component is a router-link, router-link will set the href
+			// if the href is passed as a prop, use that instead
+			if (this.href) {
+				const { buttonRef } = this.$refs;
+				buttonRef.href = this.href;
+			}
 		},
 	},
 };

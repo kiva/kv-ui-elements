@@ -36,6 +36,7 @@
     "tailwindcss": "2.2.15",
     "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.6",
+    "vue-router": "^3.5.2",
     "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
