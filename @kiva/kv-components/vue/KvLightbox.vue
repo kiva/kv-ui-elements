@@ -20,7 +20,7 @@
 			@click.stop.prevent="onScreenClick"
 		>
 			<focus-lock
-				v-if="visible"
+				:disabled="!visible"
 				:return-focus="true"
 			>
 				<div
