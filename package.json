@@ -10,7 +10,7 @@
     "test": "npm run test -w @kiva/kv-components",
     "lint": "eslint --ext .js,.vue ./",
     "prepare": "husky install",
-    "publish-release": "lerna publish",
+    "publish-release": "lerna publish -m 'chore: publish'",
     "storybook": "npm run storybook -w @kiva/kv-components",
     "build-storybook": "npm run build-storybook -w @kiva/kv-components"
   },
