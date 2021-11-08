@@ -6,6 +6,7 @@ export default {
 	args: {
 		checked: false,
 		disabled: false,
+		valid: true,
 	},
 };
 
@@ -23,6 +24,7 @@ const Template = (args, {
 		<div>
 			<kv-checkbox
 				:disabled="disabled"
+				:valid="valid"
 				v-model="checkboxExampleModel"
 				@change="onChange"
 				@focus="onFocus"
@@ -45,6 +47,11 @@ export const Default = Template.bind({});
 export const Disabled = Template.bind({});
 Disabled.args = {
 	disabled: true,
+};
+
+export const Invalid = Template.bind({});
+Invalid.args = {
+	valid: false,
 };
 
 export const WithoutVModel = (args, {

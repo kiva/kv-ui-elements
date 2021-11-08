@@ -28,8 +28,11 @@
 					tw-transition-all tw-duration-100
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action"
 				:class="{
-					'tw-bg-white tw-border-secondary' : !isChecked,
-					'tw-bg-action tw-border-action' : isChecked,
+					'tw-bg-white' : !isChecked,
+					'tw-bg-action' : isChecked,
+					'tw-border-secondary' : !isChecked && valid,
+					'tw-border-action' : isChecked && valid,
+					'tw-border-danger' : !valid,
 				}"
 			>
 				<!-- checkbox icon  -->
@@ -92,6 +95,14 @@ export default {
 		value: {
 			type: String,
 			default: '',
+		},
+		/**
+		 * When set to false, visually indicates to the user that the contents of the input need
+		 * to be changed
+		 * */
+		valid: {
+			type: Boolean,
+			default: true,
 		},
 	},
 	data() {
