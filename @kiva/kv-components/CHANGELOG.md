@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.1.1...@kiva/kv-components@1.1.2) (2021-11-08)
+
+
+### Bug Fixes
+
+* **KvLightbox:** prevent lightbox references from being null when the lightbox is closed ([f19f03e](https://github.com/kiva/kv-ui-elements/commit/f19f03e0507e9e1c56b40aee3483628a39b0ff4f))
+
+
+
+
+
 ## [1.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.1.0...@kiva/kv-components@1.1.1) (2021-10-21)
 
 
