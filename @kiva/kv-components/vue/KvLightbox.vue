@@ -104,7 +104,7 @@
 							"
 						>
 							<!-- @slot default -->
-							<slot>Lightbox body</slot>
+							<slot></slot>
 						</div>
 
 						<!-- controls -->
