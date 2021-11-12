@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.1.3...@kiva/kv-components@1.2.0) (2021-11-12)
+
+
+### Features
+
+* **KvCheckbox:** add a prop and visual styling to tell a user the input is invalid ([b587ffd](https://github.com/kiva/kv-ui-elements/commit/b587ffdcb4834eb6dda25a880646cdcd4137a337))
+
+
+
+
+
 ## [1.1.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.1.2...@kiva/kv-components@1.1.3) (2021-11-10)
 
 
