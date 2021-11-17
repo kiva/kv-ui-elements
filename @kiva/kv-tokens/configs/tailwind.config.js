@@ -171,6 +171,7 @@ module.exports = {
 					...textStyles.textBase,
 					color: textBaseColor,
 				},
+				button: { fontWeight: fontWeights.book },
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,
