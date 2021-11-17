@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.1.0...@kiva/kv-tokens@1.2.0) (2021-11-17)
+
+
+### Features
+
+* give buttons a default weight ([47dd297](https://github.com/kiva/kv-ui-elements/commit/47dd29762cb8533b2111ec53e7dbce4cf38f5978))
+
+
+
+
+
 # [1.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.0.0...@kiva/kv-tokens@1.1.0) (2021-10-20)
 
 
