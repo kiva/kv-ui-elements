@@ -24,7 +24,7 @@ const buildCSSVarsFromTokens = (theme) => {
 
 		const properties = Object.keys(theme[category]);
 		properties.forEach((property) => {
-			customProperties[`--${twPrefix}-${property}`] = hexToRGB(theme[category][property]);
+			customProperties[`--${twPrefix}-${property}`] = hexToRGB(theme[category][property].value);
 		});
 	});
 	return customProperties;
@@ -78,8 +78,42 @@ const buildColorChoices = (themeProperty) => {
 	return property;
 };
 
+/**
+ * Reshapes an object from
+ * {
+ *   brand: {
+ *     100: {
+ *       value: "somehex"
+ *     },
+ *     200: {
+ *       value: "somehex"
+ *     }
+ *     ...
+ *   }
+ * }
+ *
+ * to
+ *
+ * {
+ *   brand: {
+ *     100: "somehex",
+ *     200: "somehex"
+ *     ...
+ *   }
+ * }
+*/
+
+const buildTailwindColorObjectFromTokens = (tokenGroup) => {
+	const ret = {};
+	Object.keys(tokenGroup).forEach((group) => {
+		ret[group] = tokenGroup[group].value;
+	});
+	return ret;
+};
+
 module.exports = {
 	buildColorChoices,
+	buildTailwindColorObjectFromTokens,
 	defaultTheme,
 	darkTheme,
 	darkGreenTheme,

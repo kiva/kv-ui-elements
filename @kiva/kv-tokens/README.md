@@ -14,7 +14,7 @@ The package contains
 ```js
 const designTokens = require("@kiva/kv-tokens/primitives.json");
 
-const primaryTextColor = designTokens.colors.theme.DEFAULT.text.primary;
+const primaryTextColor = designTokens.colors.theme.DEFAULT.text.primary.value;
 ```
 
 ## Using the Tailwind Preset

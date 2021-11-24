@@ -60,106 +60,106 @@ const textBaseColor = 'rgb(var(--text-primary))';
 */
 const textStyles = (() => {
 	const textJumbo = {
-		fontWeight: fontWeights.medium,
-		fontSize: rem(fontSizes.jumbo.sm),
-		letterSpacing: letterSpacings['-2'],
-		lineHeight: lineHeights.tight,
+		fontWeight: fontWeights.medium.value,
+		fontSize: rem(fontSizes.jumbo.sm.value),
+		letterSpacing: letterSpacings['-2'].value,
+		lineHeight: lineHeights.tight.value,
 		'@screen md': {
-			fontSize: rem(fontSizes.jumbo.md),
+			fontSize: rem(fontSizes.jumbo.md.value),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.jumbo.lg),
+			fontSize: rem(fontSizes.jumbo.lg.value),
 		},
 	};
 
 	const textH1 = {
-		fontSize: rem(fontSizes.h1.sm),
-		fontWeight: fontWeights.medium,
-		letterSpacing: em(letterSpacings['-0.3'], fontSizes.h1.sm),
-		lineHeight: lineHeights.tight,
+		fontSize: rem(fontSizes.h1.sm.value),
+		fontWeight: fontWeights.medium.value,
+		letterSpacing: em(letterSpacings['-0.3'].value, fontSizes.h1.sm.value),
+		lineHeight: lineHeights.tight.value,
 		'@screen md': {
-			fontSize: rem(fontSizes.h1.md),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h1.md),
+			fontSize: rem(fontSizes.h1.md.value),
+			letterSpacing: em(letterSpacings['-1'].value, fontSizes.h1.md.value),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.h1.lg),
-			letterSpacing: em(letterSpacings['-2'], fontSizes.h1.lg),
+			fontSize: rem(fontSizes.h1.lg.value),
+			letterSpacing: em(letterSpacings['-2'].value, fontSizes.h1.lg.value),
 		},
 	};
 
 	const textH2 = {
-		fontSize: rem(fontSizes.h2.sm),
-		fontWeight: fontWeights.medium,
-		letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
-		lineHeight: lineHeights.tight,
+		fontSize: rem(fontSizes.h2.sm.value),
+		fontWeight: fontWeights.medium.value,
+		letterSpacing: em(letterSpacings['-1'].value, fontSizes.h2.sm.value),
+		lineHeight: lineHeights.tight.value,
 		'@screen md': {
-			fontSize: rem(fontSizes.h2.md),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.md),
+			fontSize: rem(fontSizes.h2.md.value),
+			letterSpacing: em(letterSpacings['-1'].value, fontSizes.h2.md).value,
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.h2.lg),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
-			lineHeight: lineHeights.normal,
+			fontSize: rem(fontSizes.h2.lg.value),
+			letterSpacing: em(letterSpacings['-1'].value, fontSizes.h2.lg.value),
+			lineHeight: lineHeights.normal.value,
 		},
 	};
 
 	const textH3 = {
-		fontSize: rem(fontSizes.h3.sm),
-		fontWeight: fontWeights.medium,
-		letterSpacing: em(letterSpacings['-1'], fontSizes.h3.sm),
-		lineHeight: lineHeights.tight,
+		fontSize: rem(fontSizes.h3.sm.value),
+		fontWeight: fontWeights.medium.value,
+		letterSpacing: em(letterSpacings['-1'].value, fontSizes.h3.sm).value,
+		lineHeight: lineHeights.tight.value,
 		'@screen md': {
-			fontSize: rem(fontSizes.h3.md),
-			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h3.md),
+			fontSize: rem(fontSizes.h3.md.value),
+			letterSpacing: em(letterSpacings['-0.3'].value, fontSizes.h3.md.value),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.h3.lg),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h3.lg),
+			fontSize: rem(fontSizes.h3.lg.value),
+			letterSpacing: em(letterSpacings['-1'].value, fontSizes.h3.lg.value),
 		},
 	};
 
 	const textH4 = {
-		fontSize: rem(fontSizes.h4.sm),
-		fontWeight: fontWeights.medium,
-		lineHeight: lineHeights.normal,
+		fontSize: rem(fontSizes.h4.sm.value),
+		fontWeight: fontWeights.medium.value,
+		lineHeight: lineHeights.normal.value,
 		textTransform: 'uppercase',
 		'@screen md': {
-			fontSize: rem(fontSizes.h4.md),
+			fontSize: rem(fontSizes.h4.md.value),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.h4.lg),
+			fontSize: rem(fontSizes.h4.lg.value),
 		},
 	};
 
 	const textSubhead = {
-		fontSize: rem(fontSizes.subhead.sm),
-		fontWeight: fontWeights.book,
-		letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.sm),
-		lineHeight: lineHeights.normal,
+		fontSize: rem(fontSizes.subhead.sm.value),
+		fontWeight: fontWeights.book.value,
+		letterSpacing: em(letterSpacings['-0.5'].value, fontSizes.subhead.sm.value),
+		lineHeight: lineHeights.normal.value,
 		'@screen md': {
-			fontSize: rem(fontSizes.subhead.md),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.md),
+			fontSize: rem(fontSizes.subhead.md.value),
+			letterSpacing: em(letterSpacings['-0.5'].value, fontSizes.subhead.md.value),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.subhead.lg),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.lg),
+			fontSize: rem(fontSizes.subhead.lg.value),
+			letterSpacing: em(letterSpacings['-0.5'].value, fontSizes.subhead.lg.value),
 		},
 	};
 
 	const textBase = {
-		fontWeight: fontWeights.book,
-		fontSize: rem(fontSizes.base.sm),
-		lineHeight: lineHeights.normal,
+		fontWeight: fontWeights.book.value,
+		fontSize: rem(fontSizes.base.sm.value),
+		lineHeight: lineHeights.normal.value,
 		'@screen lg': {
-			fontSize: rem(fontSizes.base.lg),
+			fontSize: rem(fontSizes.base.lg.value),
 		},
 	};
 
 	const textSmall = {
-		fontSize: rem(fontSizes.small.sm),
-		lineHeight: lineHeights.normal,
+		fontSize: rem(fontSizes.small.sm.value),
+		lineHeight: lineHeights.normal.value,
 		'@screen lg': {
-			fontSize: rem(fontSizes.small.lg),
+			fontSize: rem(fontSizes.small.lg.value),
 		},
 	};
 
@@ -175,7 +175,7 @@ const textStyles = (() => {
 	const textPlaceholder = {
 		color: 'rgb(var(--text-tertiary))',
 		opacity: 1,
-		fontWeight: fontWeights.book,
+		fontWeight: fontWeights.book.value,
 	};
 
 	return {
@@ -255,42 +255,42 @@ const proseOverrides = () => ({
 			fontSize: false,
 			lineHeight: false,
 			p: {
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
 			},
 			blockquote: {
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
-				padding: `0 0 0 ${rem(space['6'])}`,
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
+				padding: `0 0 0 ${rem(space[6].value)}`,
 			},
 			h1: {
 				fontSize: false,
 				marginTop: '0',
-				marginBottom: rem(space[4]),
+				marginBottom: rem(space[4].value),
 				color: textBaseColor,
 			},
 			h2: {
 				fontSize: false,
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
 				color: textBaseColor,
 			},
 			h3: {
 				fontSize: false,
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[2]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[2].value),
 				color: textBaseColor,
 			},
 			h4: {
 				marginTop: false,
-				marginBottom: rem(space[4]),
+				marginBottom: rem(space[4].value),
 				color: textBaseColor,
 			},
 			img: false,
 			video: false,
 			figure: {
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
 			},
 			'figure > *': {
 				marginTop: '0',
@@ -299,7 +299,7 @@ const proseOverrides = () => ({
 			'figure figcaption': {
 				fontSize: false,
 				lineHeight: false,
-				marginTop: rem(space[4]),
+				marginTop: rem(space[4].value),
 			},
 			code: false,
 			'code::before': false,
@@ -309,27 +309,27 @@ const proseOverrides = () => ({
 			pre: {
 				color: 'rgb(var(--text-primary-inverse))',
 				backgroundColor: 'rgb(var(--bg-primary-inverse))',
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
-				borderRadius: rem(radii.sm),
-				paddingTop: rem(space[2]),
-				paddingRight: rem(space[3]),
-				paddingBottom: rem(space[2]),
-				paddingLeft: rem(space[3]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
+				borderRadius: rem(radii.sm.value),
+				paddingTop: rem(space[2].value),
+				paddingRight: rem(space[3].value),
+				paddingBottom: rem(space[2].value),
+				paddingLeft: rem(space[3].value),
 				overflowY: 'auto',
 			},
 			'pre code': false,
 			ol: {
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
 			},
 			ul: {
-				marginTop: rem(space[4]),
-				marginBottom: rem(space[4]),
+				marginTop: rem(space[4].value),
+				marginBottom: rem(space[4].value),
 			},
 			li: {
-				marginTop: rem(space[2]),
-				marginBottom: rem(space[2]),
+				marginTop: rem(space[2].value),
+				marginBottom: rem(space[2].value),
 			},
 			'ul > li::before': {
 				width: em(6, 16),
@@ -342,24 +342,24 @@ const proseOverrides = () => ({
 				marginBottom: em(12, 16),
 			},
 			'> ul > li > *:first-child': {
-				marginTop: rem(space[2]),
+				marginTop: rem(space[2].value),
 			},
 			'> ul > li > *:last-child': {
-				marginBottom: rem(space[2]),
+				marginBottom: rem(space[2].value),
 			},
 			'> ol > li > *:first-child': {
-				marginTop: rem(space[2]),
+				marginTop: rem(space[2].value),
 			},
 			'> ol > li > *:last-child': {
-				marginBottom: rem(space[2]),
+				marginBottom: rem(space[2].value),
 			},
 			'ul ul, ul ol, ol ul, ol ol': {
 				marginTop: 0,
 				marginBottom: 0,
 			},
 			hr: {
-				marginTop: rem(space['6']),
-				marginBottom: rem(space['6']),
+				marginTop: rem(space[6].value),
+				marginBottom: rem(space[6]).value,
 			},
 			'hr + *': {
 				marginTop: '0',
