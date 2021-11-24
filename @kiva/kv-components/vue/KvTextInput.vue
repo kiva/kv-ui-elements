@@ -28,9 +28,9 @@
 					'tw-pl-6' : icon,
 				}"
 				:placeholder="placeholder"
-				:value="value"
 				:disabled="disabled"
 				v-bind="$attrs"
+				:value="valueInput"
 				@input="onInput"
 				v-on="inputListeners"
 			>
@@ -45,6 +45,16 @@
 				:icon="mdiAlertCircleOutline"
 				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-danger"
 			/>
+			<button
+				v-if="canClear && valid"
+				type="button"
+				@click="clearInput"
+			>
+				<kv-material-icon
+					:icon="mdiClose"
+					class="tw-absolute tw-top-1.5 tw-right-1.5"
+				/>
+			</button>
 			<div
 				v-if="$slots.error"
 				class="tw-text-danger tw-text-small tw-font-medium tw-mt-1"
@@ -57,7 +67,7 @@
 </template>
 
 <script>
-import { mdiAlertCircleOutline } from '@mdi/js';
+import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 /* eslint-disable max-len */
@@ -152,10 +162,19 @@ export default {
 			type: String,
 			default: 'text',
 		},
+		/** canClear prop
+		 * When set to true, adds a button positioned to the right edge of the input containing an “X”
+		 * */
+		canClear: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
 			mdiAlertCircleOutline,
+			mdiClose,
+			valueInput: this.value,
 		};
 	},
 	computed: {
@@ -168,6 +187,7 @@ export default {
 				input: () => {},
 			};
 		},
+
 	},
 	methods: {
 		onInput(event) {
@@ -176,6 +196,7 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
+			this.valueInput = event.target.value;
 			this.$emit('input', event.target.value);
 		},
 		focus() {
@@ -183,6 +204,9 @@ export default {
 		},
 		blur() {
 			this.$refs.textInputRef.blur();
+		},
+		clearInput() {
+			this.valueInput = '';
 		},
 	},
 };

@@ -32,6 +32,7 @@ const DefaultTemplate = (args, {
 				:placeholder="placeholder"
 				:valid="valid"
 				:icon="icon"
+				:canClear="canClear"
 				v-model="textInputModel"
 				@input="onInput"
 				style="width: 25rem;"
@@ -157,11 +158,18 @@ export const WidthSet = (args, {
 export const Disabled = DefaultTemplate.bind({});
 Disabled.args = {
 	disabled: true,
+	canClear: false,
 };
 
 export const Icon = DefaultTemplate.bind({});
 Icon.args = {
 	icon: mdiMagnify,
+	canClear: false,
+};
+
+export const canClear = DefaultTemplate.bind({});
+canClear.args = {
+	canClear: true,
 };
 
 export const PlaceholderText = (args, {
