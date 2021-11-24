@@ -11,10 +11,40 @@ The package contains
 
 ## Using the Design Definitions
 
+### With JavaScript
+
 ```js
 const designTokens = require("@kiva/kv-tokens/primitives.json");
 
 const primaryTextColor = designTokens.colors.theme.DEFAULT.text.primary.value;
+```
+
+### With SCSS
+
+```scss
+@import "./node_modules/@kiva/kv-tokens/dist/scss/_variables";
+
+body {
+	background-color: $colors-theme-default-background-primary;
+	color: $colors-theme-default-text-primary;
+	font-size: #{$font-sizes-base-lg}px;
+}
+```
+
+### With CSS Custom Properties
+
+```html
+<link
+	rel="stylesheet"
+	href="./node_modules/@kiva/kv-tokens/dist/css/variables.css"
+/>
+<style>
+	body {
+		background-color: var(--colors-theme-default-background-primary);
+		color: var(--colors-theme-default-text-primary);
+		font-size: calc(var(--font-sizes-base-lg) * 1px);
+	}
+</style>
 ```
 
 ## Using the Tailwind Preset
