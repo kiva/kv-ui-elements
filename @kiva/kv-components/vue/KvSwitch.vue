@@ -12,7 +12,7 @@
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				role="switch"
-				:value="value"
+				:checked="checked"
 				:disabled="disabled"
 				v-on="inputListeners"
 				@change.prevent="onChange"
