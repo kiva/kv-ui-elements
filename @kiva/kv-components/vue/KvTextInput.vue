@@ -46,13 +46,13 @@
 				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-danger"
 			/>
 			<button
-				v-if="canClear && valid"
+				v-if="canClear && valid && !!valueInput"
 				type="button"
+				class="tw-absolute tw-top-1.5 tw-right-1.5"
 				@click="clearInput"
 			>
 				<kv-material-icon
 					:icon="mdiClose"
-					class="tw-absolute tw-top-1.5 tw-right-1.5"
 				/>
 			</button>
 			<div

@@ -158,13 +158,11 @@ export const WidthSet = (args, {
 export const Disabled = DefaultTemplate.bind({});
 Disabled.args = {
 	disabled: true,
-	canClear: false,
 };
 
 export const Icon = DefaultTemplate.bind({});
 Icon.args = {
 	icon: mdiMagnify,
-	canClear: false,
 };
 
 export const canClear = DefaultTemplate.bind({});

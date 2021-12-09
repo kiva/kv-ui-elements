@@ -19,6 +19,8 @@ export default {
 		valid: true,
 		icon: null,
 		type: 'text',
+		canClear: false,
+		value: '',
 	},
 };
 
