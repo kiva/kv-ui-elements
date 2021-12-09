@@ -207,6 +207,7 @@ export default {
 		},
 		clearInput() {
 			this.valueInput = '';
+			this.$emit('input', '');
 		},
 	},
 };
