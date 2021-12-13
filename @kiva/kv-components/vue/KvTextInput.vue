@@ -51,6 +51,7 @@
 				class="tw-absolute tw-top-1.5 tw-right-1.5"
 				@click="clearInput"
 			>
+				<span class="tw-sr-only">clear input</span>
 				<kv-material-icon
 					:icon="mdiClose"
 				/>
