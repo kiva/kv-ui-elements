@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvTextInput from '../../../../vue/KvTextInput.vue';
@@ -52,5 +52,23 @@ describe('KvTextInput', () => {
 		const results = await axe(container);
 
 		expect(results).toHaveNoViolations();
+	});
+
+	it('clear button cleans the input value', async () => {
+		const { getByRole } = render(KvTextInput, {
+			props: {
+				canClear: true,
+				valid: true,
+				id: 'foo',
+			},
+		});
+		const textInputEl = getByRole('textbox');
+		expect(textInputEl.value).toEqual('');
+		await userEvent.type(textInputEl, 'abc 123');
+		expect(textInputEl.value).toEqual('abc 123');
+		const buttonInputEl = getByRole('button');
+		expect(buttonInputEl).toBeDefined();
+		await fireEvent.click(buttonInputEl);
+		expect(textInputEl.value).toEqual('');
 	});
 });

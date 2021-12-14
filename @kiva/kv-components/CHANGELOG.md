@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.2.2...@kiva/kv-components@1.3.0) (2021-12-13)
+
+
+### Features
+
+* **KvTextInput:** adds a button which clears the search form ([bf4166e](https://github.com/kiva/kv-ui-elements/commit/bf4166e604bfd08ab1c128eda10c51fc81c359ec))
+
+
+
+
+
 ## [1.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.2.1...@kiva/kv-components@1.2.2) (2021-11-24)
 
 **Note:** Version bump only for package @kiva/kv-components
