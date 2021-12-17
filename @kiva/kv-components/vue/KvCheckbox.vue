@@ -8,13 +8,12 @@
 			<input
 				v-bind="$attrs"
 				:id="uuid"
-				ref="checkboxRef"
+				:ref="checkboxRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="checkbox"
 				:checked="isChecked"
 				:value="value"
 				:disabled="disabled"
-				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<!-- checkbox square background -->
@@ -61,6 +60,12 @@
 
 <script>
 import { nanoid } from 'nanoid';
+import {
+	onMounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue-demi';
 
 /**
  * Use as you would an <input type="checkbox" />
@@ -69,11 +74,7 @@ import { nanoid } from 'nanoid';
 
 export default {
 	inheritAttrs: false,
-	// v-model will change when checked value changes
-	model: {
-		prop: 'checked',
-		event: 'change',
-	},
+
 	props: {
 		/**
 		 * Whether the checkbox is checked or not
@@ -105,73 +106,75 @@ export default {
 			default: true,
 		},
 	},
-	data() {
-		return {
-			uuid: `kvc-${nanoid(10)}`,
-			isChecked: false,
-		};
-	},
-	computed: {
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'change' event which is emitted by this component
-				change: () => {},
-			};
-		},
-	},
-	watch: {
-		checked() {
-			this.setChecked();
-		},
-	},
-	mounted() {
-		this.uuid = `kvc-${nanoid(10)}`;
-	},
-	created() {
-		this.setChecked();
-	},
-	methods: {
-		onChange(event) {
-			// get the input[type=checkbox] state
-			const isChecked = event.target.checked;
+	emits: [
+		'change',
+		'update:modelValue',
+	],
+	setup(props, { emit }) {
+		const {
+			checked,
+			value,
+		} = toRefs(props);
+
+		let uuid = ref(`kvc-${nanoid(10)}`);
+		let isChecked = ref(false);
+		const checkboxRef = ref(null);
+
+		const onChange = (event) => {
+			const inputChecked = event.target.checked;
 
 			let checkboxValue;
 
-			if (Array.isArray(this.checked)) {
+			if (Array.isArray(checked)) {
 				// if the model is an array, add or remove our value from it
-				if (isChecked) {
-					checkboxValue = [...this.checked, event.target.value];
+				if (inputChecked) {
+					checkboxValue = [...checked, event.target.value];
 				} else {
-					checkboxValue = this.checked.filter((item) => item !== this.value);
+					checkboxValue = checked.filter((item) => item !== this.value);
 				}
 			} else {
-				checkboxValue = isChecked;
+				checkboxValue = inputChecked;
 			}
 
 			// emit the change event to update the model
-			this.$emit('change', checkboxValue);
-		},
-		/**
-		 * Updates the visual state of the checkbox
-		 * */
-		setChecked() {
-			if (Array.isArray(this.checked)) {
+			emit('change', checkboxValue);
+			emit('update:modelValue', checkboxValue);
+		};
+
+		const setChecked = () => {
+			if (Array.isArray(checked)) {
 				// if the model is array like <kv-checkbox v-model="['item1', 'item2']" value="item1">
-				this.isChecked = this.checked.includes(this.value);
+				isChecked = checked.includes(value);
 			} else {
 				// else it's a boolean like <kv-checkbox v-model="true">
-				this.isChecked = this.checked;
+				isChecked = checked;
 			}
-		},
-		focus() {
-			this.$refs.checkboxRef.focus();
-		},
-		blur() {
-			this.$refs.checkboxRef.blur();
-		},
+		};
+
+		const focus = () => {
+			checkboxRef.focus();
+		};
+
+		const blur = () => {
+			checkboxRef.blur();
+		};
+
+		setChecked();
+		watch(checked, () => setChecked());
+		onMounted(() => {
+			uuid = `kvc-${nanoid(10)}`;
+		});
+
+		return {
+			uuid,
+			isChecked,
+			checkboxRef,
+			onChange,
+			setChecked,
+			focus,
+			blur,
+		};
 	},
 };
+
 </script>
