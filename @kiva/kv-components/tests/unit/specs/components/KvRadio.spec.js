@@ -70,7 +70,6 @@ describe('KvRadio', () => {
 	it('One radio element can be checked at a time', async () => {
 		const { getAllByRole, getByLabelText } = render(radioGroup);
 		const radioEls = getAllByRole('radio');
-
 		expect(radioEls[0].value).toBe('foo');
 		expect(radioEls[1].value).toBe('bar');
 		expect(radioEls[2].value).toBe('baz');
