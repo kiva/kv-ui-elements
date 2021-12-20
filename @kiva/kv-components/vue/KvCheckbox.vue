@@ -122,7 +122,7 @@ export default {
 
 		const onChange = (event) => {
 			const inputChecked = event.target.checked;
-
+			console.log(inputChecked);
 			let checkboxValue;
 
 			if (Array.isArray(checked.value)) {
@@ -160,7 +160,7 @@ export default {
 		};
 
 		setChecked();
-		watch(checked.value, () => setChecked());
+		watch(checked, () => setChecked());
 		onMounted(() => {
 			uuid.value = `kvc-${nanoid(10)}`;
 		});
