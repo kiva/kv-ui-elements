@@ -5,29 +5,29 @@
 	>
 		<!-- Set of image sources -->
 		<template v-if="sourceSizes.length > 0">
-			<template v-for="(image, index) in sourceSizes">
-				<!-- browser supports webp -->
-				<source
-					:key="'webp-image'+index"
-					:media="'('+image.media+')'"
-					type="image/webp"
-					:width="image.width ? image.width : null"
-					:height="image.height ? image.height : null"
-					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
-				>
-				<!-- browser doesn't support webp -->
-				<source
-					:key="'fallback-image'+index"
-					:media="'('+image.media+')'"
-					:width="image.width ? image.width : null"
-					:height="image.height ? image.height : null"
-					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
-				>
-			</template>
+			<!-- browser supports webp -->
+			<source
+				v-for="(image, index) in sourceSizes"
+				:key="'webp-image'+index"
+				:media="'('+image.media+')'"
+				type="image/webp"
+				:width="image.width ? image.width : null"
+				:height="image.height ? image.height : null"
+				:srcset="`
+					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+			>
+			<!-- browser doesn't support webp -->
+			<source
+				v-for="(image, index) in sourceSizes"
+				:key="'fallback-image'+index"
+				:media="'('+image.media+')'"
+				:width="image.width ? image.width : null"
+				:height="image.height ? image.height : null"
+				:srcset="`
+					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
+					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+			>
 			<!-- browser doesn't support picture element -->
 			<img
 				class="tw-max-w-full tw-max-h-full"
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { toRefs } from 'vue-demi';
 // Since it's easy for marketing or other to upload massive images to contentful,
 // in order to be performant respectful of our users data plans, and not damage
 // our SEO, we shouldn't send the source image directly to our users.
@@ -172,23 +173,33 @@ export default {
 			default: () => [],
 		},
 	},
-	methods: {
-		buildUrl(image = null, multiplier = 1) {
-			let src = image && image.url ? `${image.url}?` : `${this.contentfulSrc}?`;
-			const width = image ? image.width : this.width;
-			const height = image ? image.height : this.height;
+	setup(props) {
+		const {
+			contentfulSrc,
+			width,
+			height,
+		} = toRefs(props);
 
-			if (width) {
-				src += `w=${width * multiplier}`;
+		const buildUrl = (image = null, multiplier = 1) => {
+			let src = image && image.url ? `${image.url}?` : `${contentfulSrc}?`;
+			const imgWidth = image ? image.width : width;
+			const imgHeight = image ? image.height : height;
+
+			if (imgWidth) {
+				src += `w=${imgWidth * multiplier}`;
 			}
-			if (width && height) {
+			if (imgWidth && imgHeight) {
 				src += '&';
 			}
-			if (height) {
-				src += `h=${height * multiplier}`;
+			if (imgHeight) {
+				src += `h=${imgHeight * multiplier}`;
 			}
 			return src;
-		},
+		};
+
+		return {
+			buildUrl,
+		};
 	},
 };
 </script>
