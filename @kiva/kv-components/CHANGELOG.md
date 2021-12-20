@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.3.0...@kiva/kv-components@1.4.0) (2021-12-20)
+
+
+### Features
+
+* **KvTextInput:** focus the input after clearing text ([2093abb](https://github.com/kiva/kv-ui-elements/commit/2093abb30dca870c661f5354e043f0c40290ef81))
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.2.2...@kiva/kv-components@1.3.0) (2021-12-13)
 
 
