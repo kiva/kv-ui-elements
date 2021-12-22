@@ -163,7 +163,7 @@ export default {
 			type: String,
 			default: 'text',
 		},
-		/** canClear prop
+		/**
 		 * When set to true, adds a button positioned to the right edge of the input containing an “X”
 		 * */
 		canClear: {
@@ -189,6 +189,11 @@ export default {
 			};
 		},
 
+	},
+	watch: {
+		value() {
+			this.valueInput = this.value;
+		},
 	},
 	methods: {
 		onInput(event) {
