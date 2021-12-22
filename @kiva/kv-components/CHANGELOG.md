@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.0...@kiva/kv-components@1.4.1) (2021-12-22)
+
+
+### Bug Fixes
+
+* **KvTextInput:** watch for value prop changes ([ffa6c6d](https://github.com/kiva/kv-ui-elements/commit/ffa6c6dda548af021f1472e81469d7fc3a3c0a11))
+
+
+
+
+
 # [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.3.0...@kiva/kv-components@1.4.0) (2021-12-20)
 
 
