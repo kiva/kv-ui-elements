@@ -1,6 +1,6 @@
 <template>
 	<section
-		:ref="rootEl"
+		ref="rootEl"
 		class="tw-overflow-hidden tw-w-full"
 		aria-label="carousel"
 	>
@@ -50,7 +50,7 @@
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
 			<div class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible">
-				{{ currentIndex + 1 }}/{{ slideIndicatorListLength() }}
+				{{ currentIndex + 1 }}/{{ slideIndicatorListLength }}
 			</div>
 			<button
 				class="tw-text-primary
@@ -76,7 +76,7 @@
 import {
 	computed,
 	onMounted,
-	beforeUnmount,
+	onUnmounted,
 	ref,
 	toRefs,
 	nextTick,
@@ -136,7 +136,7 @@ export default {
 		'change',
 		'interact-carousel',
 	],
-	setup(props, { emit }) {
+	setup(props, { emit, slots }) {
 		const {
 			emblaOptions,
 			slidesToScroll,
@@ -152,7 +152,7 @@ export default {
 		};
 
 		const componentSlotKeys = computed(() => {
-			const keys = Object.keys(this.$slots);
+			const keys = Object.keys(slots);
 			return keys;
 		});
 
@@ -249,7 +249,8 @@ export default {
 			return indicator;
 		};
 
-		onMounted(() => {
+		onMounted(async () => {
+			getCurrentInstance();
 			embla.value = EmblaCarousel(rootEl.value, {
 				loop: true,
 				containScroll: 'trimSnaps',
@@ -288,7 +289,8 @@ export default {
 			});
 		});
 
-		beforeUnmount(() => {
+		onUnmounted(async () => {
+			await nextTick();
 			embla.value.off('select');
 			embla.value.destroy();
 		});
