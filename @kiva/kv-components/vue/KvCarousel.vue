@@ -50,7 +50,7 @@
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
 			<div class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible">
-				{{ currentIndex + 1 }}/{{ slideIndicatorListLength }}
+				{{ currentIndex + 1 }}/{{ slideIndicatorListLength() }}
 			</div>
 			<button
 				class="tw-text-primary
@@ -256,7 +256,7 @@ export default {
 				containScroll: 'trimSnaps',
 				inViewThreshold: 0.9,
 				align: 'start',
-				...emblaOptions,
+				...emblaOptions.value,
 			});
 
 			if (slidesToScroll === 'visible') {
