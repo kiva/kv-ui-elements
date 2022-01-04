@@ -163,9 +163,9 @@ export default {
 			checkboxRef.blur();
 		};
 
+		setChecked();
 		watch(checked, () => setChecked());
 		onMounted(() => {
-			setChecked();
 			uuid.value = `kvc-${nanoid(10)}`;
 		});
 
