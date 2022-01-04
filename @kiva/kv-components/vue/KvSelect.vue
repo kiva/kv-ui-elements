@@ -6,6 +6,7 @@
 				:id="id"
 				:disabled="disabled"
 				:value="value"
+				role="select"
 				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
@@ -58,21 +59,28 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * modelValue prop
+		 * */
+		modelValue: {
+			type: [Number, String],
+			default: 0,
+		},
 	},
-	data() {
-		return {
-			mdiChevronDown,
-		};
-	},
-	methods: {
-		onChange(event) {
+	setup(props, { emit }) {
+		const onChange = (event) => {
 			/**
 			* The value that the select has changed to
 			* @event change
 			* @type {Event}
 			*/
-			this.$emit('change', event.target.value);
-		},
+			emit('change', event.target.value);
+			emit('update:modelValue', event.target.value);
+		};
+		return {
+			mdiChevronDown,
+			onChange,
+		};
 	},
 };
 </script>
