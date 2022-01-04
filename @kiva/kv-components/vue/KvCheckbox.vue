@@ -75,6 +75,11 @@ import {
 export default {
 	inheritAttrs: false,
 
+	model: {
+		prop: 'checked',
+		event: 'change',
+	},
+
 	props: {
 		/**
 		 * Whether the checkbox is checked or not
@@ -94,7 +99,7 @@ export default {
 		 * Value of the checkbox if v-model is an array
 		 * */
 		value: {
-			type: String,
+			type: [String, Boolean],
 			default: '',
 		},
 		/**
@@ -122,7 +127,6 @@ export default {
 
 		const onChange = (event) => {
 			const inputChecked = event.target.checked;
-			console.log(inputChecked);
 			let checkboxValue;
 
 			if (Array.isArray(checked.value)) {
@@ -159,9 +163,9 @@ export default {
 			checkboxRef.blur();
 		};
 
-		setChecked();
 		watch(checked, () => setChecked());
 		onMounted(() => {
+			setChecked();
 			uuid.value = `kvc-${nanoid(10)}`;
 		});
 
