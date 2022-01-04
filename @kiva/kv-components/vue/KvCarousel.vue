@@ -211,11 +211,11 @@ export default {
 		};
 		const reInit = () => {
 			embla.value.reInit();
-			if (slidesToScroll === 'visible') {
+			if (slidesToScroll.value === 'visible') {
 				reInitVisible();
 			}
 			slides.value = embla.value.slideNodes();
-			this.$forceUpdate(); // force a re-render so embla.canScrollNext() gets called in the template
+			forceUpdate(); // force a re-render so embla.canScrollNext() gets called in the template
 		};
 		const onCarouselContainerClick = (e) => {
 			// If we're dragging, block click handlers within slides
@@ -259,7 +259,7 @@ export default {
 				...emblaOptions.value,
 			});
 
-			if (slidesToScroll === 'visible') {
+			if (slidesToScroll.value === 'visible') {
 				reInitVisible();
 
 				embla.value.on(
@@ -290,7 +290,6 @@ export default {
 		});
 
 		onUnmounted(async () => {
-			await nextTick();
 			embla.value.off('select');
 			embla.value.destroy();
 		});
