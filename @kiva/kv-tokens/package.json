@@ -8,5 +8,13 @@
     "dependencies": {
         "@tailwindcss/typography": "^0.4.0",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+    },
+    "devDependencies": {
+        "rimraf": "^3.0.2",
+        "style-dictionary": "^3.0.3"
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "style-dictionary-build": "npm run clean && style-dictionary build --config ./configs/style-dictionary-config.js"
     }
 }
