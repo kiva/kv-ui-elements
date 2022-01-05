@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.2...@kiva/kv-components@1.4.3) (2022-01-05)
+
+
+### Bug Fixes
+
+* **KvButton:** fix loading spinner positioning in Safari ([3bfb687](https://github.com/kiva/kv-ui-elements/commit/3bfb68754b0cf9a119e5666a7dd08bc851ae2411))
+* **KvSelect:** fix icon sizing in Safari ([58026af](https://github.com/kiva/kv-ui-elements/commit/58026af41e958024606edcfe458b4ec29264828c))
+* **KvSwitch:** fix positioning in Safari ([d3cce11](https://github.com/kiva/kv-ui-elements/commit/d3cce113fe7801c798e3303dd52580c44afeff64))
+* **KvTextInput:** fix icon sizing in Safari ([7f52581](https://github.com/kiva/kv-ui-elements/commit/7f52581b671ebecd094f455102fda0b685d26bda))
+
+
+
+
+
 ## [1.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.1...@kiva/kv-components@1.4.2) (2021-12-23)
 
 **Note:** Version bump only for package @kiva/kv-components
