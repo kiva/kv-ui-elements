@@ -6,7 +6,6 @@
 	>
 		<!-- Carousel Content -->
 		<div
-			role="carousel"
 			class="tw-flex tw-gap-x-4"
 			@click.capture="onCarouselContainerClick"
 		>
