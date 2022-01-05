@@ -6,9 +6,7 @@ expect.extend(toHaveNoViolations);
 
 describe('KvProgressBar', () => {
 	it('renders with a role of "progressbar"', () => {
-		const { getByRole } = render(KvProgressBar, {
-			slots: { default: 'Test Progress Bar' },
-		});
+		const { getByRole } = render(KvProgressBar);
 		const progressbarEl = getByRole('progressbar');
 
 		expect(progressbarEl).toBeDefined();

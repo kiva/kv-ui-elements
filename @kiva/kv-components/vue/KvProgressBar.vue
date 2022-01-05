@@ -85,8 +85,8 @@ export default {
 			loaded.value = true;
 		};
 
-		onMounted(() => {
-			nextTick();
+		onMounted(async () => {
+			await nextTick();
 			animateProgressBar();
 		});
 
