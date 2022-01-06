@@ -32,7 +32,6 @@
 				v-bind="$attrs"
 				:value="valueInput"
 				@input="onInput"
-				v-on="inputListeners"
 			>
 			<!-- eslint-enable max-len -->
 			<kv-material-icon
@@ -68,6 +67,10 @@
 </template>
 
 <script>
+import {
+	ref,
+	toRefs,
+} from 'vue-demi';
 import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -171,45 +174,49 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			mdiAlertCircleOutline,
-			mdiClose,
-			valueInput: this.value,
-		};
-	},
-	computed: {
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'input' event which is emitted by this component
-				input: () => {},
-			};
-		},
+	emits: [
+		'input',
+	],
+	setup(props, { emit }) {
+		const {
+			value,
+		} = toRefs(props);
 
-	},
-	methods: {
-		onInput(event) {
+		const valueInput = ref(value.value);
+		const textInputRef = ref(null);
+
+		const onInput = (event) => {
 			/**
 			* The value that is currently in the input
 			* @event input
 			* @type {Event}
 			*/
-			this.valueInput = event.target.value;
-			this.$emit('input', event.target.value);
-		},
-		focus() {
-			this.$refs.textInputRef.focus();
-		},
-		blur() {
-			this.$refs.textInputRef.blur();
-		},
-		clearInput() {
-			this.valueInput = '';
-			this.$emit('input', '');
-		},
+			valueInput.value = event.target.value;
+			emit('input', event.target.value);
+		};
+
+		const focus = () => {
+			textInputRef.value.focus();
+		};
+
+		const blur = () => {
+			textInputRef.value.blur();
+		};
+
+		const clearInput = () => {
+			valueInput.value = '';
+			emit('input', '');
+		};
+
+		return {
+			mdiAlertCircleOutline,
+			mdiClose,
+			valueInput,
+			onInput,
+			focus,
+			blur,
+			clearInput,
+		};
 	},
 };
 </script>
