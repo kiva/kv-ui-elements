@@ -14,7 +14,6 @@
 				role="switch"
 				:checked="checked"
 				:disabled="disabled"
-				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<!-- switch background -->
@@ -47,6 +46,10 @@
 </template>
 
 <script>
+import {
+	ref,
+	onMounted,
+} from 'vue-demi';
 import { nanoid } from 'nanoid';
 
 /**
@@ -88,35 +91,34 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			uuid: `kvs-${nanoid(10)}`,
+	emits: [
+		'change',
+	],
+	setup(props, { emit }) {
+		const uuid = ref(`kvs-${nanoid(10)}`);
+		const switchRef = ref(null);
+
+		const onChange = (event) => {
+			emit('change', event.target.checked);
 		};
-	},
-	computed: {
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'change' event which is emitted by this component
-				change: () => {},
-			};
-		},
-	},
-	mounted() {
-		this.uuid = `kvs-${nanoid(10)}`;
-	},
-	methods: {
-		onChange(event) {
-			this.$emit('change', event.target.checked);
-		},
-		focus() {
-			this.$refs.switchRef.focus();
-		},
-		blur() {
-			this.$refs.switchRef.blur();
-		},
+
+		const focus = () => {
+			switchRef.value.focus();
+		};
+		const blur = () => {
+			switchRef.value.blur();
+		};
+
+		onMounted(() => {
+			uuid.value = `kvs-${nanoid(10)}`;
+		});
+
+		return {
+			uuid,
+			onChange,
+			focus,
+			blur,
+		};
 	},
 };
 </script>
