@@ -82,7 +82,7 @@
 									tw-w-6 tw-h-6 tw--m-2
 									hover:tw-text-action-highlight
 								"
-								@click.stop.prevent="hide"
+								@click.stop="hide"
 							>
 								<kv-material-icon
 									class="tw-w-3 tw-h-3"
@@ -127,7 +127,14 @@
 </template>
 
 <script>
-
+import {
+	ref,
+	toRefs,
+	computed,
+	nextTick,
+	watch,
+	onBeforeUnmount,
+} from 'vue-demi';
 import { mdiClose } from '@mdi/js';
 import FocusLock from 'vue-focus-lock';
 import { hideOthers as makePageInert } from 'aria-hidden';
@@ -200,84 +207,97 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			mdiClose,
-			makePageInert() {}, // reference to aria-hide function
-		};
-	},
-	computed: {
-		role() {
-			if (this.variant === 'alert') {
+	emits: [
+		'lightbox-closed',
+	],
+	setup(props, { emit }) {
+		const {
+			visible,
+			variant,
+			preventClose,
+		} = toRefs(props);
+
+		const kvLightboxBody = ref(null);
+		const controlsRef = ref(null);
+
+		const role = computed(() => {
+			if (variant.value === 'alert') {
 				return 'alertdialog';
 			}
 			return 'dialog';
-		},
-	},
-	watch: {
-		visible() {
-			if (this.visible) {
-				this.show();
-			} else {
-				this.hide();
-			}
-		},
-	},
-	beforeDestroy() {
-		this.hide();
-	},
-	methods: {
-		show() {
-			if (this.visible) {
-				document.addEventListener('keyup', this.onKeyUp);
+		});
 
-				this.$nextTick(() => {
-					const lightboxBodyRef = this.$refs.kvLightboxBody;
-					if (lightboxBodyRef) {
-						this.makePageInert = makePageInert(lightboxBodyRef);
-						lockPrintSingleEl(lightboxBodyRef);
-					}
-					lockScroll();
-
-					// alerts should send focus to the first actionable item in the controls
-					if (this.variant === 'alert') {
-						const firstControlEl = this.$refs.controlsRef.querySelector('button');
-						if (firstControlEl) {
-							firstControlEl.focus();
-						}
-					}
-				});
-			}
-		},
-		hide() {
+		const hide = () => {
 			// scroll any content inside the lightbox back to top
-			const lightboxBodyRef = this.$refs.kvLightboxBody;
-			if (lightboxBodyRef) {
-				lightboxBodyRef.scrollTop = 0;
-				unlockPrintSingleEl(lightboxBodyRef);
+			if (kvLightboxBody.value) {
+				kvLightboxBody.value.scrollTop = 0;
+				unlockPrintSingleEl(kvLightboxBody.value);
 			}
 			unlockScroll();
-			if (this.makePageInert) {
-				this.makePageInert();
-			}
+			makePageInert(kvLightboxBody.value);
 
 			/**
 			 * Triggered when the lightbox is closed
 			 * @event lightbox-closed
 			 * @type {Event}
 			*/
-			this.$emit('lightbox-closed');
-		},
-		onScreenClick() {
-			if (!this.preventClose) {
-				this.hide();
+			emit('lightbox-closed');
+		};
+
+		const onKeyUp = (e) => {
+			if (!!e && e.key === 'Escape' && !preventClose.value) {
+				hide();
 			}
-		},
-		onKeyUp(e) {
-			if (e.key === 'Escape' && !this.preventClose) {
-				this.hide();
+		};
+
+		const onScreenClick = () => {
+			if (!preventClose.value) {
+				hide();
 			}
-		},
+		};
+
+		const show = () => {
+			if (visible.value) {
+				document.addEventListener('keyup', onKeyUp());
+
+				nextTick(() => {
+					if (kvLightboxBody.value) {
+						makePageInert(kvLightboxBody.value);
+						lockPrintSingleEl(kvLightboxBody.value);
+					}
+					lockScroll();
+
+					// alerts should send focus to the first actionable item in the controls
+					if (variant.value === 'alert') {
+						const firstControlEl = controlsRef.value.querySelector('button');
+						if (firstControlEl) {
+							firstControlEl.focus();
+						}
+					}
+				});
+			}
+		};
+
+		watch(visible, () => {
+			if (visible.value) {
+				show();
+			} else {
+				hide();
+			}
+		});
+
+		onBeforeUnmount(() => hide());
+
+		return {
+			mdiClose,
+			role,
+			kvLightboxBody,
+			onKeyUp,
+			onScreenClick,
+			hide,
+			show,
+			controlsRef,
+		};
 	},
 };
 </script>
