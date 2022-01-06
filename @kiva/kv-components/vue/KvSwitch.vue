@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<label
-			class="tw-inline-flex tw-gap-2 tw-items-center"
+			class="tw-inline-flex tw-gap-2 tw-items-center hover:tw-cursor-pointer"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
