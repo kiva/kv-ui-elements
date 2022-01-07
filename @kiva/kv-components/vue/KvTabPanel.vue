@@ -37,7 +37,7 @@ export default {
 	computed: {
 		isActive() {
 			const { navItems, selectedIndex } = this.$KvTabContext;
-			return navItems[selectedIndex]?.for === this.id;
+			return navItems[selectedIndex]?.forPanel === this.id;
 		},
 	},
 };
