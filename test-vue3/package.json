@@ -5,18 +5,17 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "npm run clean && npm run mkdir && npm run copy && jest",
+    "test": "npm run clean && npm run mkdir && npm run copy && vue-demi-switch 3 ../../../test-vue3/node_modules/vue && jest",
     "clean": "rimraf ./local/",
     "mkdir": "mkdir local local/tests local/utils local/vue",
     "copy": "npm run copy:tests && npm run copy:utils && npm run copy:vue",
-    "copy:tests": "ncp ./node_modules/@kiva/kv-components/tests ./local/tests",
-    "copy:utils": "ncp ./node_modules/@kiva/kv-components/utils ./local/utils",
-    "copy:vue": "ncp ./node_modules/@kiva/kv-components/vue ./local/vue"
+    "copy:tests": "ncp ../@kiva/kv-components/tests ./local/tests",
+    "copy:utils": "ncp ../@kiva/kv-components/utils ./local/utils",
+    "copy:vue": "ncp ../@kiva/kv-components/vue ./local/vue"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@kiva/kv-components": "^1.4.3",
     "@testing-library/vue": "^6.4.2",
     "@vue/compiler-sfc": "^3.2.26",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
@@ -25,6 +24,7 @@
     "jest-axe": "^5.0.1",
     "ncp": "^2.0.0",
     "rimraf": "^3.0.2",
-    "vue": "^3.2.26"
+    "vue": "^3.2.26",
+    "vue-router": "^4.0.12"
   }
 }
