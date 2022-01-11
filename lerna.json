@@ -2,7 +2,9 @@
 	"version": "independent",
 	"packages": [
 		"@kiva/kv-components",
-		"@kiva/kv-tokens"
+		"@kiva/kv-tokens",
+		"test-vue2",
+		"test-vue3"
 	],
 	"command": {
 		"version": {
