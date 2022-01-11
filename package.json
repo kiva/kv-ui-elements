@@ -4,10 +4,12 @@
   "description": "Design definitions and components for Kiva's style guide",
   "workspaces": [
     "@kiva/kv-components",
-    "@kiva/kv-tokens"
+    "@kiva/kv-tokens",
+    "test-vue2",
+    "test-vue3"
   ],
   "scripts": {
-    "test": "npm run test -w @kiva/kv-components",
+    "test": "npm run test --workspaces",
     "lint": "eslint --ext .js,.vue ./",
     "prepare": "husky install",
     "publish-release": "lerna publish -m 'chore: publish'",
