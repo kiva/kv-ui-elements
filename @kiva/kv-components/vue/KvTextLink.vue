@@ -104,7 +104,7 @@ export default {
 		const onClick = (event) => {
 			// emit a vue event and prevent native event
 			// so we don't have to write @click.native in our templates
-			if (tag === 'button') {
+			if (tag.value === 'button') {
 				event.preventDefault();
 				/**
 				 * Fired when the button is clicked
