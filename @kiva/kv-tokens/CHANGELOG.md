@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.3.0...@kiva/kv-tokens@1.3.1) (2022-01-11)
+
+
+### Bug Fixes
+
+* allow buttons to inherit font weights ([593b28f](https://github.com/kiva/kv-ui-elements/commit/593b28f5f2b23ad38b893b64ac866e8287f12479))
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.2.1...@kiva/kv-tokens@1.3.0) (2021-12-23)
 
 
