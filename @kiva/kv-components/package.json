@@ -55,7 +55,7 @@
     "embla-carousel": "^4.5.3",
     "nanoid": "^3.1.23",
     "vue-demi": "^0.12.1",
-    "vue-focus-lock": "^1.4.1"
+    "vue-focus-lock": "^2.0.0"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
