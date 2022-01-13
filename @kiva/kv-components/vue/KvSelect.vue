@@ -5,7 +5,7 @@
 			<select
 				:id="id"
 				:disabled="disabled"
-				:value="value"
+				:value="modelValue"
 				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
@@ -32,8 +32,8 @@ export default {
 	},
 	// v-model will change when select value updates
 	model: {
-		prop: 'value',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -43,13 +43,6 @@ export default {
 			type: String,
 			required: true,
 			default: '',
-		},
-		/**
-		 * Initial selected value
-		 * */
-		value: {
-			type: [Number, String],
-			default: 0,
 		},
 		/**
 		 * Use if select is disabled
