@@ -1,27 +1,34 @@
 <template>
 	<button
-		:id="`kv-tab-${this.for}`"
+		:id="`kv-tab-${forPanel}`"
 		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap"
 		:class="{ 'hover:tw-text-action-highlight' : !isActive }"
 		role="tab"
 		:aria-selected="isActive"
-		:aria-controls="`kv-tab-panel-${this.for}`"
+		:aria-controls="`kv-tab-panel-${forPanel}`"
 		:tabindex="isActive ? null : -1"
-		@click="handleTabClicked"
+		@click="handleTabClicked()"
 	>
 		<slot></slot>
 	</button>
 </template>
 
 <script>
+import {
+	toRefs,
+	computed,
+	onMounted,
+	getCurrentInstance,
+} from 'vue-demi';
+import { useTabs } from './composables/useTabs.ts';
+
 export default {
-	inject: ['$KvTabContext'],
 	props: {
 		/**
 		 * A unique id which correspondes to an `id` property on the KvTabPanel it controls
 		 * e.g., <kv-tab for="foo">... <kv-tab-panel id="foo">
 		 * */
-		for: {
+		forPanel: {
 			type: String,
 			required: true,
 		},
@@ -33,23 +40,61 @@ export default {
 			default: false,
 		},
 	},
-	computed: {
-		isActive() {
-			const { navItems, selectedIndex } = this.$KvTabContext;
-			return navItems[selectedIndex]?.for === this.for;
-		},
-		index() {
-			const { navItems } = this.$KvTabContext;
-			return navItems?.findIndex((navItem) => navItem.for === this.for);
-		},
-	},
-	mounted() {
-		this.$KvTabContext.navItems.push(this);
-	},
-	methods: {
-		handleTabClicked() {
-			this.$KvTabContext.setTab(this.index);
-		},
+	emits: [
+		'tab-changed',
+	],
+	setup(props, { emit }) {
+		const {
+			forPanel,
+		} = toRefs(props);
+		const {
+			tabContext,
+			setIndex,
+			setItems,
+			selectedIndex,
+			navItems,
+		} = useTabs();
+
+		const isActive = computed(() => {
+			const active = navItems.value[selectedIndex.value]?.forPanel === forPanel.value;
+			return active;
+		});
+
+		const selectedTabEl = computed(() => navItems.value[selectedIndex.value]?.$el ?? null);
+
+		const index = computed(() => {
+			const indexOutput = navItems.value?.findIndex(
+				(navItem) => navItem.forPanel === forPanel.value,
+			);
+			return indexOutput;
+		});
+
+		const setTab = (indexInput) => {
+			// tabContext.selectedIndex = indexInput;
+			setIndex(indexInput);
+			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+			/**
+			 * Triggers when the selected tab changes
+			 *
+			 * @property {number} indexInput Index of the newly selected tab
+			 */
+			emit('tab-changed', indexInput);
+		};
+
+		const handleTabClicked = () => {
+			console.log(index.value);
+			setTab(index.value);
+		};
+		onMounted(() => {
+			const instance = getCurrentInstance();
+			setItems(instance.proxy);
+			console.log(tabContext);
+		});
+		return {
+			isActive,
+			handleTabClicked,
+		};
 	},
 };
 </script>

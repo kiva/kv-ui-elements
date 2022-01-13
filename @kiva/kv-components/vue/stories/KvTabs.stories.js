@@ -12,10 +12,10 @@ export const DefaultTemplate = () => ({
 	template: `
 		<kv-tabs @tab-changed="handleTabChanged">
 			<template #tabNav>
-				<kv-tab for="demo-1-first">First</kv-tab>
-				<kv-tab for="demo-1-second">Second</kv-tab>
-				<kv-tab for="demo-1-third">Third</kv-tab>
-				<kv-tab for="demo-1-forth">Forth is longer</kv-tab>
+				<kv-tab forPanel="demo-1-first">First</kv-tab>
+				<kv-tab forPanel="demo-1-second">Second</kv-tab>
+				<kv-tab forPanel="demo-1-third">Third</kv-tab>
+				<kv-tab forPanel="demo-1-forth">Forth is longer</kv-tab>
 			</template>
 			<template #tabPanels>
 				<kv-tab-panel id="demo-1-first"><p>First Panel</p></kv-tab-panel>
@@ -37,10 +37,10 @@ export const InitialTabSelection = () => ({
 	template: `
 		<kv-tabs @tab-changed="handleTabChanged">
 			<template #tabNav>
-				<kv-tab for="demo-2-first">First tab name</kv-tab>
-				<kv-tab for="demo-2-second" :selected="true">Second is initially selected</kv-tab>
-				<kv-tab for="demo-2-third">Third tab name</kv-tab>
-				<kv-tab for="demo-2-forth">Forth tab name is quite long</kv-tab>
+				<kv-tab forPanel="demo-2-first">First tab name</kv-tab>
+				<kv-tab forPanel="demo-2-second" :selected="true">Second is initially selected</kv-tab>
+				<kv-tab forPanel="demo-2-third">Third tab name</kv-tab>
+				<kv-tab forPanel="demo-2-forth">Forth tab name is quite long</kv-tab>
 			</template>
 			<template #tabPanels>
 				<kv-tab-panel id="demo-2-first"><p>First Panel</p></kv-tab-panel>

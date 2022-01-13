@@ -22,8 +22,13 @@
 </template>
 
 <script>
+import {
+	computed,
+	toRefs,
+} from 'vue-demi';
+import { useTabs } from './composables/useTabs.ts';
+
 export default {
-	inject: ['$KvTabContext'],
 	props: {
 		/**
 		 * A unique id which correspondes to a `for` property on the KvTab which controls it
@@ -34,11 +39,20 @@ export default {
 			required: true,
 		},
 	},
-	computed: {
-		isActive() {
-			const { navItems, selectedIndex } = this.$KvTabContext;
-			return navItems[selectedIndex]?.for === this.id;
-		},
+	setup(props) {
+		const {
+			id,
+		} = toRefs(props);
+		const { navItems, selectedIndex } = useTabs();
+
+		const isActive = computed(() => {
+			const active = navItems.value[selectedIndex.value]?.forPanel === id.value;
+			return active;
+		});
+
+		return {
+			isActive,
+		};
 	},
 };
 </script>
