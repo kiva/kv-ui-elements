@@ -8,7 +8,7 @@
 			<input
 				v-bind="$attrs"
 				:id="uuid"
-				:ref="radioRef"
+				ref="radioRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="radio"
 				:checked="isChecked"
