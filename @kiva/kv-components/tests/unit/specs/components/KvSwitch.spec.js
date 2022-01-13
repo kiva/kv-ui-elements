@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvSwitch from '../../../../vue/KvSwitch.vue';
 
@@ -15,38 +15,40 @@ describe('KvSwitch', () => {
 	});
 
 	it('toggles the switch when the label is clicked', async () => {
-		const { getByLabelText } = render(KvSwitch, {
+		const { getByText, getByLabelText } = render(KvSwitch, {
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByLabelText('Test Switch');
+		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		expect(switchEl.checked).toEqual(false);
-		await switchEl.click();
-		expect(switchEl.checked).toEqual(true);
+		expect(switchInput.checked).toEqual(false);
+		await fireEvent.click(switchEl);
+		expect(switchInput.checked).toEqual(true);
 	});
 
 	it('can\'t be toggled when the disabled prop is true', async () => {
-		const { getByLabelText } = render(KvSwitch, {
+		const { getByText, getByLabelText } = render(KvSwitch, {
 			props: { disabled: true },
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByLabelText('Test Switch');
+		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		expect(switchEl.checked).toEqual(false);
-		await switchEl.click();
-		expect(switchEl.checked).toEqual(false);
+		expect(switchInput.checked).toEqual(false);
+		await fireEvent.click(switchEl);
+		expect(switchInput.checked).toEqual(false);
 	});
 
 	it('emits a change event when toggled', async () => {
-		const { getByLabelText, emitted } = render(KvSwitch, {
+		const { getByText, emitted } = render(KvSwitch, {
 			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByLabelText('Test Switch');
+		const switchEl = getByText('Test Switch');
 
-		await switchEl.click();
+		await fireEvent.click(switchEl);
 		expect(emitted().change[0]).toEqual([true]);
 
-		await switchEl.click();
+		await fireEvent.click(switchEl);
 		expect(emitted().change[1]).toEqual([false]);
 		expect(emitted().change.length).toBe(2);
 	});
