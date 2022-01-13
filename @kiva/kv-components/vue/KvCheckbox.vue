@@ -8,7 +8,7 @@
 			<input
 				v-bind="$attrs"
 				:id="uuid"
-				:ref="checkboxRef"
+				ref="checkboxRef"
 				class="tw-peer tw-appearance-none tw-w-max"
 				type="checkbox"
 				:checked="isChecked"
