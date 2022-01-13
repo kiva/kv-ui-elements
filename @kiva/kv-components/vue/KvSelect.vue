@@ -67,6 +67,10 @@ export default {
 			default: 0,
 		},
 	},
+	emits: [
+		'change',
+		'update:modelValue',
+	],
 	setup(props, { emit }) {
 		const onChange = (event) => {
 			/**
