@@ -160,7 +160,6 @@ export default {
 		const onChange = (event) => {
 			emit('change', event.target.value);
 			emit('update:modelValue', event.target.value);
-			emit('update:checked', event.target.value);
 		};
 
 		const focus = () => radioRef.focus();
