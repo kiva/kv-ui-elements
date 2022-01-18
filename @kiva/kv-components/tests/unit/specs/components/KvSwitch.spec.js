@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import addListeners from '../../utils/addListeners';
 import KvSwitch from '../../../../vue/KvSwitch.vue';
 
 expect.extend(toHaveNoViolations);
@@ -54,11 +53,47 @@ describe('KvSwitch', () => {
 
 	it('applies parent event listeners to the input element', async () => {
 		const onInput = jest.fn();
-		const { getByText } = renderTestSwitch(addListeners({}, { input: onInput }));
+		const TestComponent = {
+			template: '<KvSwitch @input="onInput">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+			methods: { onInput },
+		};
+		const { getByText } = render(TestComponent);
 
 		const switchEl = getByText('Test Switch');
 		await fireEvent.click(switchEl);
 		expect(onInput.mock.calls.length).toBe(1);
+	});
+
+	it('applies parent attributes to the input element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch name="test-switch">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { getByRole } = render(TestComponent);
+
+		const switchEl = getByRole('switch');
+		expect(switchEl.name).toBe('test-switch');
+	});
+
+	it('applies parent styles to the root element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch style="padding-top:1234px">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.style.paddingTop).toEqual('1234px');
+	});
+
+	it('applies parent classes to the root element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch class="test-class">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.classList).toContain('test-class');
 	});
 
 	it('has no automated accessibility violations', async () => {
