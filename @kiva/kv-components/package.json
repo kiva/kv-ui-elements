@@ -43,8 +43,8 @@
     "vue3": "npm:vue@^3.2.23"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006 -c vue/.storybook",
-    "build-storybook": "build-storybook -c vue/.storybook",
+    "storybook": "vue-demi-switch 2 && start-storybook -p 6006 -c vue/.storybook",
+    "build-storybook": "vue-demi-switch 2 && build-storybook -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
     "test": "npm run lint"
   },
