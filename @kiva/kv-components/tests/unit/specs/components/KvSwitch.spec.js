@@ -1,60 +1,121 @@
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvSwitch from '../../../../vue/KvSwitch.vue';
 
 expect.extend(toHaveNoViolations);
 
 describe('KvSwitch', () => {
+	const renderTestSwitch = (options) => render(KvSwitch, {
+		slots: { default: 'Test Switch' },
+		...options,
+	});
+
 	it('renders with a role of "switch"', () => {
-		const { getByRole } = render(KvSwitch, {
-			slots: { default: 'Test Switch' },
-		});
+		const { getByRole } = renderTestSwitch();
 		const switchEl = getByRole('switch');
 
 		expect(switchEl).toBeDefined();
 	});
 
 	it('toggles the switch when the label is clicked', async () => {
-		const { getByLabelText } = render(KvSwitch, {
-			slots: { default: 'Test Switch' },
-		});
-		const switchEl = getByLabelText('Test Switch');
+		const { getByText, getByLabelText } = renderTestSwitch();
+		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		expect(switchEl.checked).toEqual(false);
-		await switchEl.click();
-		expect(switchEl.checked).toEqual(true);
+		expect(switchInput.checked).toEqual(false);
+		await fireEvent.click(switchEl);
+		expect(switchInput.checked).toEqual(true);
 	});
 
 	it('can\'t be toggled when the disabled prop is true', async () => {
-		const { getByLabelText } = render(KvSwitch, {
+		const { getByText, getByLabelText } = renderTestSwitch({
 			props: { disabled: true },
-			slots: { default: 'Test Switch' },
 		});
-		const switchEl = getByLabelText('Test Switch');
+		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		expect(switchEl.checked).toEqual(false);
-		await switchEl.click();
-		expect(switchEl.checked).toEqual(false);
+		expect(switchInput.checked).toEqual(false);
+		await fireEvent.click(switchEl);
+		expect(switchInput.checked).toEqual(false);
 	});
 
-	it('emits a change event when toggled', async () => {
-		const { getByLabelText, emitted } = render(KvSwitch, {
-			slots: { default: 'Test Switch' },
-		});
-		const switchEl = getByLabelText('Test Switch');
+	it('works with v-model', async () => {
+		const TestComponent = {
+			template:
+				`<div>
+					<KvSwitch v-model="switchValue">Test Switch</KvSwitch>
+					<button @click="switchValue = false">reset</button>
+					<span>The switch value is {{ switchValue }}</span>
+				</div>`,
+			components: { KvSwitch },
+			data: () => ({ switchValue: false }),
+		};
+		const { getByLabelText, getByText } = render(TestComponent);
+		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		await switchEl.click();
-		expect(emitted().change[0]).toEqual([true]);
+		// Check that the value is `false` initially
+		expect(getByText('The switch value is false')).toBeDefined();
+		expect(switchInput.checked).toEqual(false);
 
-		await switchEl.click();
-		expect(emitted().change[1]).toEqual([false]);
-		expect(emitted().change.length).toBe(2);
+		// Click the switch and expect the value to be `true` now
+		await fireEvent.click(switchEl);
+		expect(getByText('The switch value is true')).toBeDefined();
+		expect(switchInput.checked).toEqual(true);
+
+		// Click the reset button and expect the value to be `false` again
+		await fireEvent.click(getByText('reset'));
+		expect(getByText('The switch value is false')).toBeDefined();
+		expect(switchInput.checked).toEqual(false);
+	});
+
+	it('applies parent event listeners to the input element', async () => {
+		const onInput = jest.fn();
+		const TestComponent = {
+			template: '<KvSwitch @input="onInput">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+			methods: { onInput },
+		};
+		const { getByText } = render(TestComponent);
+
+		const switchEl = getByText('Test Switch');
+		await fireEvent.click(switchEl);
+		expect(onInput.mock.calls.length).toBe(1);
+	});
+
+	it('applies parent attributes to the input element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch name="test-switch">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { getByRole } = render(TestComponent);
+
+		const switchEl = getByRole('switch');
+		expect(switchEl.name).toBe('test-switch');
+	});
+
+	it('applies parent styles to the root element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch style="padding-top:1234px">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.style.paddingTop).toEqual('1234px');
+	});
+
+	it('applies parent classes to the root element', async () => {
+		const TestComponent = {
+			template: '<KvSwitch class="test-class">Test Switch</KvSwitch>',
+			components: { KvSwitch },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.classList).toContain('test-class');
 	});
 
 	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvSwitch, {
-			slots: { default: 'Test Switch' },
-		});
+		const { container } = renderTestSwitch();
 		const results = await axe(container);
 		expect(results).toHaveNoViolations();
 	});
