@@ -15,7 +15,7 @@
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				role="switch"
-				:checked="checked"
+				:checked="modelValue"
 				:disabled="disabled"
 				v-on="inputListeners"
 				@change.prevent="onChange"
@@ -58,7 +58,7 @@ import { nanoid } from 'nanoid';
 import { useAttrs } from '../utils/attrs';
 
 const emits = [
-	'change',
+	'update:modelValue',
 ];
 
 /**
@@ -81,14 +81,14 @@ export default {
 	inheritAttrs: false,
 	// v-model will change when checked value changes
 	model: {
-		prop: 'checked',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
 		 * Whether the switch is on or off
 		 * */
-		checked: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -114,7 +114,7 @@ export default {
 		} = useAttrs(context, emits);
 
 		const onChange = (event) => {
-			emit('change', event.target.checked);
+			emit('update:modelValue', event.target.checked);
 		};
 
 		const focus = () => {
