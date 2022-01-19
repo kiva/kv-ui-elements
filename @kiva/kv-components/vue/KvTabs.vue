@@ -86,7 +86,6 @@ export default {
 		const selectedTabEl = computed(() => navItems.value[selectedIndex.value]?.$el ?? null);
 
 		const setTab = (index) => {
-			// tabContext.selectedIndex = index;
 			setIndex(index);
 			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -160,7 +159,7 @@ export default {
 		});
 
 		watch(selectedIndex, () => {
-			console.log(selectedIndex.value);
+			emit('tab-changed', selectedIndex.value);
 		});
 
 		return {

@@ -43,7 +43,7 @@ export default {
 	emits: [
 		'tab-changed',
 	],
-	setup(props, { emit }) {
+	setup(props) {
 		const {
 			forPanel,
 		} = toRefs(props);
@@ -69,16 +69,8 @@ export default {
 		});
 
 		const setTab = (indexInput) => {
-			// tabContext.selectedIndex = indexInput;
 			setIndex(indexInput);
 			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-			/**
-			 * Triggers when the selected tab changes
-			 *
-			 * @property {number} indexInput Index of the newly selected tab
-			 */
-			emit('tab-changed', indexInput);
 		};
 
 		const handleTabClicked = () => {
