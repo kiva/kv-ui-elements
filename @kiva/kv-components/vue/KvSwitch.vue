@@ -1,5 +1,8 @@
 <template>
-	<div>
+	<div
+		:class="classes"
+		:style="styles"
+	>
 		<label
 			class="tw-inline-flex tw-gap-2 tw-items-center hover:tw-cursor-pointer"
 			:class="{ 'tw-opacity-low': disabled }"
@@ -7,13 +10,14 @@
 		>
 			<input
 				:id="uuid"
-				v-bind="$attrs"
+				v-bind="inputAttrs"
 				ref="switchRef"
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				role="switch"
 				:checked="checked"
 				:disabled="disabled"
+				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<!-- switch background -->
@@ -51,6 +55,11 @@ import {
 	onMounted,
 } from 'vue-demi';
 import { nanoid } from 'nanoid';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'change',
+];
 
 /**
  * KvSwitch
@@ -91,12 +100,18 @@ export default {
 			default: false,
 		},
 	},
-	emits: [
-		'change',
-	],
-	setup(props, { emit }) {
+	emits,
+	setup(props, context) {
+		const { emit } = context;
 		const uuid = ref(`kvs-${nanoid(10)}`);
 		const switchRef = ref(null);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
 
 		const onChange = (event) => {
 			emit('change', event.target.checked);
@@ -118,6 +133,10 @@ export default {
 			onChange,
 			focus,
 			blur,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
 		};
 	},
 };
