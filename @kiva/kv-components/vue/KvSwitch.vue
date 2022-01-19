@@ -12,7 +12,7 @@
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				role="switch"
-				:checked="checked"
+				:checked="modelValue"
 				:disabled="disabled"
 				@change.prevent="onChange"
 			>
@@ -72,14 +72,14 @@ export default {
 	inheritAttrs: false,
 	// v-model will change when checked value changes
 	model: {
-		prop: 'checked',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
 		 * Whether the switch is on or off
 		 * */
-		checked: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -92,14 +92,14 @@ export default {
 		},
 	},
 	emits: [
-		'change',
+		'update:modelValue',
 	],
 	setup(props, { emit }) {
 		const uuid = ref(`kvs-${nanoid(10)}`);
 		const switchRef = ref(null);
 
 		const onChange = (event) => {
-			emit('change', event.target.checked);
+			emit('update:modelValue', event.target.checked);
 		};
 
 		const focus = () => {
