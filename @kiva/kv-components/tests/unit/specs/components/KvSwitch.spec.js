@@ -39,16 +39,34 @@ describe('KvSwitch', () => {
 		expect(switchInput.checked).toEqual(false);
 	});
 
-	it('emits a change event when toggled', async () => {
-		const { getByText, emitted } = renderTestSwitch();
+	it('works with v-model', async () => {
+		const TestComponent = {
+			template:
+				`<div>
+					<KvSwitch v-model="switchValue">Test Switch</KvSwitch>
+					<button @click="switchValue = false">reset</button>
+					<span>The switch value is {{ switchValue }}</span>
+				</div>`,
+			components: { KvSwitch },
+			data: () => ({ switchValue: false }),
+		};
+		const { getByLabelText, getByText } = render(TestComponent);
 		const switchEl = getByText('Test Switch');
+		const switchInput = getByLabelText('Test Switch');
 
-		await fireEvent.click(switchEl);
-		expect(emitted().change[0]).toEqual([true]);
+		// Check that the value is `false` initially
+		expect(getByText('The switch value is false')).toBeDefined();
+		expect(switchInput.checked).toEqual(false);
 
+		// Click the switch and expect the value to be `true` now
 		await fireEvent.click(switchEl);
-		expect(emitted().change[1]).toEqual([false]);
-		expect(emitted().change.length).toBe(2);
+		expect(getByText('The switch value is true')).toBeDefined();
+		expect(switchInput.checked).toEqual(true);
+
+		// Click the reset button and expect the value to be `false` again
+		await fireEvent.click(getByText('reset'));
+		expect(getByText('The switch value is false')).toBeDefined();
+		expect(switchInput.checked).toEqual(false);
 	});
 
 	it('applies parent event listeners to the input element', async () => {
