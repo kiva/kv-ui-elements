@@ -4,14 +4,14 @@ import {
 	computed,
 } from 'vue-demi';
 
-export function useTabs() {
+const tabContext = reactive(
+	{
+		selectedIndex: 0,
+		navItems: <any>[], // populated by KvTab
+	}
+);
 
-	const tabContext = reactive(
-		{
-			selectedIndex: 0,
-			navItems: <any>[], // populated by KvTab
-		}
-	);
+export function useTabs() {
 
 	const setIndex = (index: number) => {
 		tabContext.selectedIndex = index;

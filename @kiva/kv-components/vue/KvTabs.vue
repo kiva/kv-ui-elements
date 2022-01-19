@@ -60,6 +60,7 @@ import {
 	computed,
 	onMounted,
 	onBeforeUnmount,
+	watch,
 } from 'vue-demi';
 import { useTabs } from './composables/useTabs.ts';
 
@@ -70,7 +71,6 @@ export default {
 	setup(props, { emit }) {
 		const selectedTabResizeObserver = ref(null);
 		const {
-			tabContext,
 			setIndex,
 			navItems,
 			selectedIndex,
@@ -78,7 +78,9 @@ export default {
 
 		const forceUpdate = () => {
 			const instance = getCurrentInstance();
-			instance.proxy.$forceUpdate();
+			if (instance) {
+				instance.proxy.$forceUpdate();
+			}
 		};
 
 		const selectedTabEl = computed(() => navItems.value[selectedIndex.value]?.$el ?? null);
@@ -93,15 +95,10 @@ export default {
 			 *
 			 * @property {number} index Index of the newly selected tab
 			 */
-			console.log(index);
-			console.log(tabContext);
-			console.log(selectedTabEl);
 			emit('tab-changed', index);
 		};
 
 		const handleKeyDown = (event) => {
-			console.log(event);
-			console.log(tabContext);
 			const focusActiveTab = () => {
 				const activeTab = navItems.value
 					.find((navItem) => navItem.isActive);
@@ -156,12 +153,14 @@ export default {
 			if (selectedTabEl.value) {
 				selectedTabResizeObserver.value.observe(selectedTabEl.value);
 			}
-			console.log(tabContext);
-			console.log(selectedTabEl);
 		});
 
 		onBeforeUnmount(() => {
 			selectedTabResizeObserver.value.disconnect();
+		});
+
+		watch(selectedIndex, () => {
+			console.log(selectedIndex.value);
 		});
 
 		return {

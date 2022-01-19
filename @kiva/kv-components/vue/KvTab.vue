@@ -48,7 +48,6 @@ export default {
 			forPanel,
 		} = toRefs(props);
 		const {
-			tabContext,
 			setIndex,
 			setItems,
 			selectedIndex,
@@ -83,13 +82,11 @@ export default {
 		};
 
 		const handleTabClicked = () => {
-			console.log(index.value);
 			setTab(index.value);
 		};
 		onMounted(() => {
 			const instance = getCurrentInstance();
 			setItems(instance.proxy);
-			console.log(tabContext);
 		});
 		return {
 			isActive,
