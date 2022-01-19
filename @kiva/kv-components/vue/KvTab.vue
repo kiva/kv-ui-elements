@@ -48,21 +48,23 @@ export default {
 			forPanel,
 		} = toRefs(props);
 		const {
+			tabContext,
 			setIndex,
 			setItems,
-			selectedIndex,
-			navItems,
 		} = useTabs();
 
 		const isActive = computed(() => {
-			const active = navItems.value[selectedIndex.value]?.forPanel === forPanel.value;
+			const active = tabContext.navItems[tabContext.selectedIndex]?.forPanel === forPanel.value;
 			return active;
 		});
 
-		const selectedTabEl = computed(() => navItems.value[selectedIndex.value]?.$el ?? null);
+		const selectedTabEl = computed(() => {
+			const selected = tabContext.navItems[tabContext.selectedIndex]?.$el ?? null;
+			return selected;
+		});
 
 		const index = computed(() => {
-			const indexOutput = navItems.value?.findIndex(
+			const indexOutput = tabContext.navItems?.findIndex(
 				(navItem) => navItem.forPanel === forPanel.value,
 			);
 			return indexOutput;

@@ -43,10 +43,10 @@ export default {
 		const {
 			id,
 		} = toRefs(props);
-		const { navItems, selectedIndex } = useTabs();
+		const { tabContext } = useTabs();
 
 		const isActive = computed(() => {
-			const active = navItems.value[selectedIndex.value]?.forPanel === id.value;
+			const active = tabContext.navItems[tabContext.selectedIndex]?.forPanel === id.value;
 			return active;
 		});
 

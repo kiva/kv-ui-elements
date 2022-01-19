@@ -71,8 +71,8 @@ export default {
 	setup(props, { emit }) {
 		const selectedTabResizeObserver = ref(null);
 		const {
+			tabContext,
 			setIndex,
-			navItems,
 			selectedIndex,
 		} = useTabs();
 
@@ -83,40 +83,36 @@ export default {
 			}
 		};
 
-		const selectedTabEl = computed(() => navItems.value[selectedIndex.value]?.$el ?? null);
+		const selectedTabEl = computed(() => {
+			const selected = tabContext.navItems[tabContext.selectedIndex]?.$el ?? null;
+			return selected;
+		});
 
 		const setTab = (index) => {
 			setIndex(index);
 			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-			/**
-			 * Triggers when the selected tab changes
-			 *
-			 * @property {number} index Index of the newly selected tab
-			 */
-			emit('tab-changed', index);
 		};
 
 		const handleKeyDown = (event) => {
 			const focusActiveTab = () => {
-				const activeTab = navItems.value
+				const activeTab = tabContext.navItems
 					.find((navItem) => navItem.isActive);
 				if (activeTab) {
 					activeTab.$el?.focus();
 				}
 			};
-			const count = navItems.value.length;
+			const count = tabContext.navItems.length;
 
 			if (event && event.key === 'ArrowRight') {
 				event.preventDefault();
-				const nextIndex = (selectedIndex.value + 1) % count;
+				const nextIndex = (tabContext.selectedIndex + 1) % count;
 				setTab(nextIndex);
 				focusActiveTab();
 			}
 
 			if (event && event.key === 'ArrowLeft') {
 				event.preventDefault();
-				const prevIndex = (selectedIndex.value - 1 + count) % count;
+				const prevIndex = (tabContext.selectedIndex - 1 + count) % count;
 				setTab(prevIndex);
 				focusActiveTab();
 			}
@@ -136,7 +132,7 @@ export default {
 
 		onMounted(() => {
 			// check if any of the KvTab components are declaratively selected
-			navItems.value.forEach((navItem, index) => {
+			tabContext.navItems.forEach((navItem, index) => {
 				if (navItem.selected) {
 					setTab(index);
 				}
