@@ -25,6 +25,13 @@
 </template>
 
 <script>
+import {
+	computed,
+	onMounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue-demi';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 /**
@@ -73,26 +80,31 @@ export default {
 			},
 		},
 	},
-	computed: {
-		tag() {
-			if (this.to) {
+	emits: [
+		'click',
+	],
+	setup(props, { emit }) {
+		const {
+			to,
+			href,
+		} = toRefs(props);
+
+		const buttonRef = ref(null);
+
+		const tag = computed(() => {
+			if (to.value) {
 				return 'router-link';
 			}
-			if (this.href) {
+			if (href.value) {
 				return 'a';
 			}
 			return 'button';
-		},
-	},
-	watch: { href() { this.setHref(); } },
-	mounted() {
-		this.setHref();
-	},
-	methods: {
-		onClick(event) {
+		});
+
+		const onClick = (event) => {
 			// emit a vue event and prevent native event
 			// so we don't have to write @click.native in our templates
-			if (this.tag === 'button') {
+			if (tag.value === 'button') {
 				event.preventDefault();
 				/**
 				 * Fired when the button is clicked
@@ -100,17 +112,27 @@ export default {
 				 * @event click
 				 * @param {Event}
 				 */
-				this.$emit('click', event);
+				emit('click', event);
 			}
-		},
-		setHref() {
+		};
+
+		const setHref = () => {
 			// if the component is a router-link, router-link will set the href
 			// if the href is passed as a prop, use that instead
-			if (this.href) {
-				const { buttonRef } = this.$refs;
-				buttonRef.href = this.href;
+			if (href.value) {
+				buttonRef.value.href = href.value;
 			}
-		},
+		};
+
+		watch(href, () => setHref());
+		onMounted(() => setHref());
+
+		return {
+			tag,
+			onClick,
+			buttonRef,
+			setHref,
+		};
 	},
 };
 </script>
