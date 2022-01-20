@@ -54,7 +54,7 @@ export default {
 				navItems = kvTabContext.navItems;
 				selectedIndex = kvTabContext.selectedIndex;
 			}
-			return navItems[selectedIndex]?.for === forPanel.value;
+			return navItems[selectedIndex]?.forPanel === forPanel.value;
 		});
 
 		const index = computed(() => {

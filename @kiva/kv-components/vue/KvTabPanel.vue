@@ -53,7 +53,7 @@ export default {
 				navItems = kvTabContext.navItems;
 				selectedIndex = kvTabContext.selectedIndex;
 			}
-			return navItems[selectedIndex]?.for === id.value;
+			return navItems[selectedIndex]?.forPanel === id.value;
 		});
 
 		return {
