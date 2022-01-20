@@ -23,7 +23,6 @@ import {
 } from 'vue-demi';
 
 export default {
-	inject: ['$KvTabContext'],
 	props: {
 		/**
 		 * A unique id which correspondes to an `id` property on the KvTabPanel it controls
