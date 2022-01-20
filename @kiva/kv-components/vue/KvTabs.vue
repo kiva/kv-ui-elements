@@ -74,7 +74,10 @@ export default {
 			tabContext,
 			setIndex,
 			selectedIndex,
+			resetContext,
 		} = useTabs();
+
+		resetContext();
 
 		const forceUpdate = () => {
 			const instance = getCurrentInstance();

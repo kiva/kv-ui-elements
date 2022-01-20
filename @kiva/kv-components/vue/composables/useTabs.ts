@@ -2,6 +2,7 @@ import {
 	ref,
 	reactive,
 	computed,
+	getCurrentInstance,
 } from 'vue-demi';
 
 const tabContext = reactive(
@@ -21,6 +22,11 @@ export function useTabs() {
 		tabContext.navItems.push(items);
 	};
 
+	const resetContext = () => {
+		tabContext.navItems.length = 0;
+		tabContext.selectedIndex = 0;
+	};
+
 	const selectedIndex = computed(() => {
 		return tabContext.selectedIndex;
 	});
@@ -35,6 +41,7 @@ export function useTabs() {
 		setItems,
 		selectedIndex,
 		navItems,
+		resetContext,
 	};
 
 }
