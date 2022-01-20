@@ -56,8 +56,8 @@ export const WithoutVModel = (args, {
 	template: `
 		<div>
 			<kv-switch
-				:checked="switchExampleModel"
-				@change="(val) => switchExampleModel = val"
+				:modelValue="switchExampleModel"
+				@update:modelValue="(val) => switchExampleModel = val"
 				:disabled="disabled"
 			>
 				Switch is switched: {{switchExampleModel}}
