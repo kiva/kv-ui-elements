@@ -1,7 +1,7 @@
 import './tailwind.css';
 import addons from '@storybook/addons';
 import KvThemeProvider from '../KvThemeProvider.vue';
-import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors';
+import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
