@@ -220,6 +220,7 @@ export default {
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
 		let makePageInertCallback = null;
+		let onKeyUp = null;
 
 		const role = computed(() => {
 			if (variant.value === 'alert') {
@@ -239,6 +240,7 @@ export default {
 				makePageInertCallback();
 				makePageInertCallback = null;
 			}
+			document.removeEventListener('keyup', onKeyUp);
 
 			/**
 			 * Triggered when the lightbox is closed
@@ -248,7 +250,7 @@ export default {
 			emit('lightbox-closed');
 		};
 
-		const onKeyUp = (e) => {
+		onKeyUp = (e) => {
 			if (!!e && e.key === 'Escape' && !preventClose.value) {
 				hide();
 			}
@@ -262,7 +264,7 @@ export default {
 
 		const show = () => {
 			if (visible.value) {
-				document.addEventListener('keyup', onKeyUp());
+				document.addEventListener('keyup', onKeyUp);
 
 				nextTick(() => {
 					if (kvLightboxBody.value) {
