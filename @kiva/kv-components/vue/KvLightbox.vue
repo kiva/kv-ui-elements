@@ -134,6 +134,7 @@ import {
 	nextTick,
 	watch,
 	onBeforeUnmount,
+	onMounted,
 } from 'vue-demi';
 import { mdiClose } from '@mdi/js';
 import FocusLock from 'vue-focus-lock';
@@ -289,6 +290,12 @@ export default {
 				show();
 			} else {
 				hide();
+			}
+		});
+
+		onMounted(() => {
+			if (visible.value) {
+				show();
 			}
 		});
 
