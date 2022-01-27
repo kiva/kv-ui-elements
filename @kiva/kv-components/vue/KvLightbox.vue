@@ -219,6 +219,7 @@ export default {
 
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
+		let makePageInertCallback = null;
 
 		const role = computed(() => {
 			if (variant.value === 'alert') {
@@ -234,7 +235,10 @@ export default {
 				unlockPrintSingleEl(kvLightboxBody.value);
 			}
 			unlockScroll();
-			makePageInert(kvLightboxBody.value);
+			if (makePageInertCallback) {
+				makePageInertCallback();
+				makePageInertCallback = null;
+			}
 
 			/**
 			 * Triggered when the lightbox is closed
@@ -262,7 +266,7 @@ export default {
 
 				nextTick(() => {
 					if (kvLightboxBody.value) {
-						makePageInert(kvLightboxBody.value);
+						makePageInertCallback = makePageInert(kvLightboxBody.value);
 						lockPrintSingleEl(kvLightboxBody.value);
 					}
 					lockScroll();
