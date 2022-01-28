@@ -19,10 +19,7 @@
 			"
 			@click.stop.prevent="onScreenClick"
 		>
-			<focus-lock
-				:disabled="!visible"
-				:return-focus="true"
-			>
+			<div>
 				<div
 					class="
 						tw-flex
@@ -121,7 +118,7 @@
 						</div>
 					</div>
 				</div>
-			</focus-lock>
+			</div>
 		</div>
 	</transition>
 </template>
@@ -134,9 +131,10 @@ import {
 	nextTick,
 	watch,
 	onBeforeUnmount,
+	onMounted,
 } from 'vue-demi';
 import { mdiClose } from '@mdi/js';
-import FocusLock from 'vue-focus-lock';
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
@@ -168,7 +166,6 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	components: {
-		FocusLock,
 		KvMaterialIcon,
 	},
 	props: {
@@ -217,8 +214,17 @@ export default {
 			preventClose,
 		} = toRefs(props);
 
+		const kvLightbox = ref(null);
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
+
+		const {
+			activate: activateFocusTrap,
+			deactivate: deactivateFocusTrap,
+		} = useFocusTrap(kvLightbox);
+
+		let makePageInertCallback = null;
+		let onKeyUp = null;
 
 		const role = computed(() => {
 			if (variant.value === 'alert') {
@@ -229,12 +235,17 @@ export default {
 
 		const hide = () => {
 			// scroll any content inside the lightbox back to top
-			if (kvLightboxBody.value) {
+			if (kvLightbox.value && kvLightboxBody.value) {
+				deactivateFocusTrap();
 				kvLightboxBody.value.scrollTop = 0;
 				unlockPrintSingleEl(kvLightboxBody.value);
 			}
 			unlockScroll();
-			makePageInert(kvLightboxBody.value);
+			if (makePageInertCallback) {
+				makePageInertCallback();
+				makePageInertCallback = null;
+			}
+			document.removeEventListener('keyup', onKeyUp);
 
 			/**
 			 * Triggered when the lightbox is closed
@@ -244,7 +255,7 @@ export default {
 			emit('lightbox-closed');
 		};
 
-		const onKeyUp = (e) => {
+		onKeyUp = (e) => {
 			if (!!e && e.key === 'Escape' && !preventClose.value) {
 				hide();
 			}
@@ -258,11 +269,12 @@ export default {
 
 		const show = () => {
 			if (visible.value) {
-				document.addEventListener('keyup', onKeyUp());
+				document.addEventListener('keyup', onKeyUp);
 
 				nextTick(() => {
-					if (kvLightboxBody.value) {
-						makePageInert(kvLightboxBody.value);
+					if (kvLightbox.value && kvLightboxBody.value) {
+						activateFocusTrap();
+						makePageInertCallback = makePageInert(kvLightbox.value);
 						lockPrintSingleEl(kvLightboxBody.value);
 					}
 					lockScroll();
@@ -286,11 +298,18 @@ export default {
 			}
 		});
 
+		onMounted(() => {
+			if (visible.value) {
+				show();
+			}
+		});
+
 		onBeforeUnmount(() => hide());
 
 		return {
 			mdiClose,
 			role,
+			kvLightbox,
 			kvLightboxBody,
 			onKeyUp,
 			onScreenClick,

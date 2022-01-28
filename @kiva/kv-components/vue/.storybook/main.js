@@ -30,7 +30,12 @@ module.exports = {
         }
       ],
       include: path.resolve(__dirname, '../'),
-    })
+    }),
+	config.module.rules.push({
+	  test: /\.mjs$/,
+	  include: /node_modules/,
+	  type: "javascript/auto"
+	})
     return config
-  }
+  },
 }
