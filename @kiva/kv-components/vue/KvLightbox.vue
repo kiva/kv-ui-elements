@@ -19,10 +19,7 @@
 			"
 			@click.stop.prevent="onScreenClick"
 		>
-			<focus-lock
-				:disabled="!visible"
-				:return-focus="true"
-			>
+			<div>
 				<div
 					class="
 						tw-flex
@@ -121,7 +118,7 @@
 						</div>
 					</div>
 				</div>
-			</focus-lock>
+			</div>
 		</div>
 	</transition>
 </template>
@@ -137,7 +134,7 @@ import {
 	onMounted,
 } from 'vue-demi';
 import { mdiClose } from '@mdi/js';
-import FocusLock from 'vue-focus-lock';
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
@@ -169,7 +166,6 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	components: {
-		FocusLock,
 		KvMaterialIcon,
 	},
 	props: {
@@ -218,8 +214,15 @@ export default {
 			preventClose,
 		} = toRefs(props);
 
+		const kvLightbox = ref(null);
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
+
+		const {
+			activate: activateFocusTrap,
+			deactivate: deactivateFocusTrap,
+		} = useFocusTrap(kvLightbox);
+
 		let makePageInertCallback = null;
 		let onKeyUp = null;
 
@@ -232,7 +235,8 @@ export default {
 
 		const hide = () => {
 			// scroll any content inside the lightbox back to top
-			if (kvLightboxBody.value) {
+			if (kvLightbox.value && kvLightboxBody.value) {
+				deactivateFocusTrap();
 				kvLightboxBody.value.scrollTop = 0;
 				unlockPrintSingleEl(kvLightboxBody.value);
 			}
@@ -268,8 +272,9 @@ export default {
 				document.addEventListener('keyup', onKeyUp);
 
 				nextTick(() => {
-					if (kvLightboxBody.value) {
-						makePageInertCallback = makePageInert(kvLightboxBody.value);
+					if (kvLightbox.value && kvLightboxBody.value) {
+						activateFocusTrap();
+						makePageInertCallback = makePageInert(kvLightbox.value);
 						lockPrintSingleEl(kvLightboxBody.value);
 					}
 					lockScroll();
@@ -304,6 +309,7 @@ export default {
 		return {
 			mdiClose,
 			role,
+			kvLightbox,
 			kvLightboxBody,
 			onKeyUp,
 			onScreenClick,
