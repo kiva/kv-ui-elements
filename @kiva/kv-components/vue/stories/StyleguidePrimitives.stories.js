@@ -381,7 +381,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:style="{left: 'calc(' + index/zIndices.length * 100 + '% - ' + (index/zIndices.length * 250) + 'px)', top: index * 50 + 'px'}"
 				>
 					<button
-						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-highlight tw-h-12 tw-bg-tertiary tw-outline-white"
+						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-highlight tw-h-12 tw-bg-tertiary tw-outline-2 tw-outline-dotted tw-outline-offset-2"
 						style="width: 250px;"
 						@click="copy(buildClassName('tw-z', zIndex[0]))"
 					>
