@@ -86,7 +86,10 @@
 </template>
 
 <script>
-
+import {
+	ref,
+	computed,
+} from 'vue-demi';
 import {
 	mdiClose, mdiAlertCircle, mdiAlert, mdiCheckCircle,
 } from '@mdi/js';
@@ -116,62 +119,75 @@ export default {
 		KvMaterialIcon,
 		KvPageContainer,
 	},
-	data() {
-		return {
-			isVisible: false,
-			message: '',
-			messageType: 'confirmation', // 'error', 'info', 'confirmation'
-			persist: false,
-			timeout: null,
-			mdiClose,
-		};
-	},
-	computed: {
-		icon() {
-			if (this.messageType === 'warning') {
+	emits: [
+		'close',
+	],
+	setup(props, { emit }) {
+		const isVisible = ref(false);
+		const message = ref('');
+		const messageType = ref('confirmation'); // 'error', 'info', 'confirmation'
+		const persist = ref(false);
+		const timeout = ref(null);
+
+		const icon = computed(() => {
+			if (messageType.value === 'warning') {
 				return mdiAlert;
 			}
-			if (this.messageType === 'error') {
+			if (messageType.value === 'error') {
 				return mdiAlertCircle;
 			}
 			return mdiCheckCircle;
-		},
-		msToDisplayToast() {
+		});
+
+		const msToDisplayToast = computed(() => {
 			const MINIMUM_MS = 5000;
 			const MS_PER_CHARACTER = 100;
 
 			// create an empty span to get the character count without HTML
 			const span = document.createElement('span');
-			span.innerHTML = this.message;
+			span.innerHTML = message.value;
 			const characterCount = span.innerText.length;
 
 			const characterMs = MS_PER_CHARACTER * characterCount;
 			return Math.max(characterMs, MINIMUM_MS);
-		},
-	},
-	methods: {
-		show(message, type, persist) {
-			this.isVisible = true;
-			this.message = typeof message === 'string' ? message : '';
-			this.messageType = typeof type === 'string' ? type : '';
-			this.persist = Boolean(persist);
+		});
 
-			if (!this.persist) {
-				this.timeout = setTimeout(() => {
-					this.close();
-				}, this.msToDisplayToast);
-			}
-		},
-		close() {
-			this.isVisible = false;
-			clearTimeout(this.timeout);
+		const close = () => {
+			isVisible.value = false;
+			clearTimeout(timeout.value);
 
 			/**
 			* Indicates the toast has closed by a user or after timeout
 			* @event close
 			*/
-			this.$emit('close');
-		},
+			emit('close');
+		};
+
+		const show = (messageInput, type, persistInput) => {
+			isVisible.value = true;
+			message.value = typeof messageInput === 'string' ? messageInput : '';
+			messageType.value = typeof type === 'string' ? type : '';
+			persist.value = Boolean(persistInput);
+
+			if (!persist.value) {
+				timeout.value = setTimeout(() => {
+					close();
+				}, msToDisplayToast.value);
+			}
+		};
+
+		return {
+			mdiClose,
+			isVisible,
+			message,
+			messageType,
+			persist,
+			timeout,
+			icon,
+			msToDisplayToast,
+			close,
+			show,
+		};
 	},
 };
 </script>
