@@ -9,28 +9,17 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-	'@storybook/addon-a11y',
-	'@storybook/addon-storysource',
-	'@storybook/addon-postcss',
-	'storybook-dark-mode',
-  ],
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\,css&/,
-      use: [
-        {
-          loader: 'postcss-loader',
-          options: {
-            ident: 'postcss',
-            plugins: [
-              require('tailwindcss'),
-              require('autoprefixer')
-            ]
-          }
-        }
-      ],
-      include: path.resolve(__dirname, '../'),
-    })
-    return config
-  }
+    '@storybook/addon-a11y',
+    '@storybook/addon-storysource',
+    'storybook-dark-mode',
+    {
+    name: '@storybook/addon-postcss',
+    options: {
+      postcssLoaderOptions: {
+        implementation: require('postcss'),
+      },
+    },
+  },
+],
+  "framework": "@storybook/vue"
 }
