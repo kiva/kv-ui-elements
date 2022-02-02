@@ -1,5 +1,9 @@
 <template>
-	<div class="tw-inline-flex">
+	<div
+		class="tw-inline-flex"
+		:class="classes"
+		:style="styles"
+	>
 		<div
 			class="tw-relative tw-w-full "
 			:class="{ 'tw-opacity-low': disabled }"
@@ -29,8 +33,9 @@
 				}"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				v-bind="$attrs"
-				:value="valueInput"
+				v-bind="inputAttrs"
+				:value="modelValue"
+				v-on="inputListeners"
 				@input="onInput"
 			>
 			<!-- eslint-enable max-len -->
@@ -46,7 +51,7 @@
 				tw-pointer-events-none tw-text-danger"
 			/>
 			<button
-				v-if="canClear && valid && !!valueInput"
+				v-show="canClear && valid && !!inputText"
 				type="button"
 				class="tw-absolute tw-top-1.5 tw-right-1.5"
 				@click="clearInput"
@@ -75,7 +80,12 @@ import {
 } from 'vue-demi';
 import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import { useAttrs } from '../utils/attrs';
 
+const emits = [
+	'input',
+	'update:modelValue',
+];
 /* eslint-disable max-len */
 
 /**
@@ -101,8 +111,8 @@ export default {
 	inheritAttrs: false,
 	// v-model will update when a different value is input
 	model: {
-		prop: 'value',
-		event: 'input',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -118,9 +128,9 @@ export default {
 		 * <kv-text-input :value="streetAddress" @input="(val) => streetAddress = val" />
 		 * ```
 		 * */
-		value: {
+		modelValue: {
 			type: [String, Number, Boolean],
-			default: null,
+			default: '',
 		},
 		/**
 		 * Text that appears in the form control when it has no value set
@@ -176,16 +186,22 @@ export default {
 			default: false,
 		},
 	},
-	emits: [
-		'input',
-	],
-	setup(props, { emit }) {
+	emits,
+	setup(props, context) {
+		const { emit } = context;
 		const {
-			value,
+			modelValue,
 		} = toRefs(props);
 
-		const valueInput = ref(value.value);
 		const textInputRef = ref(null);
+		const inputText = ref(modelValue.value);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
 
 		const onInput = (event) => {
 			/**
@@ -193,8 +209,9 @@ export default {
 			* @event input
 			* @type {Event}
 			*/
-			valueInput.value = event.target.value;
+			inputText.value = event.target.value;
 			emit('input', event.target.value);
+			emit('update:modelValue', event.target.value);
 		};
 
 		const focus = () => {
@@ -206,18 +223,23 @@ export default {
 		};
 
 		const clearInput = () => {
-			valueInput.value = '';
+			inputText.value = '';
 			emit('input', '');
+			emit('update:modelValue', '');
 		};
 
 		return {
 			mdiAlertCircleOutline,
 			mdiClose,
-			valueInput,
 			onInput,
 			focus,
 			blur,
 			clearInput,
+			inputText,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
 		};
 	},
 };

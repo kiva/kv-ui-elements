@@ -28,7 +28,7 @@ describe('KvTextInput', () => {
 		const textInputEl = getByRole('textbox');
 
 		expect(textInputEl.value).toEqual('');
-		await userEvent.type(textInputEl, 'abc 123');
+		userEvent.type(textInputEl, 'abc 123');
 		expect(textInputEl.value).toEqual('abc 123');
 	});
 
@@ -139,7 +139,7 @@ describe('KvTextInput', () => {
 		});
 		const textInputEl = getByRole('textbox');
 		expect(textInputEl.value).toEqual('');
-		await userEvent.type(textInputEl, 'abc 123');
+		userEvent.type(textInputEl, 'abc 123');
 		expect(textInputEl.value).toEqual('abc 123');
 		const buttonInputEl = getByRole('button');
 		expect(buttonInputEl).toBeDefined();
