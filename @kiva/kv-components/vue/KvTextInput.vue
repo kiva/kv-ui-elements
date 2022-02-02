@@ -38,12 +38,13 @@
 			<kv-material-icon
 				v-if="icon"
 				:icon="icon"
-				class="tw-absolute tw-top-1.5 tw-left-1.5 tw-pointer-events-none"
+				class="tw-w-3 tw-h-3 tw-absolute tw-top-1.5 tw-left-1.5 tw-pointer-events-none"
 			/>
 			<kv-material-icon
 				v-if="!valid"
 				:icon="mdiAlertCircleOutline"
-				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-danger"
+				class="tw-w-3 tw-h-3 tw-absolute tw-top-1.5 tw-right-1.5
+				tw-pointer-events-none tw-text-danger"
 			/>
 			<button
 				v-if="canClear && valid && !!valueInput"
@@ -53,6 +54,7 @@
 			>
 				<span class="tw-sr-only">clear input</span>
 				<kv-material-icon
+					class="tw-w-3 tw-h-3"
 					:icon="mdiClose"
 				/>
 			</button>
@@ -163,7 +165,7 @@ export default {
 			type: String,
 			default: 'text',
 		},
-		/** canClear prop
+		/**
 		 * When set to true, adds a button positioned to the right edge of the input containing an “X”
 		 * */
 		canClear: {
@@ -190,6 +192,11 @@ export default {
 		},
 
 	},
+	watch: {
+		value() {
+			this.valueInput = this.value;
+		},
+	},
 	methods: {
 		onInput(event) {
 			/**
@@ -209,6 +216,7 @@ export default {
 		clearInput() {
 			this.valueInput = '';
 			this.$emit('input', '');
+			this.focus();
 		},
 	},
 };

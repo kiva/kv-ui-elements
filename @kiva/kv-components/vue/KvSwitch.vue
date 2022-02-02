@@ -4,7 +4,7 @@
 		:style="styles"
 	>
 		<label
-			class="tw-inline-flex tw-gap-2 tw-items-center hover:tw-cursor-pointer"
+			class="tw-inline-flex tw-gap-2 tw-items-center tw-relative hover:tw-cursor-pointer"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
@@ -34,7 +34,7 @@
 			<div
 				class="
 						tw-flex-shrink-0 tw-w-3 tw-h-3
-						tw-absolute tw-m-0.5
+						tw-absolute tw-m-0.5 tw-top-0
 						tw-rounded-full
 						tw-bg-white
 						tw-transform tw-transition-all tw-ease-in-out
