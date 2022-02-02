@@ -1,12 +1,15 @@
 <template>
-	<div>
+	<div
+		:class="classes"
+		:style="styles"
+	>
 		<label
 			class="tw-inline-flex tw-items-center tw-align-middle"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
 			<input
-				v-bind="$attrs"
+				v-bind="inputAttrs"
 				:id="uuid"
 				ref="radioRef"
 				class="tw-peer tw-appearance-none tw-w-max"
@@ -15,6 +18,7 @@
 				:name="name"
 				:value="value"
 				:disabled="disabled"
+				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<div
@@ -55,6 +59,12 @@ import {
 	ref,
 	toRefs,
 } from 'vue-demi';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'change',
+	'update:modelValue',
+];
 
 /* eslint-disable max-len */
 
@@ -132,11 +142,9 @@ export default {
 			default: false,
 		},
 	},
-	emits: [
-		'change',
-		'update:modelValue',
-	],
-	setup(props, { emit }) {
+	emits,
+	setup(props, context) {
+		const { emit } = context;
 		const {
 			value,
 			checked,
@@ -145,6 +153,13 @@ export default {
 
 		let uuid = ref(`kvr-${nanoid(10)}`);
 		const radioRef = ref(null);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
 
 		const isChecked = computed(() => {
 			if (typeof modelValue.value === typeof value.value) {
@@ -173,6 +188,10 @@ export default {
 			onChange,
 			focus,
 			blur,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
 		};
 	},
 };
