@@ -2,6 +2,11 @@ import './tailwind.css';
 import addons from '@storybook/addons';
 import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
+import Vue from 'vue';
+import VueCompositionApi from '@vue/composition-api';
+
+// Add vue composition api
+Vue.use(VueCompositionApi);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

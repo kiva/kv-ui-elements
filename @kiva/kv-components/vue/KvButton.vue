@@ -37,6 +37,13 @@
 </template>
 
 <script>
+import {
+	computed,
+	onMounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue-demi';
 import KvLoadingSpinner from './KvLoadingSpinner.vue';
 
 export default {
@@ -92,12 +99,20 @@ export default {
 			},
 		},
 	},
-	data() {
-		return {};
-	},
-	computed: {
-		loadingColor() {
-			switch (this.variant) {
+	emits: [
+		'click',
+	],
+	setup(props, { emit }) {
+		const {
+			to,
+			href,
+			type,
+			variant,
+			state,
+		} = toRefs(props);
+
+		const loadingColor = computed(() => {
+			switch (variant.value) {
 				case 'secondary':
 					return 'black';
 				case 'ghost':
@@ -105,14 +120,15 @@ export default {
 				default:
 					return 'white';
 			}
-		},
-		computedClass() {
+		});
+
+		const computedClass = computed(() => {
 			let classes = '';
-			switch (this.variant) {
+			switch (variant.value) {
 				case 'primary':
 				default:
 					classes = 'tw-text-primary-inverse';
-					if (this.state === 'active') {
+					if (state.value === 'active') {
 						classes = `${classes} tw-bg-action-highlight tw-border-action-highlight`;
 					} else {
 						classes = `${classes} tw-bg-action hover:tw-bg-action-highlight tw-border-action hover:tw-border-action-highlight`;
@@ -120,7 +136,7 @@ export default {
 					break;
 				case 'secondary':
 					classes = 'tw-text-primary';
-					if (this.state === 'active') {
+					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary tw-border-primary`;
 					} else {
 						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-tertiary hover:tw-border-primary`;
@@ -128,7 +144,7 @@ export default {
 					break;
 				case 'danger':
 					classes = 'tw-text-primary-inverse';
-					if (this.state === 'active') {
+					if (state.value === 'active') {
 						classes = `${classes} tw-bg-danger-highlight tw-border-danger-highlight`;
 					} else {
 						classes = `${classes} tw-bg-danger hover:tw-bg-danger-highlight tw-border-danger hover:tw-border-danger-highlight`;
@@ -136,7 +152,7 @@ export default {
 					break;
 				case 'link':
 					classes = 'tw-bg-primary-inverse tw-text-primary-inverse';
-					if (this.state === 'active') {
+					if (state.value === 'active') {
 						classes = `${classes} tw-border-secondary`;
 					} else {
 						classes = `${classes} tw-border-primary hover:tw-border-secondary`;
@@ -144,7 +160,7 @@ export default {
 					break;
 				case 'ghost':
 					classes = 'tw-text-primary tw-border-transparent';
-					if (this.state === 'active') {
+					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary`;
 					} else {
 						classes = `${classes} tw-bg-primary hover:tw-bg-secondary`;
@@ -152,44 +168,31 @@ export default {
 					break;
 			}
 			return classes;
-		},
-		isDisabled() {
-			return this.state === 'disabled' || this.state === 'loading';
-		},
-		tag() {
-			if (this.to) {
+		});
+
+		const isDisabled = computed(() => state.value === 'disabled' || state.value === 'loading');
+
+		const tag = computed(() => {
+			if (to.value) {
 				return 'router-link';
 			}
-			if (this.href) {
+			if (href.value) {
 				return 'a';
 			}
 			return 'button';
-		},
-		computedType() {
-			if (this.to || this.href) {
+		});
+
+		const computedType = computed(() => {
+			if (to.value || href.value) {
 				return null;
 			}
-			return this.type;
-		},
-	},
-	watch: { href() { this.setHref(); } },
-	mounted() {
-		this.setHref();
-	},
-	methods: {
-		onClick(event) {
-			// emit a vue event and prevent native event
-			// so we don't have to write @click.native in our templates
-			if (this.tag === 'button' && this.type !== 'submit') {
-				event.preventDefault();
-				this.$emit('click', event);
-			}
+			return type.value;
+		});
 
-			this.createRipple(event);
-		},
-		createRipple(event) {
-			const { buttonRef, buttonInnerRef } = this.$refs;
+		const buttonRef = ref(null);
+		const buttonInnerRef = ref(null);
 
+		const createRipple = (event) => {
 			// build an element to animate
 			const blipEl = document.createElement('span');
 			blipEl.classList = `
@@ -209,7 +212,7 @@ export default {
 
 			// some variants shouldn't have a white blip
 			const darkBlipVariants = ['secondary', 'ghost'];
-			const blipBgColor = darkBlipVariants.includes(this.variant) ? 'tw-bg-tertiary' : 'tw-bg-primary';
+			const blipBgColor = darkBlipVariants.includes(variant.value) ? 'tw-bg-tertiary' : 'tw-bg-primary';
 			blipEl.classList.add(blipBgColor);
 
 			// position the blip where the pointer click is or center it if keyboard
@@ -217,7 +220,7 @@ export default {
 			const { clientX, clientY } = event;
 			const {
 				offsetLeft, offsetTop, offsetWidth, offsetHeight,
-			} = buttonRef;
+			} = buttonRef.value;
 			let blipX;
 			let blipY;
 			if (fromClick) {
@@ -231,20 +234,44 @@ export default {
 			blipEl.style.setProperty('top', blipY);
 
 			// append the blip to the button, remove it when the animation is done
-			buttonInnerRef.appendChild(blipEl);
+			buttonInnerRef.value.appendChild(blipEl);
 			blipEl.addEventListener('animationend', function animationComplete() {
-				buttonInnerRef.removeChild(blipEl);
+				buttonInnerRef.value.removeChild(blipEl);
 				blipEl.removeEventListener('animationend', animationComplete);
 			});
-		},
-		setHref() {
+		};
+
+		const onClick = (event) => {
+			// emit a vue event and prevent native event
+			// so we don't have to write @click.native in our templates
+			if (tag.value === 'button' && type.value !== 'submit') {
+				event.preventDefault();
+				emit('click', event);
+			}
+
+			createRipple(event);
+		};
+
+		const setHref = () => {
 			// if the component is a router-link, router-link will set the href
 			// if the href is passed as a prop, use that instead
-			if (this.href) {
-				const { buttonRef } = this.$refs;
-				buttonRef.href = this.href;
+			if (href.value) {
+				buttonRef.value.href = href.value;
 			}
-		},
+		};
+		watch(href, () => setHref());
+		onMounted(() => setHref());
+
+		return {
+			buttonRef,
+			buttonInnerRef,
+			computedClass,
+			computedType,
+			isDisabled,
+			loadingColor,
+			onClick,
+			tag,
+		};
 	},
 };
 </script>
