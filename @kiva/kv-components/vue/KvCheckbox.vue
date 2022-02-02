@@ -1,12 +1,15 @@
 <template>
-	<div>
+	<div
+		:class="classes"
+		:style="styles"
+	>
 		<label
 			class="tw-inline-flex tw-items-center"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
 			<input
-				v-bind="$attrs"
+				v-bind="inputAttrs"
 				:id="uuid"
 				ref="checkboxRef"
 				class="tw-peer tw-appearance-none tw-w-max"
@@ -14,6 +17,7 @@
 				:checked="isChecked"
 				:value="value"
 				:disabled="disabled"
+				v-on="inputListeners"
 				@change.prevent="onChange"
 			>
 			<!-- checkbox square background -->
@@ -66,6 +70,12 @@ import {
 	toRefs,
 	watch,
 } from 'vue-demi';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'change',
+	'update:modelValue',
+];
 
 /**
  * Use as you would an <input type="checkbox" />
@@ -76,15 +86,15 @@ export default {
 	inheritAttrs: false,
 
 	model: {
-		prop: 'checked',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 
 	props: {
 		/**
 		 * Whether the checkbox is checked or not
 		 * */
-		checked: {
+		modelValue: {
 			type: [Boolean, Array],
 			default: false,
 		},
@@ -111,30 +121,35 @@ export default {
 			default: true,
 		},
 	},
-	emits: [
-		'change',
-		'update:modelValue',
-	],
-	setup(props, { emit }) {
+	emits,
+	setup(props, context) {
 		const {
-			checked,
+			modelValue,
 			value,
 		} = toRefs(props);
 
+		const { emit } = context;
 		const uuid = ref(`kvc-${nanoid(10)}`);
 		const isChecked = ref(false);
 		const checkboxRef = ref(null);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
 
 		const onChange = (event) => {
 			const inputChecked = event.target.checked;
 			let checkboxValue;
 
-			if (Array.isArray(checked.value)) {
+			if (Array.isArray(modelValue.value)) {
 				// if the model is an array, add or remove our value from it
 				if (inputChecked) {
-					checkboxValue = [...checked.value, event.target.value];
+					checkboxValue = [...modelValue.value, event.target.value];
 				} else {
-					checkboxValue = checked.value.filter((item) => item !== value.value);
+					checkboxValue = modelValue.value.filter((item) => item !== value.value);
 				}
 			} else {
 				checkboxValue = inputChecked;
@@ -146,12 +161,12 @@ export default {
 		};
 
 		const setChecked = () => {
-			if (Array.isArray(checked.value)) {
+			if (Array.isArray(modelValue.value)) {
 				// if the model is array like <kv-checkbox v-model="['item1', 'item2']" value="item1">
-				isChecked.value = checked.value.includes(value.value);
+				isChecked.value = modelValue.value.includes(value.value);
 			} else {
 				// else it's a boolean like <kv-checkbox v-model="true">
-				isChecked.value = checked.value;
+				isChecked.value = modelValue.value;
 			}
 		};
 
@@ -164,7 +179,7 @@ export default {
 		};
 
 		setChecked();
-		watch(checked, () => setChecked());
+		watch(modelValue, () => setChecked());
 		onMounted(() => {
 			uuid.value = `kvc-${nanoid(10)}`;
 		});
@@ -177,6 +192,10 @@ export default {
 			setChecked,
 			focus,
 			blur,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
 		};
 	},
 };
