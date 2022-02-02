@@ -57,7 +57,7 @@ describe('KvSelect', () => {
 				`<KvSelect id="test" @change="onChange">
 					<option>A</option>
 					<option>B</option>
-				</KvSwitch>`,
+				</KvSelect>`,
 			components: { KvSelect },
 			methods: { onChange },
 		};
