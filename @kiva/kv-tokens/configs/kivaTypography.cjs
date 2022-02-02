@@ -1,4 +1,4 @@
-const { rem, em } = require('./util');
+const { rem, em } = require('./util.cjs');
 const designtokens = require('../primitives.json');
 
 const {

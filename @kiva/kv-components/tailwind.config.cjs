@@ -1,9 +1,9 @@
 const resolveConfig = require('tailwindcss/resolveConfig'); // eslint-disable-line import/no-extraneous-dependencies
-const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography');
-const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config');
+const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography.cjs');
+const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config.cjs');
 const {
 	headerNumberCase, kebabCase, buildTailwindClassName,
-} = require('./utils/themeUtils');
+} = require('./utils/themeUtils.cjs');
 
 const config = resolveConfig(sharedConfig);
 const { theme } = config;
