@@ -170,8 +170,11 @@ module.exports = {
 				body: {
 					...textStyles.textBase,
 					color: textBaseColor,
+					'-webkit-font-smoothing': 'antialiased',
+					'-moz-osx-font-smoothing': 'grayscale',
+					'text-rendering': 'optimizeLegibility',
 				},
-				button: { fontWeight: fontWeights.book },
+				button: { fontWeight: 'inherit' },
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,

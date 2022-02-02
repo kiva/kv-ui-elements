@@ -22,7 +22,7 @@
 			<!-- eslint-enable max-len -->
 			<template v-if="state === 'loading'">
 				<kv-loading-spinner
-					class="tw-absolute tw-w-full tw-text-center tw--mx-4 tw-z-0"
+					class="tw-absolute tw-w-full tw-text-center tw-z-0"
 					:color="loadingColor"
 				/>
 			</template>
