@@ -130,7 +130,7 @@ describe('KvTextInput', () => {
 	});
 
 	it('clear button cleans the input value', async () => {
-		const { getByRole } = render(KvTextInput, {
+		const { getByRole, findByText } = render(KvTextInput, {
 			props: {
 				canClear: true,
 				valid: true,
@@ -139,10 +139,10 @@ describe('KvTextInput', () => {
 		});
 		const textInputEl = getByRole('textbox');
 		expect(textInputEl.value).toEqual('');
+		const buttonInputEl = await findByText('clear input');
+		expect(buttonInputEl).toBeDefined();
 		userEvent.type(textInputEl, 'abc 123');
 		expect(textInputEl.value).toEqual('abc 123');
-		const buttonInputEl = getByRole('button');
-		expect(buttonInputEl).toBeDefined();
 		await fireEvent.click(buttonInputEl);
 		expect(textInputEl.value).toEqual('');
 	});
