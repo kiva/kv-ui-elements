@@ -1,6 +1,6 @@
 # kv-components
 
-A library of accessible UI components that adhere to Kiva's Design System. Currently built using Vue 2 and Tailwind v3.
+A library of accessible UI components that adhere to Kiva's Design System. Currently built using Vue 2.
 
 ## Using these Components
 
