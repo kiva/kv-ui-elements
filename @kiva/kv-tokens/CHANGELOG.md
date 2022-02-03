@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.3.1...@kiva/kv-tokens@1.3.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* fix empty content error ([ae08e8a](https://github.com/kiva/kv-ui-elements/commit/ae08e8a8edf27917a0a0d398b27b303f027cb887))
+
+
+
+
+
 ## [1.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.3.0...@kiva/kv-tokens@1.3.1) (2022-01-11)
 
 
