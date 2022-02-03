@@ -18,8 +18,7 @@ const {
 } = designtokens;
 
 module.exports = {
-	purge: [],
-	darkMode: false, // or 'media' or 'class'
+	content: ['./**.*.js'],
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-mb-2'
 	corePlugins: {
 		boxShadow: false,
