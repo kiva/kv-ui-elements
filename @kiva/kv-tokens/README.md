@@ -3,7 +3,7 @@
 The package contains
 
 -   A JSON file specifying the design definitions of Kiva's style guide.
--   A custom Tailwind configuration set to Kiva's style guide that can be used as a preset for your Tailwind project.
+-   A custom Tailwind configuration set to Kiva's style guide that can be used as a preset for your Tailwind v3 project.
 
 ## Install
 

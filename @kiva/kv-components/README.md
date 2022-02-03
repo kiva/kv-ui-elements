@@ -1,13 +1,13 @@
 # kv-components
 
-A library of accessible UI components that adhere to Kiva's Design System. Currently built using Vue 2.
+A library of accessible UI components that adhere to Kiva's Design System. Currently built using Vue 2 and Tailwind v3.
 
 ## Using these Components
 
 1. [Install tailwind](https://tailwindcss.com/docs/installation) into your project
 2. Install components and design definitions:
    `npm install @kiva/kv-components && npm install @kiva/kv-tokens --save-dev`
-3. Add our tailwind config as a [preset](https://tailwindcss.com/docs/configuration#presets) in your tailwind.config.js
+3. Add our Tailwind config as a [preset](https://tailwindcss.com/docs/configuration#presets) in your tailwind.config.js
 
 ```js
 // tailwind.config.js
