@@ -1,11 +1,16 @@
 <template>
-	<div class="tw-inline-flex">
+	<div
+		class="tw-inline-flex"
+		:class="classes"
+		:style="styles"
+	>
 		<div class="tw-relative tw-w-full">
 			<!-- eslint-disable max-len -->
 			<select
 				:id="id"
+				v-bind="inputAttrs"
 				:disabled="disabled"
-				:value="value"
+				:value="modelValue"
 				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
@@ -23,8 +28,15 @@
 </template>
 
 <script>
+import 'vue-demi';
 import { mdiChevronDown } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'change',
+	'update:modelValue',
+];
 
 export default {
 	components: {
@@ -32,8 +44,8 @@ export default {
 	},
 	// v-model will change when select value updates
 	model: {
-		prop: 'value',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -45,34 +57,48 @@ export default {
 			default: '',
 		},
 		/**
-		 * Initial selected value
-		 * */
-		value: {
-			type: [Number, String],
-			default: 0,
-		},
-		/**
 		 * Use if select is disabled
 		 * */
 		disabled: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * modelValue prop
+		 * */
+		modelValue: {
+			type: [Number, String],
+			default: 0,
+		},
 	},
-	data() {
-		return {
-			mdiChevronDown,
-		};
-	},
-	methods: {
-		onChange(event) {
+	emits,
+	setup(props, context) {
+		const { emit } = context;
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
+
+		const onChange = (event) => {
 			/**
 			* The value that the select has changed to
 			* @event change
 			* @type {Event}
 			*/
-			this.$emit('change', event.target.value);
-		},
+			emit('change', event.target.value);
+			emit('update:modelValue', event.target.value);
+		};
+		return {
+			mdiChevronDown,
+			onChange,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		};
 	},
 };
 </script>
