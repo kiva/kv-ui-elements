@@ -1,12 +1,15 @@
 <template>
-	<div>
+	<div
+		:class="classes"
+		:style="styles"
+	>
 		<label
 			class="tw-inline-flex tw-items-center tw-align-middle"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
 			<input
-				v-bind="$attrs"
+				v-bind="inputAttrs"
 				:id="uuid"
 				ref="radioRef"
 				class="tw-peer tw-appearance-none tw-w-max"
@@ -50,6 +53,18 @@
 
 <script>
 import { nanoid } from 'nanoid';
+import {
+	computed,
+	onMounted,
+	ref,
+	toRefs,
+} from 'vue-demi';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'change',
+	'update:modelValue',
+];
 
 /* eslint-disable max-len */
 
@@ -79,10 +94,9 @@ import { nanoid } from 'nanoid';
 
 export default {
 	inheritAttrs: false,
-	// v-model will update when the checked radio changes
 	model: {
-		prop: 'checked',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -123,45 +137,62 @@ export default {
 			type: [String, Number, Boolean],
 			default: false,
 		},
+		modelValue: {
+			type: [String, Number, Boolean],
+			default: false,
+		},
 	},
-	data() {
-		return {
-			uuid: `kvr-${nanoid(10)}`,
-		};
-	},
-	computed: {
-		isChecked() {
-			if (typeof this.checked === typeof this.value) {
-				return this.checked === this.value;
+	emits,
+	setup(props, context) {
+		const { emit } = context;
+		const {
+			value,
+			checked,
+			modelValue,
+		} = toRefs(props);
+
+		let uuid = ref(`kvr-${nanoid(10)}`);
+		const radioRef = ref(null);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
+
+		const isChecked = computed(() => {
+			if (typeof modelValue.value === typeof value.value) {
+				return modelValue.value === value.value;
 			}
-			return Boolean(this.checked);
-		},
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'change' event which is emitted by this component
-				change: () => {},
-			};
-		},
-	},
-	mounted() {
-		this.uuid = `kvr-${nanoid(10)}`;
-	},
-	methods: {
-		onChange(event) {
-			/**
-			 * triggers when the value changes
-			 */
-			this.$emit('change', event.target.value);
-		},
-		focus() {
-			this.$refs.radioRef.focus();
-		},
-		blur() {
-			this.$refs.radioRef.blur();
-		},
+			return Boolean(checked.value);
+		});
+
+		onMounted(() => {
+			uuid = `kvr-${nanoid(10)}`;
+		});
+
+		const onChange = (event) => {
+			emit('change', event.target.value);
+			emit('update:modelValue', event.target.value);
+		};
+
+		const focus = () => radioRef.focus();
+
+		const blur = () => radioRef.blur();
+
+		return {
+			uuid,
+			isChecked,
+			radioRef,
+			onChange,
+			focus,
+			blur,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		};
 	},
 };
 </script>

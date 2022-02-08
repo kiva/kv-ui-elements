@@ -1,6 +1,6 @@
 <template>
 	<section
-		ref="KvCarousel"
+		ref="rootEl"
 		class="tw-overflow-hidden tw-w-full"
 		aria-label="carousel"
 	>
@@ -72,6 +72,15 @@
 </template>
 
 <script>
+import {
+	computed,
+	onMounted,
+	onUnmounted,
+	ref,
+	toRefs,
+	nextTick,
+	getCurrentInstance,
+} from 'vue-demi';
 import EmblaCarousel from 'embla-carousel';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import { throttle } from '../utils/throttle';
@@ -122,84 +131,59 @@ export default {
 			default: '',
 		},
 	},
-	data() {
-		return {
-			mdiChevronLeft,
-			mdiChevronRight,
-			embla: null,
-			slides: [],
-			currentIndex: 0,
+	emits: [
+		'change',
+		'interact-carousel',
+	],
+	setup(props, { emit, slots }) {
+		const {
+			emblaOptions,
+			slidesToScroll,
+		} = toRefs(props);
+		const rootEl = ref(null);
+		const embla = ref(null);
+		const slides = ref([]);
+		const currentIndex = ref(0);
+
+		const forceUpdate = () => {
+			const instance = getCurrentInstance();
+			instance.proxy.$forceUpdate();
 		};
-	},
-	computed: {
-		componentSlotKeys() {
-			return Object.keys(this.$slots);
-		},
-		nextIndex() {
-			const nextSlideIndex = this.currentIndex + 1;
-			if (nextSlideIndex < this.slides.length) {
+
+		const componentSlotKeys = computed(() => {
+			const keys = Object.keys(slots);
+			return keys;
+		});
+
+		const nextIndex = computed(() => {
+			const nextSlideIndex = currentIndex.value + 1;
+			if (nextSlideIndex < slides.value.length) {
 				return nextSlideIndex;
 			}
 			return 0;
-		},
-		previousIndex() {
-			const previousSlideIndex = this.currentIndex - 1;
+		});
+
+		const previousIndex = computed(() => {
+			const previousSlideIndex = currentIndex.value - 1;
 			if (previousSlideIndex >= 0) {
 				return previousSlideIndex;
 			}
-			return this.slides.length - 1;
-		},
-
-	},
-	mounted() {
-		// initialize Embla
-		this.embla = EmblaCarousel(this.$refs.KvCarousel, {
-			loop: true,
-			containScroll: 'trimSnaps',
-			inViewThreshold: 0.9,
-			align: 'start',
-			...this.emblaOptions,
+			return slides.value.length - 1;
 		});
 
-		if (this.slidesToScroll === 'visible') {
-			this.reInitVisible();
-
-			this.embla.on(
-				'resize',
-				throttle(() => {
-					this.embla.reInit({
-						slidesToScroll: this.embla.slidesInView(true).length,
-						inViewThreshold: 0.9,
-					});
-					this.$forceUpdate();
-				}, 250),
-			);
-		}
-
-		// get slide components
-		this.slides = this.embla.slideNodes();
-
-		this.embla.on('select', () => {
-			this.currentIndex = this.embla.selectedScrollSnap();
-
-			/**
-			 * The index of the slide that the carousel has changed to
-			 * @event change
-			 * @type {Event}
-			 */
-			this.$emit('change', this.currentIndex);
-		});
-	},
-	beforeDestroy() {
-		// clean up event listeners
-		this.embla.off('select');
-		this.embla.destroy();
-	},
-	methods: {
-		async handleUserInteraction(index, interactionType) {
+		/**
+		 * Jump to a specific slide index
+		 *
+		 * @param {Number} num Index of slide to show
+		 * @public This is a public method
+		 */
+		const goToSlide = (index) => {
+			embla.value.scrollTo(index);
+		};
+		const handleUserInteraction = async (index, interactionType) => {
 			if (index !== null && typeof index !== 'undefined') {
-				await this.$nextTick(); // wait for embla.
-				this.goToSlide(index);
+				await nextTick(); // wait for embla.
+				goToSlide(index);
 			}
 			/**
 			 * Fires when the user interacts with the carousel.
@@ -207,48 +191,38 @@ export default {
 			 * @event interact-carousel
 			 * @type {Event}
 			 */
-			this.$emit('interact-carousel', interactionType);
-		},
-		/**
-		 * Jump to a specific slide index
-		 *
-		 * @param {Number} num Index of slide to show
-		 * @public This is a public method
-		 */
-		goToSlide(index) {
-			this.embla.scrollTo(index);
-			this.intervalTimerCurrentTime = 0;
-		},
+			emit('interact-carousel', interactionType);
+		};
 		/**
 		 * Reinitialize the carousel.
 		 * Used after adding slides dynamically.
 		 *
 		 * @public This is a public method
 		 */
-		reInit() {
-			this.embla.reInit();
-			if (this.slidesToScroll === 'visible') {
-				this.reInitVisible();
-			}
-			this.slides = this.embla.slideNodes();
-			this.$forceUpdate(); // force a re-render so embla.canScrollNext() gets called in the template
-		},
-		reInitVisible() {
-			const slidesInView = this.embla.slidesInView(true).length;
+		const reInitVisible = () => {
+			const slidesInView = embla.value.slidesInView(true).length;
 			if (slidesInView) {
-				this.embla.reInit({
+				embla.value.reInit({
 					slidesToScroll: slidesInView,
 					inViewThreshold: 0.9,
 				});
 			}
-		},
-		onCarouselContainerClick(e) {
+		};
+		const reInit = () => {
+			embla.value.reInit();
+			if (slidesToScroll.value === 'visible') {
+				reInitVisible();
+			}
+			slides.value = embla.value.slideNodes();
+			forceUpdate(); // force a re-render so embla.canScrollNext() gets called in the template
+		};
+		const onCarouselContainerClick = (e) => {
 			// If we're dragging, block click handlers within slides
-			if (this.embla && !this.embla.clickAllowed()) {
+			if (embla.value && !embla.value.clickAllowed()) {
 				e.preventDefault();
 				e.stopPropagation();
 			}
-		},
+		};
 		/**
 		 * If the slide is not completely in view in the carousel
 		 * it should be aria-hidden
@@ -256,25 +230,87 @@ export default {
 		 * @param {Number} index The current index of the slide (starts at 1)
 		 * @returns {Boolean}
 		 */
-		isAriaHidden(index) {
+		const isAriaHidden = (index) => {
 			// Index starts at 1
 			// Embla starts at 0
-			if (this.embla) {
-				return !this.embla.slidesInView(true).includes(index - 1);
+			if (embla.value) {
+				return !embla.value.slidesInView(true).includes(index - 1);
 			}
 			return false;
-		},
+		};
 		/**
 		 * Returns number of slides in the carousel
 		 *
 		 * @returns {Number}
 		 */
-		slideIndicatorListLength() {
-			return this.embla ? this.embla.scrollSnapList().length : 0;
-		},
+		const slideIndicatorListLength = () => {
+			const indicator = embla.value ? embla.value.scrollSnapList().length : 0;
+			return indicator;
+		};
+
+		onMounted(async () => {
+			getCurrentInstance();
+			embla.value = EmblaCarousel(rootEl.value, {
+				loop: true,
+				containScroll: 'trimSnaps',
+				inViewThreshold: 0.9,
+				align: 'start',
+				...emblaOptions.value,
+			});
+
+			if (slidesToScroll.value === 'visible') {
+				reInitVisible();
+
+				embla.value.on(
+					'resize',
+					throttle(() => {
+						embla.value.reInit({
+							slidesToScroll: embla.value.slidesInView(true).length,
+							inViewThreshold: 0.9,
+						});
+						forceUpdate();
+					}, 250),
+				);
+			}
+
+			// get slide components
+			slides.value = embla.value.slideNodes();
+
+			embla.value.on('select', () => {
+				currentIndex.value = embla.value.selectedScrollSnap();
+
+				/**
+				 * The index of the slide that the carousel has changed to
+				 * @event change
+				 * @type {Event}
+				 */
+				emit('change', currentIndex);
+			});
+		});
+
+		onUnmounted(async () => {
+			embla.value.off('select');
+			embla.value.destroy();
+		});
+
+		return {
+			rootEl,
+			mdiChevronLeft,
+			mdiChevronRight,
+			embla,
+			slides,
+			currentIndex,
+			componentSlotKeys,
+			nextIndex,
+			previousIndex,
+			handleUserInteraction,
+			goToSlide,
+			reInit,
+			reInitVisible,
+			onCarouselContainerClick,
+			isAriaHidden,
+			slideIndicatorListLength,
+		};
 	},
 };
 </script>
-
-<style scoped>
-</style>

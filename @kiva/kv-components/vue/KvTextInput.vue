@@ -1,5 +1,9 @@
 <template>
-	<div class="tw-inline-flex">
+	<div
+		class="tw-inline-flex"
+		:class="classes"
+		:style="styles"
+	>
 		<div
 			class="tw-relative tw-w-full "
 			:class="{ 'tw-opacity-low': disabled }"
@@ -29,30 +33,32 @@
 				}"
 				:placeholder="placeholder"
 				:disabled="disabled"
-				v-bind="$attrs"
-				:value="valueInput"
-				@input="onInput"
+				v-bind="inputAttrs"
+				:value="modelValue"
 				v-on="inputListeners"
+				@input="onInput"
 			>
 			<!-- eslint-enable max-len -->
 			<kv-material-icon
 				v-if="icon"
 				:icon="icon"
-				class="tw-absolute tw-top-1.5 tw-left-1.5 tw-pointer-events-none"
+				class="tw-w-3 tw-h-3 tw-absolute tw-top-1.5 tw-left-1.5 tw-pointer-events-none"
 			/>
 			<kv-material-icon
 				v-if="!valid"
 				:icon="mdiAlertCircleOutline"
-				class="tw-absolute tw-top-1.5 tw-right-1.5 tw-pointer-events-none tw-text-danger"
+				class="tw-w-3 tw-h-3 tw-absolute tw-top-1.5 tw-right-1.5
+				tw-pointer-events-none tw-text-danger"
 			/>
 			<button
-				v-if="canClear && valid && !!valueInput"
+				v-show="canClear && valid && !!inputText"
 				type="button"
 				class="tw-absolute tw-top-1.5 tw-right-1.5"
 				@click="clearInput"
 			>
 				<span class="tw-sr-only">clear input</span>
 				<kv-material-icon
+					class="tw-w-3 tw-h-3"
 					:icon="mdiClose"
 				/>
 			</button>
@@ -68,9 +74,18 @@
 </template>
 
 <script>
+import {
+	ref,
+	toRefs,
+} from 'vue-demi';
 import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import { useAttrs } from '../utils/attrs';
 
+const emits = [
+	'input',
+	'update:modelValue',
+];
 /* eslint-disable max-len */
 
 /**
@@ -96,8 +111,8 @@ export default {
 	inheritAttrs: false,
 	// v-model will update when a different value is input
 	model: {
-		prop: 'value',
-		event: 'input',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
@@ -113,9 +128,9 @@ export default {
 		 * <kv-text-input :value="streetAddress" @input="(val) => streetAddress = val" />
 		 * ```
 		 * */
-		value: {
+		modelValue: {
 			type: [String, Number, Boolean],
-			default: null,
+			default: '',
 		},
 		/**
 		 * Text that appears in the form control when it has no value set
@@ -163,7 +178,7 @@ export default {
 			type: String,
 			default: 'text',
 		},
-		/** canClear prop
+		/**
 		 * When set to true, adds a button positioned to the right edge of the input containing an “X”
 		 * */
 		canClear: {
@@ -171,45 +186,61 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			mdiAlertCircleOutline,
-			mdiClose,
-			valueInput: this.value,
-		};
-	},
-	computed: {
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'input' event which is emitted by this component
-				input: () => {},
-			};
-		},
+	emits,
+	setup(props, context) {
+		const { emit } = context;
+		const {
+			modelValue,
+		} = toRefs(props);
 
-	},
-	methods: {
-		onInput(event) {
+		const textInputRef = ref(null);
+		const inputText = ref(modelValue.value);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
+
+		const onInput = (event) => {
 			/**
 			* The value that is currently in the input
 			* @event input
 			* @type {Event}
 			*/
-			this.valueInput = event.target.value;
-			this.$emit('input', event.target.value);
-		},
-		focus() {
-			this.$refs.textInputRef.focus();
-		},
-		blur() {
-			this.$refs.textInputRef.blur();
-		},
-		clearInput() {
-			this.valueInput = '';
-			this.$emit('input', '');
-		},
+			inputText.value = event.target.value;
+			emit('input', event.target.value);
+			emit('update:modelValue', event.target.value);
+		};
+
+		const focus = () => {
+			textInputRef.value.focus();
+		};
+
+		const blur = () => {
+			textInputRef.value.blur();
+		};
+
+		const clearInput = () => {
+			inputText.value = '';
+			emit('input', '');
+			emit('update:modelValue', '');
+		};
+
+		return {
+			mdiAlertCircleOutline,
+			mdiClose,
+			onInput,
+			focus,
+			blur,
+			clearInput,
+			inputText,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		};
 	},
 };
 </script>

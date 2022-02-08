@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.6...@kiva/kv-components@2.0.0) (2022-02-03)
+
+
+* feat!: upgrade Tailwind to v3 ([18c1653](https://github.com/kiva/kv-ui-elements/commit/18c1653565eb42b8abfaaba6b3712173ff341850))
+
+
+### BREAKING CHANGES
+
+* Tailwind dependency is now v3
+
+
+
+
+
+## [1.4.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.5...@kiva/kv-components@1.4.6) (2022-02-03)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [1.4.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.4...@kiva/kv-components@1.4.5) (2022-02-03)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [1.4.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.3...@kiva/kv-components@1.4.4) (2022-01-11)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [1.4.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.2...@kiva/kv-components@1.4.3) (2022-01-05)
+
+
+### Bug Fixes
+
+* **KvButton:** fix loading spinner positioning in Safari ([3bfb687](https://github.com/kiva/kv-ui-elements/commit/3bfb68754b0cf9a119e5666a7dd08bc851ae2411))
+* **KvSelect:** fix icon sizing in Safari ([58026af](https://github.com/kiva/kv-ui-elements/commit/58026af41e958024606edcfe458b4ec29264828c))
+* **KvSwitch:** fix positioning in Safari ([d3cce11](https://github.com/kiva/kv-ui-elements/commit/d3cce113fe7801c798e3303dd52580c44afeff64))
+* **KvTextInput:** fix icon sizing in Safari ([7f52581](https://github.com/kiva/kv-ui-elements/commit/7f52581b671ebecd094f455102fda0b685d26bda))
+
+
+
+
+
+## [1.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.1...@kiva/kv-components@1.4.2) (2021-12-23)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [1.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.0...@kiva/kv-components@1.4.1) (2021-12-22)
+
+
+### Bug Fixes
+
+* **KvTextInput:** watch for value prop changes ([ffa6c6d](https://github.com/kiva/kv-ui-elements/commit/ffa6c6dda548af021f1472e81469d7fc3a3c0a11))
+
+
+
+
+
+# [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.3.0...@kiva/kv-components@1.4.0) (2021-12-20)
+
+
+### Features
+
+* **KvTextInput:** focus the input after clearing text ([2093abb](https://github.com/kiva/kv-ui-elements/commit/2093abb30dca870c661f5354e043f0c40290ef81))
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.2.2...@kiva/kv-components@1.3.0) (2021-12-13)
 
 

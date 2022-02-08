@@ -49,8 +49,9 @@ const Template = (args, {
 			</div>
 		</div>`,
 	methods: {
-		showToast(message, type, persist) {
-			this.$refs.toastRef.show(message, type, persist);
+		showToast(messageInput, type, persistInput) {
+			console.log(this.$refs.toastRef);
+			this.$refs.toastRef.show(messageInput, type, persistInput);
 		},
 		onClose() {
 			console.log('toast closed');

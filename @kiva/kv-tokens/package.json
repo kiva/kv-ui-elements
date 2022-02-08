@@ -1,6 +1,7 @@
 {
     "name": "@kiva/kv-tokens",
-    "version": "1.2.1",
+    "version": "2.0.0",
+	"type": "module",
     "publishConfig": {
         "access": "public"
     },
@@ -9,7 +10,7 @@
         "test": "echo No tests specified for @kiva/kv-tokens."
     },
     "dependencies": {
-        "@tailwindcss/typography": "^0.4.0",
-        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+        "@tailwindcss/typography": "^0.5.1",
+        "tailwindcss": "^3.0.18"
     }
 }

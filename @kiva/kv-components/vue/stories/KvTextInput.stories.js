@@ -68,7 +68,7 @@ export const WithoutVModelTemplate = (args, {
 			<kv-text-input
 				id="without-v-model-id"
 				@input="(val) => textInputModel = val"
-				:value="textInputModel"
+				:modelValue="textInputModel"
 				style="width: 25rem;"
 			/>
 		</div>`,
