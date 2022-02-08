@@ -1,9 +1,9 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
-const kivaTypography = require('./kivaTypography');
-const { defaultTheme, buildColorChoices } = require('./kivaColors');
+const kivaTypography = require('./kivaTypography.cjs');
+const { defaultTheme, buildColorChoices } = require('./kivaColors.cjs');
 const designtokens = require('../primitives.json');
-const { rem } = require('./util');
+const { rem } = require('./util.cjs');
 
 const {
 	fonts,
@@ -18,8 +18,7 @@ const {
 } = designtokens;
 
 module.exports = {
-	purge: [],
-	darkMode: false, // or 'media' or 'class'
+	content: ['./**.*.js'],
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-mb-2'
 	corePlugins: {
 		boxShadow: false,

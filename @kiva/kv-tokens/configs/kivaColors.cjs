@@ -1,4 +1,4 @@
-const { hexToRGB } = require('./util');
+const { hexToRGB } = require('./util.cjs');
 const designtokens = require('../primitives.json');
 
 const {

@@ -1,9 +1,9 @@
 const resolveConfig = require('tailwindcss/resolveConfig'); // eslint-disable-line import/no-extraneous-dependencies
-const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography');
-const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config');
+const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography.cjs');
+const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config.cjs');
 const {
 	headerNumberCase, kebabCase, buildTailwindClassName,
-} = require('./utils/themeUtils');
+} = require('./utils/themeUtils.cjs');
 
 const config = resolveConfig(sharedConfig);
 const { theme } = config;
@@ -26,7 +26,7 @@ function buildValuesFromThemeObj(initialObj) {
 }
 
 // Safelist classes used on our Styleguide Primitives story since it gets
-// generated dynamically and JIT purge won't see those class names.
+// generated dynamically and Tailwind won't see those class names in any files otherwise.
 const backgroundColor = buildValuesFromThemeObj(theme.backgroundColor);
 const borderColor = buildValuesFromThemeObj(theme.borderColor);
 const ringColor = buildValuesFromThemeObj(theme.ringColor);
@@ -52,14 +52,11 @@ const safelist = [
 ];
 
 module.exports = {
-	mode: 'jit',
 	presets: [sharedConfig],
-	purge: {
-		content: [
-			'./vue/**/*.vue',
-			'./vue/stories/**/*.stories.js',
-			'./utils/**/*.js',
-		],
-		safelist,
-	},
+	content: [
+		'./vue/**/*.vue',
+		'./vue/stories/**/*.stories.js',
+		'./utils/**/*.js',
+	],
+	safelist,
 };

@@ -1,6 +1,6 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
-import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config';
-import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
+import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config.cjs';
+import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography.cjs';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 import KvTab from '../KvTab.vue';
@@ -8,7 +8,7 @@ import KvTabs from '../KvTabs.vue';
 import KvTabPanel from '../KvTabPanel.vue';
 import KvToast from '../KvToast.vue';
 
-const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils');
+const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils.cjs');
 
 const config = resolveConfig(tailwindConfig);
 const { theme } = config;
@@ -381,7 +381,7 @@ export const Primitives = (args, { argTypes }) => ({
 					:style="{left: 'calc(' + index/zIndices.length * 100 + '% - ' + (index/zIndices.length * 250) + 'px)', top: index * 50 + 'px'}"
 				>
 					<button
-						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-highlight tw-h-12 tw-bg-tertiary tw-outline-white"
+						class="tw-flex tw-text-left tw-content-start tw-align-top tw-p-2 tw-font-book hover:tw-text-action-highlight tw-h-12 tw-bg-tertiary tw-outline-2 tw-outline-dotted tw-outline-offset-2"
 						style="width: 250px;"
 						@click="copy(buildClassName('tw-z', zIndex[0]))"
 					>
