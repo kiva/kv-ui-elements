@@ -7,8 +7,9 @@
   "scripts": {
     "test": "npm run clean && npm run mkdir && npm run copy && vue-demi-switch 2 && jest",
     "clean": "rimraf ./local/",
-    "mkdir": "mkdir local local/tests local/utils local/vue",
-    "copy": "npm run copy:tests && npm run copy:utils && npm run copy:vue",
+    "mkdir": "mkdir local local/__mocks__ local/tests local/utils local/vue",
+    "copy": "npm run copy:mocks && npm run copy:tests && npm run copy:utils && npm run copy:vue",
+    "copy:mocks": "ncp ../@kiva/kv-components/__mocks__ ./local/__mocks__",
     "copy:tests": "ncp ../@kiva/kv-components/tests ./local/tests",
     "copy:utils": "ncp ../@kiva/kv-components/utils ./local/utils",
     "copy:vue": "ncp ../@kiva/kv-components/vue ./local/vue"

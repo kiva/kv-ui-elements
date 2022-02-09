@@ -39,4 +39,9 @@ module.exports = {
 	transformIgnorePatterns: [
 		'node_modules/(?!@vueuse)',
 	],
+
+	// Files to be executed after the test environment is setup but before tests are run
+	setupFilesAfterEnv: [
+		'./local/tests/unit/jest-setup.js',
+	],
 };
