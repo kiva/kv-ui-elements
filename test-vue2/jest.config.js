@@ -22,6 +22,7 @@ module.exports = {
 	moduleFileExtensions: [
 		'js',
 		'json',
+		'mjs',
 		'vue',
 	],
 
@@ -32,5 +33,10 @@ module.exports = {
 	transform: {
 		'^.+\\.vue$': '@vue/vue2-jest',
 		'^.+\\.js$': 'babel-jest',
+		'^.+\\.mjs$': 'babel-jest',
 	},
+
+	transformIgnorePatterns: [
+		'node_modules/(?!@vueuse)',
+	],
 };
