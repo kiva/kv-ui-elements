@@ -7,7 +7,7 @@
 				tw-gap-x-2.5 md:tw-gap-x-5 lg:tw-gap-x-6
 				tw-mb-3 lg:tw-mb-4
 			"
-			@keydown="handleKeyDown"
+			@keydown="handleKeyDown($event)"
 		>
 			<!-- @slot Tab Navigation -->
 			<slot name="tabNav"></slot>
@@ -54,63 +54,54 @@
  *  </kv-tabs>
  * ```
  */
+import {
+	ref,
+	reactive,
+	provide,
+	computed,
+	onMounted,
+	getCurrentInstance,
+	onBeforeUnmount,
+} from 'vue-demi';
+
 export default {
-	provide() {
-		return {
-			// Since KvTab and KvTabPanel are tightly coupled to this component we provide
-			// them with a shared context for setting and reading the state of our tabs
-			$KvTabContext: this.tabContext,
-		};
-	},
-	data() {
-		return {
-			tabContext: {
-				selectedIndex: 0,
-				setTab: this.setTab,
-				navItems: [], // populated by KvTab
-			},
-			selectedTabResizeObserver: null,
-		};
-	},
-	computed: {
-		selectedTabEl() {
-			const { navItems, selectedIndex } = this.tabContext;
+	setup(props, { emit }) {
+		const tabContext = reactive({
+			selectedIndex: 0,
+			setTab: null,
+			navItems: [],
+		});
+		const selectedTabResizeObserver = ref(null);
+
+		const selectedTabEl = computed(() => {
+			const { navItems, selectedIndex } = tabContext;
 			return navItems[selectedIndex]?.$el ?? null;
-		},
-	},
-	mounted() {
-		// check if any of the KvTab components are declaratively selected
-		this.tabContext.navItems.forEach((navItem, index) => {
-			if (navItem.selected) {
-				this.setTab(index);
-			}
 		});
 
-		// Tab size can change as @font-face fonts come in or
-		// the screen breakpoint changes the font size. If this happens
-		// we need to re-size and position the indicator bar.
-		this.selectedTabResizeObserver = new ResizeObserver(() => {
-			this.$forceUpdate();
-		});
-		this.selectedTabResizeObserver.observe(this.selectedTabEl);
-	},
-	beforeDestroy() {
-		this.selectedTabResizeObserver.disconnect();
-	},
-	methods: {
-		setTab(index) {
-			this.tabContext.selectedIndex = index;
-			this.selectedTabEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		const forceUpdate = () => {
+			const instance = getCurrentInstance();
+			if (instance) {
+				instance.proxy.$forceUpdate();
+			}
+		};
+
+		const setTab = (index) => {
+			tabContext.selectedIndex = index;
+			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
 			/**
 			 * Triggers when the selected tab changes
 			 *
 			 * @property {number} index Index of the newly selected tab
 			 */
-			this.$emit('tab-changed', index);
-		},
-		handleKeyDown(event) {
-			const { navItems, selectedIndex } = this.tabContext;
+			emit('tab-changed', index);
+		};
+
+		tabContext.setTab = setTab; // setTab definition in tab context
+		provide('$KvTabContext', tabContext);
+
+		const handleKeyDown = (event) => {
+			const { navItems, selectedIndex } = tabContext;
 
 			const focusActiveTab = () => {
 				const activeTab = navItems
@@ -124,29 +115,55 @@ export default {
 			if (event.key === 'ArrowRight') {
 				event.preventDefault();
 				const nextIndex = (selectedIndex + 1) % count;
-				this.setTab(nextIndex);
+				setTab(nextIndex);
 				focusActiveTab();
 			}
 
 			if (event.key === 'ArrowLeft') {
 				event.preventDefault();
 				const prevIndex = (selectedIndex - 1 + count) % count;
-				this.setTab(prevIndex);
+				setTab(prevIndex);
 				focusActiveTab();
 			}
 
 			if (event.key === 'Home') {
 				event.preventDefault();
-				this.setTab(0);
+				setTab(0);
 				focusActiveTab();
 			}
 
 			if (event.key === 'End') {
 				event.preventDefault();
-				this.setTab(count - 1);
+				setTab(count - 1);
 				focusActiveTab();
 			}
-		},
+		};
+
+		onMounted(() => {
+			// check if any of the KvTab components are declaratively selected
+			tabContext.navItems.forEach((navItem, index) => {
+				if (navItem.selected) {
+					setTab(index);
+				}
+			});
+
+			// Tab size can change as @font-face fonts come in or
+			// the screen breakpoint changes the font size. If this happens
+			// we need to re-size and position the indicator bar.
+			selectedTabResizeObserver.value = new ResizeObserver(() => {
+				forceUpdate();
+			});
+			selectedTabResizeObserver.value.observe(selectedTabEl.value);
+		});
+
+		onBeforeUnmount(() => {
+			selectedTabResizeObserver.value.disconnect();
+		});
+
+		return {
+			handleKeyDown,
+			selectedTabEl,
+		};
 	},
 };
 </script>
