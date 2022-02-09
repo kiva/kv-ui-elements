@@ -19,10 +19,7 @@
 			"
 			@click.stop.prevent="onScreenClick"
 		>
-			<focus-lock
-				:disabled="!visible"
-				:return-focus="true"
-			>
+			<div>
 				<div
 					class="
 						tw-flex
@@ -82,7 +79,7 @@
 									tw-w-6 tw-h-6 tw--m-2
 									hover:tw-text-action-highlight
 								"
-								@click.stop.prevent="hide"
+								@click.stop="hide"
 							>
 								<kv-material-icon
 									class="tw-w-3 tw-h-3"
@@ -121,15 +118,23 @@
 						</div>
 					</div>
 				</div>
-			</focus-lock>
+			</div>
 		</div>
 	</transition>
 </template>
 
 <script>
-
+import {
+	ref,
+	toRefs,
+	computed,
+	nextTick,
+	watch,
+	onBeforeUnmount,
+	onMounted,
+} from 'vue-demi';
 import { mdiClose } from '@mdi/js';
-import FocusLock from 'vue-focus-lock';
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
@@ -161,7 +166,6 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	components: {
-		FocusLock,
 		KvMaterialIcon,
 	},
 	props: {
@@ -200,84 +204,119 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			mdiClose,
-			makePageInert() {}, // reference to aria-hide function
-		};
-	},
-	computed: {
-		role() {
-			if (this.variant === 'alert') {
+	emits: [
+		'lightbox-closed',
+	],
+	setup(props, { emit }) {
+		const {
+			visible,
+			variant,
+			preventClose,
+		} = toRefs(props);
+
+		const kvLightbox = ref(null);
+		const kvLightboxBody = ref(null);
+		const controlsRef = ref(null);
+
+		const {
+			activate: activateFocusTrap,
+			deactivate: deactivateFocusTrap,
+		} = useFocusTrap(kvLightbox);
+
+		let makePageInertCallback = null;
+		let onKeyUp = null;
+
+		const role = computed(() => {
+			if (variant.value === 'alert') {
 				return 'alertdialog';
 			}
 			return 'dialog';
-		},
-	},
-	watch: {
-		visible() {
-			if (this.visible) {
-				this.show();
-			} else {
-				this.hide();
-			}
-		},
-	},
-	beforeDestroy() {
-		this.hide();
-	},
-	methods: {
-		show() {
-			if (this.visible) {
-				document.addEventListener('keyup', this.onKeyUp);
+		});
 
-				this.$nextTick(() => {
-					const lightboxBodyRef = this.$refs.kvLightboxBody;
-					if (lightboxBodyRef) {
-						this.makePageInert = makePageInert(lightboxBodyRef);
-						lockPrintSingleEl(lightboxBodyRef);
-					}
-					lockScroll();
-
-					// alerts should send focus to the first actionable item in the controls
-					if (this.variant === 'alert') {
-						const firstControlEl = this.$refs.controlsRef.querySelector('button');
-						if (firstControlEl) {
-							firstControlEl.focus();
-						}
-					}
-				});
-			}
-		},
-		hide() {
+		const hide = () => {
 			// scroll any content inside the lightbox back to top
-			const lightboxBodyRef = this.$refs.kvLightboxBody;
-			if (lightboxBodyRef) {
-				lightboxBodyRef.scrollTop = 0;
-				unlockPrintSingleEl(lightboxBodyRef);
+			if (kvLightbox.value && kvLightboxBody.value) {
+				deactivateFocusTrap();
+				kvLightboxBody.value.scrollTop = 0;
+				unlockPrintSingleEl(kvLightboxBody.value);
 			}
 			unlockScroll();
-			if (this.makePageInert) {
-				this.makePageInert();
+			if (makePageInertCallback) {
+				makePageInertCallback();
+				makePageInertCallback = null;
 			}
+			document.removeEventListener('keyup', onKeyUp);
 
 			/**
 			 * Triggered when the lightbox is closed
 			 * @event lightbox-closed
 			 * @type {Event}
 			*/
-			this.$emit('lightbox-closed');
-		},
-		onScreenClick() {
-			if (!this.preventClose) {
-				this.hide();
+			emit('lightbox-closed');
+		};
+
+		onKeyUp = (e) => {
+			if (!!e && e.key === 'Escape' && !preventClose.value) {
+				hide();
 			}
-		},
-		onKeyUp(e) {
-			if (e.key === 'Escape' && !this.preventClose) {
-				this.hide();
+		};
+
+		const onScreenClick = () => {
+			if (!preventClose.value) {
+				hide();
 			}
-		},
+		};
+
+		const show = () => {
+			if (visible.value) {
+				document.addEventListener('keyup', onKeyUp);
+
+				nextTick(() => {
+					if (kvLightbox.value && kvLightboxBody.value) {
+						activateFocusTrap();
+						makePageInertCallback = makePageInert(kvLightbox.value);
+						lockPrintSingleEl(kvLightboxBody.value);
+					}
+					lockScroll();
+
+					// alerts should send focus to the first actionable item in the controls
+					if (variant.value === 'alert') {
+						const firstControlEl = controlsRef.value.querySelector('button');
+						if (firstControlEl) {
+							firstControlEl.focus();
+						}
+					}
+				});
+			}
+		};
+
+		watch(visible, () => {
+			if (visible.value) {
+				show();
+			} else {
+				hide();
+			}
+		});
+
+		onMounted(() => {
+			if (visible.value) {
+				show();
+			}
+		});
+
+		onBeforeUnmount(() => hide());
+
+		return {
+			mdiClose,
+			role,
+			kvLightbox,
+			kvLightboxBody,
+			onKeyUp,
+			onScreenClick,
+			hide,
+			show,
+			controlsRef,
+		};
 	},
 };
 </script>
