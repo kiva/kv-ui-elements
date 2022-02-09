@@ -22,6 +22,7 @@ module.exports = {
 	moduleFileExtensions: [
 		'js',
 		'json',
+		'mjs',
 		'vue',
 	],
 
@@ -32,10 +33,10 @@ module.exports = {
 	transform: {
 		'^.+\\.vue$': '@vue/vue3-jest',
 		'^.+\\.js$': 'babel-jest',
+		'^.+\\.mjs$': 'babel-jest',
 	},
 
-	// Files to be executed after the test environment is setup but before tests are run
-	setupFilesAfterEnv: [
-		'./local/tests/unit/jest-setup.js',
+	transformIgnorePatterns: [
+		'node_modules/(?!@vueuse)',
 	],
 };
