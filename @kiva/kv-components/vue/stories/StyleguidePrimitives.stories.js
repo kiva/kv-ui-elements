@@ -50,8 +50,8 @@ export const Primitives = (args, { argTypes }) => ({
 			<h2 class="tw-mb-4">Background Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
-					<kv-tab for="bg_themable">Themable</kv-tab>
-					<kv-tab for="bg_static">Static</kv-tab>
+					<kv-tab for-panel="bg_themable">Themable</kv-tab>
+					<kv-tab for-panel="bg_static">Static</kv-tab>
 				</template>
 				<template #tabPanels>
 					<kv-tab-panel id="bg_themable">
@@ -118,8 +118,8 @@ export const Primitives = (args, { argTypes }) => ({
 			<h2 class="tw-mb-4">Text Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
-					<kv-tab for="text_themable">Themable</kv-tab>
-					<kv-tab for="text_static">Static</kv-tab>
+					<kv-tab for-panel="text_themable">Themable</kv-tab>
+					<kv-tab for-panel="text_static">Static</kv-tab>
 				</template>
 				<template #tabPanels>
 					<kv-tab-panel id="text_themable">
@@ -174,8 +174,8 @@ export const Primitives = (args, { argTypes }) => ({
 			<h2 class="tw-mb-4">Border/Ring Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
-					<kv-tab for="border_themable">Themable</kv-tab>
-					<kv-tab for="border_static">Static</kv-tab>
+					<kv-tab for-panel="border_themable">Themable</kv-tab>
+					<kv-tab for-panel="border_static">Static</kv-tab>
 				</template>
 				<template #tabPanels>
 					<kv-tab-panel id="border_themable">
