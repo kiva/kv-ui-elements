@@ -1,8 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import KvCheckbox from '../../../../vue/KvCheckbox.vue';
-
-expect.extend(toHaveNoViolations);
 
 describe('KvCheckbox', () => {
 	it('renders with a role of "checkbox"', () => {

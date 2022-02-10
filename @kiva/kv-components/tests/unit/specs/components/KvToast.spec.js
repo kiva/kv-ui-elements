@@ -1,8 +1,6 @@
 import { render } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import KvToast from '../../../../vue/KvToast.vue';
-
-expect.extend(toHaveNoViolations);
 
 describe('KvToast', () => {
 	it('has no automated accessibility violations', async () => {
