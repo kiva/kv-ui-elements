@@ -1,8 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import KvSwitch from '../../../../vue/KvSwitch.vue';
-
-expect.extend(toHaveNoViolations);
 
 describe('KvSwitch', () => {
 	const renderTestSwitch = (options) => render(KvSwitch, {

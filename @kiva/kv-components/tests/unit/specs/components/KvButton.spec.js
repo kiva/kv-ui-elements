@@ -1,9 +1,7 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import addVueRouter from '../../utils/addVueRouter';
 import KvButton from '../../../../vue/KvButton.vue';
-
-expect.extend(toHaveNoViolations);
 
 describe('Default Button', () => {
 	const renderTestButton = (options) => render(KvButton, addVueRouter({

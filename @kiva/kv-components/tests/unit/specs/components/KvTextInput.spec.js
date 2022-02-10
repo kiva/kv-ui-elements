@@ -1,9 +1,7 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import KvTextInput from '../../../../vue/KvTextInput.vue';
-
-expect.extend(toHaveNoViolations);
 
 const KvTextInputTemplate = {
 	components: { KvTextInput },

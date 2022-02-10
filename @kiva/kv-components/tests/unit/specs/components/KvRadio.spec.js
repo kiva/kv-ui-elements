@@ -1,8 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe } from 'jest-axe';
 import KvRadio from '../../../../vue/KvRadio.vue';
-
-expect.extend(toHaveNoViolations);
 
 const radioGroup = {
 	components: { KvRadio },
