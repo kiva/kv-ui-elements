@@ -182,6 +182,8 @@ module.exports = {
 				code: {
 					fontSize: '0.875em',
 				},
+				blockquote: textStyles.textSubhead,
+				'figure figcaption': textStyles.textSmall,
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
