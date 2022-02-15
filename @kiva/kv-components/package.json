@@ -23,7 +23,6 @@
     "@testing-library/user-event": "^13.2.1",
     "@testing-library/vue": "^5.8.1",
     "@vue/composition-api": "^1.4.1",
-    "@vue/vue2-jest": "^27.0.0-alpha.4",
     "autoprefixer": "^10.4.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.0.6",
@@ -40,11 +39,9 @@
     "storybook-dark-mode": "^1.0.8",
     "tailwindcss": "^3.0.18",
     "vue": "^2.6.14",
-    "vue-jest": "^3.0.7",
     "vue-loader": "^15.9.6",
     "vue-router": "^3.5.2",
-    "vue-template-compiler": "^2.6.12",
-    "vue3": "npm:vue@^3.2.23"
+    "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
     "storybook": "vue-demi-switch 2 && start-storybook -p 6006 -c vue/.storybook",
