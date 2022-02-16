@@ -242,13 +242,8 @@ export default {
 		};
 
 		const onClick = (event) => {
-			// emit a vue event and prevent native event
-			// so we don't have to write @click.native in our templates
-			if (tag.value === 'button' && type.value !== 'submit') {
-				event.preventDefault();
-				emit('click', event);
-			}
-
+			// Pass-through native click event to parent while adding ripple effect
+			emit('click', event);
 			createRipple(event);
 		};
 
