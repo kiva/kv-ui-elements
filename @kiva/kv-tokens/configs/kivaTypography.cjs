@@ -1,4 +1,4 @@
-const { rem, em } = require('./util');
+const { rem, em } = require('./util.cjs');
 const designtokens = require('../primitives.json');
 
 const {
@@ -210,18 +210,20 @@ const proseOverrides = () => ({
 			a: false,
 			strong: false,
 			b: false,
-			'ol > li::before': {
+			'ol > li::marker': {
 				fontWeight: false,
 				color: false,
 			},
-			'ul > li::before': {
-				backgroundColor: textBaseColor,
+			'ul > li::marker': {
+				color: false,
+				fontSize: textStyles.textSubhead.fontSize,
+				lineHeight: 1,
 			},
 			hr: {
 				borderColor: false,
 			},
 			blockquote: {
-				...textStyles.textSubhead,
+				fontWeight: false,
 				fontStyle: 'italic',
 				color: false,
 				borderLeftWidth: false,
@@ -239,11 +241,14 @@ const proseOverrides = () => ({
 			'blockquote p:last-of-type::after': {
 				visibility: 'hidden',
 			},
-			h1: textStyles.textH1,
-			h2: textStyles.textH2,
-			h3: textStyles.textH3,
-			h4: textStyles.textH4,
-			'figure figcaption': textStyles.textSmall,
+			h1: false,
+			h2: false,
+			h3: false,
+			h4: false,
+			figcaption: {
+				fontSize: false,
+				lineHeight: false,
+			},
 			code: {
 				color: false,
 			},
@@ -265,23 +270,27 @@ const proseOverrides = () => ({
 			},
 			h1: {
 				fontSize: false,
+				letterSpacing: false,
 				marginTop: '0',
 				marginBottom: rem(space[4]),
 				color: textBaseColor,
 			},
 			h2: {
 				fontSize: false,
+				letterSpacing: false,
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
 				color: textBaseColor,
 			},
 			h3: {
 				fontSize: false,
+				letterSpacing: false,
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[2]),
 				color: textBaseColor,
 			},
 			h4: {
+				letterSpacing: false,
 				marginTop: false,
 				marginBottom: rem(space[4]),
 				color: textBaseColor,
@@ -322,20 +331,22 @@ const proseOverrides = () => ({
 			ol: {
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
+				paddingLeft: em(18, 16),
+			},
+			'ol > li': {
+				paddingLeft: em(10, 16),
 			},
 			ul: {
 				marginTop: rem(space[4]),
 				marginBottom: rem(space[4]),
+				paddingLeft: em(18, 16),
+			},
+			'ul > li': {
+				paddingLeft: em(10, 16),
 			},
 			li: {
 				marginTop: rem(space[2]),
 				marginBottom: rem(space[2]),
-			},
-			'ul > li::before': {
-				width: em(6, 16),
-				height: em(6, 16),
-				top: '0.5em',
-				left: em(4, 16),
 			},
 			'> ul > li p': {
 				marginTop: em(12, 16),
@@ -392,7 +403,7 @@ const proseOverrides = () => ({
 		},
 		],
 	},
-	// Our typography breakpoints are handled elsewhere.
+	// Our typography breakpoints are handled by our default styles (e.g. textH1, textBase, etc.).
 	// No need to use `<div class="prose prose-sm prose-lg prose-xl">. Only <div class="prose">
 	sm: false,
 	lg: false,

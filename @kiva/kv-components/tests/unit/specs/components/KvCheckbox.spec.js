@@ -1,8 +1,6 @@
-import { render } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { render, fireEvent } from '@testing-library/vue';
+import { axe } from 'jest-axe';
 import KvCheckbox from '../../../../vue/KvCheckbox.vue';
-
-expect.extend(toHaveNoViolations);
 
 describe('KvCheckbox', () => {
 	it('renders with a role of "checkbox"', () => {
@@ -26,18 +24,79 @@ describe('KvCheckbox', () => {
 		expect(checkboxEl.checked).toEqual(false);
 	});
 
-	it('emits a change event when toggled', async () => {
-		const { getByLabelText, emitted } = render(KvCheckbox, {
-			slots: { default: 'Test Checkbox' },
-		});
-		const checkboxEl = getByLabelText('Test Checkbox');
+	it('works with v-model', async () => {
+		const TestComponent = {
+			template:
+				`<div>
+					<KvCheckbox v-model="checkboxValue">Test Checkbox</KvCheckbox>
+					<button @click="checkboxValue = false">reset</button>
+					<span>The checkbox value is {{ checkboxValue }}</span>
+				</div>`,
+			components: { KvCheckbox },
+			data: () => ({ checkboxValue: false }),
+		};
+		const { getByLabelText, getByText } = render(TestComponent);
+		const checkboxEl = getByText('Test Checkbox');
+		const checkboxInput = getByLabelText('Test Checkbox');
 
-		await checkboxEl.click();
-		expect(emitted().change[0]).toEqual([true]);
+		// Check that the value is `false` initially
+		expect(getByText('The checkbox value is false')).toBeDefined();
+		expect(checkboxInput.checked).toEqual(false);
 
-		await checkboxEl.click();
-		expect(emitted().change[1]).toEqual([false]);
-		expect(emitted().change.length).toBe(2);
+		// Click the checkbox and expect the value to be `true` now
+		await fireEvent.click(checkboxEl);
+		expect(getByText('The checkbox value is true')).toBeDefined();
+		expect(checkboxInput.checked).toEqual(true);
+
+		// Click the reset button and expect the value to be `false` again
+		await fireEvent.click(getByText('reset'));
+		expect(getByText('The checkbox value is false')).toBeDefined();
+		expect(checkboxInput.checked).toEqual(false);
+	});
+
+	it('applies parent event listeners to the input element', async () => {
+		const onInput = jest.fn();
+		const TestComponent = {
+			template: '<KvCheckbox @input="onInput">Test Checkbox</KvCheckbox>',
+			components: { KvCheckbox },
+			methods: { onInput },
+		};
+		const { getByText } = render(TestComponent);
+
+		const checkboxEl = getByText('Test Checkbox');
+		await fireEvent.click(checkboxEl);
+		expect(onInput.mock.calls.length).toBe(1);
+	});
+
+	it('applies parent attributes to the input element', async () => {
+		const TestComponent = {
+			template: '<KvCheckbox name="test-checkbox">Test Checkbox</KvCheckbox>',
+			components: { KvCheckbox },
+		};
+		const { getByRole } = render(TestComponent);
+
+		const checkboxEl = getByRole('checkbox');
+		expect(checkboxEl.name).toBe('test-checkbox');
+	});
+
+	it('applies parent styles to the root element', async () => {
+		const TestComponent = {
+			template: '<KvCheckbox style="padding-top:1234px">Test Checkbox</KvCheckbox>',
+			components: { KvCheckbox },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.style.paddingTop).toEqual('1234px');
+	});
+
+	it('applies parent classes to the root element', async () => {
+		const TestComponent = {
+			template: '<KvCheckbox class="test-class">Test Checkbox</KvCheckbox>',
+			components: { KvCheckbox },
+		};
+		const { container } = render(TestComponent);
+
+		expect(container.firstChild.classList).toContain('test-class');
 	});
 
 	it('has no automated accessibility violations', async () => {

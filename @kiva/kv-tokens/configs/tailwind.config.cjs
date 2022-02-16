@@ -1,9 +1,9 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
-const kivaTypography = require('./kivaTypography');
-const { defaultTheme, buildColorChoices } = require('./kivaColors');
+const kivaTypography = require('./kivaTypography.cjs');
+const { defaultTheme, buildColorChoices } = require('./kivaColors.cjs');
 const designtokens = require('../primitives.json');
-const { rem } = require('./util');
+const { rem } = require('./util.cjs');
 
 const {
 	fonts,
@@ -182,6 +182,8 @@ module.exports = {
 				code: {
 					fontSize: '0.875em',
 				},
+				blockquote: textStyles.textSubhead,
+				'figure figcaption': textStyles.textSmall,
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},

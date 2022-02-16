@@ -4,7 +4,7 @@ module.exports = {
 		node: true,
 	},
 	extends: [
-		'../../.eslintrc',
+		'../../.eslintrc.cjs',
 		'plugin:vue/recommended',
 	],
 	plugins: [

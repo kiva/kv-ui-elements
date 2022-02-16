@@ -1,7 +1,7 @@
 import primitives from '@kiva/kv-tokens/primitives.json';
 import {
 	defaultTheme, darkTheme, darkGreenTheme, mintTheme,
-} from '@kiva/kv-tokens/configs/kivaColors';
+} from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';

@@ -1,17 +1,21 @@
 <template>
-	<div>
+	<div
+		:class="classes"
+		:style="styles"
+	>
 		<label
-			class="tw-inline-flex tw-gap-2 tw-items-center tw-relative"
+			class="tw-inline-flex tw-gap-2 tw-items-center tw-relative hover:tw-cursor-pointer"
 			:class="{ 'tw-opacity-low': disabled }"
 			:for="uuid"
 		>
 			<input
 				:id="uuid"
-				v-bind="$attrs"
+				v-bind="inputAttrs"
 				ref="switchRef"
 				class="tw-sr-only tw-peer"
 				type="checkbox"
 				role="switch"
+				:checked="modelValue"
 				:disabled="disabled"
 				v-on="inputListeners"
 				@change.prevent="onChange"
@@ -46,7 +50,16 @@
 </template>
 
 <script>
+import {
+	ref,
+	onMounted,
+} from 'vue-demi';
 import { nanoid } from 'nanoid';
+import { useAttrs } from '../utils/attrs';
+
+const emits = [
+	'update:modelValue',
+];
 
 /**
  * KvSwitch
@@ -68,14 +81,14 @@ export default {
 	inheritAttrs: false,
 	// v-model will change when checked value changes
 	model: {
-		prop: 'checked',
-		event: 'change',
+		prop: 'modelValue',
+		event: 'update:modelValue',
 	},
 	props: {
 		/**
 		 * Whether the switch is on or off
 		 * */
-		checked: {
+		modelValue: {
 			type: Boolean,
 			default: false,
 		},
@@ -87,35 +100,44 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			uuid: `kvs-${nanoid(10)}`,
+	emits,
+	setup(props, context) {
+		const { emit } = context;
+		const uuid = ref(`kvs-${nanoid(10)}`);
+		const switchRef = ref(null);
+
+		const {
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		} = useAttrs(context, emits);
+
+		const onChange = (event) => {
+			emit('update:modelValue', event.target.checked);
 		};
-	},
-	computed: {
-		inputListeners() {
-			return {
-				// Pass through any listeners from the parent to the input element, like blur, focus, etc.
-				// https://vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
-				...this.$listeners,
-				// ...except for the listener to the 'change' event which is emitted by this component
-				change: () => {},
-			};
-		},
-	},
-	mounted() {
-		this.uuid = `kvs-${nanoid(10)}`;
-	},
-	methods: {
-		onChange(event) {
-			this.$emit('change', event.target.checked);
-		},
-		focus() {
-			this.$refs.switchRef.focus();
-		},
-		blur() {
-			this.$refs.switchRef.blur();
-		},
+
+		const focus = () => {
+			switchRef.value.focus();
+		};
+		const blur = () => {
+			switchRef.value.blur();
+		};
+
+		onMounted(() => {
+			uuid.value = `kvs-${nanoid(10)}`;
+		});
+
+		return {
+			uuid,
+			onChange,
+			focus,
+			blur,
+			classes,
+			styles,
+			inputAttrs,
+			inputListeners,
+		};
 	},
 };
 </script>

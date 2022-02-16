@@ -1,11 +1,11 @@
 <template>
 	<button
-		:id="`kv-tab-${this.for}`"
+		:id="`kv-tab-${forPanel}`"
 		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap"
 		:class="{ 'hover:tw-text-action-highlight' : !isActive }"
 		role="tab"
 		:aria-selected="isActive"
-		:aria-controls="`kv-tab-panel-${this.for}`"
+		:aria-controls="`kv-tab-panel-${forPanel}`"
 		:tabindex="isActive ? null : -1"
 		@click="handleTabClicked"
 	>
@@ -14,14 +14,21 @@
 </template>
 
 <script>
+import {
+	toRefs,
+	inject,
+	computed,
+	onMounted,
+	getCurrentInstance,
+} from 'vue-demi';
+
 export default {
-	inject: ['$KvTabContext'],
 	props: {
 		/**
 		 * A unique id which correspondes to an `id` property on the KvTabPanel it controls
 		 * e.g., <kv-tab for="foo">... <kv-tab-panel id="foo">
 		 * */
-		for: {
+		forPanel: {
 			type: String,
 			required: true,
 		},
@@ -33,23 +40,44 @@ export default {
 			default: false,
 		},
 	},
-	computed: {
-		isActive() {
-			const { navItems, selectedIndex } = this.$KvTabContext;
-			return navItems[selectedIndex]?.for === this.for;
-		},
-		index() {
-			const { navItems } = this.$KvTabContext;
-			return navItems?.findIndex((navItem) => navItem.for === this.for);
-		},
-	},
-	mounted() {
-		this.$KvTabContext.navItems.push(this);
-	},
-	methods: {
-		handleTabClicked() {
-			this.$KvTabContext.setTab(this.index);
-		},
+	setup(props) {
+		const {
+			forPanel,
+		} = toRefs(props);
+
+		const kvTabContext = inject('$KvTabContext');
+
+		const isActive = computed(() => {
+			let navItems = [];
+			let selectedIndex = 0;
+			if (kvTabContext) {
+				navItems = kvTabContext.navItems;
+				selectedIndex = kvTabContext.selectedIndex;
+			}
+			return navItems[selectedIndex]?.forPanel === forPanel.value;
+		});
+
+		const index = computed(() => {
+			let navItems = [];
+			if (kvTabContext) {
+				navItems = kvTabContext.navItems;
+			}
+			return navItems?.findIndex((navItem) => navItem.forPanel === forPanel.value);
+		});
+
+		const handleTabClicked = () => {
+			kvTabContext.setTab(index.value);
+		};
+
+		onMounted(() => {
+			const instance = getCurrentInstance();
+			kvTabContext.navItems.push(instance.proxy);
+		});
+
+		return {
+			isActive,
+			handleTabClicked,
+		};
 	},
 };
 </script>
