@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.0.0...@kiva/kv-tokens@2.0.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **KvTokens:** adjust prose styles to override new tailwind/typography defaults ([#176](https://github.com/kiva/kv-ui-elements/issues/176)) ([bdef740](https://github.com/kiva/kv-ui-elements/commit/bdef7403575df7c9a7b3ef0891a8262f7d503bd5))
+* set correct module type for importing the package ([ef7e828](https://github.com/kiva/kv-ui-elements/commit/ef7e82876544f9016a09e743d68da3451e1ab3d6))
+
+
+
+
+
 # [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@1.3.3...@kiva/kv-tokens@2.0.0) (2022-02-03)
 
 

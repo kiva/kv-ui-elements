@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@2.0.0...@kiva/kv-components@3.0.0) (2022-02-16)
+
+
+### Bug Fixes
+
+* **deps:** add required missing vue composition api for storybook ([7c4629e](https://github.com/kiva/kv-ui-elements/commit/7c4629eac8820a53ce86de0056a5ac17cfd25b73))
+* input reference was back to ref ([fce5264](https://github.com/kiva/kv-ui-elements/commit/fce52641b384efb83d5d8d5cfd4587cc924b4484))
+* **KvSwitch:** ensure component attributes behave the same way across vue versions ([1414899](https://github.com/kiva/kv-ui-elements/commit/14148990c48449548614d02ee4869ddd72c87f74))
+* model added to work correctly ([8992e83](https://github.com/kiva/kv-ui-elements/commit/8992e8330a86c41e75a42dddc5ed3531aad1da43))
+* set correct module type for importing the package ([ef7e828](https://github.com/kiva/kv-ui-elements/commit/ef7e82876544f9016a09e743d68da3451e1ab3d6))
+* update path ([f33c2fb](https://github.com/kiva/kv-ui-elements/commit/f33c2fb7383ceb2caf916db2ec8d4e940697b5e7))
+* value attr was added to msToDisplayToast computed ref to show the toast correctly ([5c5199c](https://github.com/kiva/kv-ui-elements/commit/5c5199c3d9601f34f9342c971f643c2ed1bde80f))
+
+
+### Features
+
+* checked prop was replaced by modelValue for composition api ([01e31a4](https://github.com/kiva/kv-ui-elements/commit/01e31a41976fc7cb406fbe0c6e41bb2ebf4573b1))
+* files for kvcheckbox component were updated for tests passing ([e788ef3](https://github.com/kiva/kv-ui-elements/commit/e788ef34be213831cfce2034b94c4ebb843d7401))
+* **KvCarousel:** component was rewritten to use composition api ([#149](https://github.com/kiva/kv-ui-elements/issues/149)) ([0e7ab21](https://github.com/kiva/kv-ui-elements/commit/0e7ab219902858fe05626231ca0027498b2d1280))
+* kvcheckbox component was rewritten to use composition api ([945edee](https://github.com/kiva/kv-ui-elements/commit/945edeee9efcec4f47cb4dafbec81d856406cb16))
+* kvcheckbox component was rewritten to use composition api ([787e9cf](https://github.com/kiva/kv-ui-elements/commit/787e9cf9448f7c9db5732fd3e1b2d441c52c389e))
+* kvcontentfulimg component was rewritten to use composition api ([#145](https://github.com/kiva/kv-ui-elements/issues/145)) ([e30526c](https://github.com/kiva/kv-ui-elements/commit/e30526c994e65cfce7d479dd9f06e333588e7360))
+* **KvLightbox:** component was rewritten using composition api ([#156](https://github.com/kiva/kv-ui-elements/issues/156)) ([8a83c6f](https://github.com/kiva/kv-ui-elements/commit/8a83c6ff01b32f2a46c3133c67033051de3ee8cf))
+* kvprogressbar component was rewritten using composition api ([#152](https://github.com/kiva/kv-ui-elements/issues/152)) ([9cda6b6](https://github.com/kiva/kv-ui-elements/commit/9cda6b603a5eff1ea746b58bc1385f54bcb0cb50))
+* **KvRadio:** component was rewritten to use composition api ([#146](https://github.com/kiva/kv-ui-elements/issues/146)) ([5b8f342](https://github.com/kiva/kv-ui-elements/commit/5b8f34213f445e876981197c91e333949ba73eb2))
+* **KvSelect:** component was rewritten and basic test file was added ([#150](https://github.com/kiva/kv-ui-elements/issues/150)) ([69f99d8](https://github.com/kiva/kv-ui-elements/commit/69f99d814e46bdb622c27792fb955261ea7ff7bd))
+* kvswitch component was rewritten using composition api ([a51c00e](https://github.com/kiva/kv-ui-elements/commit/a51c00e67b6f85b83bc24e3672de3d22994b5db1))
+* KvTabs, KvTab, & KvTabPanel updated to support composition api ([#165](https://github.com/kiva/kv-ui-elements/issues/165)) ([c4758ae](https://github.com/kiva/kv-ui-elements/commit/c4758ae7dee98adf4f9a58fad6ef2d87d3fefcf7))
+* **KvTextInput:** component was rewritten using composition api ([#159](https://github.com/kiva/kv-ui-elements/issues/159)) ([6d4ae80](https://github.com/kiva/kv-ui-elements/commit/6d4ae809003b07aea3c6eb97565a09c95289c0e8))
+* kvtextlink component was rewritten to use composition api ([#151](https://github.com/kiva/kv-ui-elements/issues/151)) ([7181775](https://github.com/kiva/kv-ui-elements/commit/7181775d6d30c1bee5955670f615b4fdd587f9fe))
+* pointer was added to switch component ([44ffb45](https://github.com/kiva/kv-ui-elements/commit/44ffb45c6dd5f4c71b5b8bfd3b8b2b65ab0818a2))
+* testing file was added for kvtoast component ([cd6abe9](https://github.com/kiva/kv-ui-elements/commit/cd6abe9dea2218e705fc1efb94127d6b184e3800))
+
+
+### BREAKING CHANGES
+
+* **KvSelect:** The KvSelect prop `value` was renamed to `modelValue`.
+The KvCheckbox prop `checked` has been renamed to `modelValue`.
+The KvCheckbox event `change` has been renamed to `update:modelValue`.
+* **KvTextInput:** The KvTextInput prop `value` has been renamed to `modelValue`
+
+
+
+
+
 # [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@1.4.6...@kiva/kv-components@2.0.0) (2022-02-03)
 
 
