@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.1...@kiva/kv-components@3.0.2) (2022-03-18)
+
+
+### Bug Fixes
+
+* clean up tests console errors and props ([37a6da9](https://github.com/kiva/kv-ui-elements/commit/37a6da9b4439463e777ae503b7ccff6562b9c81f))
+* ensure reactive ref state without timeout ([eda1553](https://github.com/kiva/kv-ui-elements/commit/eda1553304e6ed4199e35dbd73cb821b87bf3175))
+* return additional items for access as refs in vue2 ([b34ee52](https://github.com/kiva/kv-ui-elements/commit/b34ee52c39357bb7469418717d99c08a937c5cb8))
+
+
+
+
+
 ## [3.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.0...@kiva/kv-components@3.0.1) (2022-02-16)
 
 
