@@ -44,8 +44,8 @@
  * ```
  *  <kv-tabs>
  *   <template #tabNav>
- *    <kv-tab for="foo">Foo</kv-tab>
- *    <kv-tab for="bar">Bar</kv-tab>
+ *    <kv-tab for-panel="foo">Foo</kv-tab>
+ *    <kv-tab for-panel="bar">Bar</kv-tab>
  *   </template>
  *   <template #tabPanels>
  *    <kv-tab-panel id="foo">Foo content</kv-tab-panel>
@@ -163,6 +163,7 @@ export default {
 		return {
 			handleKeyDown,
 			selectedTabEl,
+			tabContext,
 		};
 	},
 };
