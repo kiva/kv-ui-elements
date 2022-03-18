@@ -99,7 +99,6 @@ describe('KvTabs', () => {
 	});
 
 	it('verifies setTab method when called by a ref', async () => {
-		let selectedIndexCheck = null;
 		const {
 			getByRole,
 			getAllByRole,
@@ -110,6 +109,9 @@ describe('KvTabs', () => {
 				KvTab,
 				KvTabPanel,
 				KvButton,
+			},
+			data() {
+				return { selectedIndexCheck: null };
 			},
 			template: `
 				<div data-testid="tabContainer">
@@ -128,13 +130,12 @@ describe('KvTabs', () => {
 						</template>
 					</kv-tabs>
 					<kv-button @click.native.prevent="setTabButtonClick(1)" role="tabSetButton">Set Tab</kv-button>
+					<p>Tab index is {{ selectedIndexCheck }}</p>
 				</div>
 			`,
 			methods: {
 				handleTabChanged() {
-					this.$nextTick(() => {
-						selectedIndexCheck = this?.$refs?.tabsRef?.tabContext?.selectedIndex;
-					});
+					this.selectedIndexCheck = this?.$refs?.tabsRef?.tabContext?.selectedIndex;
 				},
 				setTabButtonClick() {
 					this?.$refs?.tabsRef?.tabContext?.setTab(0);
@@ -153,9 +154,7 @@ describe('KvTabs', () => {
 		expect(getByText('Third Panel')).toBeVisible();
 		// Test access and updating of property ref
 		// expect the selected index value to be set to our new tab index
-		setTimeout(() => {
-			expect(selectedIndexCheck).toBe(2);
-		}, 200);
+		expect(getByText('Tab index is 2')).toBeVisible();
 
 		// click the button to test our ref method
 		await userEvent.click(getByText('Set Tab'));
@@ -163,8 +162,6 @@ describe('KvTabs', () => {
 		expect(getByText('First Panel')).toBeVisible();
 		// Test access and updating of property ref
 		// expect the selected index value to be set to our new tab index
-		setTimeout(() => {
-			expect(selectedIndexCheck).toBe(0);
-		}, 200);
+		expect(getByText('Tab index is 0')).toBeVisible();
 	});
 });
