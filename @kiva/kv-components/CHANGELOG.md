@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.2...@kiva/kv-components@3.0.3) (2022-05-16)
+
+
+### Bug Fixes
+
+* added back initial uuid value. ([aa4a88c](https://github.com/kiva/kv-ui-elements/commit/aa4a88c5a65846e9103ce25985bd7d1cc7bfd025))
+* label and input uuids didn't match ([742452a](https://github.com/kiva/kv-ui-elements/commit/742452a9ffe03980f10f444a99f253429d028170))
+
+
+
+
+
 ## [3.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.1...@kiva/kv-components@3.0.2) (2022-03-18)
 
 
