@@ -151,7 +151,7 @@ export default {
 			modelValue,
 		} = toRefs(props);
 
-		const uuid = ref(null);
+		const uuid = ref(`kvr-${nanoid(10)}`);
 		const radioRef = ref(null);
 
 		const {
