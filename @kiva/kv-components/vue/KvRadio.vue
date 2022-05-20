@@ -151,7 +151,7 @@ export default {
 			modelValue,
 		} = toRefs(props);
 
-		let uuid = ref(`kvr-${nanoid(10)}`);
+		const uuid = ref(`kvr-${nanoid(10)}`);
 		const radioRef = ref(null);
 
 		const {
@@ -169,7 +169,7 @@ export default {
 		});
 
 		onMounted(() => {
-			uuid = `kvr-${nanoid(10)}`;
+			uuid.value = `kvr-${nanoid(10)}`;
 		});
 
 		const onChange = (event) => {
