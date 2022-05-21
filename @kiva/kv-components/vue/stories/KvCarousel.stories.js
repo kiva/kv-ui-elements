@@ -164,6 +164,78 @@ export const MultipleLoanCards2 = () => ({
 	`,
 });
 
+export const MultipleLoanCardsReInit = () => ({
+	components: {
+		KvCarousel,
+		KvButton,
+	},
+	template: `
+		<div data-testid="carousel-container">
+			<kv-carousel
+				ref="myCarouselRef"
+				:multiple-slides-visible="true"
+				slides-to-scroll="visible"
+				style="max-width: 800px;"
+			>
+				<template #slide1>
+					${generateLoanCardTemplate(1)}
+				</template>
+				<template #slide2>
+					${generateLoanCardTemplate(2)}
+				</template>
+				<template #slide3>
+					${generateLoanCardTemplate(3)}
+				</template>
+				<template #slide4>
+					${generateLoanCardTemplate(4)}
+				</template>
+				<template #slide5>
+					${generateLoanCardTemplate(5)}
+				</template>
+				<template #slide6>
+					${generateLoanCardTemplate(6)}
+				</template>
+				<template #slide7>
+					${generateLoanCardTemplate(7)}
+				</template>
+				<template #slide8>
+					${generateLoanCardTemplate(8)}
+				</template>
+			</kv-carousel>
+			<kv-button @click.native.prevent="removeSlide()" role="removeSlideButton">Remove Slide</kv-button>
+			<p>Slide Count: {{ slideCount }} | Indicator Count: {{ slideIndicatorCount }} | Removed Slides: {{ removedSlides.length }}</p>
+		</div>
+	`,
+	data() {
+		return {
+			removedSlides: [],
+			slideCount: null,
+			slideIndicatorCount: null,
+		};
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.slideCount = this?.$refs?.myCarouselRef?.slides?.length;
+			this.slideIndicatorCount = this?.$refs?.myCarouselRef?.slideIndicatorCount;
+		});
+	},
+	methods: {
+		removeSlide() {
+			// Fetch slides + remove one
+			const slides = this?.$refs?.myCarouselRef?.embla?.slideNodes();
+			const slideToRemove = slides.pop();
+			this.removedSlides.push(slideToRemove);
+			this?.$refs?.myCarouselRef?.embla?.containerNode()?.removeChild(slideToRemove);
+			// Call our component reInit method
+			this?.$refs?.myCarouselRef?.reInit();
+			// Update values for reflection in story
+			this.slideCount = this?.$refs?.myCarouselRef?.slides?.length;
+			this.selectedIndexCheck = this?.$refs?.myCarouselRef?.currentIndex;
+			this.slideIndicatorCount = this?.$refs?.myCarouselRef?.slideIndicatorCount;
+		},
+	},
+});
+
 export const loadingLoanCardExample = () => ({
 	components: {
 		KvCarousel,
