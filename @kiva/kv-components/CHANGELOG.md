@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.3...@kiva/kv-components@3.0.4) (2022-05-23)
+
+
+### Bug Fixes
+
+* remove usage of currentInstance, re-implement indicator count update mechanism ([21dae02](https://github.com/kiva/kv-ui-elements/commit/21dae029094bdeecd4d352eea70a116c08af504c))
+
+
+
+
+
 ## [3.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.2...@kiva/kv-components@3.0.3) (2022-05-16)
 
 
