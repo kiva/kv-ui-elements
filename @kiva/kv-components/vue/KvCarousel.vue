@@ -14,7 +14,7 @@
 				:key="index"
 				class="tw-flex-none tw-relative"
 				role="group"
-				:aria-label="`slide ${index} of ${componentSlotKeys.length}`"
+				:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
 				:aria-current="true ? currentIndex + 1 === index : false"
 				:aria-hidden="isAriaHidden(index)"
 				:tab-index="isAriaHidden(index) ? '-1' : false"
@@ -48,8 +48,11 @@
 				/>
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
-			<div class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible">
-				{{ currentIndex + 1 }}/{{ slideIndicatorListLength() }}
+			<div
+				:aria-label="`screen ${currentIndex + 1} of ${slideIndicatorCount}`"
+				class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible"
+			>
+				{{ currentIndex + 1 }}/{{ slideIndicatorCount }}
 			</div>
 			<button
 				class="tw-text-primary
@@ -79,7 +82,6 @@ import {
 	ref,
 	toRefs,
 	nextTick,
-	getCurrentInstance,
 } from 'vue-demi';
 import EmblaCarousel from 'embla-carousel';
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
@@ -144,11 +146,8 @@ export default {
 		const embla = ref(null);
 		const slides = ref([]);
 		const currentIndex = ref(0);
-
-		const forceUpdate = () => {
-			const instance = getCurrentInstance();
-			instance.proxy.$forceUpdate();
-		};
+		// The indicator count may differ from the slide count when multiple slides are in view
+		const slideIndicatorCount = ref(0);
 
 		const componentSlotKeys = computed(() => {
 			const keys = Object.keys(slots);
@@ -193,6 +192,18 @@ export default {
 			 */
 			emit('interact-carousel', interactionType);
 		};
+
+		/**
+		 * Returns number of slides in the carousel
+		 *
+		 * @returns {Number}
+		 */
+		const slideIndicatorListLength = () => {
+			const indicator = embla.value ? embla.value.scrollSnapList().length : 0;
+			slideIndicatorCount.value = indicator;
+			return indicator;
+		};
+
 		/**
 		 * Reinitialize the carousel.
 		 * Used after adding slides dynamically.
@@ -214,7 +225,7 @@ export default {
 				reInitVisible();
 			}
 			slides.value = embla.value.slideNodes();
-			forceUpdate(); // force a re-render so embla.canScrollNext() gets called in the template
+			slideIndicatorListLength();
 		};
 		const onCarouselContainerClick = (e) => {
 			// If we're dragging, block click handlers within slides
@@ -238,18 +249,8 @@ export default {
 			}
 			return false;
 		};
-		/**
-		 * Returns number of slides in the carousel
-		 *
-		 * @returns {Number}
-		 */
-		const slideIndicatorListLength = () => {
-			const indicator = embla.value ? embla.value.scrollSnapList().length : 0;
-			return indicator;
-		};
 
 		onMounted(async () => {
-			getCurrentInstance();
 			embla.value = EmblaCarousel(rootEl.value, {
 				loop: true,
 				containScroll: 'trimSnaps',
@@ -268,23 +269,26 @@ export default {
 							slidesToScroll: embla.value.slidesInView(true).length,
 							inViewThreshold: 0.9,
 						});
-						forceUpdate();
+						slides.value = embla.value.slideNodes();
+						slideIndicatorListLength();
 					}, 250),
 				);
 			}
 
 			// get slide components
 			slides.value = embla.value.slideNodes();
+			slideIndicatorListLength();
 
 			embla.value.on('select', () => {
 				currentIndex.value = embla.value.selectedScrollSnap();
-
 				/**
 				 * The index of the slide that the carousel has changed to
 				 * @event change
 				 * @type {Event}
 				 */
-				emit('change', currentIndex);
+				nextTick(() => {
+					emit('change', currentIndex);
+				});
 			});
 		});
 
@@ -303,6 +307,7 @@ export default {
 			componentSlotKeys,
 			nextIndex,
 			previousIndex,
+			slideIndicatorCount,
 			handleUserInteraction,
 			goToSlide,
 			reInit,
