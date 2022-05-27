@@ -28,6 +28,7 @@
 		</div>
 		<!-- Carousel Controls -->
 		<div
+			v-if="slideIndicatorCount > 1"
 			class="tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
