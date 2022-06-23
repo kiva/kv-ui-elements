@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const typographyPlugin = require('@tailwindcss/typography');
+const lineClampPlugin = require('@tailwindcss/line-clamp');
 const kivaTypography = require('./kivaTypography.cjs');
 const { defaultTheme, buildColorChoices } = require('./kivaColors.cjs');
 const designtokens = require('../primitives.json');
@@ -162,6 +163,7 @@ module.exports = {
 	},
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
+		lineClampPlugin,
 		plugin(({ addBase, addUtilities }) => {
 			const { webFonts, textStyles, textBaseColor } = kivaTypography;
 			addBase(webFonts);
