@@ -41,8 +41,5 @@
   "engines": {
     "node": ">= 15.13.0",
     "npm": ">= 7.7.6"
-  },
-  "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.0"
   }
 }
