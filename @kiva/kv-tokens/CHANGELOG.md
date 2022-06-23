@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.0.1...@kiva/kv-tokens@2.1.0) (2022-06-23)
+
+
+### Features
+
+* adding tailwind line-clamp ([#186](https://github.com/kiva/kv-ui-elements/issues/186)) ([a18aa7c](https://github.com/kiva/kv-ui-elements/commit/a18aa7c87a5d92166d9565806da4d385795136ed))
+
+
+
+
+
 ## [2.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.0.0...@kiva/kv-tokens@2.0.1) (2022-02-16)
 
 
