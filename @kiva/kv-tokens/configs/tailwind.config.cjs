@@ -162,6 +162,7 @@ module.exports = {
 	},
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
+		require('@tailwindcss/line-clamp'),
 		plugin(({ addBase, addUtilities }) => {
 			const { webFonts, textStyles, textBaseColor } = kivaTypography;
 			addBase(webFonts);
