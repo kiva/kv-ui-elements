@@ -84,7 +84,7 @@ export default {
 			type: String,
 			default: 'primary',
 			validator(value) {
-				return ['primary', 'secondary', 'link', 'ghost', 'danger'].includes(value);
+				return ['primary', 'secondary', 'link', 'ghost', 'danger', 'caution'].includes(value);
 			},
 		},
 		/**
@@ -114,6 +114,7 @@ export default {
 		const loadingColor = computed(() => {
 			switch (variant.value) {
 				case 'secondary':
+				case 'caution':
 					return 'black';
 				case 'ghost':
 					return 'brand';
@@ -164,6 +165,14 @@ export default {
 						classes = `${classes} tw-bg-secondary`;
 					} else {
 						classes = `${classes} tw-bg-primary hover:tw-bg-secondary`;
+					}
+					break;
+				case 'caution':
+					classes = 'tw-text-primary tw-border-transparent';
+					if (state.value === 'active') {
+						classes = `${classes} tw-bg-caution-highlight`;
+					} else {
+						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight`;
 					}
 					break;
 			}

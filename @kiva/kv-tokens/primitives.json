@@ -50,7 +50,8 @@
 					"action-highlight": "#277056",
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626",
-					"caution": "#FEE16E"
+					"caution": "#E6CB55",
+					"caution-highlight": "#D9BC3B"
 				},
 				"border": {
 					"primary": "#212121",
@@ -83,7 +84,8 @@
 					"action-highlight": "#6AC395",
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626",
-					"caution": "#FEE16E"
+					"caution": "#E6CB55",
+					"caution-highlight": "#D9BC3B"
 				},
 				"border": {
 					"primary": "#F5F5F5",

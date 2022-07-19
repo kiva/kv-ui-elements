@@ -7,7 +7,7 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'ghost'],
+				options: ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution'],
 			},
 		},
 		state: {
@@ -44,7 +44,7 @@ const VariantTemplate = (args, { argTypes }) => ({
 	template: `
 		<ul>
 			<li
-				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+				v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution']"
 				:key="variant"
 				class="tw-mb-2"
 			>
@@ -89,6 +89,11 @@ VariantGhost.args = {
 	variant: 'ghost',
 };
 
+export const VariantCaution = Template.bind({});
+VariantCaution.args = {
+	variant: 'caution',
+};
+
 // States
 export const StateLoading = VariantTemplate.bind({});
 StateLoading.args = {
@@ -117,7 +122,7 @@ export const FullWidth = (args, { argTypes }) => ({
 	template: `
 	<ul>
 		<li
-			v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+			v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution']"
 			:key="variant"
 			class="tw-mb-2"
 		>
