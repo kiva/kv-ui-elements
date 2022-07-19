@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.6...@kiva/kv-components@3.1.0) (2022-07-19)
+
+
+### Features
+
+* add new caution variant to buttons ([#191](https://github.com/kiva/kv-ui-elements/issues/191)) ([14f3eb6](https://github.com/kiva/kv-ui-elements/commit/14f3eb6548bfc925cc2cb656966829f127a8864e))
+
+
+
+
+
 ## [3.0.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.5...@kiva/kv-components@3.0.6) (2022-06-23)
 
 **Note:** Version bump only for package @kiva/kv-components

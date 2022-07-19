@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.1.0...@kiva/kv-tokens@2.2.0) (2022-07-19)
+
+
+### Features
+
+* add new caution variant to buttons ([#191](https://github.com/kiva/kv-ui-elements/issues/191)) ([14f3eb6](https://github.com/kiva/kv-ui-elements/commit/14f3eb6548bfc925cc2cb656966829f127a8864e))
+
+
+
+
+
 # [2.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.0.1...@kiva/kv-tokens@2.1.0) (2022-06-23)
 
 
