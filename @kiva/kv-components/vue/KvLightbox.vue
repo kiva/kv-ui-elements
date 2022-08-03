@@ -206,7 +206,6 @@ export default {
 	},
 	emits: [
 		'lightbox-closed',
-		'lightbox-closed-click-outside',
 	],
 	setup(props, { emit }) {
 		const {
