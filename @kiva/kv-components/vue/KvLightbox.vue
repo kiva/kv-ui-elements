@@ -206,6 +206,7 @@ export default {
 	},
 	emits: [
 		'lightbox-closed',
+		'lightbox-closed-clicking-outside',
 	],
 	setup(props, { emit }) {
 		const {
@@ -263,6 +264,8 @@ export default {
 
 		const onScreenClick = () => {
 			if (!preventClose.value) {
+				// This emit is only for MARS-199 experiment tracking and should be removed after results
+				emit('lightbox-closed-click-outside');
 				hide();
 			}
 		};
