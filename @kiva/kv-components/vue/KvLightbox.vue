@@ -79,7 +79,7 @@
 									tw-w-6 tw-h-6 tw--m-2
 									hover:tw-text-action-highlight
 								"
-								@click.stop="hide"
+								@click.stop="hide('close-x')"
 							>
 								<kv-material-icon
 									class="tw-w-3 tw-h-3"
@@ -234,7 +234,7 @@ export default {
 			return 'dialog';
 		});
 
-		const hide = () => {
+		const hide = (closedBy = '') => {
 			// scroll any content inside the lightbox back to top
 			if (kvLightbox.value && kvLightboxBody.value) {
 				deactivateFocusTrap();
@@ -253,7 +253,7 @@ export default {
 			 * @event lightbox-closed
 			 * @type {Event}
 			*/
-			emit('lightbox-closed');
+			emit('lightbox-closed', { type: closedBy });
 		};
 
 		onKeyUp = (e) => {
@@ -264,9 +264,7 @@ export default {
 
 		const onScreenClick = () => {
 			if (!preventClose.value) {
-				// This emit is only for MARS-199 experiment tracking and should be removed after results
-				emit('lightbox-closed-click-outside');
-				hide();
+				hide('background-click');
 			}
 		};
 
