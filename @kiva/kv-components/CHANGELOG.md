@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.1.0...@kiva/kv-components@3.2.0) (2022-08-04)
+
+
+### Bug Fixes
+
+* event name in emits ([06813fd](https://github.com/kiva/kv-ui-elements/commit/06813fda75cf9a169b9e5afd33549b9eb77b33a1))
+* remove unused event ([345cd90](https://github.com/kiva/kv-ui-elements/commit/345cd903ab5d6725de34d2085a2c8e65cba6933f))
+
+
+### Features
+
+* add payload to track closing events ([275c81d](https://github.com/kiva/kv-ui-elements/commit/275c81da659fa586500b9d21607ba5c69c4e5839))
+* add tailored emit event for MARS-199 experiment in kvLightbox ([8499206](https://github.com/kiva/kv-ui-elements/commit/8499206381c9e5bf1ac0ae4ab913b91b07ba906e))
+
+
+
+
+
 # [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.0.6...@kiva/kv-components@3.1.0) (2022-07-19)
 
 
