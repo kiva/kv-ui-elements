@@ -8,8 +8,8 @@ export default {
 const DefaultTemplate = () => ({
 	components: { KvLoadingPlaceholder },
 	template: `
-		<div style="width: 400px; padding: 20px;">
-			<kv-loading-placeholder class="tw-p-1" style="height: 50px;" />
+		<div style="padding: 20px;">
+			<kv-loading-placeholder class="tw-py-1" :class="{ 'tw-px-1': true }" style="height: 50px;" :style="{ width: '400px' }" />
 		</div>
 	`,
 });
