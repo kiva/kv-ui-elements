@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.2.0...@kiva/kv-components@3.3.0) (2022-08-10)
+
+
+### Bug Fixes
+
+* added class to placeholder story to show support ([ed4e6c9](https://github.com/kiva/kv-ui-elements/commit/ed4e6c984b6a52b238862004266ada10c9cb0c95))
+* added non-static class and style to placeholder as example ([4fd5e98](https://github.com/kiva/kv-ui-elements/commit/4fd5e98d41c900f69b56614980c688ebd43f6176))
+
+
+### Features
+
+* placeholder component ([b29facc](https://github.com/kiva/kv-ui-elements/commit/b29facc8c8fcdb9761cc9e58e2530ea1e3b4a2f8))
+
+
+
+
+
 # [3.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.1.0...@kiva/kv-components@3.2.0) (2022-08-04)
 
 
