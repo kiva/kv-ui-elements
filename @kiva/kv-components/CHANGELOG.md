@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.0...@kiva/kv-components@3.3.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* ensure ref is defined in exported methods ([3ab00ea](https://github.com/kiva/kv-ui-elements/commit/3ab00ea181ee2455925c2f8f01950b79c2ea7b09))
+
+
+
+
+
 # [3.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.2.0...@kiva/kv-components@3.3.0) (2022-08-10)
 
 
