@@ -240,6 +240,7 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
+			textInputRef,
 		};
 	},
 };
