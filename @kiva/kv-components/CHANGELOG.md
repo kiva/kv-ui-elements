@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.1...@kiva/kv-components@3.4.0) (2022-08-29)
+
+
+### Features
+
+* creating a global resuable component (KvAccordionItem) ([5bf7685](https://github.com/kiva/kv-ui-elements/commit/5bf76858508870f9055e680406a1167cdd68099c))
+
+
+
+
+
 ## [3.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.0...@kiva/kv-components@3.3.1) (2022-08-26)
 
 
