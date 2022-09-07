@@ -1,8 +1,11 @@
 <template>
 	<button
 		:id="`kv-tab-${forPanel}`"
-		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap"
-		:class="{ 'hover:tw-text-action-highlight' : !isActive }"
+		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap tw-text-left"
+		:class="{ 'hover:tw-text-action-highlight' : !isActive,
+			'md:tw-border-l-2 tw-border-transparent md:tw-pl-2' : vertical,
+			'tw-text-action-highlight' : isActive && vertical
+		}"
 		role="tab"
 		:aria-selected="isActive"
 		:aria-controls="`kv-tab-panel-${forPanel}`"
@@ -36,6 +39,10 @@ export default {
 		 * The tab should be initially selected.
 		 * */
 		selected: {
+			type: Boolean,
+			default: false,
+		},
+		vertical: {
 			type: Boolean,
 			default: false,
 		},
