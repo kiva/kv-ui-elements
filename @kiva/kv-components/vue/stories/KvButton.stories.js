@@ -7,7 +7,7 @@ export default {
 		variant: {
 			control: {
 				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution'],
+				options: ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution', 'vertical-tab'],
 			},
 		},
 		state: {
@@ -92,6 +92,11 @@ VariantGhost.args = {
 export const VariantCaution = Template.bind({});
 VariantCaution.args = {
 	variant: 'caution',
+};
+
+export const VerticalTab = Template.bind({});
+VerticalTab.args = {
+	variant: 'vertical-tab',
 };
 
 // States
