@@ -175,14 +175,6 @@ export default {
 						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight`;
 					}
 					break;
-				case 'vertical-tab':
-					classes = 'tw-text-h2 tw-border-transparent tw-bg-transparent tw-border-transparent';
-					if (state.value === 'active') {
-						classes = `${classes} md:tw-border-l-2 md:tw-border-l-action-highlight tw-text-action-highlight tw-rounded-none`;
-					} else {
-						classes = `${classes} hover:tw-bg-primary-inverse tw-text-primary-inverse`;
-					}
-					break;
 			}
 			return classes;
 		});
