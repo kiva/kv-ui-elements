@@ -22,9 +22,10 @@
 					tw-bg-primary-inverse tw-rounded-full
 					tw-origin-left tw-transition-all tw-duration-300
 				"
-				:class="{ 'tw-top-0 tw-bg-action-highlight' : vertical}"
+				:class="{ 'tw-hidden md:tw-block tw-top-0 md:tw-bg-action-highlight' : vertical}"
 				:style="`
 					width: ${selectedTabEl && !vertical ? selectedTabEl.clientWidth : 3}px;
+					height: ${selectedTabEl && vertical ? `${selectedTabEl.clientHeight}px` : '0.25rem'};
 					transform: ${selectedTabEl && !vertical ? `translateX(${selectedTabEl.offsetLeft}px)`
 				: selectedTabEl ? `translateY(${selectedTabEl.offsetTop}px)` : null};
 				`"
