@@ -28,7 +28,7 @@
 		</div>
 		<!-- Carousel Controls -->
 		<div
-			v-if="slideIndicatorCount > 1"
+			v-if="slideIndicatorCount > 1 && !newHomeExp"
 			class="tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
@@ -132,6 +132,10 @@ export default {
 		slideMaxWidth: {
 			type: String,
 			default: '',
+		},
+		newHomeExp: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
