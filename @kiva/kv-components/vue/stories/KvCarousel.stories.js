@@ -236,6 +236,38 @@ export const MultipleLoanCardsReInit = () => ({
 	},
 });
 
+export const MultipleLoanCardsHidingArrows = () => ({
+	components: {
+		KvCarousel,
+		KvButton,
+	},
+	template: `
+		<kv-carousel
+			:embla-options="{ loop: false }"
+			:multiple-slides-visible="true"
+			style="max-width: 600px;"
+			class="tw-w-full"
+			:hide-arrows="true"
+		>
+			<template #slide1>
+				${generateLoanCardTemplate(1)}
+			</template>
+			<template #slide2>
+				${generateLoanCardTemplate(2)}
+			</template>
+			<template #slide3>
+				${generateLoanCardTemplate(3)}
+			</template>
+			<template #slide4>
+				${generateLoanCardTemplate(4)}
+			</template>
+			<template #slide5>
+				${generateLoanCardTemplate(5)}
+			</template>
+		</kv-carousel>
+	`,
+});
+
 export const loadingLoanCardExample = () => ({
 	components: {
 		KvCarousel,

@@ -28,7 +28,7 @@
 		</div>
 		<!-- Carousel Controls -->
 		<div
-			v-if="slideIndicatorCount > 1 && !newHomeExp"
+			v-if="slideIndicatorCount > 1 && !hideArrows"
 			class="tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
@@ -133,7 +133,10 @@ export default {
 			type: String,
 			default: '',
 		},
-		newHomeExp: {
+		/**
+		 * Optional value to hide arrows in Carousel
+		 * */
+		hideArrows: {
 			type: Boolean,
 			default: false,
 		},
