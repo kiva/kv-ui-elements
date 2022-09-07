@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div :class="vertical ? 'md:tw-flex' : ''">
 		<div
 			role="tablist"
 			class="
@@ -7,10 +7,13 @@
 				tw-gap-x-2.5 md:tw-gap-x-5 lg:tw-gap-x-6
 				tw-mb-3 lg:tw-mb-4
 			"
+			:class="{'md:tw-flex-col md:tw-mr-3' : vertical}"
 			@keydown="handleKeyDown($event)"
 		>
 			<!-- @slot Tab Navigation -->
-			<slot name="tabNav"></slot>
+			<slot
+				name="tabNav"
+			></slot>
 
 			<!-- indicator bar -->
 			<div
@@ -19,9 +22,11 @@
 					tw-bg-primary-inverse tw-rounded-full
 					tw-origin-left tw-transition-all tw-duration-300
 				"
+				:class="{ 'tw-top-0 tw-bg-action-highlight' : vertical}"
 				:style="`
-					width: ${selectedTabEl ? selectedTabEl.clientWidth : 0}px;
-					transform: ${selectedTabEl ? `translateX(${selectedTabEl.offsetLeft}px)` : null};
+					width: ${selectedTabEl && !vertical ? selectedTabEl.clientWidth : 3}px;
+					transform: ${selectedTabEl && !vertical ? `translateX(${selectedTabEl.offsetLeft}px)`
+				: selectedTabEl ? `translateY(${selectedTabEl.offsetTop}px)` : null};
 				`"
 			></div>
 		</div>
@@ -65,6 +70,12 @@ import {
 } from 'vue-demi';
 
 export default {
+	props: {
+		vertical: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	setup(props, { emit }) {
 		const tabContext = reactive({
 			selectedIndex: 0,
