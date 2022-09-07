@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.4.0...@kiva/kv-components@3.5.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* height of indicator bar ([8908e44](https://github.com/kiva/kv-ui-elements/commit/8908e44da2d3edcfbc9bfca44144604ed255674b))
+
+
+### Features
+
+* add vertical tab button for new home page exp ([329e490](https://github.com/kiva/kv-ui-elements/commit/329e490a8df555b126c23e93f4ce69cd00eb7c35))
+* add vertical variant in tab ([a23c9d1](https://github.com/kiva/kv-ui-elements/commit/a23c9d1abd1ade6a2603d422bb0f2535e299d119))
+
+
+
+
+
 # [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.1...@kiva/kv-components@3.4.0) (2022-08-29)
 
 
