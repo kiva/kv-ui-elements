@@ -1,7 +1,7 @@
 <template>
 	<section
 		ref="rootEl"
-		class="tw-overflow-hidden tw-w-full"
+		class="kv-carousel tw-overflow-hidden tw-w-full"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
@@ -15,8 +15,8 @@
 				class="tw-flex-none tw-relative"
 				role="group"
 				:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
-				:aria-current="true ? currentIndex + 1 === index : false"
-				:aria-hidden="isAriaHidden(index)"
+				:aria-current="currentIndex === index ? 'true' : 'false'"
+				:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
 				:tab-index="isAriaHidden(index) ? '-1' : false"
 				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth }"
 				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
@@ -29,7 +29,7 @@
 		<!-- Carousel Controls -->
 		<div
 			v-if="slideIndicatorCount > 1"
-			class="tw-flex
+			class="kv-carousel__controls tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
 		>
@@ -239,14 +239,12 @@ export default {
 		 * If the slide is not completely in view in the carousel
 		 * it should be aria-hidden
 		 *
-		 * @param {Number} index The current index of the slide (starts at 1)
+		 * @param {Number} index The current index of the slide
 		 * @returns {Boolean}
 		 */
 		const isAriaHidden = (index) => {
-			// Index starts at 1
-			// Embla starts at 0
 			if (embla.value) {
-				return !embla.value.slidesInView(true).includes(index - 1);
+				return !embla.value.slidesInView(true).includes(index);
 			}
 			return false;
 		};
