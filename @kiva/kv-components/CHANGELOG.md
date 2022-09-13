@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.0...@kiva/kv-components@3.5.1) (2022-09-13)
+
+
+### Bug Fixes
+
+* **KvCarousel:** incorrect slide marked as current ([f496e7c](https://github.com/kiva/kv-ui-elements/commit/f496e7c0a8fdebd1f6e003f4c79b57a5926b0c4a))
+
+
+
+
+
 # [3.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.4.0...@kiva/kv-components@3.5.0) (2022-09-07)
 
 
