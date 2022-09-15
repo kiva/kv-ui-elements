@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.1...@kiva/kv-components@3.5.2) (2022-09-15)
+
+
+### Bug Fixes
+
+* **KvCarousel:** slidesToScroll should not be 0 MARS-248 ([c2fc929](https://github.com/kiva/kv-ui-elements/commit/c2fc929fbdcf87a061b71fff14b91ab8064fc130))
+
+
+
+
+
 ## [3.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.0...@kiva/kv-components@3.5.1) (2022-09-13)
 
 
