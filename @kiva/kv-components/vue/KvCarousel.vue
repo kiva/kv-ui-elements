@@ -265,7 +265,7 @@ export default {
 					'resize',
 					throttle(() => {
 						embla.value.reInit({
-							slidesToScroll: embla.value.slidesInView(true).length,
+							slidesToScroll: embla.value.slidesInView(true).length || 'auto',
 							inViewThreshold: 0.9,
 						});
 						slides.value = embla.value.slideNodes();
