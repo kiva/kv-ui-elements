@@ -51,7 +51,7 @@ export const Default = (args, { argTypes }) => ({
 			:fallback-format="fallbackFormat"
 			:width="width"
 			:height="height"
-			:alt="alt"
+			alt="Descriptive alt text"
 			:loading="loading"
 			:fit="fit"
 			:focus="focus"
@@ -149,3 +149,22 @@ AdaptiveImageSet.args = {
 	],
 	contentfulSrc: '//images.ctfassets.net/j0p9a6ql0rn7/V0FQ3TmvSVVX5zXCX9l9A/363cf644709b838f2e3478facd0a6959/wrd2021-hero-lg-2x.jpg',
 };
+
+export const WithCaption = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	template: `
+		<kv-contentful-img
+			:contentful-src="contentfulSrc"
+			:fallback-format="fallbackFormat"
+			:width="width"
+			:height="height"
+			alt="^ A descriptive caption"
+			:loading="loading"
+			:fit="fit"
+			:focus="focus"
+		/>
+	`,
+});
