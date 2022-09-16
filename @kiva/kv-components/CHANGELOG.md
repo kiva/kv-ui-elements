@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.2...@kiva/kv-components@3.6.0) (2022-09-16)
+
+
+### Features
+
+* **KvContentfulImg:** add optional caption MARS-243 ([35dfa7a](https://github.com/kiva/kv-ui-elements/commit/35dfa7ac4888dff6ff62b14f71bb1edb4c805717))
+
+
+
+
+
 ## [3.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.1...@kiva/kv-components@3.5.2) (2022-09-15)
 
 
