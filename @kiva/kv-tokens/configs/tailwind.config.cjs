@@ -79,8 +79,8 @@ module.exports = {
 			DEFAULT: rem(borderWidths.default),
 			0: '0px',
 			2: '2px',
-			// 4: '4px',
-			// 8: '8px',
+			4: '4px',
+			8: '8px',
 		},
 		borderRadius: {
 			none: '0px',
