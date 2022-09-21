@@ -1,7 +1,7 @@
 <template>
 	<figure
 		v-if="(width || height) && contentfulSrc"
-		class="tw-inline-block"
+		class="tw-inline-block tw-not-prose"
 	>
 		<picture>
 			<!-- Set of image sources -->
