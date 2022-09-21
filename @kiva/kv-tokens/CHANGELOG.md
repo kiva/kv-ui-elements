@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.2.0...@kiva/kv-tokens@2.3.0) (2022-09-21)
+
+
+### Features
+
+* add additional border widths ([#208](https://github.com/kiva/kv-ui-elements/issues/208)) ([7f20a8f](https://github.com/kiva/kv-ui-elements/commit/7f20a8f6897c404370afda7d6dccf549993e2443))
+
+
+
+
+
 # [2.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.1.0...@kiva/kv-tokens@2.2.0) (2022-07-19)
 
 
