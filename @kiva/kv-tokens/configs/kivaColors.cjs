@@ -6,6 +6,7 @@ const {
 	dark: darkThemeTokens,
 	'dark-green': darkGreenThemeTokens,
 	mint: mintThemeTokens,
+	'dark-mint': darkMintThemeTokens,
 } = designtokens.colors.theme;
 
 /**
@@ -34,6 +35,7 @@ const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
 const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
 const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
 const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
+const darkMintTheme = buildCSSVarsFromTokens(darkMintThemeTokens);
 
 // function to allow background opacity and text opacity with tailwind colors
 // https://www.youtube.com/watch?v=MAtaT8BZEAo
@@ -84,4 +86,5 @@ module.exports = {
 	darkTheme,
 	darkGreenTheme,
 	mintTheme,
+	darkMintTheme,
 };

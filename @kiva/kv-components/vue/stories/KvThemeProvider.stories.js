@@ -1,6 +1,6 @@
 import primitives from '@kiva/kv-tokens/primitives.json';
 import {
-	defaultTheme, darkTheme, darkGreenTheme, mintTheme,
+	defaultTheme, darkTheme, darkGreenTheme, mintTheme, darkMintTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
@@ -122,6 +122,7 @@ const Template = (args, {
 			defaultTheme,
 			darkTheme,
 			mintTheme,
+			darkMintTheme,
 		};
 	},
 	template: `
@@ -145,6 +146,11 @@ Mint.args = {
 export const DarkGreen = Template.bind({});
 DarkGreen.args = {
 	theme: darkGreenTheme,
+};
+
+export const DarkMint = Template.bind({});
+DarkMint.args = {
+	theme: darkMintTheme,
 };
 
 export const Custom = Template.bind({});
