@@ -126,10 +126,10 @@
 				"text": {
 					"primary": "#FFFFFF",
 					"action": "#95D4B3"
+				},
+				"background": {
+					"primary": "#454545"
 				}
-			},
-			"background": {
-				"primary": "#454545"
 			}
 		}
 	},
