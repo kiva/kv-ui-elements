@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.2...@kiva/kv-components@3.7.0) (2022-09-24)
+
+
+### Features
+
+* add dark mint theme ([269d6af](https://github.com/kiva/kv-ui-elements/commit/269d6af35a35bdcac8ca3c1c780bc62926072c8d))
+
+
+
+
+
 ## [3.6.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.1...@kiva/kv-components@3.6.2) (2022-09-21)
 
 
