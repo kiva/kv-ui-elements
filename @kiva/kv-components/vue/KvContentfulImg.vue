@@ -3,7 +3,10 @@
 		v-if="(width || height) && contentfulSrc"
 		class="tw-inline-block tw-not-prose"
 	>
-		<picture>
+		<picture
+			class="tw-h-full tw-w-full"
+			style="object-fit: inherit;"
+		>
 			<!-- Set of image sources -->
 			<template v-if="sourceSizes.length > 0">
 				<!-- browser supports webp -->
