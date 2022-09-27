@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.7.0...@kiva/kv-components@3.7.1) (2022-09-27)
+
+
+### Bug Fixes
+
+* **KvContentfulImg:** match size and fit of picture to figure wrapper MARS-265 ([f6ede31](https://github.com/kiva/kv-ui-elements/commit/f6ede316c286871cc685e0840a6c2b9452ee48e3))
+
+
+
+
+
 # [3.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.2...@kiva/kv-components@3.7.0) (2022-09-24)
 
 
