@@ -61,13 +61,6 @@ export default {
 			type: String,
 			default: '',
 		},
-		/**
-		 * Analytics Category
-		* */
-		analyticsCategory: {
-			type: String,
-			default: 'FAQ',
-		},
 		active: {
 			type: Boolean,
 			default: false,
@@ -88,17 +81,15 @@ export default {
 		const {
 			title,
 			active,
-			analyticsCategory,
+			faq,
 		} = toRefs(props);
 		const open = ref(active.value || false);
 		const titleSlugified = computed(() => paramCase(title.value));
 
 		const toggleFAQ = () => {
-			if (!open.value) {
-				props.kvTrackFunction(analyticsCategory.value, 'click-faq-expand', title.value);
-			}
+			props.kvTrackFunction(faq, 'toggle', titleSlugified, open.value ? 'expand' : 'collapse');
 			open.value = !open.value;
-			emit('toggle', { title: title.value });
+			emit('toggle', { title: titleSlugified });
 		};
 
 		watch(active, (val) => {
