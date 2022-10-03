@@ -1,71 +1,100 @@
 <template>
-	<picture
+	<figure
 		v-if="(width || height) && contentfulSrc"
-		class="tw-inline-block"
+		class="tw-inline-block tw-not-prose"
 	>
-		<!-- Set of image sources -->
-		<template v-if="sourceSizes.length > 0">
-			<!-- browser supports webp -->
-			<source
-				v-for="(image, index) in sourceSizes"
-				:key="'webp-image'+index"
-				:media="'('+image.media+')'"
-				type="image/webp"
-				:width="image.width ? image.width : null"
-				:height="image.height ? image.height : null"
-				:srcset="`
-					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
-			>
-			<!-- browser doesn't support webp -->
-			<source
-				v-for="(image, index) in sourceSizes"
-				:key="'fallback-image'+index"
-				:media="'('+image.media+')'"
-				:width="image.width ? image.width : null"
-				:height="image.height ? image.height : null"
-				:srcset="`
-					${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-					${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
-			>
-			<!-- browser doesn't support picture element -->
-			<img
-				class="tw-max-w-full tw-max-h-full"
-				style="width: inherit; height: inherit; object-fit: inherit;"
-				:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
-				:alt="alt"
-				:loading="loading"
-			>
-		</template>
+		<picture
+			class="tw-h-full tw-w-full"
+			style="object-fit: inherit;"
+		>
+			<!-- Set of image sources -->
+			<template v-if="sourceSizes.length > 0">
+				<!-- browser supports webp -->
+				<source
+					v-for="(image, index) in sourceSizes"
+					:key="'webp-image'+index"
+					:media="'('+image.media+')'"
+					type="image/webp"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
+					:srcset="`
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+				>
+				<!-- browser doesn't support webp -->
+				<source
+					v-for="(image, index) in sourceSizes"
+					:key="'fallback-image'+index"
+					:media="'('+image.media+')'"
+					:width="image.width ? image.width : null"
+					:height="image.height ? image.height : null"
+					:srcset="`
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+				>
+				<!-- browser doesn't support picture element -->
+				<img
+					class="tw-max-w-full tw-max-h-full"
+					style="width: inherit; height: inherit; object-fit: inherit;"
+					:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
+					:alt="caption || alt"
+					:loading="loading"
+				>
+			</template>
 
-		<!-- Single image -->
-		<template v-if="sourceSizes.length === 0">
-			<!-- browser supports webp -->
-			<source
-				type="image/webp"
-				:srcset="`
-					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-					${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+			<!-- Single image -->
+			<template v-if="sourceSizes.length === 0">
+				<!-- browser supports webp -->
+				<source
+					type="image/webp"
+					:srcset="`
+						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
+						${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+				>
+				<!-- browser doesn't support webp or browser doesn't support picture element -->
+				<img
+					class="tw-max-w-full tw-max-h-full"
+					style="width: inherit; height: inherit; object-fit: inherit;"
+					:srcset="`
+						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
+						${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
+					:width="width ? width : null"
+					:height="height ? height : null"
+					:alt="caption || alt"
+					:loading="loading"
+				>
+			</template>
+		</picture>
+		<figcaption
+			v-if="caption"
+			class="tw-text-h4 tw-mt-2"
+		>
+			<span
+				class="tw-inline-flex tw-align-text-top"
+				aria-hidden="true"
+				role="img"
 			>
-			<!-- browser doesn't support webp or browser doesn't support picture element -->
-			<img
-				class="tw-max-w-full tw-max-h-full"
-				style="width: inherit; height: inherit; object-fit: inherit;"
-				:srcset="`
-					${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-					${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
-				:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
-				:width="width ? width : null"
-				:height="height ? height : null"
-				:alt="alt"
-				:loading="loading"
-			>
-		</template>
-	</picture>
+				<svg
+					class="tw-h-2 tw-w-2"
+					viewBox="0 0 20 20"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<!-- eslint-disable max-len -->
+					<path
+						d="m3.12088 18.7441c12.86212 0 15.87912-14.52631 15.87912-16.99996h-1.1209c-12.85272 0-15.8791 14.51376-15.8791 16.99996z"
+						fill="currentColor"
+					/>
+					<!-- eslint-enable max-len -->
+				</svg>
+			</span>
+			{{ caption }}
+		</figcaption>
+	</figure>
 </template>
 
 <script>
-import { toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue-demi';
 // Since it's easy for marketing or other to upload massive images to contentful,
 // in order to be performant respectful of our users data plans, and not damage
 // our SEO, we shouldn't send the source image directly to our users.
@@ -175,6 +204,7 @@ export default {
 	},
 	setup(props) {
 		const {
+			alt,
 			contentfulSrc,
 			width,
 			height,
@@ -197,8 +227,16 @@ export default {
 			return src;
 		};
 
+		const caption = computed(() => {
+			if (alt.value && alt.value.charAt(0) === '^') {
+				return alt.value.slice(1).trim();
+			}
+			return '';
+		});
+
 		return {
 			buildUrl,
+			caption,
 		};
 	},
 };

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.3.0...@kiva/kv-tokens@2.4.0) (2022-09-24)
+
+
+### Bug Fixes
+
+* background prop outside definition ([8c81466](https://github.com/kiva/kv-ui-elements/commit/8c81466aab36d35aa6211407bcbbd32bf5677543))
+
+
+### Features
+
+* add dark mint theme ([269d6af](https://github.com/kiva/kv-ui-elements/commit/269d6af35a35bdcac8ca3c1c780bc62926072c8d))
+
+
+
+
+
+# [2.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.2.0...@kiva/kv-tokens@2.3.0) (2022-09-21)
+
+
+### Features
+
+* add additional border widths ([#208](https://github.com/kiva/kv-ui-elements/issues/208)) ([7f20a8f](https://github.com/kiva/kv-ui-elements/commit/7f20a8f6897c404370afda7d6dccf549993e2443))
+
+
+
+
+
 # [2.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.1.0...@kiva/kv-tokens@2.2.0) (2022-07-19)
 
 

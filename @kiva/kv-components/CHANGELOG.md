@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.7.0...@kiva/kv-components@3.7.1) (2022-09-27)
+
+
+### Bug Fixes
+
+* **KvContentfulImg:** match size and fit of picture to figure wrapper MARS-265 ([f6ede31](https://github.com/kiva/kv-ui-elements/commit/f6ede316c286871cc685e0840a6c2b9452ee48e3))
+
+
+
+
+
+# [3.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.2...@kiva/kv-components@3.7.0) (2022-09-24)
+
+
+### Features
+
+* add dark mint theme ([269d6af](https://github.com/kiva/kv-ui-elements/commit/269d6af35a35bdcac8ca3c1c780bc62926072c8d))
+
+
+
+
+
+## [3.6.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.1...@kiva/kv-components@3.6.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* remove margin top from figcaption prose ([67bdb12](https://github.com/kiva/kv-ui-elements/commit/67bdb12d16efd730f063bbfafa4a4a653e20d406))
+
+
+
+
+
+## [3.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.6.0...@kiva/kv-components@3.6.1) (2022-09-21)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [3.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.2...@kiva/kv-components@3.6.0) (2022-09-16)
+
+
+### Features
+
+* **KvContentfulImg:** add optional caption MARS-243 ([35dfa7a](https://github.com/kiva/kv-ui-elements/commit/35dfa7ac4888dff6ff62b14f71bb1edb4c805717))
+
+
+
+
+
+## [3.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.1...@kiva/kv-components@3.5.2) (2022-09-15)
+
+
+### Bug Fixes
+
+* **KvCarousel:** slidesToScroll should not be 0 MARS-248 ([c2fc929](https://github.com/kiva/kv-ui-elements/commit/c2fc929fbdcf87a061b71fff14b91ab8064fc130))
+
+
+
+
+
+## [3.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.5.0...@kiva/kv-components@3.5.1) (2022-09-13)
+
+
+### Bug Fixes
+
+* **KvCarousel:** incorrect slide marked as current ([f496e7c](https://github.com/kiva/kv-ui-elements/commit/f496e7c0a8fdebd1f6e003f4c79b57a5926b0c4a))
+
+
+
+
+
+# [3.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.4.0...@kiva/kv-components@3.5.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* height of indicator bar ([8908e44](https://github.com/kiva/kv-ui-elements/commit/8908e44da2d3edcfbc9bfca44144604ed255674b))
+
+
+### Features
+
+* add vertical tab button for new home page exp ([329e490](https://github.com/kiva/kv-ui-elements/commit/329e490a8df555b126c23e93f4ce69cd00eb7c35))
+* add vertical variant in tab ([a23c9d1](https://github.com/kiva/kv-ui-elements/commit/a23c9d1abd1ade6a2603d422bb0f2535e299d119))
+
+
+
+
+
+# [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.1...@kiva/kv-components@3.4.0) (2022-08-29)
+
+
+### Features
+
+* creating a global resuable component (KvAccordionItem) ([5bf7685](https://github.com/kiva/kv-ui-elements/commit/5bf76858508870f9055e680406a1167cdd68099c))
+
+
+
+
+
+## [3.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.3.0...@kiva/kv-components@3.3.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* ensure ref is defined in exported methods ([3ab00ea](https://github.com/kiva/kv-ui-elements/commit/3ab00ea181ee2455925c2f8f01950b79c2ea7b09))
+
+
+
+
+
 # [3.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.2.0...@kiva/kv-components@3.3.0) (2022-08-10)
 
 
