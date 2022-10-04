@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.7.1...@kiva/kv-components@3.8.0) (2022-10-04)
+
+
+### Features
+
+* created and implemented a reusable global component and story (KvExpandableQuestion)[VUE-1318] ([173ae50](https://github.com/kiva/kv-ui-elements/commit/173ae50e88dffa7dabb7392404ccdb813307ea31))
+* removed analyticsCategory prop, edited other code blocks ([2864261](https://github.com/kiva/kv-ui-elements/commit/2864261b55517bab8099b84b404d09aaae37b489))
+* removed line 84, and converted faq into a string ([8f5a3da](https://github.com/kiva/kv-ui-elements/commit/8f5a3dab81556997a6eb7dd0e5dffac2babff104))
+
+
+
+
+
 ## [3.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.7.0...@kiva/kv-components@3.7.1) (2022-09-27)
 
 
