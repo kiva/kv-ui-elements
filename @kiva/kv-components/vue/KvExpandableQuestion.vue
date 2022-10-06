@@ -10,15 +10,20 @@
 			<kv-material-icon
 				class="tw-w-4 tw-h-4"
 				:icon="open ? mdiChevronUp : mdiChevronDown"
-				@click="open = !open"
+				@click="toggleFAQ"
 			/>
 		</button>
 		<kv-expandable easing="ease-in-out">
 			<div
 				v-show="open"
 				class="tw-prose tw-pb-4 tw-pt-2"
-				v-html="content"
 			>
+				<slot></slot>
+				<div
+					v-if="content !== '' "
+					v-html="content"
+				>
+				</div>
 			</div>
 		</kv-expandable>
 	</div>

@@ -22,17 +22,17 @@ export const Default = DefaultTemplate.bind({});
 
 const expandableQuestions = [
 	{
-		title: 'expandable question title one',
+		title: 'expandable question one',
 		content: '<p> Hello, KvAccordion Contents! </p>',
 		id: 'expandable-question-test-1',
 	},
 	{
-		title: 'expandable question title two',
+		title: 'expandable question two',
 		content: '<p> Hello, KvAccordion Contents! </p>',
 		id: 'expandable-question-test-2',
 	},
 	{
-		title: 'expandable question title three',
+		title: 'expandable question three',
 		content: '<p> Hello, KvAccordion Contents! </p>',
 		id: 'expandable-question-test-3',
 	},
@@ -68,3 +68,19 @@ const GroupTemplate = () => ({
 });
 
 export const ExpandableSet = GroupTemplate.bind({});
+
+const SlotContentTemplate = () => ({
+	components: { KvExpandableQuestion },
+	template: `
+		<div style="padding: 20px;">
+			<kv-expandable-question
+			id="expandable-question-test"
+			title="expandable question with slot content"
+			>
+				<p> A created slot! </p>
+			</kv-expandable-question>
+		</div>
+	`,
+});
+
+export const SlotContent = SlotContentTemplate.bind({});
