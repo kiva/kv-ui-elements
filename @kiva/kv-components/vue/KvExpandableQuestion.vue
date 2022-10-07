@@ -20,7 +20,7 @@
 			>
 				<slot></slot>
 				<div
-					v-if="content !== '' "
+					v-if="content !== ''"
 					v-html="content"
 				>
 				</div>
