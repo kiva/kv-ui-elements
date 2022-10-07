@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.8.0...@kiva/kv-components@3.9.0) (2022-10-07)
+
+
+### Bug Fixes
+
+* removed extra space on line 23 ([c8a3226](https://github.com/kiva/kv-ui-elements/commit/c8a32264ede0b628f578b98c4ac8256a539fd28d))
+
+
+### Features
+
+* fixed bugs in KvExpandableQuestion (arrow functionality and slot content rendering) ([4ab9f47](https://github.com/kiva/kv-ui-elements/commit/4ab9f477200d53b89ce6a4ae0328215268dd4019))
+
+
+
+
+
 # [3.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.7.1...@kiva/kv-components@3.8.0) (2022-10-04)
 
 
