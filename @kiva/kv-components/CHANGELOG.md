@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.9.0...@kiva/kv-components@3.9.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* turn off pre-wrap whitespace for KvExpandableQuestion and prose for the title of the component ([753abef](https://github.com/kiva/kv-ui-elements/commit/753abef7b01d2d8928ac432ed87675a95d715688))
+
+
+
+
+
 # [3.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.8.0...@kiva/kv-components@3.9.0) (2022-10-07)
 
 
