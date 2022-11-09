@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.9.1...@kiva/kv-components@3.10.0) (2022-11-09)
+
+
+### Bug Fixes
+
+* smooth out transition by apply styling to child div ([8f629d7](https://github.com/kiva/kv-ui-elements/commit/8f629d7659aec83493797e8b1bb9d4540457686a))
+* test multiline content for broken state, add .stop event modifier on FAQ icon click ([e4758d5](https://github.com/kiva/kv-ui-elements/commit/e4758d5103233007c5c497b310e5cf4c994885aa))
+
+
+### Features
+
+* created tests in order to fix FAQ Arrow Functionality ([7bc7c54](https://github.com/kiva/kv-ui-elements/commit/7bc7c54258cb83f74b127f9c5985ff56ba3e9129))
+
+
+
+
+
 ## [3.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.9.0...@kiva/kv-components@3.9.1) (2022-10-14)
 
 
