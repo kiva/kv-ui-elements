@@ -10,7 +10,7 @@
 			<kv-material-icon
 				class="tw-w-4 tw-h-4"
 				:icon="open ? mdiChevronUp : mdiChevronDown"
-				@click="toggleFAQ"
+				@click.stop="toggleFAQ"
 			/>
 		</button>
 		<kv-expandable easing="ease-in-out">
