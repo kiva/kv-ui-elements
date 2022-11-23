@@ -90,9 +90,9 @@ export default {
 		const titleSlugified = computed(() => paramCase(title.value));
 
 		const toggleFAQ = () => {
-			props.kvTrackFunction('faq', 'toggle', titleSlugified, open.value ? 'expand' : 'collapse');
+			props.kvTrackFunction('faq', 'toggle', titleSlugified.value, open.value ? 'expand' : 'collapse');
 			open.value = !open.value;
-			emit('toggle', { title: titleSlugified });
+			emit('toggle', { title: titleSlugified.value });
 		};
 
 		watch(active, (val) => {
