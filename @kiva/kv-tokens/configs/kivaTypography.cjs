@@ -18,36 +18,36 @@ const webFonts = [
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
 			fontWeight: '400',
+			fontStyle: 'italic',
+			fontDisplay: 'swap',
+			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BoldItalic.ace8261.woff2) format(\'woff2\')',
+		},
+	},
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk',
+			fontWeight: '300',
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.592afe4.woff) format(\'woff\')',
+			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
+		},
+	},
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk',
+			fontWeight: '300',
+			fontStyle: 'italic',
+			fontDisplay: 'swap',
+			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
 		},
 	},
 	{
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
 			fontWeight: '400',
-			fontStyle: 'italic',
-			fontDisplay: 'swap',
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-MediumItalic.0953ed2.woff) format(\'woff\')',
-		},
-	},
-	{
-		'@font-face': {
-			fontFamily: 'PostGrotesk',
-			fontWeight: '300',
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.3b43709.woff) format(\'woff\')',
-		},
-	},
-	{
-		'@font-face': {
-			fontFamily: 'PostGrotesk',
-			fontWeight: '300',
-			fontStyle: 'italic',
-			fontDisplay: 'swap',
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.ec5d4ab.woff) format(\'woff\')',
+			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
 		},
 	},
 ];
