@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.4.0...@kiva/kv-tokens@2.4.1) (2022-12-07)
+
+
+### Bug Fixes
+
+* use medium italic instead of bold ([aaa0184](https://github.com/kiva/kv-ui-elements/commit/aaa0184968b1ee0b6d07c26676b08919ca6d2f9f))
+* use woff2 font files ([b61a06f](https://github.com/kiva/kv-ui-elements/commit/b61a06f35eb98c3695e9e2df0a5cbb59a312d8ef))
+
+
+
+
+
 # [2.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.3.0...@kiva/kv-tokens@2.4.0) (2022-09-24)
 
 
