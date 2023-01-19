@@ -60,11 +60,13 @@
 							tw-flex
 						"
 						>
+							<!-- eslint-disable vue/no-v-html -->
 							<p
 								class="tw-inline-block tw-m-auto"
 								v-html="message"
 							>
 							</p>
+							<!--eslint-enable-->
 						</div>
 
 						<button
