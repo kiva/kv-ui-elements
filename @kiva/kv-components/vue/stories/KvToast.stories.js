@@ -73,3 +73,6 @@ withLongTextAndHtml.args = { message: 'This is a nice long content that could <b
 
 export const persist = Template.bind({});
 persist.args = { persist: true };
+
+export const typeKivaLogo = Template.bind({});
+typeKivaLogo.args = { type: 'kiva-logo', message: 'Welcome to Lending home! We’re doing something new based on your feedback this year. <a href="https://www.example.com">Read more here</a>' };

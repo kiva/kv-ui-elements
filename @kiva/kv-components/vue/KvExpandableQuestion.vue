@@ -17,11 +17,13 @@
 			<div v-show="open">
 				<div class="tw-prose tw-pb-4 tw-pt-2">
 					<slot></slot>
+					<!-- eslint-disable vue/no-v-html -->
 					<div
 						v-if="content !== ''"
 						v-html="content"
 					>
 					</div>
+					<!--eslint-enable-->
 				</div>
 			</div>
 		</kv-expandable>

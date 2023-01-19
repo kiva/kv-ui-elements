@@ -35,13 +35,30 @@
 						"
 							:class="{
 								'tw-bg-brand tw-text-white' : (
-									messageType === '' || messageType === 'confirmation'
+									messageType === '' || messageType === 'confirmation' ||
+									messageType === 'kiva-logo'
 								),
 								'tw-bg-danger tw-text-primary-inverse' : messageType === 'error',
 								'tw-bg-caution tw-text-primary' : messageType === 'warning',
 							}"
 						>
+							<!-- Kiva Icon SVG -->
+							<!-- eslint-disable max-len -->
+							<svg
+								v-if="messageType === 'kiva-logo'"
+								width="16"
+								height="24"
+								viewBox="0 0 16 24"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M4.78202 0H0V23.141H4.78202V0ZM6.00533 14.6274C13.6788 14.6274 15.4582 8.05649 15.4582 6.91372H14.7909C7.11743 6.91372 5.33807 13.4846 5.33807 14.6274H6.00533ZM5.33807 15.1988C5.33807 16.3987 6.67259 23.0838 14.9021 23.0838H15.5694C15.5694 21.8839 14.2349 15.1988 6.00533 15.1988H5.33807Z"
+									fill="white"
+								/>
+							</svg>
 							<kv-material-icon
+								v-else
 								class="tw-w-2.5 tw-h-2.5"
 								:icon="icon"
 							/>
@@ -54,11 +71,13 @@
 							tw-flex
 						"
 						>
+							<!-- eslint-disable vue/no-v-html -->
 							<p
 								class="tw-inline-block tw-m-auto"
 								v-html="message"
 							>
 							</p>
+							<!--eslint-enable-->
 						</div>
 
 						<button
