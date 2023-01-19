@@ -35,13 +35,19 @@
 						"
 							:class="{
 								'tw-bg-brand tw-text-white' : (
-									messageType === '' || messageType === 'confirmation'
+									messageType === '' || messageType === 'confirmation' ||
+									messageType === 'kiva-logo'
 								),
 								'tw-bg-danger tw-text-primary-inverse' : messageType === 'error',
 								'tw-bg-caution tw-text-primary' : messageType === 'warning',
 							}"
 						>
+							<img
+								v-if="messageType === 'kiva-logo'"
+								src="../assets/kiva_logo.svg"
+							>
 							<kv-material-icon
+								v-else
 								class="tw-w-2.5 tw-h-2.5"
 								:icon="icon"
 							/>
