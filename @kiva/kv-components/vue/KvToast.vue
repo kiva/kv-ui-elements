@@ -77,6 +77,7 @@
 							></slot>
 							<!-- eslint-disable vue/no-v-html -->
 							<p
+								v-else
 								class="tw-inline-block tw-m-auto"
 								v-html="message"
 							>
