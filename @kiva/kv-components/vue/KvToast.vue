@@ -71,6 +71,10 @@
 							tw-flex
 						"
 						>
+							<slot
+								v-if="hasParentContentSlot"
+								name="parentContent"
+							></slot>
 							<!-- eslint-disable vue/no-v-html -->
 							<p
 								class="tw-inline-block tw-m-auto"
@@ -141,7 +145,7 @@ export default {
 	emits: [
 		'close',
 	],
-	setup(props, { emit }) {
+	setup(props, { emit, slots }) {
 		const isVisible = ref(false);
 		const message = ref('');
 		const messageType = ref('confirmation'); // 'error', 'info', 'confirmation'
@@ -170,6 +174,8 @@ export default {
 			const characterMs = MS_PER_CHARACTER * characterCount;
 			return Math.max(characterMs, MINIMUM_MS);
 		});
+
+		const hasParentContentSlot = computed(() => !!slots?.parentContent ?? false);
 
 		const close = () => {
 			isVisible.value = false;
@@ -206,6 +212,7 @@ export default {
 			msToDisplayToast,
 			close,
 			show,
+			hasParentContentSlot,
 		};
 	},
 };

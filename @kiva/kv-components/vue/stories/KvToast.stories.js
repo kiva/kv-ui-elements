@@ -50,11 +50,9 @@ const Template = (args, {
 		</div>`,
 	methods: {
 		showToast(messageInput, type, persistInput) {
-			console.log(this.$refs.toastRef);
 			this.$refs.toastRef.show(messageInput, type, persistInput);
 		},
 		onClose() {
-			console.log('toast closed');
 		},
 	},
 });
@@ -74,5 +72,38 @@ withLongTextAndHtml.args = { message: 'This is a nice long content that could <b
 export const persist = Template.bind({});
 persist.args = { persist: true };
 
-export const typeKivaLogo = Template.bind({});
-typeKivaLogo.args = { type: 'kiva-logo', message: 'Welcome to Lending home! We’re doing something new based on your feedback this year. <a href="https://www.example.com">Read more here</a>' };
+const KivaLogoTemplate = (args, {
+	argTypes,
+}) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvToast,
+		KvButton,
+	},
+	template: `
+		<div>
+			<kv-button @click="showToast(message, type, persist)">Show Toast</kv-button>
+
+			<!-- div below is a kludge for storybook docs -->
+			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
+				<div class="tw-fixed tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
+					<kv-toast ref="toastRef" @close="onClose">
+						<template #parentContent>
+							<div>
+								Welcome to Lending home! We’re doing something new based on your feedback this year. <button class="tw-text-action">Read more here</button>
+							</div>
+						</template>
+					</kv-toast>
+				</div>
+			</div>
+		</div>`,
+	methods: {
+		showToast(messageInput, type, persistInput) {
+			this.$refs.toastRef.show(messageInput, type, persistInput);
+		},
+		onClose() {
+		},
+	},
+});
+export const typeKivaLogo = KivaLogoTemplate.bind({});
+typeKivaLogo.args = { type: 'kiva-logo', message: '' };
