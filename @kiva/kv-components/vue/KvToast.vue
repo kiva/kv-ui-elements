@@ -72,8 +72,8 @@
 						"
 						>
 							<slot
-								v-if="hasParentContentSlot"
-								name="parentContent"
+								v-if="hasToastContentSlot"
+								name="toastContent"
 							></slot>
 							<!-- eslint-disable vue/no-v-html -->
 							<p
@@ -175,7 +175,7 @@ export default {
 			return Math.max(characterMs, MINIMUM_MS);
 		});
 
-		const hasParentContentSlot = computed(() => !!slots?.parentContent ?? false);
+		const hasToastContentSlot = computed(() => !!slots?.toastContent ?? false);
 
 		const close = () => {
 			isVisible.value = false;
@@ -212,7 +212,7 @@ export default {
 			msToDisplayToast,
 			close,
 			show,
-			hasParentContentSlot,
+			hasToastContentSlot,
 		};
 	},
 };

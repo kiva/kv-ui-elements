@@ -88,7 +88,7 @@ const KivaLogoTemplate = (args, {
 			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
 				<div class="tw-fixed tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
 					<kv-toast ref="toastRef" @close="onClose">
-						<template #parentContent>
+						<template #toastContent>
 							<div>
 								Welcome to Lending home! We’re doing something new based on your feedback this year. <button class="tw-text-action">Read more here</button>
 							</div>
