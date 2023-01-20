@@ -71,8 +71,13 @@
 							tw-flex
 						"
 						>
+							<slot
+								v-if="hasToastContentSlot"
+								name="toastContent"
+							></slot>
 							<!-- eslint-disable vue/no-v-html -->
 							<p
+								v-else
 								class="tw-inline-block tw-m-auto"
 								v-html="message"
 							>
@@ -141,7 +146,7 @@ export default {
 	emits: [
 		'close',
 	],
-	setup(props, { emit }) {
+	setup(props, { emit, slots }) {
 		const isVisible = ref(false);
 		const message = ref('');
 		const messageType = ref('confirmation'); // 'error', 'info', 'confirmation'
@@ -170,6 +175,8 @@ export default {
 			const characterMs = MS_PER_CHARACTER * characterCount;
 			return Math.max(characterMs, MINIMUM_MS);
 		});
+
+		const hasToastContentSlot = computed(() => !!slots?.toastContent ?? false);
 
 		const close = () => {
 			isVisible.value = false;
@@ -206,6 +213,7 @@ export default {
 			msToDisplayToast,
 			close,
 			show,
+			hasToastContentSlot,
 		};
 	},
 };
