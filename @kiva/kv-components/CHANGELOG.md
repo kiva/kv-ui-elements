@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.10.2...@kiva/kv-components@3.11.0) (2023-01-19)
+
+
+### Features
+
+* kiva logo type added to kv toast component including an svg icon ([#227](https://github.com/kiva/kv-ui-elements/issues/227)) ([c24ecc1](https://github.com/kiva/kv-ui-elements/commit/c24ecc1295e32b817bf057f0570de56224c85c3f))
+
+
+
+
+
 ## [3.10.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.10.1...@kiva/kv-components@3.10.2) (2022-12-07)
 
 **Note:** Version bump only for package @kiva/kv-components
