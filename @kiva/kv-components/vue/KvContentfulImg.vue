@@ -76,7 +76,7 @@
 				role="img"
 			>
 				<svg
-					class="tw-h-2 tw-w-2"
+					class="tw-h-2 tw-w-2.5"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"
 				>
