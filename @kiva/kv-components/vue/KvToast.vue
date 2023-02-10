@@ -189,7 +189,7 @@ export default {
 			emit('close');
 		};
 
-		const show = (messageInput, type, persistInput) => {
+		const show = (messageInput, type, persistInput, hideDelay) => {
 			isVisible.value = true;
 			message.value = typeof messageInput === 'string' ? messageInput : '';
 			messageType.value = typeof type === 'string' ? type : '';
@@ -198,7 +198,7 @@ export default {
 			if (!persist.value) {
 				timeout.value = setTimeout(() => {
 					close();
-				}, msToDisplayToast.value);
+				}, hideDelay ?? msToDisplayToast.value);
 			}
 		};
 

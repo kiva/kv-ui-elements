@@ -26,6 +26,11 @@ export default {
 				type: 'boolean',
 			},
 		},
+		hideDelay: {
+			control: {
+				type: 'number',
+			},
+		},
 	},
 };
 
@@ -39,7 +44,7 @@ const Template = (args, {
 	},
 	template: `
 		<div>
-			<kv-button @click="showToast(message, type, persist)">Show Toast</kv-button>
+			<kv-button @click="showToast(message, type, persist, hideDelay)">Show Toast</kv-button>
 
 			<!-- div below is a kludge for storybook docs -->
 			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
@@ -49,8 +54,8 @@ const Template = (args, {
 			</div>
 		</div>`,
 	methods: {
-		showToast(messageInput, type, persistInput) {
-			this.$refs.toastRef.show(messageInput, type, persistInput);
+		showToast(messageInput, type, persistInput, hideDelay) {
+			this.$refs.toastRef.show(messageInput, type, persistInput, hideDelay);
 		},
 		onClose() {
 		},
@@ -71,6 +76,9 @@ withLongTextAndHtml.args = { message: 'This is a nice long content that could <b
 
 export const persist = Template.bind({});
 persist.args = { persist: true };
+
+export const hideDelay = Template.bind({});
+hideDelay.args = { hideDelay: 10000 };
 
 const KivaLogoTemplate = (args, {
 	argTypes,
