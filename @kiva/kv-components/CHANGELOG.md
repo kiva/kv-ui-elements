@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.11.2...@kiva/kv-components@3.12.0) (2023-02-10)
+
+
+### Features
+
+* hide delay param for toast ([d8620c0](https://github.com/kiva/kv-ui-elements/commit/d8620c06e2aa9b814bebdee7a5e1c150f06d77e9))
+
+
+
+
+
 ## [3.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.11.1...@kiva/kv-components@3.11.2) (2023-01-25)
 
 **Note:** Version bump only for package @kiva/kv-components
