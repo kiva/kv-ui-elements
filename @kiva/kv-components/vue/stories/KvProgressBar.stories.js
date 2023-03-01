@@ -7,7 +7,8 @@ export default {
 		min: 0,
 		max: 100,
 		value: 50,
-		ariaLabel: '',
+		ariaLabel: 'Amount the loan has fundraised',
+		variant: 'primary',
 	},
 };
 
@@ -20,11 +21,26 @@ const Template = (args, { argTypes }) => ({
 			:min="min"
 			:max="max"
 			:value="value"
+			:variant="variant"
 
 		></kv-progress-bar>`,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-	ariaLabel: 'Amount the loan has fundraised',
+Default.args = {};
+
+// Variants
+export const VariantCaution = Template.bind({});
+VariantCaution.args = {
+	variant: 'caution',
+};
+
+export const VariantDanger = Template.bind({});
+VariantDanger.args = {
+	variant: 'danger',
+};
+
+export const VariantGhost = Template.bind({});
+VariantGhost.args = {
+	variant: 'ghost',
 };
