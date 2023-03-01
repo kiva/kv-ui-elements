@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.12.0...@kiva/kv-components@3.13.0) (2023-03-01)
+
+
+### Features
+
+* danger, caution, and ghost variants for KvPrgoressBar ([8b7e43f](https://github.com/kiva/kv-ui-elements/commit/8b7e43fd55e02fd01e2bc5488c86dd3984a7a42d))
+
+
+
+
+
 # [3.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.11.2...@kiva/kv-components@3.12.0) (2023-02-10)
 
 
