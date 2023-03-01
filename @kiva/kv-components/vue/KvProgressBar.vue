@@ -12,9 +12,10 @@
 	>
 		<div
 			class="
-				tw-h-1 tw-w-full tw-absolute tw--left-full tw-rounded-full tw-bg-brand
+				tw-h-1 tw-w-full tw-absolute tw--left-full tw-rounded-full
 				tw-transition-all tw-duration-1000 tw-origin-left tw-ease-out
 			"
+			:class="variantClass"
 			:style="{transform: loaded ? `translateX(${percent}%)` : 'translateX(0)' }"
 		>
 		</div>
@@ -65,12 +66,24 @@ export default {
 			default: 0,
 			required: true,
 		},
+		/**
+		 * Appearance of the progress bar
+		 * `primary (default), ghost, danger, caution
+		 * */
+		variant: {
+			type: String,
+			default: 'primary',
+			validator(value) {
+				return ['primary', 'ghost', 'danger', 'caution'].includes(value);
+			},
+		},
 	},
 	setup(props) {
 		const {
 			min,
 			max,
 			value,
+			variant,
 		} = toRefs(props);
 		const loaded = ref(false);
 
@@ -79,6 +92,19 @@ export default {
 			const rounded = Math.round(percentValue * 10) / 10; // Keep percents to 1 decimal places 12.3%
 			const clamped = Math.min(Math.max(rounded, 0), 100); // Always between 0 and 100%
 			return clamped;
+		});
+
+		const variantClass = computed(() => {
+			switch (variant.value) {
+				case 'ghost':
+					return 'tw-bg-tertiary';
+				case 'danger':
+					return 'tw-bg-danger';
+				case 'caution':
+					return 'tw-bg-caution';
+				default:
+					return 'tw-bg-brand';
+			}
 		});
 
 		const animateProgressBar = () => {
@@ -94,6 +120,7 @@ export default {
 			loaded,
 			percent,
 			animateProgressBar,
+			variantClass,
 		};
 	},
 };
