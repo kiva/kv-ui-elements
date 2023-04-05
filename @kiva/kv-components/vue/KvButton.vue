@@ -227,27 +227,30 @@ export default {
 			// position the blip where the pointer click is or center it if keyboard
 			const fromClick = event.detail !== 0; // determine if click came from pointer or keyboard
 			const { clientX, clientY } = event;
-			const {
-				offsetLeft, offsetTop, offsetWidth, offsetHeight,
-			} = buttonRef.value;
-			let blipX;
-			let blipY;
-			if (fromClick) {
-				blipX = `${clientX - offsetLeft}px`;
-				blipY = `${clientY - offsetTop}px`;
-			} else {
-				blipX = `${offsetWidth / 2}px`;
-				blipY = `${offsetHeight / 2}px`;
-			}
-			blipEl.style.setProperty('left', blipX);
-			blipEl.style.setProperty('top', blipY);
 
-			// append the blip to the button, remove it when the animation is done
-			buttonInnerRef.value.appendChild(blipEl);
-			blipEl.addEventListener('animationend', function animationComplete() {
-				buttonInnerRef.value.removeChild(blipEl);
-				blipEl.removeEventListener('animationend', animationComplete);
-			});
+			if (buttonRef.value) {
+				const {
+					offsetLeft, offsetTop, offsetWidth, offsetHeight,
+				} = buttonRef.value;
+				let blipX;
+				let blipY;
+				if (fromClick) {
+					blipX = `${clientX - offsetLeft}px`;
+					blipY = `${clientY - offsetTop}px`;
+				} else {
+					blipX = `${offsetWidth / 2}px`;
+					blipY = `${offsetHeight / 2}px`;
+				}
+				blipEl.style.setProperty('left', blipX);
+				blipEl.style.setProperty('top', blipY);
+
+				// append the blip to the button, remove it when the animation is done
+				buttonInnerRef.value.appendChild(blipEl);
+				blipEl.addEventListener('animationend', function animationComplete() {
+					buttonInnerRef.value.removeChild(blipEl);
+					blipEl.removeEventListener('animationend', animationComplete);
+				});
+			}
 		};
 
 		const onClick = (event) => {
