@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.13.0...@kiva/kv-components@3.13.1) (2023-04-05)
+
+
+### Bug Fixes
+
+* check for button ref before adding ripple ([#233](https://github.com/kiva/kv-ui-elements/issues/233)) ([5371a88](https://github.com/kiva/kv-ui-elements/commit/5371a8816caefede244ca20b933b9cece025b0bb))
+
+
+
+
+
 # [3.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.12.0...@kiva/kv-components@3.13.0) (2023-03-01)
 
 
