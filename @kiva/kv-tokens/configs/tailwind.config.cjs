@@ -42,6 +42,10 @@ module.exports = {
 			black: colors.black,
 			white: colors.white,
 			brand: colors.brand,
+			'eco-green': colors['eco-green'],
+			marigold: colors.marigold,
+			'desert-rose': colors['desert-rose'],
+			stone: colors.stone,
 			// themable colors are defined in the 'extend' section as custom properties
 		},
 		spacing: {
