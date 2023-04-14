@@ -8,12 +8,10 @@ describe('KvPagination', () => {
 	afterEach(jest.clearAllMocks);
 
 	it('should render arrows disabled by default', async () => {
-		const user = userEvent.default.setup();
-
 		const { getByLabelText, emitted } = render(KvPagination, { props: { limit: 10, total: 0 } });
 
-		await user.click(getByLabelText('Previous page'));
-		await user.click(getByLabelText('Next page'));
+		await userEvent.click(getByLabelText('Previous page'));
+		await userEvent.click(getByLabelText('Next page'));
 
 		expect(emitted()['page-changed']).toBe(undefined);
 	});
@@ -94,47 +92,39 @@ describe('KvPagination', () => {
 	});
 
 	it('should emit page click', async () => {
-		const user = userEvent.setup();
-
 		const { getByLabelText, emitted } = render(
 			KvPagination, { props: { limit: 10, total: 1000 } },
 		);
 
-		await user.click(getByLabelText('Page 2'));
+		await userEvent.click(getByLabelText('Page 2'));
 
 		expect(global.scrollTo).toHaveBeenCalledTimes(1);
 		expect(emitted()['page-changed']).toEqual([[{ pageOffset: 10 }]]);
 	});
 
 	it('should not emit current page click', async () => {
-		const user = userEvent.setup();
-
 		const { getByLabelText, emitted } = render(KvPagination, { props: { limit: 10, total: 1000 } });
 
-		await user.click(getByLabelText('Page 1'));
+		await userEvent.click(getByLabelText('Page 1'));
 
 		expect(emitted()['page-changed']).toBe(undefined);
 	});
 
 	it('should emit previous click', async () => {
-		const user = userEvent.setup();
-
 		const { getByLabelText, emitted } = render(
 			KvPagination, { props: { limit: 10, total: 1000, offset: 10 } },
 		);
 
-		await user.click(getByLabelText('Previous page'));
+		await userEvent.click(getByLabelText('Previous page'));
 
 		expect(global.scrollTo).toHaveBeenCalledTimes(1);
 		expect(emitted()['page-changed']).toEqual([[{ pageOffset: 0 }]]);
 	});
 
 	it('should emit next click', async () => {
-		const user = userEvent.setup();
-
 		const { getByLabelText, emitted } = render(KvPagination, { props: { limit: 10, total: 1000 } });
 
-		await user.click(getByLabelText('Next page'));
+		await userEvent.click(getByLabelText('Next page'));
 
 		expect(global.scrollTo).toHaveBeenCalledTimes(1);
 		expect(emitted()['page-changed']).toEqual([[{ pageOffset: 10 }]]);
