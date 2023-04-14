@@ -22,8 +22,10 @@ const story = (args) => {
 				category,
 				action,
 				label,
+				property,
+				value,
 			) {
-				console.log(category, action, label);
+				console.log(category, action, label, property, value);
 			},
 		},
 	});

@@ -177,21 +177,21 @@ export default {
 		clickPage(number) {
 			this.pageChange(number);
 
-			this.kvTrackFunction(this.trackEventCategory, 'click-page-pager', number + 1);
+			this.kvTrackFunction(this.trackEventCategory, 'click', 'pagination-number', null, number + 1);
 		},
 		clickPrevious() {
 			const previous = this.current - 1;
 
 			this.pageChange(previous);
 
-			this.kvTrackFunction(this.trackEventCategory, 'click-previous-pager', previous + 1);
+			this.kvTrackFunction(this.trackEventCategory, 'click', 'pagination-previous', null, previous + 1);
 		},
 		clickNext() {
 			const next = this.current + 1;
 
 			this.pageChange(next);
 
-			this.kvTrackFunction(this.trackEventCategory, 'click-next-pager', next + 1);
+			this.kvTrackFunction(this.trackEventCategory, 'click', 'pagination-next', null, next + 1);
 		},
 	},
 };
