@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.13.2...@kiva/kv-components@3.14.0) (2023-04-17)
+
+
+### Bug Fixes
+
+* call userEvent directly ([461774f](https://github.com/kiva/kv-ui-elements/commit/461774f4e6596030b806d03084486e961011f8be))
+
+
+### Features
+
+* event guidelines ([37c1635](https://github.com/kiva/kv-ui-elements/commit/37c16351f8a29b3949745cc2786d394049bd6d5c))
+* move KvPagination component to kv-elements ([5f24d6a](https://github.com/kiva/kv-ui-elements/commit/5f24d6aae4bdb2909fb61c666b6a3d64dd76da99))
+
+
+
+
+
 ## [3.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.13.1...@kiva/kv-components@3.13.2) (2023-04-14)
 
 **Note:** Version bump only for package @kiva/kv-components
