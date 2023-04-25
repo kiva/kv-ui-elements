@@ -42,6 +42,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Build projects
+      - name: Build projects
+        run: npm run build
+
       # Tag release and publish to NPM
       - name: Publish release
         run: npm run publish-release -- --yes --no-verify-access

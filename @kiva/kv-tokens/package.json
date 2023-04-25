@@ -7,7 +7,9 @@
     },
     "main": "index.js",
     "scripts": {
-        "test": "echo No tests specified for @kiva/kv-tokens."
+        "test": "echo No tests specified for @kiva/kv-tokens.",
+		"lint": "eslint --ext .js ./",
+		"build": "echo No build needed for @kiva/kv-tokens."
     },
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.4.0",

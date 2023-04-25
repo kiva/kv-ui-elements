@@ -132,6 +132,7 @@ export default {
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-action-highlight tw-border-action-highlight`;
 					} else {
+						// eslint-disable-next-line max-len
 						classes = `${classes} tw-bg-action hover:tw-bg-action-highlight tw-border-action hover:tw-border-action-highlight`;
 					}
 					break;
@@ -140,6 +141,7 @@ export default {
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary tw-border-primary`;
 					} else {
+						// eslint-disable-next-line max-len
 						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-tertiary hover:tw-border-primary`;
 					}
 					break;
@@ -148,6 +150,7 @@ export default {
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-danger-highlight tw-border-danger-highlight`;
 					} else {
+						// eslint-disable-next-line max-len
 						classes = `${classes} tw-bg-danger hover:tw-bg-danger-highlight tw-border-danger hover:tw-border-danger-highlight`;
 					}
 					break;

@@ -143,7 +143,7 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 
 /**
  * Alert or a lightbox
- * Accesibility: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
+ * Accessibility: https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
  *
  * - [x] Tab and Shift + Tab do not move focus outside the dialog
  * - [x] focus is initially set on the first focusable element (close button).

@@ -47,7 +47,8 @@
     "storybook": "vue-demi-switch 2 && start-storybook -p 6006 -c vue/.storybook",
     "build-storybook": "vue-demi-switch 2 && build-storybook -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "build": "echo No build needed for @kiva/kv-components."
   },
   "dependencies": {
     "@kiva/kv-tokens": "^2.4.1",

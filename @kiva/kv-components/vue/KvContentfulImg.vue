@@ -170,6 +170,7 @@ export default {
 			default: 'center',
 			validator(value) {
 				// The value must match one of these strings
+				// eslint-disable-next-line max-len
 				return ['center', 'top', 'right', 'left', 'bottom', 'top_right', 'top_left', 'bottom_right', 'bottom_left', 'face', 'faces'].indexOf(value) !== -1;
 			},
 		},
