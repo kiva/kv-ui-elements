@@ -13,7 +13,7 @@ jest.mock('../filterUtils', () => {
 	};
 });
 
-describe('searchStateUtils.js', () => {
+describe('searchStateUtils.ts', () => {
 	beforeEach(jest.clearAllMocks);
 
 	describe('getValidatedSearchState', () => {

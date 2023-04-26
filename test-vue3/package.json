@@ -5,9 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-	"lint": "echo No lint needed for test-vue3.",
+    "lint": "echo No lint needed for test-vue3.",
     "test": "npm run clean && npm run mkdir && npm run copy && vue-demi-switch 3 ../../../test-vue3/node_modules/vue && jest",
-	"build": "echo No build needed for test-vue3.",
+    "build": "echo No build needed for test-vue3.",
     "clean": "rimraf ./local/",
     "mkdir": "mkdir local local/__mocks__ local/tests local/utils local/vue",
     "copy": "npm run copy:mocks && npm run copy:tests && npm run copy:utils && npm run copy:vue",

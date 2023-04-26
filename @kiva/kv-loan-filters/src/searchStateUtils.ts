@@ -27,6 +27,7 @@ export const getValidatedSearchState = (loanSearchState, allFacets, queryType) =
  * Updates the search state using the provided apollo client and filters
  *
  * @param apollo The Apollo client instance
+ * @param mutation The mutation to run to update the search state
  * @param loanQueryFilters The filters for the loan query
  * @param allFacets All available facets from the APIs
  * @param queryType The current query type (lend vs FLSS)
