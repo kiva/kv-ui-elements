@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.4.1...@kiva/kv-tokens@2.5.0) (2023-04-14)
+
+
+### Features
+
+* **@kiva/kv-tokens:** add Ecosystem palette as static colors ([6ab154c](https://github.com/kiva/kv-ui-elements/commit/6ab154c36d0b890c7345c1ba3b6bdb86d0771364))
+
+
+
+
+
 ## [2.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.4.0...@kiva/kv-tokens@2.4.1) (2022-12-07)
 
 
