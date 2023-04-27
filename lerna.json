@@ -3,6 +3,7 @@
 	"packages": [
 		"@kiva/kv-components",
 		"@kiva/kv-tokens",
+		"@kiva/kv-loan-filters",
 		"test-vue2",
 		"test-vue3"
 	],

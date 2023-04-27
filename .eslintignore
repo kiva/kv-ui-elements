@@ -1,1 +1,7 @@
 node_modules
+
+# Vue 2 + 3 testing projects
+test-vue*
+
+# Compiled TypeScript files
+dist
