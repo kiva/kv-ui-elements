@@ -1,6 +1,6 @@
 {
   "name": "test-vue2",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Component tests in Vue 2",
   "main": "index.js",
   "private": true,

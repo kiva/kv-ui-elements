@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.5.0...@kiva/kv-tokens@2.6.0) (2023-04-27)
+
+
+### Bug Fixes
+
+* whitespace ([1b27bd5](https://github.com/kiva/kv-ui-elements/commit/1b27bd528ce36672ca858db57ac06272a502d0e6))
+
+
+### Features
+
+* implemented initial kv-loan-filters package ([1987069](https://github.com/kiva/kv-ui-elements/commit/1987069227099a2ef1cabf09d1086e6a66adee0d))
+
+
+
+
+
 # [2.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.4.1...@kiva/kv-tokens@2.5.0) (2023-04-14)
 
 

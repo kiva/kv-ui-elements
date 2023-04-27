@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.14.0...@kiva/kv-components@3.15.0) (2023-04-27)
+
+
+### Features
+
+* implemented initial kv-loan-filters package ([1987069](https://github.com/kiva/kv-ui-elements/commit/1987069227099a2ef1cabf09d1086e6a66adee0d))
+
+
+
+
+
 # [3.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.13.2...@kiva/kv-components@3.14.0) (2023-04-17)
 
 
