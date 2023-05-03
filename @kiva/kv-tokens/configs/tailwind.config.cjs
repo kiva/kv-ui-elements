@@ -46,6 +46,8 @@ module.exports = {
 			marigold: colors.marigold,
 			'desert-rose': colors['desert-rose'],
 			stone: colors.stone,
+			gray: colors.gray,
+			social: colors.social,
 			// themable colors are defined in the 'extend' section as custom properties
 		},
 		spacing: {
@@ -159,7 +161,10 @@ module.exports = {
 			placeholderColor: buildColorChoices('text'),
 			backgroundColor: buildColorChoices('background'),
 			gradientColorStops: buildColorChoices('background'),
-			borderColor: buildColorChoices('border'),
+			borderColor: {
+				DEFAULT: 'currentColor',
+				...buildColorChoices('border'),
+			},
 			divideColor: buildColorChoices('border'),
 			ringColor: buildColorChoices('border'),
 			ringOffsetColor: buildColorChoices('border'),

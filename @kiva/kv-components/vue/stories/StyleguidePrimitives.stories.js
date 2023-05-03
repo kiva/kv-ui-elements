@@ -445,6 +445,8 @@ export const Primitives = (args, { argTypes }) => ({
 				'marigold',
 				'desert-rose',
 				'stone',
+				'gray',
+				'social',
 			];
 			const isStatic = staticColors.some((staticColor) => colorName[0].includes(staticColor));
 			return isStatic;
