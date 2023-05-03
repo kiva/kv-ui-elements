@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.6.0...@kiva/kv-tokens@2.7.0) (2023-05-03)
+
+
+### Features
+
+* add borderColor default value ([b7fa4ea](https://github.com/kiva/kv-ui-elements/commit/b7fa4ea2688bc92b4bd467bdc73245b6fdf179cc))
+* add custom blog colors ([7e00f04](https://github.com/kiva/kv-ui-elements/commit/7e00f047dec9fdde2b68e0a1e5f8cb951f3baa4a))
+
+
+
+
+
 # [2.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.5.0...@kiva/kv-tokens@2.6.0) (2023-04-27)
 
 

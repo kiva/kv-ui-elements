@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.15.0...@kiva/kv-components@3.16.0) (2023-05-03)
+
+
+### Features
+
+* add custom blog colors ([7e00f04](https://github.com/kiva/kv-ui-elements/commit/7e00f047dec9fdde2b68e0a1e5f8cb951f3baa4a))
+
+
+
+
+
 # [3.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.14.0...@kiva/kv-components@3.15.0) (2023-04-27)
 
 
