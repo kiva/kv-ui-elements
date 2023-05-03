@@ -57,6 +57,11 @@
 			"3": "#726554",
 			"4": "#2E271E"
 		},
+		"social": {
+			"facebook": "#1877F2",
+			"twitter": "#1D9BF0",
+			"linkedin": "#0A66C2"
+		},
 		"theme": {
 			"DEFAULT": {
 				"text": {
