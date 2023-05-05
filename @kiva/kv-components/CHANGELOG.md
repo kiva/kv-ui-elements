@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.16.0...@kiva/kv-components@3.17.0) (2023-05-05)
+
+
+### Features
+
+* new loan card ported from recent successful Denali experiment ([0b0e5a0](https://github.com/kiva/kv-ui-elements/commit/0b0e5a0a575bc1c65ab71579f151a6d3cee5d8d7))
+
+
+
+
+
 # [3.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.15.0...@kiva/kv-components@3.16.0) (2023-05-03)
 
 
