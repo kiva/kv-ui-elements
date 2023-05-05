@@ -1,7 +1,22 @@
 <template>
 	<div>
+		<kv-ui-button
+			v-if="showViewLoan"
+			:state="`${allSharesReserved ? 'disabled' : ''}`"
+			:to="customLoanDetails ? '' : `/lend/${loanId}`"
+			class="tw-mb-0"
+			@click="$emit('show-loan-details')"
+		>
+			<span class="tw-flex">
+				View loan
+				<kv-material-icon
+					class="tw-w-3 tw-h-3 tw-align-middle"
+					:icon="mdiChevronRight"
+				/>
+			</span>
+		</kv-ui-button>
 		<form
-			v-if="useFormSubmit"
+			v-else-if="useFormSubmit"
 			class="tw-w-full tw-flex"
 			@submit.prevent="addToBasket"
 		>
@@ -45,7 +60,7 @@
 
 					<!-- Lend again/lent previously button -->
 					<kv-ui-button
-						v-if="showLendAgain"
+						v-else-if="showLendAgain"
 						key="lendAgainButton"
 						class="lend-again"
 						data-testid="bp-lend-cta-lend-again-button"
@@ -109,9 +124,11 @@
 
 <script>
 import numeral from 'numeral';
+import { mdiChevronRight } from '@mdi/js';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	name: 'KvLendCta',
@@ -119,6 +136,7 @@ export default {
 		KvLendAmountButton,
 		KvUiButton,
 		KvUiSelect,
+		KvMaterialIcon,
 	},
 	props: {
 		loan: {
@@ -145,9 +163,18 @@ export default {
 			type: Function,
 			required: true,
 		},
+		showViewLoan: {
+			type: Boolean,
+			default: false,
+		},
+		customLoanDetails: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
+			mdiChevronRight,
 			selectedOption: this.getSelectedOption(this.loan?.unreservedAmount),
 		};
 	},

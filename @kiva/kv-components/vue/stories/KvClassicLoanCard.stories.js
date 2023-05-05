@@ -26,6 +26,7 @@ const story = (args) => {
 					:is-bookmarked="isBookmarked"
 					:kv-track-function="kvTrackFunction"
 					:photo-path="photoPath"
+					:show-view-loan="showViewLoan"
 				/>
 			</div>
 		`,
@@ -203,4 +204,12 @@ export const FiveDollarNotes = story({
 	enableFiveDollarsNotes: true,
 	kvTrackFunction,
 	photoPath,
+});
+
+export const ViewLoan = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	showViewLoan: true,
 });
