@@ -193,9 +193,12 @@
 				:is-adding="isAdding"
 				:enable-five-dollars-notes="enableFiveDollarsNotes"
 				:kv-track-function="kvTrackFunction"
+				:show-view-loan="showViewLoan"
+				:custom-loan-details="customLoanDetails"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
+				@show-loan-details="clickReadMore('ViewLoan')"
 			/>
 		</div>
 	</div>
@@ -282,6 +285,10 @@ export default {
 		photoPath: {
 			type: String,
 			required: true,
+		},
+		showViewLoan: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {

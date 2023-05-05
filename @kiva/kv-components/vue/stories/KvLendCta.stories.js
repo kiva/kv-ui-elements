@@ -18,6 +18,8 @@ const story = (args) => {
 					:is-adding="isAdding"
 					:enable-five-dollars-notes="enableFiveDollarsNotes"
 					:kv-track-function="kvTrackFunction"
+					:show-view-loan="showViewLoan"
+					:custom-loan-details="customLoanDetails"
 				/>
 			</div>
 		`,
@@ -101,4 +103,14 @@ export const LendAgain = story({
 		userProperties: { lentTo: true },
 	},
 	kvTrackFunction,
+});
+
+export const ViewLoan = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+	},
+	kvTrackFunction,
+	showViewLoan: true,
 });
