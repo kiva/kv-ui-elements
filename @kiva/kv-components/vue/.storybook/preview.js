@@ -4,9 +4,12 @@ import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import Vue from 'vue';
 import VueCompositionApi from '@vue/composition-api';
+import VueRouter from 'vue-router';
 
 // Add vue composition api
 Vue.use(VueCompositionApi);
+
+Vue.use(VueRouter);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -46,5 +49,6 @@ export const decorators = [(story) => ({
 	},
 	destroyed() {
 		channel.off('DARK_MODE', this.setTheme);
-	}
+	},
+	router: new VueRouter(),
 })];
