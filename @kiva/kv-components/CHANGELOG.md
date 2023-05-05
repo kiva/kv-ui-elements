@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.17.0...@kiva/kv-components@3.18.0) (2023-05-05)
+
+
+### Features
+
+* "view loan" CTA ([aa10cf1](https://github.com/kiva/kv-ui-elements/commit/aa10cf17a1ca4978b97fc9541522f31d95cc886f))
+
+
+
+
+
 # [3.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.16.0...@kiva/kv-components@3.17.0) (2023-05-05)
 
 
