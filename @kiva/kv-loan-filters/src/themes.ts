@@ -4,7 +4,7 @@ import { getIdsFromQueryParam } from './queryParseUtils';
 /**
  * The themes/attributes that are always visible in the filter UI
  */
-export const visibleThemeIds = [2, 6, 8, 11, 14, 28, 29, 30, 32, 36];
+export const visibleThemeIds = [2, 6, 8, 11, 14, 28, 29, 32, 36];
 
 /**
  * Transforms filtered themes into a form usable by the filters
