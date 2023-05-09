@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.18.0...@kiva/kv-components@3.19.0) (2023-05-09)
+
+
+### Features
+
+* loan card CTA fixes needed for home page ([fc1c9f8](https://github.com/kiva/kv-ui-elements/commit/fc1c9f858aeae620f6cfea74da8d15ae859afa3c))
+
+
+
+
+
 # [3.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.17.0...@kiva/kv-components@3.18.0) (2023-05-05)
 
 
