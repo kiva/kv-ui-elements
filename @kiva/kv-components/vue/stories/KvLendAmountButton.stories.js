@@ -15,7 +15,6 @@ const story = (args) => {
 				:show-now="showNow"
 				:amount-left="amountLeft"
 				:complete-loan="completeLoan"
-				:is-adding="isAdding"
 			/>
 		`,
 	});
@@ -30,5 +29,3 @@ export const ShowNow = story({ showNow: true });
 export const AmountLeft = story({ amountLeft: 5 });
 
 export const CompleteLoan = story({ completeLoan: true });
-
-export const IsAdding = story({ isAdding: true });

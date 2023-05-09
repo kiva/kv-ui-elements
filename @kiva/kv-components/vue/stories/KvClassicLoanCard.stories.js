@@ -213,3 +213,13 @@ export const ViewLoan = story({
 	photoPath,
 	showViewLoan: true,
 });
+
+export const LendAgain = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		userProperties: { lentTo: true },
+	},
+	kvTrackFunction,
+	photoPath,
+});

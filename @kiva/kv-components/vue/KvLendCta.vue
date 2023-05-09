@@ -1,9 +1,10 @@
 <template>
 	<div>
 		<kv-ui-button
-			v-if="showViewLoan"
+			v-if="showViewLoan && !isInBasket"
 			:state="`${allSharesReserved ? 'disabled' : ''}`"
-			:to="customLoanDetails ? '' : `/lend/${loanId}`"
+			:to="!externalLinks ? readMorePath : undefined"
+			:href="externalLinks ? readMorePath : undefined"
 			class="tw-mb-0"
 			@click="$emit('show-loan-details')"
 		>
@@ -93,11 +94,12 @@
 
 		<!-- Continue to checkout button -->
 		<kv-ui-button
-			v-if="state === 'basketed'"
+			v-if="isInBasket"
 			variant="secondary"
 			class="tw-inline-flex tw-flex-1"
 			data-testid="bp-lend-cta-checkout-button"
-			to="/basket"
+			:to="!externalLinks ? '/basket' : undefined"
+			:href="externalLinks ? '/basket' : undefined"
 			@click.native="clickCheckout"
 		>
 			Checkout now
@@ -171,6 +173,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		externalLinks: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -179,6 +185,9 @@ export default {
 		};
 	},
 	computed: {
+		readMorePath() {
+			return this.customLoanDetails ? '' : `/lend/${this.loanId}`;
+		},
 		loanId() {
 			return this.loan?.id;
 		},
@@ -230,7 +239,7 @@ export default {
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
 				|| this.lendButtonVisibility
-				|| this.lendAgainButton
+				|| this.showLendAgain
 				|| this.state === 'lent-to'
 				|| this.isAdding) {
 				return true;

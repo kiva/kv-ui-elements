@@ -32,10 +32,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		isAdding: {
-			type: Boolean,
-			default: false,
-		},
 	},
 	computed: {
 		amountValue() {
@@ -54,10 +50,6 @@ export default {
 			}
 
 			return str;
-		},
-		buttonState() {
-			if (this.isAdding) return 'loading';
-			return '';
 		},
 	},
 	methods: {

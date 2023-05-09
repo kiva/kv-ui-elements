@@ -1,6 +1,5 @@
 <template>
 	<div
-		:id="`${loanId}-loan-card`"
 		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
 		:class="{ 'tw-p-1': !largeCard }"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
@@ -29,8 +28,10 @@
 						data-testid="loan-card-bookmark"
 						@toggle-bookmark="$emit('toggle-bookmark')"
 					/>
-					<router-link
-						:to="customLoanDetails ? '' : `/lend/${loanId}`"
+					<component
+						:is="tag"
+						:to="readMorePath"
+						:href="readMorePath"
 						class="tw-flex"
 						aria-label="Borrower image"
 						@click="clickReadMore('Photo')"
@@ -74,12 +75,14 @@
 								{{ formattedLocation }}
 							</p>
 						</div>
-					</router-link>
+					</component>
 				</div>
 
 				<!-- Loan tag -->
-				<router-link
-					:to="customLoanDetails ? '' : `/lend/${loanId}`"
+				<component
+					:is="tag"
+					:to="readMorePath"
+					:href="readMorePath"
 					class="tw-flex hover:tw-no-underline focus:tw-no-underline"
 					:class="{ 'tw-px-1': largeCard }"
 					aria-label="Loan tag"
@@ -90,10 +93,12 @@
 						:loan="loan"
 						:kv-track-function="kvTrackFunction"
 					/>
-				</router-link>
+				</component>
 
-				<router-link
-					:to="customLoanDetails ? '' : `/lend/${loanId}`"
+				<component
+					:is="tag"
+					:to="readMorePath"
+					:href="readMorePath"
 					class="loan-card-use tw-text-primary"
 					aria-label="Loan use"
 					@click="clickReadMore('Use')"
@@ -106,11 +111,13 @@
 							:class="{ 'tw-px-1': largeCard }"
 							style="height: 5.5rem;"
 						>
-							<kv-loading-placeholder
+							<div
 								v-for="(_n, i) in [...Array(4)]"
 								:key="i"
-								class="tw-h-2 tw-mb-1 tw-w-1.5"
-							/>
+								class="tw-h-2 tw-mb-1"
+							>
+								<kv-loading-placeholder />
+							</div>
 						</div>
 						<div v-else>
 							<kv-loan-use
@@ -124,7 +131,7 @@
 							/>
 						</div>
 					</div>
-				</router-link>
+				</component>
 			</div>
 
 			<!-- Loan call outs -->
@@ -163,9 +170,11 @@
 				/>
 			</div>
 
-			<router-link
+			<component
+				:is="tag"
 				v-if="unreservedAmount > 0"
-				:to="customLoanDetails ? '' : `/lend/${loanId}`"
+				:to="readMorePath"
+				:href="readMorePath"
 				class="loan-card-progress tw-mt-1"
 				aria-label="Loan progress"
 				@click="clickReadMore('Progress')"
@@ -176,7 +185,7 @@
 					:progress-percent="fundraisingPercent"
 					class="tw-text-black"
 				/>
-			</router-link>
+			</component>
 
 			<!-- CTA Button -->
 			<kv-loading-placeholder
@@ -195,6 +204,7 @@
 				:kv-track-function="kvTrackFunction"
 				:show-view-loan="showViewLoan"
 				:custom-loan-details="customLoanDetails"
+				:external-links="externalLinks"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
@@ -232,7 +242,7 @@ export default {
 	props: {
 		loanId: {
 			type: Number,
-			required: true,
+			default: undefined,
 		},
 		loan: {
 			type: Object,
@@ -290,6 +300,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		externalLinks: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -297,8 +311,14 @@ export default {
 		};
 	},
 	computed: {
+		tag() {
+			return this.externalLinks ? 'a' : 'router-link';
+		},
+		readMorePath() {
+			return this.customLoanDetails ? '' : `/lend/${this.loanId}`;
+		},
 		isLoading() {
-			return !this.loan;
+			return !this.loanId || !this.loan;
 		},
 		cardWidth() {
 			return this.useFullWidth ? '100%' : '374px';
