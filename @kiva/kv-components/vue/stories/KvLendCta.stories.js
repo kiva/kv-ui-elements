@@ -114,3 +114,10 @@ export const ViewLoan = story({
 	kvTrackFunction,
 	showViewLoan: true,
 });
+
+export const ViewLoanFunded = story({
+	isLoading: false,
+	loan: { status: 'funded' },
+	kvTrackFunction,
+	showViewLoan: true,
+});

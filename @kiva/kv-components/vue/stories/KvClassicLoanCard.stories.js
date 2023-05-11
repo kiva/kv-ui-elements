@@ -143,7 +143,7 @@ export const AllSharesReserved = story({
 	},
 	kvTrackFunction,
 	photoPath,
-}, false, { unreservedAmount: '0.00', fundraisingPercent: 1 });
+});
 
 export const InBasket = story({
 	loanId: loan.id,
@@ -209,6 +209,18 @@ export const FiveDollarNotes = story({
 export const ViewLoan = story({
 	loanId: loan.id,
 	loan,
+	kvTrackFunction,
+	photoPath,
+	showViewLoan: true,
+});
+
+export const ViewLoanFunded = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		unreservedAmount: '0.00',
+		fundraisingPercent: 1,
+	},
 	kvTrackFunction,
 	photoPath,
 	showViewLoan: true,

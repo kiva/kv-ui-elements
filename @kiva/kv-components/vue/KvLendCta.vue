@@ -1,7 +1,37 @@
 <template>
 	<div>
+		<!-- Continue to checkout button -->
 		<kv-ui-button
-			v-if="showViewLoan && !isInBasket"
+			v-if="isInBasket"
+			variant="secondary"
+			class="tw-inline-flex tw-flex-1"
+			data-testid="bp-lend-cta-checkout-button"
+			:to="!externalLinks ? '/basket' : undefined"
+			:href="externalLinks ? '/basket' : undefined"
+			@click.native="clickCheckout"
+		>
+			Checkout now
+		</kv-ui-button>
+
+		<!-- Refunded, allSharesReserved button -->
+		<kv-ui-button
+			v-else-if="showNonActionableLoanButton"
+			class="tw-inline-flex tw-flex-1"
+		>
+			{{ ctaButtonText }}
+		</kv-ui-button>
+
+		<!-- Funded / expired -->
+		<div
+			v-else-if="isFunded"
+			class="tw-w-full tw-text-center tw-rounded tw-p-2"
+			style="background: #f1f1f1;"
+		>
+			This loan was just funded! 🎉
+		</div>
+
+		<kv-ui-button
+			v-else-if="showViewLoan"
 			:state="`${allSharesReserved ? 'disabled' : ''}`"
 			:to="!externalLinks ? readMorePath : undefined"
 			:href="externalLinks ? readMorePath : undefined"
@@ -16,6 +46,7 @@
 				/>
 			</span>
 		</kv-ui-button>
+
 		<form
 			v-else-if="useFormSubmit"
 			class="tw-w-full tw-flex"
@@ -91,36 +122,6 @@
 				</kv-ui-button>
 			</fieldset>
 		</form>
-
-		<!-- Continue to checkout button -->
-		<kv-ui-button
-			v-if="isInBasket"
-			variant="secondary"
-			class="tw-inline-flex tw-flex-1"
-			data-testid="bp-lend-cta-checkout-button"
-			:to="!externalLinks ? '/basket' : undefined"
-			:href="externalLinks ? '/basket' : undefined"
-			@click.native="clickCheckout"
-		>
-			Checkout now
-		</kv-ui-button>
-
-		<!-- Refunded, allSharesReserved button -->
-		<kv-ui-button
-			v-if="showNonActionableLoanButton"
-			class="tw-inline-flex tw-flex-1"
-		>
-			{{ ctaButtonText }}
-		</kv-ui-button>
-
-		<!-- Funded / expired -->
-		<div
-			v-if="isFunded"
-			class="tw-w-full tw-text-center tw-rounded tw-p-2"
-			style="background: #f1f1f1;"
-		>
-			This loan was just funded! 🎉
-		</div>
 	</div>
 </template>
 
