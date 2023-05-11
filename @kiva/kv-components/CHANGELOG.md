@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.19.0...@kiva/kv-components@3.20.0) (2023-05-11)
+
+
+### Features
+
+* handle view loan when funded ([b6a392b](https://github.com/kiva/kv-ui-elements/commit/b6a392b0bbdcb09db37eba3d72e4b52b44eed41a))
+
+
+
+
+
 # [3.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.18.0...@kiva/kv-components@3.19.0) (2023-05-09)
 
 
