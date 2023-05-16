@@ -5,7 +5,8 @@
 		style="color: #CE4A00;"
 	>
 		{{ tagText }}
-		<vue-countdown
+		<!-- TODO: ensure countdown works in Vue 3 apps -->
+		<!-- <vue-countdown
 			v-if="variation === 'ending-soon' && isMounted"
 			:time="timeLeftMs"
 			:emit-events="false"
@@ -14,20 +15,22 @@
 			<template slot-scope="props">
 				{{ props.hours }}h {{ props.minutes }}m {{ props.seconds }}s
 			</template>
-		</vue-countdown>
+		</vue-countdown> -->
 	</div>
 </template>
 
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
-import VueCountdown from '@chenfengyuan/vue-countdown';
+// TODO: ensure countdown works in Vue 3 apps
+// import VueCountdown from '@chenfengyuan/vue-countdown';
 import numeral from 'numeral';
 
 export default {
 	name: 'KvLoanTag',
-	components: {
-		VueCountdown,
-	},
+	// TODO: ensure countdown works in Vue 3 apps
+	// components: {
+	// 	VueCountdown,
+	// },
 	props: {
 		loan: {
 			type: Object,
@@ -63,7 +66,9 @@ export default {
 			switch (this.variation) {
 				case 'almost-funded': return 'Almost funded';
 				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
-				default: return 'Ending soon: ';
+				default: return 'Ending soon';
+				// TODO: ensure countdown works in Vue 3 apps
+				// default: return 'Ending soon: ';
 			}
 		},
 		timeLeftMs() {
