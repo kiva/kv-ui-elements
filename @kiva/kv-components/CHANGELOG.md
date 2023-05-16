@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.20.0...@kiva/kv-components@3.21.0) (2023-05-16)
+
+
+### Features
+
+* remove countdown for now from loan tags ([7aeae11](https://github.com/kiva/kv-ui-elements/commit/7aeae114c4dd7823829241ea659ff5a19de948ef))
+
+
+
+
+
 # [3.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.19.0...@kiva/kv-components@3.20.0) (2023-05-11)
 
 
