@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.2.0...@kiva/kv-loan-filters@1.3.0) (2023-05-18)
+
+
+### Features
+
+* changes needed for implicit typing in CPS ([fa779e4](https://github.com/kiva/kv-ui-elements/commit/fa779e4f5cb7cf8823eeab122d4d5627960cf5bb))
+
+
+
+
+
 # [1.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.1.0...@kiva/kv-loan-filters@1.2.0) (2023-05-05)
 
 
