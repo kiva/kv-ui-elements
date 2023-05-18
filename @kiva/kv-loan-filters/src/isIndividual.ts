@@ -69,7 +69,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => transformIsIndividualOptions(),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformIsIndividualOptions(),
 	showSavedSearch: (loanSearchState) => loanSearchState.isIndividual !== null,
 	getFilterChips: (loanSearchState) => {
 		if (typeof loanSearchState.isIndividual !== 'undefined' && loanSearchState.isIndividual !== null) {

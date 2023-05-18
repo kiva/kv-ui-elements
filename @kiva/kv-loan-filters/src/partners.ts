@@ -72,7 +72,7 @@ export const getUiConfig = (options) => ({
 
 export default {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	getOptions: (allFacets: any = {}) => transformPartners(allFacets?.partnerFacets ?? []),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformPartners(allFacets?.partnerFacets ?? []),
 	showSavedSearch: (loanSearchState) => loanSearchState.partnerId.length > 0,
 	getFilterChips: (loanSearchState, allFacets) => {
 		if (loanSearchState.partnerId?.length) {

@@ -42,5 +42,5 @@ const filters = {
 
 export default {
 	filters,
-	keys: Object.keys(filters),
+	keys: Object.keys(filters) as (keyof(typeof filters))[],
 };

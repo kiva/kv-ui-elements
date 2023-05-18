@@ -40,7 +40,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => ({ min: MIN, max: MAX, step: STEP }),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ({ min: MIN, max: MAX, step: STEP }),
 	showSavedSearch: (loanSearchState) => !!loanSearchState.partnerDefaultRate,
 	getFilterChips: (loanSearchState) => {
 		if (loanSearchState.partnerDefaultRate) {

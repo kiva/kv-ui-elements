@@ -24,7 +24,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => ([]),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ([]),
 	showSavedSearch: () => (false),
 	getFilterChips: () => ([]),
 	getRemovedFacet: () => ({}),

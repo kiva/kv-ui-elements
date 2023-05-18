@@ -77,7 +77,7 @@ export const getUiConfig = (options) => ({
 
 export default {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	getOptions: (allFacets: any = {}) => {
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		const options = formatSortOptions(allFacets.standardSorts ?? [], allFacets.flssSorts ?? []);
 
 		return options.filter((sortOption) => {

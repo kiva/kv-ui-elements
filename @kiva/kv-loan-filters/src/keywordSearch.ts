@@ -22,7 +22,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => [],
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => [],
 	showSavedSearch: (loanSearchState) => !!loanSearchState.keywordSearch,
 	getFilterChips: (loanSearchState) => {
 		if (loanSearchState.keywordSearch) {
