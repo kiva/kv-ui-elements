@@ -49,7 +49,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: (allFacets) => transformGenderOptions(allFacets?.genderFacets),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformGenderOptions(allFacets?.genderFacets),
 	showSavedSearch: (loanSearchState) => !!loanSearchState.gender,
 	getFilterChips: (loanSearchState, allFacets) => {
 		if (loanSearchState.gender) {

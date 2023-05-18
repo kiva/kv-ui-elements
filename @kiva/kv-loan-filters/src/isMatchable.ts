@@ -44,7 +44,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => transformRadioGroupOptions(
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformRadioGroupOptions(
 		[{ name: MATCHED_LOANS_KEY }],
 		[MATCHED_LOANS_KEY],
 		isMatchableDisplayMap,

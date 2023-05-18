@@ -64,7 +64,9 @@ export const getUiConfig = (options) => ({
 
 export default {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	getOptions: (allFacets: any = {}) => transformDistributionModelOptions(allFacets.distributionModelFacets),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
+		return transformDistributionModelOptions(allFacets.distributionModelFacets);
+	},
 	showSavedSearch: (loanSearchState) => !!loanSearchState.distributionModel,
 	getFilterChips: (loanSearchState, allFacets) => {
 		if (loanSearchState.distributionModel) {

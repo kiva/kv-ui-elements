@@ -68,7 +68,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	getOptions: () => transformLenderRepaymentTermOptions(),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformLenderRepaymentTermOptions(),
 	showSavedSearch: (loanSearchState) => !!loanSearchState.lenderRepaymentTerm,
 	getFilterChips: (loanSearchState) => {
 		if (loanSearchState.lenderRepaymentTerm) {
