@@ -101,6 +101,12 @@ export default {
 				options: [],
 			},
 		},
+		totalLoans: {
+			control: {
+				type: 'number',
+				options: '',
+			},
+		},
 	},
 };
 
@@ -115,6 +121,7 @@ const Template = (args, {
 			<kv-location-selector
 				:regions="regions"
 				:active-iso-codes="activeIsoCodes"
+				:total-loans="totalLoans"
 			/>
 		`,
 });
@@ -122,4 +129,12 @@ const Template = (args, {
 export const Default = Template.bind({});
 Default.args = {
 	regions,
+	totalLoans: 320,
+};
+
+export const DefinedIsoCodes = Template.bind({});
+DefinedIsoCodes.args = {
+	regions,
+	totalLoans: 320,
+	activeIsoCodes: ['BF', 'EG', 'KE', 'US', 'MX'],
 };
