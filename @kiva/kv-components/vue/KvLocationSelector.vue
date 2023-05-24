@@ -128,6 +128,7 @@ export default {
 	},
 	emits: [
 		'updated',
+		'close-modal',
 	],
 	setup(props, { emit }) {
 		const { regions, activeIsoCodes } = toRefs(props);
