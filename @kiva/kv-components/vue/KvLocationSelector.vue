@@ -87,6 +87,7 @@
 import {
 	ref,
 	toRefs,
+	watch,
 } from 'vue-demi';
 import { mdiChevronDown, mdiChevronRight } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -212,6 +213,11 @@ export default {
 
 			return total;
 		};
+
+		watch(activeIsoCodes, (val) => {
+			selected.value = val;
+			updateLocation(selected.value);
+		});
 
 		return {
 			mdiChevronRight,
