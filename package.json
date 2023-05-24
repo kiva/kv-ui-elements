@@ -6,6 +6,7 @@
     "@kiva/kv-components",
     "@kiva/kv-tokens",
     "@kiva/kv-loan-filters",
+	"@kiva/kv-shop",
     "test-vue2",
     "test-vue3"
   ],
