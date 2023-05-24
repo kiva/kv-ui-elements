@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.7.0...@kiva/kv-tokens@2.8.0) (2023-05-24)
+
+
+### Features
+
+* change facebook color definition ([0805182](https://github.com/kiva/kv-ui-elements/commit/080518269f2d469b74edcfb1757ec5bee3c03bb3))
+
+
+
+
+
 # [2.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.6.0...@kiva/kv-tokens@2.7.0) (2023-05-03)
 
 
