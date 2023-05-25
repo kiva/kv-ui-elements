@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.0...@kiva/kv-shop@1.1.1) (2023-05-25)
+
+
+### Bug Fixes
+
+* add core portion to gql import to match cps ([3f64236](https://github.com/kiva/kv-ui-elements/commit/3f642366a9897a07a0c329e9837eb60f9fae673a))
+
+
+
+
+
 # 1.1.0 (2023-05-25)
 
 
