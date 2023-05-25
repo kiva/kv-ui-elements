@@ -1,16 +1,42 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { gql } from '@apollo/client';
 import numeral from 'numeral';
 import { ref } from 'vue-demi';
 import type { ApplePayPaymentRequest } from 'braintree-web';
 import type { Dropin } from 'braintree-web-drop-in';
+import { ShopError, parseShopError } from './shopError';
 
 export type PaymentType = 'card' | 'paypal' | 'paypalCredit' | 'venmo' | 'applePay' | 'googlePay';
 export type PayPalFlowType = 'checkout' | 'vault';
 
 export const defaultPaymentTypes = ['paypal', 'card', 'applePay', 'googlePay'] as const;
 
+/**
+ * When logged in, get a Braintree client token authorizing Kiva for this user.
+ *
+ * @param apollo ApolloClient
+ * @returns client token
+ */
+export async function getClientToken(apollo: any) {
+	const { data, error, errors } = await apollo.query({
+		query: gql`query getClientToken {
+			shop {
+				id
+				getClientToken(useCustomerId: true)
+			}
+		}`,
+	});
+
+	if (error || errors.length) {
+		throw parseShopError(error ?? errors[0]);
+	}
+
+	return data?.shop?.getClientToken;
+}
+
 export interface DropInInitOptions {
 	amount: string|number,
+	authToken: string,
 	container: string|HTMLElement,
 	googlePayMerchantId: string,
 	paymentTypes?: PaymentType[],
@@ -82,13 +108,9 @@ export default function useBraintreeDropIn() {
 		// });
 	}
 
-	async function getClientToken() {
-		// TODO
-		return '';
-	}
-
 	async function initDropIn({
 		amount,
+		authToken,
 		container,
 		googlePayMerchantId,
 		paymentTypes = [...defaultPaymentTypes],
@@ -98,65 +120,66 @@ export default function useBraintreeDropIn() {
 		formattedAmount = numeral(amount).format('0.00');
 		const { default: DropIn } = await import('braintree-web-drop-in');
 
-		// get client token pretty much always (full permissions, will save used payment methods to vault)
-		// can we get a client token without being logged in? token key may be required guest checkout
-		// according to docs token key will not save payment methods and can't access saved payment methods
-		const authToken = await getClientToken(); // could do this in parallel with dropin import
-
-		// TODO: try/catch
-		instance = await (DropIn.create({
-			authorization: authToken,
-			container,
-			dataCollector: {
-				kount: true, // Required if Kount fraud data collection is enabled
-			},
-			// vaultManager: true, - Useful for testing and removing payment methods easily.
-			paymentOptionPriority: paymentTypes,
-			preselectVaultedPaymentMethod,
-			card: {
-				vault: {
-					allowVaultCardOverride: true,
+		try {
+			instance = await (DropIn.create({
+				authorization: authToken,
+				container,
+				dataCollector: {
+					kount: true, // Required if Kount fraud data collection is enabled
 				},
-			},
-			paypal: {
-				flow: paypalFlow,
-				amount: formattedAmount,
-				currency: 'USD',
-				buttonStyle: {
-					// @ts-ignore
-					color: 'gold',
-					// @ts-ignore
-					shape: 'rect',
-					// @ts-ignore
-					size: 'responsive',
+				// vaultManager: true, - Useful for testing and removing payment methods easily.
+				paymentOptionPriority: paymentTypes,
+				preselectVaultedPaymentMethod,
+				card: {
+					vault: {
+						allowVaultCardOverride: true,
+					},
 				},
-			},
-			googlePay: {
-				googlePayVersion: 2,
-				merchantId: googlePayMerchantId,
-				transactionInfo: getGoogleTransactionInfo(formattedAmount),
-				button: {
-					allowedPaymentMethods: [{
-						type: 'CARD',
+				paypal: {
+					flow: paypalFlow,
+					amount: formattedAmount,
+					currency: 'USD',
+					buttonStyle: {
 						// @ts-ignore
-						parameters: {
-							// allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'], // TODO: confirm/update
-							// allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'], // TODO: confirm/update
-							billingAddressRequired: true,
-							billingAddressParameters: {
-								format: 'FULL',
-							},
-						},
-					}],
+						color: 'gold',
+						// @ts-ignore
+						shape: 'rect',
+						// @ts-ignore
+						size: 'responsive',
+					},
 				},
-			},
-			applePay: {
-				displayName: 'Kiva',
-				paymentRequest: getApplePaymentRequest(formattedAmount),
-			},
-		}) as Promise<Dropin>);
+				googlePay: {
+					googlePayVersion: 2,
+					merchantId: googlePayMerchantId,
+					transactionInfo: getGoogleTransactionInfo(formattedAmount),
+					button: {
+						allowedPaymentMethods: [{
+							type: 'CARD',
+							// @ts-ignore
+							parameters: {
+								// allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'], // TODO: confirm/update
+								// allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'], // TODO: confirm/update
+								billingAddressRequired: true,
+								billingAddressParameters: {
+									format: 'FULL',
+								},
+							},
+						}],
+					},
+				},
+				applePay: {
+					displayName: 'Kiva',
+					paymentRequest: getApplePaymentRequest(formattedAmount),
+				},
+			}) as Promise<Dropin>);
 
-		initDropInActions();
+			initDropInActions();
+		} catch (e) {
+			throw new ShopError({
+				code: 'shop.braintreeDropinInitError',
+				original: e,
+			}, 'An Error has occured. Please refresh the page and try again.');
+		}
 
 		return instance;
 	}

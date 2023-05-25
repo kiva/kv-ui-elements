@@ -49,8 +49,9 @@ export async function executeNewSubscriptionCheckout({
 	// check that amounts are properly formatted (e.g. 1000.00)
 	const amountRegex = new RegExp(/^\d+\.\d{2}$/);
 	if (!amountRegex.test(amount) || !amountRegex.test(donateAmount)) {
-		// TODO
-		return false;
+		throw new ShopError({
+			code: 'api.invalidMethodParameter',
+		}, 'Please check that the amount is correct and try again.');
 	}
 
 	// check eligibility
@@ -60,38 +61,50 @@ export async function executeNewSubscriptionCheckout({
 	const { deviceData, nonce } = paymentMethod;
 
 	// create auto deposit
-	const { data, error, errors } = await apollo.query({
-		variables: {
-			dayOfMonth,
-			deviceData,
-			nonce,
-		},
-		query: gql`mutation createAutoDepositSubscription(
-			$nonce: String!,
-			$deviceData: String,
-			$amount: Money!,
-			$donateAmount: Money!,
-			$dayOfMonth: Int!
-		) {
-			my {
-				createAutoDeposit (
-					autoDeposit: {
-						amount: $amount,
-						donateAmount: $donateAmount,
-						dayOfMonth: $dayOfMonth,
-					},
-					deviceData: $deviceData,
-					paymentMethodNonce: $nonce
-				) {
-					id amount donateAmount dayOfMonth status
+	let data;
+	let error;
+	try {
+		const result = await apollo.query({
+			variables: {
+				dayOfMonth,
+				deviceData,
+				nonce,
+			},
+			query: gql`mutation createAutoDepositSubscription(
+				$nonce: String!,
+				$deviceData: String,
+				$amount: Money!,
+				$donateAmount: Money!,
+				$dayOfMonth: Int!
+			) {
+				my {
+					createAutoDeposit (
+						autoDeposit: {
+							amount: $amount,
+							donateAmount: $donateAmount,
+							dayOfMonth: $dayOfMonth,
+						},
+						deviceData: $deviceData,
+						paymentMethodNonce: $nonce
+					) {
+						id amount donateAmount dayOfMonth status
+					}
 				}
-			}
-		}`,
-	});
+			}`,
+		});
+
+		if (result.error || result.errors.length) {
+			error = result.error ?? result.errors[0];
+		} else {
+			data = result.data;
+		}
+	} catch (e) {
+		error = e;
+	}
 
 	// handle errors
-	if (error || errors.length) {
-		const parsed = parseShopError(error ?? errors[0]);
+	if (error) {
+		const parsed = parseShopError(error);
 
 		if (parsed.code === 'shop.unknown') {
 			throw new ShopError({

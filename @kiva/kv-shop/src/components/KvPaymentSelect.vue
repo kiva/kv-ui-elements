@@ -9,6 +9,7 @@
 			v-if="updatingPaymentWrapper"
 			class="tw-mb-2"
 		/>
+		<kv-toast :ref="errorToast" />
 	</div>
 </template>
 
@@ -17,6 +18,7 @@ import {
 	defineComponent, onMounted, ref, toRefs, watch,
 } from 'vue-demi';
 import KvLoadingSpinner from '@kiva/kv-components/vue/KvLoadingSpinner.vue';
+import KvToast from '@kiva/kv-components/vue/KvToast.vue';
 import type { PropType } from 'vue-demi';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
@@ -24,11 +26,19 @@ import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
 export default defineComponent({
 	components: {
 		KvLoadingSpinner,
+		KvToast,
 	},
 	props: {
 		amount: {
 			type: [String, Number],
 			default: '',
+		},
+		/**
+		 * Braintree authorization token.
+		 */
+		authToken: {
+			type: String,
+			required: true,
 		},
 		/**
 		 * Paypal flow options.
@@ -69,18 +79,25 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const {
 			amount,
+			authToken,
 			flow,
 			googlePayMerchantId,
 			paymentTypes,
 			preselectVaultedPaymentMethod,
 		} = toRefs(props);
 		const container = ref<HTMLInputElement | null>(null);
+		const updatingPaymentWrapper = ref(false);
 		const {
 			initDropIn,
 			paymentMethodRequestable,
 			requestPaymentMethod,
 			updateAmount,
 		} = useBraintreeDropIn();
+
+		const errorToast = ref();
+		const showError = (message: string) => {
+			errorToast.value?.show(message, 'error', true);
+		};
 
 		watch(amount, (newValue) => {
 			updateAmount(newValue);
@@ -93,20 +110,32 @@ export default defineComponent({
 		onMounted(async () => {
 			// Checking innerHTML prevents BT error in the case this component gets initialized multiple times
 			if (container.value?.innerHTML === '') {
-				await initDropIn({
-					amount: amount.value,
-					container: container.value,
-					googlePayMerchantId: googlePayMerchantId.value,
-					paymentTypes: paymentTypes.value,
-					preselectVaultedPaymentMethod: preselectVaultedPaymentMethod.value,
-					paypalFlow: flow.value,
-				});
+				updatingPaymentWrapper.value = true;
+				try {
+					await initDropIn({
+						amount: amount.value,
+						authToken: authToken.value,
+						container: container.value,
+						googlePayMerchantId: googlePayMerchantId.value,
+						paymentTypes: paymentTypes.value,
+						preselectVaultedPaymentMethod: preselectVaultedPaymentMethod.value,
+						paypalFlow: flow.value,
+					});
+				} catch (e) {
+					if (e instanceof Error) {
+						showError(e.message);
+					} else {
+						showError('An Error has occured. Please refresh the page and try again.');
+					}
+				} finally {
+					updatingPaymentWrapper.value = false;
+				}
 			}
 		});
 
 		return {
 			container,
-			updatingPaymentWrapper: false,
+			updatingPaymentWrapper,
 			requestPaymentMethod,
 		};
 	},
@@ -234,12 +263,6 @@ Braintree guarantees that these will not be easily changed.
 	box-shadow: none;
 	padding: 0;
 	background-color: transparent;
-}
-
-/* TODO: Is this needed? */
-#payment-updating-overlay {
-	background-color: rgba(255, 255, 255, 0.7);
-	z-index: 500;
 }
 
 /* Braintree section headings
