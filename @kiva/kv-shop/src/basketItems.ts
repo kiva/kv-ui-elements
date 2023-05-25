@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
 import { getBasketID } from './basket';
 import { parseShopError } from './shopError';
