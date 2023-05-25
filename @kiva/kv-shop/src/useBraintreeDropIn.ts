@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
 import { ref } from 'vue-demi';
 import type { ApplePayPaymentRequest } from 'braintree-web';

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 
 // TODO: get (and maybe set) basket and visitor cookies
 
