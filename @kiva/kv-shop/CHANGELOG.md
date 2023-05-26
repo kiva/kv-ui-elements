@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.1...@kiva/kv-shop@1.1.2) (2023-05-26)
+
+
+### Bug Fixes
+
+* regex to get cookie by name ([1dad953](https://github.com/kiva/kv-ui-elements/commit/1dad9536e80ce834994c24584e9887985146405c))
+
+
+
+
+
 ## [1.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.0...@kiva/kv-shop@1.1.1) (2023-05-25)
 
 
