@@ -19,7 +19,7 @@
         }
     },
     "scripts": {
-        "build": "tsup src/**/*.ts --format cjs,esm --dts --clean && cp -R src/components/ dist/components/",
+        "build": "tsup src/*.ts --format cjs,esm --dts --clean && cp -R src/components/ dist/components/",
         "lint": "eslint --ext .ts,.vue ./src",
         "test": "jest"
     },
