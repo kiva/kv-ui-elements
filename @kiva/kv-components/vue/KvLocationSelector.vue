@@ -60,7 +60,7 @@
 							:disabled="item.disabled"
 							@change="updateLocation"
 						>
-							{{ item.title }}
+							{{ item.title }} ({{ item.numberLoans }})
 						</kv-checkbox>
 					</li>
 				</div>
@@ -165,6 +165,7 @@ export default {
 			return countries.map((c) => ({
 				value: c.isoCode,
 				title: getItemLabel(c),
+				numberLoans: c.numLoansFundraising,
 				disabled: c.numLoansFundraising === 0,
 			}));
 		};
