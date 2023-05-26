@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.21.2...@kiva/kv-components@3.22.0) (2023-05-24)
+
+
+### Features
+
+* emit added to location selector component ([#248](https://github.com/kiva/kv-ui-elements/issues/248)) ([ca043e4](https://github.com/kiva/kv-ui-elements/commit/ca043e40091d56e55ddff80890f446a41baa97dd))
+
+
+
+
+
 ## [3.21.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.21.1...@kiva/kv-components@3.21.2) (2023-05-24)
 
 **Note:** Version bump only for package @kiva/kv-components
