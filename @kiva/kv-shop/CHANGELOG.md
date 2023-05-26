@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.2...@kiva/kv-shop@1.1.3) (2023-05-26)
+
+
+### Bug Fixes
+
+* cookie basket sent encoded token ([fef389f](https://github.com/kiva/kv-ui-elements/commit/fef389fa4f2c1a310cb5b58d7015c2f929d1b88e))
+* eslint ([b975337](https://github.com/kiva/kv-ui-elements/commit/b97533725717630fd6d9fdd2e209168139bd356d))
+
+
+
+
+
 ## [1.1.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.1...@kiva/kv-shop@1.1.2) (2023-05-26)
 
 
