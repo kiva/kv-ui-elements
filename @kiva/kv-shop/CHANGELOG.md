@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.3...@kiva/kv-shop@1.1.4) (2023-05-26)
+
+
+### Bug Fixes
+
+* build command was targetting tests folder only ([428977f](https://github.com/kiva/kv-ui-elements/commit/428977f6549cf3a0660b92ecb8a5a59eab22e025))
+
+
+
+
+
 ## [1.1.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.2...@kiva/kv-shop@1.1.3) (2023-05-26)
 
 
