@@ -2,7 +2,7 @@
 const getCookieValue = (name: string) => {
 	if (typeof document !== undefined) {
 		// From: https://stackoverflow.com/a/25490531
-		return document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || '';
+		return decodeURIComponent(document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || '');
 	}
 };
 
