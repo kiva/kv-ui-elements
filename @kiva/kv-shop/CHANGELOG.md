@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.5...@kiva/kv-shop@1.1.6) (2023-05-26)
+
+
+### Bug Fixes
+
+* always throwing error due to reading from undefined ([b6988a4](https://github.com/kiva/kv-ui-elements/commit/b6988a4f7cf77962932aa16c23c9d475b400f621))
+
+
+
+
+
 ## [1.1.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.4...@kiva/kv-shop@1.1.5) (2023-05-26)
 
 **Note:** Version bump only for package @kiva/kv-shop
