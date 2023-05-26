@@ -27,8 +27,8 @@ export async function getClientToken(apollo: any) {
 		}`,
 	});
 
-	if (error || errors.length) {
-		throw parseShopError(error ?? errors[0]);
+	if (error || errors?.length) {
+		throw parseShopError(error ?? errors?.[0]);
 	}
 
 	return data?.shop?.getClientToken;

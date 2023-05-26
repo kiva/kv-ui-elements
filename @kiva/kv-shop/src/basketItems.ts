@@ -32,11 +32,10 @@ export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) 
 				basketId: getBasketID(),
 			},
 		});
-
-		if (result.error || result.errors.length) {
-			error = result.error ?? result.errors[0];
+		if (result?.error || result?.errors?.length) {
+			error = result?.error ?? result?.errors?.[0];
 		} else {
-			data = result.data;
+			data = result?.data;
 		}
 	} catch (e) {
 		error = e;
