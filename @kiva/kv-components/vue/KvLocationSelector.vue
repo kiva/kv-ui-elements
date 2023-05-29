@@ -216,13 +216,6 @@ export default {
 			return total;
 		};
 
-		watch(regions, (val) => {
-			if (displayedRegions.value.sort().toString() !== val.sort().toString()) {
-				displayedRegions.value = val;
-			}
-			resetCountries();
-		});
-
 		watch(activeIsoCodes, (val) => {
 			if (selected.value.sort().toString() !== val.sort().toString()) {
 				selected.value = val;
