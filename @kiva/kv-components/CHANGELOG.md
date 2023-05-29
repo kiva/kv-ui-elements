@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.22.1...@kiva/kv-components@3.22.2) (2023-05-29)
+
+
+### Bug Fixes
+
+* regions watcher removed from location selector ([#255](https://github.com/kiva/kv-ui-elements/issues/255)) ([69a5c7b](https://github.com/kiva/kv-ui-elements/commit/69a5c7b8430f1732fb04d08aa2a6b4768720dbf4))
+
+
+
+
+
 ## [3.22.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.22.0...@kiva/kv-components@3.22.1) (2023-05-26)
 
 **Note:** Version bump only for package @kiva/kv-components
