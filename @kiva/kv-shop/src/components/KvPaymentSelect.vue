@@ -123,7 +123,7 @@ export default defineComponent({
 					});
 				} catch (e) {
 					if (e instanceof Error) {
-						showError(e.message);
+						showError(e?.message);
 					} else {
 						showError('An Error has occured. Please refresh the page and try again.');
 					}

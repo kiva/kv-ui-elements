@@ -64,13 +64,15 @@ export async function executeNewSubscriptionCheckout({
 	let data;
 	let error;
 	try {
-		const result = await apollo.query({
+		const result = await apollo.mutate({
 			variables: {
-				dayOfMonth,
-				deviceData,
 				nonce,
+				deviceData,
+				amount,
+				donateAmount,
+				dayOfMonth,
 			},
-			query: gql`mutation createAutoDepositSubscription(
+			mutation: gql`mutation createAutoDepositSubscription(
 				$nonce: String!,
 				$deviceData: String,
 				$amount: Money!,
@@ -106,7 +108,7 @@ export async function executeNewSubscriptionCheckout({
 	if (error) {
 		const parsed = parseShopError(error);
 
-		if (parsed.code === 'shop.unknown') {
+		if (parsed?.code === 'shop.unknown') {
 			throw new ShopError({
 				code: 'shop.createAutoDepositError',
 				original: parsed,

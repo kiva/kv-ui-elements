@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.7...@kiva/kv-shop@1.1.8) (2023-05-30)
+
+
+### Bug Fixes
+
+* graphql mutation error ([ad60280](https://github.com/kiva/kv-ui-elements/commit/ad60280446dd3d6e710e0576de9cf95769dd49cd))
+
+
+
+
+
+## [1.1.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.6...@kiva/kv-shop@1.1.7) (2023-05-29)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [1.1.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.5...@kiva/kv-shop@1.1.6) (2023-05-26)
 
 
