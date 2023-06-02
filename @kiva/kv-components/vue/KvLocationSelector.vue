@@ -68,7 +68,7 @@
 		</fieldset>
 		<div class="tw-hidden md:tw-flex tw-gap-2 tw-justify-end tw-mt-1.5">
 			<button
-				class="tw-text-link"
+				class="tw-text-black"
 				@click="resetCountries"
 			>
 				Reset country selection
