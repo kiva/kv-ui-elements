@@ -24,7 +24,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		const sortedCategories = [...allFacets?.categoryFacets ?? []].sort(
 			// eslint-disable-next-line no-nested-ternary

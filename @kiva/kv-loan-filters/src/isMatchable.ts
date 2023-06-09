@@ -44,6 +44,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformRadioGroupOptions(
 		[{ name: MATCHED_LOANS_KEY }],
 		[MATCHED_LOANS_KEY],
