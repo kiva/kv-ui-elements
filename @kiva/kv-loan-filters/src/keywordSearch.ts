@@ -22,6 +22,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => [],
 	showSavedSearch: (loanSearchState) => !!loanSearchState.keywordSearch,
 	getFilterChips: (loanSearchState) => {
