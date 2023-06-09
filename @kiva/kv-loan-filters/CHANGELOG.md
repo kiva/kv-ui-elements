@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.3.0...@kiva/kv-loan-filters@1.3.1) (2023-06-09)
+
+
+### Bug Fixes
+
+* ignore the linting warnings for now ([4b11986](https://github.com/kiva/kv-ui-elements/commit/4b1198690d6de7a54962e437f9c2325a623d8987))
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.2.0...@kiva/kv-loan-filters@1.3.0) (2023-05-18)
 
 

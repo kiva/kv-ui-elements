@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.22.3...@kiva/kv-components@3.23.0) (2023-06-09)
+
+
+### Features
+
+* location selector no longer being used ([bdf5452](https://github.com/kiva/kv-ui-elements/commit/bdf5452ec359b040cd7a904678422c3ae540889c))
+
+
+
+
+
 ## [3.22.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.22.2...@kiva/kv-components@3.22.3) (2023-06-02)
 
 **Note:** Version bump only for package @kiva/kv-components
