@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.23.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.23.0...@kiva/kv-components@3.23.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* **KvLightbox:** use all available space for title instead of sharing with close button ([21db7b9](https://github.com/kiva/kv-ui-elements/commit/21db7b905119276e2fe21d4e31b4b73bc1e780d1))
+
+
+
+
+
 # [3.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.22.3...@kiva/kv-components@3.23.0) (2023-06-09)
 
 
