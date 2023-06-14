@@ -55,6 +55,10 @@ export default {
 
 		return { category, ...categoryFilters };
 	},
-	getFilterFromQuery: () => ({}),
-	getQueryFromFilter: () => ({}),
+	getFilterFromQuery: (query) => ({
+		category: query.category ?? null,
+	}),
+	getQueryFromFilter: (loanSearchState) => ({
+		...(loanSearchState.category && { category: loanSearchState.category }),
+	}),
 };

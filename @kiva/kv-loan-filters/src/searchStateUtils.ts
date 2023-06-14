@@ -34,7 +34,14 @@ export const getValidatedSearchState = (loanSearchState, allFacets, queryType) =
  * @param previousState The previous search state
  * @returns Promise for the results of the mutation
  */
-export const updateSearchState = async (apollo, mutation, loanQueryFilters, allFacets, queryType, previousState) => {
+export const updateSearchState = async (
+	apollo,
+	mutation,
+	loanQueryFilters,
+	allFacets,
+	queryType,
+	previousState = {},
+) => {
 	const validatedPreviousFilters = getValidatedSearchState(previousState, allFacets, queryType);
 	const validatedFilters = getValidatedSearchState(loanQueryFilters, allFacets, queryType);
 

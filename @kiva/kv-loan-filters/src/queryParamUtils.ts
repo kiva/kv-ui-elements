@@ -42,17 +42,18 @@ export const convertQueryToFilters = (query, allFacets, queryType, pageLimit) =>
  * route change, and it enables watching the browser navigation via back/forward buttons to update filters
  *
  * @param loanSearchState The current loan search state from Apollo
- * @param router The Vue Router object
+ * @param currentRoute The current route from the Vue Router
+ * @param push The push method from the Vue Router
  * @param queryType The current query type (lend vs FLSS)
  */
-export const updateQueryParams = (loanSearchState, router, queryType) => {
-	const oldParamKeys = Object.keys(router.currentRoute.query);
+export const updateQueryParams = (loanSearchState, currentRoute, push, queryType) => {
+	const oldParamKeys = Object.keys(currentRoute.query);
 
 	// Preserve UTM params
 	const utmParams = {};
 	oldParamKeys.forEach((key) => {
 		if (key.includes('utm_')) {
-			utmParams[key] = router.currentRoute.query[key];
+			utmParams[key] = currentRoute.query[key];
 		}
 	});
 
@@ -64,14 +65,6 @@ export const updateQueryParams = (loanSearchState, router, queryType) => {
 		...utmParams,
 	};
 
-	const newParamKeys = Object.keys(newParams);
-
-	// Check if the query params differ from current route query params
-	const doParamsMatch = [...newParamKeys, ...oldParamKeys]
-		.reduce((prev, key) => prev && router.currentRoute.query[key] === newParams[key], true);
-
-	// Vue throws duplicate navigation exception when identical paths are pushed to the router
-	if (!doParamsMatch) {
-		return router.push({ ...router.currentRoute, query: newParams, params: { noScroll: true, noAnalytics: true } });
-	}
+	// Params cleared due to needing to remove category from URL
+	return push({ ...currentRoute, query: newParams, params: {} });
 };

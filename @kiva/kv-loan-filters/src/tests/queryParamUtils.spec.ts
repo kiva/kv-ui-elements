@@ -59,7 +59,7 @@ describe('queryParamUtils.ts', () => {
 		it('should call filterUtils', () => {
 			const router = getRouter();
 
-			updateQueryParams({}, router, FLSS_QUERY_TYPE);
+			updateQueryParams({}, router.currentRoute, router.push, FLSS_QUERY_TYPE);
 
 			expect(filterUtils.filters.regions.getQueryFromFilter).toHaveBeenCalledTimes(1);
 			expect(filterUtils.filters.regions.getQueryFromFilter).toHaveBeenCalledWith({}, FLSS_QUERY_TYPE);
@@ -68,28 +68,20 @@ describe('queryParamUtils.ts', () => {
 			expect(router.push).toHaveBeenCalledWith({
 				name: 'name',
 				query: { a: 'a', b: 'b' },
-				params: { noScroll: true, noAnalytics: true },
+				params: {},
 			});
 		});
 
 		it('should preserve UTM params', () => {
 			const router = getRouter({ utm_test: 'test' });
 
-			updateQueryParams({}, router, FLSS_QUERY_TYPE);
+			updateQueryParams({}, router.currentRoute, router.push, FLSS_QUERY_TYPE);
 
 			expect(router.push).toHaveBeenCalledWith({
 				name: 'name',
 				query: { a: 'a', b: 'b', utm_test: 'test' },
-				params: { noScroll: true, noAnalytics: true },
+				params: {},
 			});
-		});
-
-		it('should not push identical query string', () => {
-			const router = getRouter({ a: 'a', b: 'b' });
-
-			updateQueryParams({ a: 'a', b: 'b' }, router, FLSS_QUERY_TYPE);
-
-			expect(router.push).toHaveBeenCalledTimes(0);
 		});
 	});
 });
