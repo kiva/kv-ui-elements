@@ -63,7 +63,7 @@
 								tw-p-2.5 md:tw-px-4 md:tw-pt-4 md:tw-pb-3.5
 							"
 						>
-							<div>
+							<div class="tw-flex-grow">
 								<!-- @slot header -->
 								<slot name="header">
 									<h2	class="tw-text-h3 tw-flex-1">
