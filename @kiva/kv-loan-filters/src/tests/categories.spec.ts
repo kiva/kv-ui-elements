@@ -90,5 +90,37 @@ describe('categories.ts', () => {
 				});
 			});
 		});
+
+		describe('getFilterFromQuery', () => {
+			it('should handle missing category', () => {
+				const result = categories.getFilterFromQuery({});
+
+				expect(result).toEqual({ category: null });
+			});
+
+			it('should get filter', () => {
+				const query = { category: 2 };
+
+				const result = categories.getFilterFromQuery(query);
+
+				expect(result).toEqual({ category: 2 });
+			});
+		});
+
+		describe('getQueryFromFilter', () => {
+			it('should handle missing category', () => {
+				const result = categories.getQueryFromFilter({});
+
+				expect(result).toEqual({});
+			});
+
+			it('should push category', () => {
+				const state = { category: 2 };
+
+				const result = categories.getQueryFromFilter(state);
+
+				expect(result).toEqual({ category: 2 });
+			});
+		});
 	});
 });
