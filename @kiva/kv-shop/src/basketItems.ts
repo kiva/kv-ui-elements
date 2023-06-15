@@ -49,7 +49,7 @@ export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) 
 			});
 
 			if (hasFailedAddToBasket) {
-				handleInvalidBasketForDonation({
+				await handleInvalidBasketForDonation({
 					donationAmount,
 					navigateToCheckout: true,
 					apollo,
