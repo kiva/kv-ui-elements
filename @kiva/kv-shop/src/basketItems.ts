@@ -1,4 +1,4 @@
-import { gql, ApolloClient } from '@apollo/client/core';
+import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client/core';
 import numeral from 'numeral';
 import { GraphQLErrors } from '@apollo/client/errors';
 import { getBasketID, hasBasketExpired, handleInvalidBasketForDonation } from './basket';
@@ -6,7 +6,7 @@ import { parseShopError } from './shopError';
 
 export interface SetTipDonationOptions {
 	amount: string | number,
-	apollo: ApolloClient<any>,
+	apollo: ApolloClient<NormalizedCacheObject>,
 }
 
 export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
