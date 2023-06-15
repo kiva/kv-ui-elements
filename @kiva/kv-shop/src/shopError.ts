@@ -35,6 +35,12 @@ export function parseShopError(error: any) {
 			original: error,
 		}, 'There was a problem validating your payment information. Please double-check the details and try again.');
 	}
+	if (errorCode === 'shop.invalidBasketId' || errorCode === 'shop.basketRequired') {
+		return new ShopError({
+			code: errorCode,
+			original: error,
+		}, 'There was a problem with your donation, refreshing the page to try again.');
+	}
 
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...
 

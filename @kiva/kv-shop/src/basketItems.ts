@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
-import { getBasketID } from './basket';
+import { getBasketID, hasBasketExpired, handleInvalidBasketForDonation } from './basket';
 import { parseShopError } from './shopError';
 
 export interface SetTipDonationOptions {
@@ -11,6 +11,8 @@ export interface SetTipDonationOptions {
 export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
 	let data;
 	let error;
+	let hasFailedAddToBasket = false;
+	const donationAmount = numeral(amount).format('0.00');
 	try {
 		const result = await apollo.mutate({
 			mutation: gql`mutation setTipDonation($price: Money!, $basketId: String) {
@@ -28,12 +30,29 @@ export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) 
 				}
 			}`,
 			variables: {
-				price: numeral(amount).format('0.00'),
+				price: donationAmount,
 				basketId: getBasketID(),
 			},
 		});
 		if (result?.error || result?.errors?.length) {
 			error = result?.error ?? result?.errors?.[0];
+			result?.errors?.forEach((err: any) => {
+				if (hasBasketExpired(err?.extensions?.code)) {
+					hasFailedAddToBasket = true;
+					error = {
+						...err,
+						code: err?.extensions?.code,
+					};
+				}
+			});
+
+			if (hasFailedAddToBasket) {
+				handleInvalidBasketForDonation({
+					donationAmount,
+					navigateToCheckout: true,
+					apollo,
+				});
+			}
 		} else {
 			data = result?.data;
 		}
