@@ -1,11 +1,12 @@
-import { gql } from '@apollo/client/core';
+import { gql, ApolloClient } from '@apollo/client/core';
 import numeral from 'numeral';
+import { GraphQLErrors } from '@apollo/client/errors';
 import { getBasketID, hasBasketExpired, handleInvalidBasketForDonation } from './basket';
 import { parseShopError } from './shopError';
 
 export interface SetTipDonationOptions {
 	amount: string | number,
-	apollo: any,
+	apollo: ApolloClient<any>,
 }
 
 export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
@@ -34,14 +35,15 @@ export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) 
 				basketId: getBasketID(),
 			},
 		});
-		if (result?.error || result?.errors?.length) {
-			error = result?.error ?? result?.errors?.[0];
-			result?.errors?.forEach((err: any) => {
+		if (result?.errors?.length) {
+			error = result?.errors?.[0];
+			(result?.errors as GraphQLErrors ?? []).forEach((err) => {
 				if (hasBasketExpired(err?.extensions?.code)) {
 					hasFailedAddToBasket = true;
 					error = {
 						...err,
 						code: err?.extensions?.code,
+						ctxErrorMsg: 'Something went wrong with your donation, refreshing the page to try again',
 					};
 				}
 			});

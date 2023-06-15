@@ -37,8 +37,10 @@ export function hasBasketExpired(errorCode) {
 }
 
 export async function handleInvalidBasketForDonation({ donationAmount, navigateToCheckout = false, apollo }) {
-	document.cookie = `kvbskt=; expires=${new Date(0).toUTCString()}; path=/;`;
-	await createBasket(apollo);
-	document.cookie = `kvatbamt=${JSON.stringify({ donationAmount, navigateToCheckout })}; path=/;`;
-	window.location.reload();
+	if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+		document.cookie = `kvbskt=; expires=${new Date(0).toUTCString()}; path=/;`;
+		await createBasket(apollo);
+		document.cookie = `kvatbamt=${JSON.stringify({ donationAmount, navigateToCheckout })}; path=/;`;
+		window.location.reload();
+	}
 }

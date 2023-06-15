@@ -22,7 +22,6 @@ import KvToast from '@kiva/kv-components/vue/KvToast.vue';
 import type { PropType } from 'vue-demi';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
-import { getCookieValue } from '../basket';
 
 export default defineComponent({
 	components: {

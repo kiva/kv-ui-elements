@@ -25,6 +25,7 @@ export class ShopError extends Error {
 export function parseShopError(error: any) {
 	const errorCode = error?.code ?? error?.name ?? '';
 	const errorMessage = typeof error === 'string' ? error : error?.message ?? '';
+	const ctxErrorMsg = error?.ctxErrorMsg ?? null;
 
 	// Handle errors (`${code}: ${message}`) similar to:
 	// invalidMethodParameter: paymentMethod.create (findOrCreatePaymentMethodFromNonce) request was not made due to validation errors: Credit card type is not accepted by this merchant account.
@@ -39,7 +40,7 @@ export function parseShopError(error: any) {
 		return new ShopError({
 			code: errorCode,
 			original: error,
-		}, 'There was a problem with your donation, refreshing the page to try again.');
+		}, ctxErrorMsg ?? 'Something went wrong. Please, refresh the page and try again.');
 	}
 
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...
