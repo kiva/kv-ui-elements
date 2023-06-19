@@ -25,6 +25,7 @@ export class ShopError extends Error {
 export function parseShopError(error: any) {
 	const errorCode = error?.code ?? error?.name ?? '';
 	const errorMessage = typeof error === 'string' ? error : error?.message ?? '';
+	const ctxErrorMsg = error?.ctxErrorMsg ?? null;
 
 	// Handle errors (`${code}: ${message}`) similar to:
 	// invalidMethodParameter: paymentMethod.create (findOrCreatePaymentMethodFromNonce) request was not made due to validation errors: Credit card type is not accepted by this merchant account.
@@ -34,6 +35,12 @@ export function parseShopError(error: any) {
 			code: 'paymentMethod.create.invalidMethodParameter',
 			original: error,
 		}, 'There was a problem validating your payment information. Please double-check the details and try again.');
+	}
+	if (errorCode === 'shop.invalidBasketId' || errorCode === 'shop.basketRequired') {
+		return new ShopError({
+			code: errorCode,
+			original: error,
+		}, ctxErrorMsg ?? 'Something went wrong. Please, refresh the page and try again.');
 	}
 
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...

@@ -1,16 +1,19 @@
-import { gql } from '@apollo/client/core';
+import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client/core';
 import numeral from 'numeral';
-import { getBasketID } from './basket';
+import { GraphQLErrors } from '@apollo/client/errors';
+import { getBasketID, hasBasketExpired, handleInvalidBasketForDonation } from './basket';
 import { parseShopError } from './shopError';
 
 export interface SetTipDonationOptions {
 	amount: string | number,
-	apollo: any,
+	apollo: ApolloClient<NormalizedCacheObject>,
 }
 
 export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
 	let data;
 	let error;
+	let hasFailedAddToBasket = false;
+	const donationAmount = numeral(amount).format('0.00');
 	try {
 		const result = await apollo.mutate({
 			mutation: gql`mutation setTipDonation($price: Money!, $basketId: String) {
@@ -28,12 +31,30 @@ export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) 
 				}
 			}`,
 			variables: {
-				price: numeral(amount).format('0.00'),
+				price: donationAmount,
 				basketId: getBasketID(),
 			},
 		});
-		if (result?.error || result?.errors?.length) {
-			error = result?.error ?? result?.errors?.[0];
+		if (result?.errors?.length) {
+			error = result?.errors?.[0];
+			(result?.errors as GraphQLErrors ?? []).forEach((err) => {
+				if (hasBasketExpired(err?.extensions?.code)) {
+					hasFailedAddToBasket = true;
+					error = {
+						...err,
+						code: err?.extensions?.code,
+						ctxErrorMsg: 'Something went wrong with your donation, refreshing the page to try again',
+					};
+				}
+			});
+
+			if (hasFailedAddToBasket) {
+				await handleInvalidBasketForDonation({
+					donationAmount,
+					navigateToCheckout: true,
+					apollo,
+				});
+			}
 		} else {
 			data = result?.data;
 		}
