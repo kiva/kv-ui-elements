@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.11...@kiva/kv-shop@1.2.0) (2023-06-19)
+
+
+### Bug Fixes
+
+* cleaning and adding apollo types ([660d7f8](https://github.com/kiva/kv-ui-elements/commit/660d7f8b09998c93f9589b8ff4a53f353f317e0b))
+
+
+### Features
+
+* handle invalid basketId on new donation module ([5f40e57](https://github.com/kiva/kv-ui-elements/commit/5f40e57f0a016cc6cc72148e1238cb7f548de0e5))
+
+
+
+
+
 ## [1.1.11](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.1.10...@kiva/kv-shop@1.1.11) (2023-06-14)
 
 **Note:** Version bump only for package @kiva/kv-shop
