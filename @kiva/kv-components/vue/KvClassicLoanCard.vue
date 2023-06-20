@@ -205,6 +205,10 @@
 				:show-view-loan="showViewLoan"
 				:custom-loan-details="customLoanDetails"
 				:external-links="externalLinks"
+				:route="route"
+				:user-balance="userBalance"
+				:get-cookie="getCookie"
+				:set-cookie="setCookie"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
@@ -303,6 +307,22 @@ export default {
 		externalLinks: {
 			type: Boolean,
 			default: false,
+		},
+		route: {
+			type: String,
+			default: undefined,
+		},
+		userBalance: {
+			type: String,
+			default: undefined,
+		},
+		getCookie: {
+			type: Function,
+			default: undefined,
+		},
+		setCookie: {
+			type: Function,
+			default: undefined,
 		},
 	},
 	data() {

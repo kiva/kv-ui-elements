@@ -132,6 +132,7 @@ import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import { getLendCtaSelectedOption } from '../utils/loanUtils';
 
 export default {
 	name: 'KvLendCta',
@@ -178,11 +179,34 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		route: {
+			type: String,
+			default: undefined,
+		},
+		userBalance: {
+			type: String,
+			default: undefined,
+		},
+		getCookie: {
+			type: Function,
+			default: undefined,
+		},
+		setCookie: {
+			type: Function,
+			default: undefined,
+		},
 	},
 	data() {
 		return {
 			mdiChevronRight,
-			selectedOption: this.getSelectedOption(this.loan?.unreservedAmount),
+			selectedOption: getLendCtaSelectedOption(
+				this.getCookie,
+				this.setCookie,
+				this.enableFiveDollarsNotes,
+				this.route?.query?.utm_campaign,
+				this.loan?.unreservedAmount,
+				this.userBalance,
+			),
 		};
 	},
 	computed: {
@@ -313,7 +337,14 @@ export default {
 	watch: {
 		unreservedAmount(newValue, previousValue) {
 			if (newValue !== previousValue && previousValue === '') {
-				this.selectedOption = this.getSelectedOption(newValue);
+				this.selectedOption = getLendCtaSelectedOption(
+					this.getCookie,
+					this.setCookie,
+					this.enableFiveDollarsNotes,
+					this.route?.query?.utm_campaign,
+					newValue,
+					this.userBalance,
+				);
 			}
 		},
 	},
@@ -336,12 +367,6 @@ export default {
 		},
 		isAmountBetween25And500(unreservedAmount) {
 			return unreservedAmount < 500 && unreservedAmount >= 25;
-		},
-		getSelectedOption(unreservedAmount) {
-			if (this.isAmountBetween25And50(unreservedAmount) || this.isAmountLessThan25(unreservedAmount)) {
-				return Number(unreservedAmount).toFixed();
-			}
-			return '25';
 		},
 		trackLendAmountSelection(selectedDollarAmount) {
 			this.kvTrackFunction(
