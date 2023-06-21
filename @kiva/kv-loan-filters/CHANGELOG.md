@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.4.0...@kiva/kv-loan-filters@1.5.0) (2023-06-21)
+
+
+### Features
+
+* activity ID should handle empty array ([dda1db0](https://github.com/kiva/kv-ui-elements/commit/dda1db0ab9ba292126d947716497895cc5e20672))
+
+
+
+
+
 # [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.3.1...@kiva/kv-loan-filters@1.4.0) (2023-06-14)
 
 
