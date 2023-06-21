@@ -1,8 +1,5 @@
 <template>
-	<kv-button
-		:state="buttonState"
-		@click="addToBasket"
-	>
+	<kv-button @click="addToBasket">
 		{{ buttonText }}
 	</kv-button>
 </template>
