@@ -29,7 +29,7 @@ export default {
 	getRemovedFacet: () => ({}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
-		...(loanSearchState?.activityId && { activityId: { any: loanSearchState.activityId } }),
+		...(loanSearchState?.activityId?.length && { activityId: { any: loanSearchState.activityId } }),
 	}),
 	getValidatedSearchState: () => ({}),
 	getFilterFromQuery: () => ({}),

@@ -8,7 +8,7 @@ describe('activities.ts', () => {
 			});
 
 			it('should handle empty', () => {
-				expect(activities.getFlssFilter({ activityId: null })).toEqual({});
+				expect(activities.getFlssFilter({ activityId: [] })).toEqual({});
 			});
 
 			it('should return filters', () => {
