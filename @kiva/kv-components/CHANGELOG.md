@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.24.0...@kiva/kv-components@3.25.0) (2023-06-21)
+
+
+### Features
+
+* fix prop type for route ([2102672](https://github.com/kiva/kv-ui-elements/commit/21026721bc62c6a71ec182e62396bdc0e8b3617c))
+
+
+
+
+
 # [3.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.23.1...@kiva/kv-components@3.24.0) (2023-06-21)
 
 
