@@ -31,7 +31,11 @@ export default {
 	getFlssFilter: (loanSearchState) => ({
 		...(loanSearchState?.activityId?.length && { activityId: { any: loanSearchState.activityId } }),
 	}),
-	getValidatedSearchState: () => ({}),
+	getValidatedSearchState: (loanSearchState) => ({
+		// Don't worry about validating activity ID filter for now against available facets
+		// We don't display the filter in the UI and only use it for a small number of categories
+		activityId: loanSearchState?.activityId ?? [],
+	}),
 	getFilterFromQuery: () => ({}),
 	getQueryFromFilter: () => ({}),
 };
