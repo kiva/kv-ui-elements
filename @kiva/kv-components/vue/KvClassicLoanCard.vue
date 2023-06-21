@@ -309,7 +309,7 @@ export default {
 			default: false,
 		},
 		route: {
-			type: String,
+			type: Object,
 			default: undefined,
 		},
 		userBalance: {
