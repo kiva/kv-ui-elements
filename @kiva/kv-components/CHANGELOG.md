@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.23.1...@kiva/kv-components@3.24.0) (2023-06-21)
+
+
+### Features
+
+* add support for $5 notes default lend CTA dropdown selected amount changing for ERL ([bac6944](https://github.com/kiva/kv-ui-elements/commit/bac69444b032c9b42c25f6359baf7c4a03eb651b))
+
+
+
+
+
 ## [3.23.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.23.0...@kiva/kv-components@3.23.1) (2023-06-14)
 
 
