@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.5.0...@kiva/kv-loan-filters@1.6.0) (2023-06-21)
+
+
+### Bug Fixes
+
+* tests for previous commit ([d7ef9f4](https://github.com/kiva/kv-ui-elements/commit/d7ef9f4749e06e43b28c2bdac6e63bf5329b69a6))
+
+
+### Features
+
+* activity ID wasn't returning for validated search state ([fae691a](https://github.com/kiva/kv-ui-elements/commit/fae691a244f47e431dedec8f38017b2c8a89c6ac))
+
+
+
+
+
 # [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.4.0...@kiva/kv-loan-filters@1.5.0) (2023-06-21)
 
 
