@@ -66,7 +66,7 @@
 						style="border-radius: 14px 0 0 14px;"
 						aria-label="Lend amount"
 						@update:modelValue="trackLendAmountSelection"
-						@click.native="clickDropdown"
+						@click.native.stop="clickDropdown"
 					>
 						<option
 							v-for="priceOption in prices"
