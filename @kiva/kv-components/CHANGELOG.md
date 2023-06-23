@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.25.0...@kiva/kv-components@3.26.0) (2023-06-23)
+
+
+### Features
+
+* lend amount CTA double event stop ([70997d5](https://github.com/kiva/kv-ui-elements/commit/70997d571940eb4f4a914c1a216bdcf64142954d))
+
+
+
+
+
 # [3.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.24.0...@kiva/kv-components@3.25.0) (2023-06-21)
 
 
