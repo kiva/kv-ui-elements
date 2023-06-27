@@ -100,6 +100,7 @@
 					:to="readMorePath"
 					:href="readMorePath"
 					class="loan-card-use tw-text-primary"
+					:class="{ 'tw-pointer-events-none' : isLoading }"
 					aria-label="Loan use"
 					@click="clickReadMore('Use')"
 				>
