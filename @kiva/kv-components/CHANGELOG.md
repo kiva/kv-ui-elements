@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.26.0...@kiva/kv-components@3.27.0) (2023-06-27)
+
+
+### Features
+
+* disabling to click loan use when loading ([#269](https://github.com/kiva/kv-ui-elements/issues/269)) ([625afb2](https://github.com/kiva/kv-ui-elements/commit/625afb201bbd6a805516297946c0a428f1c4da50))
+
+
+
+
+
 # [3.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.25.0...@kiva/kv-components@3.26.0) (2023-06-23)
 
 
