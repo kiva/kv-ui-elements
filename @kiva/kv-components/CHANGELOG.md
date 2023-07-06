@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.27.0...@kiva/kv-components@3.28.0) (2023-07-06)
+
+
+### Features
+
+* avoid image bug for tiny screens ([#270](https://github.com/kiva/kv-ui-elements/issues/270)) ([d59aa72](https://github.com/kiva/kv-ui-elements/commit/d59aa72fa49605bcf5b7d88ed9efed28bc804d14))
+
+
+
+
+
 # [3.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.26.0...@kiva/kv-components@3.27.0) (2023-06-27)
 
 
