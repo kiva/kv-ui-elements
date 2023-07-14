@@ -1,23 +1,27 @@
 <template>
 	<div
-		v-if="!!variation && timeLeft >= 0"
+		v-if="!!variation"
 		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
 		style="color: #CE4A00;"
 	>
 		{{ tagText }}
-		<span v-if="variation === 'ending-soon' && isMounted">
-			{{ timeLeft.hours() }}h {{ timeLeft.minutes() }}m {{ timeLeft.seconds() }}s
-		</span>
+		<kv-countdown-timer
+			v-if="variation === 'ending-soon'"
+			:ms-left="msLeft"
+		/>
 	</div>
 </template>
 
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
 import numeral from 'numeral';
-import moment from 'moment';
+import KvCountdownTimer from './KvCountdownTimer.vue';
 
 export default {
 	name: 'KvLoanTag',
+	components: {
+		KvCountdownTimer,
+	},
 	props: {
 		loan: {
 			type: Object,
@@ -29,12 +33,9 @@ export default {
 		},
 	},
 	data() {
-		const msLeft = parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime();
-
 		return {
 			interval: null,
-			isMounted: false,
-			timeLeft: moment.duration(msLeft > 0 ? msLeft : 0, 'milliseconds'),
+			msLeft: parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime(),
 		};
 	},
 	computed: {
@@ -62,41 +63,6 @@ export default {
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;
-		},
-	},
-	mounted() {
-		this.isMounted = true;
-
-		const countdownInterval = 1000;
-
-		this.interval = setInterval(() => {
-			this.timeLeft = moment.duration(this.timeLeft - countdownInterval, 'milliseconds');
-
-			if (this.timeLeft < 0) {
-				clearInterval(this.interval);
-			}
-		}, countdownInterval);
-	},
-	onBeforeDestroy() {
-		clearInterval(this.interval);
-	},
-	methods: {
-		transform(props) {
-			Object.entries(props).forEach(([key, value]) => {
-				// Adds leading zero
-				if (value < 10) {
-					// eslint-disable-next-line no-param-reassign
-					props[key] = `0${value}`;
-				} else {
-					// eslint-disable-next-line no-param-reassign
-					props[key] = value;
-				}
-			});
-
-			// Adds days to hours
-			// eslint-disable-next-line radix, no-param-reassign
-			props.hours = parseInt(props.hours) + parseInt(props.days) * 24;
-			return props;
 		},
 	},
 };
