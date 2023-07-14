@@ -1,4 +1,5 @@
 import KvLoanTag from '../KvLoanTag.vue';
+import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
 	title: 'KvLoanTag',
@@ -8,7 +9,10 @@ export default {
 const story = (args) => {
 	const template = (_args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { KvLoanTag },
+		components: {
+			KvLoanTag,
+			KvCountdownTimer,
+		},
 		template: `
 			<kv-loan-tag
 				:loan="loan"
@@ -26,7 +30,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
 
-const kvTrackFunction = () => {};
+const kvTrackFunction = () => { };
 
 export const EndingSoon = story({ loan: { plannedExpirationDate: tomorrow.toISOString() }, kvTrackFunction });
 

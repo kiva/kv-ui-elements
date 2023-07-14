@@ -1,36 +1,27 @@
 <template>
 	<div
-		v-if="!!variation && timeLeftMs > 0"
+		v-if="!!variation"
 		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
 		style="color: #CE4A00;"
 	>
 		{{ tagText }}
-		<!-- TODO: ensure countdown works in Vue 3 apps -->
-		<!-- <vue-countdown
-			v-if="variation === 'ending-soon' && isMounted"
-			:time="timeLeftMs"
-			:emit-events="false"
-			:transform="transform"
-		>
-			<template slot-scope="props">
-				{{ props.hours }}h {{ props.minutes }}m {{ props.seconds }}s
-			</template>
-		</vue-countdown> -->
+		<kv-countdown-timer
+			v-if="variation === 'ending-soon'"
+			:ms-left="msLeft"
+		/>
 	</div>
 </template>
 
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
-// TODO: ensure countdown works in Vue 3 apps
-// import VueCountdown from '@chenfengyuan/vue-countdown';
 import numeral from 'numeral';
+import KvCountdownTimer from './KvCountdownTimer.vue';
 
 export default {
 	name: 'KvLoanTag',
-	// TODO: ensure countdown works in Vue 3 apps
-	// components: {
-	// 	VueCountdown,
-	// },
+	components: {
+		KvCountdownTimer,
+	},
 	props: {
 		loan: {
 			type: Object,
@@ -43,7 +34,8 @@ export default {
 	},
 	data() {
 		return {
-			isMounted: false,
+			interval: null,
+			msLeft: parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime(),
 		};
 	},
 	computed: {
@@ -66,47 +58,11 @@ export default {
 			switch (this.variation) {
 				case 'almost-funded': return 'Almost funded';
 				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
-				default: return 'Ending soon';
-				// TODO: ensure countdown works in Vue 3 apps
-				// default: return 'Ending soon: ';
+				default: return 'Ending soon: ';
 			}
-		},
-		timeLeftMs() {
-			const msLeft = parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime();
-			return msLeft > 0 ? msLeft : 0;
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;
-		},
-	},
-	mounted() {
-		this.isMounted = true;
-
-		if (this.variation) {
-			this.kvTrackFunction(
-				'loan-card',
-				'show',
-				`tag-${this.variation}`,
-			);
-		}
-	},
-	methods: {
-		transform(props) {
-			Object.entries(props).forEach(([key, value]) => {
-				// Adds leading zero
-				if (value < 10) {
-					// eslint-disable-next-line no-param-reassign
-					props[key] = `0${value}`;
-				} else {
-					// eslint-disable-next-line no-param-reassign
-					props[key] = value;
-				}
-			});
-
-			// Adds days to hours
-			// eslint-disable-next-line radix, no-param-reassign
-			props.hours = parseInt(props.hours) + parseInt(props.days) * 24;
-			return props;
 		},
 	},
 };
