@@ -1,36 +1,23 @@
 <template>
 	<div
-		v-if="!!variation && timeLeftMs > 0"
+		v-if="!!variation && timeLeft >= 0"
 		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
 		style="color: #CE4A00;"
 	>
 		{{ tagText }}
-		<!-- TODO: ensure countdown works in Vue 3 apps -->
-		<!-- <vue-countdown
-			v-if="variation === 'ending-soon' && isMounted"
-			:time="timeLeftMs"
-			:emit-events="false"
-			:transform="transform"
-		>
-			<template slot-scope="props">
-				{{ props.hours }}h {{ props.minutes }}m {{ props.seconds }}s
-			</template>
-		</vue-countdown> -->
+		<span v-if="variation === 'ending-soon' && isMounted">
+			{{ timeLeft.hours() }}h {{ timeLeft.minutes() }}m {{ timeLeft.seconds() }}s
+		</span>
 	</div>
 </template>
 
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
-// TODO: ensure countdown works in Vue 3 apps
-// import VueCountdown from '@chenfengyuan/vue-countdown';
 import numeral from 'numeral';
+import moment from 'moment';
 
 export default {
 	name: 'KvLoanTag',
-	// TODO: ensure countdown works in Vue 3 apps
-	// components: {
-	// 	VueCountdown,
-	// },
 	props: {
 		loan: {
 			type: Object,
@@ -42,8 +29,12 @@ export default {
 		},
 	},
 	data() {
+		const msLeft = parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime();
+
 		return {
+			interval: null,
 			isMounted: false,
+			timeLeft: moment.duration(msLeft > 0 ? msLeft : 0, 'milliseconds'),
 		};
 	},
 	computed: {
@@ -66,14 +57,8 @@ export default {
 			switch (this.variation) {
 				case 'almost-funded': return 'Almost funded';
 				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
-				default: return 'Ending soon';
-				// TODO: ensure countdown works in Vue 3 apps
-				// default: return 'Ending soon: ';
+				default: return 'Ending soon: ';
 			}
-		},
-		timeLeftMs() {
-			const msLeft = parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime();
-			return msLeft > 0 ? msLeft : 0;
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;
@@ -82,13 +67,18 @@ export default {
 	mounted() {
 		this.isMounted = true;
 
-		if (this.variation) {
-			this.kvTrackFunction(
-				'loan-card',
-				'show',
-				`tag-${this.variation}`,
-			);
-		}
+		const countdownInterval = 1000;
+
+		this.interval = setInterval(() => {
+			this.timeLeft = moment.duration(this.timeLeft - countdownInterval, 'milliseconds');
+
+			if (this.timeLeft < 0) {
+				clearInterval(this.interval);
+			}
+		}, countdownInterval);
+	},
+	onBeforeDestroy() {
+		clearInterval(this.interval);
 	},
 	methods: {
 		transform(props) {
