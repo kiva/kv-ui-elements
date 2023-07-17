@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.30.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.29.0...@kiva/kv-components@3.30.0) (2023-07-17)
+
+
+### Features
+
+* cover the expired edge case ([4e97abf](https://github.com/kiva/kv-ui-elements/commit/4e97abfab4019f08632666f34a931d8a2f89e6d2))
+
+
+
+
+
 # [3.29.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.28.0...@kiva/kv-components@3.29.0) (2023-07-14)
 
 
