@@ -29,19 +29,23 @@ export default {
 		onMounted(() => {
 			timeLeft.value = moment.duration(msLeft.value > 0 ? msLeft.value : 0, 'milliseconds');
 
-			const countdownInterval = 1000;
+			if (timeLeft.value > 0) {
+				const countdownInterval = 1000;
 
-			interval.value = setInterval(() => {
-				timeLeft.value = moment.duration(timeLeft.value - countdownInterval, 'milliseconds');
+				interval.value = setInterval(() => {
+					timeLeft.value = moment.duration(timeLeft.value - countdownInterval, 'milliseconds');
 
-				if (timeLeft.value <= 0) {
-					clearInterval(interval.value);
-				}
-			}, countdownInterval);
+					if (timeLeft.value <= 0) {
+						clearInterval(interval.value);
+					}
+				}, countdownInterval);
+			}
 		});
 
 		onBeforeUnmount(() => {
-			clearInterval(interval.value);
+			if (interval.value) {
+				clearInterval(interval.value);
+			}
 		});
 
 		return { timeLeft };
