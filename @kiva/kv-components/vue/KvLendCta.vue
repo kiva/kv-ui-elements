@@ -195,6 +195,10 @@ export default {
 			type: Function,
 			default: undefined,
 		},
+		fiveDollarsSelected: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -206,6 +210,7 @@ export default {
 				this.route?.query?.utm_campaign,
 				this.loan?.unreservedAmount,
 				this.userBalance,
+				this.fiveDollarsSelected,
 			),
 		};
 	},
@@ -344,6 +349,7 @@ export default {
 					this.route?.query?.utm_campaign,
 					newValue,
 					this.userBalance,
+					this.fiveDollarsSelected,
 				);
 			}
 		},

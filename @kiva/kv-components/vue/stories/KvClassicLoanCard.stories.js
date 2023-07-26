@@ -19,6 +19,7 @@ const story = (args) => {
 					:show-tags="showTags"
 					:category-page-name="categoryPageName"
 					:enable-five-dollars-notes="enableFiveDollarsNotes"
+					:five-dollars-selected="fiveDollarsSelected"
 					:large-card="largeCard"
 					:is-adding="isAdding"
 					:is-visitor="isVisitor"
@@ -202,6 +203,15 @@ export const FiveDollarNotes = story({
 	loanId: loan.id,
 	loan,
 	enableFiveDollarsNotes: true,
+	kvTrackFunction,
+	photoPath,
+});
+
+export const FiveDollarsSelected = story({
+	loanId: loan.id,
+	loan,
+	enableFiveDollarsNotes: true,
+	fiveDollarsSelected: true,
 	kvTrackFunction,
 	photoPath,
 });
