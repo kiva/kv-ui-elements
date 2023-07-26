@@ -77,10 +77,6 @@ export function getLendCtaSelectedOption(
 			// Top up campaign defaults to $5
 			return Number(unreservedAmount > 5 ? 5 : unreservedAmount).toFixed();
 		}
-
-		if (fiveDollarsSelected) {
-			return '5';
-		}
 	}
 
 	if (enableFiveDollarsNotes && fiveDollarsSelected) {
