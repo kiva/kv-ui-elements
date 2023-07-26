@@ -201,6 +201,7 @@
 				:is-loading="isLoading"
 				:is-adding="isAdding"
 				:enable-five-dollars-notes="enableFiveDollarsNotes"
+				:five-dollars-selected="fiveDollarsSelected"
 				:kv-track-function="kvTrackFunction"
 				:show-view-loan="showViewLoan"
 				:custom-loan-details="customLoanDetails"
@@ -323,6 +324,10 @@ export default {
 		setCookie: {
 			type: Function,
 			default: undefined,
+		},
+		fiveDollarsSelected: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {

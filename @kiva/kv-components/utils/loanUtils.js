@@ -40,6 +40,7 @@ export function getLendCtaSelectedOption(
 	campaign,
 	unreservedAmount,
 	userBalance,
+	fiveDollarsSelected,
 ) {
 	// Don't enable the campaign changes when the user balance is undefined (user not logged in)
 	if (enableFiveDollarsNotes && typeof userBalance !== 'undefined') {
@@ -76,6 +77,10 @@ export function getLendCtaSelectedOption(
 			// Top up campaign defaults to $5
 			return Number(unreservedAmount > 5 ? 5 : unreservedAmount).toFixed();
 		}
+	}
+
+	if (enableFiveDollarsNotes && fiveDollarsSelected) {
+		return '5';
 	}
 
 	// Handle when $5 notes isn't enabled

@@ -17,6 +17,7 @@ const story = (args) => {
 					:is-loading="isLoading"
 					:is-adding="isAdding"
 					:enable-five-dollars-notes="enableFiveDollarsNotes"
+					:five-dollars-selected="fiveDollarsSelected"
 					:kv-track-function="kvTrackFunction"
 					:show-view-loan="showViewLoan"
 					:custom-loan-details="customLoanDetails"
@@ -74,6 +75,17 @@ export const FiveDollar = story({
 		unreservedAmount: '150.00',
 	},
 	enableFiveDollarsNotes: true,
+	kvTrackFunction,
+});
+
+export const FiveDollarsSelected = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+	},
+	enableFiveDollarsNotes: true,
+	fiveDollarsSelected: true,
 	kvTrackFunction,
 });
 
