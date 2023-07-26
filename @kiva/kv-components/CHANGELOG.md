@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.31.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.30.0...@kiva/kv-components@3.31.0) (2023-07-26)
+
+
+### Features
+
+* 5 dollars pre select added to loan card components ([#274](https://github.com/kiva/kv-ui-elements/issues/274)) ([1f30146](https://github.com/kiva/kv-ui-elements/commit/1f30146f67ae079eb662cc02403ee9adcfe257ee))
+
+
+
+
+
 # [3.30.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.29.0...@kiva/kv-components@3.30.0) (2023-07-17)
 
 
