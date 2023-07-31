@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.32.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.31.0...@kiva/kv-components@3.32.0) (2023-07-31)
+
+
+### Features
+
+* basic kivaPartner header ([7ec9fd8](https://github.com/kiva/kv-ui-elements/commit/7ec9fd89d50a10bc6f9c796f6395d634842b2f55))
+
+
+
+
+
 # [3.31.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.30.0...@kiva/kv-components@3.31.0) (2023-07-26)
 
 
