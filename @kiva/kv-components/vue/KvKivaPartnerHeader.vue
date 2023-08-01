@@ -32,13 +32,7 @@
 	</nav>
 </template>
 
-<script>
-export default {
-	setup() {},
-};
-</script>
-
-<style lang="postcss" scoped>
+<style scoped>
 .header__full {
   grid-template-areas: 'logo right';
   grid-template-columns: 1fr auto;
