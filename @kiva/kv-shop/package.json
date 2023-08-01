@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-shop",
-    "version": "1.2.9",
+    "version": "1.2.10",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.7.14",
-        "@kiva/kv-components": "^3.32.0",
+        "@kiva/kv-components": "^3.33.0",
         "@types/braintree-web-drop-in": "^1.34.2",
         "braintree-web-drop-in": "^1.37.0",
         "numeral": "^2.0.6",
