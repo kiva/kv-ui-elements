@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.34.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.33.0...@kiva/kv-components@3.34.0) (2023-08-02)
+
+
+### Features
+
+* balance campaign prices added to loan utility ([#277](https://github.com/kiva/kv-ui-elements/issues/277)) ([319707e](https://github.com/kiva/kv-ui-elements/commit/319707e525865077e531ab6f4c378676da7ee53b))
+
+
+
+
+
 # [3.33.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.32.0...@kiva/kv-components@3.33.0) (2023-08-01)
 
 
