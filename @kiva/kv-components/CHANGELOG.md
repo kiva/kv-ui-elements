@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.35.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.34.0...@kiva/kv-components@3.35.0) (2023-08-03)
+
+
+### Features
+
+* adding new option to the loan progress bar bg ([89afa0a](https://github.com/kiva/kv-ui-elements/commit/89afa0ad20cd64a794441d187da534006a3aeef2))
+
+
+
+
+
 # [3.34.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.33.0...@kiva/kv-components@3.34.0) (2023-08-02)
 
 
