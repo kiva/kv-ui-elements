@@ -9,6 +9,7 @@ export default {
 		value: 50,
 		ariaLabel: 'Amount the loan has fundraised',
 		variant: 'primary',
+		bgVariant: 'secondary',
 	},
 };
 
@@ -22,6 +23,7 @@ const Template = (args, { argTypes }) => ({
 			:max="max"
 			:value="value"
 			:variant="variant"
+			:bg-variant="bgVariant"
 
 		></kv-progress-bar>`,
 });
@@ -43,4 +45,9 @@ VariantDanger.args = {
 export const VariantGhost = Template.bind({});
 VariantGhost.args = {
 	variant: 'ghost',
+};
+
+export const BgVariantTertiary = Template.bind({});
+BgVariantTertiary.args = {
+	bgVariant: 'tertiary',
 };

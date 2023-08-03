@@ -2,8 +2,8 @@
 	<div
 		class="
 			tw-h-1 tw-w-full tw-rounded-full tw-overflow-hidden tw-relative
-			tw-bg-secondary
 		"
+		:class="backgroundVariant"
 		role="progressbar"
 		:aria-label="ariaLabel"
 		:aria-valuemin="min"
@@ -77,6 +77,17 @@ export default {
 				return ['primary', 'ghost', 'danger', 'caution'].includes(value);
 			},
 		},
+		/**
+		 * Appearance of the progress bar background
+		 * `secondary (default), tertiary
+		 * */
+		bgVariant: {
+			type: String,
+			default: 'secondary',
+			validator(value) {
+				return ['secondary', 'tertiary'].includes(value);
+			},
+		},
 	},
 	setup(props) {
 		const {
@@ -84,6 +95,7 @@ export default {
 			max,
 			value,
 			variant,
+			bgVariant,
 		} = toRefs(props);
 		const loaded = ref(false);
 
@@ -107,6 +119,15 @@ export default {
 			}
 		});
 
+		const backgroundVariant = computed(() => {
+			switch (bgVariant.value) {
+				case 'tertiary':
+					return 'tw-bg-tertiary';
+				default:
+					return 'tw-bg-secondary';
+			}
+		});
+
 		const animateProgressBar = () => {
 			loaded.value = true;
 		};
@@ -121,6 +142,7 @@ export default {
 			percent,
 			animateProgressBar,
 			variantClass,
+			backgroundVariant,
 		};
 	},
 };
