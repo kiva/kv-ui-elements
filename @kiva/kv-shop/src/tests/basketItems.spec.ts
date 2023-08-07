@@ -1,7 +1,6 @@
 import { ApolloClient, ApolloCache, NormalizedCacheObject } from '@apollo/client/core';
 import { setTipDonation } from '../basketItems';
 
-// TODO: Add remaining test cases MARS-436
 class MockApolloClient<TCacheShape extends NormalizedCacheObject> extends ApolloClient<TCacheShape> {
 	constructor() {
 		super({ cache: {} as ApolloCache<TCacheShape> });
