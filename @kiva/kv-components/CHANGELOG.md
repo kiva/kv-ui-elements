@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.35.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.35.0...@kiva/kv-components@3.35.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* linting errors ([c686bd2](https://github.com/kiva/kv-ui-elements/commit/c686bd20bc96a61882bce0981642be65133ed46d))
+* linting issues ([1a631d5](https://github.com/kiva/kv-ui-elements/commit/1a631d529b1d3ebd56c357be2e02fac54b9c1de5))
+
+
+
+
+
 # [3.35.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.34.0...@kiva/kv-components@3.35.0) (2023-08-03)
 
 
