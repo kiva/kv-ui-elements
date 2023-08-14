@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.36.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.35.1...@kiva/kv-components@3.36.0) (2023-08-14)
+
+
+### Features
+
+* avoid fractional page number in kvpaginator component ([#281](https://github.com/kiva/kv-ui-elements/issues/281)) ([0d5e028](https://github.com/kiva/kv-ui-elements/commit/0d5e028837c0edcedc87092215f0be94b6565996))
+
+
+
+
+
 ## [3.35.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.35.0...@kiva/kv-components@3.35.1) (2023-08-14)
 
 
