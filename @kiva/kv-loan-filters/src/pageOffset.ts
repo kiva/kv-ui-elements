@@ -42,7 +42,7 @@ export default {
 	},
 	getQueryFromFilter: (loanSearchState) => {
 		// Page query param is 1-based
-		const page = (loanSearchState.pageOffset / loanSearchState.pageLimit) + 1;
+		const page = Math.ceil(loanSearchState.pageOffset / loanSearchState.pageLimit) + 1;
 
 		return { ...(page > 1 && { page: page.toString() }) };
 	},
