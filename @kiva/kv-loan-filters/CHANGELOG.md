@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.6.0...@kiva/kv-loan-filters@1.6.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* page number rounded in pageoffset library ([#282](https://github.com/kiva/kv-ui-elements/issues/282)) ([cd387e0](https://github.com/kiva/kv-ui-elements/commit/cd387e0ff590575c6262e52130844bc5a9639e03))
+
+
+
+
+
 # [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.5.0...@kiva/kv-loan-filters@1.6.0) (2023-06-21)
 
 
