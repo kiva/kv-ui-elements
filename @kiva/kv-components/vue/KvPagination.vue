@@ -109,7 +109,7 @@ export default {
 	},
 	computed: {
 		current() {
-			const page = this.offset / this.limit;
+			const page = Math.floor(this.offset / this.limit) + 1;
 
 			// This component uses a 0-based page index
 			return page < this.totalPages ? page : 0;
