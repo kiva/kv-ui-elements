@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.37.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.36.0...@kiva/kv-components@3.37.0) (2023-08-18)
+
+
+### Features
+
+* update header icon ([a593f2c](https://github.com/kiva/kv-ui-elements/commit/a593f2c4ba2285a1917622db55a88ff68097fe89))
+
+
+
+
+
 # [3.36.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.35.1...@kiva/kv-components@3.36.0) (2023-08-14)
 
 
