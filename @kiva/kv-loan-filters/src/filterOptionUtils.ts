@@ -44,6 +44,7 @@ export const sortByNameToDisplay = {
 	amountLowToHigh: 'Amount: Low to High',
 	personalized: 'Recommended',
 	popularityScore: 'Trending now',
+	mostRecent: 'Most recent',
 };
 
 /**
