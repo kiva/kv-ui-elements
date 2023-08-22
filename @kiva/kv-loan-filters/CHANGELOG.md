@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.6.1...@kiva/kv-loan-filters@1.7.0) (2023-08-22)
+
+
+### Features
+
+* add most recent sort ([#284](https://github.com/kiva/kv-ui-elements/issues/284)) ([0216520](https://github.com/kiva/kv-ui-elements/commit/0216520cad4a9fe1fc02d9bcd6f853fb970f761a))
+
+
+
+
+
 ## [1.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.6.0...@kiva/kv-loan-filters@1.6.1) (2023-08-14)
 
 
