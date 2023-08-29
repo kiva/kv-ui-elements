@@ -3,6 +3,7 @@ import addons from '@storybook/addons';
 import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import Vue from 'vue';
+import Meta from 'vue-meta';
 import VueCompositionApi from '@vue/composition-api';
 import VueRouter from 'vue-router';
 
@@ -10,6 +11,9 @@ import VueRouter from 'vue-router';
 Vue.use(VueCompositionApi);
 
 Vue.use(VueRouter);
+
+// initialize vue-meta
+Vue.use(Meta);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
