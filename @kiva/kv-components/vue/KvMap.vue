@@ -13,9 +13,6 @@
 </template>
 
 <script>
-import { createIntersectionObserver } from '../utils/observerUtils';
-import testDelayedGlobalLibrary from '../utils/timeoutUtils';
-
 export default {
 	name: 'KvMap',
 	metaInfo() {
@@ -211,7 +208,7 @@ export default {
 		},
 		createWrapperObserver() {
 			// Watch for the wrapper element moving in and out of the viewport
-			this.wrapperObserver = createIntersectionObserver({
+			this.wrapperObserver = this.createIntersectionObserver({
 				targets: [this.$refs?.[this.refString]],
 				callback: (entries) => {
 					entries.forEach((entry) => {
@@ -252,14 +249,14 @@ export default {
 			 * We then start polling for the readiness of our selected map library and initialize it once ready
 			 */
 			if (this.checkWebGL()) {
-				testDelayedGlobalLibrary('maplibregl').then((response) => {
+				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
 					if (response.loaded && !this.mapLoaded && !this.useLeaflet && this.lat && this.long) {
 						this.initializeMapLibre();
 						this.mapLibreReady = true;
 					}
 				});
 			} else {
-				testDelayedGlobalLibrary('L').then((leafletTest) => {
+				this.testDelayedGlobalLibrary('L').then((leafletTest) => {
 					if (leafletTest.loaded && !this.mapLoaded && this.lat && this.long) {
 						this.initializeLeaflet();
 						this.leafletReady = true;
@@ -321,6 +318,52 @@ export default {
 			if (this.initialZoom !== null) {
 				this.createWrapperObserver();
 			}
+		},
+		checkIntersectionObserverSupport() {
+			if (typeof window === 'undefined'
+				|| !('IntersectionObserver' in window)
+				|| !('IntersectionObserverEntry' in window)
+				|| !('intersectionRatio' in window.IntersectionObserverEntry.prototype)) {
+				return false;
+			}
+			return true;
+		},
+		createIntersectionObserver({ callback, options, targets } = {}) {
+			if (this.checkIntersectionObserverSupport()) {
+				const observer = new IntersectionObserver(callback, options);
+				targets.forEach((target) => observer.observe(target));
+				return observer;
+			}
+		},
+		testDelayedGlobalLibrary(library, timeout = 3000) {
+			// return a promise
+			return new Promise((resolve, reject) => {
+				if (typeof window === 'undefined') {
+					reject(new Error('window object not available'));
+				}
+				// establish timeout to limit time until promise resolution
+				let readyStateTimeout;
+				// establish interval to check for library presence
+				const readyStateInterval = window.setInterval(() => {
+					// determine if library is present on window
+					if (typeof window[library] !== 'undefined') {
+						// cleanup timers
+						clearInterval(readyStateInterval);
+						clearTimeout(readyStateTimeout);
+						// resolve the promise
+						resolve({ loaded: true });
+					}
+				}, 100);
+
+				// activate timeout
+				readyStateTimeout = window.setTimeout(() => {
+					// clean up interval and timeout
+					clearInterval(readyStateInterval);
+					clearTimeout(readyStateTimeout);
+					// resolve the promise
+					resolve({ loaded: false });
+				}, timeout);
+			});
 		},
 	},
 };
