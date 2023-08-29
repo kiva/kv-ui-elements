@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.38.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.37.0...@kiva/kv-components@3.38.0) (2023-08-29)
+
+
+### Features
+
+* kvmap ported to kv components library ([#286](https://github.com/kiva/kv-ui-elements/issues/286)) ([373e53f](https://github.com/kiva/kv-ui-elements/commit/373e53fd407d161e79033826a6063fbd5ca5b2ce))
+
+
+
+
+
 # [3.37.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.36.0...@kiva/kv-components@3.37.0) (2023-08-18)
 
 
