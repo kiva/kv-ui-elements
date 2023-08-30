@@ -131,7 +131,6 @@ export default {
 		if (!this.mapLibreReady && !this.leafletReady) {
 			this.initializeMap();
 		}
-		this.getLibraries();
 	},
 	beforeDestroy() {
 		if (this.mapInstance) {
@@ -145,26 +144,6 @@ export default {
 		this.destroyWrapperObserver();
 	},
 	methods: {
-		getLibraries() {
-			const mapScript = document.createElement('script');
-			const mapStyle = document.createElement('link');
-			mapScript.setAttribute('async', true);
-			mapScript.setAttribute('defer', true);
-			mapStyle.setAttribute('rel', 'stylesheet');
-			if (this.hasWebGL) {
-				mapScript.setAttribute('vmid', `maplibregljs${this.mapId}`);
-				mapStyle.setAttribute('vmid', `maplibreglcss${this.mapId}`);
-				mapScript.setAttribute('src', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js');
-				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
-			} else {
-				mapScript.setAttribute('vmid', `leafletjs${this.mapId}`);
-				mapStyle.setAttribute('vmid', `leaftletcss${this.mapId}`);
-				mapScript.setAttribute('src', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
-				mapStyle.setAttribute('href', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
-			}
-			document.head.appendChild(mapScript);
-			document.head.appendChild(mapStyle);
-		},
 		activateZoom(zoomOut = false) {
 			const { mapInstance, hasWebGL, mapLibreReady } = this;
 			const currentZoomLevel = mapInstance.getZoom();
@@ -232,7 +211,17 @@ export default {
 			 * This initial checkWebGL() call kicks off the library asset inclusion
 			 * We then start polling for the readiness of our selected map library and initialize it once ready
 			 */
+			const mapScript = document.createElement('script');
+			const mapStyle = document.createElement('link');
+			mapScript.setAttribute('async', true);
+			mapScript.setAttribute('defer', true);
+			mapStyle.setAttribute('rel', 'stylesheet');
 			if (this.checkWebGL()) {
+				mapScript.setAttribute('vmid', `maplibregljs${this.mapId}`);
+				mapStyle.setAttribute('vmid', `maplibreglcss${this.mapId}`);
+				mapScript.setAttribute('src', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js');
+				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
+
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
 					if (response.loaded && !this.mapLoaded && !this.useLeaflet && this.lat && this.long) {
 						this.initializeMapLibre();
@@ -240,6 +229,11 @@ export default {
 					}
 				});
 			} else {
+				mapScript.setAttribute('vmid', `leafletjs${this.mapId}`);
+				mapStyle.setAttribute('vmid', `leaftletcss${this.mapId}`);
+				mapScript.setAttribute('src', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+				mapStyle.setAttribute('href', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
 				this.testDelayedGlobalLibrary('L').then((leafletTest) => {
 					if (leafletTest.loaded && !this.mapLoaded && this.lat && this.long) {
 						this.initializeLeaflet();
@@ -247,6 +241,8 @@ export default {
 					}
 				});
 			}
+			document.head.appendChild(mapScript);
+			document.head.appendChild(mapStyle);
 		},
 		initializeLeaflet() {
 			/* eslint-disable no-undef, max-len */
