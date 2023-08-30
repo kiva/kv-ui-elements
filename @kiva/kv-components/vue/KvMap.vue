@@ -15,43 +15,6 @@
 <script>
 export default {
 	name: 'KvMap',
-	metaInfo() {
-		return {
-			script: [].concat(!this.hasWebGL ? [
-				// leaflet - uses raster tiles for additional browser coverage
-				{
-					vmid: `leafletjs${this.mapId}`,
-					src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
-					async: true,
-					defer: true,
-				},
-			] : []).concat(this.hasWebGL ? [
-				// maplibregl - uses vector tiles and webgl for rendering
-				{
-					vmid: `maplibregljs${this.mapId}`,
-					src: 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js',
-					async: true,
-					defer: true,
-				},
-			] : []),
-			link: [
-			].concat(!this.hasWebGL ? [
-				// leaflet - uses raster tiles for additional browser coverage
-				{
-					vmid: `leafletcss${this.mapId}`,
-					rel: 'stylesheet',
-					href: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
-				},
-			] : []).concat(this.hasWebGL ? [
-				// maplibregl - uses vector tiles and webgl for rendering
-				{
-					vmid: `maplibreglcss${this.mapId}`,
-					rel: 'stylesheet',
-					href: 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css',
-				},
-			] : []),
-		};
-	},
 	props: {
 		/**
 		 * Aspect Ration for computed map dimensions
@@ -245,10 +208,20 @@ export default {
 		},
 		initializeMap() {
 			/**
-			 * This initial checkWebGL() call kicks off the vue-meta asset inclusion
+			 * This initial checkWebGL() call kicks off the library asset inclusion
 			 * We then start polling for the readiness of our selected map library and initialize it once ready
 			 */
+			const mapScript = document.createElement('script');
+			const mapStyle = document.createElement('link');
+			mapScript.setAttribute('async', true);
+			mapScript.setAttribute('defer', true);
+			mapStyle.setAttribute('rel', 'stylesheet');
 			if (this.checkWebGL()) {
+				mapScript.setAttribute('vmid', `maplibregljs${this.mapId}`);
+				mapStyle.setAttribute('vmid', `maplibreglcss${this.mapId}`);
+				mapScript.setAttribute('src', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js');
+				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
+
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
 					if (response.loaded && !this.mapLoaded && !this.useLeaflet && this.lat && this.long) {
 						this.initializeMapLibre();
@@ -256,6 +229,11 @@ export default {
 					}
 				});
 			} else {
+				mapScript.setAttribute('vmid', `leafletjs${this.mapId}`);
+				mapStyle.setAttribute('vmid', `leaftletcss${this.mapId}`);
+				mapScript.setAttribute('src', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js');
+				mapStyle.setAttribute('href', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+
 				this.testDelayedGlobalLibrary('L').then((leafletTest) => {
 					if (leafletTest.loaded && !this.mapLoaded && this.lat && this.long) {
 						this.initializeLeaflet();
@@ -263,6 +241,8 @@ export default {
 					}
 				});
 			}
+			document.head.appendChild(mapScript);
+			document.head.appendChild(mapStyle);
 		},
 		initializeLeaflet() {
 			/* eslint-disable no-undef, max-len */
