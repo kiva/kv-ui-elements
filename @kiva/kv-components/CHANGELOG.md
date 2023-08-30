@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.38.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.38.0...@kiva/kv-components@3.38.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* kvmap component refactor to avoid using vue meta package ([#287](https://github.com/kiva/kv-ui-elements/issues/287)) ([72f5240](https://github.com/kiva/kv-ui-elements/commit/72f524037358f039032ebd1c8d1f4e106ab6ff10))
+
+
+
+
+
 # [3.38.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.37.0...@kiva/kv-components@3.38.0) (2023-08-29)
 
 
