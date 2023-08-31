@@ -22,7 +22,6 @@ module.exports = {
 	content: ['./**.*.js'],
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-mb-2'
 	corePlugins: {
-		boxShadow: false,
 		container: false,
 		fontSize: false,
 		letterSpacing: false,
@@ -125,6 +124,10 @@ module.exports = {
 			tooltip: zIndices.tooltip,
 			troposphere: zIndices.troposphere,
 			stratosphere: zIndices.stratosphere,
+		},
+		boxShadow: {
+			DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+			lg: '0 4px 12px rgba(0, 0, 0, 0.08)',
 		},
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
