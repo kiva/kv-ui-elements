@@ -127,7 +127,7 @@ module.exports = {
 		},
 		boxShadow: {
 			DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
-			md: '0 4px 12px rgba(0, 0, 0, 0.08)',
+			lg: '0 4px 12px rgba(0, 0, 0, 0.08)',
 		},
 		extend: {
 			typography: kivaTypography.proseOverrides, // prose plugin overrides
