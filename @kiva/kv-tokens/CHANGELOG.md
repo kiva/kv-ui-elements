@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.8.0...@kiva/kv-tokens@2.9.0) (2023-08-31)
+
+
+### Bug Fixes
+
+* change md to lg ([7857cfa](https://github.com/kiva/kv-ui-elements/commit/7857cfa6535b531b4f1e069040641b0b92679231))
+
+
+### Features
+
+* add box shadows to tokens ([47a16aa](https://github.com/kiva/kv-ui-elements/commit/47a16aa95814e3f566dce53d65b56bfc694b4828))
+
+
+
+
+
 # [2.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.7.0...@kiva/kv-tokens@2.8.0) (2023-05-24)
 
 
