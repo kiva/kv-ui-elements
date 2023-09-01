@@ -37,6 +37,7 @@ const fontWeight = buildValuesFromThemeObj(theme.fontWeight);
 const radii = buildValuesFromThemeObj(theme.borderRadius);
 const opacity = buildValuesFromThemeObj(theme.opacity);
 const zIndices = buildValuesFromThemeObj(theme.zIndex);
+const boxShadows = buildValuesFromThemeObj(theme.boxShadow);
 
 const safelist = [
 	...backgroundColor.map((color) => buildTailwindClassName(`${themePrefix}bg`, color)),
@@ -49,6 +50,7 @@ const safelist = [
 	...radii.map((radius) => buildTailwindClassName(`${themePrefix}radius`, radius)),
 	...opacity.map((opacityVal) => buildTailwindClassName(`${themePrefix}opacity`, opacityVal)),
 	...zIndices.map((zIndex) => buildTailwindClassName(`${themePrefix}z`, zIndex)),
+	...boxShadows.map((boxShadow) => buildTailwindClassName(`${themePrefix}shadow`, boxShadow)),
 ];
 
 module.exports = {
