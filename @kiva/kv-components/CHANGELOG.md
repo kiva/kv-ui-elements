@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.39.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.38.2...@kiva/kv-components@3.39.0) (2023-09-01)
+
+
+### Features
+
+* add bg and drop shadow toast variations ([a2b045d](https://github.com/kiva/kv-ui-elements/commit/a2b045d0823d55d1c643105fde2a847a0713f55f))
+
+
+
+
+
 ## [3.38.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.38.1...@kiva/kv-components@3.38.2) (2023-08-31)
 
 **Note:** Version bump only for package @kiva/kv-components
