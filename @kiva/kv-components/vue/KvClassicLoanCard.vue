@@ -476,7 +476,8 @@ export default {
 			if (!!themes.length && callouts.length < 2) {
 				const position = Math.floor(Math.random() * themes.length);
 				const theme = themes[position];
-				if (!callouts.filter((c) => c.toUpperCase() === theme.toUpperCase()).length) {
+				if (!callouts.filter((c) => c.toUpperCase() === theme.toUpperCase()).length
+					&& theme.toUpperCase() !== this.categoryPageName?.toUpperCase()) {
 					callouts.push(theme);
 				}
 			}
