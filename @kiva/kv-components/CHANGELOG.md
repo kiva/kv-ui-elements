@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.40.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.39.0...@kiva/kv-components@3.40.0) (2023-09-06)
+
+
+### Features
+
+* avoid adding themes to callouts when equal to category page name in loan card ([#290](https://github.com/kiva/kv-ui-elements/issues/290)) ([d15ef2b](https://github.com/kiva/kv-ui-elements/commit/d15ef2b4f4503c50247644d5023a7189edfc5d4f))
+
+
+
+
+
 # [3.39.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.38.2...@kiva/kv-components@3.39.0) (2023-09-01)
 
 
