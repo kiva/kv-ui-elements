@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.9.0...@kiva/kv-tokens@2.10.0) (2023-09-07)
+
+
+### Features
+
+* slightly larger default box shadow ([705f77b](https://github.com/kiva/kv-ui-elements/commit/705f77b90a8a319b6ed9c6623ef956a39e1f4790))
+
+
+
+
+
 # [2.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.8.0...@kiva/kv-tokens@2.9.0) (2023-08-31)
 
 
