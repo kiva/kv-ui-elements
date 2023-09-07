@@ -8,23 +8,26 @@ export const getCookieValue = (name: string) => {
 		return decodeURIComponent(document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || '');
 	}
 };
+export const setCookieValue = (name: string, value: string, options = '') => {
+	document.cookie = `${name}=${encodeURIComponent(value)};${options}`;
+};
 
 export function getBasketID() {
 	return getCookieValue('kvbskt');
 }
 
-export function setBasketID() {
-	// TODO
+export function setBasketID(basketId) {
+	setCookieValue('kvbskt', basketId, 'path=/;secure;');
 }
 
 export async function createBasket(apollo) {
 	try {
-		apollo.mutate({
+		return apollo.mutate({
 			mutation: gql`mutation createNewBasketForUser { shop { id createBasket } }`,
 		}).then(({ data }) => {
 			const newBasketId = data.shop?.createBasket ?? null;
 			if (newBasketId) {
-				document.cookie = `kvbskt=${newBasketId}; path=/; secure=true;`;
+				setBasketID(newBasketId);
 			}
 		});
 	} catch (error) {
@@ -32,15 +35,7 @@ export async function createBasket(apollo) {
 	}
 }
 
-export function hasBasketExpired(errorCode) {
+export function hasBasketExpired(error) {
+	const errorCode = error?.code ?? error?.extensions?.code ?? error?.name ?? '';
 	return ['shop.invalidBasketId', 'shop.basketRequired'].includes(errorCode);
-}
-
-export async function handleInvalidBasketForDonation({ donationAmount, navigateToCheckout = false, apollo }) {
-	if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-		document.cookie = `kvbskt=; expires=${new Date(0).toUTCString()}; path=/;`;
-		await createBasket(apollo);
-		document.cookie = `kvatbamt=${JSON.stringify({ donationAmount, navigateToCheckout })}; path=/;`;
-		window.location.reload();
-	}
 }

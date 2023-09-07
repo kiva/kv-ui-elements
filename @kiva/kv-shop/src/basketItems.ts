@@ -1,70 +1,76 @@
-import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client/core';
+import { gql, ApolloClient, DocumentNode } from '@apollo/client/core';
 import numeral from 'numeral';
-import { GraphQLErrors } from '@apollo/client/errors';
-import { getBasketID, hasBasketExpired, handleInvalidBasketForDonation } from './basket';
-import { parseShopError } from './shopError';
+import { getBasketID, hasBasketExpired, createBasket } from './basket';
+import { ShopError, parseShopError } from './shopError';
 
-export interface SetTipDonationOptions {
-	amount: string | number,
-	apollo: ApolloClient<NormalizedCacheObject>,
-}
-
-export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
-	let data;
-	let error;
-	let hasFailedAddToBasket = false;
-	const donationAmount = numeral(amount).format('0.00');
+/**
+ * Call a shop mutation with a basketId, creating a new basket if necessary.
+ */
+async function callShopMutation(
+	apollo: ApolloClient<any>,
+	mutation: DocumentNode,
+	variables: Record<string, any>,
+	maxretries = 2,
+) {
 	try {
 		const result = await apollo.mutate({
-			mutation: gql`mutation setTipDonation($price: Money!, $basketId: String) {
-				shop (basketId: $basketId) {
-					id
-					updateDonation (donation: {
-						price: $price,
-						isTip: true
-					})
-					{
-						id
-						price
-						isTip
-					}
-				}
-			}`,
+			mutation,
 			variables: {
-				price: donationAmount,
+				...variables,
 				basketId: getBasketID(),
 			},
 		});
 		if (result?.errors?.length) {
-			error = result?.errors?.[0];
-			(result?.errors as GraphQLErrors ?? []).forEach((err) => {
-				if (hasBasketExpired(err?.extensions?.code)) {
-					hasFailedAddToBasket = true;
-					error = {
-						...err,
-						code: err?.extensions?.code,
-						ctxErrorMsg: 'Something went wrong with your donation, refreshing the page to try again',
-					};
+			// Retry recoverable basket expired errors
+			const basketErrors = result?.errors.filter((err) => hasBasketExpired(err));
+			if (basketErrors.length) {
+				// Create a new basket and retry if retries remain
+				if (maxretries > 0) {
+					await createBasket(apollo);
+					return callShopMutation(apollo, mutation, variables, maxretries - 1);
 				}
-			});
-
-			if (hasFailedAddToBasket) {
-				await handleInvalidBasketForDonation({
-					donationAmount,
-					navigateToCheckout: true,
-					apollo,
-				});
+				// Fail on basket expired errors if no retries remain
+				throw basketErrors[0];
 			}
-		} else {
-			data = result?.data;
-		}
-	} catch (e) {
-		error = e;
-	}
 
-	if (error) {
-		throw parseShopError(error);
+			// Fail on non-recoverable errors
+			const otherErrors = result?.errors?.filter((err) => !hasBasketExpired(err));
+			if (otherErrors.length) {
+				throw otherErrors[0];
+			}
+		}
+		// Return successful result data
+		return result?.data;
+	} catch (e) {
+		// Parse and throw on non-recoverable errors
+		if (e instanceof ShopError) {
+			throw e;
+		}
+		throw parseShopError(e);
 	}
+}
+
+export interface SetTipDonationOptions {
+	amount: string | number,
+	apollo: ApolloClient<any>,
+}
+
+export async function setTipDonation({ amount, apollo }: SetTipDonationOptions) {
+	const donationAmount = numeral(amount).format('0.00');
+	const data = await callShopMutation(apollo, gql`mutation setTipDonation($price: Money!, $basketId: String) {
+		shop (basketId: $basketId) {
+			id
+			updateDonation (donation: {
+				price: $price,
+				isTip: true
+			})
+			{
+				id
+				price
+				isTip
+			}
+		}
+	}`, { price: donationAmount });
 
 	return data?.shop?.updateDonation;
 }
