@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.22](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.2.21...@kiva/kv-shop@1.2.22) (2023-09-07)
+
+
+### Bug Fixes
+
+* retry setting tip donation after creating new basket MARS-429 ([0c5d6aa](https://github.com/kiva/kv-ui-elements/commit/0c5d6aac41a9d06e96e25a108e4ffc4f73b31e4c))
+
+
+
+
+
 ## [1.2.21](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.2.20...@kiva/kv-shop@1.2.21) (2023-09-06)
 
 **Note:** Version bump only for package @kiva/kv-shop
