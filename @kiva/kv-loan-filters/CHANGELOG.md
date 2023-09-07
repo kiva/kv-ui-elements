@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.8.0...@kiva/kv-loan-filters@1.9.0) (2023-09-07)
+
+
+### Features
+
+* flss filter for keyword field updated from description to keywordsearch ([#294](https://github.com/kiva/kv-ui-elements/issues/294)) ([d4e1f3c](https://github.com/kiva/kv-ui-elements/commit/d4e1f3cd1bb6a359b90e99011937608e447e9094))
+
+
+
+
+
 # [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.7.0...@kiva/kv-loan-filters@1.8.0) (2023-08-22)
 
 
