@@ -24,6 +24,7 @@
 							tw-bg-secondary
 							tw-mx-auto
 							tw-w-full md:tw-w-max md:tw-max-w-full md:tw-min-w-1/2
+							tw-shadow
 						"
 					>
 						<div
