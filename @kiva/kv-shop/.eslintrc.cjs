@@ -25,5 +25,7 @@ module.exports = {
 		}],
 		// allow imports without file extensions
 		'import/extensions': 'off',
+		// allow `any` type
+		'@typescript-eslint/no-explicit-any': ['off'],
 	},
 };
