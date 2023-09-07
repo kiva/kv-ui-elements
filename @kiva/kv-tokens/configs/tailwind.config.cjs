@@ -126,7 +126,7 @@ module.exports = {
 			stratosphere: zIndices.stratosphere,
 		},
 		boxShadow: {
-			DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+			DEFAULT: '0 1px 4px 0 rgb(0 0 0 / 0.08)',
 			lg: '0 4px 12px rgba(0, 0, 0, 0.08)',
 		},
 		extend: {
