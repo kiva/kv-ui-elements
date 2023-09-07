@@ -31,16 +31,6 @@ export default {
 				type: 'number',
 			},
 		},
-		background: {
-			control: {
-				type: 'text',
-			},
-		},
-		dropShadow: {
-			control: {
-				type: 'boolean',
-			},
-		},
 	},
 };
 
@@ -54,7 +44,7 @@ const Template = (args, {
 	},
 	template: `
 		<div>
-			<kv-button @click="showToast(message, type, persist, hideDelay, background, dropShadow)">Show Toast</kv-button>
+			<kv-button @click="showToast(message, type, persist, hideDelay)">Show Toast</kv-button>
 
 			<!-- div below is a kludge for storybook docs -->
 			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
@@ -64,8 +54,8 @@ const Template = (args, {
 			</div>
 		</div>`,
 	methods: {
-		showToast(messageInput, type, persistInput, hideDelay, background, dropShadow) {
-			this.$refs.toastRef.show(messageInput, type, persistInput, hideDelay, background, dropShadow);
+		showToast(messageInput, type, persistInput, hideDelay) {
+			this.$refs.toastRef.show(messageInput, type, persistInput, hideDelay);
 		},
 		onClose() {
 		},
@@ -89,18 +79,6 @@ persist.args = { persist: true };
 
 export const hideDelay = Template.bind({});
 hideDelay.args = { hideDelay: 10000 };
-
-export const backgroundPrimary = Template.bind({});
-backgroundPrimary.args = { background: 'primary' };
-
-export const backgroundSecondary = Template.bind({});
-backgroundSecondary.args = { background: 'secondary' };
-
-export const backgroundTertiary = Template.bind({});
-backgroundTertiary.args = { background: 'tertiary' };
-
-export const dropShadow = Template.bind({});
-dropShadow.args = { dropShadow: true };
 
 const KivaLogoTemplate = (args, {
 	argTypes,
