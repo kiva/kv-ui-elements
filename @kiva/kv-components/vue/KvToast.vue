@@ -21,10 +21,10 @@
 						class="
 							tw-rounded tw-overflow-hidden
 							tw-flex
+							tw-bg-secondary
 							tw-mx-auto
 							tw-w-full md:tw-w-max md:tw-max-w-full md:tw-min-w-1/2
 						"
-						:class="[backgroundClass, { 'tw-shadow': applyDropShadow }]"
 					>
 						<div
 							class="
@@ -91,9 +91,9 @@
 								tw-flex-shrink-0
 								tw-flex
 								tw-items-center tw-justify-center
+								tw-bg-secondary
 								hover:tw-text-action-highlight
 							"
-							:class="[backgroundClass]"
 							@click="close"
 						>
 							<kv-material-icon
@@ -150,18 +150,8 @@ export default {
 		const isVisible = ref(false);
 		const message = ref('');
 		const messageType = ref('confirmation'); // 'error', 'info', 'confirmation'
-		const backgroundType = ref('secondary'); // 'primary', 'secondary', 'tertiary'
-		const applyDropShadow = ref(false);
 		const persist = ref(false);
 		const timeout = ref(null);
-
-		const backgroundClass = computed(() => {
-			switch (backgroundType.value) {
-				case 'primary': return 'tw-bg-primary';
-				case 'tertiary': return 'tw-bg-tertiary';
-				default: return 'tw-bg-secondary';
-			}
-		});
 
 		const icon = computed(() => {
 			if (messageType.value === 'warning') {
@@ -199,12 +189,10 @@ export default {
 			emit('close');
 		};
 
-		const show = (messageInput, type, persistInput, hideDelay, background, dropShadow) => {
+		const show = (messageInput, type, persistInput, hideDelay) => {
 			isVisible.value = true;
 			message.value = typeof messageInput === 'string' ? messageInput : '';
 			messageType.value = typeof type === 'string' ? type : '';
-			backgroundType.value = typeof background === 'string' ? background : '';
-			applyDropShadow.value = Boolean(dropShadow);
 			persist.value = Boolean(persistInput);
 
 			if (!persist.value) {
@@ -226,8 +214,6 @@ export default {
 			close,
 			show,
 			hasToastContentSlot,
-			backgroundClass,
-			applyDropShadow,
 		};
 	},
 };
