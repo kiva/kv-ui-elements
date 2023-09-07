@@ -82,7 +82,7 @@ describe('keywordSearch.ts', () => {
 			});
 
 			it('should return filters', () => {
-				expect(keywordSearch.getFlssFilter({ keywordSearch: 'search' })).toEqual({ description: { eq: 'search' } });
+				expect(keywordSearch.getFlssFilter({ keywordSearch: 'search' })).toEqual({ keywordSearch: { eq: 'search' } });
 			});
 		});
 	});
