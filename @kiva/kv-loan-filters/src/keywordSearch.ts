@@ -34,7 +34,7 @@ export default {
 	getRemovedFacet: () => ({ keywordSearch: null }),
 	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
-		...(loanSearchState?.keywordSearch && { description: { eq: loanSearchState.keywordSearch } }),
+		...(loanSearchState?.keywordSearch && { keywordSearch: { eq: loanSearchState.keywordSearch } }),
 	}),
 	getValidatedSearchState: (loanSearchState) => ({ keywordSearch: loanSearchState?.keywordSearch?.trim() || null }),
 	getFilterFromQuery: (query) => ({ keywordSearch: query.queryString ?? null }),
