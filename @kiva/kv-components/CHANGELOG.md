@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.41.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.40.1...@kiva/kv-components@3.41.0) (2023-09-07)
+
+
+### Features
+
+* add box shadow to all toasts ([57ccaf2](https://github.com/kiva/kv-ui-elements/commit/57ccaf2f2da006a6990f5d5b0d6adeca8d3081b0))
+* rolled back some new tooltip props ([4ce96d6](https://github.com/kiva/kv-ui-elements/commit/4ce96d6eae3457a6a92bde9e407f226d5e53d332))
+
+
+
+
+
 ## [3.40.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.40.0...@kiva/kv-components@3.40.1) (2023-09-07)
 
 **Note:** Version bump only for package @kiva/kv-components
