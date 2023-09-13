@@ -12,8 +12,10 @@
 
 		<!-- Lightbox -->
 		<KvLightbox
-			:visible="isLightboxVisible"
-			:title="lightboxTitle"
+			:visible="visible"
+			:title="title"
+			:prevent-close="preventClose"
+			:variant="variant"
 			@lightbox-closed="hideLightbox"
 		>
 			<slot></slot>
@@ -34,24 +36,57 @@ export default {
 		KvLightbox,
 	},
 	props: {
-		lightboxTitle: {
+		/**
+		 * Appearance and role of the lightbox
+		 * @values lightbox, alert
+		 * */
+		variant: {
 			type: String,
-			default: 'Edit',
+			default: 'lightbox',
+			validator(value) {
+				return ['lightbox', 'alert'].includes(value);
+			},
 		},
+		/**
+		 * The title of the dialog which describes the dialog to screenreaders, and if no
+		 * content is in the `header` slot, will be displayed at the top of the lightbox.
+		 * */
+		title: {
+			type: String,
+			required: true,
+		},
+		/**
+		 * The dialog has no close X button, clicking the screen does not close,
+		 * pressing ESC does not close.
+		 * */
+		preventClose: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	emits: [
+		'lightbox-opened',
+		'lightbox-closed',
+	],
+	setup({ emit }) {
+		const showLightbox = () => {
+			this.visible = true;
+			emit('lightbox-opened');
+		};
+		const hideLightbox = () => {
+			this.visible = false;
+			emit('lightbox-closed');
+		};
+		return {
+			showLightbox,
+			hideLightbox,
+		};
 	},
 	data() {
 		return {
-			isLightboxVisible: false,
+			visible: false,
 			mdiPencil,
 		};
-	},
-	methods: {
-		showLightbox() {
-			this.isLightboxVisible = true;
-		},
-		hideLightbox() {
-			this.isLightboxVisible = false;
-		},
 	},
 };
 </script>
