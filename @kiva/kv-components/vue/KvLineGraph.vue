@@ -12,32 +12,33 @@
 				class="tw-absolute tw-top-0 tw-w-full tw-h-full tw-bg-marigold-2"
 				:style="{ clipPath: `polygon(${line})` }"
 			></div>
-			<div
+			<span
 				v-for="point in normalizedPoints"
 				:key="point.x"
 				class="
-				tw-absolute
-				tw-w-2
-				tw-h-2
-				tw-border
-				tw-border-white
-				tw-bg-marigold-2
-				tw-rounded-full
-			"
+					tw-absolute
+					tw-w-2
+					tw-h-2
+					tw-border
+					tw-border-white
+					tw-bg-marigold-2
+					tw-rounded-full
+				"
 				:style="{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)' }"
-			></div>
+			></span>
 			<template v-for="point in normalizedPoints">
-				<div
+				<span
 					v-if="point.label"
 					:key="point.label"
 					class="tw-absolute"
 					:style="{ left: `${point.x}%`, bottom: '-3rem', transform: 'translate(-50%, -50%)' }"
 				>
 					{{ point.label }}
-				</div>
+				</span>
 			</template>
 		</figure>
 		<h4
+			v-if="axisLabel"
 			class="tw-text-center"
 			:class="{ 'tw-pt-1': !hasValueLabels, 'tw-pt-6': hasValueLabels }"
 		>
