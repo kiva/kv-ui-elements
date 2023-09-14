@@ -12,18 +12,32 @@
 
 		<!-- Lightbox -->
 		<KvLightbox
-			:visible="visible"
+			:visible="isVisible"
 			:title="title"
 			:prevent-close="preventClose"
 			:variant="variant"
 			@lightbox-closed="hideLightbox"
 		>
+			<template #header>
+				<slot name="header"></slot>
+			</template>
+
+			<!-- default slot (body) -->
 			<slot></slot>
+
+			<!-- controls slot -->
+			<template #controls>
+				<slot
+					name="controls"
+					:hideLightbox="hideLightbox"
+				></slot>
+			</template>
 		</KvLightbox>
 	</div>
 </template>
 
 <script>
+import { ref } from 'vue-demi';
 import { mdiPencil } from '@mdi/js';
 import KvButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -36,10 +50,6 @@ export default {
 		KvLightbox,
 	},
 	props: {
-		/**
-		 * Appearance and role of the lightbox
-		 * @values lightbox, alert
-		 * */
 		variant: {
 			type: String,
 			default: 'lightbox',
@@ -68,24 +78,24 @@ export default {
 		'lightbox-opened',
 		'lightbox-closed',
 	],
-	setup({ emit }) {
+	setup(_, { emit }) {
+		const isVisible = ref(false);
+
 		const showLightbox = () => {
-			this.visible = true;
+			isVisible.value = true;
 			emit('lightbox-opened');
 		};
+
 		const hideLightbox = () => {
-			this.visible = false;
+			isVisible.value = false;
 			emit('lightbox-closed');
 		};
+
 		return {
+			mdiPencil,
+			isVisible,
 			showLightbox,
 			hideLightbox,
-		};
-	},
-	data() {
-		return {
-			visible: false,
-			mdiPencil,
 		};
 	},
 };
