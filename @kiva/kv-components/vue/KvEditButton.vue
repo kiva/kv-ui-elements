@@ -63,7 +63,7 @@ export default {
 		 * */
 		title: {
 			type: String,
-			required: true,
+			default: '',
 		},
 		/**
 		 * The dialog has no close X button, clicking the screen does not close,
