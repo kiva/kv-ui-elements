@@ -20,10 +20,10 @@ const Template = (_args, { argTypes }) => ({
 export const Default = Template.bind();
 Default.args = {
 	points: [
-		{ x: 0, y: 80 },
-		{ x: 25, y: 65 },
-		{ x: 50, y: 45 },
-		{ x: 75, y: 30 },
-		{ x: 100, y: 20 },
+		{ value: 10 },
+		{ value: 20 },
+		{ value: 50 },
+		{ value: 60 },
+		{ value: 80 },
 	],
 };

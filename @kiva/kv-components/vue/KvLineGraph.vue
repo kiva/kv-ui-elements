@@ -9,7 +9,7 @@
 			:style="{ clipPath: `polygon(${line})` }"
 		></div>
 		<div
-			v-for="point in points"
+			v-for="point in normalizedPoints"
 			:key="point.x"
 			class="
 				tw-absolute
@@ -31,8 +31,7 @@ import { computed, toRefs } from 'vue-demi';
 export default {
 	props: {
 		/**
-		 * Array of objects like { x: 4, y: 54 }, where the x and y values have been normalized to 0-100.
-		 * The origin point is the top left corner, so you may need to invert the y values (100 - y).
+		 * Array of objects like [{ value: 10 }, { value: 20 }]
 		 */
 		points: {
 			type: Array,
@@ -42,18 +41,40 @@ export default {
 	setup(props) {
 		const { points } = toRefs(props);
 
-		const reversePoints = computed(() => ([...points.value].reverse()));
+		// Get step to use on x-axis
+		const xIncrement = Math.round(100 / (points.value.length - 1));
 
-		const shade = computed(() => (points.value.map(({ x, y }) => `${x}% ${y}%`).join(',')));
+		// Find the largest value to be used as the scale of the graph
+		const largestY = computed(() => {
+			return points.value.reduce((prev, current) => {
+				return prev > current.value ? prev : current.value;
+			}, 0);
+		});
 
+		// Convert single values to points using increment and largest value
+		const normalizedPoints = computed(() => {
+			return points.value.reduce((prev, next, i) => {
+				prev.push({
+					x: i * xIncrement,
+					y: 100 - ((next.value / largestY.value) * 100),
+				});
+
+				return prev;
+			}, []);
+		});
+
+		// Used for drawing the shading under the line
+		const shade = computed(() => (normalizedPoints.value.map(({ x, y }) => `${x}% ${y}%`).join(',')));
+
+		// Used for drawing the line
 		const line = computed(() => {
-			const topLine = points.value.map(({ x, y }) => `${x}% ${y + 0.25}%`).join(',');
-			const bottomLine = reversePoints.value.map(({ x, y }) => `${x}% ${y - 0.25}%`).join(',');
+			const topLine = normalizedPoints.value.map(({ x, y }) => `${x}% ${y + 0.25}%`).join(',');
+			const bottomLine = [...normalizedPoints.value].reverse().map(({ x, y }) => `${x}% ${y - 0.25}%`).join(',');
 			return `${topLine}, ${bottomLine}`;
 		});
 
 		return {
-			reversePoints,
+			normalizedPoints,
 			shade,
 			line,
 		};
