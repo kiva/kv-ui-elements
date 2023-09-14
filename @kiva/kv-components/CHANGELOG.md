@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.42.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.41.0...@kiva/kv-components@3.42.0) (2023-09-14)
+
+
+### Bug Fixes
+
+* added event emitters ([3a84e6e](https://github.com/kiva/kv-ui-elements/commit/3a84e6e97b5d230ff747c296339bce31263d89da))
+* added event emitters, addressed comments, updated tests ([35a8a0c](https://github.com/kiva/kv-ui-elements/commit/35a8a0c6b34eed36fba030c29d3389c356c06927))
+* addressing build issues, made button square ([974bbdc](https://github.com/kiva/kv-ui-elements/commit/974bbdcac2558fc47c7280f6535d390ed8c824ef))
+* stopped requiring default title ([f494700](https://github.com/kiva/kv-ui-elements/commit/f494700078a2660f72703b95327df6e407d16d5f))
+
+
+### Features
+
+* new edit button that opens up a lightbox for editing page settings in kiva at work pages ([9d9c2ca](https://github.com/kiva/kv-ui-elements/commit/9d9c2caf3df0f741c2039d2423e42e108e753ff0))
+
+
+
+
+
 # [3.41.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.40.1...@kiva/kv-components@3.41.0) (2023-09-07)
 
 
