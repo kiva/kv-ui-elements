@@ -1,17 +1,21 @@
 <template>
-	<figure class="tw-w-full tw-h-full tw-relative">
-		<div
-			class="tw-w-full tw-h-full tw-bg-marigold-2 tw-opacity-low"
-			:style="{ clipPath: `polygon(${shade}, 100% 100%, 0% 100%)` }"
-		></div>
-		<div
-			class="tw-absolute tw-top-0 tw-w-full tw-h-full tw-bg-marigold-2"
-			:style="{ clipPath: `polygon(${line})` }"
-		></div>
-		<div
-			v-for="point in normalizedPoints"
-			:key="point.x"
-			class="
+	<div class="tw-h-full tw-w-full tw-p-2.5">
+		<figure
+			class="tw-w-full tw-relative"
+			:style="{ height: graphHeight }"
+		>
+			<div
+				class="tw-w-full tw-h-full tw-bg-marigold-2 tw-opacity-low"
+				:style="{ clipPath: `polygon(${shade}, 100% 100%, 0% 100%)` }"
+			></div>
+			<div
+				class="tw-absolute tw-top-0 tw-w-full tw-h-full tw-bg-marigold-2"
+				:style="{ clipPath: `polygon(${line})` }"
+			></div>
+			<div
+				v-for="point in normalizedPoints"
+				:key="point.x"
+				class="
 				tw-absolute
 				tw-w-2
 				tw-h-2
@@ -20,9 +24,26 @@
 				tw-bg-marigold-2
 				tw-rounded-full
 			"
-			:style="{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)' }"
-		></div>
-	</figure>
+				:style="{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)' }"
+			></div>
+			<template v-for="point in normalizedPoints">
+				<div
+					v-if="point.label"
+					:key="point.label"
+					class="tw-absolute"
+					:style="{ left: `${point.x}%`, bottom: '-3rem', transform: 'translate(-50%, -50%)' }"
+				>
+					{{ point.label }}
+				</div>
+			</template>
+		</figure>
+		<h4
+			class="tw-text-center"
+			:class="{ 'tw-pt-1': !hasValueLabels, 'tw-pt-6': hasValueLabels }"
+		>
+			{{ axisLabel }}
+		</h4>
+	</div>
 </template>
 
 <script>
@@ -31,15 +52,22 @@ import { computed, toRefs } from 'vue-demi';
 export default {
 	props: {
 		/**
-		 * Array of objects like [{ value: 10 }, { value: 20 }]
+		 * Array of objects like [{ value: 10, label: '2014' }, { value: 20, label: '2015' }]
 		 */
 		points: {
 			type: Array,
 			required: true,
 		},
+		/**
+		 * The optional label to show below the graph on the x-axis
+		 */
+		axisLabel: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props) {
-		const { points } = toRefs(props);
+		const { points, axisLabel } = toRefs(props);
 
 		// Get step to use on x-axis
 		const xIncrement = Math.round(100 / (points.value.length - 1));
@@ -51,12 +79,20 @@ export default {
 			}, 0);
 		});
 
+		// Find the largest value to be used as the scale of the graph
+		const hasValueLabels = computed(() => {
+			return points.value.reduce((prev, current) => {
+				return prev || !!current.label;
+			}, false);
+		});
+
 		// Convert single values to points using increment and largest value
 		const normalizedPoints = computed(() => {
 			return points.value.reduce((prev, next, i) => {
 				prev.push({
 					x: i * xIncrement,
 					y: 100 - ((next.value / largestY.value) * 100),
+					label: next.label,
 				});
 
 				return prev;
@@ -68,12 +104,20 @@ export default {
 
 		// Used for drawing the line
 		const line = computed(() => {
-			const topLine = normalizedPoints.value.map(({ x, y }) => `${x}% ${y + 0.25}%`).join(',');
-			const bottomLine = [...normalizedPoints.value].reverse().map(({ x, y }) => `${x}% ${y - 0.25}%`).join(',');
+			const topLine = normalizedPoints.value.map(({ x, y }) => `${x}% ${y + 0.3}%`).join(',');
+			const bottomLine = [...normalizedPoints.value].reverse().map(({ x, y }) => `${x}% ${y - 0.3}%`).join(',');
 			return `${topLine}, ${bottomLine}`;
 		});
 
+		const graphHeight = computed(() => {
+			const labelSpace = (axisLabel.value ? 2 : 0) + (hasValueLabels.value ? 2 : 0);
+
+			return `calc(100% - ${labelSpace}rem)`;
+		});
+
 		return {
+			hasValueLabels,
+			graphHeight,
 			normalizedPoints,
 			shade,
 			line,
