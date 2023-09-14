@@ -2,12 +2,15 @@
 	<div>
 		<!-- Edit Button -->
 		<KvButton
-			variant="ghost"
-			class="tw-rounded tw-border tw-border-black"
+			variant="secondary"
 			aria-label="Edit"
+			class="tw-w-7 tw-h-10"
 			@click="showLightbox"
 		>
-			<KvMaterialIcon :icon="mdiPencil" />
+			<KvMaterialIcon
+				class="tw-w-3 tw-h-3"
+				:icon="mdiPencil"
+			/>
 		</KvButton>
 
 		<!-- Lightbox -->

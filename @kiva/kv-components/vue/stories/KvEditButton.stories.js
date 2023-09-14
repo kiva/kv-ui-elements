@@ -36,7 +36,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
 	components: { KvEditButton, KvButton },
 	template: `
 		<div>
-			<p>The lightbox is visible: {{isLightboxVisible}}</p>
 			<kv-edit-button v-bind="$props">
 				<template>This is the content that will appear inside the lightbox when the edit button is clicked.</template>
 				<template #header>

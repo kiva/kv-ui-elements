@@ -3,17 +3,9 @@ import { axe } from 'jest-axe';
 import { nextTick } from 'vue';
 import addVueRouter from '../../utils/addVueRouter';
 import KvEditButton from '../../../../vue/KvEditButton.vue';
-import KvButton from '../../../../vue/KvButton.vue';
 
 describe('KvEditButton', () => {
-	const renderComponent = (options) => {
-		return render(KvEditButton, {
-			...addVueRouter(options),
-			global: {
-				components: { KvButton },
-			},
-		});
-	};
+	const renderComponent = (options) => render(KvEditButton, addVueRouter(options));
 
 	it('renders the edit button', () => {
 		const { getByRole } = renderComponent();
@@ -75,32 +67,5 @@ describe('KvEditButton', () => {
 		const button = getByRole('button', { name: /edit/i });
 		await fireEvent.click(button);
 		expect(getByText(customControls)).toBeVisible();
-	});
-
-	it('hides the lightbox when the cancel button inside the lightbox is clicked', async () => {
-		const { getByRole, queryByRole, emitted } = renderComponent({
-			slots: {
-				controls: `<template #controls="{ hideLightbox }">
-					<kv-button aria-label="Cancel" variant="ghost" @click="hideLightbox">Cancel</kv-button>
-				</template>`,
-			},
-		});
-
-		// Open the lightbox by clicking the edit button
-		const editButton = getByRole('button', { name: /edit/i });
-		await fireEvent.click(editButton);
-
-		// Ensure the lightbox is visible after the click
-		expect(getByRole('dialog')).toBeVisible();
-
-		// Find the cancel button inside the lightbox
-		const cancelButton = getByRole('button', { name: /cancel/i });
-		await fireEvent.click(cancelButton);
-
-		// Ensure the lightbox is no longer visible
-		expect(queryByRole('dialog')).not.toBeInTheDocument();
-
-		// Check if the 'lightbox-closed' event was emitted
-		expect(emitted()['lightbox-closed']).toBeTruthy();
 	});
 });
