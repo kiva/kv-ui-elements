@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.42.0...@kiva/kv-components@3.43.0) (2023-09-15)
+
+
+### Features
+
+* added label support ([c016a68](https://github.com/kiva/kv-ui-elements/commit/c016a683ae38ca5af66fa86576d88abd0066d719))
+* line graph can now just take values and normalization happens in component ([3f706be](https://github.com/kiva/kv-ui-elements/commit/3f706be31b288b64e4a566746bd7d0530ce25650))
+* ported over Shua's line graph using clip path and made slight CSS tweaks to match mocks ([56ac312](https://github.com/kiva/kv-ui-elements/commit/56ac312924eecdf56e2d9d99082643e6d42f7765))
+* simple unit tests and small fixes related to tests ([43700fa](https://github.com/kiva/kv-ui-elements/commit/43700faf6c1f0c76432107c3a658539bd3bf6c7b))
+
+
+
+
+
 # [3.42.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.41.0...@kiva/kv-components@3.42.0) (2023-09-14)
 
 
