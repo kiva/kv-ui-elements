@@ -53,3 +53,15 @@ export const Matched = story({
 	},
 	kvTrackFunction,
 });
+
+export const LseLoan = story({
+	loan: {
+		matchingText: 'Ebay',
+		matchRatio: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		partnerName: 'N/A, direct to Novulis',
+	},
+	kvTrackFunction,
+});

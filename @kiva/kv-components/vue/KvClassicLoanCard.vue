@@ -231,6 +231,8 @@ import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
+const LSE_LOAN_KEY = 'N/A';
+
 export default {
 	name: 'KvClassicLoanCard',
 	components: {
@@ -438,14 +440,25 @@ export default {
 				singleParents: !!tags.filter((t) => t.toUpperCase() === 'SINGLE PARENT').length,
 			};
 
+			const isLseLoan = this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
+
 			// P1 Category
 			// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
+			// Tag as first option for LSE loans
+			if (isLseLoan && tags.length) {
+				const position = Math.floor(Math.random() * tags.length);
+				const tag = tags[position];
+				callouts.push(tag);
+			}
+
 			if (!this.categoryPageName) {
-				if (categories.ecoFriendly) {
+				if (categories.ecoFriendly
+					&& !callouts.filter((c) => c.toUpperCase() === categories.ecoFriendly.toUpperCase()).length) {
 					callouts.push('Eco-friendly');
 				} else if (categories.refugeesIdps) {
 					callouts.push('Refugees and IDPs');
-				} else if (categories.singleParents) {
+				} else if (categories.singleParents
+					&& !callouts.filter((c) => c.toUpperCase() === categories.singleParents.toUpperCase()).length) {
 					callouts.push('Single Parent');
 				}
 			}
@@ -482,6 +495,8 @@ export default {
 				}
 			}
 
+			// Only show one callout for LSE loans
+			if (isLseLoan && callouts.length > 1) return [callouts.shift()];
 			return callouts;
 		},
 	},
