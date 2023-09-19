@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.44.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.43.0...@kiva/kv-components@3.44.0) (2023-09-19)
+
+
+### Features
+
+* increase impact visibility for lse loans ([#298](https://github.com/kiva/kv-ui-elements/issues/298)) ([f9dc1e4](https://github.com/kiva/kv-ui-elements/commit/f9dc1e47f25a68f8e3bd745abfc2338b376bd848))
+
+
+
+
+
 # [3.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.42.0...@kiva/kv-components@3.43.0) (2023-09-15)
 
 
