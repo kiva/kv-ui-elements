@@ -58,7 +58,7 @@ export default {
 		},
 		tagText() {
 			const partnerName = this.loan?.partnerName ?? '';
-			if (partnerName.includes(LSE_LOAN_KEY)) {
+			if (partnerName.toUpperCase().includes(LSE_LOAN_KEY)) {
 				return 'High community impact';
 			}
 			switch (this.variation) {

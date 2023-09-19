@@ -440,7 +440,7 @@ export default {
 				singleParents: !!tags.filter((t) => t.toUpperCase() === 'SINGLE PARENT').length,
 			};
 
-			const isLseLoan = this.loan?.partnerName?.includes(LSE_LOAN_KEY);
+			const isLseLoan = this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
 
 			// P1 Category
 			// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
