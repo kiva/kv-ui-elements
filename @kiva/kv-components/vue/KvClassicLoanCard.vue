@@ -448,17 +448,17 @@ export default {
 			if (isLseLoan) {
 				const position = Math.floor(Math.random() * tags.length);
 				const tag = tags[position];
-				if (!callouts.filter((c) => c.toUpperCase() === tag.toUpperCase()).length) {
-					callouts.push(tag);
-				}
+				callouts.push(tag);
 			}
 
 			if (!this.categoryPageName) {
-				if (categories.ecoFriendly) {
+				if (categories.ecoFriendly
+					&& !callouts.filter((c) => c.toUpperCase() === categories.ecoFriendly.toUpperCase()).length) {
 					callouts.push('Eco-friendly');
 				} else if (categories.refugeesIdps) {
 					callouts.push('Refugees and IDPs');
-				} else if (categories.singleParents) {
+				} else if (categories.singleParents
+					&& !callouts.filter((c) => c.toUpperCase() === categories.singleParents.toUpperCase()).length) {
 					callouts.push('Single Parent');
 				}
 			}
