@@ -445,7 +445,7 @@ export default {
 			// P1 Category
 			// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
 			// Tag as first option for LSE loans
-			if (isLseLoan) {
+			if (isLseLoan && tags.length) {
 				const position = Math.floor(Math.random() * tags.length);
 				const tag = tags[position];
 				callouts.push(tag);
