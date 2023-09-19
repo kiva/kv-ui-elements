@@ -17,6 +17,8 @@ import { differenceInDays, parseISO } from 'date-fns';
 import numeral from 'numeral';
 import KvCountdownTimer from './KvCountdownTimer.vue';
 
+const LSE_LOAN_KEY = 'N/A';
+
 export default {
 	name: 'KvLoanTag',
 	components: {
@@ -55,6 +57,10 @@ export default {
 			return null;
 		},
 		tagText() {
+			const partnerName = this.loan?.partnerName ?? '';
+			if (partnerName.includes(LSE_LOAN_KEY)) {
+				return 'High community impact';
+			}
 			switch (this.variation) {
 				case 'almost-funded': return 'Almost funded';
 				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;

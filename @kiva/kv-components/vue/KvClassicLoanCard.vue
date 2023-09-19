@@ -231,6 +231,8 @@ import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
+const LSE_LOAN_KEY = 'N/A';
+
 export default {
 	name: 'KvClassicLoanCard',
 	components: {
@@ -438,8 +440,19 @@ export default {
 				singleParents: !!tags.filter((t) => t.toUpperCase() === 'SINGLE PARENT').length,
 			};
 
+			const isLseLoan = this.loan?.partnerName?.includes(LSE_LOAN_KEY);
+
 			// P1 Category
 			// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
+			// Tag as first option for LSE loans
+			if (isLseLoan) {
+				const position = Math.floor(Math.random() * tags.length);
+				const tag = tags[position];
+				if (!callouts.filter((c) => c.toUpperCase() === tag.toUpperCase()).length) {
+					callouts.push(tag);
+				}
+			}
+
 			if (!this.categoryPageName) {
 				if (categories.ecoFriendly) {
 					callouts.push('Eco-friendly');
@@ -482,6 +495,8 @@ export default {
 				}
 			}
 
+			// Only show one callout for LSE loans
+			if (isLseLoan && callouts.length > 1) return [callouts.shift()];
 			return callouts;
 		},
 	},

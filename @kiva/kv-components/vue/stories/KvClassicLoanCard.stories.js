@@ -182,6 +182,29 @@ export const LongCallouts = story({
 	photoPath,
 });
 
+export const LseLoan = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+		partnerName: 'N/A, direct to Novulis',
+		tags: [
+			'user_favorite',
+			'#Woman-Owned Business',
+			'#Animals',
+			'#Repeat Borrower',
+			'#Supporting Family',
+		],
+	},
+	kvTrackFunction,
+	photoPath,
+	showTags: true,
+});
+
 export const Bookmarked = story({
 	loanId: loan.id,
 	loan,
