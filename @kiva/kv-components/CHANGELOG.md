@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.44.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.0...@kiva/kv-components@3.44.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* backpedal kvedit button and use existing components instead ([e751910](https://github.com/kiva/kv-ui-elements/commit/e751910f808f7d4b5861995053015bd20b9c6d5e))
+
+
+
+
+
 # [3.44.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.43.0...@kiva/kv-components@3.44.0) (2023-09-19)
 
 
