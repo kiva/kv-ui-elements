@@ -19,15 +19,6 @@
 					class="tw-relative"
 					@click="showLoanDetails"
 				>
-					<kv-loan-bookmark
-						v-if="!isVisitor"
-						:loan-id="loanId"
-						:is-bookmarked="isBookmarked"
-						class="tw-absolute tw-right-1 tw-z-2"
-						style="top: -6px;"
-						data-testid="loan-card-bookmark"
-						@toggle-bookmark="$emit('toggle-bookmark')"
-					/>
 					<component
 						:is="tag"
 						:to="readMorePath"
@@ -76,6 +67,15 @@
 							</p>
 						</div>
 					</component>
+					<kv-loan-bookmark
+						v-if="!isVisitor"
+						:loan-id="loanId"
+						:is-bookmarked="isBookmarked"
+						class="tw-absolute tw-right-1"
+						style="top: -6px;"
+						data-testid="loan-card-bookmark"
+						@toggle-bookmark="$emit('toggle-bookmark')"
+					/>
 				</div>
 
 				<!-- Loan tag -->
