@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.44.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.1...@kiva/kv-components@3.44.2) (2023-09-25)
+
+
+### Bug Fixes
+
+* bookmark icon position fixed to avoid using z index property ([#301](https://github.com/kiva/kv-ui-elements/issues/301)) ([59287f8](https://github.com/kiva/kv-ui-elements/commit/59287f82e27275a23c6924537a55bdb31f563946))
+
+
+
+
+
 ## [3.44.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.0...@kiva/kv-components@3.44.1) (2023-09-20)
 
 
