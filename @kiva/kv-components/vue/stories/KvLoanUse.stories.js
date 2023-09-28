@@ -18,6 +18,7 @@ const story = (args) => {
 				:borrower-count="borrowerCount"
 				:name="name"
 				:distribution-model="distributionModel"
+				:why-special="whySpecial"
 			/>
 		`,
 	});
@@ -48,4 +49,12 @@ export const Group = story({
 	status: 'fundraising',
 	name: 'Farm Organization',
 	borrowerCount: 2,
+});
+
+export const WhySpecial = story({
+	use: 'buy supplies.',
+	loanAmount: '1000.00',
+	status: 'fundraising',
+	name: 'Bob Smith',
+	whySpecial: 'It supports organic farming and includes a lower interest rate.',
 });

@@ -40,6 +40,10 @@ export default {
 			type: String,
 			default: DIRECT,
 		},
+		whySpecial: {
+			type: String,
+			default: '',
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -63,7 +67,8 @@ export default {
 				+ `${isGroup ? 'a member of ' : ''}`
 				+ `${this.name} `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
-				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`;
+				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
+				+ `${this.whySpecial ? ` ${this.whySpecial}` : ''}`;
 		},
 	},
 };
