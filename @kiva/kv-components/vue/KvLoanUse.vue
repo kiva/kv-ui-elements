@@ -1,7 +1,9 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
-	<p class="tw-line-clamp-4">
-		{{ loanUse }}
-	</p>
+	<p
+		class="tw-line-clamp-4"
+		v-html="loanUse"
+	></p>
 </template>
 
 <script>
@@ -70,7 +72,7 @@ export default {
 			return `${numeral(this.loanAmount).format('$0,0')} `
 				+ `${this.isDirect ? 'to' : this.helpLanguage} `
 				+ `${isGroup ? 'a member of ' : ''}`
-				+ `${this.name} `
+				+ `<span class="data-hj-suppress">${this.name}</span> `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
 				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
 				+ `${this.whySpecialSentence}`;
