@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.46.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.45.0...@kiva/kv-components@3.46.0) (2023-09-29)
+
+
+### Features
+
+* loan name wasn't being suppressed from hotjar ([998daef](https://github.com/kiva/kv-ui-elements/commit/998daefd75ebebbabde03f37be78d17469e34e00))
+
+
+
+
+
 # [3.45.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.2...@kiva/kv-components@3.45.0) (2023-09-29)
 
 
