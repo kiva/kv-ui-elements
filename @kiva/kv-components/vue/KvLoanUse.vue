@@ -40,6 +40,10 @@ export default {
 			type: String,
 			default: DIRECT,
 		},
+		whySpecial: {
+			type: String,
+			default: '',
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -50,6 +54,11 @@ export default {
 		},
 		isDirect() {
 			return this.distributionModel === DIRECT;
+		},
+		whySpecialSentence() {
+			return this.whySpecial
+				? ` This loan is special because ${this.whySpecial.charAt(0).toLowerCase() + this.whySpecial.slice(1)}`
+				: '';
 		},
 		loanUse() {
 			if (this.anonymizationLevel === 'full' || this.use.length === 0) {
@@ -63,7 +72,8 @@ export default {
 				+ `${isGroup ? 'a member of ' : ''}`
 				+ `${this.name} `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
-				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`;
+				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
+				+ `${this.whySpecialSentence}`;
 		},
 	},
 };
