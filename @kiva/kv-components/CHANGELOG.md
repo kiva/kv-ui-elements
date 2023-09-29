@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.45.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.2...@kiva/kv-components@3.45.0) (2023-09-29)
+
+
+### Bug Fixes
+
+* missed leading words ([1614ebd](https://github.com/kiva/kv-ui-elements/commit/1614ebd5ff3ceccc900a8db24624f5a40d9f17c6))
+
+
+### Features
+
+* add optional why special string to loan use ([99d20ec](https://github.com/kiva/kv-ui-elements/commit/99d20ecc8e2efd0b9a6de4890335f9f46daf8250))
+
+
+
+
+
 ## [3.44.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.44.1...@kiva/kv-components@3.44.2) (2023-09-25)
 
 
