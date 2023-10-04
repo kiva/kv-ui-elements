@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.46.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.0...@kiva/kv-components@3.46.1) (2023-10-04)
+
+
+### Bug Fixes
+
+* bug fixed for lse loans when including eco friendly and single p… ([#304](https://github.com/kiva/kv-ui-elements/issues/304)) ([0afb6fc](https://github.com/kiva/kv-ui-elements/commit/0afb6fc7f362048f1ee76ac898a3dcb456d250d5))
+
+
+
+
+
 # [3.46.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.45.0...@kiva/kv-components@3.46.0) (2023-09-29)
 
 
