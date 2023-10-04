@@ -198,6 +198,8 @@ export const LseLoan = story({
 			'#Animals',
 			'#Repeat Borrower',
 			'#Supporting Family',
+			'#Eco-friendly',
+			'#Single parent',
 		],
 	},
 	kvTrackFunction,

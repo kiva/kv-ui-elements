@@ -232,6 +232,10 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
 const LSE_LOAN_KEY = 'N/A';
+const ECO_FRIENDLY_KEY = 'ECO-FRIENDLY';
+const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
+const SINGLE_PARENT_KEY = 'SINGLE PARENT';
+const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
 export default {
 	name: 'KvClassicLoanCard',
@@ -434,10 +438,10 @@ export default {
 				.map((tag) => tag.substring(1)) ?? [];
 			const themes = this.loan?.themes ?? [];
 			const categories = {
-				ecoFriendly: !!tags
-					.filter((t) => t.toUpperCase() === 'ECO-FRIENDLY' || t.toUpperCase() === 'SUSTAINABLE AG').length,
-				refugeesIdps: !!themes.filter((t) => t.toUpperCase() === 'REFUGEES/DISPLACED').length,
-				singleParents: !!tags.filter((t) => t.toUpperCase() === 'SINGLE PARENT').length,
+				ecoFriendly: !!tags // eslint-disable-next-line max-len
+					.filter((t) => t.toUpperCase() === ECO_FRIENDLY_KEY || t.toUpperCase() === SUSTAINABLE_AG_KEY).length,
+				refugeesIdps: !!themes.filter((t) => t.toUpperCase() === REFUGEE_KEY).length,
+				singleParents: !!tags.filter((t) => t.toUpperCase() === SINGLE_PARENT_KEY).length,
 			};
 
 			const isLseLoan = this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
@@ -452,13 +456,13 @@ export default {
 			}
 
 			if (!this.categoryPageName) {
-				if (categories.ecoFriendly
-					&& !callouts.filter((c) => c.toUpperCase() === categories.ecoFriendly.toUpperCase()).length) {
+				if (categories.ecoFriendly // eslint-disable-next-line max-len
+					&& !callouts.find((c) => c.toUpperCase() === ECO_FRIENDLY_KEY || c.toUpperCase() === SUSTAINABLE_AG_KEY)) {
 					callouts.push('Eco-friendly');
 				} else if (categories.refugeesIdps) {
 					callouts.push('Refugees and IDPs');
 				} else if (categories.singleParents
-					&& !callouts.filter((c) => c.toUpperCase() === categories.singleParents.toUpperCase()).length) {
+					&& !callouts.find((c) => c.toUpperCase() === SINGLE_PARENT_KEY)) {
 					callouts.push('Single Parent');
 				}
 			}
