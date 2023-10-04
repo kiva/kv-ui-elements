@@ -456,13 +456,13 @@ export default {
 			}
 
 			if (!this.categoryPageName) {
-				if (categories.ecoFriendly
-					&& !callouts.find((c) => c === ECO_FRIENDLY_KEY || c === SUSTAINABLE_AG_KEY)) {
+				if (categories.ecoFriendly // eslint-disable-next-line max-len
+					&& !callouts.find((c) => c.toUpperCase() === ECO_FRIENDLY_KEY || c.toUpperCase() === SUSTAINABLE_AG_KEY)) {
 					callouts.push('Eco-friendly');
 				} else if (categories.refugeesIdps) {
 					callouts.push('Refugees and IDPs');
 				} else if (categories.singleParents
-					&& !callouts.find((c) => c === SINGLE_PARENT_KEY)) {
+					&& !callouts.find((c) => c.toUpperCase() === SINGLE_PARENT_KEY)) {
 					callouts.push('Single Parent');
 				}
 			}
