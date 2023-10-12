@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.2.33...@kiva/kv-shop@1.3.0) (2023-10-12)
+
+
+### Features
+
+* handle basket checked out and over max donation shop errors MARS-429 ([2dce219](https://github.com/kiva/kv-ui-elements/commit/2dce219fc4335ab1a41f9c5382c27c991ef20e00))
+
+
+
+
+
 ## [1.2.33](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.2.32...@kiva/kv-shop@1.2.33) (2023-10-12)
 
 **Note:** Version bump only for package @kiva/kv-shop
