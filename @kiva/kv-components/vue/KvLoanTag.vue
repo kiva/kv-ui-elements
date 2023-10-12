@@ -41,13 +41,18 @@ export default {
 		};
 	},
 	computed: {
+		isLseLoan() {
+			return this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY) ?? false;
+		},
 		amountLeft() {
 			const loanFundraisingInfo = this.loan?.loanFundraisingInfo ?? { fundedAmount: 0, reservedAmount: 0 };
 			const { fundedAmount, reservedAmount } = loanFundraisingInfo;
 			return numeral(this.loan?.loanAmount).subtract(fundedAmount).subtract(reservedAmount).value();
 		},
 		variation() {
-			if (differenceInDays(parseISO(this.loan?.plannedExpirationDate), Date.now()) <= 3) {
+			if (this.isLseLoan) {
+				return 'lse-loan';
+			} if (differenceInDays(parseISO(this.loan?.plannedExpirationDate), Date.now()) <= 3) {
 				return 'ending-soon';
 			} if (this.amountLeft < 100 && this.amountLeft >= 0) {
 				return 'almost-funded';
@@ -57,11 +62,8 @@ export default {
 			return null;
 		},
 		tagText() {
-			const partnerName = this.loan?.partnerName ?? '';
-			if (partnerName.toUpperCase().includes(LSE_LOAN_KEY)) {
-				return 'High community impact';
-			}
 			switch (this.variation) {
+				case 'lse-loan': return 'High community impact';
 				case 'almost-funded': return 'Almost funded';
 				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
 				default: return 'Ending soon: ';
