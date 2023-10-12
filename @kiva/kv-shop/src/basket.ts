@@ -37,5 +37,5 @@ export async function createBasket(apollo) {
 
 export function hasBasketExpired(error) {
 	const errorCode = error?.code ?? error?.extensions?.code ?? error?.name ?? '';
-	return ['shop.invalidBasketId', 'shop.basketRequired'].includes(errorCode);
+	return ['shop.invalidBasketId', 'shop.basketRequired', 'shop.alreadyCheckedOut'].includes(errorCode);
 }
