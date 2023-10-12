@@ -36,15 +36,30 @@ export function parseShopError(error: any) {
 		}, 'There was a problem validating your payment information. Please double-check the details and try again.');
 	}
 	// Handle errors with shop.invalidBasketId or shop.basketRequired codes
-	if (errorCode === 'shop.invalidBasketId' || errorCode === 'shop.basketRequired') {
+	if (
+		errorCode === 'shop.invalidBasketId'
+		|| errorCode === 'shop.basketRequired'
+		|| errorCode === 'shop.alreadyCheckedOut'
+	) {
 		return new ShopError({
 			code: errorCode,
 			original: error,
 		}, 'There was a problem with your basket. Please, refresh the page and try again.');
 	}
 
+	// These errors have well-formed messages and just need to be passed through
+	if (
+		errorCode === 'donationAmountTooLarge'
+	) {
+		return new ShopError({
+			code: errorCode,
+			original: error,
+		}, errorMessage);
+	}
+
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...
 
+	// All other errors are treated as unknown
 	return new ShopError({
 		code: 'shop.unknown',
 		original: error,
