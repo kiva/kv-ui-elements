@@ -1,6 +1,6 @@
 <template>
 	<span v-if="timeLeft">
-		{{ timeLeft.hours() }}h {{ timeLeft.minutes() }}m {{ timeLeft.seconds() }}s
+		{{ remainingHours }}h {{ timeLeft.minutes() }}m {{ timeLeft.seconds() }}s
 	</span>
 </template>
 
@@ -10,6 +10,7 @@ import {
 	toRefs,
 	onBeforeUnmount,
 	onMounted,
+	computed,
 } from 'vue-demi';
 import moment from 'moment';
 
@@ -25,6 +26,10 @@ export default {
 
 		const interval = ref(null);
 		const timeLeft = ref(null);
+
+		const remainingHours = computed(() => {
+			return Math.floor(timeLeft.value.asHours());
+		});
 
 		onMounted(() => {
 			timeLeft.value = moment.duration(msLeft.value > 0 ? msLeft.value : 0, 'milliseconds');
@@ -48,7 +53,7 @@ export default {
 			}
 		});
 
-		return { timeLeft };
+		return { timeLeft, remainingHours };
 	},
 };
 </script>
