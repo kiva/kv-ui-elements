@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.46.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.2...@kiva/kv-components@3.46.3) (2023-10-17)
+
+
+### Bug Fixes
+
+* kvcountdowtimer component updated to show the remaining hours correctly ([#307](https://github.com/kiva/kv-ui-elements/issues/307)) ([1ea593c](https://github.com/kiva/kv-ui-elements/commit/1ea593ce88339fff9e9bf2bcd1e33bed46a8b09a))
+
+
+
+
+
 ## [3.46.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.1...@kiva/kv-components@3.46.2) (2023-10-12)
 
 **Note:** Version bump only for package @kiva/kv-components
