@@ -50,14 +50,14 @@ export default {
 			return numeral(this.loan?.loanAmount).subtract(fundedAmount).subtract(reservedAmount).value();
 		},
 		variation() {
-			if (this.isLseLoan) {
+			if (this.loan?.matchingText) {
+				return 'matched-loan';
+			} if (this.isLseLoan) {
 				return 'lse-loan';
 			} if (differenceInDays(parseISO(this.loan?.plannedExpirationDate), Date.now()) <= 3) {
 				return 'ending-soon';
 			} if (this.amountLeft < 100 && this.amountLeft >= 0) {
 				return 'almost-funded';
-			} if (this.loan?.matchingText) {
-				return 'matched-loan';
 			}
 			return null;
 		},
