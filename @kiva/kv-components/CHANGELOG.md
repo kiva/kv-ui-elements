@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.47.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.3...@kiva/kv-components@3.47.0) (2023-10-23)
+
+
+### Features
+
+* prioritizing matching text in loan tag component ([#308](https://github.com/kiva/kv-ui-elements/issues/308)) ([2ac6ec1](https://github.com/kiva/kv-ui-elements/commit/2ac6ec129733eccaeeca93edd32f8e76d8f8f906))
+
+
+
+
+
 ## [3.46.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.2...@kiva/kv-components@3.46.3) (2023-10-17)
 
 
