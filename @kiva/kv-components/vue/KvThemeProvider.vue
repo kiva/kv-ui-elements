@@ -1,12 +1,13 @@
 <template>
-	<div
+	<component
+		:is="tag"
 		:style="{
 			...theme,
 			color: 'rgb(var(--text-primary))',
 		}"
 	>
 		<slot></slot>
-	</div>
+	</component>
 </template>
 
 <script>
@@ -31,6 +32,10 @@
  * */
 export default {
 	props: {
+		tag: {
+			type: String,
+			default: 'div',
+		},
 		/**
 		 * An object containing CSS custom properties set to RGB values.
 		 *
