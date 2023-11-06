@@ -1,26 +1,5 @@
 <template>
 	<div class="lend-mega-menu tw-overflow-hidden tw-pb-3 lg:tw-pt-3">
-		<a
-			v-if="showMGUpsellLink"
-			v-kv-track-event="['TopNav', 'click-Lend-Menu-Monthly-Good', 'Lend-monthly']"
-			href="/monthlygood"
-		>
-			<span class="tw-inline-flex tw-items-center tw-py-2 tw-mb-2 tw-gap-0.5 tw-font-medium">
-				Lend monthly
-				<kv-material-icon
-					:icon="mdiArrowRight"
-					class="tw-w-3 tw-h-3"
-				/>
-			</span>
-		</a>
-		<div
-			v-else
-			class="tw-block tw-py-2 tw-mb-2 tw-w-16"
-		>
-			<kv-loading-placeholder
-				style="height: 1.5rem;"
-			/>
-		</div>
 		<div
 			:style="computedStyle"
 			class="tw-transition tw-duration-1000 tw-ease-in-out"
@@ -31,12 +10,12 @@
 					ref="categoriesSection"
 					class="tw-col-span-7"
 				>
-					<h2 class="tw-text-base tw-mb-2">
+					<h2 class="menu-heading tw-mb-2">
 						Categories
 					</h2>
 
 					<div class="tw-flex tw-gap-4 tw-whitespace-nowrap">
-						<ul class="tw-columns-2 tw-gap-4 tw-font-medium">
+						<ul class="tw-columns-2 tw-gap-4 tw-font-book">
 							<template v-if="isChannelsLoading">
 								<li
 									v-for="i in 14"
@@ -68,7 +47,7 @@
 							</template>
 						</ul>
 						<div>
-							<ul class="tw-font-medium">
+							<ul class="tw-font-book">
 								<li class="tw-w-[11rem]">
 									<a
 										v-kv-track-event="['TopNav','click-Lend-Recommended-by-lenders']"
@@ -104,10 +83,10 @@
 								<!-- blank line to keep things lined up just right -->
 								<span class="tw-inline-block tw-py-1">&nbsp;</span>
 
-								<h2 class="tw-text-base tw-my-1">
+								<h2 class="menu-heading tw-my-1">
 									My Kiva
 								</h2>
-								<ul class="tw-font-medium">
+								<ul class="tw-font-book">
 									<li>
 										<a
 											v-if="favorites > 0"
@@ -177,7 +156,7 @@
 				<!-- regions -->
 				<div class="tw-col-span-8 tw-flex tw-flex-col">
 					<template v-if="isOpenSection(savedSearchesTitle)">
-						<h2 class="tw-text-base tw-mb-2">
+						<h2 class="menu-heading tw-mb-2">
 							Saved Searches
 						</h2>
 						<kv-lend-menu-search-list
@@ -186,11 +165,11 @@
 						/>
 					</template>
 					<template v-else>
-						<h2 class="tw-text-base tw-mb-2">
+						<h2 class="menu-heading tw-mb-2">
 							Regions
 						</h2>
 						<div class="tw-flex tw-whitespace-nowrap tw-h-full">
-							<ul class="tw-font-medium">
+							<ul class="tw-font-book">
 								<template v-if="isRegionsLoading">
 									<li
 										v-for="i in 8"
@@ -290,10 +269,6 @@ export default {
 			type: Array,
 			default: () => [],
 		},
-		showMGUpsellLink: {
-			type: Boolean,
-			default: false,
-		},
 	},
 	setup(props) {
 		const categoriesSection = ref(null);
@@ -352,6 +327,11 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.menu-heading {
+	@apply tw-text-base;
+	font-weight: 400;
+}
+
 .region-list,
 .search-list {
 	column-fill: auto; /* Tailwind doesnt have a column-fill option currently */

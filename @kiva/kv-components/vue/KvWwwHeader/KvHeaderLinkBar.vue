@@ -1,7 +1,6 @@
 <template>
 	<div
 		class="tw-h-full tw-flex tw-items-center"
-		@mouseout="onHover()"
 	>
 		<!-- avatar (sm, auth) -->
 		<button
@@ -9,10 +8,10 @@
 			ref="avatar"
 			class="header-link lg:tw-order-last tw-inline-flex"
 			:class="{
-				'tw-text-action': !hoveredItem || hoveredItem === avatar,
-				'tw-text-tertiary': hoveredItem && hoveredItem !== avatar
+				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMyKivaMenu
 			}"
 			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
+			@mouseout="onHover()"
 		>
 			<kv-material-icon
 				:icon="mdiAccountCircle"
@@ -24,24 +23,30 @@
 			ref="lendButton"
 			class="
 				tw-px-1.5 tw-py-1 tw-mx-1
-				tw-border-2 tw-rounded
+				tw-border-2
 				tw-text-eco-green-3 tw-border-current
 				hover:tw-no-underline
 				tw-inline-flex tw-items-baseline
 			"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== lendButton}"
+			:class="{
+				'tw-text-tertiary': openMenuItem && openMenuItem !== KvLendMenu,
+			}"
+			style="border-radius: 1rem;"
 			@mouseover="onHover(lendButton, KvLendMenu)"
+			@mouseout="onHover()"
 		>
 			Lend
 			<span class="tw-hidden lg:tw-inline tw-ml-0.5">now</span>
-			<kv-icon-chevron class="tw-w-1.5 tw-ml-1.5" />
+			<kv-icon-chevron
+				class="tw-hidden md:tw-inline tw-w-1.5 tw-ml-1.5 tw-transition-transform tw-duration-300"
+				:class="{'tw-rotate-180' : openMenuItem === KvLendMenu}"
+			/>
 		</a>
 		<!-- about us (lg) -->
 		<a
 			ref="aboutUsLink"
 			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== aboutUsLink}"
-			@mouseover="onHover(aboutUsLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem }"
 		>
 			About us
 		</a>
@@ -49,23 +54,20 @@
 		<a
 			ref="partnerWithUsLink"
 			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== partnerWithUsLink}"
-			@mouseover="onHover(partnerWithUsLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			Partner with us
 		</a>
 		<!-- logo spacer -->
 		<div
 			class="tw-flex-1 tw-h-full"
-			@mouseover="onHover()"
 		></div>
 		<!-- borrow (lg, no-auth) -->
 		<a
 			v-if="!loggedIn"
 			ref="borrowLink"
 			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== borrowLink}"
-			@mouseover="onHover(borrowLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			Borrow
 		</a>
@@ -73,8 +75,7 @@
 		<a
 			ref="supportKivaLink"
 			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== supportKivaLink}"
-			@mouseover="onHover(supportKivaLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			Support Kiva
 		</a>
@@ -83,8 +84,7 @@
 			v-if="basketCount > 0"
 			ref="basketLink"
 			class="header-link tw-relative"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== basketLink}"
-			@mouseover="onHover(basketLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			<kv-icon-bag
 				class="tw-w-3 tw-h-3 tw-pointer-events-none"
@@ -96,11 +96,9 @@
 			ref="searchButton"
 			class="header-link"
 			:class="{
-				'tw-text-action': !hoveredItem || hoveredItem === searchButton,
-				'tw-text-tertiary': hoveredItem && hoveredItem !== searchButton
+				'tw-text-tertiary': !!openMenuItem
 			}"
 			@click="openSearch"
-			@mouseover="onHover(searchButton)"
 		>
 			<kv-icon-search class="tw-w-3 tw-h-3" />
 		</button>
@@ -109,8 +107,7 @@
 			v-if="!loggedIn"
 			ref="signInLink"
 			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': hoveredItem && hoveredItem !== signInLink}"
-			@mouseover="onHover(signInLink)"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			Sign in
 		</a>
@@ -119,10 +116,10 @@
 			ref="menuButton"
 			class="header-link tw-inline-flex lg:tw-hidden"
 			:class="{
-				'tw-text-action': !hoveredItem || hoveredItem === menuButton,
-				'tw-text-tertiary': hoveredItem && hoveredItem !== menuButton
+				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
 			}"
 			@mouseover="onHover(menuButton, KvHeaderMobileMenu)"
+			@mouseout="onHover()"
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
@@ -159,8 +156,8 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		hoveredItem: {
-			type: Element,
+		openMenuItem: {
+			type: [Element, Function],
 			default: null,
 		},
 	},
@@ -217,6 +214,6 @@ export default {
 
 <style lang="postcss" scoped>
 .header-link {
-	@apply tw-px-1 tw-py-2 tw-cursor-pointer hover:tw-no-underline hover:tw-text-action;
+	@apply tw-px-1 lg:tw-px-2.5 tw-py-2 tw-cursor-pointer hover:tw-no-underline hover:tw-text-action-highlight;
 }
 </style>

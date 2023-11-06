@@ -134,15 +134,18 @@
 			"eco-forest": {
 				"text": {
 					"primary-inverse": "#EDF4F1",
-					"action": "#223829"
+					"action": "#223829",
+					"action-highlight": "#276A43"
 				},
 				"background": {
 					"primary": "#EDF4F1",
-					"action": "#223829"
+					"action": "#223829",
+					"action-highlight": "#276A43"
 				},
 				"border": {
 					"primary-inverse": "#EDF4F1",
-					"action": "#223829"
+					"action": "#223829",
+					"action-highlight": "#276A43"
 				}
 			},
 			"mint": {

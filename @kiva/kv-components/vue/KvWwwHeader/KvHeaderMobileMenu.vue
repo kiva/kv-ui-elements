@@ -1,37 +1,42 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
-		<a
+		<kv-header-menu-link
 			v-if="!loggedIn"
-			class="tw-py-1.5 tw-cursor-pointer"
+			href=""
 		>
 			Sign in
-		</a>
-		<a
-			class="tw-py-1.5 tw-cursor-pointer"
+		</kv-header-menu-link>
+		<kv-header-menu-link
+			href=""
 		>
 			Support Kiva
-		</a>
-		<a
+		</kv-header-menu-link>
+		<kv-header-menu-link
 			v-if="!loggedIn"
-			class="tw-py-1.5 tw-cursor-pointer"
+			href=""
 		>
 			Borrow
-		</a>
-		<a
-			class="tw-py-1.5 tw-cursor-pointer"
+		</kv-header-menu-link>
+		<kv-header-menu-link
+			href=""
 		>
 			About us
-		</a>
-		<a
-			class="tw-py-1.5 tw-cursor-pointer"
+		</kv-header-menu-link>
+		<kv-header-menu-link
+			href=""
 		>
 			Partner with us
-		</a>
+		</kv-header-menu-link>
 	</nav>
 </template>
 
 <script>
+import KvHeaderMenuLink from './KvHeaderMenuLink.vue';
+
 export default {
+	components: {
+		KvHeaderMenuLink,
+	},
 	props: {
 		loggedIn: {
 			type: Boolean,

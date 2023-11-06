@@ -22,7 +22,7 @@
 					v-show="linksVisible"
 					:logged-in="loggedIn"
 					:basket-count="basketCount"
-					:hovered-item="activeHeaderItem"
+					:open-menu-item="menuComponent"
 					@item-hover="onHover"
 					@open-search="openSearch"
 				/>
@@ -32,19 +32,20 @@
 				class="
 					tw-px-1 tw-py-2
 					tw-cursor-pointer
-					tw-absolute tw-top-1/2 tw--translate-y-1/2
+					tw-absolute
+					tw-top-1/2 tw-left-1/2
+					tw--translate-y-1/2 tw--translate-x-1/2
 					tw-transition-all tw-duration-300
 				"
 				:class="{
-					'tw-opacity-0 md:tw-opacity-full tw-left-2.5': searchOpen,
-					'tw-left-1/2 tw--translate-x-1/2': !searchOpen,
+					'tw-opacity-0 md:tw-opacity-full md:tw-left-2.5 md:tw-translate-x-0': searchOpen,
 				}"
 			>
 				<kv-header-logo />
 			</a>
 			<!-- search bar -->
 			<transition
-				name="search-expand"
+				name="header-fade"
 				@after-enter="afterSearchOpen"
 				@after-leave="afterSearchClosed"
 			>
@@ -53,16 +54,12 @@
 					ref="searchBar"
 					class="
 						tw-absolute
-						tw--translate-x-1/2
+						tw-left-1/2 tw--translate-x-1/2
 						tw-top-1/2 tw--translate-y-1/2
-						tw-h-full
+						tw-h-full tw-w-full
 					"
-					:class="{
-						'tw-w-full tw-left-1/2': searchOpen,
-					}"
 					:style="{
 						'max-width': '600px',
-						'--search-bar-origin': searchBarOrigin + 'px',
 					}"
 					@close-search="closeSearch"
 				/>
@@ -73,7 +70,7 @@
 			name="header-fade"
 		>
 			<div
-				v-show="menuOpen"
+				v-show="menuOpen || searchOpen"
 				class="
 					tw-absolute tw-z-modal
 					tw-top-7.5 tw-inset-x-0 tw-bottom-0
@@ -132,7 +129,6 @@ export default {
 	setup() {
 		const linksVisible = ref(true);
 		const searchBar = ref(null);
-		const searchBarOrigin = ref(0);
 		const searchOpen = ref(false);
 		const activeHeaderItem = ref(null);
 		const menuOpen = ref(false);
@@ -141,32 +137,24 @@ export default {
 		let menuCloseTimeout;
 
 		const onHover = (item, menu) => {
-			// if item and not menu, set item and close menu, and clear timeout
-			// if item and menu, set item, open menu, and clear timeout
-			// if no item and menu not open, reset item
-			// if no item and menu open, start close menu timeout
-			if (item) {
+			// if menu, open menu, and clear timeout
+			// if no menu and menu open, start close menu timeout
+			if (menu) {
 				clearTimeout(menuCloseTimeout);
-				activeHeaderItem.value = item;
-				menuOpen.value = !!menu;
-				if (menu) {
-					menuComponent.value = menu;
-				}
+				menuComponent.value = menu;
+				menuOpen.value = true;
 			} else if (menuOpen.value) {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
-					activeHeaderItem.value = null;
+					menuComponent.value = null;
 				}, 200);
-			} else {
-				activeHeaderItem.value = null;
 			}
 		};
 
 		// Search bar opening animation sequence
 		// 1. Fade out other header links
-		const openSearch = (searchButtonOffset) => {
+		const openSearch = () => {
 			linksVisible.value = false;
-			searchBarOrigin.value = searchButtonOffset;
 		};
 		// 2. Reveal search bar, expanding from origin point
 		const afterLinksNotVisible = () => {
@@ -204,7 +192,6 @@ export default {
 
 			activeHeaderItem,
 			searchBar,
-			searchBarOrigin,
 			menuComponent,
 		};
 	},
@@ -230,21 +217,5 @@ export default {
 .header-fade-leave,
 .header-fade-enter-to {
 	@apply tw-opacity-full;
-}
-
-.search-expand-enter-active {
-	@apply tw-transition-all tw-duration-300;
-}
-.search-expand-leave-active {
-	@apply tw-transition-all tw-duration-100;
-}
-.search-expand-enter,
-.search-expand-leave-to {
-	left: var(--search-bar-origin);
-	@apply tw-w-0;
-}
-.search-expand-leave,
-.search-expand-enter-to {
-	@apply tw-w-full tw-left-1/2;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<ul class="tw-font-medium">
+	<ul class="tw-font-book">
 		<li
 			v-for="search in searches"
 			:key="search.id"

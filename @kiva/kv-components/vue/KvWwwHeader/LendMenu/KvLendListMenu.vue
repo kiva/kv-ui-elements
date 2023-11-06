@@ -1,27 +1,5 @@
 <template>
 	<div class="tw-pb-2">
-		<a
-			v-if="showMGUpsellLink"
-			v-kv-track-event="['TopNav', 'click-Lend-Menu-Monthly-Good', 'Lend-monthly']"
-			href="/monthlygood"
-		>
-			<!-- eslint-disable-next-line max-len -->
-			<span class="tw-inline-flex tw-items-center tw-py-2 tw-mb-2 tw-gap-0.5 tw-border-b tw-border-tertiary tw-font-medium">
-				Lend monthly
-				<kv-material-icon
-					:icon="mdiArrowRight"
-					class="tw-w-3 tw-h-3"
-				/>
-			</span>
-		</a>
-		<div
-			v-else
-			class="tw-block tw-py-2 tw-mb-2 tw-w-16"
-		>
-			<kv-loading-placeholder
-				style="height: 1.5rem;"
-			/>
-		</div>
 		<kv-tabs ref="navLendCategories">
 			<template #tabNav>
 				<kv-tab for-panel="nav-lend-categories">
@@ -40,7 +18,7 @@
 			<template #tabPanels>
 				<kv-tab-panel id="nav-lend-categories">
 					<ul
-						class="tw-font-medium"
+						class="tw-font-book"
 					>
 						<template v-if="isChannelsLoading">
 							<li
@@ -139,7 +117,7 @@
 					v-if="userId"
 					id="nav-my-kiva"
 				>
-					<ul class="tw-font-medium">
+					<ul class="tw-font-book">
 						<li>
 							<a
 								v-if="favorites > 0"
@@ -198,7 +176,6 @@ import KvAccordionItem from '../../KvAccordionItem.vue';
 import KvLoadingPlaceholder from '../../KvLoadingPlaceholder.vue';
 import KvLendMenuCountryList from './KvLendMenuCountryList.vue';
 import KvLendMenuSearchList from './KvLendMenuSearchList.vue';
-import KvMaterialIcon from '../../KvMaterialIcon.vue';
 import KvTab from '../../KvTab.vue';
 import KvTabPanel from '../../KvTabPanel.vue';
 import KvTabs from '../../KvTabs.vue';
@@ -207,7 +184,6 @@ import paramCase from '../../../utils/paramCase';
 export default {
 	components: {
 		KvAccordionItem,
-		KvMaterialIcon,
 		KvTab,
 		KvTabPanel,
 		KvTabs,
@@ -243,10 +219,6 @@ export default {
 		isChannelsLoading: {
 			type: Boolean,
 			default: true,
-		},
-		showMGUpsellLink: {
-			type: Boolean,
-			default: false,
 		},
 	},
 	setup(props) {
