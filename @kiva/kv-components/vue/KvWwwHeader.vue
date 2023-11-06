@@ -22,6 +22,7 @@
 					v-show="linksVisible"
 					:logged-in="loggedIn"
 					:basket-count="basketCount"
+					:login-url="loginUrl"
 					:open-menu-item="menuComponent"
 					@item-hover="onHover"
 					@open-search="openSearch"
@@ -29,6 +30,7 @@
 			</transition>
 			<!-- logo -->
 			<a
+				href="/"
 				class="
 					tw-px-1 tw-py-2
 					tw-cursor-pointer
@@ -87,6 +89,7 @@
 						<component
 							:is="menuComponent"
 							:logged-in="loggedIn"
+							:login-url="loginUrl"
 						/>
 					</div>
 				</div>
@@ -124,6 +127,10 @@ export default {
 		basketCount: {
 			type: Number,
 			default: 0,
+		},
+		loginUrl: {
+			type: String,
+			default: '/ui-login',
 		},
 	},
 	setup() {
