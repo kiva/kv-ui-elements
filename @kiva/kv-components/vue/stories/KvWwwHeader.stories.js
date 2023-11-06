@@ -18,6 +18,11 @@ export default {
 				type: 'number',
 			},
 		},
+		loginUrl: {
+			control: {
+				type: 'text',
+			},
+		},
 	},
 };
 
@@ -27,7 +32,7 @@ const story = (args) => {
 		components: { KvWwwHeader, KvPageContainer },
 		template: `
 			<div class="tw-relative">
-				<kv-www-header :logged-in="loggedIn" :basket-count="basketCount" />
+				<kv-www-header :logged-in="loggedIn" :basket-count="basketCount" :login-url="loginUrl" />
 				<kv-page-container>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie tellus quis auctor luctus. Fusce consequat sit amet tortor sit amet euismod. Proin finibus blandit tortor scelerisque facilisis. Duis in euismod justo. Nam efficitur eu metus quis cursus. Duis a ligula nisi. Duis ligula eros, pharetra interdum malesuada vitae, feugiat quis ligula. Fusce non vestibulum elit, sed vehicula augue. Sed tellus dui, vestibulum in gravida eget, gravida a arcu. Duis sed sapien cursus velit bibendum auctor non a eros. Donec libero odio, fermentum faucibus justo vel, efficitur malesuada velit. Morbi odio ligula, congue id odio in, ornare bibendum turpis. Nunc consectetur imperdiet rutrum. Ut posuere turpis ac lacinia finibus. Proin velit arcu, ultrices vitae lacinia quis, tincidunt at justo.</p>
 					<p>Morbi volutpat eget enim eu tristique. Suspendisse potenti. Vivamus mollis purus magna, nec suscipit purus tempor id. Nulla porta ipsum sit amet sollicitudin accumsan. Cras pulvinar fringilla ullamcorper. Praesent sit amet sapien metus. Morbi volutpat tortor sed eros mattis ultricies. Duis convallis finibus lacus, a tempus felis pretium in. Ut eu est sem. Ut auctor ullamcorper dignissim. Praesent quis ullamcorper dui, ac sodales mi. Nullam volutpat augue vulputate congue suscipit. Praesent consectetur sem libero, id pharetra urna porttitor nec. Praesent vitae orci neque. Nam a diam orci.</p>

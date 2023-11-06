@@ -1,7 +1,7 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start lg:tw-items-end tw-font-medium">
 		<kv-header-menu-link
-			href=""
+			href="/portfolio"
 			class="tw-inline-flex tw-gap-0.5"
 		>
 			<span>Portfolio</span>
@@ -9,22 +9,22 @@
 			<span class="tw-text-eco-green-3">{{ balance }}</span>
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			href=""
+			href="/teams/my-teams"
 		>
 			My Teams
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			href=""
+			href="/portfolio/donations"
 		>
 			Donations
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			href=""
+			href="/settings"
 		>
 			Settings
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			href=""
+			href="/ui-logout"
 		>
 			Sign out
 		</kv-header-menu-link>

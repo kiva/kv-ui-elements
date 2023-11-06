@@ -21,6 +21,7 @@
 		<!-- lend -->
 		<a
 			ref="lendButton"
+			href="/lend-by-category"
 			class="
 				tw-px-1.5 tw-py-1 tw-mx-1
 				tw-border-2
@@ -45,6 +46,7 @@
 		<!-- about us (lg) -->
 		<a
 			ref="aboutUsLink"
+			href="/about"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem }"
 		>
@@ -53,6 +55,7 @@
 		<!-- partner with us (lg) -->
 		<a
 			ref="partnerWithUsLink"
+			href="/about/partner-with-us"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -66,6 +69,7 @@
 		<a
 			v-if="!loggedIn"
 			ref="borrowLink"
+			href="/borrow"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -74,6 +78,7 @@
 		<!-- support kiva (lg) -->
 		<a
 			ref="supportKivaLink"
+			href="/donate/supportus"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -83,6 +88,7 @@
 		<a
 			v-if="basketCount > 0"
 			ref="basketLink"
+			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -106,6 +112,7 @@
 		<a
 			v-if="!loggedIn"
 			ref="signInLink"
+			:href="loginUrl"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -159,6 +166,10 @@ export default {
 		openMenuItem: {
 			type: [Element, Function],
 			default: null,
+		},
+		loginUrl: {
+			type: String,
+			default: '/ui-login',
 		},
 	},
 	emits: [
