@@ -7,6 +7,7 @@
 	>
 		<input
 			ref="searchInput"
+			v-model="displayTerm"
 			type="text"
 			placeholder="Search"
 			class="
@@ -49,6 +50,7 @@
 import {
 	ref,
 } from 'vue-demi';
+import { useSiteSearch } from '../../utils/siteSearch';
 import KvIconSearch from '../KvIconSearch.vue';
 
 export default {
@@ -59,8 +61,12 @@ export default {
 		'close-search',
 	],
 	setup(props, { emit }) {
+		const {
+			searchInput,
+			displayTerm,
+		} = useSiteSearch();
+
 		const searchExitVisible = ref(false);
-		const searchInput = ref(null);
 
 		const onOpen = () => {
 			searchExitVisible.value = true;
@@ -74,6 +80,7 @@ export default {
 
 		return {
 			closeSearch,
+			displayTerm,
 			onOpen,
 			searchInput,
 			searchExitVisible,
