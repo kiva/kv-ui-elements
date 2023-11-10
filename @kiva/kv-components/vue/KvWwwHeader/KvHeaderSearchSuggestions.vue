@@ -37,7 +37,7 @@
 							hover:tw-bg-tertiary hover:tw-underline
 						"
 						:class="{
-							'tw-bg-secondary tw-underline': highlightedSuggestion === suggestion,
+							'tw-bg-tertiary tw-underline': highlightedSuggestion === suggestion,
 						}"
 						@mousedown.prevent
 						@click="runSearch(suggestion)"
