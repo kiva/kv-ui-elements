@@ -25,7 +25,6 @@ describe('checkoutStatus', () => {
 			const result = await getCheckoutStatus({
 				apollo: apollo as any,
 				transactionSagaId: '123',
-				visitorId: '123',
 			});
 
 			expect(result).toEqual({
@@ -71,7 +70,6 @@ describe('checkoutStatus', () => {
 			const result = await pollForFinishedCheckout({
 				apollo: apollo as any,
 				transactionSagaId: '123',
-				visitorId: '123',
 			});
 
 			expect(result).toEqual({

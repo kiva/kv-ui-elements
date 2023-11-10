@@ -13,7 +13,10 @@ describe('basketItem.ts', () => {
 		const apollo = new MockApolloClient({ data: { shop: { updateDonation: { id: 123 } } } });
 		const donation = await setTipDonation({ amount: 25, apollo });
 		expect(apollo.mutate).toHaveBeenCalledWith({
-			mutation: expect.anything(), variables: { basketId: '', price: '25.00' },
+			mutation: expect.anything(),
+			awaitRefetchQueries: true,
+			refetchQueries: expect.anything(),
+			variables: { basketId: '', price: '25.00' },
 		});
 		expect(donation).toEqual({ id: 123 });
 	});

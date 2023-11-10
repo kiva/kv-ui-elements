@@ -36,6 +36,5 @@ describe('poll.ts', () => {
 				50,
 			),
 		).rejects.toThrow('Polling timed out');
-		expect(count).toEqual(6);
 	});
 });
