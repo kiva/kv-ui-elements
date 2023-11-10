@@ -1,4 +1,5 @@
 import { computed, ref, watch } from 'vue-demi';
+import { gql } from '@apollo/client/core';
 import { useEventListener } from './event';
 import markMatches from './markMatches';
 import { hasExcludedQueryParams } from './loanSearch/queryParamUtils';
@@ -82,22 +83,38 @@ function makeInstance()	{
 		return suggestionSections.value.reduce((total, section) => total + section.suggestions.length, 0);
 	});
 
-	const resetEngine = (loanSearchSuggestions) => {
-		engine.reset([
-			loanSearchSuggestions,
-			{
-				group: 'Gifts',
-				label: 'Kiva Cards',
-				keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
-				url: 'https://www.kiva.org/gifts/kiva-cards',
-			},
-			{
-				group: 'Gifts',
-				label: 'Kiva Store',
-				keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
-				url: 'https://store.kiva.org',
-			},
-		]);
+	const getSuggestions = (apollo) => {
+		apollo.query({
+			query: gql`
+				query LoanSearchSuggestions {
+					lend {
+						loanSearchSuggestions {
+							group
+							label
+							query
+						}
+					}
+				}
+			`,
+		}).then(({ data }) => {
+			if (data && data.lend) {
+				engine.reset([
+					...data.lend.loanSearchSuggestions,
+					{
+						group: 'Gifts',
+						label: 'Kiva Cards',
+						keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
+						url: 'https://www.kiva.org/gifts/kiva-cards',
+					},
+					{
+						group: 'Gifts',
+						label: 'Kiva Store',
+						keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
+						url: 'https://store.kiva.org',
+					},
+				]);
+			}
+		});
 	};
 
 	// The suggestion that is currently highlighted in the list
@@ -137,126 +154,6 @@ function makeInstance()	{
 			engine.search(term.value).then((results) => {
 				rawSuggestions.value = results;
 			});
-
-			// TODO:  Remove static suggestions when component is ready to merge
-			// For now, return static results
-			rawSuggestions.value = [
-				{
-					group: 'Partners',
-					label: 'Aflore',
-					query: 'partner=637',
-					matches: [
-						[0, 1],
-					],
-				},
-				{
-					group: 'Partners',
-					label: 'African Clean Energy (ACE)',
-					query: 'partner=452',
-					matches: [
-						[0, 1],
-					],
-				},
-				{
-					group: 'Partners',
-					label: 'Hand in Hand Eastern Africa',
-					query: 'partner=388',
-					matches: [
-						[1, 1],
-						[9, 9],
-						[14, 14],
-						[21, 22],
-					],
-				},
-				{
-					group: 'Partners',
-					label: 'Micro Start/AFD',
-					query: 'partner=187',
-					matches: [
-						[8, 8],
-						[12, 13],
-					],
-				},
-				{
-					group: 'Partners',
-					label: 'N/A, direct to All Across Africa',
-					query: 'partner=532',
-					matches: [
-						[2, 2],
-						[15, 15],
-						[19, 19],
-						[26, 27],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'Regions',
-					label: 'Africa',
-					query: 'country=mz,ug,tz,sn,rw,ke,cd,lr,sl,bf,cm,gh,ng,tg,mg,mw,ml,eg,ls,zm,za,bi,ss,zw,bj,na,ci',
-					matches: [
-						[0, 1],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'Countries and Territories',
-					label: 'South Africa',
-					query: 'country=za',
-					matches: [
-						[6, 7],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'U.S. cities',
-					label: 'Barksdale Afb, LA',
-					query: 'city_state=Barksdale Afb,LA',
-					matches: [
-						[1, 1],
-						[6, 6],
-						[10, 11],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'U.S. cities',
-					label: 'Cannon Afb, NM',
-					query: 'city_state=Cannon Afb,NM',
-					matches: [
-						[1, 1],
-						[7, 8],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'U.S. cities',
-					label: 'Delafield, WI',
-					query: 'city_state=Delafield,WI',
-					matches: [
-						[3, 4],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'U.S. cities',
-					label: 'Flagstaff, AZ',
-					query: 'city_state=Flagstaff,AZ',
-					matches: [
-						[0, 0],
-						[2, 2],
-						[6, 7],
-					],
-				},
-				{
-					__typename: 'SearchSuggestion',
-					group: 'U.S. cities',
-					label: 'Grafton, ND',
-					query: 'city_state=Grafton,ND',
-					matches: [
-						[2, 3],
-					],
-				},
-			];
 		} else {
 			// No search term entered, so reset the result list
 			rawSuggestions.value = [];
@@ -317,7 +214,7 @@ function makeInstance()	{
 		displayTerm,
 		suggestionSections,
 		highlightedSuggestion,
-		resetEngine,
+		getSuggestions,
 		runSearch,
 	};
 }

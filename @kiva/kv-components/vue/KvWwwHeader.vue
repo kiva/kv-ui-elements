@@ -192,6 +192,10 @@ export default {
 			linksVisible.value = true;
 		};
 
+		const getSuggestions = (apollo) => {
+			searchBar.value?.getSuggestions(apollo);
+		};
+
 		return {
 			ecoForestTheme,
 
@@ -206,6 +210,7 @@ export default {
 			onHover,
 			openSearch,
 			closeSearch,
+			getSuggestions,
 
 			activeHeaderItem,
 			searchBar,

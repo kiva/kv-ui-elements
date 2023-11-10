@@ -67,7 +67,7 @@ export default {
 			searchInput,
 			displayTerm,
 			runSearch,
-			resetEngine,
+			getSuggestions,
 		} = useSiteSearch();
 
 		const searchExitVisible = ref(false);
@@ -89,7 +89,7 @@ export default {
 			searchInput,
 			searchExitVisible,
 			runSearch,
-			resetEngine,
+			getSuggestions,
 		};
 	},
 };
