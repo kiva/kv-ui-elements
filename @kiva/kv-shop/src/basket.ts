@@ -1,16 +1,6 @@
 import { gql } from '@apollo/client/core';
+import { getCookieValue, setCookieValue } from './util/cookie';
 import { parseShopError } from './shopError';
-
-// TODO: could be moved to shared file or separate package
-export const getCookieValue = (name: string) => {
-	if (typeof document !== undefined) {
-		// From: https://stackoverflow.com/a/25490531
-		return decodeURIComponent(document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || '');
-	}
-};
-export const setCookieValue = (name: string, value: string, options = '') => {
-	document.cookie = `${name}=${encodeURIComponent(value)};${options}`;
-};
 
 export function getBasketID() {
 	return getCookieValue('kvbskt');

@@ -8,6 +8,8 @@ export class ShopError extends Error {
 
 	original?: object;
 
+	errors?: Array<ShopError>;
+
 	constructor({ code, original }: ShopErrorOptions, ...params) {
 		super(...params);
 
@@ -20,9 +22,17 @@ export class ShopError extends Error {
 		this.code = code;
 		this.original = original;
 	}
+
+	aggregateErrors(errors: Array<ShopError>) {
+		this.errors = errors;
+	}
 }
 
 export function parseShopError(error: any) {
+	if (error instanceof ShopError) {
+		return error;
+	}
+
 	const errorCode = error?.code ?? error?.extensions?.code ?? error?.name ?? '';
 	const errorMessage = typeof error === 'string' ? error : error?.message ?? '';
 
