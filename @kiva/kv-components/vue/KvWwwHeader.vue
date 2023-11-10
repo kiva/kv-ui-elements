@@ -67,6 +67,13 @@
 				/>
 			</transition>
 		</nav>
+		<transition
+			name="header-fade"
+			@after-enter="afterSearchOpen"
+			@after-leave="afterSearchClosed"
+		>
+			<kv-header-search-suggestions v-if="searchOpen" />
+		</transition>
 		<!-- menu drawer -->
 		<transition
 			name="header-fade"
@@ -79,6 +86,7 @@
 					tw-bg-eco-green-4
 					tw-bg-opacity-[50%]
 				"
+				@click="closeSearch"
 			>
 				<div
 					class="tw-bg-primary tw-w-full"
@@ -110,6 +118,7 @@ import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvHeaderMobileMenu from './KvWwwHeader/KvHeaderMobileMenu.vue';
 import KvHeaderSearchBar from './KvWwwHeader/KvHeaderSearchBar.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
+import KvHeaderSearchSuggestions from './KvWwwHeader/KvHeaderSearchSuggestions.vue';
 
 export default {
 	components: {
@@ -118,6 +127,7 @@ export default {
 		KvHeaderMobileMenu,
 		KvHeaderSearchBar,
 		KvThemeProvider,
+		KvHeaderSearchSuggestions,
 	},
 	props: {
 		loggedIn: {

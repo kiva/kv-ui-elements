@@ -1,6 +1,8 @@
 import { computed, ref, watch } from 'vue-demi';
 import { useEventListener } from './event';
 import markMatches from './markMatches';
+import { hasExcludedQueryParams } from './loanSearch/queryParamUtils';
+import SearchEngine from './searchEngine';
 
 // instances
 const instances = {};
@@ -29,6 +31,8 @@ function makeInstance()	{
 	const displayTerm = ref('');
 	const listIndex = ref(-1);
 	const rawSuggestions = ref([]);
+
+	const engine = new SearchEngine();
 
 	const suggestionSections = computed(() => {
 		// Group the results by their group name
@@ -78,6 +82,24 @@ function makeInstance()	{
 		return suggestionSections.value.reduce((total, section) => total + section.suggestions.length, 0);
 	});
 
+	const resetEngine = (loanSearchSuggestions) => {
+		engine.reset([
+			loanSearchSuggestions,
+			{
+				group: 'Gifts',
+				label: 'Kiva Cards',
+				keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
+				url: 'https://www.kiva.org/gifts/kiva-cards',
+			},
+			{
+				group: 'Gifts',
+				label: 'Kiva Store',
+				keywords: ['gift card', 'kiva card', 'gift', 'gift certificate'],
+				url: 'https://store.kiva.org',
+			},
+		]);
+	};
+
 	// The suggestion that is currently highlighted in the list
 	const highlightedSuggestion = computed(() => {
 		if (listIndex.value === -1) {
@@ -112,7 +134,11 @@ function makeInstance()	{
 
 		// Only search if there actually is a term entered
 		if (term.value.length > 0) {
-			// TODO: start getting new search suggestions
+			engine.search(term.value).then((results) => {
+				rawSuggestions.value = results;
+			});
+
+			// TODO:  Remove static suggestions when component is ready to merge
 			// For now, return static results
 			rawSuggestions.value = [
 				{
@@ -260,13 +286,39 @@ function makeInstance()	{
 		listIndex.value = -1;
 	});
 
-	// TODO: running search when results are selected
+	const runSearch = (suggestion) => {
+		const isSuggestionObject = typeof suggestion === 'object';
+
+		if (isSuggestionObject && suggestion.url) {
+			window.location.href = suggestion.url;
+		} else {
+			let query;
+
+			if (isSuggestionObject && suggestion.query) {
+				const [key, value] = suggestion.query.split('=');
+				query = { [key]: value };
+			} else {
+				query = { queryString: suggestion };
+			}
+
+			// Fallback to legacy filter if there's an unsupported query param
+			let filterUrl = '/lend/filter';
+			if (hasExcludedQueryParams(query)) {
+				filterUrl = '/lend';
+			}
+
+			const params = new URLSearchParams(query).toString();
+			window.location.href = `${window.location.origin}${filterUrl}?${params}`;
+		}
+	};
 
 	return {
 		searchInput,
 		displayTerm,
 		suggestionSections,
 		highlightedSuggestion,
+		resetEngine,
+		runSearch,
 	};
 }
 
