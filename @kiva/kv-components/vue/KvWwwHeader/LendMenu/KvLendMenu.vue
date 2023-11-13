@@ -25,12 +25,11 @@
 
 <script>
 import { gql } from '@apollo/client/core';
-import _sortBy from 'lodash.sortby';
-import _groupBy from 'lodash.groupby';
-import { computed, ref } from 'vue-demi';
+import { computed, onMounted, ref } from 'vue-demi';
 import KvLendListMenu from './KvLendListMenu.vue';
 import KvLendMegaMenu from './KvLendMegaMenu.vue';
 import { indexIn } from '../../../utils/comparators';
+import { groupBy, sortBy } from '../../../utils/arrayUtils';
 
 export default {
 	components: {
@@ -893,14 +892,15 @@ export default {
 					count: facet.count || 0,
 				};
 			});
-			const groups = _groupBy(facets, 'region');
+
+			const groups = groupBy(facets, 'region');
 
 			const formattedRegions = [];
 			// eslint-disable-next-line no-restricted-syntax
 			for (const [name, countries] of Object.entries(groups)) {
 				formattedRegions.push({
 					name,
-					countries: _sortBy(countries, 'name'),
+					countries: countries.sort(sortBy('name')),
 				});
 			}
 
@@ -914,7 +914,11 @@ export default {
 				return updatedCat;
 			});
 
-			return _sortBy(formattedCategories, 'name');
+			return formattedCategories.sort(sortBy('name'));
+		});
+
+		onMounted(() => {
+			onLoad();
 		});
 
 		return {

@@ -4,6 +4,7 @@ import { useEventListener } from './event';
 import markMatches from './markMatches';
 import { hasExcludedQueryParams } from './loanSearch/queryParamUtils';
 import SearchEngine from './searchEngine';
+import { groupBy } from './arrayUtils';
 
 // instances
 const instances = {};
@@ -37,15 +38,7 @@ function makeInstance()	{
 
 	const suggestionSections = computed(() => {
 		// Group the results by their group name
-		const resultGroups = rawSuggestions.value.reduce((groups, result) => {
-			const { group } = result;
-			if (!groups[group]) {
-				// eslint-disable-next-line no-param-reassign
-				groups[group] = [];
-			}
-			groups[group].push(result);
-			return groups;
-		}, {});
+		const resultGroups = groupBy(rawSuggestions.value, 'group');
 
 		// From the groups, build the sections of suggestions to display
 		return Object.keys(resultGroups)

@@ -63,8 +63,6 @@
     "embla-carousel": "^4.5.3",
     "focus-trap": "^6.7.2",
     "fuse.js": "^6.6.2",
-    "lodash.groupby": "^4.6.0",
-    "lodash.sortby": "^4.7.0",
     "moment": "^2.29.4",
     "nanoid": "^3.1.23",
     "numeral": "^2.0.6",
