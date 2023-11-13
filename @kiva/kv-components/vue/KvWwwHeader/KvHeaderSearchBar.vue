@@ -1,12 +1,14 @@
 <template>
 	<div
 		class="
-			tw-inline-flex
-			tw-pl-1.5 md:tw-pl-0
-		"
+				tw-inline-flex
+				tw-pl-1.5 md:tw-pl-0
+				tw-w-full
+			"
 	>
 		<input
 			ref="searchInput"
+			v-model="displayTerm"
 			type="text"
 			placeholder="Search"
 			class="
@@ -18,16 +20,17 @@
 				placeholder:tw-font-medium
 				tw-transition-colors tw-duration-100
 			"
+			@keydown.enter="runSearch(displayTerm)"
 		>
 		<!-- search icon (inert) -->
 		<div
 			class="
-				tw-flex-none tw-order-first
-				tw-inline-flex tw-items-center
-				tw-my-1.5 tw-p-0.5 tw-rounded-l
-				tw-bg-tertiary peer-placeholder-shown:tw-bg-secondary
-				tw-transition-colors tw-duration-100
-			"
+					tw-flex-none tw-order-first
+					tw-inline-flex tw-items-center
+					tw-my-1.5 tw-p-0.5 tw-rounded-l
+					tw-bg-tertiary peer-placeholder-shown:tw-bg-secondary
+					tw-transition-colors tw-duration-100
+				"
 		>
 			<kv-icon-search class="tw-w-3 tw-h-3" />
 		</div>
@@ -49,6 +52,7 @@
 import {
 	ref,
 } from 'vue-demi';
+import { useSiteSearch } from '../../utils/siteSearch';
 import KvIconSearch from '../KvIconSearch.vue';
 
 export default {
@@ -59,8 +63,14 @@ export default {
 		'close-search',
 	],
 	setup(props, { emit }) {
+		const {
+			searchInput,
+			displayTerm,
+			runSearch,
+			getSuggestions,
+		} = useSiteSearch();
+
 		const searchExitVisible = ref(false);
-		const searchInput = ref(null);
 
 		const onOpen = () => {
 			searchExitVisible.value = true;
@@ -74,9 +84,12 @@ export default {
 
 		return {
 			closeSearch,
+			displayTerm,
 			onOpen,
 			searchInput,
 			searchExitVisible,
+			runSearch,
+			getSuggestions,
 		};
 	},
 };
