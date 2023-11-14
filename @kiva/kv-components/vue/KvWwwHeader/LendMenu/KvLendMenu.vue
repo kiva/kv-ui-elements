@@ -36,7 +36,8 @@ export default {
 		KvLendListMenu,
 		KvLendMegaMenu,
 	},
-	setup() {
+	emits: ['load-lend-menu-data'],
+	setup(props, { emit }) {
 		const	userId = ref(null);
 		const categories = ref([]);
 		const countryFacets = ref([]);
@@ -918,7 +919,7 @@ export default {
 		});
 
 		onMounted(() => {
-			onLoad();
+			emit('load-lend-menu-data');
 		});
 
 		return {

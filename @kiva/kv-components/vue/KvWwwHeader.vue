@@ -96,8 +96,10 @@
 					<div class="header-margins tw-px-2.5">
 						<component
 							:is="menuComponent"
+							ref="menuComponentInstance"
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
+							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
 				</div>
@@ -143,13 +145,17 @@ export default {
 			default: '/ui-login',
 		},
 	},
-	setup() {
+	emits: [
+		'load-lend-menu-data',
+	],
+	setup(props, { emit }) {
 		const linksVisible = ref(true);
 		const searchBar = ref(null);
 		const searchOpen = ref(false);
 		const activeHeaderItem = ref(null);
 		const menuOpen = ref(false);
 		const menuComponent = ref(null);
+		const menuComponentInstance = ref(null);
 
 		let menuCloseTimeout;
 
@@ -196,12 +202,22 @@ export default {
 			searchBar.value?.getSuggestions(apollo);
 		};
 
+		const loadMenuData = (apollo) => {
+			menuComponentInstance.value?.onLoad(apollo);
+		};
+
+		// This event will be used as a signal to call loadMenuData
+		const emitLendMenuEvent = () => {
+			emit('load-lend-menu-data');
+		};
+
 		return {
 			ecoForestTheme,
 
 			afterLinksNotVisible,
 			afterSearchClosed,
 			afterSearchOpen,
+			emitLendMenuEvent,
 
 			linksVisible,
 			searchOpen,
@@ -211,6 +227,7 @@ export default {
 			openSearch,
 			closeSearch,
 			getSuggestions,
+			loadMenuData,
 
 			activeHeaderItem,
 			searchBar,
