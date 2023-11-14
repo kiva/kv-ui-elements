@@ -99,6 +99,9 @@
 							ref="menuComponentInstance"
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
+							:balance="balance"
+							:is-borrower="isBorrower"
+							:is-trustee="isTrustee"
 							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
@@ -143,6 +146,18 @@ export default {
 		loginUrl: {
 			type: String,
 			default: '/ui-login',
+		},
+		balance: {
+			type: Number,
+			default: 0,
+		},
+		isBorrower: {
+			type: Boolean,
+			default: false,
+		},
+		isTrustee: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [

@@ -6,7 +6,7 @@
 		>
 			<span>Portfolio</span>
 			<span class="tw-text-secondary">|</span>
-			<span class="tw-text-eco-green-3">{{ balance }}</span>
+			<span class="tw-text-eco-green-3">${{ balance }}</span>
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/teams/my-teams"
@@ -22,6 +22,18 @@
 			href="/settings"
 		>
 			Settings
+		</kv-header-menu-link>
+		<kv-header-menu-link
+			v-if="isBorrower"
+			to="/my/borrower"
+		>
+			Borrower Dashboard
+		</kv-header-menu-link>
+		<kv-header-menu-link
+			v-if="isTrustee"
+			to="/my/trustee"
+		>
+			Trustee Dashboard
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/ui-logout"
@@ -42,6 +54,14 @@ export default {
 		balance: {
 			type: Number,
 			default: 0,
+		},
+		isBorrower: {
+			type: Boolean,
+			default: false,
+		},
+		isTrustee: {
+			type: Boolean,
+			default: false,
 		},
 	},
 };
