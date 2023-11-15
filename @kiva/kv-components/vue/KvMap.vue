@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { animationCoordinator, generateMapMarkers } from '../utils/mapAnimation';
+
 export default {
 	name: 'KvMap',
 	props: {
@@ -86,6 +88,32 @@ export default {
 		zoomLevel: {
 			type: Number,
 			default: 4,
+		},
+		/**
+		 * Borrower points object.
+		 * If this object is present, the advanced animation will be triggered
+		 * Sample object:
+		 * {
+			borrowerPoints: [
+				{
+					image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/e60a3d61ff052d60991c5d6bbf4a45d3.jpg',
+					location: [-77.032, 38.913],
+				},
+				{
+					image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/6101929097c6e5de48232a4d1ae3b71c.jpg',
+					location: [41.402, 7.160],
+				},
+				{
+					image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/11e018ee3d8b9c5adee459c16a29d264.jpg',
+					location: [-73.356596, 3.501],
+				},
+			],
+		* }
+		*/
+		advancedAnimation: {
+			type: Object,
+			required: false,
+			default: () => ({}),
 		},
 	},
 	data() {
@@ -174,10 +202,18 @@ export default {
 			this.wrapperObserver = this.createIntersectionObserver({
 				targets: [this.$refs?.[this.refString]],
 				callback: (entries) => {
+					// only activate autoZoom if we have an initialZoom set
 					entries.forEach((entry) => {
 						if (entry.target === this.$refs?.[this.refString] && !this.zoomActive) {
 							if (entry.intersectionRatio > 0) {
-								this.activateZoom();
+								// activate zoom
+								if (this.initialZoom !== null) {
+									this.activateZoom();
+								}
+								// animate map
+								if (this.advancedAnimation?.borrowerPoints) {
+									this.animateMap();
+								}
 							}
 						}
 					});
@@ -291,13 +327,40 @@ export default {
 				dragRotate: false,
 			});
 
-			// signify map has loaded
-			this.mapLoaded = true;
+			this.mapInstance.on('load', () => {
+				// signify map has loaded
+				this.mapLoaded = true;
+				// Create wrapper observer to watch for map entering viewport
+				if (this.initialZoom !== null || this.advancedAnimation?.borrowerPoints) {
+					this.createWrapperObserver();
+				}
+			});
+		},
+		animateMap() {
+			// remove country labels
+			this.mapInstance.style.stylesheet.layers.forEach((layer) => {
+				if (layer.type === 'symbol') {
+					this.mapInstance.removeLayer(layer.id);
+				}
+			});
+			// generate map markers for borrower points
+			generateMapMarkers(this.mapInstance, this.advancedAnimation.borrowerPoints);
 
-			// only activate autoZoom if we have an initialZoom set
-			if (this.initialZoom !== null) {
-				this.createWrapperObserver();
-			}
+			// wait 500 ms before calling the animation coordinator promise
+			// to allow the map to scroll into view
+			setTimeout(() => {
+				animationCoordinator(this.mapInstance, this.advancedAnimation.borrowerPoints)
+					.then(() => {
+						// when animation is complete reset map to component properties
+						this.mapInstance.dragPan.enable();
+						this.mapInstance.scrollZoom.enable();
+						this.mapInstance.scrollZoom.enable();
+						this.mapInstance.easeTo({
+							center: [this.long, this.lat],
+							zoom: this.initialZoom || this.zoomLevel,
+						});
+					});
+			}, 500);
 		},
 		checkIntersectionObserverSupport() {
 			if (typeof window === 'undefined'
@@ -348,3 +411,40 @@ export default {
 	},
 };
 </script>
+
+<style>
+/* Styles for animation map markers defined in @kiva/kv-components/utils/mapAnimation.js */
+.map-marker {
+	margin-top: -77px;
+	margin-left: 35px;
+	display: block;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 0;
+}
+
+.map-marker::after {
+	content: '';
+	position: absolute;
+	top: -8px;
+	left: -8px;
+	right: -8px;
+	bottom: -8px;
+	border-radius: 50%;
+	border: 4px solid #000;
+}
+
+.map-marker::before {
+	content: "";
+	width: 0;
+	height: 0;
+	left: -13px;
+	bottom: -32px;
+	border: 9px solid transparent;
+	border-left: 40px solid #000;
+	transform: rotate(114deg);
+	position: absolute;
+	z-index: -1;
+}
+</style>

@@ -13,6 +13,7 @@ export default {
 		useLeaflet: false,
 		width: null,
 		zoomLevel: 4,
+		advancedAnimation: {},
 	},
 };
 
@@ -30,6 +31,7 @@ const Template = (args, { argTypes }) => ({
 		:use-leaflet="useLeaflet"
 		:width="width"
 		:zoom-level="zoomLevel"
+		:advanced-animation="advancedAnimation"
 	/>`,
 });
 
@@ -66,4 +68,33 @@ Leaflet.args = {
 	mapId: 4,
 	useLeaflet: true,
 	zoomLevel: 6,
+};
+
+export const AdvancedAnimation = Template.bind({});
+const advancedAnimation = {
+	borrowerPoints: [
+		{
+			image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/e60a3d61ff052d60991c5d6bbf4a45d3.jpg',
+			location: [-77.032, 38.913],
+		},
+		{
+			image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/6101929097c6e5de48232a4d1ae3b71c.jpg',
+			location: [41.402, 7.160],
+		},
+		{
+			image: 'https://www-kiva-org.freetls.fastly.net/img/w80h80fz50/11e018ee3d8b9c5adee459c16a29d264.jpg',
+			location: [-73.356596, 3.501],
+		},
+	],
+};
+AdvancedAnimation.args = {
+	initialZoom: null,
+	mapId: 5,
+	useLeaflet: false,
+	zoomLevel: 2,
+	height: 600,
+	width: 1000,
+	lat: 21.096,
+	long: -31.690,
+	advancedAnimation,
 };
