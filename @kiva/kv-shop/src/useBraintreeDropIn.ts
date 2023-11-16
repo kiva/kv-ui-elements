@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
+import type { Ref } from 'vue-demi';
 import { ref } from 'vue-demi';
 import type { ApplePayPaymentRequest } from 'braintree-web';
-import type { Dropin } from 'braintree-web-drop-in';
+import type { Dropin, PaymentMethodPayload } from 'braintree-web-drop-in';
 import { ShopError, parseShopError } from './shopError';
 
 export type PaymentType = 'card' | 'paypal' | 'paypalCredit' | 'venmo' | 'applePay' | 'googlePay';
@@ -44,7 +45,14 @@ export interface DropInInitOptions {
 	paypalFlow?: PayPalFlowType,
 }
 
-export default function useBraintreeDropIn() {
+export interface DropInWrapper {
+	initDropIn: (options: DropInInitOptions) => Promise<Dropin>,
+	paymentMethodRequestable: Ref<boolean>,
+	requestPaymentMethod: () => Promise<PaymentMethodPayload | void>,
+	updateAmount: (amount: string|number) => void,
+}
+
+function initBraintreeDropin(): DropInWrapper {
 	let instance: Dropin;
 	let formattedAmount = '';
 	const paymentMethodRequestable = ref(false);
@@ -206,4 +214,13 @@ export default function useBraintreeDropIn() {
 		requestPaymentMethod,
 		updateAmount,
 	};
+}
+
+const instances = {};
+export default function useBraintreeDropIn(key = 'default'): DropInWrapper {
+	if (!instances[key]) {
+		instances[key] = initBraintreeDropin();
+	}
+
+	return instances[key];
 }

@@ -1,16 +1,7 @@
+import type { ApolloClient } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
+import { getCookieValue, setCookieValue } from './util/cookie';
 import { parseShopError } from './shopError';
-
-// TODO: could be moved to shared file or separate package
-export const getCookieValue = (name: string) => {
-	if (typeof document !== undefined) {
-		// From: https://stackoverflow.com/a/25490531
-		return decodeURIComponent(document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`)?.pop() || '');
-	}
-};
-export const setCookieValue = (name: string, value: string, options = '') => {
-	document.cookie = `${name}=${encodeURIComponent(value)};${options}`;
-};
 
 export function getBasketID() {
 	return getCookieValue('kvbskt');
@@ -20,7 +11,7 @@ export function setBasketID(basketId) {
 	setCookieValue('kvbskt', basketId, 'path=/;secure;');
 }
 
-export async function createBasket(apollo) {
+async function createBasketHelper(apollo: ApolloClient<any>) {
 	try {
 		return apollo.mutate({
 			mutation: gql`mutation createNewBasketForUser { shop { id createBasket } }`,
@@ -33,6 +24,17 @@ export async function createBasket(apollo) {
 	} catch (error) {
 		throw parseShopError(error);
 	}
+}
+
+let activeBasketCreationQuery = null;
+export async function createBasket(apollo: ApolloClient<any>) {
+	// Only allow one basket creation query at a time
+	if (activeBasketCreationQuery) {
+		return activeBasketCreationQuery;
+	}
+	// Create a new basket
+	activeBasketCreationQuery = createBasketHelper(apollo);
+	return activeBasketCreationQuery;
 }
 
 export function hasBasketExpired(error) {
