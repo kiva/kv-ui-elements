@@ -45,6 +45,30 @@ export function parseShopError(error: any) {
 			original: error,
 		}, 'There was a problem validating your payment information. Please double-check the details and try again.');
 	}
+	// Handle errors (`${code}: ${message}`) similar to:
+	// INVALID_REQUEST: Exception while fetching data (/_entities[0]/doNoncePaymentDepositAndCheckout): Invalid request: TRANSACTION_PAYMENT_METHOD_NONCE_UNKNOWN: Unknown or expired payment_method_nonce.
+	// INVALID_REQUEST: Exception while fetching data (/_entities[0]/doNoncePaymentDepositAndCheckout): Invalid request: ADDRESS_POSTAL_CODE_IS_TOO_LONG: Postal code may contain no more than 9 letter or number characters., ADDRESS_POSTAL_CODE_IS_TOO_LONG: Postal code may contain no more than 9 letter or number characters.
+	if (errorMessage.includes('Invalid request: ')) {
+		const finalError = errorMessage.split('Invalid request: ')[1]
+			.split('., ')
+			.map((e: string) => e.matchAll(/[A-Z_]+: (.*)/g))[0];
+		const finalCode = finalError[1];
+		const finalMessage = finalError[2];
+
+		return new ShopError({
+			code: `paymentMethod.${finalCode}`,
+			original: error,
+		}, finalMessage);
+	}
+	// Handle errors (`${code}: ${message}`) similar to:
+	// insufficientFunds: Exception while fetching data (/_entities[0]/doNoncePaymentDepositAndCheckout): Insufficient funds for fund account xxxxxxx during loan purchase of xxxxxxx
+	// undefined: Exception while fetching data (/_entities[0]/doNoncePaymentDepositAndCheckout): ShopException: There is not enough credit in the basket to complete this order:685003252
+	if (errorCode === 'insufficientFunds' || errorMessage.includes('There is not enough credit')) {
+		return new ShopError({
+			code: 'shop.insufficientFunds',
+			original: error,
+		}, 'There is not enough money to complete the checkout. Please double-check the details and try again.');
+	}
 	// Handle errors with shop.invalidBasketId or shop.basketRequired codes
 	if (
 		errorCode === 'shop.invalidBasketId'

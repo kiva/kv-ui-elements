@@ -41,6 +41,13 @@ export default defineComponent({
 			required: true,
 		},
 		/**
+		 * Braintree Drop In instance name.
+		 */
+		dropInName: {
+			type: String,
+			default: 'default',
+		},
+		/**
 		 * Paypal flow options.
 		 * Must be 'checkout' or 'vault'
 		* */
@@ -92,7 +99,7 @@ export default defineComponent({
 			paymentMethodRequestable,
 			requestPaymentMethod,
 			updateAmount,
-		} = useBraintreeDropIn();
+		} = useBraintreeDropIn(props.dropInName);
 
 		const errorToast = ref();
 		const showError = (message: string) => {

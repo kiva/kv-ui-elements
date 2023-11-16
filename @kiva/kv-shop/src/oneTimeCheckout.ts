@@ -1,9 +1,9 @@
 import type { ApolloClient } from '@apollo/client/core';
-import type { Dropin } from 'braintree-web-drop-in';
 import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
+import type { DropInWrapper } from './useBraintreeDropIn';
 import { pollForFinishedCheckout } from './checkoutStatus';
-import { parseShopError } from './shopError';
+import { ShopError, parseShopError } from './shopError';
 import { callShopMutation, callShopQuery } from './shopQueries';
 import { validatePreCheckout } from './validatePreCheckout';
 import getVisitorID from './util/visitorId';
@@ -91,7 +91,7 @@ function creditCheckout(apollo: ApolloClient<any>) {
 
 interface DepositCheckoutOptions {
 	apollo: ApolloClient<any>,
-	braintree: Dropin,
+	braintree: DropInWrapper,
 	amount: string,
 }
 
@@ -100,24 +100,35 @@ async function depositCheckout({
 	braintree,
 	amount,
 }: DepositCheckoutOptions) {
-	// TODO: handle thrown braintree errors
-	const { nonce, deviceData } = await braintree.requestPaymentMethod();
-	// TODO: need to also track paymentType from above
-	return callShopMutation<CheckoutData>(apollo, {
-		mutation: depositCheckoutMutation,
-		variables: {
-			nonce,
-			amount,
-			savePaymentMethod: false, // save payment methods handled by braintree drop in UI
-			deviceData,
-			visitorId: getVisitorID(),
-		},
-	}, 0);
+	try {
+		const paymentMethod = await braintree.requestPaymentMethod();
+		if (!paymentMethod) {
+			throw new ShopError(
+				{ code: 'shop.dropinNoPaymentMethod' },
+				'No payment method returned from braintree dropin',
+			);
+		}
+
+		const { nonce, deviceData } = paymentMethod;
+		// TODO: need to also track paymentType from above
+		return callShopMutation<CheckoutData>(apollo, {
+			mutation: depositCheckoutMutation,
+			variables: {
+				nonce,
+				amount,
+				savePaymentMethod: false, // save payment methods handled by braintree drop in UI
+				deviceData,
+				visitorId: getVisitorID(),
+			},
+		}, 0);
+	} catch (e) {
+		throw parseShopError(e);
+	}
 }
 
 export interface OneTimeCheckoutOptions {
 	apollo: ApolloClient<any>,
-	braintree: Dropin,
+	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
 }
@@ -128,8 +139,6 @@ export async function executeOneTimeCheckout({
 	emailAddress,
 	emailOptIn,
 }: OneTimeCheckoutOptions) {
-	// check that basket is ready (check form validation?)
-
 	// do pre-checkout validation
 	// TODO: promo guest checkout validation
 	await validatePreCheckout({
@@ -137,10 +146,13 @@ export async function executeOneTimeCheckout({
 		emailAddress,
 		emailOptIn,
 	});
-	// TODO: tracking for validation errors?
 
 	const creditNeeded = await creditAmountNeeded(apollo);
 	const creditRequired = numeral(creditNeeded).value() > 0;
+
+	if (creditRequired && !braintree) {
+		throw new ShopError({ code: 'shop.dropinRequired' }, 'Braintree dropin required for credit deposit checkout');
+	}
 
 	// initiate async checkout
 	const data = creditRequired ? await depositCheckout({
@@ -149,8 +161,6 @@ export async function executeOneTimeCheckout({
 		amount: creditNeeded,
 	}) : await creditCheckout(apollo);
 	const transactionId = data?.shop?.transactionId;
-
-	// TODO: so much tracking
 
 	// wait on checkout to complete
 	const result = await pollForFinishedCheckout({
@@ -161,7 +171,6 @@ export async function executeOneTimeCheckout({
 
 	// handle errors
 	if (result.errors?.length) {
-		// TODO: tracking?
 		throw parseShopError(result.errors[0]);
 	}
 

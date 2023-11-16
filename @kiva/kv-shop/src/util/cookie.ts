@@ -5,5 +5,7 @@ export const getCookieValue = (name: string) => {
 	}
 };
 export const setCookieValue = (name: string, value: string, options = '') => {
-	document.cookie = `${name}=${encodeURIComponent(value)};${options}`;
+	if (typeof document !== undefined) {
+		document.cookie = `${name}=${encodeURIComponent(value)};${options}`;
+	}
 };
