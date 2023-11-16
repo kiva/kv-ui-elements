@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.3.2...@kiva/kv-shop@1.4.0) (2023-11-16)
+
+
+### Bug Fixes
+
+* final fixes for initial one-time checkout MARS-546 ([b025586](https://github.com/kiva/kv-ui-elements/commit/b02558654c4441dde82c302a06fe6dcae81521eb))
+
+
+### Features
+
+* one-time checkout and supporting functions WIP MARS-546 ([654988d](https://github.com/kiva/kv-ui-elements/commit/654988dee4509449fc9c5af3c52015501294103c))
+
+
+
+
+
 ## [1.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.3.1...@kiva/kv-shop@1.3.2) (2023-10-23)
 
 **Note:** Version bump only for package @kiva/kv-shop
