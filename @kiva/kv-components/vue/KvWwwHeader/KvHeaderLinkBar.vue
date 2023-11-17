@@ -142,10 +142,9 @@ import KvIconBag from '../KvIconBag.vue';
 import KvIconChevron from '../KvIconChevron.vue';
 import KvIconSearch from '../KvIconSearch.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
-
-const KvHeaderMobileMenu = () => import('./KvHeaderMobileMenu.vue');
-const KvHeaderMyKivaMenu = () => import('./KvHeaderMyKivaMenu.vue');
-const KvLendMenu = () => import('./LendMenu/KvLendMenu.vue');
+import KvHeaderMobileMenu from './KvHeaderMobileMenu.vue';
+import KvHeaderMyKivaMenu from './KvHeaderMyKivaMenu.vue';
+import KvLendMenu from './LendMenu/KvLendMenu.vue';
 
 export default {
 	components: {
@@ -164,7 +163,7 @@ export default {
 			default: 0,
 		},
 		openMenuItem: {
-			type: [Element, Function],
+			type: [Object, Function],
 			default: null,
 		},
 		loginUrl: {

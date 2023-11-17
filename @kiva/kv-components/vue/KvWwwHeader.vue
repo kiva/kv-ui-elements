@@ -82,7 +82,7 @@
 				v-show="menuOpen || searchOpen"
 				class="
 					tw-absolute tw-z-modal
-					tw-top-7.5 tw-inset-x-0 tw-bottom-0
+					tw-top-7.5 tw-inset-x-0
 					tw-bg-eco-green-4
 					tw-bg-opacity-[50%]
 				"
@@ -99,6 +99,7 @@
 							ref="menuComponentInstance"
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
+							:user-id="userId"
 							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
@@ -110,14 +111,13 @@
 
 <script>
 import {
-	ref,
+	ref, shallowRef,
 } from 'vue-demi';
 import {
 	ecoForestTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
-import KvHeaderMobileMenu from './KvWwwHeader/KvHeaderMobileMenu.vue';
 import KvHeaderSearchBar from './KvWwwHeader/KvHeaderSearchBar.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvHeaderSearchSuggestions from './KvWwwHeader/KvHeaderSearchSuggestions.vue';
@@ -126,7 +126,6 @@ export default {
 	components: {
 		KvHeaderLinkBar,
 		KvHeaderLogo,
-		KvHeaderMobileMenu,
 		KvHeaderSearchBar,
 		KvThemeProvider,
 		KvHeaderSearchSuggestions,
@@ -154,8 +153,9 @@ export default {
 		const searchOpen = ref(false);
 		const activeHeaderItem = ref(null);
 		const menuOpen = ref(false);
-		const menuComponent = ref(null);
+		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
+		const userId = ref(props.userId);
 
 		let menuCloseTimeout;
 
@@ -213,6 +213,7 @@ export default {
 
 		return {
 			ecoForestTheme,
+			userId,
 
 			afterLinksNotVisible,
 			afterSearchClosed,
@@ -232,6 +233,7 @@ export default {
 			activeHeaderItem,
 			searchBar,
 			menuComponent,
+			menuComponentInstance,
 		};
 	},
 };
