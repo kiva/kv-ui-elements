@@ -61,7 +61,7 @@ export default {
 		});
 
 		const onLoad = async (apollo) => {
-			apollo.query({
+			apollo.watchQuery({
 				query: gql`query countryFacets {
 					lend {
 						countryFacets {
@@ -82,7 +82,7 @@ export default {
 				},
 			});
 
-			apollo.query({
+			apollo.watchQuery({
 				query: gql`
 					query lendMenuData {
 						lend {
