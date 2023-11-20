@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.48.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.47.0...@kiva/kv-components@3.48.0) (2023-11-20)
+
+
+### Features
+
+* map mega animation ([#315](https://github.com/kiva/kv-ui-elements/issues/315)) ([5adfe9c](https://github.com/kiva/kv-ui-elements/commit/5adfe9c5d7db3b05efa23962025ba5440e8a2e4a))
+
+
+
+
+
 # [3.47.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.46.3...@kiva/kv-components@3.47.0) (2023-10-23)
 
 
