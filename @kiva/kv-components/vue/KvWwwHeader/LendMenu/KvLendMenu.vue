@@ -38,7 +38,7 @@ export default {
 	},
 	emits: ['load-lend-menu-data'],
 	setup(props, { emit }) {
-		const	userId = ref(props.userId);
+		const userId = ref(props.userId);
 		const categories = ref([]);
 		const countryFacets = ref([]);
 		const favoritesCount = ref(0);
