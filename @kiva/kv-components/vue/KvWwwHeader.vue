@@ -30,6 +30,7 @@
 			</transition>
 			<!-- logo -->
 			<a
+				v-kv-track-event="['TopNav', 'click-Logo']"
 				href="/"
 				class="
 					tw-px-1 tw-py-2
