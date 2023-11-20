@@ -30,6 +30,7 @@
 			</transition>
 			<!-- logo -->
 			<a
+				v-kv-track-event="['TopNav', 'click-Logo']"
 				href="/"
 				class="
 					tw-px-1 tw-py-2
@@ -99,6 +100,9 @@
 							ref="menuComponentInstance"
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
+							:balance="balance"
+							:is-borrower="isBorrower"
+							:is-trustee="isTrustee"
 							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
@@ -143,6 +147,18 @@ export default {
 		loginUrl: {
 			type: String,
 			default: '/ui-login',
+		},
+		balance: {
+			type: Number,
+			default: 0,
+		},
+		isBorrower: {
+			type: Boolean,
+			default: false,
+		},
+		isTrustee: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
