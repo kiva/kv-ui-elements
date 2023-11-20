@@ -6,7 +6,7 @@
 		>
 			<span>Portfolio</span>
 			<span class="tw-text-secondary">|</span>
-			<span class="tw-text-eco-green-3">${{ balance }}</span>
+			<span class="tw-text-eco-green-3">{{ numeral(balance).format('$0') }}</span>
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/teams/my-teams"
@@ -25,13 +25,13 @@
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			v-if="isBorrower"
-			to="/my/borrower"
+			href="/my/borrower"
 		>
 			Borrower Dashboard
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			v-if="isTrustee"
-			to="/my/trustee"
+			href="/my/trustee"
 		>
 			Trustee Dashboard
 		</kv-header-menu-link>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import numeral from 'numeral';
 import KvHeaderMenuLink from './KvHeaderMenuLink.vue';
 
 export default {
@@ -63,6 +64,11 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+	},
+	setup() {
+		return {
+			numeral,
+		};
 	},
 };
 </script>
