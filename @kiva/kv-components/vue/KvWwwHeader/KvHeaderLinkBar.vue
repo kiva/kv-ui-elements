@@ -142,6 +142,7 @@
 
 <script>
 import {
+	defineAsyncComponent,
 	ref,
 } from 'vue-demi';
 import { mdiAccountCircle, mdiMenu } from '@mdi/js';
@@ -150,9 +151,9 @@ import KvIconChevron from '../KvIconChevron.vue';
 import KvIconSearch from '../KvIconSearch.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
-const KvHeaderMobileMenu = () => import('./KvHeaderMobileMenu.vue');
-const KvHeaderMyKivaMenu = () => import('./KvHeaderMyKivaMenu.vue');
-const KvLendMenu = () => import('./LendMenu/KvLendMenu.vue');
+const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
+const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
+const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
 
 export default {
 	components: {
@@ -171,7 +172,7 @@ export default {
 			default: 0,
 		},
 		openMenuItem: {
-			type: [Element, Function],
+			type: [Object, Function],
 			default: null,
 		},
 		loginUrl: {
