@@ -9,7 +9,6 @@
 			v-if="updatingPaymentWrapper"
 			class="tw-mb-2"
 		/>
-		<kv-toast :ref="errorToast" />
 	</div>
 </template>
 
@@ -18,7 +17,6 @@ import {
 	defineComponent, onMounted, ref, toRefs, watch,
 } from 'vue-demi';
 import KvLoadingSpinner from '@kiva/kv-components/vue/KvLoadingSpinner.vue';
-import KvToast from '@kiva/kv-components/vue/KvToast.vue';
 import type { PropType } from 'vue-demi';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
@@ -26,7 +24,6 @@ import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
 export default defineComponent({
 	components: {
 		KvLoadingSpinner,
-		KvToast,
 	},
 	props: {
 		amount: {
@@ -82,7 +79,7 @@ export default defineComponent({
 			default: true,
 		},
 	},
-	emits: ['transactions-enabled'],
+	emits: ['transactions-enabled', 'error'],
 	setup(props, { emit }) {
 		const {
 			amount,
@@ -100,11 +97,6 @@ export default defineComponent({
 			requestPaymentMethod,
 			updateAmount,
 		} = useBraintreeDropIn(props.dropInName);
-
-		const errorToast = ref();
-		const showError = (message: string) => {
-			errorToast.value?.show(message, 'error', true);
-		};
 
 		watch(amount, (newValue) => {
 			updateAmount(newValue);
@@ -130,9 +122,9 @@ export default defineComponent({
 					});
 				} catch (e) {
 					if (e instanceof Error) {
-						showError(e?.message);
+						emit('error', e?.message);
 					} else {
-						showError('An Error has occured. Please refresh the page and try again.');
+						emit('error', 'An error has occured. Please refresh the page and try again.');
 					}
 				} finally {
 					updatingPaymentWrapper.value = false;
