@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.4.1...@kiva/kv-shop@1.5.0) (2023-11-21)
+
+
+### Features
+
+* **KvPaymentSelect:** emit error instead of using broken local toast ([df13434](https://github.com/kiva/kv-ui-elements/commit/df13434e16e9ce6a076ba67b7c0e2b4aa3cfdbc9))
+
+
+
+
+
 ## [1.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.4.0...@kiva/kv-shop@1.4.1) (2023-11-20)
 
 **Note:** Version bump only for package @kiva/kv-shop
