@@ -25,7 +25,9 @@
 
 <script>
 import { gql } from '@apollo/client/core';
-import { computed, onMounted, ref } from 'vue-demi';
+import {
+	computed, onMounted, ref, toRefs,
+} from 'vue-demi';
 import KvLendListMenu from './KvLendListMenu.vue';
 import KvLendMegaMenu from './KvLendMegaMenu.vue';
 import { indexIn } from '../../../utils/comparators';
@@ -38,7 +40,10 @@ export default {
 	},
 	emits: ['load-lend-menu-data'],
 	setup(props, { emit }) {
-		const userId = ref(props.userId);
+		const {
+			userId,
+		} = toRefs(props);
+
 		const categories = ref([]);
 		const countryFacets = ref([]);
 		const favoritesCount = ref(0);
@@ -124,7 +129,7 @@ export default {
 						}
 					`,
 					variables: {
-						userId: userId.value,
+						userId,
 					},
 					fetchPolicy: 'network-only',
 				});
