@@ -21,6 +21,7 @@
 		<!-- lend -->
 		<a
 			ref="lendButton"
+			v-kv-track-event="['TopNav', 'click-Lend']"
 			href="/lend-by-category"
 			class="
 				tw-px-1.5 tw-py-1 tw-mx-1
@@ -88,6 +89,7 @@
 		<a
 			v-if="basketCount > 0"
 			ref="basketLink"
+			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
@@ -100,6 +102,7 @@
 		<!-- search icon -->
 		<button
 			ref="searchButton"
+			v-kv-track-event="['TopNav', 'click-Search-toggle']"
 			class="header-link"
 			:class="{
 				'tw-text-tertiary': !!openMenuItem
@@ -112,6 +115,7 @@
 		<a
 			v-if="!loggedIn"
 			ref="signInLink"
+			v-kv-track-event="['TopNav', 'click-Sign-in']"
 			:href="loginUrl"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
@@ -121,6 +125,9 @@
 		<!-- 3-bar menu (sm) -->
 		<button
 			ref="menuButton"
+			v-kv-track-event="openMenuItem === KvHeaderMobileMenu
+				? ['TopNav', 'click-Hamburger-menu']
+				: null"
 			class="header-link tw-inline-flex lg:tw-hidden"
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
@@ -135,6 +142,7 @@
 
 <script>
 import {
+	defineAsyncComponent,
 	ref,
 } from 'vue-demi';
 import { mdiAccountCircle, mdiMenu } from '@mdi/js';
@@ -143,9 +151,9 @@ import KvIconChevron from '../KvIconChevron.vue';
 import KvIconSearch from '../KvIconSearch.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
-const KvHeaderMobileMenu = () => import('./KvHeaderMobileMenu.vue');
-const KvHeaderMyKivaMenu = () => import('./KvHeaderMyKivaMenu.vue');
-const KvLendMenu = () => import('./LendMenu/KvLendMenu.vue');
+const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
+const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
+const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
 
 export default {
 	components: {
@@ -164,7 +172,7 @@ export default {
 			default: 0,
 		},
 		openMenuItem: {
-			type: [Element, Function],
+			type: [Object, Function],
 			default: null,
 		},
 		loginUrl: {
