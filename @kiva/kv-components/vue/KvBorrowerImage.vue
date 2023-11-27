@@ -146,8 +146,17 @@ export default {
 			if (!width && !height && !square && !faceZoom) {
 				return '';
 			}
-			const w = width ? `w${Math.ceil(width)}` : '';
-			const h = height ? `h${Math.ceil(height)}` : '';
+			let w = '';
+			let h = '';
+			// If width and height are different, use w and h
+			if (width === height) {
+				// if height and width are the same, use square param
+				// eslint-disable-next-line no-param-reassign
+				square = width;
+			} else {
+				w = width ? `w${Math.ceil(width)}` : '';
+				h = height ? `h${Math.ceil(height)}` : '';
+			}
 			const s = square ? `s${Math.ceil(square)}` : '';
 			const fz = faceZoom ? `fz${Math.ceil(faceZoom)}` : '';
 

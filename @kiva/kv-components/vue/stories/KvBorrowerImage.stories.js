@@ -60,3 +60,9 @@ const props = {
 };
 
 export const Default = story(props);
+
+export const Square = story({
+	...props,
+	aspectRatio: 1,
+	defaultImage: { width: 300 },
+});
