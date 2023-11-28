@@ -19,7 +19,6 @@ const story = (args) => {
 					:category-page-name="categoryPageName"
 					:enable-five-dollars-notes="enableFiveDollarsNotes"
 					:five-dollars-selected="fiveDollarsSelected"
-					:large-card="largeCard"
 					:is-adding="isAdding"
 					:is-visitor="isVisitor"
 					:basket-items="basketItems"
