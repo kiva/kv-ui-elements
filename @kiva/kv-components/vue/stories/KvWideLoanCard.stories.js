@@ -1,37 +1,35 @@
-import KvClassicLoanCard from '../KvClassicLoanCard.vue';
+import KvWideLoanCard from '../KvWideLoanCard.vue';
 
 export default {
-	title: 'KvClassicLoanCard',
-	component: KvClassicLoanCard,
+	title: 'KvWideLoanCard',
+	component: KvWideLoanCard,
 };
 
 const story = (args) => {
 	const template = (_args, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { KvClassicLoanCard },
+		components: { KvWideLoanCard },
 		template: `
-			<div style="width: 600px;">
-				<kv-classic-loan-card
-					:loanId="loanId"
-					:loan="loan"
-					:custom-loan-details="customLoanDetails"
-					:use-full-width="useFullWidth"
-					:show-tags="showTags"
-					:category-page-name="categoryPageName"
-					:enable-five-dollars-notes="enableFiveDollarsNotes"
-					:five-dollars-selected="fiveDollarsSelected"
-					:large-card="largeCard"
-					:is-adding="isAdding"
-					:is-visitor="isVisitor"
-					:basket-items="basketItems"
-					:is-bookmarked="isBookmarked"
-					:kv-track-function="kvTrackFunction"
-					:photo-path="photoPath"
-					:show-view-loan="showViewLoan"
-					:custom-callouts="customCallouts"
-				/>
-			</div>
-		`,
+		<div style="max-width: 800px;">
+			<kv-wide-loan-card
+				:loanId="loanId"
+				:loan="loan"
+				:custom-loan-details="customLoanDetails"
+				:show-tags="showTags"
+				:category-page-name="categoryPageName"
+				:enable-five-dollars-notes="enableFiveDollarsNotes"
+				:five-dollars-selected="fiveDollarsSelected"
+				:is-adding="isAdding"
+				:is-visitor="isVisitor"
+				:basket-items="basketItems"
+				:is-bookmarked="isBookmarked"
+				:kv-track-function="kvTrackFunction"
+				:photo-path="photoPath"
+				:show-view-loan="showViewLoan"
+				:custom-callouts="customCallouts"
+			/>
+		</div>
+	`,
 	});
 	template.args = args;
 	return template;
@@ -94,14 +92,6 @@ export const PartialLoading = story({
 	},
 	kvTrackFunction,
 	photoPath,
-});
-
-export const UseFullWidth = story({
-	loanId: loan.id,
-	loan,
-	kvTrackFunction,
-	photoPath,
-	useFullWidth: true,
 });
 
 export const ShowTags = story({
@@ -185,23 +175,6 @@ export const InBasket = story({
 	kvTrackFunction,
 	photoPath,
 	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
-});
-
-export const LargeCardLoading = story({
-	loanId: loan.id,
-	loan: undefined,
-	kvTrackFunction,
-	photoPath,
-	largeCard: true,
-});
-
-export const LargeCard = story({
-	loanId: loan.id,
-	loan,
-	showTags: true,
-	largeCard: true,
-	kvTrackFunction,
-	photoPath,
 });
 
 export const LongCallouts = story({
@@ -300,6 +273,7 @@ export const LendAgain = story({
 		...loan,
 		userProperties: { lentTo: true },
 	},
+	customLoanDetails: true,
 	kvTrackFunction,
 	photoPath,
 });

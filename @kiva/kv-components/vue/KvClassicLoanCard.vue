@@ -181,7 +181,7 @@
 			>
 				<kv-loan-progress-group
 					id="loanProgress"
-					:money-left="unreservedAmount"
+					:money-left="`${unreservedAmount}`"
 					:progress-percent="fundraisingPercent"
 					class="tw-text-black"
 				/>
@@ -220,7 +220,8 @@
 </template>
 
 <script>
-import { mdiMapMarker } from '@mdi/js';
+import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
+
 import KvLoanUse from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
@@ -230,12 +231,6 @@ import KvLoanBookmark from './KvLoanBookmark.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
-
-const LSE_LOAN_KEY = 'N/A';
-const ECO_FRIENDLY_KEY = 'ECO-FRIENDLY';
-const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
-const SINGLE_PARENT_KEY = 'SINGLE PARENT';
-const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
 export default {
 	name: 'KvClassicLoanCard',
@@ -263,10 +258,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		useFullWidth: {
-			type: Boolean,
-			default: false,
-		},
 		showTags: {
 			type: Boolean,
 			default: false,
@@ -276,10 +267,6 @@ export default {
 			default: '',
 		},
 		enableFiveDollarsNotes: {
-			type: Boolean,
-			default: false,
-		},
-		largeCard: {
 			type: Boolean,
 			default: false,
 		},
@@ -335,79 +322,76 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		customCallouts: {
+			type: Array,
+			default: () => ([]),
+		},
+		useFullWidth: {
+			type: Boolean,
+			default: false,
+		},
+		largeCard: {
+			type: Boolean,
+			default: false,
+		},
 	},
-	data() {
-		return {
+	setup(props) {
+		const {
+			allDataLoaded,
+			borrowerName,
+			city,
+			countryName,
+			distributionModel,
+			formattedLocation,
+			fundraisingPercent,
+			hasProgressData,
+			imageHash,
+			isLoading,
+			loanAmount,
+			loanBorrowerCount,
+			loanCallouts,
+			loanStatus,
+			loanUse,
 			mdiMapMarker,
+			readMorePath,
+			state,
+			tag,
+			unreservedAmount,
+		} = loanCardComputedProperties(props);
+
+		const {
+			clickReadMore,
+			showLoanDetails,
+		} = loanCardMethods(props);
+
+		return {
+			allDataLoaded,
+			borrowerName,
+			city,
+			countryName,
+			distributionModel,
+			formattedLocation,
+			fundraisingPercent,
+			hasProgressData,
+			imageHash,
+			isLoading,
+			loanAmount,
+			loanBorrowerCount,
+			loanCallouts,
+			loanStatus,
+			loanUse,
+			mdiMapMarker,
+			readMorePath,
+			state,
+			tag,
+			unreservedAmount,
+			clickReadMore,
+			showLoanDetails,
 		};
 	},
 	computed: {
-		tag() {
-			return this.externalLinks ? 'a' : 'router-link';
-		},
-		readMorePath() {
-			return this.customLoanDetails ? '' : `/lend/${this.loanId}`;
-		},
-		isLoading() {
-			return !this.loanId || !this.loan;
-		},
 		cardWidth() {
 			return this.useFullWidth ? '100%' : '374px';
-		},
-		borrowerName() {
-			return this.loan?.name || '';
-		},
-		countryName() {
-			return this.loan?.geocode?.country?.name || '';
-		},
-		city() {
-			return this.loan?.geocode?.city || '';
-		},
-		state() {
-			return this.loan?.geocode?.state || '';
-		},
-		distributionModel() {
-			return this.loan?.distributionModel || '';
-		},
-		imageHash() {
-			return this.loan?.image?.hash ?? '';
-		},
-		hasProgressData() {
-			// Local resolver values for the progress bar load client-side
-			return typeof this.loan?.unreservedAmount !== 'undefined'
-				&& typeof this.loan?.fundraisingPercent !== 'undefined';
-		},
-		allDataLoaded() {
-			return !this.isLoading && this.hasProgressData;
-		},
-		fundraisingPercent() {
-			return this.loan?.fundraisingPercent ?? 0;
-		},
-		unreservedAmount() {
-			return this.loan?.unreservedAmount ?? '0';
-		},
-		formattedLocation() {
-			if (this.distributionModel === 'direct') {
-				const formattedString = `${this.city}, ${this.state}, ${this.countryName}`;
-				return formattedString;
-			}
-			if (this.countryName === 'Puerto Rico') {
-				const formattedString = `${this.city}, PR`;
-				return formattedString;
-			}
-			return this.countryName;
-		},
-		loanUse() {
-			return this.loan?.use ?? '';
-		},
-		loanStatus() {
-			return this.loan?.status ?? '';
-		},
-		loanAmount() {
-			return this.loan?.loanAmount ?? '0';
-		},
-		loanBorrowerCount() {
-			return this.loan?.borrowerCount ?? 0;
 		},
 		imageAspectRatio() {
 			if (this.largeCard) {
@@ -430,95 +414,12 @@ export default {
 				{ width: 335, viewSize: 375 },
 			];
 		},
-		loanCallouts() {
-			const callouts = [];
-			const activityName = this.loan?.activity?.name ?? '';
-			const sectorName = this.loan?.sector?.name ?? '';
-			const tags = this.loan?.tags?.filter((tag) => tag.charAt(0) === '#')
-				.map((tag) => tag.substring(1)) ?? [];
-			const themes = this.loan?.themes ?? [];
-			const categories = {
-				ecoFriendly: !!tags // eslint-disable-next-line max-len
-					.filter((t) => t.toUpperCase() === ECO_FRIENDLY_KEY || t.toUpperCase() === SUSTAINABLE_AG_KEY).length,
-				refugeesIdps: !!themes.filter((t) => t.toUpperCase() === REFUGEE_KEY).length,
-				singleParents: !!tags.filter((t) => t.toUpperCase() === SINGLE_PARENT_KEY).length,
-			};
-
-			const isLseLoan = this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
-
-			// P1 Category
-			// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
-			// Tag as first option for LSE loans
-			if (isLseLoan && tags.length) {
-				const position = Math.floor(Math.random() * tags.length);
-				const tag = tags[position];
-				callouts.push(tag);
-			}
-
-			if (!this.categoryPageName) {
-				if (categories.ecoFriendly // eslint-disable-next-line max-len
-					&& !callouts.find((c) => c.toUpperCase() === ECO_FRIENDLY_KEY || c.toUpperCase() === SUSTAINABLE_AG_KEY)) {
-					callouts.push('Eco-friendly');
-				} else if (categories.refugeesIdps) {
-					callouts.push('Refugees and IDPs');
-				} else if (categories.singleParents
-					&& !callouts.find((c) => c.toUpperCase() === SINGLE_PARENT_KEY)) {
-					callouts.push('Single Parent');
-				}
-			}
-
-			// P2 Activity
-			if (activityName && this.categoryPageName?.toUpperCase() !== activityName.toUpperCase()) {
-				callouts.push(activityName);
-			}
-
-			// P3 Sector
-			if (sectorName
-				&& (activityName.toUpperCase() !== sectorName.toUpperCase())
-				&& (sectorName.toUpperCase() !== this.categoryPageName?.toUpperCase())
-				&& callouts.length < 2) {
-				callouts.push(sectorName);
-			}
-
-			// P4 Tag
-			if (!!tags.length && callouts.length < 2) {
-				const position = Math.floor(Math.random() * tags.length);
-				const tag = tags[position];
-				if (!callouts.filter((c) => c.toUpperCase() === tag.toUpperCase()).length) {
-					callouts.push(tag);
-				}
-			}
-
-			// P5 Theme
-			if (!!themes.length && callouts.length < 2) {
-				const position = Math.floor(Math.random() * themes.length);
-				const theme = themes[position];
-				if (!callouts.filter((c) => c.toUpperCase() === theme.toUpperCase()).length
-					&& theme.toUpperCase() !== this.categoryPageName?.toUpperCase()) {
-					callouts.push(theme);
-				}
-			}
-
-			// Only show one callout for LSE loans
-			if (isLseLoan && callouts.length > 1) return [callouts.shift()];
-			return callouts;
-		},
-	},
-	methods: {
-		showLoanDetails(e) {
-			if (this.customLoanDetails) {
-				e.preventDefault();
-				this.$emit('show-loan-details');
-			}
-		},
-		clickReadMore(target) {
-			this.kvTrackFunction('Lending', 'click-Read more', target, this.loanId);
-		},
 	},
 };
 </script>
 
 <style lang="postcss" scoped>
+/** Shared with KvWideLoanCard */
 .loan-card-use:hover,
 .loan-card-use:focus {
 	@apply tw-text-primary;
