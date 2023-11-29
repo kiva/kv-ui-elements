@@ -60,4 +60,77 @@ describe('KvClassicLoanCard', () => {
 		const results = await axe(container);
 		expect(results).toHaveNoViolations();
 	});
+	it('location should be formatted correctly for PR', async () => {
+		const { getByText } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan: {
+						...loan,
+						unreservedAmount: undefined,
+						fundraisingPercent: undefined,
+						geocode: {
+							city: 'Rincon',
+							country: {
+								name: 'Puerto Rico',
+							},
+						},
+					},
+					kvTrackFunction,
+					photoPath,
+					externalLinks: true,
+				},
+			});
+
+		const countryTagElement = getByText('Rincon, PR');
+		expect(countryTagElement).toBeDefined();
+	});
+	it('location should be formatted correctly for Kiva US', async () => {
+		const { getByText } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan: {
+						...loan,
+						distributionModel: 'direct',
+						geocode: {
+							city: 'Boulder',
+							state: 'Colorado',
+							country: {
+								name: 'United States',
+							},
+						},
+					},
+					kvTrackFunction,
+					photoPath,
+					externalLinks: true,
+				},
+			});
+
+		const countryTagElement = getByText('Boulder, Colorado, United States');
+		expect(countryTagElement).toBeDefined();
+	});
+	it('location should be formatted correctly for partner loans', async () => {
+		const { getByText } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan: {
+						...loan,
+						distributionModel: 'partner',
+						geocode: {
+							country: {
+								name: 'Uganda',
+							},
+						},
+					},
+					kvTrackFunction,
+					photoPath,
+					externalLinks: true,
+				},
+			});
+
+		const countryTagElement = getByText('Uganda');
+		expect(countryTagElement).toBeDefined();
+	});
 });
