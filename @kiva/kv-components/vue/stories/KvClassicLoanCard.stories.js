@@ -28,6 +28,7 @@ const story = (args) => {
 					:kv-track-function="kvTrackFunction"
 					:photo-path="photoPath"
 					:show-view-loan="showViewLoan"
+					:custom-callouts="customCallouts"
 				/>
 			</div>
 		`,
@@ -116,6 +117,38 @@ export const ShowTags = story({
 	kvTrackFunction,
 	photoPath,
 	showTags: true,
+});
+
+export const CustomCallouts = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showTags: true,
+	customCallouts: ['Loan Length: 15mo'],
+});
+
+export const CustomCalloutsWrap = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showTags: true,
+	customCallouts: ['Loan Length: 15mo', 'Long Dairy Processing'],
 });
 
 export const Matched = story({

@@ -10,26 +10,26 @@ const story = (args) => {
 		props: Object.keys(argTypes),
 		components: { KvWideLoanCard },
 		template: `
-			<div style="max-width: 800px;">
-				<kv-wide-loan-card
-					:loanId="loanId"
-					:loan="loan"
-					:custom-loan-details="customLoanDetails"
-					:show-tags="showTags"
-					:category-page-name="categoryPageName"
-					:enable-five-dollars-notes="enableFiveDollarsNotes"
-					:five-dollars-selected="fiveDollarsSelected"
-					:is-adding="isAdding"
-					:is-visitor="isVisitor"
-					:basket-items="basketItems"
-					:is-bookmarked="isBookmarked"
-					:kv-track-function="kvTrackFunction"
-					:photo-path="photoPath"
-					:show-view-loan="showViewLoan"
-					:custom-callouts="customCallouts"
-				/>
-			</div>
-		`,
+		<div style="max-width: 800px;">
+			<kv-wide-loan-card
+				:loanId="loanId"
+				:loan="loan"
+				:custom-loan-details="customLoanDetails"
+				:show-tags="showTags"
+				:category-page-name="categoryPageName"
+				:enable-five-dollars-notes="enableFiveDollarsNotes"
+				:five-dollars-selected="fiveDollarsSelected"
+				:is-adding="isAdding"
+				:is-visitor="isVisitor"
+				:basket-items="basketItems"
+				:is-bookmarked="isBookmarked"
+				:kv-track-function="kvTrackFunction"
+				:photo-path="photoPath"
+				:show-view-loan="showViewLoan"
+				:custom-callouts="customCallouts"
+			/>
+		</div>
+	`,
 	});
 	template.args = args;
 	return template;
@@ -273,6 +273,7 @@ export const LendAgain = story({
 		...loan,
 		userProperties: { lentTo: true },
 	},
+	customLoanDetails: true,
 	kvTrackFunction,
 	photoPath,
 });

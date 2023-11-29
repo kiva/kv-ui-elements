@@ -226,7 +226,7 @@
 </template>
 
 <script>
-import loanCardMixin from '../utils/loanCardMixin';
+import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
 import KvLoanUse from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
@@ -250,7 +250,142 @@ export default {
 		KvLoanCallouts,
 		KvLoanBookmark,
 	},
-	mixins: [loanCardMixin],
+	props: {
+		loanId: {
+			type: Number,
+			default: undefined,
+		},
+		loan: {
+			type: Object,
+			default: null,
+		},
+		customLoanDetails: {
+			type: Boolean,
+			default: false,
+		},
+		showTags: {
+			type: Boolean,
+			default: false,
+		},
+		categoryPageName: {
+			type: String,
+			default: '',
+		},
+		enableFiveDollarsNotes: {
+			type: Boolean,
+			default: false,
+		},
+		isAdding: {
+			type: Boolean,
+			default: false,
+		},
+		isVisitor: {
+			type: Boolean,
+			default: true,
+		},
+		basketItems: {
+			type: Array,
+			default: () => ([]),
+		},
+		isBookmarked: {
+			type: Boolean,
+			default: false,
+		},
+		kvTrackFunction: {
+			type: Function,
+			required: true,
+		},
+		photoPath: {
+			type: String,
+			required: true,
+		},
+		showViewLoan: {
+			type: Boolean,
+			default: false,
+		},
+		externalLinks: {
+			type: Boolean,
+			default: false,
+		},
+		route: {
+			type: Object,
+			default: undefined,
+		},
+		userBalance: {
+			type: String,
+			default: undefined,
+		},
+		getCookie: {
+			type: Function,
+			default: undefined,
+		},
+		setCookie: {
+			type: Function,
+			default: undefined,
+		},
+		fiveDollarsSelected: {
+			type: Boolean,
+			default: false,
+		},
+		customCallouts: {
+			type: Array,
+			default: () => ([]),
+		},
+	},
+	setup(props) {
+		const {
+			allDataLoaded,
+			borrowerName,
+			city,
+			countryName,
+			distributionModel,
+			formattedLocation,
+			fundraisingPercent,
+			hasProgressData,
+			imageHash,
+			isLoading,
+			loanAmount,
+			loanBorrowerCount,
+			loanCallouts,
+			loanStatus,
+			loanUse,
+			mdiMapMarker,
+			readMorePath,
+			state,
+			tag,
+			unreservedAmount,
+		} = loanCardComputedProperties(props);
+
+		const {
+			clickReadMore,
+			showLoanDetails,
+		} = loanCardMethods(props);
+
+		return {
+			allDataLoaded,
+			borrowerName,
+			city,
+			countryName,
+			distributionModel,
+			formattedLocation,
+			fundraisingPercent,
+			hasProgressData,
+			imageHash,
+			isLoading,
+			loanAmount,
+			loanBorrowerCount,
+			loanCallouts,
+			loanStatus,
+			loanUse,
+			mdiMapMarker,
+			readMorePath,
+			state,
+			tag,
+			unreservedAmount,
+			clickReadMore,
+			showLoanDetails,
+		};
+	},
 	computed: {
 		cardWidth() {
 			return '374px';
