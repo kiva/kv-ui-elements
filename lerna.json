@@ -1,6 +1,7 @@
 {
 	"version": "independent",
 	"packages": [
+		"@kiva/kv-analytics",
 		"@kiva/kv-components",
 		"@kiva/kv-tokens",
 		"@kiva/kv-loan-filters",
