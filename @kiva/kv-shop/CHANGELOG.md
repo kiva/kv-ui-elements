@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.5.1...@kiva/kv-shop@1.5.2) (2023-11-30)
+
+
+### Bug Fixes
+
+* use checkout id for pos-purchase call ([38f5574](https://github.com/kiva/kv-ui-elements/commit/38f557435aa43ccc3d7a5295978fcf4d8310d274))
+
+
+
+
+
 ## [1.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.5.0...@kiva/kv-shop@1.5.1) (2023-11-29)
 
 **Note:** Version bump only for package @kiva/kv-shop
