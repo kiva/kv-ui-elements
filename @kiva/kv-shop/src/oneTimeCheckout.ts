@@ -177,5 +177,6 @@ export async function executeOneTimeCheckout({
 	// TODO: redirect needs to handle challenge completion parameters
 
 	// redirect to thanks page
-	window.location.href = `/checkout/post-purchase?kiva_transaction_id=${transactionId}`;
+	const checkoutId = result.data?.checkoutStatus?.receipt?.checkoutId;
+	window.location.href = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
 }
