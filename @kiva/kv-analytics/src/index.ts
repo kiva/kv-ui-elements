@@ -234,7 +234,7 @@ export function fireQueuedEvents() {
 	}
 }
 
-export async function initAnalytics(userId: string|number, gaId?: string) {
+export async function initAnalytics(userId?: string|number, gaId?: string) {
 	if (!inBrowser()) return false;
 
 	// Wait for libraries to load
@@ -242,7 +242,7 @@ export async function initAnalytics(userId: string|number, gaId?: string) {
 
 	if (librariesLoaded) {
 		// Setup Global Snowplow
-		if (snowplowLoaded) {
+		if (snowplowLoaded && userId) {
 			window.snowplow('setUserId', userId);
 		}
 		// Setup Global GA Data
