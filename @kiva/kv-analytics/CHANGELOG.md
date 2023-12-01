@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/kiva/kv-ui-elements/compare/kv-analytics@1.1.0...kv-analytics@1.1.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* depositTotal should be a string ([7847e33](https://github.com/kiva/kv-ui-elements/commit/7847e33e6216dbad07fa50ce7c910e339c45ec8d))
+
+
+
+
+
 # 1.1.0 (2023-12-01)
 
 
