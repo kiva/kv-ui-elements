@@ -63,10 +63,10 @@ async function waitOnLibraries() {
 			resolve(false);
 		}, 5000);
 
-		const intervalId = setInterval(() => {
+		interval = setInterval(() => {
 			if (checkLibrariesLoaded()) {
 				clearTimeout(timeout);
-				clearInterval(intervalId);
+				clearInterval(interval);
 				resolve(true);
 			}
 		}, 100);
