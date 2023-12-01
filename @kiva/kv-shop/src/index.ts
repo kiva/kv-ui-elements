@@ -5,6 +5,7 @@ export * from './basketTotals';
 export * from './basketVerification';
 export * from './checkoutStatus';
 export * from './oneTimeCheckout';
+export * from './receipt';
 export * from './shopError';
 export * from './shopQueries';
 export * from './subscriptionCheckout';
