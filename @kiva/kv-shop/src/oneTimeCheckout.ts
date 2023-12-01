@@ -1,12 +1,15 @@
 import type { ApolloClient } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
+import { trackTransaction } from '@kiva/kv-analytics';
 import numeral from 'numeral';
 import type { DropInWrapper } from './useBraintreeDropIn';
 import { pollForFinishedCheckout } from './checkoutStatus';
 import { ShopError, parseShopError } from './shopError';
 import { callShopMutation, callShopQuery } from './shopQueries';
 import { validatePreCheckout } from './validatePreCheckout';
+import { wait } from './util/poll';
 import getVisitorID from './util/visitorId';
+import { getCheckoutTrackingData } from './reciept';
 
 interface CreditAmountNeededData {
 	shop: {
@@ -95,11 +98,16 @@ interface DepositCheckoutOptions {
 	amount: string,
 }
 
+interface DepositCheckoutResult {
+	paymentType: string,
+	mutation: Promise<CheckoutData>,
+}
+
 async function depositCheckout({
 	apollo,
 	braintree,
 	amount,
-}: DepositCheckoutOptions) {
+}: DepositCheckoutOptions): Promise<DepositCheckoutResult> {
 	try {
 		const paymentMethod = await braintree.requestPaymentMethod();
 		if (!paymentMethod) {
@@ -109,21 +117,42 @@ async function depositCheckout({
 			);
 		}
 
-		const { nonce, deviceData } = paymentMethod;
-		// TODO: need to also track paymentType from above
-		return callShopMutation<CheckoutData>(apollo, {
-			mutation: depositCheckoutMutation,
-			variables: {
-				nonce,
-				amount,
-				savePaymentMethod: false, // save payment methods handled by braintree drop in UI
-				deviceData,
-				visitorId: getVisitorID(),
-			},
-		}, 0);
+		const { nonce, deviceData, type } = paymentMethod;
+		return {
+			paymentType: type,
+			mutation: callShopMutation<CheckoutData>(apollo, {
+				mutation: depositCheckoutMutation,
+				variables: {
+					nonce,
+					amount,
+					savePaymentMethod: false, // save payment methods handled by braintree drop in UI
+					deviceData,
+					visitorId: getVisitorID(),
+				},
+			}, 0),
+		};
 	} catch (e) {
 		throw parseShopError(e);
 	}
+}
+
+async function trackSuccess(
+	apollo: ApolloClient<any>,
+	checkoutId: string,
+	paymentType: string,
+) {
+	// get transaction data
+	const transactionData = await getCheckoutTrackingData(
+		apollo,
+		checkoutId,
+		paymentType,
+	);
+
+	// track transaction
+	trackTransaction(transactionData);
+
+	// wait long enough for tracking to complete
+	await wait(800);
 }
 
 export interface OneTimeCheckoutOptions {
@@ -155,11 +184,19 @@ export async function executeOneTimeCheckout({
 	}
 
 	// initiate async checkout
-	const data = creditRequired ? await depositCheckout({
-		apollo,
-		braintree,
-		amount: creditNeeded,
-	}) : await creditCheckout(apollo);
+	let data: CheckoutData;
+	let paymentType = '';
+	if (creditRequired) {
+		const checkoutResult = await depositCheckout({
+			apollo,
+			braintree,
+			amount: creditNeeded,
+		});
+		paymentType = checkoutResult.paymentType;
+		data = await checkoutResult.mutation;
+	} else {
+		data = await creditCheckout(apollo);
+	}
 	const transactionId = data?.shop?.transactionId;
 
 	// wait on checkout to complete
@@ -174,9 +211,12 @@ export async function executeOneTimeCheckout({
 		throw parseShopError(result.errors[0]);
 	}
 
+	// track success
+	const checkoutId = result.data?.checkoutStatus?.receipt?.checkoutId;
+	await trackSuccess(apollo, checkoutId, paymentType);
+
 	// TODO: redirect needs to handle challenge completion parameters
 
 	// redirect to thanks page
-	const checkoutId = result.data?.checkoutStatus?.receipt?.checkoutId;
 	window.location.href = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
 }
