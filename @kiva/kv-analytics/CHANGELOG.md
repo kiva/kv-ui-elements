@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.2.0...@kiva/kv-analytics@1.2.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* transaction id should be a number ([86e5c84](https://github.com/kiva/kv-ui-elements/commit/86e5c848dcc02f5a1e8414ca845a3e5cc6fa9bac))
+
+
+
+
+
 # 1.2.0 (2023-12-01)
 
 
