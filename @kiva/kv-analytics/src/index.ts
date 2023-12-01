@@ -11,7 +11,7 @@ declare global {
 }
 
 export interface TransactionData {
-	transactionId: string,
+	transactionId: number,
 	loans: any[],
 	loanCount: number,
 	loanTotal: string,
@@ -331,7 +331,7 @@ export function trackPageView(to: any, from: any) {
 export function trackTransaction(transactionData: TransactionData) {
 	checkLibrariesLoaded();
 	// Nothing to track
-	if (transactionData.transactionId === '') {
+	if (!transactionData.transactionId) {
 		return false;
 	}
 
