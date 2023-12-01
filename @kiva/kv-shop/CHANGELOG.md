@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.5.2...@kiva/kv-shop@1.6.0) (2023-12-01)
+
+
+### Features
+
+* checkout transaction tracking ([719e187](https://github.com/kiva/kv-ui-elements/commit/719e1876f701e60b51dbe4503e5e3b511b74e6fe))
+
+
+
+
+
 ## [1.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.5.1...@kiva/kv-shop@1.5.2) (2023-11-30)
 
 
