@@ -11,7 +11,7 @@ declare global {
 }
 
 export interface TransactionData {
-	transactionId: number,
+	transactionId: string,
 	loans: any[],
 	loanCount: number,
 	loanTotal: string,
