@@ -54,6 +54,25 @@ function checkLibrariesLoaded() {
 	return false;
 }
 
+async function waitOnLibraries() {
+	// wait for libraries to load, no longer than 5 seconds
+	return new Promise((resolve) => {
+		let interval;
+		const timeout = setTimeout(() => {
+			clearInterval(interval);
+			resolve(false);
+		}, 5000);
+
+		const intervalId = setInterval(() => {
+			if (checkLibrariesLoaded()) {
+				clearTimeout(timeout);
+				clearInterval(intervalId);
+				resolve(true);
+			}
+		}, 100);
+	});
+}
+
 // https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#tracking-custom-events
 function trackFBCustomEvent(eventName: string, eventData?: any) {
 	if (fbLoaded) {
@@ -213,6 +232,41 @@ export function fireQueuedEvents() {
 			});
 		}
 	}
+}
+
+export async function initAnalytics(userId: string|number, gaId?: string) {
+	if (!inBrowser()) return false;
+
+	// Wait for libraries to load
+	const librariesLoaded = await waitOnLibraries();
+
+	if (librariesLoaded) {
+		// Setup Global Snowplow
+		if (snowplowLoaded) {
+			window.snowplow('setUserId', userId);
+		}
+		// Setup Global GA Data
+		if (userId && gtagLoaded && gaId) {
+			window.gtag('config', gaId, {
+				user_id: userId,
+				dimension1: userId,
+				send_page_view: false,
+			});
+		}
+		// set id on dataLayer
+		if (userId && typeof window.dataLayer === 'object') {
+			window.dataLayer.push({
+				kvuid: userId,
+			});
+		}
+
+		// Fire any queued events
+		fireQueuedEvents();
+
+		return true;
+	}
+
+	return false;
 }
 
 export function trackEvent(
