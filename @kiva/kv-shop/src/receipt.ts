@@ -21,7 +21,7 @@ export async function getFTDStatus(apollo: ApolloClient<any>) {
 	return result.data?.my?.userAccount?.isFirstTimeDepositor ?? false;
 }
 
-interface RecieptItem {
+interface ReceiptItem {
 	id: string,
 	price: string,
 	__typename: string,
@@ -29,24 +29,24 @@ interface RecieptItem {
 	isUserEdited?: boolean,
 }
 
-interface RecieptItemsData {
+interface ReceiptItemsData {
 	shop: {
 		id: string,
 		receipt: {
 			id: string,
 			items: {
 				totalCount: number,
-				values: RecieptItem[],
+				values: ReceiptItem[],
 			} | null,
 		} | null,
 	} | null,
 }
 
-export async function getRecieptItems(apollo: ApolloClient<any>, checkoutId: string): Promise<RecieptItem[]> {
+export async function getReceiptItems(apollo: ApolloClient<any>, checkoutId: string): Promise<ReceiptItem[]> {
 	return new Promise((resolve, reject) => {
 		const limit = 100;
 		let offset = 0;
-		const observer = apollo.watchQuery<RecieptItemsData>({
+		const observer = apollo.watchQuery<ReceiptItemsData>({
 			query: gql`
 				query receiptItems($checkoutId: String, $visitorId: String, $limit: Int, $offset: Int) {
 					shop {
@@ -79,8 +79,8 @@ export async function getRecieptItems(apollo: ApolloClient<any>, checkoutId: str
 			},
 		});
 
-		let items: RecieptItem[] = [];
-		const handleResult = async (result: ApolloQueryResult<RecieptItemsData>) => {
+		let items: ReceiptItem[] = [];
+		const handleResult = async (result: ApolloQueryResult<ReceiptItemsData>) => {
 			const total = result.data?.shop?.receipt?.items?.totalCount;
 			items = items.concat(result.data?.shop?.receipt?.items?.values);
 			if (total > offset + limit) {
@@ -146,7 +146,7 @@ export async function getCheckoutTrackingData(
 ): Promise<TransactionData> {
 	const [isFTD, items, totals] = await Promise.all([
 		getFTDStatus(apollo),
-		getRecieptItems(apollo, checkoutId),
+		getReceiptItems(apollo, checkoutId),
 		getReceiptTotals(apollo, checkoutId),
 	]);
 

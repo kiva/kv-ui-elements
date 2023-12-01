@@ -9,7 +9,7 @@ import { callShopMutation, callShopQuery } from './shopQueries';
 import { validatePreCheckout } from './validatePreCheckout';
 import { wait } from './util/poll';
 import getVisitorID from './util/visitorId';
-import { getCheckoutTrackingData } from './reciept';
+import { getCheckoutTrackingData } from './receipt';
 
 interface CreditAmountNeededData {
 	shop: {
