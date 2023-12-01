@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.2.2...@kiva/kv-analytics@1.3.0) (2023-12-01)
+
+
+### Bug Fixes
+
+* interval name typo ([3bae129](https://github.com/kiva/kv-ui-elements/commit/3bae1291ab00e4af3466e742249c77f38bedf179))
+* optional user id ([b4373a7](https://github.com/kiva/kv-ui-elements/commit/b4373a731e8eab8652e3077ee2dfcabb4362b914))
+
+
+### Features
+
+* method to init analytics after waiting on libraries loading ([90ec9a6](https://github.com/kiva/kv-ui-elements/commit/90ec9a6b30c4fb08ce6ec670362e0b6bc3440071))
+
+
+
+
+
 ## [1.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.2.1...@kiva/kv-analytics@1.2.2) (2023-12-01)
 
 
