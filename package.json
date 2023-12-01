@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Design definitions and components for Kiva's style guide",
   "workspaces": [
+    "@kiva/kv-analytics",
     "@kiva/kv-components",
     "@kiva/kv-tokens",
     "@kiva/kv-loan-filters",
