@@ -23,7 +23,7 @@ export interface TransactionData {
 	kivaCardCount: number,
 	kivaCardTotal: string,
 	itemTotal: string,
-	depositTotal: number,
+	depositTotal: string,
 	kivaCreditAppliedTotal: string,
 	paymentType: string,
 	isFTD: boolean,
@@ -164,12 +164,12 @@ function trackGATransaction(transactionData: TransactionData) {
 }
 
 function trackOPTransaction(transactionData: TransactionData) {
-	if (transactionData.depositTotal > 0) {
+	if (Number(transactionData.depositTotal) > 0) {
 		window.optimizely.push({
 			type: 'event',
 			eventName: 'deposit',
 			tags: {
-				revenue: transactionData.depositTotal * 100,
+				revenue: Number(transactionData.depositTotal) * 100,
 				deposit_amount: transactionData.depositTotal,
 			},
 		});
@@ -221,6 +221,7 @@ export function trackEvent(
 	label?: string,
 	property?: string,
 	value?: string,
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	callback: (err: any) => void = () => {},
 ) {
 	const eventLabel = (label !== undefined && label !== null) ? String(label) : undefined;
