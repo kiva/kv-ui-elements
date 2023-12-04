@@ -42,13 +42,13 @@ interface ReceiptItemsData {
 	} | null,
 }
 
-export async function getReceiptItems(apollo: ApolloClient<any>, checkoutId: string): Promise<ReceiptItem[]> {
+export async function getReceiptItems(apollo: ApolloClient<any>, checkoutId: number): Promise<ReceiptItem[]> {
 	return new Promise((resolve, reject) => {
 		const limit = 100;
 		let offset = 0;
 		const observer = apollo.watchQuery<ReceiptItemsData>({
 			query: gql`
-				query receiptItems($checkoutId: String, $visitorId: String, $limit: Int, $offset: Int) {
+				query receiptItems($checkoutId: Int, $visitorId: String, $limit: Int, $offset: Int) {
 					shop {
 						id
 						receipt(checkoutId: $checkoutId, visitorId: $visitorId) {
@@ -109,7 +109,7 @@ export async function getReceiptItems(apollo: ApolloClient<any>, checkoutId: str
 	});
 }
 
-export async function getReceiptTotals(apollo: ApolloClient<any>, checkoutId: string) {
+export async function getReceiptTotals(apollo: ApolloClient<any>, checkoutId: number) {
 	const result = await apollo.query({
 		query: gql`
 			query receiptTotals($checkoutId: Int, $visitorId: String) {
@@ -144,10 +144,11 @@ export async function getCheckoutTrackingData(
 	checkoutId: string,
 	paymentType: string,
 ): Promise<TransactionData> {
+	const checkoutIdInt = parseInt(checkoutId, 10);
 	const [isFTD, items, totals] = await Promise.all([
 		getFTDStatus(apollo),
-		getReceiptItems(apollo, checkoutId),
-		getReceiptTotals(apollo, checkoutId),
+		getReceiptItems(apollo, checkoutIdInt),
+		getReceiptTotals(apollo, checkoutIdInt),
 	]);
 
 	const loans = items.filter((item) => item.__typename === 'LoanReservation');
