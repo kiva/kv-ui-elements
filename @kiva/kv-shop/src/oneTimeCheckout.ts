@@ -141,18 +141,24 @@ async function trackSuccess(
 	checkoutId: string,
 	paymentType: string,
 ) {
-	// get transaction data
-	const transactionData = await getCheckoutTrackingData(
-		apollo,
-		checkoutId,
-		paymentType,
-	);
+	try {
+		// get transaction data
+		const transactionData = await getCheckoutTrackingData(
+			apollo,
+			checkoutId,
+			paymentType,
+		);
 
-	// track transaction
-	trackTransaction(transactionData);
+		// track transaction
+		trackTransaction(transactionData);
 
-	// wait long enough for tracking to complete
-	await wait(800);
+		// wait long enough for tracking to complete
+		await wait(800);
+	} catch (e) {
+		// eslint-disable-next-line no-console
+		console.error('Error tracking transaction', e);
+		// TODO: send error to sentry
+	}
 }
 
 export interface OneTimeCheckoutOptions {
