@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.6.4...@kiva/kv-shop@1.7.0) (2023-12-06)
+
+
+### Features
+
+* **oneTimeCheckout:** redirect in promise so loading state remains active ([60e13be](https://github.com/kiva/kv-ui-elements/commit/60e13bea82fece5a7b9a41043584963dd5e8f007))
+
+
+
+
+
 ## [1.6.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.6.3...@kiva/kv-shop@1.6.4) (2023-12-06)
 
 **Note:** Version bump only for package @kiva/kv-shop
