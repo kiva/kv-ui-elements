@@ -2,6 +2,7 @@ import { mdiLightningBolt } from '@mdi/js';
 import KvLightbox from '../KvLightbox.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvButton from '../KvButton.vue';
+import KvToast from '../KvToast.vue';
 
 export default {
 	title: 'KvLightbox',
@@ -253,3 +254,51 @@ export const Informational = InformationalTemplate.bind({});
 Informational.args = {
 	title: 'Lightbox Title',
 };
+
+const ToastInLightboxTemplate = (args, {
+	argTypes,
+}) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvToast,
+		KvButton,
+		KvLightbox,
+	},
+	template: `
+		<div>
+			<kv-button @click="isLightboxVisible = true;">Show lightbox</kv-button>
+
+			<kv-lightbox
+				:visible="isLightboxVisible"
+				title="Toast in Lightbox"
+				@lightbox-closed="isLightboxVisible = false"
+			>
+				<p>Click the button below to show a toast.</p>
+				<template #controls>
+					<kv-button @click="showToast(message, type, persist)">Show Toast</kv-button>
+				</template>
+			</kv-lightbox>
+
+			<!-- div below is a kludge for storybook docs -->
+			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
+				<div class="tw-fixed tw-left-0 tw-right-0 tw-top-2 tw-pointer-events-auto">
+					<kv-toast ref="toastRef" @close="onClose" />
+				</div>
+			</div>
+		</div>
+	`,
+	data() {
+		return {
+			isLightboxVisible: false,
+		};
+	},
+	methods: {
+		showToast(messageInput, type, persistInput) {
+			this.$refs.toastRef.show(messageInput, type, persistInput);
+		},
+		onClose() {
+		},
+	},
+});
+export const toastInLightbox = ToastInLightboxTemplate.bind({});
+toastInLightbox.args = { type: 'confirmation', message: 'This is a toast in a lightbox.' };
