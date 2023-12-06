@@ -2,7 +2,7 @@
 import type { ApolloClient, ApolloQueryResult } from '@apollo/client/core';
 import type { TransactionData } from '@kiva/kv-analytics';
 import { gql } from '@apollo/client/core';
-import getVisitorID from './util/visitorId';
+import { getVisitorID } from './util/visitorId';
 
 export async function getFTDStatus(apollo: ApolloClient<any>) {
 	const result = await apollo.query({

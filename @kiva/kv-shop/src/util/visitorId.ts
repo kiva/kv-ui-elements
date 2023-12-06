@@ -1,5 +1,5 @@
 import { getCookieValue } from './cookie';
 
-export default function getVisitorID() {
+export function getVisitorID() {
 	return getCookieValue('uiv');
 }

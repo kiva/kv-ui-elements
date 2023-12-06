@@ -1,7 +1,7 @@
 import type { ApolloClient } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
 import { poll } from './util/poll';
-import getVisitorID from './util/visitorId';
+import { getVisitorID } from './util/visitorId';
 
 export interface GetCheckoutStatusOptions {
 	apollo: ApolloClient<any>,
