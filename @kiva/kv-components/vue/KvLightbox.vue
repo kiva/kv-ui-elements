@@ -218,10 +218,16 @@ export default {
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
 
+		const trapElements = computed(() => [
+			kvLightbox.value, // This lightbox
+			'[role="alert"]', // Any open toasts/alerts on the page
+		]);
 		const {
 			activate: activateFocusTrap,
 			deactivate: deactivateFocusTrap,
-		} = useFocusTrap(kvLightbox);
+		} = useFocusTrap(trapElements, {
+			allowOutsideClick: true, // allow clicking outside the lightbox to close it
+		});
 
 		let makePageInertCallback = null;
 		let onKeyUp = null;
