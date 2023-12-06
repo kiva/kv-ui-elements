@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.48.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.1...@kiva/kv-components@3.48.2) (2023-12-06)
+
+
+### Bug Fixes
+
+* **KvLightbox:** allow focus on open alerts, clicks on browser extensions and outside lightbox ([969cf63](https://github.com/kiva/kv-ui-elements/commit/969cf638d27212052ade5e08e7de9786018bef9e))
+
+
+
+
+
 ## [3.48.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.0...@kiva/kv-components@3.48.1) (2023-11-29)
 
 **Note:** Version bump only for package @kiva/kv-components
