@@ -8,7 +8,8 @@ import { ShopError, parseShopError } from './shopError';
 import { callShopMutation, callShopQuery } from './shopQueries';
 import { validatePreCheckout } from './validatePreCheckout';
 import { wait } from './util/poll';
-import getVisitorID from './util/visitorId';
+import { getVisitorID } from './util/visitorId';
+import { redirectTo } from './util/redirect';
 import { getCheckoutTrackingData } from './receipt';
 
 interface CreditAmountNeededData {
@@ -224,5 +225,5 @@ export async function executeOneTimeCheckout({
 	// TODO: redirect needs to handle challenge completion parameters
 
 	// redirect to thanks page
-	window.location.href = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
+	await redirectTo(`/checkout/post-purchase?kiva_transaction_id=${checkoutId}`);
 }
