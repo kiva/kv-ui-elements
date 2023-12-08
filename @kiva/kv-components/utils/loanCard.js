@@ -83,8 +83,8 @@ export function loanCardComputedProperties(props) {
 		// Tag as first option for LSE loans
 		if (isLseLoan && tags.length) {
 			const position = Math.floor(Math.random() * tags.length);
-			const atag = tags[position];
-			callouts.push(atag);
+			const p1Tag = tags[position];
+			callouts.push(p1Tag);
 		}
 
 		if (!categoryPageName.value) {
@@ -116,9 +116,9 @@ export function loanCardComputedProperties(props) {
 		// P4 Tag
 		if (!!tags.length && callouts.length < 2) {
 			const position = Math.floor(Math.random() * tags.length);
-			const atag = tags[position];
-			if (!callouts.filter((c) => c.toUpperCase() === tag.toUpperCase()).length) {
-				callouts.push(atag);
+			const p4Tag = tags[position];
+			if (!callouts.filter((c) => c.toUpperCase() === p4Tag.toUpperCase()).length) {
+				callouts.push(p4Tag);
 			}
 		}
 
