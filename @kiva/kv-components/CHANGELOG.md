@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.48.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.2...@kiva/kv-components@3.48.3) (2023-12-08)
+
+
+### Bug Fixes
+
+* p4 tag on loan card ([8513e93](https://github.com/kiva/kv-ui-elements/commit/8513e93addcb68f9f6f17f4eb52ee4d33f6af481))
+
+
+
+
+
 ## [3.48.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.1...@kiva/kv-components@3.48.2) (2023-12-06)
 
 
