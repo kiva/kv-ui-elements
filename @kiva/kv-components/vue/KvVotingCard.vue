@@ -57,8 +57,9 @@
 			</div>
 		</div>
 		<kv-button
+			v-if="showVoteButton"
 			class="tw-w-full"
-			@click="castVote"
+			@click="showVoteButton"
 		>
 			Vote
 		</kv-button>
@@ -119,6 +120,10 @@ export default {
 		percentage: {
 			type: Number,
 			default: 0,
+		},
+		showVoteButton: {
+			type: Boolean,
+			default: true,
 		},
 	},
 	emits: ['vote'],

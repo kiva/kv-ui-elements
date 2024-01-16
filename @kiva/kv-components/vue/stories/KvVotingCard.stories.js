@@ -31,4 +31,5 @@ Default.args = {
 	photoPath: 'https://www-kiva-org.freetls.fastly.net/img/',
 	defaultImage: { width: 300 },
 	percentage: 45,
+	showVoteButton: true,
 };
