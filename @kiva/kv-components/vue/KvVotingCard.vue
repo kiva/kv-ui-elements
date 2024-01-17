@@ -22,7 +22,7 @@
 				:images="images"
 				:photo-path="photoPath"
 			/>
-			<p
+			<div
 				class="
 				tw-absolute
 				tw-bottom-1
@@ -39,8 +39,10 @@
 					class="tw-h-2 tw-w-2"
 					:icon="mapMarkerIcon"
 				/>
-				{{ borrowerName }}, {{ country }}
-			</p>
+				<div>
+					{{ borrowerName }}, {{ country }}
+				</div>
+			</div>
 		</div>
 
 		<h3 class="tw-font-medium">
@@ -59,7 +61,7 @@
 		<kv-button
 			v-if="showVoteButton"
 			class="tw-w-full"
-			@click="showVoteButton"
+			@click="castVote"
 		>
 			Vote
 		</kv-button>
