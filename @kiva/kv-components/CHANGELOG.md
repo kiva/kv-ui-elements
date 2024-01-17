@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.49.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.0...@kiva/kv-components@3.49.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* correcting mistake with wrong function call ([904d39d](https://github.com/kiva/kv-ui-elements/commit/904d39df4afa9d470fc91a96d7e76fe782898448))
+* editing classes for country / name tag ([aaac1c5](https://github.com/kiva/kv-ui-elements/commit/aaac1c561a24a192031977c7ea5a365789228740))
+
+
+
+
+
 # [3.49.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.3...@kiva/kv-components@3.49.0) (2024-01-16)
 
 
