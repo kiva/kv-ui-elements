@@ -190,7 +190,8 @@
 		"16": 128
 	},
 	"fonts": {
-		"sans": "PostGrotesk"
+		"sans": "PostGrotesk",
+		"serif": "dovetail-mvb"
 	},
 	"fontSizes": {
 		"base": {
