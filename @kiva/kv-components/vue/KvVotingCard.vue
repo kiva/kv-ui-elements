@@ -87,25 +87,9 @@ export default {
 			type: String,
 			default: '',
 		},
-		aspectRatio: {
-			type: Number,
-			default: 1,
-		},
-		hash: {
-			type: String,
-			default: '',
-		},
 		images: {
 			type: Array,
 			default: () => [],
-		},
-		photoPath: {
-			type: String,
-			default: '',
-		},
-		defaultImage: {
-			type: Object,
-			default: () => ({ width: 300 }),
 		},
 		percentage: {
 			type: Number,
@@ -114,14 +98,6 @@ export default {
 		showVoteButton: {
 			type: Boolean,
 			default: true,
-		},
-		useDirectUrl: {
-			type: Boolean,
-			default: false,
-		},
-		directImageUrl: {
-			type: String,
-			default: '',
 		},
 	},
 	setup() {
