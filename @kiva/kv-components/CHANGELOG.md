@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.50.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.1...@kiva/kv-components@3.50.0) (2024-01-19)
+
+
+### Bug Fixes
+
+* change component to take in a slot ([a3b733c](https://github.com/kiva/kv-ui-elements/commit/a3b733c644c7a431fb592e1b159cd551bd5e0f3c))
+* restore missing class ([6781e31](https://github.com/kiva/kv-ui-elements/commit/6781e31170c729cf484a0aff11ca544f8cca7aec))
+
+
+### Features
+
+* make the voting cards capable of using borrower image or direct url as img src ([cedc03c](https://github.com/kiva/kv-ui-elements/commit/cedc03ce887815ef133e29e61a9770b633493d8f))
+
+
+
+
+
 ## [3.49.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.0...@kiva/kv-components@3.49.1) (2024-01-17)
 
 
