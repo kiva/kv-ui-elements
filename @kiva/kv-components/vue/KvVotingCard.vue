@@ -13,30 +13,22 @@
 		tw-max-w-300"
 	>
 		<div class="tw-relative tw-flex tw-w-full tw-bg-black tw-rounded tw-mb-1">
-			<kv-borrower-image
-				class="tw-rounded"
-				:alt="`Photo of ${borrowerName}`"
-				:aspect-ratio="aspectRatio"
-				:default-image="defaultImage"
-				:hash="hash"
-				:images="images"
-				:photo-path="photoPath"
-			/>
+			<slot name="image"></slot>
 			<div
 				class="
-				tw-absolute
-				tw-bottom-1
-				tw-left-1
-				tw-text-primary
-				tw-bg-white
-				tw-rounded
-				tw-text-h4
-				tw-inline-flex
-				tw-items-center"
+					tw-absolute
+					tw-bottom-1
+					tw-left-1
+					tw-text-primary
+					tw-bg-white
+					tw-rounded
+					tw-text-h4
+					tw-inline-flex
+					tw-items-center"
 				style="padding: 2px 6px; text-transform: capitalize;"
 			>
 				<kv-material-icon
-					class="tw-h-2 tw-w-2 tw-truncate"
+					class="tw-h-2 tw-w-2"
 					:icon="mapMarkerIcon"
 				/>
 				<div>
@@ -70,10 +62,7 @@
 
 <script>
 import { mdiMapMarker } from '@mdi/js';
-import {
-	computed,
-} from 'vue-demi';
-import KvBorrowerImage from './KvBorrowerImage.vue';
+import { computed } from 'vue-demi';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -81,7 +70,6 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 export default {
 	name: 'KvVotingCard',
 	components: {
-		KvBorrowerImage,
 		KvProgressBar,
 		KvButton,
 		KvMaterialIcon,
@@ -127,16 +115,22 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		useDirectUrl: {
+			type: Boolean,
+			default: false,
+		},
+		directImageUrl: {
+			type: String,
+			default: '',
+		},
 	},
-	emits: ['vote'],
 	setup() {
-		const mapMarkerIcon = computed(() => {
-			return mdiMapMarker;
-		});
+		const mapMarkerIcon = computed(() => mdiMapMarker);
 		return {
 			mapMarkerIcon,
 		};
 	},
+
 	methods: {
 		castVote() {
 			this.$emit('vote', {
@@ -147,8 +141,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.kv-voting-card {
-  max-width: 300px;
-}
-</style>
+  <style scoped>
+  .kv-voting-card {
+	max-width: 300px;
+  }
+  </style>
