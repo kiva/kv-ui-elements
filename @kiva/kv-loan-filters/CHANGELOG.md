@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.9.0...@kiva/kv-loan-filters@1.10.0) (2024-01-24)
+
+
+### Features
+
+* add new flexibleFundraisingEnabled filter ([f8a3c4c](https://github.com/kiva/kv-ui-elements/commit/f8a3c4cf180bea91b2cb4fdb64645e7ed7e52801))
+
+
+
+
+
 # [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.8.0...@kiva/kv-loan-filters@1.9.0) (2023-09-07)
 
 
