@@ -17,6 +17,7 @@ import { getUiConfig as partnerAvgProfitability } from './partnerAvgProfitabilit
 import { getUiConfig as activities } from './activities';
 import { getUiConfig as isMatchable } from './isMatchable';
 import { getUiConfig as categories } from './categories';
+import { getUiConfig as flexibleFundraisingEnabled } from './flexibleFundraisingEnabled';
 
 export default {
 	pageOffset,
@@ -38,4 +39,5 @@ export default {
 	activities,
 	isMatchable,
 	categories,
+	flexibleFundraisingEnabled,
 };

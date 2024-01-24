@@ -17,6 +17,7 @@ import partnerAvgProfitability, { facetsKey as partnerAvgProfitabilityKey } from
 import activities, { facetsKey as activitiesKey } from './activities';
 import isMatchable, { facetsKey as isMatchableKey } from './isMatchable';
 import categories, { facetsKey as categoriesKey } from './categories';
+import flexibleFundraisingEnabled, { facetsKey as flexibleFundraisingEnabledKey } from './flexibleFundraisingEnabled';
 
 const filters = {
 	[pageOffsetKey]: pageOffset,
@@ -38,6 +39,7 @@ const filters = {
 	[activitiesKey]: activities,
 	[isMatchableKey]: isMatchable,
 	[categoriesKey]: categories,
+	[flexibleFundraisingEnabledKey]: flexibleFundraisingEnabled,
 };
 
 export default {
