@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.51.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.50.0...@kiva/kv-components@3.51.0) (2024-01-25)
+
+
+### Features
+
+* add basic comments container for future comment work ([4f1b3ab](https://github.com/kiva/kv-ui-elements/commit/4f1b3aba7f78ead3cf53a955bbb1b1243c4b2cda))
+
+
+
+
+
 # [3.50.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.1...@kiva/kv-components@3.50.0) (2024-01-19)
 
 
