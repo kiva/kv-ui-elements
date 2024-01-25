@@ -7,17 +7,17 @@ A library of methods for get stream library on Kiva.org.
 Deployed:
 
 ```bash
-npm i @kiva/kv-stream
+npm i @kiva/kv-activity-feed
 ```
 
 Local:
 
 ```bash
 # Open kv-ui-elements folder in Terminal
-npm link -w @kiva/kv-stream
+npm link -w @kiva/kv-activity-feed
 
 # Open target local project folder in Terminal
-npm link @kiva/kv-stream
+npm link @kiva/kv-activity-feed
 ```
 
 ## Lint

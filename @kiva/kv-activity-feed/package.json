@@ -1,5 +1,5 @@
 {
-  "name": "@kiva/kv-stream",
+  "name": "@kiva/kv-activity-feed",
   "version": "1.0.0",
   "type": "module",
   "publishConfig": {
