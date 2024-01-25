@@ -1,4 +1,4 @@
-import { ActivityFeedService } from "../index";
+import ActivityFeedService from '../index';
 
 const mockFollow = jest.fn(() => Promise.resolve());
 const mockAddActivity = jest.fn(() => Promise.resolve());
@@ -16,15 +16,20 @@ jest.mock('getstream', () => ({
 	})),
 }));
 
-const {connect} = require('getstream');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { connect } = require('getstream');
 
 describe('StreamService', () => {
-	let activityFeedService: ActivityFeedService;
+	let activityFeedService;
 
 	beforeEach(() => {
 		// Reset the mocks and create a new StreamService instance for each test
 		jest.clearAllMocks();
-		activityFeedService = new ActivityFeedService('API_KEY', 'AUTH_TOKEN', 'APP_ID');
+		activityFeedService = new ActivityFeedService(
+			'API_KEY',
+			'AUTH_TOKEN',
+			'APP_ID',
+		);
 	});
 
 	describe('createUserFeed', () => {
@@ -36,7 +41,7 @@ describe('StreamService', () => {
 			expect(connect).toHaveBeenCalledWith(
 				'API_KEY',
 				'AUTH_TOKEN',
-				'APP_ID'
+				'APP_ID',
 			);
 			expect(connect().feed).toHaveBeenCalledWith('user', userId);
 		});
@@ -51,7 +56,7 @@ describe('StreamService', () => {
 			await activityFeedService.followUser(
 				sourceUserId,
 				targetSlug,
-				targetUserId
+				targetUserId,
 			);
 
 			expect(connect().feed).toHaveBeenCalledWith('user', sourceUserId);
@@ -61,7 +66,7 @@ describe('StreamService', () => {
 
 	describe('addActivity', () => {
 		it('should add an activity to the feed', async () => {
-			const userFeed = activityFeedService.createUserFeed("user123");
+			const userFeed = activityFeedService.createUserFeed('user123');
 			const targetSlug = 'user';
 			const activity = {
 				actor: 'user123',
@@ -72,13 +77,15 @@ describe('StreamService', () => {
 			await ActivityFeedService.addActivity(userFeed, activity);
 
 			expect(connect().feed).toHaveBeenCalled();
-			expect(connect().feed(targetSlug).addActivity).toHaveBeenCalledWith(activity);
+			expect(connect().feed(targetSlug).addActivity).toHaveBeenCalledWith(
+				activity,
+			);
 		});
 	});
 
 	describe('getActivity', () => {
 		it('should retrieve activities from the feed', async () => {
-			const userFeed = activityFeedService.createUserFeed("user123");
+			const userFeed = activityFeedService.createUserFeed('user123');
 			const params = { limit: 10 };
 			const targetSlug = 'user';
 

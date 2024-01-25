@@ -9,7 +9,7 @@ import {
 	APIResponse,
 } from 'getstream';
 
-export class ActivityFeedService {
+class ActivityFeedService {
 	private client: StreamClient;
 
 	/**
@@ -31,7 +31,7 @@ export class ActivityFeedService {
 		sourceUserId: string,
 		targetSlug: string,
 		targetUserId: string,
-		options: { limit?: number } = {}
+		options: { limit?: number } = {},
 	): Promise<APIResponse> {
 		const sourceFeed = this.createUserFeed(sourceUserId);
 		const targetFeed = this.createUserFeed(targetUserId);
@@ -41,15 +41,17 @@ export class ActivityFeedService {
 
 	static addActivity(
 		feed: StreamFeed,
-		activity: NewActivity
+		activity: NewActivity,
 	): Promise<Activity> {
 		return feed.addActivity(activity);
 	}
 
 	static getActivity(
 		feed: StreamFeed,
-		params: GetFeedOptions
+		params: GetFeedOptions,
 	): Promise<FeedAPIResponse> {
 		return feed.get(params);
 	}
 }
+
+export default ActivityFeedService;
