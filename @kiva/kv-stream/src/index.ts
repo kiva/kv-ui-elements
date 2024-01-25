@@ -9,7 +9,7 @@ import {
 	APIResponse,
 } from 'getstream';
 
-export class StreamService {
+export class ActivityFeedService {
 	private client: StreamClient;
 
 	/**

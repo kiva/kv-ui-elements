@@ -1,6 +1,6 @@
-# kv-stream
+# kv-activity-feed
 
-A library of methods for web analytics on Kiva.org.
+A library of methods for get stream library on Kiva.org.
 
 ## Install
 
