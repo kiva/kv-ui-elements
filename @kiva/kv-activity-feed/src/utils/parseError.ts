@@ -1,10 +1,10 @@
-const parseError = (error: any) => {
-	if (error instanceof Error) {
-		console.error('Error creating StreamService instance:', error.message);
-	} else {
-		console.error('Error creating StreamService instance:', error);
+import { SiteError, FeedError } from 'getstream';
+
+const parseError = (e: any) => {
+	if (e instanceof Error || e instanceof SiteError || e instanceof FeedError) {
+		console.error('An error occurred in StreamService lib:', e.message);
 	}
-	throw new Error('Failed to create StreamService instance');
+	console.error('An unknown error occurred in StreamService lib:', e);
 };
 
 export default parseError;
