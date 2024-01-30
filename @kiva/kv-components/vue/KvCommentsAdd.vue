@@ -16,7 +16,7 @@
 						tw-object-fill
 					"
 				>
-				<div class="tw-font-medium">
+				<div class="data-hj-suppress tw-font-medium">
 					{{ userDisplayName }}
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 				:id="ADD_COMMENT_ID"
 				v-model="addCommentValue"
 				placeholder="Add a comment to this loan..."
-				class="tw-grow"
+				class="data-hj-suppress tw-grow"
 			/>
 		</div>
 		<div class="tw-flex tw-py-0.5 tw-gap-0.5">
