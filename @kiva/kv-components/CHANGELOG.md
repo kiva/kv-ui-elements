@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.52.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.51.0...@kiva/kv-components@3.52.0) (2024-01-31)
+
+
+### Bug Fixes
+
+* added missing suppression classes ([5d04867](https://github.com/kiva/kv-ui-elements/commit/5d048672f078d2d229372e37b896c9be025457d9))
+
+
+### Features
+
+* add comments add component ([1bf5fc3](https://github.com/kiva/kv-ui-elements/commit/1bf5fc388fee61a63f49775a15b50728c140a569))
+
+
+
+
+
 # [3.51.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.50.0...@kiva/kv-components@3.51.0) (2024-01-25)
 
 
