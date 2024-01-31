@@ -1,28 +1,44 @@
 <template>
-	<div>
-		<h3>Comment Container Placeholder</h3>
-		<p v-if="activityId">
-			Comment functionality coming soon!
-		</p>
-		<p
-			v-else
-			class="tw-text-desert-rose"
-		>
-			Activity ID missing
-		</p>
-	</div>
+	<kv-comments-add
+		:user-image-url="userImageUrl"
+		:user-display-name="userDisplayName"
+		@add-comment="comment"
+	/>
 </template>
 
 <script>
+import KvCommentsAdd from './KvCommentsAdd.vue';
+
+export const ADD_COMMENT_EVENT = 'add-comment';
+
 export default {
+	components: {
+		KvCommentsAdd,
+	},
 	props: {
 		/**
-		 * The activity ID for the comments
+		 * The full URL for the user image
 		 */
-		activityId: {
+		userImageUrl: {
 			type: String,
 			default: '',
 		},
+		/**
+		 * The name to display for the user
+		 */
+		userDisplayName: {
+			type: String,
+			default: '',
+		},
+	},
+	setup(_props, { emit }) {
+		const comment = (commentValue) => {
+			emit(ADD_COMMENT_EVENT, commentValue);
+		};
+
+		return {
+			comment,
+		};
 	},
 };
 </script>

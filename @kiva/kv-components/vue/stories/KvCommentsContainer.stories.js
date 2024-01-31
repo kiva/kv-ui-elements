@@ -11,7 +11,9 @@ const story = (args) => {
 		components: { KvCommentsContainer },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<KvCommentsContainer v-bind="args" />
+			<div style="max-width: 800px;">
+				<KvCommentsContainer v-bind="args" />
+			</div>
 		`,
 	});
 	template.args = args;
@@ -19,5 +21,3 @@ const story = (args) => {
 };
 
 export const Default = story({});
-
-export const Activity = story({ activityId: 'asd' });
