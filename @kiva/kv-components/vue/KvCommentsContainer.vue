@@ -1,9 +1,11 @@
 <template>
-	<kv-comments-add
-		:user-image-url="userImageUrl"
-		:user-display-name="userDisplayName"
-		@add-comment="comment"
-	/>
+	<div>
+		<kv-comments-add
+			:user-image-url="userImageUrl"
+			:user-display-name="userDisplayName"
+			@add-comment="comment"
+		/>
+	</div>
 </template>
 
 <script>
@@ -35,7 +37,6 @@ export default {
 		const comment = (commentValue) => {
 			emit(ADD_COMMENT_EVENT, commentValue);
 		};
-
 		return {
 			comment,
 		};

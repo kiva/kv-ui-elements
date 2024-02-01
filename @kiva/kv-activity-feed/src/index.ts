@@ -1,78 +1,70 @@
-import {
-	connect,
-	StreamClient,
-	GetFeedOptions,
-	NewActivity,
-	StreamFeed,
-	FeedAPIResponse,
-	Activity,
-	APIResponse,
-} from 'getstream';
+import { connect, StreamClient, EnrichedActivity } from 'getstream';
 import parseError from './utils/parseError';
 
-class ActivityFeedService {
-	private client: StreamClient;
+/**
+ * Type wrapper for the Stream activity type
+ */
+export type Activity = EnrichedActivity|undefined;
+
+/**
+ * Abstracts the functionality for the 3rd party Stream service
+ */
+export default class ActivityFeedService {
+	/**
+	 * The in memory instance of the Stream client
+	 */
+	private client: StreamClient|undefined = undefined;
 
 	/**
-	 * Creates an instance of StreamService.
+	 * Creates an instance of ActivityFeedService
 	 *
-	 * @param {string} apiKey - The GetStream.io API key.
-	 * @param {string} authToken - The auth user token.
-	 * @param {string} appId - The GetStream.io App id.
+	 * @param apiKey The Stream service API key
+	 * @param userToken The current user token generated server-side
+	 * @param appId The Stream service env-specific APP ID
 	 */
-	constructor(apiKey: string, authToken: string, appId: string) {
+	constructor(apiKey: string, userToken: string, appId: string) {
 		try {
-			this.client = connect(apiKey, authToken, appId);
+			this.client = connect(apiKey, userToken, appId);
 		} catch (error) {
 			parseError(error);
 		}
 	}
 
-	createUserFeed(userId: string): StreamFeed {
+	/**
+	 * Gets an activity based on the provided activity ID
+	 *
+	 * @param activityId The activity ID returned from Stream
+	 * @returns The activity data with recent reactions
+	 */
+	async getActivity(activityId: string): Promise<Activity> {
+		let activity: Activity;
+
 		try {
-			return this.client.feed('user', userId);
+			activity = (await this.client?.getActivities({ ids: [activityId], withRecentReactions: true }))?.results[0];
 		} catch (error) {
 			parseError(error);
 		}
+
+		return activity;
 	}
 
-	followUser(
-		sourceUserId: string,
-		targetSlug: string,
-		targetUserId: string,
-		options: { limit?: number } = {},
-	): Promise<APIResponse> {
-		const sourceFeed = this.createUserFeed(sourceUserId);
-		const targetFeed = this.createUserFeed(targetUserId);
+	/**
+	 * Adds a comment for the current user for the provided activity ID
+	 *
+	 * @param activityId The activity ID returned from Stream
+	 * @param text The text of the user comment
+	 * @returns Whether the comment was added successfully
+	 */
+	async addComment(activityId: string, text: string): Promise<boolean> {
+		let success = false;
 
 		try {
-			return sourceFeed.follow(targetSlug, targetFeed, options);
+			await this.client?.reactions.add('comment', activityId, { text });
+			success = true;
 		} catch (error) {
 			parseError(error);
 		}
-	}
 
-	static addActivity(
-		feed: StreamFeed,
-		activity: NewActivity,
-	): Promise<Activity> {
-		try {
-			return feed.addActivity(activity);
-		} catch (error) {
-			parseError(error);
-		}
-	}
-
-	static getActivity(
-		feed: StreamFeed,
-		params: GetFeedOptions,
-	): Promise<FeedAPIResponse> {
-		try {
-			return feed.get(params);
-		} catch (error) {
-			parseError(error);
-		}
+		return success;
 	}
 }
-
-export default ActivityFeedService;
