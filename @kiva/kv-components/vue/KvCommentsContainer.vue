@@ -1,12 +1,17 @@
 <template>
-	<kv-comments-add
-		:user-image-url="userImageUrl"
-		:user-display-name="userDisplayName"
-	/>
+	<div>
+		<kv-comments-add
+			:user-image-url="userImageUrl"
+			:user-display-name="userDisplayName"
+			@add-comment="comment"
+		/>
+	</div>
 </template>
 
 <script>
 import KvCommentsAdd from './KvCommentsAdd.vue';
+
+export const ADD_COMMENT_EVENT = 'add-comment';
 
 export default {
 	components: {
@@ -27,6 +32,14 @@ export default {
 			type: String,
 			default: '',
 		},
+	},
+	setup(_props, { emit }) {
+		const comment = (commentValue) => {
+			emit(ADD_COMMENT_EVENT, commentValue);
+		};
+		return {
+			comment,
+		};
 	},
 };
 </script>
