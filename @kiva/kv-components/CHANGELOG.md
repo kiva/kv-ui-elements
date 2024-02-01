@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.52.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.0...@kiva/kv-components@3.52.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* add back in comments container ([36a8a97](https://github.com/kiva/kv-ui-elements/commit/36a8a979aac47c425e32d87cd13160ad68b913cf))
+* another tweak to how events emitted ([029367a](https://github.com/kiva/kv-ui-elements/commit/029367aeb1f38151a7d36e0a2246b82b14489cb3))
+* minor test fix ([c95c486](https://github.com/kiva/kv-ui-elements/commit/c95c4866d05b2e711e8895868d72ddc6bb5b7a43))
+* remove unneeded comment container ([71365b0](https://github.com/kiva/kv-ui-elements/commit/71365b0f6628d1d280f9fbd2b0adbad8688fd57c))
+
+
+
+
+
 # [3.52.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.51.0...@kiva/kv-components@3.52.0) (2024-01-31)
 
 
