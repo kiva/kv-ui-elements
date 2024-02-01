@@ -1,23 +1,5 @@
 <template>
 	<div>
-		<div class="tw-flex tw-items-center tw-gap-1">
-			<img
-				class="
-          data-hj-suppress
-          tw-inline-block
-          tw-w-3.5
-          tw-h-3.5
-          tw-rounded-full
-          tw-overflow-hidden
-          tw-object-fill
-        "
-				:src="profileImage"
-				:alt="`${author} picture`"
-			>
-			<p class="data-hj-suppress tw-font-medium">
-				{{ author }}
-			</p>
-		</div>
 		{{ text }}
 
 		<template v-if="nestLevel < 3">
@@ -37,11 +19,11 @@
 			</kv-button>
 		</template>
 		<div
-			v-if="comment.latest_children"
+			v-if="latestChildren"
 			class="tw-my-1"
 		>
 			<p
-				v-for="nested_comment in comment.latest_children"
+				v-for="nested_comment in latestChildren"
 				:key="nested_comment.id"
 				class="tw-ml-3"
 			>
@@ -92,7 +74,7 @@ export default {
 			props.handleClick({
 				reaction,
 				id: props.comment.id,
-				author: props.comment.actor.data.name,
+				userId: props.comment.user_id,
 				isChild: true,
 			});
 		};
@@ -106,13 +88,13 @@ export default {
 	},
 	computed: {
 		text() {
-			return this.comment?.tweet ?? '';
+			return this.comment?.data.text ?? '';
 		},
-		author() {
-			return this.comment?.actor?.data?.name ?? '';
+		userId() {
+			return this.comment?.user_id ?? null;
 		},
-		profileImage() {
-			return this.comment?.actor?.data?.profileImage ?? '';
+		latestChildren() {
+			return this.comment?.latest_children ?? null;
 		},
 	},
 };

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<KvCommentsListItem
-			v-for="comment in comments.activities"
+			v-for="comment in comments.comment"
 			:id="comment.id"
 			:key="comment.id"
 			:nest-level="1"

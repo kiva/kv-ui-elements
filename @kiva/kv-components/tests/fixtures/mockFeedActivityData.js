@@ -3,78 +3,81 @@
  */
 
 const comments = {
-	activities: [
+	duration: '6.42ms',
+	results: [
 		{
 			actor: {
-				created_at: '2024-01-23T20:38:36.661529Z',
-				updated_at: '2024-01-23T20:38:36.977252Z',
-				id: 'john',
-				data: {
-					handle: '@john',
-					name: 'John',
-					profileImage: 'https://via.placeholder.com/50x50',
-				},
+				created_at: '2024-02-01T19:48:26.890734Z',
+				updated_at: '2024-02-01T19:48:26.890734Z',
+				id: '123',
+				data: {},
 			},
-			latest_children: {
-				comment: {
-					actor: {
-						created_at: '2024-01-23T20:38:36.661529Z',
-						updated_at: '2024-01-23T20:38:36.977252Z',
-						id: 'eric',
+			foreign_id: 'CHALLENGE#test-challenge-id',
+			id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
+			latest_reactions: {
+				comment: [
+					{
+						created_at: '2024-02-01T20:12:31.398932Z',
+						updated_at: '2024-02-01T20:12:31.398932Z',
+						id: 'dade3812-6aa0-4c32-90ea-2366dab178a1',
+						user_id: '1de650a5-b12f-4d20-b46c-6e15b0722141',
+						kind: 'comment',
+						activity_id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
 						data: {
-							handle: '@BaxEr',
-							name: 'Eric',
-							profileImage: 'https://via.placeholder.com/50x50',
+							text: 'another guest comment',
 						},
+						parent: '',
+						latest_children: {},
+						children_counts: {},
 					},
-					foreign_id: '',
-					id: '7105f366-bfb1-11ee-8378-06b39a842511',
-					object: '2',
-					origin: 'user:eric',
-					target: '',
-					time: '2024-01-30T20:52:12.139608',
-					tweet: 'Child - Cool stuff!',
-					verb: 'tweet',
+					{
+						created_at: '2024-02-01T20:11:23.931133Z',
+						updated_at: '2024-02-01T20:11:23.931133Z',
+						id: '3de615bb-0d48-4a69-9004-141ee26985eb',
+						user_id: '1de650a5-b12f-4d20-b46c-6e15b0722141',
+						kind: 'comment',
+						activity_id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
+						data: {
+							text: 'test as visitor',
+						},
+						parent: '',
+						latest_children: {},
+						children_counts: {},
+					},
+					{
+						created_at: '2024-02-01T20:06:46.651764Z',
+						updated_at: '2024-02-01T20:06:46.651764Z',
+						id: 'e1db4420-159e-4ba2-aab9-704d1cc56dae',
+						user_id: '123',
+						user: {
+							created_at: '2024-02-01T19:48:26.890734Z',
+							updated_at: '2024-02-01T19:48:26.890734Z',
+							id: '123',
+							data: {},
+						},
+						kind: 'comment',
+						activity_id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
+						data: {
+							text: 'asd',
+						},
+						parent: '',
+						latest_children: {},
+						children_counts: {},
+					},
+				],
+			},
+			latest_reactions_extra: {
+				comment: {
+					next: '',
 				},
 			},
-			foreign_id: '',
-			id: 'a7105f366-bfb1-11ee-8378-06b39a842567',
-			object: '2',
-			origin: 'user:eric',
+			object: 'test-challenge-id',
+			origin: null,
 			target: '',
-			time: '2024-01-30T20:52:12.139608',
-			tweet: 'Cool stuff!',
-			verb: 'tweet',
-		},
-		{
-			actor: {
-				created_at: '2024-01-23T20:38:36.661529Z',
-				updated_at: '2024-01-23T20:38:36.977252Z',
-				id: 'Leah',
-				data: {
-					handle: '@leah',
-					name: 'Leah',
-					profileImage: 'https://via.placeholder.com/50x50',
-				},
-			},
-			latest_children: null,
-			foreign_id: '',
-			id: '70eee8b6-bfb1-11ee-a4b5-020077c2d353',
-			object: '2',
-			origin: 'user:leah',
-			target: '',
-			time: '2024-01-30T20:52:11.988601',
-			tweet: 'Cool stuff!',
-			verb: 'tweet',
+			time: '2024-02-01T17:54:24.932762',
+			verb: 'CHALLENGE',
 		},
 	],
-	activity_count: 2,
-	actor_count: 1,
-	created_at: '2024-01-30T20:19:43.482141',
-	group: 'tweet_2024-01-30',
-	id: '71064c67-bfb1-11ee-8080-80007706b6fd',
-	updated_at: '2024-01-30T20:52:12.141885',
-	verb: 'tweet',
 };
 
 export default comments;

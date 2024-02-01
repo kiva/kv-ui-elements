@@ -1,9 +1,9 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import KvCommentsListItem from '../../../../vue/KvCommentsListItem.vue';
-import comments from '../../../fixtures/mockFeedActivityData';
+import activityFeed from '../../../fixtures/mockFeedActivityData';
 
-const comment = comments.activities[1];
+const comment = activityFeed.results[0].latest_reactions.comment[0];
 
 const handleClick = jest.fn();
 
@@ -18,10 +18,9 @@ describe('KvCommentsListItem', () => {
 		getByRole('button', { name: 'Like' });
 	});
 
-	it('should render user info', () => {
-		const { getByAltText, getByText } = renderComment({ comment });
-		getByAltText(`${comment.actor.data.name} picture`);
-		getByText(comment.tweet);
+	it('should render comment text', () => {
+		const { getByText } = renderComment({ comment });
+		getByText(comment.data.text);
 	});
 
 	it('should handle like button click', async () => {
