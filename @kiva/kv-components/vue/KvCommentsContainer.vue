@@ -55,7 +55,6 @@ export default {
 			emit(REPLY_COMMENT_EVENT, commentValue);
 			emit(LIKE_COMMENT_EVENT, commentValue);
 		};
-
 		return {
 			comment,
 
