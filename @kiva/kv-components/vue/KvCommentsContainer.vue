@@ -57,7 +57,6 @@ export default {
 		};
 		return {
 			comment,
-
 			REPLY_COMMENT_EVENT,
 			LIKE_COMMENT_EVENT,
 		};

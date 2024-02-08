@@ -1,7 +1,3 @@
-/**
- * Provisional mock feed activity data. Likely to change as we develop the comments feature.
- */
-
 const comments = {
 	duration: '6.42ms',
 	results: [

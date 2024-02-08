@@ -19,8 +19,8 @@ export default {
 	components: { KvCommentsListItem },
 	props: {
 		/**
-     * Activity comments
-     */
+		 * Activity comments
+		 */
 		comments: {
 			type: Object,
 			default: () => {},

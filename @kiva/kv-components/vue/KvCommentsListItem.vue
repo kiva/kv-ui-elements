@@ -1,6 +1,26 @@
 <template>
 	<div>
-		{{ text }}
+		<div
+			class="tw-flex tw-items-center tw-gap-1"
+		>
+			<img
+				v-if="profileImage"
+				class="
+           data-hj-suppress
+           tw-inline-block
+           tw-w-3.5
+           tw-h-3.5
+           tw-rounded-full
+           tw-overflow-hidden
+           tw-object-fill
+         "
+				:src="profileImage"
+				alt="picture"
+			>
+			<p>
+				{{ text }}
+			</p>
+		</div>
 
 		<template v-if="nestLevel < 3">
 			<kv-button
@@ -81,7 +101,6 @@ export default {
 
 		return {
 			onClick,
-
 			REPLY_COMMENT_EVENT,
 			LIKE_COMMENT_EVENT,
 		};
@@ -95,6 +114,9 @@ export default {
 		},
 		latestChildren() {
 			return this.comment?.latest_children ?? null;
+		},
+		profileImage() {
+			return this.comment?.user_picture ?? '';
 		},
 	},
 };
