@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.7...@kiva/kv-shop@1.8.0) (2024-02-09)
+
+
+### Features
+
+* valetinviter param added to executeonetimecheckout ([#340](https://github.com/kiva/kv-ui-elements/issues/340)) ([272daf7](https://github.com/kiva/kv-ui-elements/commit/272daf738a9c362f10897b96cc490a9b99ddc314))
+
+
+
+
+
 ## [1.7.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.6...@kiva/kv-shop@1.7.7) (2024-02-01)
 
 **Note:** Version bump only for package @kiva/kv-shop
