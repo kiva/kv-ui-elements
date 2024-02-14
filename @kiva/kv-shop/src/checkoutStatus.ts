@@ -39,6 +39,7 @@ export async function getCheckoutStatus(
 			transactionId: transactionSagaId,
 			visitorId: getVisitorID(),
 		},
+		fetchPolicy: 'network-only',
 	});
 }
 
