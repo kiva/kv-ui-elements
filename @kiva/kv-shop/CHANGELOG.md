@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.0...@kiva/kv-shop@1.8.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* checkoutStatus query was only called once, the apollo cache returns same response until timeout ([c597c32](https://github.com/kiva/kv-ui-elements/commit/c597c328c19de30bd650104e0898d0954362522d))
+
+
+
+
+
 # [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.7...@kiva/kv-shop@1.8.0) (2024-02-09)
 
 
