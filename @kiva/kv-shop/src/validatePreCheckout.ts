@@ -6,7 +6,12 @@ import { ShopError, parseShopError } from './shopError';
 import type { ValetInviter } from './oneTimeCheckout';
 
 export const validatePreCheckoutMutation = gql`
-	mutation validatePreCheckout($basketId: String, $email: String, $visitorId: String, $emailOptIn: Boolean) {
+	mutation validatePreCheckout($basketId: String,
+		$email: String,
+		$visitorId: String,
+		$emailOptIn: Boolean,
+		$inviter: InviterInput
+	) {
 	shop (basketId: $basketId) {
 		id
 		validatePreCheckout (email: $email, visitorId: $visitorId, emailOptIn: $emailOptIn) {
