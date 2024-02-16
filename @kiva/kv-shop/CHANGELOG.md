@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.1...@kiva/kv-shop@1.9.0) (2024-02-16)
+
+
+### Bug Fixes
+
+* add inviter to validatePreCheckout query ([b2f6996](https://github.com/kiva/kv-ui-elements/commit/b2f6996a4a0fb0a4428183c1ecb173645034726b))
+
+
+### Features
+
+* add invitationUrl to inviter param ([1163285](https://github.com/kiva/kv-ui-elements/commit/1163285a4565cb678bd25f9483433866b4a08712))
+
+
+
+
+
 ## [1.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.0...@kiva/kv-shop@1.8.1) (2024-02-14)
 
 
