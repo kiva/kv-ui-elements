@@ -3,6 +3,7 @@ import { gql } from '@apollo/client/core';
 import { callShopMutation } from './shopQueries';
 import { getVisitorID } from './util/visitorId';
 import { ShopError, parseShopError } from './shopError';
+import type { ValetInviter } from './oneTimeCheckout';
 
 export const validatePreCheckoutMutation = gql`
 	mutation validatePreCheckout($basketId: String, $email: String, $visitorId: String, $emailOptIn: Boolean) {
@@ -31,12 +32,14 @@ export interface ValidatePreCheckoutOptions {
 	apollo: ApolloClient<any>,
 	emailAddress?: string,
 	emailOptIn?: boolean,
+	valetInviter?: ValetInviter,
 }
 
 export async function validatePreCheckout({
 	apollo,
 	emailAddress,
 	emailOptIn,
+	valetInviter,
 }: ValidatePreCheckoutOptions) {
 	const data = await callShopMutation<ValidatePreCheckoutData>(apollo, {
 		mutation: validatePreCheckoutMutation,
@@ -44,6 +47,7 @@ export async function validatePreCheckout({
 			visitorId: getVisitorID(),
 			email: emailAddress,
 			emailOptIn,
+			inviter: valetInviter,
 		},
 	}, 0);
 	const results = data?.shop?.validatePreCheckout;

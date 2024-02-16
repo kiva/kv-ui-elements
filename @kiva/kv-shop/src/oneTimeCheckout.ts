@@ -162,12 +162,17 @@ async function trackSuccess(
 	}
 }
 
+export type ValetInviter = {
+	inviterId: string,
+	invitationUrl: string,
+};
+
 export interface OneTimeCheckoutOptions {
 	apollo: ApolloClient<any>,
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
-	valetInviter?: string,
+	valetInviter?: ValetInviter,
 }
 
 export async function executeOneTimeCheckout({
@@ -183,6 +188,7 @@ export async function executeOneTimeCheckout({
 		apollo,
 		emailAddress,
 		emailOptIn,
+		valetInviter,
 	});
 
 	const creditNeeded = await creditAmountNeeded(apollo);
@@ -228,8 +234,8 @@ export async function executeOneTimeCheckout({
 
 	// redirect to thanks page
 	let redirectUrl = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
-	if (valetInviter) {
-		redirectUrl += `&valet_inviter=${valetInviter}`;
+	if (valetInviter?.inviterId) {
+		redirectUrl += `&valet_inviter=${valetInviter.inviterId}`;
 	}
 	await redirectTo(redirectUrl);
 }
