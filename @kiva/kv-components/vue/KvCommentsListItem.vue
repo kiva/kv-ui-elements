@@ -6,14 +6,14 @@
 			<img
 				v-if="profileImage"
 				class="
-           data-hj-suppress
-           tw-inline-block
-           tw-w-3.5
-           tw-h-3.5
-           tw-rounded-full
-           tw-overflow-hidden
-           tw-object-fill
-         "
+					data-hj-suppress
+					tw-inline-block
+					tw-w-3.5
+					tw-h-3.5
+					tw-rounded-full
+					tw-overflow-hidden
+					tw-object-fill
+				"
 				:src="profileImage"
 				alt="picture"
 			>
@@ -68,22 +68,22 @@ export default {
 	components: { KvButton },
 	props: {
 		/**
-     * Activity comment
-     */
+		 * Activity comment
+		 */
 		comment: {
 			type: Object,
 			default: () => {},
 		},
 		/**
-     * The nest level of the comment
-     */
+		 * The nest level of the comment
+		 */
 		nestLevel: {
 			type: Number,
 			default: 0,
 		},
 		/**
-     * The function to call when a reaction is clicked
-     */
+		 * The function to call when a reaction is clicked
+		 */
 		handleClick: {
 			type: Function,
 			default: () => {},
