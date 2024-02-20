@@ -22,22 +22,20 @@
 			</p>
 		</div>
 
-		<template v-if="nestLevel < 3">
-			<kv-button
-				variant="ghost"
-				class="tw-font-medium"
-				@click="onClick(REPLY_COMMENT_EVENT)"
-			>
-				Reply
-			</kv-button>
-			<kv-button
-				variant="ghost"
-				class="tw-font-medium"
-				@click="onClick(LIKE_COMMENT_EVENT)"
-			>
-				Like
-			</kv-button>
-		</template>
+		<kv-button
+			variant="ghost"
+			class="tw-font-medium"
+			@click="onClick(REPLY_COMMENT_EVENT)"
+		>
+			Reply
+		</kv-button>
+		<kv-button
+			variant="ghost"
+			class="tw-font-medium"
+			@click="onClick(LIKE_COMMENT_EVENT)"
+		>
+			Like
+		</kv-button>
 		<div
 			v-if="latestChildren"
 			class="tw-my-1"
@@ -72,7 +70,7 @@ export default {
 		 */
 		comment: {
 			type: Object,
-			default: () => {},
+			default: () => ({}),
 		},
 		/**
 		 * The nest level of the comment
@@ -86,15 +84,15 @@ export default {
 		 */
 		handleClick: {
 			type: Function,
-			default: () => {},
+			default: () => ({}),
 		},
 	},
 	setup(props) {
 		const onClick = (reaction) => {
 			props.handleClick({
 				reaction,
-				id: props.comment.id,
-				userId: props.comment.user_id,
+				id: props.comment?.id ?? null,
+				userId: props.comment?.user_id ?? null,
 				isChild: true,
 			});
 		};
@@ -107,7 +105,7 @@ export default {
 	},
 	computed: {
 		text() {
-			return this.comment?.data.text ?? '';
+			return this.comment?.data?.text ?? '';
 		},
 		userId() {
 			return this.comment?.user_id ?? null;
