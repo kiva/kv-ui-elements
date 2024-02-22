@@ -173,6 +173,7 @@ export interface OneTimeCheckoutOptions {
 	emailAddress?: string,
 	emailOptIn?: boolean,
 	valetInviter?: ValetInviter,
+	forceThanksRedirect?: boolean,
 }
 
 export async function executeOneTimeCheckout({
@@ -181,6 +182,7 @@ export async function executeOneTimeCheckout({
 	emailAddress,
 	emailOptIn,
 	valetInviter,
+	forceThanksRedirect,
 }: OneTimeCheckoutOptions) {
 	// do pre-checkout validation
 	// TODO: promo guest checkout validation
@@ -232,8 +234,12 @@ export async function executeOneTimeCheckout({
 
 	// TODO: redirect needs to handle challenge completion parameters
 
-	// redirect to thanks page
+	// redirect to post-purchase
 	let redirectUrl = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
+	// force redirect to thanks page
+	if (forceThanksRedirect) {
+		redirectUrl = `/checkout/thanks?kiva_transaction_id=${checkoutId}`;
+	}
 	if (valetInviter?.inviterId) {
 		redirectUrl += `&valet_inviter=${valetInviter.inviterId}`;
 	}
