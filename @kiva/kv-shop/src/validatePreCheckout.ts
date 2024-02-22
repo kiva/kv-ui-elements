@@ -14,7 +14,7 @@ export const validatePreCheckoutMutation = gql`
 	) {
 	shop (basketId: $basketId) {
 		id
-		validatePreCheckout (email: $email, visitorId: $visitorId, emailOptIn: $emailOptIn) {
+		validatePreCheckout (email: $email, visitorId: $visitorId, emailOptIn: $emailOptIn, inviter: $inviter) {
 			error
 			success
 			value
