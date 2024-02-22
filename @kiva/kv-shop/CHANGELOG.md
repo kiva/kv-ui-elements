@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.0...@kiva/kv-shop@1.9.1) (2024-02-22)
+
+
+### Bug Fixes
+
+* inviter param wasn't being used ([0c7d48a](https://github.com/kiva/kv-ui-elements/commit/0c7d48a1decc77a902995944f6fce7c4f9dc4077))
+
+
+
+
+
 # [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.1...@kiva/kv-shop@1.9.0) (2024-02-16)
 
 
