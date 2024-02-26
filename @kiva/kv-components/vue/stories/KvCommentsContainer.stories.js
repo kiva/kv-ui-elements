@@ -1,4 +1,5 @@
 import KvCommentsContainer from '../KvCommentsContainer.vue';
+import comments from '../../tests/fixtures/mockFeedActivityData';
 
 export default {
 	title: 'KvCommentsContainer',
@@ -20,4 +21,4 @@ const story = (args) => {
 	return template;
 };
 
-export const Default = story({});
+export const Default = story({ comments });
