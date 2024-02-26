@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.53.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.1...@kiva/kv-components@3.53.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* indentation in item component ([30aee02](https://github.com/kiva/kv-ui-elements/commit/30aee02d3c2e58c7c98fe6a58689a9824f56ef60))
+* optional chaining for comment object ([bac9ba1](https://github.com/kiva/kv-ui-elements/commit/bac9ba199970966564bfab7d6a2e64bb92fea286))
+* revert profile image and small fixes ([fc8cf74](https://github.com/kiva/kv-ui-elements/commit/fc8cf7440fb355fbfee0e8acfb2a849dd6513a11))
+* using more accurate data for components ([043f1c2](https://github.com/kiva/kv-ui-elements/commit/043f1c2d47a5d22157785b9d972246823572e4fd))
+
+
+### Features
+
+* provisional comment list and item components ([642745c](https://github.com/kiva/kv-ui-elements/commit/642745ce1359e5cc9e3d98d122f26728b3dffda0))
+
+
+
+
+
 ## [3.52.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.0...@kiva/kv-components@3.52.1) (2024-02-01)
 
 
