@@ -39,6 +39,7 @@ const comments = {
 						parent: '',
 						latest_children: {},
 						children_counts: {},
+						is_liked: true,
 					},
 					{
 						created_at: '2024-02-01T20:06:46.651764Z',
