@@ -21,19 +21,26 @@
 				{{ text }}
 			</p>
 		</div>
-		<div class="tw-flex tw-items-center tw-gap-x-0.5">
+		<div
+			v-if="nestLevel < 3"
+			class="tw-flex tw-items-center tw-gap-x-2"
+		>
 			<kv-comments-heart-button
 				:is-small="true"
 				:is-liked="isLiked"
 				@click="onClick(LIKE_COMMENT_EVENT, $event)"
 			/>
-			<kv-button
-				variant="ghost"
-				class="tw-font-medium"
-				@click="onClick(REPLY_COMMENT_EVENT)"
-			>
-				Reply
-			</kv-button>
+			<kv-comments-reply-button
+				@click="onClick(REPLY_COMMENT_EVENT, $event)"
+			/>
+		</div>
+		<div v-if="showInput">
+			<kv-comments-add
+				ref="commentsAddRef"
+				user-mention
+				@add-comment="onClick(REPLY_COMMENT_EVENT, $event)"
+				@hide-input="hideInput"
+			/>
 		</div>
 		<div
 			v-if="latestChildren"
@@ -56,8 +63,10 @@
 </template>
 
 <script>
-import KvButton from './KvButton.vue';
+import { ref, nextTick } from 'vue-demi';
+import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
+import KvCommentsAdd from './KvCommentsAdd.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
@@ -65,8 +74,9 @@ export const LIKE_COMMENT_EVENT = 'like-comment';
 export default {
 	name: 'KvCommentsListItem',
 	components: {
-		KvButton,
+		KvCommentsReplyButton,
 		KvCommentsHeartButton,
+		KvCommentsAdd,
 	},
 	props: {
 		/**
@@ -99,17 +109,34 @@ export default {
 		},
 	},
 	setup(props) {
+		const showInput = ref(false);
+		const commentsAddRef = ref(null);
+
 		const onClick = (reaction, value) => {
-			props.handleClick({
-				reaction,
-				id: props.comment?.id ?? null,
-				userId: props.comment?.user_id ?? null,
-				isChild: true,
-				value,
-			});
+			if (reaction === REPLY_COMMENT_EVENT) {
+				showInput.value = true;
+				nextTick(() => {
+					commentsAddRef.value.$refs.input.focus();
+				});
+			}
+
+			if (value) {
+				props.handleClick({
+					reaction,
+					id: props.comment?.id ?? null,
+					userId: props.comment?.user_id ?? null,
+					isChild: true,
+					value,
+				});
+			}
 		};
 
+		const hideInput = () => { showInput.value = false; };
+
 		return {
+			hideInput,
+			showInput,
+			commentsAddRef,
 			onClick,
 			REPLY_COMMENT_EVENT,
 			LIKE_COMMENT_EVENT,
