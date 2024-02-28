@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.54.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.53.0...@kiva/kv-components@3.54.0) (2024-02-28)
+
+
+### Features
+
+* kvcommentsheartbutton added for comments stuff ([#346](https://github.com/kiva/kv-ui-elements/issues/346)) ([57303da](https://github.com/kiva/kv-ui-elements/commit/57303daec80222c199556b296d720462265e53ac))
+
+
+
+
+
 # [3.53.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.1...@kiva/kv-components@3.53.0) (2024-02-26)
 
 
