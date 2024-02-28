@@ -22,6 +22,7 @@
 			</div>
 			<kv-text-input
 				:id="ADD_COMMENT_ID"
+				ref="input"
 				v-model="addCommentValue"
 				placeholder="Add a comment to this loan..."
 				class="data-hj-suppress tw-grow"
@@ -53,6 +54,7 @@ import KvTextInput from './KvTextInput.vue';
 
 export const ADD_COMMENT_ID = 'add-comment-value';
 export const ADD_COMMENT_EVENT = 'add-comment';
+export const HIDE_INPUT_EVENT = 'hide-input';
 
 export default {
 	components: {
@@ -74,20 +76,30 @@ export default {
 			type: String,
 			default: '',
 		},
+		isReply: {
+			type: Boolean,
+			default: false,
+		},
 	},
-	emits: [ADD_COMMENT_EVENT],
-	setup(_props, { emit }) {
+	emits: [ADD_COMMENT_EVENT, HIDE_INPUT_EVENT],
+	setup(props, { emit }) {
 		const addCommentValue = ref('');
+		const input = ref(null);
 
 		const commentButtonState = computed(() => (addCommentValue.value ? '' : 'disabled'));
 
 		const cancel = () => {
 			addCommentValue.value = '';
+			emit(HIDE_INPUT_EVENT);
 		};
 
 		const comment = () => {
 			emit(ADD_COMMENT_EVENT, addCommentValue.value);
+			addCommentValue.value = '';
+			emit(HIDE_INPUT_EVENT);
 		};
+
+		const focus = () => input.value.focus();
 
 		return {
 			ADD_COMMENT_ID,
@@ -95,6 +107,7 @@ export default {
 			commentButtonState,
 			cancel,
 			comment,
+			focus,
 		};
 	},
 };
