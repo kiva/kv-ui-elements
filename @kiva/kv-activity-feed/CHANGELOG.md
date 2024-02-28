@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.4.0...@kiva/kv-activity-feed@1.5.0) (2024-02-28)
+
+
+### Features
+
+* adding like to comment and remove reaction methods added ([#349](https://github.com/kiva/kv-ui-elements/issues/349)) ([be87fd5](https://github.com/kiva/kv-ui-elements/commit/be87fd55b504ce88a23e9c72acd354291a8b5a5f))
+
+
+
+
+
 # [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.3.0...@kiva/kv-activity-feed@1.4.0) (2024-02-28)
 
 
