@@ -57,6 +57,21 @@ export default class ActivityFeedService {
 	}
 
 	/**
+	 * Updates the user with the data
+	 *
+	 * @param userId The ID of the user
+	 * @param publicLenderId The public lender ID of the user
+	 * @returns The updated user if successful, otherwise undefined
+	 */
+	async updateUser(userId: number, publicLenderId?: string): Promise<User|undefined> {
+		try {
+			return await this.client?.user(userId.toString()).update({ publicLenderId });
+		} catch (error) {
+			parseError(error);
+		}
+	}
+
+	/**
 	 * Gets an activity based on the provided activity ID
 	 *
 	 * @param activityId The activity ID returned from Stream
