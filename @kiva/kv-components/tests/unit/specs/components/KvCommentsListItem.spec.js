@@ -37,7 +37,6 @@ describe('KvCommentsListItem', () => {
 		const replyButton = getByRole('button', { name: 'Reply' });
 
 		await userEvent.click(replyButton);
-
-		expect(handleClick).toHaveBeenCalledTimes(1);
+		getByRole('button', { name: 'Comment' });
 	});
 });

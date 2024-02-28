@@ -90,6 +90,9 @@ export default {
 
 		const cancel = () => {
 			addCommentValue.value = '';
+			if (props.userMention) {
+				emit(HIDE_INPUT_EVENT);
+			}
 		};
 
 		const comment = () => {

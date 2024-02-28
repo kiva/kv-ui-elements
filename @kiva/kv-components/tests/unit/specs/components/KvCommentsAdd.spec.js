@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import CommentsAdd, { ADD_COMMENT_EVENT } from '../../../../vue/KvCommentsAdd.vue';
+import CommentsAdd, { ADD_COMMENT_EVENT, HIDE_INPUT_EVENT } from '../../../../vue/KvCommentsAdd.vue';
 
 const renderCommentsAdd = (props = {}) => {
 	return render(CommentsAdd, { props });
@@ -70,5 +70,27 @@ describe('KvCommentsAdd', () => {
 		await userEvent.click(commentButton);
 
 		expect(emitted()[ADD_COMMENT_EVENT]).toBe(undefined);
+	});
+
+	it('should emit close event when it replies a comment', async () => {
+		const { getByRole, emitted, getByPlaceholderText } = renderCommentsAdd({ userMention: true });
+		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const commentButton = getByRole('button', { name: 'Comment' });
+		const TEST_INPUT = 'test test';
+
+		await userEvent.type(textInput, TEST_INPUT);
+
+		await userEvent.click(commentButton);
+
+		expect(emitted()[HIDE_INPUT_EVENT]).toEqual([[]]);
+	});
+
+	it('should emit close event when it clicks cancel on reply', async () => {
+		const { getByRole, emitted } = renderCommentsAdd({ userMention: true });
+		const cancelButton = getByRole('button', { name: 'Cancel' });
+
+		await userEvent.click(cancelButton);
+
+		expect(emitted()[HIDE_INPUT_EVENT]).toEqual([[]]);
 	});
 });
