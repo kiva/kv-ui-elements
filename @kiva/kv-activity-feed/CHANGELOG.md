@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.3.0...@kiva/kv-activity-feed@1.4.0) (2024-02-28)
+
+
+### Features
+
+* add activity feed update user method ([6b575ba](https://github.com/kiva/kv-ui-elements/commit/6b575bacf18e9b966a135bd2e188059567b87d66))
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.2.0...@kiva/kv-activity-feed@1.3.0) (2024-02-28)
 
 
