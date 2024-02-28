@@ -1,10 +1,21 @@
-import { connect, StreamClient, EnrichedActivity } from 'getstream';
+import {
+	connect,
+	StreamClient,
+	EnrichedActivity,
+	StreamUser,
+	DefaultGenerics,
+} from 'getstream';
 import parseError from './utils/parseError';
 
 /**
  * Type wrapper for the Stream activity type
  */
 export type Activity = EnrichedActivity|undefined;
+
+/**
+ * Type wrapper for the Stream user type
+ */
+export type User = StreamUser<DefaultGenerics>;
 
 /**
  * Abstracts the functionality for the 3rd party Stream service
@@ -25,6 +36,21 @@ export default class ActivityFeedService {
 	constructor(apiKey: string, userToken: string, appId: string) {
 		try {
 			this.client = connect(apiKey, userToken, appId);
+		} catch (error) {
+			parseError(error);
+		}
+	}
+
+	/**
+	 * Gets (or creates) the user with the provided IDs
+	 *
+	 * @param userId The ID of the user
+	 * @param publicLenderId The public lender ID of the user
+	 * @returns The user if get/create is successful, otherwise undefined
+	 */
+	async getOrCreateUser(userId: number, publicLenderId?: string): Promise<User|undefined> {
+		try {
+			return await this.client?.user(userId.toString()).getOrCreate({ publicLenderId });
 		} catch (error) {
 			parseError(error);
 		}

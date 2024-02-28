@@ -5,10 +5,13 @@ import * as parseError from '../utils/parseError';
 
 const mockActivity = { id: 'asd' };
 
+const mockUserGetOrCreate = jest.fn();
+const mockUser = jest.fn(() => ({ getOrCreate: mockUserGetOrCreate }));
 const mockGetActivities = jest.fn(() => Promise.resolve({ results: [mockActivity] }));
 const mockAddComment = jest.fn();
 
 const mockClient = {
+	user: mockUser,
 	getActivities: mockGetActivities,
 	reactions: {
 		add: mockAddComment,
@@ -45,6 +48,17 @@ describe('StreamService', () => {
 			new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID);
 
 			expect(spyParseError).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('getOrCreateUser', () => {
+		it('should call expected user methods', async () => {
+			const userId = 1;
+			const publicLenderId = '2';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).getOrCreateUser(userId, publicLenderId);
+
+			expect(mockUser).toHaveBeenCalledWith(userId.toString());
+			expect(mockUserGetOrCreate).toHaveBeenCalledWith({ publicLenderId });
 		});
 	});
 
