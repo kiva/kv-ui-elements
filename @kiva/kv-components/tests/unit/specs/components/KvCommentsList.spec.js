@@ -34,6 +34,6 @@ describe('KvCommentsList', () => {
 		expect(emitted()[REPLY_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: REPLY_COMMENT_EVENT }]]);
 
 		await userEvent.click(likeButton);
-		expect(emitted()[LIKE_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: LIKE_COMMENT_EVENT }]]);
+		expect(emitted()[LIKE_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: LIKE_COMMENT_EVENT, value: true }]]);
 	});
 });

@@ -23,14 +23,14 @@ export default {
 	props: {
 		/**
 		 * Use if small icon is needed
-		 * */
+		 */
 		isSmall: {
 			type: Boolean,
 			default: false,
 		},
 		/**
-		 * Use if icon is active
-		 * */
+		 * Use if icon is liked
+		 */
 		isLiked: {
 			type: Boolean,
 			default: false,
