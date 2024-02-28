@@ -7,7 +7,8 @@
 			:nest-level="1"
 			:comment="comment"
 			:is-liked="comment.is_liked"
-			:handle-click="handleClick"
+			@[REPLY_COMMENT_EVENT]="handleClick"
+			@[LIKE_COMMENT_EVENT]="handleClick"
 		/>
 	</div>
 </template>
@@ -27,12 +28,16 @@ export default {
 			default: () => {},
 		},
 	},
-	methods: {
-		handleClick(payload) {
-			if ([REPLY_COMMENT_EVENT, LIKE_COMMENT_EVENT].includes(payload.reaction)) {
-				this.$emit(payload.reaction, { ...payload });
-			}
-		},
+	setup(_props, { emit }) {
+		const handleClick = (payload) => {
+			emit(payload.reaction, { ...payload });
+		};
+
+		return {
+			handleClick,
+			REPLY_COMMENT_EVENT,
+			LIKE_COMMENT_EVENT,
+		};
 	},
 };
 </script>

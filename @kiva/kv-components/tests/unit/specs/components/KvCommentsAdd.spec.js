@@ -73,7 +73,7 @@ describe('KvCommentsAdd', () => {
 	});
 
 	it('should emit close event when it replies a comment', async () => {
-		const { getByRole, emitted, getByPlaceholderText } = renderCommentsAdd({ userMention: true });
+		const { getByRole, emitted, getByPlaceholderText } = renderCommentsAdd({ isReply: true });
 		const textInput = getByPlaceholderText('Add a comment to this loan...');
 		const commentButton = getByRole('button', { name: 'Comment' });
 		const TEST_INPUT = 'test test';
@@ -86,7 +86,7 @@ describe('KvCommentsAdd', () => {
 	});
 
 	it('should emit close event when it clicks cancel on reply', async () => {
-		const { getByRole, emitted } = renderCommentsAdd({ userMention: true });
+		const { getByRole, emitted } = renderCommentsAdd({ isReply: true });
 		const cancelButton = getByRole('button', { name: 'Cancel' });
 
 		await userEvent.click(cancelButton);

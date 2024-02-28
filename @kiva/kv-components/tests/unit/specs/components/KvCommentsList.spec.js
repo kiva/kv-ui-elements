@@ -2,7 +2,7 @@ import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import ListComponent from '../../../../vue/KvCommentsList.vue';
 import activityFeed from '../../../fixtures/mockFeedActivityData';
-import { LIKE_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
+import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
 
 const renderList = (props = {}) => {
 	return render(ListComponent, { props });
@@ -31,6 +31,7 @@ describe('KvCommentsList', () => {
 		};
 
 		await userEvent.click(replyButton);
+		expect(emitted()[REPLY_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: REPLY_COMMENT_EVENT }]]);
 		getByRole('button', { name: 'Comment' });
 
 		await userEvent.click(likeButton);

@@ -76,12 +76,12 @@ export default {
 			type: String,
 			default: '',
 		},
-		userMention: {
+		isReply: {
 			type: Boolean,
 			default: false,
 		},
 	},
-	emits: [ADD_COMMENT_EVENT],
+	emits: [ADD_COMMENT_EVENT, HIDE_INPUT_EVENT],
 	setup(props, { emit }) {
 		const addCommentValue = ref('');
 		const input = ref(null);
@@ -90,23 +90,19 @@ export default {
 
 		const cancel = () => {
 			addCommentValue.value = '';
-			if (props.userMention) {
-				emit(HIDE_INPUT_EVENT);
-			}
+			emit(HIDE_INPUT_EVENT);
 		};
 
 		const comment = () => {
 			emit(ADD_COMMENT_EVENT, addCommentValue.value);
-			if (props.userMention) {
-				emit(HIDE_INPUT_EVENT);
-			}
+			addCommentValue.value = '';
+			emit(HIDE_INPUT_EVENT);
 		};
 
 		const focus = () => input.value.focus();
 
 		return {
 			ADD_COMMENT_ID,
-			HIDE_INPUT_EVENT,
 			addCommentValue,
 			commentButtonState,
 			cancel,

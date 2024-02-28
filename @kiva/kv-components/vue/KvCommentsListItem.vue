@@ -103,15 +103,12 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		/**
-		 * The function to call when a reaction is clicked
-		 */
-		handleClick: {
-			type: Function,
-			default: () => ({}),
-		},
 	},
-	setup(props) {
+	emits: [
+		REPLY_COMMENT_EVENT,
+		LIKE_COMMENT_EVENT,
+	],
+	setup(props, { emit }) {
 		const showInput = ref(false);
 		const commentsAddRef = ref(null);
 
@@ -123,15 +120,13 @@ export default {
 				});
 			}
 
-			if (value) {
-				props.handleClick({
-					reaction,
-					id: props.comment?.id ?? null,
-					userId: props.comment?.user_id ?? null,
-					isChild: true,
-					value,
-				});
-			}
+			emit(reaction, {
+				reaction,
+				id: props.comment?.id ?? null,
+				userId: props.comment?.user_id ?? null,
+				isChild: true,
+				value,
+			});
 		};
 
 		const hideInput = () => { showInput.value = false; };
