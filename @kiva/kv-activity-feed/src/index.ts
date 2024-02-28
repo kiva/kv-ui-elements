@@ -108,4 +108,42 @@ export default class ActivityFeedService {
 
 		return success;
 	}
+
+	/**
+	 * Adds a like comment for the current user for the provided activity ID
+	 *
+	 * @param commentId The comment ID to add a like
+	 * @returns Whether the like was added successfully
+	 */
+	async addLikeToComment(commentId: string): Promise<boolean> {
+		let success = false;
+
+		try {
+			await this.client?.reactions.addChild('like', commentId);
+			success = true;
+		} catch (error) {
+			parseError(error);
+		}
+
+		return success;
+	}
+
+	/**
+	 * Remove reaction based on the reaction ID
+	 *
+	 * @param reactionId The reaction ID to remove
+	 * @returns Whether the reaction was removed successfully
+	 */
+	async removeReaction(reactionId: string): Promise<boolean> {
+		let success = false;
+
+		try {
+			await this.client?.reactions.delete(reactionId);
+			success = true;
+		} catch (error) {
+			parseError(error);
+		}
+
+		return success;
+	}
 }
