@@ -6,7 +6,11 @@ import * as parseError from '../utils/parseError';
 const mockActivity = { id: 'asd' };
 
 const mockUserGetOrCreate = jest.fn();
-const mockUser = jest.fn(() => ({ getOrCreate: mockUserGetOrCreate }));
+const mockUserUpdate = jest.fn();
+const mockUser = jest.fn(() => ({
+	getOrCreate: mockUserGetOrCreate,
+	update: mockUserUpdate,
+}));
 const mockGetActivities = jest.fn(() => Promise.resolve({ results: [mockActivity] }));
 const mockAddComment = jest.fn();
 
@@ -59,6 +63,17 @@ describe('StreamService', () => {
 
 			expect(mockUser).toHaveBeenCalledWith(userId.toString());
 			expect(mockUserGetOrCreate).toHaveBeenCalledWith({ publicLenderId });
+		});
+	});
+
+	describe('updateUser', () => {
+		it('should call user update', async () => {
+			const userId = 1;
+			const publicLenderId = '2';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).updateUser(userId, publicLenderId);
+
+			expect(mockUser).toHaveBeenCalledWith(userId.toString());
+			expect(mockUserUpdate).toHaveBeenCalledWith({ publicLenderId });
 		});
 	});
 
