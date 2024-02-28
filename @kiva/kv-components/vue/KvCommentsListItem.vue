@@ -34,7 +34,10 @@
 				@click="onClick(REPLY_COMMENT_EVENT, $event)"
 			/>
 		</div>
-		<div v-if="showInput">
+		<div
+			v-if="showInput"
+			class="tw-w-full"
+		>
 			<kv-comments-add
 				ref="commentsAddRef"
 				user-mention
