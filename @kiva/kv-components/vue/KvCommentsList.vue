@@ -6,6 +6,7 @@
 			:key="comment.id"
 			:nest-level="1"
 			:comment="comment"
+			:is-liked="comment.is_liked"
 			:handle-click="handleClick"
 		/>
 	</div>

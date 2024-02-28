@@ -21,21 +21,20 @@
 				{{ text }}
 			</p>
 		</div>
-
-		<kv-button
-			variant="ghost"
-			class="tw-font-medium"
-			@click="onClick(REPLY_COMMENT_EVENT)"
-		>
-			Reply
-		</kv-button>
-		<kv-button
-			variant="ghost"
-			class="tw-font-medium"
-			@click="onClick(LIKE_COMMENT_EVENT)"
-		>
-			Like
-		</kv-button>
+		<div class="tw-flex tw-items-center tw-gap-x-0.5">
+			<kv-comments-heart-button
+				:is-small="true"
+				:is-liked="isLiked"
+				@click="onClick(LIKE_COMMENT_EVENT, $event)"
+			/>
+			<kv-button
+				variant="ghost"
+				class="tw-font-medium"
+				@click="onClick(REPLY_COMMENT_EVENT)"
+			>
+				Reply
+			</kv-button>
+		</div>
 		<div
 			v-if="latestChildren"
 			class="tw-my-1"
@@ -47,6 +46,7 @@
 			>
 				<kv-comments-list-item
 					:comment="nested_comment"
+					:is-liked="nested_comment.is_liked"
 					:nest-level="nestLevel + 1"
 					:handle-click="handleClick"
 				/>
@@ -57,13 +57,17 @@
 
 <script>
 import KvButton from './KvButton.vue';
+import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
 
 export default {
 	name: 'KvCommentsListItem',
-	components: { KvButton },
+	components: {
+		KvButton,
+		KvCommentsHeartButton,
+	},
 	props: {
 		/**
 		 * Activity comment
@@ -80,6 +84,13 @@ export default {
 			default: 0,
 		},
 		/**
+		 * Comment is liked by current user
+		 */
+		isLiked: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * The function to call when a reaction is clicked
 		 */
 		handleClick: {
@@ -88,12 +99,13 @@ export default {
 		},
 	},
 	setup(props) {
-		const onClick = (reaction) => {
+		const onClick = (reaction, value) => {
 			props.handleClick({
 				reaction,
 				id: props.comment?.id ?? null,
 				userId: props.comment?.user_id ?? null,
 				isChild: true,
+				value,
 			});
 		};
 
