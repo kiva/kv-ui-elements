@@ -13,12 +13,16 @@ const mockUser = jest.fn(() => ({
 }));
 const mockGetActivities = jest.fn(() => Promise.resolve({ results: [mockActivity] }));
 const mockAddComment = jest.fn();
+const mockAddLikeToComment = jest.fn();
+const mockRemoveReaction = jest.fn();
 
 const mockClient = {
 	user: mockUser,
 	getActivities: mockGetActivities,
 	reactions: {
 		add: mockAddComment,
+		addChild: mockAddLikeToComment,
+		delete: mockRemoveReaction,
 	},
 };
 
@@ -112,6 +116,26 @@ describe('StreamService', () => {
 
 			expect(result).toBe(false);
 			expect(spyParseError).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('addLikeToComment', () => {
+		it('should call add to like comment method', async () => {
+			const commentId = 'test';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addLikeToComment(commentId);
+
+			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
+			expect(mockAddLikeToComment).toHaveBeenCalledWith('like', commentId);
+		});
+	});
+
+	describe('removeReaction', () => {
+		it('should call remove reaction method', async () => {
+			const reactionId = 'test';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).removeReaction(reactionId);
+
+			expect(mockRemoveReaction).toHaveBeenCalledTimes(1);
+			expect(mockRemoveReaction).toHaveBeenCalledWith(reactionId);
 		});
 	});
 });
