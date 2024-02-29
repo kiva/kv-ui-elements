@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.5.0...@kiva/kv-activity-feed@1.5.1) (2024-02-29)
+
+**Note:** Version bump only for package @kiva/kv-activity-feed
+
+
+
+
+
 # [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.4.0...@kiva/kv-activity-feed@1.5.0) (2024-02-28)
 
 
