@@ -76,6 +76,9 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Whether or not the comment is a reply
+		 */
 		isReply: {
 			type: Boolean,
 			default: false,
@@ -90,13 +93,17 @@ export default {
 
 		const cancel = () => {
 			addCommentValue.value = '';
-			emit(HIDE_INPUT_EVENT);
+			if (props.isReply) {
+				emit(HIDE_INPUT_EVENT);
+			}
 		};
 
 		const comment = () => {
 			emit(ADD_COMMENT_EVENT, addCommentValue.value);
 			addCommentValue.value = '';
-			emit(HIDE_INPUT_EVENT);
+			if (props.isReply) {
+				emit(HIDE_INPUT_EVENT);
+			}
 		};
 
 		const focus = () => input.value.focus();
