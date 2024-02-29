@@ -16,7 +16,6 @@ const comments = {
 						created_at: '2024-02-01T20:12:31.398932Z',
 						updated_at: '2024-02-01T20:12:31.398932Z',
 						id: 'dade3812-6aa0-4c32-90ea-2366dab178a1',
-						user_id: '1de650a5-b12f-4d20-b46c-6e15b0722141',
 						kind: 'comment',
 						activity_id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
 						data: {
@@ -36,11 +35,9 @@ const comments = {
 									created_at: '2024-02-28T20:04:21.445272Z',
 									updated_at: '2024-02-28T20:04:21.445272Z',
 									id: '290a6c07-143a-416e-b016-ac0d9ac8ad91',
-									user_id: '5314401',
 									user: {
 										created_at: '2024-02-28T19:09:54.093757Z',
 										updated_at: '2024-02-28T19:09:54.093757Z',
-										id: '5314401',
 										data: {
 											publicLenderId: 'Jess1234',
 											name: 'Jess',
@@ -60,7 +57,6 @@ const comments = {
 									created_at: '2024-02-28T20:04:21.445272Z',
 									updated_at: '2024-02-28T20:04:21.445272Z',
 									id: '290a6c07-143a-416e-b016-ac0d9ac8ad92',
-									user_id: '5314401',
 									user: {
 										data: {
 											publicLenderId: 'Casey1234',
@@ -80,7 +76,6 @@ const comments = {
 												created_at: '2024-02-28T20:04:21.445272Z',
 												updated_at: '2024-02-28T20:04:21.445272Z',
 												id: '290a6c07-143a-416e-b016-ac0d9ac8ad93',
-												user_id: '5314401',
 												user: {
 													data: {
 														publicLenderId: 'Sarah1234',
@@ -105,7 +100,6 @@ const comments = {
 									created_at: '2024-02-28T20:04:21.445272Z',
 									updated_at: '2024-02-28T20:04:21.445272Z',
 									id: '290a6c07-143a-416e-b016-ac0d9ac8ad90',
-									user_id: '5314401',
 									user: {
 										data: {
 											publicLenderId: 'Sophie1234',
@@ -125,11 +119,9 @@ const comments = {
 												created_at: '2024-02-28T20:04:21.445272Z',
 												updated_at: '2024-02-28T20:04:21.445272Z',
 												id: '290a6c07-143a-416e-b016-ac0d9ac8ad99',
-												user_id: '5314401',
 												user: {
 													created_at: '2024-02-28T19:09:54.093757Z',
 													updated_at: '2024-02-28T19:09:54.093757Z',
-													id: '5314401',
 													data: {
 														publicLenderId: 'Jess1234',
 														name: 'Jess',
@@ -155,7 +147,6 @@ const comments = {
 						created_at: '2024-02-01T20:11:23.931133Z',
 						updated_at: '2024-02-01T20:11:23.931133Z',
 						id: '3de615bb-0d48-4a69-9004-141ee26985eb',
-						user_id: '1de650a5-b12f-4d20-b46c-6e15b0722141',
 						kind: 'comment',
 						activity_id: 'efb2dbfe-c12a-11ee-9fbc-065afce7d41d',
 						data: {
@@ -164,7 +155,6 @@ const comments = {
 						user: {
 							created_at: '2024-02-28T19:09:54.093757Z',
 							updated_at: '2024-02-28T19:09:54.093757Z',
-							id: '5314401',
 							data: {
 								publicLenderId: 'Lauren1234',
 								name: '',
@@ -180,11 +170,9 @@ const comments = {
 						created_at: '2024-02-01T20:06:46.651764Z',
 						updated_at: '2024-02-01T20:06:46.651764Z',
 						id: 'e1db4420-159e-4ba2-aab9-704d1cc56dae',
-						user_id: '123',
 						user: {
 							created_at: '2024-02-28T19:09:54.093757Z',
 							updated_at: '2024-02-28T19:09:54.093757Z',
-							id: '5314401',
 							data: {
 								publicLenderId: 'Todd1234',
 								name: 'Todd',

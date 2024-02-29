@@ -64,7 +64,7 @@ describe('KvCommentsListItem', () => {
 		await userEvent.click(replyButton);
 		const commentButton = getByRole('button', { name: 'Comment' });
 
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const TEST_INPUT = 'test test';
 
 		await userEvent.type(textInput, TEST_INPUT);

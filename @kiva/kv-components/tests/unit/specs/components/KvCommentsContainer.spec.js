@@ -15,7 +15,7 @@ describe('KvCommentsContainer', () => {
 
 	it('should emit comment', async () => {
 		const { getByPlaceholderText, getByRole, emitted } = renderContainer();
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const commentButton = getByRole('button', { name: 'Comment' });
 		const TEST_INPUT = 'test test';
 

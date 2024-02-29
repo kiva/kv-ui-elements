@@ -116,7 +116,7 @@ export default class ActivityFeedService {
 	 * @param kind The kind of child reaction
 	 * @returns Whether the like was added successfully
 	 */
-	async addChildReaction(kind: string, parentId: string): Promise<boolean> {
+	async addChildReaction(kind: 'comment' | 'like', parentId: string): Promise<boolean> {
 		let success = false;
 
 		try {

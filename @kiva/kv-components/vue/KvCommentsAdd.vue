@@ -24,7 +24,7 @@
 				:id="ADD_COMMENT_ID"
 				ref="input"
 				v-model="addCommentValue"
-				placeholder="Add a comment to this loan..."
+				placeholder="Add a comment..."
 				class="data-hj-suppress tw-grow"
 				@keyup.enter="comment"
 			/>
