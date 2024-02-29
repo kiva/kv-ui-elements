@@ -1,11 +1,9 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import KvCommentsListItem from '../../../../vue/KvCommentsListItem.vue';
+import KvCommentsListItem, { LIKE_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
 import activityFeed from '../../../fixtures/mockFeedActivityData';
 
 const comment = activityFeed.results[0].latest_reactions.comment[0];
-
-const handleClick = jest.fn();
 
 const renderComment = (props = {}) => {
 	return render(KvCommentsListItem, { props });
@@ -24,20 +22,25 @@ describe('KvCommentsListItem', () => {
 	});
 
 	it('should handle like button click', async () => {
-		const { getByRole } = renderComment({ comment, handleClick });
+		const { getByRole, emitted } = renderComment({ comment });
 		const likeButton = getByRole('button', { name: 'Like' });
 
 		await userEvent.click(likeButton);
 
-		expect(handleClick).toHaveBeenCalledTimes(1);
+		expect(emitted()[LIKE_COMMENT_EVENT]).toEqual([[{
+			id: comment.id,
+			isChild: true,
+			reaction: LIKE_COMMENT_EVENT,
+			userId: comment.user_id,
+			value: true,
+		}]]);
 	});
 
 	it('should handle reply button click', async () => {
-		const { getByRole } = renderComment({ comment, handleClick });
+		const { getByRole } = renderComment({ comment });
 		const replyButton = getByRole('button', { name: 'Reply' });
 
 		await userEvent.click(replyButton);
-
-		expect(handleClick).toHaveBeenCalledTimes(1);
+		getByRole('button', { name: 'Comment' });
 	});
 });

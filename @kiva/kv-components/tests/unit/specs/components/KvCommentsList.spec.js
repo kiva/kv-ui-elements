@@ -19,7 +19,7 @@ describe('KvCommentsList', () => {
 	});
 
 	it('should emit comment events', async () => {
-		const { getAllByRole, emitted } = renderList({ comments });
+		const { getAllByRole, getByRole, emitted } = renderList({ comments });
 		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
 		const firstComment = comments.comment[0];
@@ -32,6 +32,7 @@ describe('KvCommentsList', () => {
 
 		await userEvent.click(replyButton);
 		expect(emitted()[REPLY_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: REPLY_COMMENT_EVENT }]]);
+		getByRole('button', { name: 'Comment' });
 
 		await userEvent.click(likeButton);
 		expect(emitted()[LIKE_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: LIKE_COMMENT_EVENT, value: true }]]);
