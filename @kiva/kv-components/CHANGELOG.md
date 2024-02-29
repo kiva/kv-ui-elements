@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.55.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.54.0...@kiva/kv-components@3.55.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* input width ([2489339](https://github.com/kiva/kv-ui-elements/commit/2489339c622ac45739bcc1eefc0a69837f90b841))
+* when to send hide event and test not recognizing vue3 ([c3941a7](https://github.com/kiva/kv-ui-elements/commit/c3941a7a73a439846e6abf16b6dd0b29fa0e36f7))
+
+
+### Features
+
+* adding input for comment reply ([b18edf0](https://github.com/kiva/kv-ui-elements/commit/b18edf0ecd300f622379d160237fd750cf117fa1))
+* update tests and remove handleClick for emits ([fc3c586](https://github.com/kiva/kv-ui-elements/commit/fc3c58667248fb4e44bb0a7558f6c88f97f299b1))
+
+
+
+
+
 # [3.54.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.53.0...@kiva/kv-components@3.54.0) (2024-02-28)
 
 
