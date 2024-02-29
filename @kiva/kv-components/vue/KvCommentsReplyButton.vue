@@ -1,10 +1,9 @@
 <!-- eslint-disable max-len -->
 <template>
 	<button
-		ref="replyButton"
 		aria-label="Reply"
 		class="tw-font-medium tw-flex tw-items-center tw-gap-x-0.5"
-		@click="handleClick"
+		@click="$emit('click')"
 	>
 		<svg
 			width="14"
@@ -26,24 +25,10 @@
 </template>
 
 <script>
-import { ref } from 'vue-demi';
-
 export default {
 	name: 'KvCommentsReplyButton',
 	emits: [
 		'click',
 	],
-	setup(_props, { emit }) {
-		const replyButton = ref(null);
-
-		const handleClick = () => {
-			emit('click');
-		};
-
-		return {
-			replyButton,
-			handleClick,
-		};
-	},
 };
 </script>

@@ -6,20 +6,46 @@
 			:key="comment.id"
 			:nest-level="1"
 			:comment="comment"
+			:user-image-url="userImageUrl"
+			:user-display-name="userDisplayName"
+			:user-public-id="userPublicId"
 			:is-liked="comment.is_liked"
-			@[REPLY_COMMENT_EVENT]="handleClick"
-			@[LIKE_COMMENT_EVENT]="handleClick"
+			class="tw-mb-2"
+			@add-reaction="handleReaction"
 		/>
 	</div>
 </template>
 
 <script>
 
-import KvCommentsListItem, { REPLY_COMMENT_EVENT, LIKE_COMMENT_EVENT } from './KvCommentsListItem.vue';
+import KvCommentsListItem from './KvCommentsListItem.vue';
+import { ADD_REACTION_EVENT } from './KvCommentsContainer.vue';
 
 export default {
+	name: 'KvCommentsList',
 	components: { KvCommentsListItem },
 	props: {
+		/**
+		 * The full URL for the user image
+		 */
+		userImageUrl: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The name to display for the user
+		 */
+		userDisplayName: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The ID for the user
+		 */
+		userPublicId: {
+			type: String,
+			default: '',
+		},
 		/**
 		 * Activity comments
 		 */
@@ -28,15 +54,14 @@ export default {
 			default: () => {},
 		},
 	},
+	emits: [ADD_REACTION_EVENT],
 	setup(_props, { emit }) {
-		const handleClick = (payload) => {
-			emit(payload.reaction, { ...payload });
+		const handleReaction = (payload) => {
+			emit(ADD_REACTION_EVENT, payload);
 		};
 
 		return {
-			handleClick,
-			REPLY_COMMENT_EVENT,
-			LIKE_COMMENT_EVENT,
+			handleReaction,
 		};
 	},
 };

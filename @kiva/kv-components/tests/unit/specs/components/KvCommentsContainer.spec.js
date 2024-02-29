@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import Container from '../../../../vue/KvCommentsContainer.vue';
+import Container, { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 import { ADD_COMMENT_ID, ADD_COMMENT_EVENT } from '../../../../vue/KvCommentsAdd.vue';
 
 const renderContainer = (props = {}) => {
@@ -23,6 +23,11 @@ describe('KvCommentsContainer', () => {
 
 		await userEvent.click(commentButton);
 
-		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
+		expect(emitted()[ADD_REACTION_EVENT]).toEqual([[{
+			id: null,
+			isChild: false,
+			reaction: ADD_COMMENT_EVENT,
+			value: TEST_INPUT,
+		}]]);
 	});
 });

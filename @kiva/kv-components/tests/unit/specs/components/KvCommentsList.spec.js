@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import ListComponent from '../../../../vue/KvCommentsList.vue';
 import activityFeed from '../../../fixtures/mockFeedActivityData';
 import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
+import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
 const renderList = (props = {}) => {
 	return render(ListComponent, { props });
@@ -18,23 +19,44 @@ describe('KvCommentsList', () => {
 		expect(container.querySelectorAll(`#${id}`).length).toBe(1);
 	});
 
-	it('should emit comment events', async () => {
-		const { getAllByRole, getByRole, emitted } = renderList({ comments });
-		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
+	it('should emit like reaction events', async () => {
+		const { getAllByRole, emitted } = renderList({ comments });
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
 		const firstComment = comments.comment[0];
 
 		const TEST_OBJ = {
-			userId: firstComment.user_id,
+			id: firstComment.id,
+			isChild: true,
+		};
+
+		await userEvent.click(likeButton);
+		expect(emitted()[ADD_REACTION_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: LIKE_COMMENT_EVENT, value: true }]]);
+	});
+
+	it('should emit reply reaction events', async () => {
+		const {
+			getAllByRole,
+			getByRole,
+			getByPlaceholderText,
+			emitted,
+		} = renderList({ comments });
+		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
+		const firstComment = comments.comment[0];
+
+		const TEST_OBJ = {
 			id: firstComment.id,
 			isChild: true,
 		};
 
 		await userEvent.click(replyButton);
-		expect(emitted()[REPLY_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: REPLY_COMMENT_EVENT }]]);
-		getByRole('button', { name: 'Comment' });
+		const commentButton = getByRole('button', { name: 'Comment' });
 
-		await userEvent.click(likeButton);
-		expect(emitted()[LIKE_COMMENT_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: LIKE_COMMENT_EVENT, value: true }]]);
+		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const TEST_INPUT = 'test test';
+
+		await userEvent.type(textInput, TEST_INPUT);
+
+		await userEvent.click(commentButton);
+		expect(emitted()[ADD_REACTION_EVENT]).toEqual([[{ ...TEST_OBJ, reaction: REPLY_COMMENT_EVENT, value: TEST_INPUT }]]);
 	});
 });

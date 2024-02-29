@@ -26,6 +26,7 @@
 				v-model="addCommentValue"
 				placeholder="Add a comment to this loan..."
 				class="data-hj-suppress tw-grow"
+				@keyup.enter="comment"
 			/>
 		</div>
 		<div class="tw-flex tw-py-0.5 tw-gap-0.5">
@@ -57,6 +58,7 @@ export const ADD_COMMENT_EVENT = 'add-comment';
 export const HIDE_INPUT_EVENT = 'hide-input';
 
 export default {
+	name: 'KvCommentsAdd',
 	components: {
 		KvButton,
 		KvTextInput,

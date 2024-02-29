@@ -4,7 +4,7 @@ import KvCommentsHeartButton from '../../../../vue/KvCommentsHeartButton.vue';
 
 const CLICK_EVENT = 'click';
 
-describe('KvCommentsListItem', () => {
+describe('KvCommentsHeartButton', () => {
 	it('should render defaults', () => {
 		const { getByRole } = render(KvCommentsHeartButton);
 		const likeButton = getByRole('button', { name: 'Like' });

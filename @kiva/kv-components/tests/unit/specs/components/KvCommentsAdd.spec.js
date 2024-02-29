@@ -63,6 +63,18 @@ describe('KvCommentsAdd', () => {
 		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
 	});
 
+	it('should emit value when enter key pressed', async () => {
+		const { getByPlaceholderText, emitted } = renderCommentsAdd();
+		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const TEST_INPUT = 'test test';
+
+		await userEvent.type(textInput, TEST_INPUT);
+
+		userEvent.keyboard('{enter}');
+
+		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
+	});
+
 	it('should not emit empty value when comment clicked', async () => {
 		const { getByRole, emitted } = renderCommentsAdd();
 		const commentButton = getByRole('button', { name: 'Comment' });
