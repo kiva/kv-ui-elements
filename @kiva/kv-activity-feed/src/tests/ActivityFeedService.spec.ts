@@ -87,7 +87,7 @@ describe('StreamService', () => {
 			const result = await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).getActivity(ID);
 
 			expect(result).toBe(mockActivity);
-			expect(mockGetActivities).toHaveBeenCalledWith({ ids: [ID], withRecentReactions: true });
+			expect(mockGetActivities).toHaveBeenCalledWith({ ids: [ID], withRecentReactions: true, withReactionCounts: true });
 		});
 
 		it('should handle exception', async () => {
@@ -122,10 +122,20 @@ describe('StreamService', () => {
 	describe('addLikeToComment', () => {
 		it('should call add to like comment method', async () => {
 			const commentId = 'test';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addLikeToComment(commentId);
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('like', commentId);
 
 			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
 			expect(mockAddLikeToComment).toHaveBeenCalledWith('like', commentId);
+		});
+	});
+
+	describe('addReplyToComment', () => {
+		it('should call add to like comment method', async () => {
+			const commentId = 'test';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('comment', commentId);
+
+			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
+			expect(mockAddLikeToComment).toHaveBeenCalledWith('comment', commentId);
 		});
 	});
 

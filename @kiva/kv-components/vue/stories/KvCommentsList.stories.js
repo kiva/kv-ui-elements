@@ -22,3 +22,12 @@ const story = (args) => {
 const comments = activityFeed.results[0].latest_reactions;
 
 export const Default = story({ comments });
+
+export const UserData = story(
+	{
+		comments,
+		userDisplayName: 'Jess',
+		userImageUrl: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
+		userPublicId: 'Jess1234',
+	},
+);

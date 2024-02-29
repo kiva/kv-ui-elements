@@ -3,13 +3,15 @@
 		<kv-comments-add
 			:user-image-url="userImageUrl"
 			:user-display-name="userDisplayName"
-			@add-comment="comment"
+			@add-comment="handleReaction"
 		/>
 		<kv-comments-list
 			v-if="comments"
+			:user-image-url="userImageUrl"
+			:user-display-name="userDisplayName"
+			:user-public-id="userPublicId"
 			:comments="comments"
-			@[REPLY_COMMENT_EVENT]="comment"
-			@[LIKE_COMMENT_EVENT]="comment"
+			@add-reaction="handleReaction"
 		/>
 	</div>
 </template>
@@ -17,11 +19,12 @@
 <script>
 import KvCommentsAdd from './KvCommentsAdd.vue';
 import KvCommentsList from './KvCommentsList.vue';
-import { REPLY_COMMENT_EVENT, LIKE_COMMENT_EVENT } from './KvCommentsListItem.vue';
 
 export const ADD_COMMENT_EVENT = 'add-comment';
+export const ADD_REACTION_EVENT = 'add-reaction';
 
 export default {
+	name: 'KvCommentsContainer',
 	components: {
 		KvCommentsAdd,
 		KvCommentsList,
@@ -42,6 +45,13 @@ export default {
 			default: '',
 		},
 		/**
+		 * The ID for the user
+		 */
+		userPublicId: {
+			type: String,
+			default: '',
+		},
+		/**
 		 * Activity comments
 		 */
 		comments: {
@@ -49,16 +59,24 @@ export default {
 			default: () => {},
 		},
 	},
+	emits: [ADD_REACTION_EVENT],
 	setup(_props, { emit }) {
-		const comment = (commentValue) => {
-			emit(ADD_COMMENT_EVENT, commentValue);
-			emit(REPLY_COMMENT_EVENT, commentValue);
-			emit(LIKE_COMMENT_EVENT, commentValue);
+		const handleReaction = (reactionPayload) => {
+			let payload;
+			if (reactionPayload.value === undefined) {
+				payload = {
+					reaction: ADD_COMMENT_EVENT,
+					id: null,
+					isChild: false,
+					value: reactionPayload,
+				};
+			} else {
+				payload = reactionPayload;
+			}
+			emit(ADD_REACTION_EVENT, payload);
 		};
 		return {
-			comment,
-			REPLY_COMMENT_EVENT,
-			LIKE_COMMENT_EVENT,
+			handleReaction,
 		};
 	},
 };

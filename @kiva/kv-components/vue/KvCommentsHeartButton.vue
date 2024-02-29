@@ -1,7 +1,8 @@
 <template>
 	<button
 		aria-label="Like"
-		@click="changeState"
+		class="tw-flex tw-flex-col tw-justify-center"
+		@click="$emit('click', !isLiked);"
 	>
 		<kv-material-icon
 			:icon="icon"
@@ -39,7 +40,7 @@ export default {
 	emits: [
 		'click',
 	],
-	setup(props, { emit }) {
+	setup(props) {
 		const {
 			isSmall,
 			isLiked,
@@ -54,14 +55,9 @@ export default {
 			return className;
 		});
 
-		const changeState = () => {
-			emit('click', !isLiked.value);
-		};
-
 		return {
 			icon,
 			classState,
-			changeState,
 		};
 	},
 };

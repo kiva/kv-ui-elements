@@ -1,24 +1,30 @@
 <template>
 	<div>
-		<div
-			class="tw-flex tw-items-center tw-gap-1"
-		>
-			<img
-				v-if="profileImage"
-				class="
-					data-hj-suppress
-					tw-inline-block
-					tw-w-3.5
-					tw-h-3.5
-					tw-rounded-full
-					tw-overflow-hidden
-					tw-object-fill
-				"
-				:src="profileImage"
-				alt="picture"
-			>
+		<div>
+			<div class="tw-flex tw-items-center tw-gap-1">
+				<img
+					v-if="authorImage"
+					class="
+						data-hj-suppress
+						tw-inline-block
+						tw-w-3.5
+						tw-h-3.5
+						tw-rounded-full
+						tw-overflow-hidden
+						tw-object-fill
+					"
+					:src="authorImage"
+					alt="picture"
+				>
+				<p
+					v-if="authorName"
+					class="tw-font-medium"
+				>
+					{{ authorName }}
+				</p>
+			</div>
 			<p>
-				{{ text }}
+				{{ commentText }}
 			</p>
 		</div>
 		<div
@@ -28,10 +34,10 @@
 			<kv-comments-heart-button
 				:is-small="true"
 				:is-liked="isLiked"
-				@click="onClick(LIKE_COMMENT_EVENT, $event)"
+				@click="addReaction(LIKE_COMMENT_EVENT, $event)"
 			/>
 			<kv-comments-reply-button
-				@click="onClick(REPLY_COMMENT_EVENT, $event)"
+				@click="replyClick"
 			/>
 		</div>
 		<div
@@ -40,25 +46,30 @@
 		>
 			<kv-comments-add
 				ref="commentsAddRef"
-				user-mention
-				@add-comment="onClick(REPLY_COMMENT_EVENT, $event)"
+				:user-image-url="userImageUrl"
+				:user-display-name="userDisplayName"
+				:is-reply="true"
+				class="tw-ml-3"
+				@add-comment="addReaction(REPLY_COMMENT_EVENT, $event)"
 				@hide-input="hideInput"
 			/>
 		</div>
 		<div
-			v-if="latestChildren"
+			v-if="childComments"
 			class="tw-my-1"
 		>
 			<p
-				v-for="nested_comment in latestChildren"
+				v-for="nested_comment in childComments"
 				:key="nested_comment.id"
 				class="tw-ml-3"
 			>
 				<kv-comments-list-item
+					:user-image-url="userImageUrl"
+					:user-display-name="userDisplayName"
+					:user-public-id="userPublicId"
 					:comment="nested_comment"
-					:is-liked="nested_comment.is_liked"
 					:nest-level="nestLevel + 1"
-					:handle-click="handleClick"
+					@add-reaction="$emit(ADD_REACTION_EVENT, $event);"
 				/>
 			</p>
 		</div>
@@ -66,10 +77,16 @@
 </template>
 
 <script>
-import { ref, nextTick } from 'vue-demi';
+import {
+	ref,
+	nextTick,
+	computed,
+	toRefs,
+} from 'vue-demi';
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
 import KvCommentsAdd from './KvCommentsAdd.vue';
+import { ADD_REACTION_EVENT } from './KvCommentsContainer.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
@@ -82,6 +99,27 @@ export default {
 		KvCommentsAdd,
 	},
 	props: {
+		/**
+		 * The full URL for the user image
+		 */
+		userImageUrl: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The name to display for the user
+		 */
+		userDisplayName: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * The ID for the user
+		 */
+		userPublicId: {
+			type: String,
+			default: '',
+		},
 		/**
 		 * Activity comment
 		 */
@@ -96,37 +134,46 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		/**
-		 * Comment is liked by current user
-		 */
-		isLiked: {
-			type: Boolean,
-			default: false,
-		},
 	},
 	emits: [
-		REPLY_COMMENT_EVENT,
-		LIKE_COMMENT_EVENT,
+		ADD_REACTION_EVENT,
 	],
 	setup(props, { emit }) {
+		const {
+			comment,
+			userPublicId,
+		} = toRefs(props);
+
 		const showInput = ref(false);
 		const commentsAddRef = ref(null);
 
-		const onClick = (reaction, value) => {
-			if (reaction === REPLY_COMMENT_EVENT) {
-				showInput.value = true;
-				nextTick(() => {
-					commentsAddRef.value.$refs.input.focus();
-				});
-			}
+		const commentText = computed(() => comment?.value?.data?.text ?? '');
+		const authorImage = computed(() => comment?.value?.user?.data?.image ?? '');
+		const authorName = computed(() => comment?.value?.user?.data?.name ?? '');
+		const childComments = computed(() => comment?.value?.latest_children?.comment ?? null);
+		const childLikes = computed(() => comment?.value?.latest_children?.like ?? []);
+		const likedObject = computed(() => childLikes.value.find((child) => child.user.data.publicLenderId === userPublicId.value)); // eslint-disable-line max-len
+		const isLiked = computed(() => likedObject.value !== undefined);
 
-			emit(reaction, {
+		const replyClick = () => {
+			showInput.value = !showInput.value;
+			nextTick(() => {
+				if (showInput.value) commentsAddRef.value.$refs.input.focus();
+			});
+		};
+
+		const addReaction = (reaction, value) => {
+			const payload = {
 				reaction,
-				id: props.comment?.id ?? null,
-				userId: props.comment?.user_id ?? null,
+				id: comment?.value?.id ?? null,
 				isChild: true,
 				value,
-			});
+			};
+			if (reaction === LIKE_COMMENT_EVENT && !value) {
+				payload.id = likedObject.value.id;
+			}
+
+			emit(ADD_REACTION_EVENT, payload);
 		};
 
 		const hideInput = () => { showInput.value = false; };
@@ -135,24 +182,17 @@ export default {
 			hideInput,
 			showInput,
 			commentsAddRef,
-			onClick,
+			replyClick,
+			addReaction,
 			REPLY_COMMENT_EVENT,
 			LIKE_COMMENT_EVENT,
+			ADD_REACTION_EVENT,
+			commentText,
+			authorImage,
+			authorName,
+			childComments,
+			isLiked,
 		};
-	},
-	computed: {
-		text() {
-			return this.comment?.data?.text ?? '';
-		},
-		userId() {
-			return this.comment?.user_id ?? null;
-		},
-		latestChildren() {
-			return this.comment?.latest_children ?? null;
-		},
-		profileImage() {
-			return this.comment?.user_picture ?? '';
-		},
 	},
 };
 </script>

@@ -9,7 +9,7 @@ const renderCommentsAdd = (props = {}) => {
 describe('KvCommentsAdd', () => {
 	it('should render defaults', () => {
 		const { getByPlaceholderText, getByRole } = renderCommentsAdd();
-		getByPlaceholderText('Add a comment to this loan...');
+		getByPlaceholderText('Add a comment...');
 		getByRole('button', { name: 'Cancel' });
 		getByRole('button', { name: 'Comment' });
 	});
@@ -25,7 +25,7 @@ describe('KvCommentsAdd', () => {
 
 	it('should enable comment button when text entered', async () => {
 		const { getByPlaceholderText, getByRole } = renderCommentsAdd();
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const commentButton = getByRole('button', { name: 'Comment' });
 
 		expect(commentButton.disabled).toBeTruthy();
@@ -41,7 +41,7 @@ describe('KvCommentsAdd', () => {
 
 	it('should clear text when cancel clicked', async () => {
 		const { getByPlaceholderText, getByRole } = renderCommentsAdd();
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const cancelButton = getByRole('button', { name: 'Cancel' });
 
 		await userEvent.type(textInput, 'test');
@@ -52,13 +52,25 @@ describe('KvCommentsAdd', () => {
 
 	it('should emit value when comment clicked', async () => {
 		const { getByPlaceholderText, getByRole, emitted } = renderCommentsAdd();
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const commentButton = getByRole('button', { name: 'Comment' });
 		const TEST_INPUT = 'test test';
 
 		await userEvent.type(textInput, TEST_INPUT);
 
 		await userEvent.click(commentButton);
+
+		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
+	});
+
+	it('should emit value when enter key pressed', async () => {
+		const { getByPlaceholderText, emitted } = renderCommentsAdd();
+		const textInput = getByPlaceholderText('Add a comment...');
+		const TEST_INPUT = 'test test';
+
+		await userEvent.type(textInput, TEST_INPUT);
+
+		userEvent.keyboard('{enter}');
 
 		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
 	});
@@ -74,7 +86,7 @@ describe('KvCommentsAdd', () => {
 
 	it('should emit close event when it replies a comment', async () => {
 		const { getByRole, emitted, getByPlaceholderText } = renderCommentsAdd({ isReply: true });
-		const textInput = getByPlaceholderText('Add a comment to this loan...');
+		const textInput = getByPlaceholderText('Add a comment...');
 		const commentButton = getByRole('button', { name: 'Comment' });
 		const TEST_INPUT = 'test test';
 

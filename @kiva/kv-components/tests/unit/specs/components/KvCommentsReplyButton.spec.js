@@ -12,11 +12,11 @@ describe('KvCommentsReplyButton', () => {
 		expect(replyButton).toBeDefined();
 	});
 
-	it('should emit true value when clicked as not liked', async () => {
+	it('should emit click event when clicked', async () => {
 		const { getByRole, emitted } = render(KvCommentsReplyButton);
-		const likeButton = getByRole('button', { name: 'Reply' });
+		const replyButton = getByRole('button', { name: 'Reply' });
 
-		await userEvent.click(likeButton);
+		await userEvent.click(replyButton);
 
 		expect(emitted()[CLICK_EVENT]).toEqual([[]]);
 	});
