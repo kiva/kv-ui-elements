@@ -81,7 +81,7 @@ export default class ActivityFeedService {
 		let activity: Activity;
 
 		try {
-			activity = (await this.client?.getActivities({ ids: [activityId], withRecentReactions: true }))?.results[0];
+			activity = (await this.client?.getActivities({ ids: [activityId], withRecentReactions: true, withReactionCounts: true }))?.results[0]; // eslint-disable-line max-len
 		} catch (error) {
 			parseError(error);
 		}
@@ -110,16 +110,17 @@ export default class ActivityFeedService {
 	}
 
 	/**
-	 * Adds a like comment for the current user for the provided activity ID
+	 * Adds a child reaction to a parent for the current user for the provided activity ID
 	 *
-	 * @param commentId The comment ID to add a like
+	 * @param parentId The parent ID to add a child reaction
+	 * @param kind The kind of child reaction
 	 * @returns Whether the like was added successfully
 	 */
-	async addLikeToComment(commentId: string): Promise<boolean> {
+	async addChildReaction(kind: string, parentId: string): Promise<boolean> {
 		let success = false;
 
 		try {
-			await this.client?.reactions.addChild('like', commentId);
+			await this.client?.reactions.addChild(kind, parentId);
 			success = true;
 		} catch (error) {
 			parseError(error);
