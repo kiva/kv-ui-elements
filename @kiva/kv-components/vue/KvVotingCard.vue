@@ -32,7 +32,7 @@
 					:icon="mapMarkerIcon"
 				/>
 				<div>
-					{{ borrowerName }}, {{ country }}
+					{{ borrowerName }}
 				</div>
 			</div>
 		</div>
@@ -80,10 +80,6 @@ export default {
 	},
 	props: {
 		borrowerName: {
-			type: String,
-			default: '',
-		},
-		country: {
 			type: String,
 			default: '',
 		},
