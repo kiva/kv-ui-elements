@@ -31,11 +31,19 @@
 			v-if="nestLevel < 3"
 			class="tw-flex tw-items-center tw-gap-x-2"
 		>
-			<kv-comments-heart-button
-				:is-small="true"
-				:is-liked="isLiked"
-				@click="addReaction(LIKE_COMMENT_EVENT, $event)"
-			/>
+			<div class="tw-flex tw-items-center tw-gap-0.5">
+				<kv-comments-heart-button
+					:is-small="true"
+					:is-liked="isLiked"
+					@click="addReaction(LIKE_COMMENT_EVENT, $event)"
+				/>
+				<p
+					v-if="numberOfLikes"
+					data-testid="like-count"
+				>
+					{{ numberOfLikes }}
+				</p>
+			</div>
 			<kv-comments-reply-button
 				@click="replyClick"
 			/>
@@ -178,6 +186,8 @@ export default {
 
 		const hideInput = () => { showInput.value = false; };
 
+		const numberOfLikes = computed(() => comment?.value?.children_counts?.like ?? 0);
+
 		return {
 			hideInput,
 			showInput,
@@ -192,6 +202,7 @@ export default {
 			authorName,
 			childComments,
 			isLiked,
+			numberOfLikes,
 		};
 	},
 };
