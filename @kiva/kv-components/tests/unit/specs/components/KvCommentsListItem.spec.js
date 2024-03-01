@@ -26,11 +26,13 @@ describe('KvCommentsListItem', () => {
 	});
 
 	it('should handle like button click', async () => {
-		const { getAllByRole, emitted } = renderComment({ comment });
+		const { getAllByRole, emitted, getByTestId } = renderComment({ comment });
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
+		const likeCount = getByTestId('like-count');
 
 		await userEvent.click(likeButton);
 
+		expect(likeCount).toHaveTextContent(1);
 		expect(emitted()[ADD_REACTION_EVENT]).toEqual([[{
 			id: comment.id,
 			isChild: true,

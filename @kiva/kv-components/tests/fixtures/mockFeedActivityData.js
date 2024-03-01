@@ -141,7 +141,10 @@ const comments = {
 								},
 							],
 						},
-						children_counts: {},
+						children_counts: {
+							comment: 1,
+							like: 1,
+						},
 					},
 					{
 						created_at: '2024-02-01T20:11:23.931133Z',

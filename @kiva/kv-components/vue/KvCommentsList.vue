@@ -10,7 +10,7 @@
 			:user-display-name="userDisplayName"
 			:user-public-id="userPublicId"
 			:is-liked="comment.is_liked"
-			class="tw-mb-2"
+			class="tw-mb-2 tw-not-prose"
 			@add-reaction="handleReaction"
 		/>
 	</div>
