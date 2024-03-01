@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.55.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.1...@kiva/kv-components@3.55.2) (2024-03-01)
+
+
+### Bug Fixes
+
+* remove const var import ([#352](https://github.com/kiva/kv-ui-elements/issues/352)) ([4c1ca6a](https://github.com/kiva/kv-ui-elements/commit/4c1ca6a2d518ce1b1b72933b5f5296513d352fa2))
+
+
+
+
+
 ## [3.55.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.0...@kiva/kv-components@3.55.1) (2024-02-29)
 
 **Note:** Version bump only for package @kiva/kv-components
