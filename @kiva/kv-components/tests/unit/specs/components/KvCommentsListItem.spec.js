@@ -32,7 +32,7 @@ describe('KvCommentsListItem', () => {
 
 		await userEvent.click(likeButton);
 
-		expect(likeCount.textContent).toBe('1');
+		expect(likeCount).toHaveTextContent(1);
 		expect(emitted()[ADD_REACTION_EVENT]).toEqual([[{
 			id: comment.id,
 			isChild: true,
