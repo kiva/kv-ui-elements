@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.5.1...@kiva/kv-activity-feed@1.6.0) (2024-03-01)
+
+
+### Features
+
+* add text to child reaction to reply comments ([#354](https://github.com/kiva/kv-ui-elements/issues/354)) ([d94d0fd](https://github.com/kiva/kv-ui-elements/commit/d94d0fdbefc33162b665207d20d3e3c26d5106a9))
+
+
+
+
+
 ## [1.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.5.0...@kiva/kv-activity-feed@1.5.1) (2024-02-29)
 
 **Note:** Version bump only for package @kiva/kv-activity-feed
