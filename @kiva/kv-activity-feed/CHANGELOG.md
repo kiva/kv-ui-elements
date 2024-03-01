@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.6.0...@kiva/kv-activity-feed@1.7.0) (2024-03-01)
+
+
+### Features
+
+* param comment added ([#357](https://github.com/kiva/kv-ui-elements/issues/357)) ([295cb79](https://github.com/kiva/kv-ui-elements/commit/295cb79f0ff476ce2ceaf5e1fdd57475ddb7c508))
+
+
+
+
+
 # [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.5.1...@kiva/kv-activity-feed@1.6.0) (2024-03-01)
 
 
