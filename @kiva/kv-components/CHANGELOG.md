@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.56.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.0...@kiva/kv-components@3.56.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* remove country from voting card ([fee3dcb](https://github.com/kiva/kv-ui-elements/commit/fee3dcb7af0fd103dedca70c14448cfab91c66eb))
+
+
+
+
+
 # [3.56.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.2...@kiva/kv-components@3.56.0) (2024-03-01)
 
 
