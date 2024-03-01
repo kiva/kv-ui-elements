@@ -19,7 +19,8 @@
 <script>
 
 import KvCommentsListItem from './KvCommentsListItem.vue';
-import { ADD_REACTION_EVENT } from './KvCommentsContainer.vue';
+
+const ADD_REACTION_EVENT = 'add-reaction';
 
 export default {
 	name: 'KvCommentsList',

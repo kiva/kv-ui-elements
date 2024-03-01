@@ -86,10 +86,10 @@ import {
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
 import KvCommentsAdd from './KvCommentsAdd.vue';
-import { ADD_REACTION_EVENT } from './KvCommentsContainer.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
+const ADD_REACTION_EVENT = 'add-reaction';
 
 export default {
 	name: 'KvCommentsListItem',
