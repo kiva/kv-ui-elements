@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.57.0...@kiva/kv-components@3.58.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* fallback to kiva logo if no image or name ([74cdc90](https://github.com/kiva/kv-ui-elements/commit/74cdc900a8c1f9783771a7428f2722f59f5edf09))
+
+
+### Features
+
+* port avatar component from cps to cover different avatar situations ([036506f](https://github.com/kiva/kv-ui-elements/commit/036506f7680646c8e432af1842fb55851a5c6b2c))
+
+
+
+
+
 # [3.57.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.1...@kiva/kv-components@3.57.0) (2024-03-01)
 
 
