@@ -26,7 +26,6 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
 	borrowerName: 'Jacqueline',
-	country: 'Rwanda',
 	category: 'Women-owned retail businesses',
 	percentage: 45,
 	showVoteButton: true,
