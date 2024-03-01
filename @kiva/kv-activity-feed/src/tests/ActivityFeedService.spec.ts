@@ -125,17 +125,18 @@ describe('StreamService', () => {
 			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('like', commentId);
 
 			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
-			expect(mockAddLikeToComment).toHaveBeenCalledWith('like', commentId);
+			expect(mockAddLikeToComment).toHaveBeenCalledWith('like', commentId, { text: undefined });
 		});
 	});
 
 	describe('addReplyToComment', () => {
 		it('should call add to like comment method', async () => {
 			const commentId = 'test';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('comment', commentId);
+			const TEXT = 'asd';
+			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('comment', commentId, TEXT);
 
 			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
-			expect(mockAddLikeToComment).toHaveBeenCalledWith('comment', commentId);
+			expect(mockAddLikeToComment).toHaveBeenCalledWith('comment', commentId, { text: TEXT });
 		});
 	});
 
