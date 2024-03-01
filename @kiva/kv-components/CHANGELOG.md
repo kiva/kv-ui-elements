@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.56.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.2...@kiva/kv-components@3.56.0) (2024-03-01)
+
+
+### Features
+
+* update vote card to be able to hide percentage portion of card ([11c15b8](https://github.com/kiva/kv-ui-elements/commit/11c15b84b939f1a1781c5a24a6dbfd2be378c096))
+
+
+
+
+
 ## [3.55.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.1...@kiva/kv-components@3.55.2) (2024-03-01)
 
 
