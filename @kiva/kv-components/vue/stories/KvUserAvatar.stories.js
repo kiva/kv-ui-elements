@@ -43,3 +43,5 @@ export const IsSmall = story({
 	lenderName: 'Roger',
 	isSmall: true,
 });
+
+export const Fallback = story();

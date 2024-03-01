@@ -3,34 +3,9 @@
 		class="data-hj-suppress"
 		:class="{ 'tw-w-3': isSmall, 'tw-w-6': !isSmall }"
 	>
-		<!-- User is not anonymous and has an image -->
+		<!-- User is anonymous or data is missing -->
 		<div
-			v-if="!isLegacyPlaceholderAvatar(imageFilename) && !isAnonymousUser(lenderName) && imageFilename"
-		>
-			<img
-				:src="lenderImageUrl"
-				alt="Image of lender"
-				class="tw-rounded-full tw-inline-block"
-				:class="{ 'tw-w-3 tw-h-3': isSmall, 'tw-w-6 tw-h-6': !isSmall }"
-			>
-		</div>
-		<!-- User is not anonymous and does not have an image -->
-		<div
-			v-else-if="!isAnonymousUser(lenderName) && isLegacyPlaceholderAvatar(imageFilename) || !imageFilename"
-			class="
-				tw-rounded-full
-				tw-inline-flex tw-align-center tw-justify-center
-			"
-			:class="avatarClass()"
-		>
-			<!-- First Letter of lender name -->
-			<span class="tw-self-center">
-				{{ lenderNameFirstLetter }}
-			</span>
-		</div>
-		<!-- User is anonymous -->
-		<div
-			v-else
+			v-if="isAnonymousUser"
 			class="
 				tw-rounded-full
 				tw-bg-brand
@@ -62,7 +37,32 @@
 					fill="white"
 				/>
 			</svg>
-		<!-- eslint-enable max-len -->
+			<!-- eslint-enable max-len -->
+		</div>
+		<!-- User is not anonymous and has an image -->
+		<div
+			v-else-if="!isLegacyPlaceholderAvatar(imageFilename) && imageFilename"
+		>
+			<img
+				:src="lenderImageUrl"
+				alt="Image of lender"
+				class="tw-rounded-full tw-inline-block"
+				:class="{ 'tw-w-3 tw-h-3': isSmall, 'tw-w-6 tw-h-6': !isSmall }"
+			>
+		</div>
+		<!-- User is not anonymous and does not have an image -->
+		<div
+			v-else-if="isLegacyPlaceholderAvatar(imageFilename) || !imageFilename"
+			class="
+				tw-rounded-full
+				tw-inline-flex tw-align-center tw-justify-center
+			"
+			:class="avatarClass()"
+		>
+			<!-- First Letter of lender name -->
+			<span class="tw-self-center">
+				{{ lenderNameFirstLetter }}
+			</span>
 		</div>
 	</div>
 </template>
@@ -103,9 +103,9 @@ export default {
 			isSmall,
 		} = toRefs(props);
 
-		const isAnonymousUser = (name) => {
-			return name === 'Anonymous';
-		};
+		const isAnonymousUser = computed(() => {
+			return (lenderName.value === '' && lenderImageUrl.value === '') || lenderName.value === 'Anonymous';
+		});
 
 		const avatarClass = () => {
 			const smallClass = isSmall?.value ? 'tw-w-3 tw-h-3 tw-text-h4' : 'tw-w-6 tw-h-6 tw-text-h2';
