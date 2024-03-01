@@ -42,11 +42,15 @@
 		</h3>
 		<div class="tw-flex tw-items-center tw-w-full tw-mb-1">
 			<kv-progress-bar
+				v-if="showPercentage"
 				class="tw-flex-grow"
 				:aria-label="'Percent of votes for ' + category"
 				:value="percentage"
 			/>
-			<div class="tw-ml-2 tw-font-medium">
+			<div
+				v-if="showPercentage"
+				class="tw-ml-2 tw-font-medium"
+			>
 				{{ percentage }}%
 			</div>
 		</div>
@@ -96,6 +100,10 @@ export default {
 			default: 0,
 		},
 		showVoteButton: {
+			type: Boolean,
+			default: true,
+		},
+		showPercentage: {
 			type: Boolean,
 			default: true,
 		},
