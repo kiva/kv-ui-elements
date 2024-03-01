@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.57.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.1...@kiva/kv-components@3.57.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* test failed because of whitespaces in value ([4591e93](https://github.com/kiva/kv-ui-elements/commit/4591e932a9c785f97019f47a8d7899142b2c1204))
+
+
+### Features
+
+* show number of likes ([c088fae](https://github.com/kiva/kv-ui-elements/commit/c088fae443da391871ef1783e64712d306b84007))
+
+
+
+
+
 ## [3.56.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.0...@kiva/kv-components@3.56.1) (2024-03-01)
 
 
