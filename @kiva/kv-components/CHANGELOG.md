@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.59.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.58.0...@kiva/kv-components@3.59.0) (2024-03-04)
+
+
+### Features
+
+* replies count added to reply commenting button ([#359](https://github.com/kiva/kv-ui-elements/issues/359)) ([87e4b01](https://github.com/kiva/kv-ui-elements/commit/87e4b01022641e774203274a0b3a353d1b2a37bc))
+
+
+
+
+
 # [3.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.57.0...@kiva/kv-components@3.58.0) (2024-03-01)
 
 
