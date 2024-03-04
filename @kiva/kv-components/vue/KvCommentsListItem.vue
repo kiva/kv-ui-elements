@@ -40,11 +40,13 @@
 				<p
 					v-if="numberOfLikes"
 					data-testid="like-count"
+					class="tw-font-medium"
 				>
 					{{ numberOfLikes }}
 				</p>
 			</div>
 			<kv-comments-reply-button
+				:number-of-replies="numberOfReplies"
 				@click="replyClick"
 			/>
 		</div>
@@ -188,6 +190,8 @@ export default {
 
 		const numberOfLikes = computed(() => comment?.value?.children_counts?.like ?? 0);
 
+		const numberOfReplies = computed(() => comment?.value?.children_counts?.like ?? 0);
+
 		return {
 			hideInput,
 			showInput,
@@ -203,6 +207,7 @@ export default {
 			childComments,
 			isLiked,
 			numberOfLikes,
+			numberOfReplies,
 		};
 	},
 };
