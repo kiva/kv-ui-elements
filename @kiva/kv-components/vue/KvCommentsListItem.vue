@@ -83,6 +83,8 @@ import {
 	nextTick,
 	computed,
 	toRefs,
+	onMounted,
+	inject,
 } from 'vue-demi';
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
@@ -149,10 +151,14 @@ export default {
 
 		const showInput = ref(false);
 		const commentsAddRef = ref(null);
+		const authorInfo = ref();
 
 		const commentText = computed(() => comment?.value?.data?.text ?? '');
-		const authorImage = computed(() => comment?.value?.user?.data?.image ?? '');
-		const authorName = computed(() => comment?.value?.user?.data?.name ?? '');
+
+		const authorId = computed(() => comment?.value?.user?.data?.publicLenderId ?? '');
+		const authorImage = computed(() => authorInfo?.value?.image?.url ?? '');
+		const authorName = computed(() => authorInfo?.value?.name ?? '');
+
 		const childComments = computed(() => comment?.value?.latest_children?.comment ?? null);
 		const childLikes = computed(() => comment?.value?.latest_children?.like ?? []);
 		const likedObject = computed(() => childLikes.value.find((child) => child.user.data.publicLenderId === userPublicId.value)); // eslint-disable-line max-len
@@ -184,6 +190,15 @@ export default {
 		const numberOfLikes = computed(() => comment?.value?.children_counts?.like ?? 0);
 
 		const numberOfReplies = computed(() => comment?.value?.children_counts?.comment ?? 0);
+
+		const fetchLenderInfo = inject('fetchLenderInfo');
+
+		onMounted(async () => {
+			if (authorId.value) {
+				const authorData = await fetchLenderInfo(authorId.value);
+				authorInfo.value = authorData;
+			}
+		});
 
 		return {
 			hideInput,
