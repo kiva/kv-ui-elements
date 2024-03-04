@@ -7,7 +7,20 @@ import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 const comment = activityFeed.results[0].latest_reactions.comment[0];
 
 const renderComment = (props = {}) => {
-	return render(KvCommentsListItem, { props });
+	return render(KvCommentsListItem,
+		{
+			props,
+			// provide function for vue 2 testing
+			provide: {
+				fetchLenderInfo: () => Promise.resolve({}),
+			},
+			// provide function for vue 3 testing
+			global: {
+				provide: {
+					fetchLenderInfo: () => Promise.resolve({}),
+				},
+			},
+		});
 };
 
 describe('KvCommentsListItem', () => {

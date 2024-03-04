@@ -6,7 +6,20 @@ import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvComme
 import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
 const renderList = (props = {}) => {
-	return render(ListComponent, { props });
+	return render(ListComponent,
+		{
+			props,
+			// provide function for vue 2 testing
+			provide: {
+				fetchLenderInfo: () => Promise.resolve({}),
+			},
+			// provide function for vue 3 testing
+			global: {
+				provide: {
+					fetchLenderInfo: () => Promise.resolve({}),
+				},
+			},
+		});
 };
 
 const comments = activityFeed.results[0].latest_reactions;
