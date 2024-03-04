@@ -2,20 +2,11 @@
 	<div class="tw-flex tw-flex-col">
 		<div class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-gap-0.5 md:tw-gap-1">
 			<div class="tw-flex tw-items-center tw-gap-1">
-				<img
-					v-if="userImageUrl"
-					:src="userImageUrl"
-					alt="Lender"
-					class="
-						data-hj-suppress
-						tw-inline-block
-						tw-w-3.5
-						tw-h-3.5
-						tw-rounded-full
-						tw-overflow-hidden
-						tw-object-fill
-					"
-				>
+				<kv-user-avatar
+					:lender-name="userDisplayName"
+					:lender-image-url="userImageUrl"
+					is-small
+				/>
 				<div class="data-hj-suppress tw-font-medium">
 					{{ userDisplayName }}
 				</div>
@@ -52,6 +43,7 @@
 import { computed, ref } from 'vue-demi';
 import KvButton from './KvButton.vue';
 import KvTextInput from './KvTextInput.vue';
+import KvUserAvatar from './KvUserAvatar.vue';
 
 export const ADD_COMMENT_ID = 'add-comment-value';
 export const ADD_COMMENT_EVENT = 'add-comment';
@@ -62,6 +54,7 @@ export default {
 	components: {
 		KvButton,
 		KvTextInput,
+		KvUserAvatar,
 	},
 	props: {
 		/**

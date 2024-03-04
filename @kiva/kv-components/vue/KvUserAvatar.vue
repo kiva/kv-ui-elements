@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="data-hj-suppress"
+		class="data-hj-suppress tw-flex"
 		:class="{ 'tw-w-3': isSmall, 'tw-w-6': !isSmall }"
 	>
 		<!-- User is anonymous or data is missing -->

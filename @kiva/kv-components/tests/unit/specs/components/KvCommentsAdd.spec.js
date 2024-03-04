@@ -19,7 +19,7 @@ describe('KvCommentsAdd', () => {
 			userImageUrl: 'test.com',
 			userDisplayName: 'User',
 		});
-		getByAltText('Lender');
+		getByAltText('Image of lender');
 		getByText('User');
 	});
 

@@ -52,7 +52,7 @@ export default {
 		 */
 		comments: {
 			type: Object,
-			default: () => {},
+			default: () => ({}),
 		},
 	},
 	emits: [ADD_REACTION_EVENT],
