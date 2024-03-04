@@ -2,23 +2,14 @@
 	<div>
 		<div>
 			<div class="tw-flex tw-items-center tw-gap-1">
-				<img
-					v-if="authorImage"
-					class="
-						data-hj-suppress
-						tw-inline-block
-						tw-w-3.5
-						tw-h-3.5
-						tw-rounded-full
-						tw-overflow-hidden
-						tw-object-fill
-					"
-					:src="authorImage"
-					alt="picture"
-				>
+				<kv-user-avatar
+					:lender-name="authorName"
+					:lender-image-url="authorImage"
+					is-small
+				/>
 				<p
 					v-if="authorName"
-					class="tw-font-medium"
+					class="data-hj-suppress tw-font-medium"
 				>
 					{{ authorName }}
 				</p>
@@ -96,6 +87,7 @@ import {
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
 import KvCommentsAdd from './KvCommentsAdd.vue';
+import KvUserAvatar from './KvUserAvatar.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
@@ -107,6 +99,7 @@ export default {
 		KvCommentsReplyButton,
 		KvCommentsHeartButton,
 		KvCommentsAdd,
+		KvUserAvatar,
 	},
 	props: {
 		/**
