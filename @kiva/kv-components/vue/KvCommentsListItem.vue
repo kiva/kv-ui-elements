@@ -190,7 +190,7 @@ export default {
 
 		const numberOfLikes = computed(() => comment?.value?.children_counts?.like ?? 0);
 
-		const numberOfReplies = computed(() => comment?.value?.children_counts?.like ?? 0);
+		const numberOfReplies = computed(() => comment?.value?.children_counts?.comment ?? 0);
 
 		return {
 			hideInput,
