@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.61.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.60.0...@kiva/kv-components@3.61.0) (2024-03-04)
+
+
+### Features
+
+* fetchlenderinfo method injected to comment item component ([#362](https://github.com/kiva/kv-ui-elements/issues/362)) ([2aba5e0](https://github.com/kiva/kv-ui-elements/commit/2aba5e0837d57eec77f2d1bee48ca2c3c127c1d4))
+
+
+
+
+
 # [3.60.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.59.1...@kiva/kv-components@3.60.0) (2024-03-04)
 
 
