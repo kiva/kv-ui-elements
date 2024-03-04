@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.60.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.59.1...@kiva/kv-components@3.60.0) (2024-03-04)
+
+
+### Bug Fixes
+
+* unit test update ([e0e943b](https://github.com/kiva/kv-ui-elements/commit/e0e943bf51a9f7775f9b1279dc449787d7d05055))
+
+
+### Features
+
+* use new avatar in commenting components ([c707f71](https://github.com/kiva/kv-ui-elements/commit/c707f71e87661feb93486d3b900d4f0a77aff353))
+
+
+
+
+
 ## [3.59.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.59.0...@kiva/kv-components@3.59.1) (2024-03-04)
 
 
