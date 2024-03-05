@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.10.0...@kiva/kv-loan-filters@1.11.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* update tests ([9101a56](https://github.com/kiva/kv-ui-elements/commit/9101a5650eef17c18e3529e51dd06d4c82b7ea43))
+
+
+### Features
+
+* legacy doesn't support this new filter, so we can't use in saved search ([27acab5](https://github.com/kiva/kv-ui-elements/commit/27acab56324dd923645c4a8028967378c7b0265c))
+
+
+
+
+
 # [1.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.9.0...@kiva/kv-loan-filters@1.10.0) (2024-01-24)
 
 
