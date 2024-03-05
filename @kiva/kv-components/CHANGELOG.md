@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.61.0...@kiva/kv-components@3.62.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* add comment regarding inject ([7a98c3b](https://github.com/kiva/kv-ui-elements/commit/7a98c3b017c9472c14ef0a26fdad53864aaf3ada))
+* add provide to commenting stories ([01c1e53](https://github.com/kiva/kv-ui-elements/commit/01c1e5305cda4d2885afa1c4a4784630e7a6047d))
+
+
+### Features
+
+* update reply to match other commenting buttons ([6ad68a3](https://github.com/kiva/kv-ui-elements/commit/6ad68a3ddcce48089d12bd473f8fa3bfd7c30b5f))
+
+
+
+
+
 # [3.61.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.60.0...@kiva/kv-components@3.61.0) (2024-03-04)
 
 
