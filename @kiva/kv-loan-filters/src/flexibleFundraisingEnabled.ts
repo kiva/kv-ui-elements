@@ -77,11 +77,7 @@ export default {
 		return [];
 	},
 	getRemovedFacet: () => ({ flexibleFundraisingEnabled: null }),
-	getSavedSearch: (loanSearchState) => ({
-		flexibleFundraisingEnabled: loanSearchState?.flexibleFundraisingEnabled !== null
-			? loanSearchState.flexibleFundraisingEnabled
-			: null,
-	}),
+	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
 		...(typeof loanSearchState?.flexibleFundraisingEnabled !== 'undefined'
 			&& loanSearchState.flexibleFundraisingEnabled !== null
