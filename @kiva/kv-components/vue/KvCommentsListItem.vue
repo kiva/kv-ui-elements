@@ -191,6 +191,7 @@ export default {
 
 		const numberOfReplies = computed(() => comment?.value?.children_counts?.comment ?? 0);
 
+		// The fetchLenderInfo method must be provided in the parent component
 		const fetchLenderInfo = inject('fetchLenderInfo');
 
 		onMounted(async () => {
