@@ -1,8 +1,8 @@
 <!-- eslint-disable max-len -->
 <template>
-	<button
+	<kv-button
+		variant="ghost"
 		aria-label="Reply"
-		class="tw-font-medium tw-flex tw-items-center tw-gap-x-0.5"
 		@click="$emit('click')"
 	>
 		<svg
@@ -24,14 +24,19 @@
 			{{ numberOfReplies }}
 		</span>
 		<span>
-			Reply
+			reply
 		</span>
-	</button>
+	</kv-button>
 </template>
 
 <script>
+import KvButton from './KvButton.vue';
+
 export default {
 	name: 'KvCommentsReplyButton',
+	components: {
+		KvButton,
+	},
 	props: {
 		/**
 		 * The number of replies to the comment.
@@ -46,3 +51,17 @@ export default {
 	],
 };
 </script>
+
+<style lang="postcss" scoped>
+>>> span {
+	@apply tw-min-h-0;
+}
+
+>>> span > span {
+	@apply tw-py-0 tw-px-0.5 tw-flex tw-items-center;
+}
+
+>>> svg {
+	@apply tw-mx-0.5;
+}
+</style>
