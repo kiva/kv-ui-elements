@@ -4,6 +4,7 @@ import {
 	EnrichedActivity,
 	StreamUser,
 	DefaultGenerics,
+	StreamFeed,
 } from 'getstream';
 import parseError from './utils/parseError';
 
@@ -25,6 +26,11 @@ export default class ActivityFeedService {
 	 * The in memory instance of the Stream client
 	 */
 	private client: StreamClient|undefined = undefined;
+
+	/**
+	 * The in memory instance of the Stream feed
+	 */
+	private feed: StreamFeed|undefined = undefined;
 
 	/**
 	 * Creates an instance of ActivityFeedService
@@ -147,5 +153,45 @@ export default class ActivityFeedService {
 		}
 
 		return success;
+	}
+
+	/**
+	 * Creates a notification feed to listen updates
+	 *
+	 * @param feedSlug
+	 * @param userId
+	 * @param authToken
+	 * @returns
+	 */
+
+	createNotificationFeed(feedSlug: string, userId?: string, authToken?: string): StreamFeed<DefaultGenerics> {
+		this.feed = this.client?.feed(feedSlug, userId, authToken) ?? undefined;
+		return this.feed;
+	}
+
+	/**
+	 * Subscribes to the feed and returns the first activity
+	 *
+	 * @param callback
+	 * @param successCallback
+	 * @param failCallback
+	 * @returns
+	 */
+
+	async getFeed(callback, successCallback, failCallback) {
+		return this.feed.get({
+			limit: 10,
+			offset: 0,
+			enrich: true,
+			withRecentReactions: true,
+			withReactionCounts: true,
+		}).then((response) => {
+			// Subscribing to the feed
+			this.feed?.subscribe(callback).then(successCallback, failCallback);
+			console.log(response);
+			return response.results[0]?.activities[0].object;
+		}).catch((error) => {
+			throw error;
+		});
 	}
 }
