@@ -39,6 +39,7 @@ async function creditAmountNeeded(apollo: ApolloClient<any>): Promise<string|nul
 				}
 			}
 		`,
+		fetchPolicy: 'network-only',
 	}, 0);
 	return data?.shop?.basket?.totals?.creditAmountNeeded;
 }
