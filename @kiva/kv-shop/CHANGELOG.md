@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.15...@kiva/kv-shop@1.10.0) (2024-03-06)
+
+
+### Features
+
+* credit amount needed should always hit the network ([fd19678](https://github.com/kiva/kv-ui-elements/commit/fd19678084dd40d235ca7efc8f55a8fb04844e8d))
+
+
+
+
+
 ## [1.9.15](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.14...@kiva/kv-shop@1.9.15) (2024-03-05)
 
 **Note:** Version bump only for package @kiva/kv-shop
