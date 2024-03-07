@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.0...@kiva/kv-components@3.62.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* remove centering on voting card category ([fc0d036](https://github.com/kiva/kv-ui-elements/commit/fc0d03604bcdf6157b716a93d3e62d758e765aad))
+
+
+
+
+
 # [3.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.61.0...@kiva/kv-components@3.62.0) (2024-03-05)
 
 
