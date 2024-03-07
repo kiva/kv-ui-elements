@@ -8,7 +8,6 @@
 		tw-p-1
 		tw-flex
 		tw-flex-col
-		tw-items-center
 		tw-justify-between
 		tw-max-w-300"
 	>
