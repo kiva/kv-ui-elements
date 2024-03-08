@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.1...@kiva/kv-components@3.63.0) (2024-03-08)
+
+
+### Features
+
+* inline activity feed components added ([#367](https://github.com/kiva/kv-ui-elements/issues/367)) ([32c782a](https://github.com/kiva/kv-ui-elements/commit/32c782a39d39100dcf24a7a322488d5e25b86d8b))
+
+
+
+
+
 ## [3.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.0...@kiva/kv-components@3.62.1) (2024-03-07)
 
 
