@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.63.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.0...@kiva/kv-components@3.63.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* fix data reference for comment list item ([0955f28](https://github.com/kiva/kv-ui-elements/commit/0955f28b8deeb067e8d393c2365dbdcab79e92df))
+
+
+
+
+
 # [3.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.1...@kiva/kv-components@3.63.0) (2024-03-08)
 
 
