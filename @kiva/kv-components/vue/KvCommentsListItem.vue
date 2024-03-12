@@ -161,7 +161,7 @@ export default {
 
 		const childComments = computed(() => comment?.value?.latest_children?.comment ?? null);
 		const childLikes = computed(() => comment?.value?.latest_children?.like ?? []);
-		const likedObject = computed(() => childLikes.value.find((child) => child.user.data.publicLenderId === userPublicId.value)); // eslint-disable-line max-len
+		const likedObject = computed(() => childLikes.value.find((child) => child?.user?.data?.publicLenderId === userPublicId.value)); // eslint-disable-line max-len
 		const isLiked = computed(() => likedObject.value !== undefined);
 
 		const replyClick = () => {
