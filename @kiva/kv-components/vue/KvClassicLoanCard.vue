@@ -67,6 +67,13 @@
 							</p>
 						</div>
 					</component>
+					<kv-loan-team-pick
+						v-if="isTeamPick"
+						class="tw-absolute"
+						:class="{ 'tw-right-6': !isVisitor, 'tw-right-0': isVisitor }"
+						style="top: -6px;"
+						data-testid="loan-card-teampick"
+					/>
 					<kv-loan-bookmark
 						v-if="!isVisitor"
 						:loan-id="loanId"
@@ -231,6 +238,7 @@ import KvLoanBookmark from './KvLoanBookmark.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvLoanTeamPick from './KvLoanTeamPick.vue';
 
 export default {
 	name: 'KvClassicLoanCard',
@@ -244,6 +252,7 @@ export default {
 		KvLoanTag,
 		KvLoanCallouts,
 		KvLoanBookmark,
+		KvLoanTeamPick,
 	},
 	props: {
 		loanId: {
@@ -331,6 +340,10 @@ export default {
 			default: false,
 		},
 		largeCard: {
+			type: Boolean,
+			default: false,
+		},
+		isTeamPick: {
 			type: Boolean,
 			default: false,
 		},

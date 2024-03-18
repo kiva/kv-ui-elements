@@ -29,6 +29,7 @@ const story = (args) => {
 					:photo-path="photoPath"
 					:show-view-loan="showViewLoan"
 					:custom-callouts="customCallouts"
+					:is-team-pick="isTeamPick"
 				/>
 			</div>
 		`,
@@ -302,4 +303,22 @@ export const LendAgain = story({
 	},
 	kvTrackFunction,
 	photoPath,
+});
+
+export const TeamPick = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	isTeamPick: true,
+	isVisitor: false,
+});
+
+export const TeamPickVisitor = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	isTeamPick: true,
+	isVisitor: true,
 });
