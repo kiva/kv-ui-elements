@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.1...@kiva/kv-components@3.64.0) (2024-03-18)
+
+
+### Features
+
+* team pick label added to loan card component ([#369](https://github.com/kiva/kv-ui-elements/issues/369)) ([76803bf](https://github.com/kiva/kv-ui-elements/commit/76803bfd7b81497f1d34e537c0435d7fa7dd3606))
+
+
+
+
+
 ## [3.63.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.0...@kiva/kv-components@3.63.1) (2024-03-12)
 
 
