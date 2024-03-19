@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.0...@kiva/kv-components@3.65.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* allow heart on last comment level ([3e876ed](https://github.com/kiva/kv-ui-elements/commit/3e876ed7fa7d113acbbc24983ad8f5f90c29c3da))
+
+
+
+
+
 # [3.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.64.0...@kiva/kv-components@3.65.0) (2024-03-19)
 
 
