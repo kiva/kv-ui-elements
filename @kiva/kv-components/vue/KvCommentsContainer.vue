@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<kv-comments-add
+			v-if="userPublicId"
 			:user-image-url="userImageUrl"
 			:user-display-name="userDisplayName"
 			@add-comment="handleReaction"
