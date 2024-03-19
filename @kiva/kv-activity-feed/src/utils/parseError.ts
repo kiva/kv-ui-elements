@@ -1,10 +1,8 @@
-import { SiteError, FeedError } from 'getstream/src/errors';
-
 const parseError = (e: any) => {
-	if (e instanceof Error || e instanceof SiteError || e instanceof FeedError) {
+	if (e?.message) {
 		console.error('An error occurred in StreamService lib:', e.message);
 	}
-	console.error('An unknown error occurred in StreamService lib:', e);
+	console.error('An error occurred in StreamService lib:', e);
 };
 
 export default parseError;
