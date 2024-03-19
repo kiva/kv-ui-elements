@@ -26,6 +26,7 @@
 				<kv-comments-heart-button
 					:is-small="true"
 					:is-liked="isLiked"
+					:disabled="!userPublicId"
 					@click="addReaction(LIKE_COMMENT_EVENT, $event)"
 				/>
 				<p
@@ -37,6 +38,7 @@
 				</p>
 			</div>
 			<kv-comments-reply-button
+				v-if="userPublicId"
 				:number-of-replies="numberOfReplies"
 				@click="replyClick"
 			/>

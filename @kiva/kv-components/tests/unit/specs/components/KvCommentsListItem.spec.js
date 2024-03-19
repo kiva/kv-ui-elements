@@ -5,6 +5,7 @@ import activityFeed from '../../../fixtures/mockFeedActivityData';
 import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
 const comment = activityFeed.results[0].latest_reactions.comment[0];
+const LOGGED_IN_USER = 'TEST_USER';
 
 const renderComment = (props = {}) => {
 	return render(KvCommentsListItem,
@@ -24,8 +25,15 @@ const renderComment = (props = {}) => {
 };
 
 describe('KvCommentsListItem', () => {
-	it('should render defaults', () => {
+	it('should render defaults for guest user', () => {
 		const { getAllByRole } = renderComment({ comment });
+		const likeButton = getAllByRole('button', { name: 'Like' })[0];
+
+		expect(likeButton).toBeDefined();
+	});
+
+	it('should render defaults for logged in user', () => {
+		const { getAllByRole } = renderComment({ comment, userPublicId: LOGGED_IN_USER });
 		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
 
@@ -38,8 +46,19 @@ describe('KvCommentsListItem', () => {
 		getByText(comment.data.text);
 	});
 
-	it('should handle like button click', async () => {
+	it('should not handle like button click for guest user', async () => {
 		const { getAllByRole, emitted, getByTestId } = renderComment({ comment });
+		const likeButton = getAllByRole('button', { name: 'Like' })[0];
+		const likeCount = getByTestId('like-count');
+
+		await userEvent.click(likeButton);
+
+		expect(likeCount).toHaveTextContent(1);
+		expect(emitted()[ADD_REACTION_EVENT]).toEqual(undefined);
+	});
+
+	it('should handle like button click for logged in user', async () => {
+		const { getAllByRole, emitted, getByTestId } = renderComment({ comment, userPublicId: LOGGED_IN_USER });
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
 		const likeCount = getByTestId('like-count');
 
@@ -54,21 +73,21 @@ describe('KvCommentsListItem', () => {
 		}]]);
 	});
 
-	it('should handle reply button click', async () => {
-		const { getAllByRole, getByRole } = renderComment({ comment });
+	it('should handle reply button click for logged in user', async () => {
+		const { getAllByRole, getByRole } = renderComment({ comment, userPublicId: LOGGED_IN_USER });
 		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
 
 		await userEvent.click(replyButton);
 		getByRole('button', { name: 'Comment' });
 	});
 
-	it('should emit reply reaction events', async () => {
+	it('should emit reply reaction events for logged in user', async () => {
 		const {
 			getAllByRole,
 			getByRole,
 			getByPlaceholderText,
 			emitted,
-		} = renderComment({ comment });
+		} = renderComment({ comment, userPublicId: LOGGED_IN_USER });
 		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
 
 		const TEST_OBJ = {
