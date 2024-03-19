@@ -18,7 +18,10 @@
 				{{ commentText }}
 			</p>
 		</div>
-		<div class="tw-flex tw-items-center tw-gap-x-2">
+		<div
+			v-if="nestLevel < 3"
+			class="tw-flex tw-items-center tw-gap-x-2"
+		>
 			<div class="tw-flex tw-items-center tw-gap-0.5">
 				<kv-comments-heart-button
 					:is-small="true"
@@ -35,7 +38,7 @@
 				</p>
 			</div>
 			<kv-comments-reply-button
-				v-if="userPublicId && nestLevel < 3"
+				v-if="userPublicId"
 				:number-of-replies="numberOfReplies"
 				@click="replyClick"
 			/>
