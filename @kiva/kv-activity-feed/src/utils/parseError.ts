@@ -1,4 +1,4 @@
-import { SiteError, FeedError } from 'getstream';
+import { SiteError, FeedError } from 'getstream/src/errors';
 
 const parseError = (e: any) => {
 	if (e instanceof Error || e instanceof SiteError || e instanceof FeedError) {

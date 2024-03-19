@@ -1,4 +1,4 @@
-import { SiteError, FeedError } from 'getstream';
+import { SiteError, FeedError } from 'getstream/src/errors';
 import parseError from '../utils/parseError';
 
 describe('parseError', () => {
