@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.7.0...@kiva/kv-activity-feed@1.7.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* revert level 3 reactions and more specific error src ([dc8acac](https://github.com/kiva/kv-ui-elements/commit/dc8acaca403b438d34daca49e85442627883b08f))
+* simplify stream error handling ([6119c0f](https://github.com/kiva/kv-ui-elements/commit/6119c0f71f467c92bae67b5e96a5a03e16ba9166))
+
+
+
+
+
 # [1.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.6.0...@kiva/kv-activity-feed@1.7.0) (2024-03-01)
 
 

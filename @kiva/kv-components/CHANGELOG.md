@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.65.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.1...@kiva/kv-components@3.65.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* revert level 3 reactions and more specific error src ([dc8acac](https://github.com/kiva/kv-ui-elements/commit/dc8acaca403b438d34daca49e85442627883b08f))
+
+
+
+
+
 ## [3.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.0...@kiva/kv-components@3.65.1) (2024-03-19)
 
 
