@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.64.0...@kiva/kv-components@3.65.0) (2024-03-19)
+
+
+### Features
+
+* logged in feats for commenting components ([#370](https://github.com/kiva/kv-ui-elements/issues/370)) ([bee56c9](https://github.com/kiva/kv-ui-elements/commit/bee56c9fa3451ef91e89b3b64a5f7846840fedcf))
+
+
+
+
+
 # [3.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.1...@kiva/kv-components@3.64.0) (2024-03-18)
 
 
