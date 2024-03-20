@@ -46,6 +46,17 @@ describe('KvCommentsListItem', () => {
 		getByText(comment.data.text);
 	});
 
+	it('should render child comment text if replies list opened', async () => {
+		const { getAllByText, getAllByRole } = renderComment({ comment });
+		const openRepliesButton = getAllByRole('button', { name: '1 reply' })[0];
+
+		await userEvent.click(openRepliesButton);
+
+		const childComment = getAllByText(comment.latest_children.comment[0].data.text)[0];
+
+		expect(childComment).toBeDefined();
+	});
+
 	it('should not handle like button click for guest user', async () => {
 		const { getAllByRole, emitted, getByTestId } = renderComment({ comment });
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];

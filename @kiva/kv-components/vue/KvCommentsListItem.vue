@@ -20,7 +20,7 @@
 		</div>
 		<div
 			v-if="nestLevel < 3"
-			class="tw-flex tw-items-center tw-gap-x-2"
+			class="tw-flex tw-items-center tw-gap-x-1"
 		>
 			<div class="tw-flex tw-items-center tw-gap-0.5">
 				<kv-comments-heart-button
@@ -39,7 +39,6 @@
 			</div>
 			<kv-comments-reply-button
 				v-if="userPublicId"
-				:number-of-replies="numberOfReplies"
 				@click="replyClick"
 			/>
 		</div>
@@ -61,25 +60,40 @@
 			v-if="childComments"
 			class="tw-my-1"
 		>
-			<p
-				v-for="nested_comment in childComments"
-				:key="nested_comment.id"
-				class="tw-ml-3"
+			<button
+				v-if="numberOfReplies"
+				class="tw-ml-3 tw-text-action tw-font-medium tw-mb-1 tw-flex tw-items-center"
+				@click="toggleReplies"
 			>
-				<kv-comments-list-item
-					:user-image-url="userImageUrl"
-					:user-display-name="userDisplayName"
-					:user-public-id="userPublicId"
-					:comment="nested_comment"
-					:nest-level="nestLevel + 1"
-					@add-reaction="$emit(ADD_REACTION_EVENT, $event);"
+				<kv-material-icon
+					class="tw-h-2.5 tw-w-2.5 tw-transition tw-transform tw-duration-500 tw-ease"
+					:class="{ 'tw-rotate-180' : repliesOpened }"
+					:icon="mdiChevronDown"
 				/>
-			</p>
+				{{ numberOfReplies }} {{ numberOfReplies > 1 ? 'replies' : 'reply' }}
+			</button>
+			<div v-if="repliesOpened">
+				<div
+					v-for="nested_comment in childComments"
+					:key="nested_comment.id"
+					class="tw-ml-3"
+				>
+					<kv-comments-list-item
+						:user-image-url="userImageUrl"
+						:user-display-name="userDisplayName"
+						:user-public-id="userPublicId"
+						:comment="nested_comment"
+						:nest-level="nestLevel + 1"
+						@add-reaction="$emit(ADD_REACTION_EVENT, $event);"
+					/>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import { mdiChevronDown } from '@mdi/js';
 import {
 	ref,
 	nextTick,
@@ -88,6 +102,7 @@ import {
 	onMounted,
 	inject,
 } from 'vue-demi';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';
 import KvCommentsAdd from './KvCommentsAdd.vue';
@@ -104,6 +119,7 @@ export default {
 		KvCommentsHeartButton,
 		KvCommentsAdd,
 		KvUserAvatar,
+		KvMaterialIcon,
 	},
 	props: {
 		/**
@@ -154,6 +170,7 @@ export default {
 		const showInput = ref(false);
 		const commentsAddRef = ref(null);
 		const authorInfo = ref();
+		const repliesOpened = ref(false);
 
 		const commentText = computed(() => comment?.value?.data?.text ?? '');
 
@@ -193,6 +210,8 @@ export default {
 
 		const numberOfReplies = computed(() => comment?.value?.children_counts?.comment ?? 0);
 
+		const toggleReplies = () => { repliesOpened.value = !repliesOpened.value; };
+
 		// The fetchLenderInfo method must be provided in the parent component
 		const fetchLenderInfo = inject('fetchLenderInfo');
 
@@ -219,6 +238,9 @@ export default {
 			isLiked,
 			numberOfLikes,
 			numberOfReplies,
+			repliesOpened,
+			toggleReplies,
+			mdiChevronDown,
 		};
 	},
 };

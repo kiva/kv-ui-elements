@@ -94,7 +94,9 @@ const comments = {
 											},
 										],
 									},
-									children_counts: {},
+									children_counts: {
+										comment: 1,
+									},
 								},
 								{
 									created_at: '2024-02-28T20:04:21.445272Z',
