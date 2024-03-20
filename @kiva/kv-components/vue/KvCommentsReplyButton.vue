@@ -17,12 +17,6 @@
 				fill="#1C1B1F"
 			/>
 		</svg>
-		<span
-			v-if="numberOfReplies"
-			data-testid="reply-count"
-		>
-			{{ numberOfReplies }}
-		</span>
 		<span>
 			reply
 		</span>
@@ -36,15 +30,6 @@ export default {
 	name: 'KvCommentsReplyButton',
 	components: {
 		KvButton,
-	},
-	props: {
-		/**
-		 * The number of replies to the comment.
-		 */
-		numberOfReplies: {
-			type: Number,
-			default: 0,
-		},
 	},
 	emits: [
 		'click',
