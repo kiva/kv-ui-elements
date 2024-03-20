@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.2...@kiva/kv-components@3.66.0) (2024-03-20)
+
+
+### Features
+
+* collapsable replies list added to commenting component ([#373](https://github.com/kiva/kv-ui-elements/issues/373)) ([612a880](https://github.com/kiva/kv-ui-elements/commit/612a8806ffd74411a774f6bdf5efb30e877abaa1))
+
+
+
+
+
 ## [3.65.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.1...@kiva/kv-components@3.65.2) (2024-03-19)
 
 
