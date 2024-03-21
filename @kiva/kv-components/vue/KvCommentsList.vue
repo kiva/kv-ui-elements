@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<KvCommentsListItem
-			v-for="comment in comments.comment"
+			v-for="comment in comments"
 			:id="comment.id"
 			:key="comment.id"
 			:nest-level="1"
@@ -51,8 +51,8 @@ export default {
 		 * Activity comments
 		 */
 		comments: {
-			type: Object,
-			default: () => ({}),
+			type: Array,
+			default: () => ([]),
 		},
 	},
 	emits: [ADD_REACTION_EVENT],

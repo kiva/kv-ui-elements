@@ -56,8 +56,8 @@ export default {
 		 * Activity comments
 		 */
 		comments: {
-			type: Object,
-			default: () => ({}),
+			type: Array,
+			default: () => ([]),
 		},
 	},
 	emits: [ADD_REACTION_EVENT],
