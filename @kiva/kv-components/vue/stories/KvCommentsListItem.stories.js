@@ -1,5 +1,5 @@
 import KvCommentsListItem from '../KvCommentsListItem.vue';
-import activityFeed from '../../tests/fixtures/mockFeedActivityData';
+import comments from '../../tests/fixtures/mockFeedActivityData';
 
 export default {
 	title: 'KvCommentsListItem',
@@ -28,8 +28,8 @@ const story = (args) => {
 	return template;
 };
 
-const comment = activityFeed.results[0].latest_reactions.comment[1];
-const childComments = activityFeed.results[0].latest_reactions.comment[0];
+const comment = comments[0];
+const childComments = comments[0];
 
 export const Default = story({ comment });
 
