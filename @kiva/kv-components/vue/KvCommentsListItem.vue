@@ -174,7 +174,7 @@ export default {
 
 		const commentText = computed(() => comment?.value?.text ?? '');
 
-		const authorId = computed(() => comment?.value?.user?.publicLenderId ?? '');
+		const authorId = computed(() => comment?.value?.publicLenderId ?? '');
 		const authorImage = computed(() => authorInfo?.value?.image?.url ?? '');
 		const authorName = computed(() => authorInfo?.value?.name ?? '');
 
