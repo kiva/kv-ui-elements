@@ -1,10 +1,10 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import KvCommentsListItem, { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
-import activityFeed from '../../../fixtures/mockFeedActivityData';
+import comments from '../../../fixtures/mockFeedActivityData';
 import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
-const comment = activityFeed.results[0].latest_reactions.comment[0];
+const comment = comments[0];
 const LOGGED_IN_USER = 'TEST_USER';
 
 const renderComment = (props = {}) => {
@@ -43,7 +43,7 @@ describe('KvCommentsListItem', () => {
 
 	it('should render comment text', () => {
 		const { getByText } = renderComment({ comment });
-		getByText(comment.data.text);
+		getByText(comment.text);
 	});
 
 	it('should render child comment text if replies list opened', async () => {
@@ -52,7 +52,7 @@ describe('KvCommentsListItem', () => {
 
 		await userEvent.click(openRepliesButton);
 
-		const childComment = getAllByText(comment.latest_children.comment[0].data.text)[0];
+		const childComment = getAllByText(comment.latest_children.comment[0].text)[0];
 
 		expect(childComment).toBeDefined();
 	});

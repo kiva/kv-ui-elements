@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import ListComponent from '../../../../vue/KvCommentsList.vue';
-import activityFeed from '../../../fixtures/mockFeedActivityData';
+import comments from '../../../fixtures/mockFeedActivityData';
 import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
 import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
@@ -24,13 +24,11 @@ const renderList = (props = {}) => {
 		});
 };
 
-const comments = activityFeed.results[0].latest_reactions;
-
 describe('KvCommentsList', () => {
 	it('should render comments component', async () => {
 		const { container } = renderList({ comments });
 
-		const { id } = comments.comment[0];
+		const { id } = comments[0];
 		expect(container.querySelectorAll(`#${id}`).length).toBe(1);
 	});
 
@@ -45,7 +43,7 @@ describe('KvCommentsList', () => {
 	it('should emit like reaction events for logged in user', async () => {
 		const { getAllByRole, emitted } = renderList({ comments, userPublicId: LOGGED_IN_USER });
 		const likeButton = getAllByRole('button', { name: 'Like' })[0];
-		const firstComment = comments.comment[0];
+		const firstComment = comments[0];
 
 		const TEST_OBJ = {
 			id: firstComment.id,
@@ -64,7 +62,7 @@ describe('KvCommentsList', () => {
 			emitted,
 		} = renderList({ comments, userPublicId: LOGGED_IN_USER });
 		const replyButton = getAllByRole('button', { name: 'Reply' })[0];
-		const firstComment = comments.comment[0];
+		const firstComment = comments[0];
 
 		const TEST_OBJ = {
 			id: firstComment.id,
