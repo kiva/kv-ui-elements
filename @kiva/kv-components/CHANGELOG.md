@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.66.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.0...@kiva/kv-components@3.66.1) (2024-03-21)
+
+
+### Bug Fixes
+
+* adjust commenting components initially for chat data ([f821dcf](https://github.com/kiva/kv-ui-elements/commit/f821dcf7762f5a0e584a788a5e551fd5762032e6))
+* adjust for new data type ([99a33fb](https://github.com/kiva/kv-ui-elements/commit/99a33fbf4de6e4cab2d5759a7b0b4f94f8a707eb))
+* another data tweak ([770be92](https://github.com/kiva/kv-ui-elements/commit/770be9278f1017a553e5d3480dc530824567a4f1))
+
+
+
+
+
 # [3.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.2...@kiva/kv-components@3.66.0) (2024-03-20)
 
 
