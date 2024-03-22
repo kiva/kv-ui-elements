@@ -177,22 +177,24 @@
 				/>
 			</div>
 
-			<component
-				:is="tag"
-				v-if="unreservedAmount > 0"
-				:to="readMorePath"
-				:href="readMorePath"
-				class="loan-card-progress tw-mt-1"
-				aria-label="Loan progress"
-				@click="clickReadMore('Progress')"
-			>
-				<kv-loan-progress-group
-					id="loanProgress"
-					:money-left="`${unreservedAmount}`"
-					:progress-percent="fundraisingPercent"
-					class="tw-text-black"
-				/>
-			</component>
+			<div>
+				<component
+					:is="tag"
+					v-if="unreservedAmount > 0"
+					:to="readMorePath"
+					:href="readMorePath"
+					class="loan-card-progress tw-mt-1"
+					aria-label="Loan progress"
+					@click="clickReadMore('Progress')"
+				>
+					<kv-loan-progress-group
+						id="loanProgress"
+						:money-left="`${unreservedAmount}`"
+						:progress-percent="fundraisingPercent"
+						class="tw-text-black"
+					/>
+				</component>
+			</div>
 
 			<!-- CTA Button -->
 			<kv-loading-placeholder
