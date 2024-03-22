@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.66.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.1...@kiva/kv-components@3.66.2) (2024-03-22)
+
+
+### Bug Fixes
+
+* loan card bug fixed ([#375](https://github.com/kiva/kv-ui-elements/issues/375)) ([724be25](https://github.com/kiva/kv-ui-elements/commit/724be2519ed7ee176a6c1fbe8c47b4fb9a825dc7))
+
+
+
+
+
 ## [3.66.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.0...@kiva/kv-components@3.66.1) (2024-03-21)
 
 
