@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.2...@kiva/kv-components@3.67.0) (2024-03-25)
+
+
+### Features
+
+* inline activity feed amount lent updated ([#376](https://github.com/kiva/kv-ui-elements/issues/376)) ([cdb52ec](https://github.com/kiva/kv-ui-elements/commit/cdb52ec5e85f258efbf5c5e44952523cb0dd454a))
+
+
+
+
+
 ## [3.66.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.1...@kiva/kv-components@3.66.2) (2024-03-22)
 
 
