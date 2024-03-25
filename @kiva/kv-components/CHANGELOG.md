@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.67.0...@kiva/kv-components@3.68.0) (2024-03-25)
+
+
+### Features
+
+* info icon added to voting card ([cd7eb7e](https://github.com/kiva/kv-ui-elements/commit/cd7eb7ed944637871c45bd0644b20f18b2184401))
+
+
+
+
+
 # [3.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.2...@kiva/kv-components@3.67.0) (2024-03-25)
 
 
