@@ -29,4 +29,5 @@ Default.args = {
 	category: 'Women-owned retail businesses',
 	percentage: 45,
 	showVoteButton: true,
+	showInfoIcon: true,
 };

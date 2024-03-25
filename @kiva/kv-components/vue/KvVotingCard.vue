@@ -35,10 +35,17 @@
 				</div>
 			</div>
 		</div>
-
-		<h3 class="tw-font-medium">
-			{{ category }}
-		</h3>
+		<div class="tw-flex">
+			<h3 class="tw-font-medium">
+				{{ category }}
+			</h3>
+			<kv-material-icon
+				v-if="showInfoIcon"
+				:icon="infoIcon"
+				class="tw-h-3 tw-w-3"
+				@click="handleInfoClick"
+			/>
+		</div>
 		<div class="tw-flex tw-items-center tw-w-full tw-mb-1">
 			<kv-progress-bar
 				v-if="showPercentage"
@@ -64,7 +71,7 @@
 </template>
 
 <script>
-import { mdiMapMarker } from '@mdi/js';
+import { mdiInformation, mdiMapMarker } from '@mdi/js';
 import { computed } from 'vue-demi';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
@@ -102,17 +109,28 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		showInfoIcon: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup() {
 		const mapMarkerIcon = computed(() => mdiMapMarker);
+		const infoIcon = computed(() => mdiInformation);
 		return {
 			mapMarkerIcon,
+			infoIcon,
 		};
 	},
 
 	methods: {
 		castVote() {
 			this.$emit('vote', {
+				category: this.category,
+			});
+		},
+		handleInfoClick() {
+			this.$emit('info-click', {
 				category: this.category,
 			});
 		},
