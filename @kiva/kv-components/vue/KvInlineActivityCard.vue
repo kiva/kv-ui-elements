@@ -40,7 +40,7 @@ export default {
 		const lenderName = computed(() => activity?.value?.lender?.name ?? '');
 		const lenderImageUrl = computed(() => activity?.value?.lender?.image?.url ?? '');
 		const amountLent = computed(() => {
-			const amount = activity?.value?.shareAmount ?? '';
+			const amount = activity?.value?.amountLent ?? 0;
 			return parseFloat(amount).toFixed();
 		});
 

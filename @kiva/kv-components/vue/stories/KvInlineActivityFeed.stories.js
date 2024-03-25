@@ -9,7 +9,7 @@ const activities = [
 				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 	{
 		lender: {
@@ -19,7 +19,7 @@ const activities = [
 				url: '',
 			},
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 	{
 		lender: {
@@ -29,7 +29,7 @@ const activities = [
 				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 	{
 		lender: {
@@ -39,7 +39,7 @@ const activities = [
 				url: 'https://www-0.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 			},
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 	{
 		lender: {
@@ -49,7 +49,7 @@ const activities = [
 				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 ];
 

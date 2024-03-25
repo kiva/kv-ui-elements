@@ -28,7 +28,7 @@ export const Default = story({
 			},
 			name: 'Roger',
 		},
-		shareAmount: '125.00',
+		amountLent: '125.00',
 	},
 });
 
@@ -40,7 +40,7 @@ export const NoImage = story({
 			},
 			name: 'Roger',
 		},
-		shareAmount: '75.00',
+		amountLent: '75.00',
 	},
 });
 
@@ -52,7 +52,7 @@ export const Anonymous = story({
 			},
 			name: 'Anonymous',
 		},
-		shareAmount: '5.00',
+		amountLent: '5.00',
 	},
 });
 
@@ -64,6 +64,6 @@ export const DefaultProfile = story({
 			},
 			name: 'Default Profile',
 		},
-		shareAmount: '25.00',
+		amountLent: '25.00',
 	},
 });
