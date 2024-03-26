@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.68.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.0...@kiva/kv-components@3.68.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* activity feed item bg should be white ([b60cc9d](https://github.com/kiva/kv-ui-elements/commit/b60cc9d25cd397836d805461f7795092e3a1d187))
+
+
+
+
+
 # [3.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.67.0...@kiva/kv-components@3.68.0) (2024-03-25)
 
 
