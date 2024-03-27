@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.7.1...@kiva/kv-activity-feed@1.8.0) (2024-03-27)
+
+
+### Features
+
+* adjust activity feed service for chat product ([3951e28](https://github.com/kiva/kv-ui-elements/commit/3951e285c3bec6c3fa6f145e7de4223d82dd2a84))
+
+
+
+
+
 ## [1.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.7.0...@kiva/kv-activity-feed@1.7.1) (2024-03-19)
 
 

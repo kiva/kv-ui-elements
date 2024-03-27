@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.0...@kiva/kv-components@3.69.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* remove reaction wasn't working ([4fa9d53](https://github.com/kiva/kv-ui-elements/commit/4fa9d5358da329c3bc4fcd49e4d0d6ef4d3d830c))
+
+
+
+
+
 # [3.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.1...@kiva/kv-components@3.69.0) (2024-03-27)
 
 
