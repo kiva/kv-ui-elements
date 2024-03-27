@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.1...@kiva/kv-components@3.69.0) (2024-03-27)
+
+
+### Features
+
+* adjust comment components for chat product ([077a8ff](https://github.com/kiva/kv-ui-elements/commit/077a8fffbd8df44ee91ce2cf97b7f460fdbc1b49))
+
+
+
+
+
 ## [3.68.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.0...@kiva/kv-components@3.68.1) (2024-03-26)
 
 
