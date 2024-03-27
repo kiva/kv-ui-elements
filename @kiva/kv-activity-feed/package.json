@@ -41,6 +41,6 @@
     "typescript": "^5.3.2"
   },
   "dependencies": {
-    "getstream": "^8.0.1"
+    "stream-chat": "^8.25.0"
   }
 }

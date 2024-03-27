@@ -1,102 +1,129 @@
-/* eslint-disable no-new */
-import { connect } from 'getstream';
+import { StreamChat } from 'stream-chat';
 import ActivityFeedService from '../index';
 import * as parseError from '../utils/parseError';
 
-const mockActivity = { id: 'asd' };
-
-const mockUserGetOrCreate = jest.fn();
-const mockUserUpdate = jest.fn();
-const mockUser = jest.fn(() => ({
-	getOrCreate: mockUserGetOrCreate,
-	update: mockUserUpdate,
-}));
-const mockGetActivities = jest.fn(() => Promise.resolve({ results: [mockActivity] }));
-const mockAddComment = jest.fn();
-const mockAddLikeToComment = jest.fn();
-const mockRemoveReaction = jest.fn();
-
-const mockClient = {
-	user: mockUser,
-	getActivities: mockGetActivities,
-	reactions: {
-		add: mockAddComment,
-		addChild: mockAddLikeToComment,
-		delete: mockRemoveReaction,
+const messages = [
+	{
+		id: '3638ef05-85dc-4836-b7df-f5d5085a7f36',
+		text: 'sadasd',
+		user: {
+			publicLenderId: 'Jess1234',
+		},
+		latest_reactions: [
+			{
+				user: {
+					publicLenderId: 'Jess1234',
+				},
+				type: 'love',
+			},
+		],
 	},
-};
+	{
+		id: '53e30b71-9d50-4cc0-ae03-790bf56f8b3b',
+		text: 'second reply',
+		user: {
+			publicLenderId: 'Jess1234',
+		},
+		parentId: '3638ef05-85dc-4836-b7df-f5d5085a7f36',
+	},
+];
 
-jest.mock('getstream', () => ({
-	connect: jest.fn(() => mockClient),
+const mockConnectUser = jest.fn(() => Promise.resolve());
+const mockChannelWatch = jest.fn(() => Promise.resolve());
+const mockSendMessage = jest.fn();
+const mockSendReaction = jest.fn();
+const mockDeleteReaction = jest.fn();
+const mockChannel = jest.fn(() => ({
+	watch: mockChannelWatch,
+	sendMessage: mockSendMessage,
+	sendReaction: mockSendReaction,
+	deleteReaction: mockDeleteReaction,
+	state: { messages },
 }));
+const mockDisconnectUser = jest.fn();
 
 const API_KEY = 'API_KEY';
 const AUTH_TOKEN = 'AUTH_TOKEN';
-const APP_ID = 'APP_ID';
+
+const initService = async () => {
+	return new ActivityFeedService().init(
+		API_KEY,
+		AUTH_TOKEN,
+		'123',
+		'456',
+		'789',
+		'challenge',
+	);
+};
 
 describe('StreamService', () => {
 	let spyParseError: jest.SpyInstance;
+	let spyGetInstance: jest.SpyInstance;
 
 	beforeEach(() => {
 		spyParseError = jest.spyOn(parseError, 'default').mockImplementation(() => {});
+		spyGetInstance = jest.spyOn(StreamChat, 'getInstance').mockImplementation(() => ({
+			connectUser: mockConnectUser,
+			channel: mockChannel,
+			disconnectUser: mockDisconnectUser,
+		} as any));
 	});
 
 	afterEach(jest.clearAllMocks);
 
-	describe('constructor', () => {
+	describe('init', () => {
 		it('should create instance', async () => {
-			new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID);
+			await initService();
 
-			expect(connect).toHaveBeenCalledWith(API_KEY, AUTH_TOKEN, APP_ID);
+			expect(spyGetInstance).toHaveBeenCalledWith(API_KEY);
+			expect(mockConnectUser).toHaveBeenCalledWith({ id: '123', publicLenderId: '456' }, AUTH_TOKEN);
+			expect(mockChannel).toHaveBeenCalledWith('challenge', '789');
+			expect(mockChannelWatch).toHaveBeenCalledTimes(1);
 		});
 
 		it('should handle exception', async () => {
-			(connect as jest.Mock).mockImplementationOnce(() => { throw new Error(); });
+			spyGetInstance.mockImplementationOnce(() => { throw new Error(); });
 
-			new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID);
+			await initService();
 
 			expect(spyParseError).toHaveBeenCalledTimes(1);
 		});
 	});
 
-	describe('getOrCreateUser', () => {
-		it('should call expected user methods', async () => {
-			const userId = 1;
-			const publicLenderId = '2';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).getOrCreateUser(userId, publicLenderId);
+	describe('getComments', () => {
+		it('should return custom comment array', async () => {
+			const result = (await initService())?.getComments();
 
-			expect(mockUser).toHaveBeenCalledWith(userId.toString());
-			expect(mockUserGetOrCreate).toHaveBeenCalledWith({ publicLenderId });
+			expect(result).toEqual([
+				{
+					id: '3638ef05-85dc-4836-b7df-f5d5085a7f36',
+					text: 'sadasd',
+					publicLenderId: 'Jess1234',
+					children: {
+						comment: [
+							{
+								id: '53e30b71-9d50-4cc0-ae03-790bf56f8b3b',
+								text: 'second reply',
+								publicLenderId: 'Jess1234',
+								children: {
+									comment: [],
+									like: [],
+								},
+							},
+						],
+						like: [{ publicLenderId: 'Jess1234' }],
+					},
+				},
+			]);
 		});
 	});
 
-	describe('updateUser', () => {
-		it('should call user update', async () => {
-			const userId = 1;
-			const publicLenderId = '2';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).updateUser(userId, publicLenderId);
+	describe('disconnect', () => {
+		it('should call disconnect', async () => {
+			const service = await initService();
+			service?.disconnect();
 
-			expect(mockUser).toHaveBeenCalledWith(userId.toString());
-			expect(mockUserUpdate).toHaveBeenCalledWith({ publicLenderId });
-		});
-	});
-
-	describe('getActivity', () => {
-		it('should get activity', async () => {
-			const ID = 'test';
-			const result = await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).getActivity(ID);
-
-			expect(result).toBe(mockActivity);
-			expect(mockGetActivities).toHaveBeenCalledWith({ ids: [ID], withRecentReactions: true, withReactionCounts: true });
-		});
-
-		it('should handle exception', async () => {
-			mockGetActivities.mockImplementationOnce(() => { throw new Error(); });
-			const ID = 'test';
-			const result = await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).getActivity(ID);
-
-			expect(result).toBe(undefined);
-			expect(spyParseError).toHaveBeenCalledTimes(1);
+			expect(mockDisconnectUser).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -104,49 +131,52 @@ describe('StreamService', () => {
 		it('should add comment', async () => {
 			const ID = 'test';
 			const TEXT = 'asd';
-			const result = await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addComment(ID, TEXT);
+			await (await initService())?.addComment(TEXT, ID);
 
-			expect(result).toBe(true);
-			expect(mockAddComment).toHaveBeenCalledWith('comment', ID, { text: TEXT });
+			expect(mockSendMessage).toHaveBeenCalledWith({ text: TEXT, parentId: ID });
 		});
 
 		it('should handle exception', async () => {
-			mockAddComment.mockImplementationOnce(() => { throw new Error(); });
-			const result = await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addComment('test', 'asd');
+			const ID = 'test';
+			const TEXT = 'asd';
+			mockSendMessage.mockImplementationOnce(() => { throw new Error(); });
+			await (await initService())?.addComment(TEXT, ID);
 
-			expect(result).toBe(false);
 			expect(spyParseError).toHaveBeenCalledTimes(1);
 		});
 	});
 
-	describe('addLikeToComment', () => {
-		it('should call add to like comment method', async () => {
-			const commentId = 'test';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('like', commentId);
+	describe('addReaction', () => {
+		it('should add reaction', async () => {
+			const ID = 'test';
+			await (await initService())?.addReaction(ID);
 
-			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
-			expect(mockAddLikeToComment).toHaveBeenCalledWith('like', commentId, { text: undefined });
+			expect(mockSendReaction).toHaveBeenCalledWith(ID, { type: 'love' }, { enforce_unique: true });
 		});
-	});
 
-	describe('addReplyToComment', () => {
-		it('should call add to like comment method', async () => {
-			const commentId = 'test';
-			const TEXT = 'asd';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).addChildReaction('comment', commentId, TEXT);
+		it('should handle exception', async () => {
+			const ID = 'test';
+			mockSendReaction.mockImplementationOnce(() => { throw new Error(); });
+			await (await initService())?.addReaction(ID);
 
-			expect(mockAddLikeToComment).toHaveBeenCalledTimes(1);
-			expect(mockAddLikeToComment).toHaveBeenCalledWith('comment', commentId, { text: TEXT });
+			expect(spyParseError).toHaveBeenCalledTimes(1);
 		});
 	});
 
 	describe('removeReaction', () => {
-		it('should call remove reaction method', async () => {
-			const reactionId = 'test';
-			await (new ActivityFeedService(API_KEY, AUTH_TOKEN, APP_ID)).removeReaction(reactionId);
+		it('should remove reaction', async () => {
+			const ID = 'test';
+			await (await initService())?.removeReaction(ID);
 
-			expect(mockRemoveReaction).toHaveBeenCalledTimes(1);
-			expect(mockRemoveReaction).toHaveBeenCalledWith(reactionId);
+			expect(mockDeleteReaction).toHaveBeenCalledWith(ID, 'love');
+		});
+
+		it('should handle exception', async () => {
+			const ID = 'test';
+			mockDeleteReaction.mockImplementationOnce(() => { throw new Error(); });
+			await (await initService())?.removeReaction(ID);
+
+			expect(spyParseError).toHaveBeenCalledTimes(1);
 		});
 	});
 });

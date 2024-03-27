@@ -194,9 +194,6 @@ export default {
 				isChild: true,
 				value,
 			};
-			if (reaction === LIKE_COMMENT_EVENT && !value) {
-				payload.id = likedObject.value.id;
-			}
 
 			emit(ADD_REACTION_EVENT, payload);
 		};
