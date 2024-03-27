@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import KvCommentsListItem, { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem.vue';
-import comments from '../../../fixtures/mockFeedActivityData';
+import { comments } from '../../../fixtures/mockCommentsData';
 import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer.vue';
 
 const comment = comments[0];
@@ -52,7 +52,7 @@ describe('KvCommentsListItem', () => {
 
 		await userEvent.click(openRepliesButton);
 
-		const childComment = getAllByText(comment.latest_children.comment[0].text)[0];
+		const childComment = getAllByText(comment.children.comment[0].text)[0];
 
 		expect(childComment).toBeDefined();
 	});

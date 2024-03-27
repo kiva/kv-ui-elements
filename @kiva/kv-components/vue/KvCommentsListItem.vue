@@ -18,10 +18,7 @@
 				{{ commentText }}
 			</p>
 		</div>
-		<div
-			v-if="nestLevel < 3"
-			class="tw-flex tw-items-center tw-gap-x-1"
-		>
+		<div class="tw-flex tw-items-center tw-gap-x-1">
 			<div class="tw-flex tw-items-center tw-gap-0.5">
 				<kv-comments-heart-button
 					:is-small="true"
@@ -38,7 +35,7 @@
 				</p>
 			</div>
 			<kv-comments-reply-button
-				v-if="userPublicId"
+				v-if="userPublicId && nestLevel === 0"
 				@click="replyClick"
 			/>
 		</div>
@@ -74,15 +71,15 @@
 			</button>
 			<div v-if="repliesOpened">
 				<div
-					v-for="nested_comment in childComments"
-					:key="nested_comment.id"
+					v-for="childComment in childComments"
+					:key="childComment.id"
 					class="tw-ml-3"
 				>
 					<kv-comments-list-item
 						:user-image-url="userImageUrl"
 						:user-display-name="userDisplayName"
 						:user-public-id="userPublicId"
-						:comment="nested_comment"
+						:comment="childComment"
 						:nest-level="nestLevel + 1"
 						@add-reaction="$emit(ADD_REACTION_EVENT, $event);"
 					/>
@@ -178,9 +175,9 @@ export default {
 		const authorImage = computed(() => authorInfo?.value?.image?.url ?? '');
 		const authorName = computed(() => authorInfo?.value?.name ?? '');
 
-		const childComments = computed(() => comment?.value?.latest_children?.comment ?? null);
-		const childLikes = computed(() => comment?.value?.latest_children?.like ?? []);
-		const likedObject = computed(() => childLikes.value.find((child) => child?.user?.data?.publicLenderId === userPublicId.value)); // eslint-disable-line max-len
+		const childComments = computed(() => comment?.value?.children?.comment ?? null);
+		const childLikes = computed(() => (comment?.value?.children?.like ?? []));
+		const likedObject = computed(() => childLikes.value.find((l) => l.publicLenderId === userPublicId.value));
 		const isLiked = computed(() => likedObject.value !== undefined);
 
 		const replyClick = () => {
@@ -206,9 +203,9 @@ export default {
 
 		const hideInput = () => { showInput.value = false; };
 
-		const numberOfLikes = computed(() => comment?.value?.children_counts?.like ?? 0);
+		const numberOfLikes = computed(() => comment?.value?.children?.like?.length ?? 0);
 
-		const numberOfReplies = computed(() => comment?.value?.children_counts?.comment ?? 0);
+		const numberOfReplies = computed(() => comment?.value?.children?.comment?.length ?? 0);
 
 		const toggleReplies = () => { repliesOpened.value = !repliesOpened.value; };
 

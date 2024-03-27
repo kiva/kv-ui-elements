@@ -1,5 +1,5 @@
 import KvCommentsContainer from '../KvCommentsContainer.vue';
-import comments from '../../tests/fixtures/mockFeedActivityData';
+import { publicLenderId, comments } from '../../tests/fixtures/mockCommentsData';
 
 export default {
 	title: 'KvCommentsContainer',
@@ -37,6 +37,6 @@ export const UserData = story(
 		comments,
 		userDisplayName: TEST_USER_NAME,
 		userImageUrl: TEST_USER_IMAGE,
-		userPublicId: 'Jess1234',
+		userPublicId: publicLenderId,
 	},
 );

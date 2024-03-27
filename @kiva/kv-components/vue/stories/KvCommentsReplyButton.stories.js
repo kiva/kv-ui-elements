@@ -19,5 +19,3 @@ const story = (args) => {
 };
 
 export const Default = story({});
-
-export const ReplyCount = story({ numberOfReplies: 6 });
