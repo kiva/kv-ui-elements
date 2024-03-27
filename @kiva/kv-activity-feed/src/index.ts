@@ -56,6 +56,7 @@ export default class ActivityFeedService {
 	 * @param publicLenderId The public lender ID of the user
 	 * @param activityId The ID of the current activity
 	 * @param channelType The channel type of the current activity
+	 * @param callback The callback for websocket messages
 	 * @returns The current instance of ActivityFeedService or undefined
 	 */
 	async init(
