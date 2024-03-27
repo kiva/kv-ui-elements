@@ -66,7 +66,7 @@ export default class ActivityFeedService {
 		publicLenderId: string,
 		activityId: string,
 		channelType: ActivityFeedChannel,
-		callback: (messages: ActivityFeedChannelMessage[]) => void,
+		callback: (messages?: ActivityFeedChannelMessage[]) => void,
 	) {
 		try {
 			this.client = StreamChat.getInstance(apiKey);
@@ -123,7 +123,7 @@ export default class ActivityFeedService {
 	 */
 	async disconnect() {
 		await this.client?.disconnectUser();
-		this.listener.unsubscribe();
+		this.listener?.unsubscribe();
 	}
 
 	/**
