@@ -2,6 +2,7 @@ const { rem, em } = require('./util.cjs');
 const designtokens = require('../primitives.json');
 
 const {
+	fonts,
 	fontSizes,
 	fontWeights,
 	letterSpacings,
@@ -132,6 +133,7 @@ const textStyles = (() => {
 	};
 
 	const textSubhead = {
+		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.subhead.sm),
 		fontWeight: fontWeights.book,
 		letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.sm),

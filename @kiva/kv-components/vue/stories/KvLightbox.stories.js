@@ -42,7 +42,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p class="tw-mb-2">Lorem ipsum aliquip labore commodo anim elit amet cupidatat do ex ipsum. Consectetur excepteur ea anim velit reprehenderit qui aliquip ullamco aliquip irure dolor ex. Occaecat excepteur enim eu incididunt ut consectetur aliqua magna et. Reprehenderit duis ex excepteur sit et cupidatat cillum cillum adipisicing ut adipisicing minim ad.</p>
-				<p>Et id excepteur cillum quis. Culpa dolore eiusmod ex officia ea deserunt. Aliquip velit deserunt Lorem nisi mollit aliquip esse quis. Lorem aliquip ex id reprehenderit irure cillum elit aliqua laboris fugiat aliquip irure. Nostrud irure est anim qui eu in eu quis cupidatat. Fugiat officia aliqua laborum in incididunt tempor anim ex velit qui magna. Cillum minim commodo pariatur ex cillum sit.</p>
+				<p class="tw-font-serif">Et id excepteur cillum quis. Culpa dolore eiusmod ex officia ea deserunt. Aliquip velit deserunt Lorem nisi mollit aliquip esse quis. Lorem aliquip ex id reprehenderit irure cillum elit aliqua laboris fugiat aliquip irure. Nostrud irure est anim qui eu in eu quis cupidatat. Fugiat officia aliqua laborum in incididunt tempor anim ex velit qui magna. Cillum minim commodo pariatur ex cillum sit.</p>
 				<template #controls>
 					<kv-button variant="secondary" @click="isLightboxVisible = false" ref="dontDoItRef">Don't do it!</kv-button>
 					<kv-button @click="isLightboxVisible = false" ref="doItRef">Do it!</kv-button>
