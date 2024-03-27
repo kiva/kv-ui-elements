@@ -4,7 +4,6 @@
 			v-for="comment in comments"
 			:id="comment.id"
 			:key="comment.id"
-			:nest-level="1"
 			:comment="comment"
 			:user-image-url="userImageUrl"
 			:user-display-name="userDisplayName"
