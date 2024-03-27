@@ -43,6 +43,11 @@ export default class ActivityFeedService {
 	private channel: Channel<DefaultGenerics>|undefined;
 
 	/**
+	 * The in-memory instance of the channel websocket listener
+	 */
+	private listener: { unsubscribe: () => void }|undefined;
+
+	/**
 	 * Creates instance of Steam Chat and opens user websocket connection
 	 *
 	 * @param apiKey The Stream service API key
@@ -51,6 +56,7 @@ export default class ActivityFeedService {
 	 * @param publicLenderId The public lender ID of the user
 	 * @param activityId The ID of the current activity
 	 * @param channelType The channel type of the current activity
+	 * @param callback The callback for websocket messages
 	 * @returns The current instance of ActivityFeedService or undefined
 	 */
 	async init(
@@ -60,6 +66,7 @@ export default class ActivityFeedService {
 		publicLenderId: string,
 		activityId: string,
 		channelType: ActivityFeedChannel,
+		callback: (messages: ActivityFeedChannelMessage[]) => void,
 	) {
 		try {
 			this.client = StreamChat.getInstance(apiKey);
@@ -71,6 +78,8 @@ export default class ActivityFeedService {
 			this.channel = this.client?.channel(channelType, activityId);
 			// Enable watching events for the current user
 			await this.channel?.watch();
+			// Respond to websocket messages
+			this.listener = this.channel.on(() => callback(this.getComments()));
 			return this;
 		} catch (error) {
 			parseError(error);
@@ -114,6 +123,7 @@ export default class ActivityFeedService {
 	 */
 	async disconnect() {
 		await this.client?.disconnectUser();
+		this.listener.unsubscribe();
 	}
 
 	/**

@@ -33,12 +33,15 @@ const mockChannelWatch = jest.fn(() => Promise.resolve());
 const mockSendMessage = jest.fn();
 const mockSendReaction = jest.fn();
 const mockDeleteReaction = jest.fn();
+const mockUnsubscribe = jest.fn();
+const mockChannelOn = jest.fn().mockImplementation(() => ({ unsubscribe: mockUnsubscribe }));
 const mockChannel = jest.fn(() => ({
 	watch: mockChannelWatch,
 	sendMessage: mockSendMessage,
 	sendReaction: mockSendReaction,
 	deleteReaction: mockDeleteReaction,
 	state: { messages },
+	on: mockChannelOn,
 }));
 const mockDisconnectUser = jest.fn();
 
@@ -53,6 +56,7 @@ const initService = async () => {
 		'456',
 		'789',
 		'challenge',
+		() => {},
 	);
 };
 
@@ -79,6 +83,7 @@ describe('StreamService', () => {
 			expect(mockConnectUser).toHaveBeenCalledWith({ id: '123', publicLenderId: '456' }, AUTH_TOKEN);
 			expect(mockChannel).toHaveBeenCalledWith('challenge', '789');
 			expect(mockChannelWatch).toHaveBeenCalledTimes(1);
+			expect(mockChannelOn).toHaveBeenCalledTimes(1);
 		});
 
 		it('should handle exception', async () => {
@@ -121,9 +126,10 @@ describe('StreamService', () => {
 	describe('disconnect', () => {
 		it('should call disconnect', async () => {
 			const service = await initService();
-			service?.disconnect();
+			await service?.disconnect();
 
 			expect(mockDisconnectUser).toHaveBeenCalledTimes(1);
+			expect(mockUnsubscribe).toHaveBeenCalledTimes(1);
 		});
 	});
 
