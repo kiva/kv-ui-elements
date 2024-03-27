@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.9.0...@kiva/kv-activity-feed@1.9.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* minor type cleanup for activity feed ([2b9aced](https://github.com/kiva/kv-ui-elements/commit/2b9aced07c24d4617af96dcb82afa886eee6679a))
+
+
+
+
+
 # [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.8.0...@kiva/kv-activity-feed@1.9.0) (2024-03-27)
 
 
