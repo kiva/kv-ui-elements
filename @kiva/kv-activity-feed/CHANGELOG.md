@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.8.0...@kiva/kv-activity-feed@1.9.0) (2024-03-27)
+
+
+### Bug Fixes
+
+* added missing param comment ([9e5ed94](https://github.com/kiva/kv-ui-elements/commit/9e5ed94abdb0855fa3fca529df4d6ed0fa09a284))
+* adjust tests for new changes ([afc9dd3](https://github.com/kiva/kv-ui-elements/commit/afc9dd3d89e58dd1851ac7fcd7af784cfe3e6ca2))
+
+
+### Features
+
+* chat product websockets ([17f866b](https://github.com/kiva/kv-ui-elements/commit/17f866b2753b586ae17f113a1407a7ef469b11eb))
+
+
+
+
+
 # [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-activity-feed@1.7.1...@kiva/kv-activity-feed@1.8.0) (2024-03-27)
 
 
