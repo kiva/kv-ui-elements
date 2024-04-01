@@ -225,6 +225,29 @@
 				@show-loan-details="clickReadMore('ViewLoan')"
 			/>
 		</div>
+		<div
+			v-if="combinedActivities.length > 0"
+			class="tw-pt-1.5"
+		>
+			<hr class="tw-border-tertiary tw-mb-1 tw-w-5/6 tw-mx-auto">
+			<KvLoanActivities
+				:loan="loan"
+				:combined-activities="combinedActivities"
+				:kv-track-function="kvTrackFunction"
+				:basket-items="basketItems"
+				:is-adding="isAdding"
+				:enable-five-dollars-notes="enableFiveDollarsNotes"
+				:five-dollars-selected="fiveDollarsSelected"
+				:show-view-loan="showViewLoan"
+				:custom-loan-details="customLoanDetails"
+				:external-links="externalLinks"
+				:route="route"
+				:user-balance="userBalance"
+				:get-cookie="getCookie"
+				:set-cookie="setCookie"
+				@add-to-basket="$emit('add-to-basket', $event)"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -241,6 +264,7 @@ import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 import KvLoanTeamPick from './KvLoanTeamPick.vue';
+import KvLoanActivities from './KvLoanActivities.vue';
 
 export default {
 	name: 'KvClassicLoanCard',
@@ -255,6 +279,7 @@ export default {
 		KvLoanCallouts,
 		KvLoanBookmark,
 		KvLoanTeamPick,
+		KvLoanActivities,
 	},
 	props: {
 		loanId: {
@@ -348,6 +373,10 @@ export default {
 		isTeamPick: {
 			type: Boolean,
 			default: false,
+		},
+		combinedActivities: {
+			type: Array,
+			default: () => ([]),
 		},
 	},
 	setup(props) {
