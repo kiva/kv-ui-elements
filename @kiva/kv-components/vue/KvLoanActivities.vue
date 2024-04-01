@@ -20,10 +20,15 @@
 			</button>
 		</div>
 		<KvLightbox
-			:title="modalTitle"
+			title="Activity Feed Modal"
 			:visible="lightboxOpen"
 			@lightbox-closed="closeLightbox"
 		>
+			<template #header>
+				<h2 class="tw-text-h3 tw-flex-1 data-hj-suppress">
+					{{ modalTitle }}
+				</h2>
+			</template>
 			<div class="tw-overflow-x-hidden tw-px-2 tw-pb-1">
 				<div
 					v-for="activity in combinedActivities"

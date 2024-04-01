@@ -94,6 +94,7 @@ describe('KvClassicLoanCard', () => {
 		const results = await axe(container);
 		expect(results).toHaveNoViolations();
 	});
+
 	it('location should be formatted correctly for PR', async () => {
 		const { getByText } = render(KvClassicLoanCard,
 			{
@@ -119,6 +120,7 @@ describe('KvClassicLoanCard', () => {
 		const countryTagElement = getByText('Rincon, PR');
 		expect(countryTagElement).toBeDefined();
 	});
+
 	it('location should be formatted correctly for Kiva US', async () => {
 		const { getByText } = render(KvClassicLoanCard,
 			{
@@ -144,6 +146,7 @@ describe('KvClassicLoanCard', () => {
 		const countryTagElement = getByText('Boulder, Colorado, United States');
 		expect(countryTagElement).toBeDefined();
 	});
+
 	it('location should be formatted correctly for partner loans', async () => {
 		const { getByText } = render(KvClassicLoanCard,
 			{
@@ -167,7 +170,8 @@ describe('KvClassicLoanCard', () => {
 		const countryTagElement = getByText('Uganda');
 		expect(countryTagElement).toBeDefined();
 	});
-	it('activity feed should be showed correctly', async () => {
+
+	it('activity feed should be showed correctly', () => {
 		const { getByText, getByRole } = render(KvClassicLoanCard,
 			{
 				props: {
