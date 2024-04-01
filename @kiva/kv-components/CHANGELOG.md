@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.70.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.1...@kiva/kv-components@3.70.0) (2024-04-01)
+
+
+### Features
+
+* activity feed added to loan card ([#383](https://github.com/kiva/kv-ui-elements/issues/383)) ([a7a3bfc](https://github.com/kiva/kv-ui-elements/commit/a7a3bfc600742b700eb221fa77d9951d793ca86b))
+
+
+
+
+
 ## [3.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.0...@kiva/kv-components@3.69.1) (2024-03-27)
 
 
