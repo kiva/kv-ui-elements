@@ -245,6 +245,7 @@
 				:user-balance="userBalance"
 				:get-cookie="getCookie"
 				:set-cookie="setCookie"
+				:error-msg="errorMsg"
 				@add-to-basket="$emit('add-to-basket', $event)"
 			/>
 		</div>
@@ -377,6 +378,10 @@ export default {
 		combinedActivities: {
 			type: Array,
 			default: () => ([]),
+		},
+		errorMsg: {
+			type: String,
+			default: '',
 		},
 	},
 	setup(props) {
