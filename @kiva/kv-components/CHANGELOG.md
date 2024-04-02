@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.71.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.70.0...@kiva/kv-components@3.71.0) (2024-04-02)
+
+
+### Features
+
+* pass error message to loan card and activity feed ([#384](https://github.com/kiva/kv-ui-elements/issues/384)) ([90f3ebc](https://github.com/kiva/kv-ui-elements/commit/90f3ebc45594ffbcacabe19d454b184573208257))
+
+
+
+
+
 # [3.70.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.1...@kiva/kv-components@3.70.0) (2024-04-01)
 
 
