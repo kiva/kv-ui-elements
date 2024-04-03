@@ -36,15 +36,19 @@
 			</div>
 		</div>
 		<div class="tw-flex">
-			<h3 class="tw-font-medium">
-				{{ category }}
-			</h3>
-			<kv-material-icon
-				v-if="showInfoIcon"
-				:icon="infoIcon"
-				class="tw-h-3 tw-w-3"
-				@click="handleInfoClick"
-			/>
+			<div>
+				<h3 class="tw-font-medium">
+					{{ category }}
+				</h3>
+			</div>
+			<div>
+				<kv-material-icon
+					v-if="showInfoIcon"
+					:icon="infoIcon"
+					class="tw-h-3 tw-w-3"
+					@click="handleInfoClick"
+				/>
+			</div>
 		</div>
 		<div class="tw-flex tw-items-center tw-w-full tw-mb-1">
 			<kv-progress-bar

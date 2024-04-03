@@ -26,7 +26,7 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
 	borrowerName: 'Jacqueline',
-	category: 'Women-owned retail businesses',
+	category: 'Helping households mitigate or adapt to climate change',
 	percentage: 45,
 	showVoteButton: true,
 	showInfoIcon: true,
