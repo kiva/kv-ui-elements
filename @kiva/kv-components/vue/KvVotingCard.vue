@@ -36,12 +36,12 @@
 			</div>
 		</div>
 		<div class="tw-flex">
-			<div>
+			<div class="tw-flex-grow">
 				<h3 class="tw-font-medium">
 					{{ category }}
 				</h3>
 			</div>
-			<div>
+			<div class="tw-flex-shrink">
 				<kv-material-icon
 					v-if="showInfoIcon"
 					:icon="infoIcon"
