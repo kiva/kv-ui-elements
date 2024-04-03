@@ -8,7 +8,6 @@
 		tw-p-1
 		tw-flex
 		tw-flex-col
-		tw-justify-between
 		tw-max-w-300"
 	>
 		<div class="tw-relative tw-flex tw-w-full tw-bg-black tw-rounded tw-mb-1">
@@ -35,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="tw-flex">
+		<div class="tw-flex tw-flex-grow">
 			<div class="tw-flex-grow">
 				<h3 class="tw-font-medium">
 					{{ category }}
