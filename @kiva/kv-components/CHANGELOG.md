@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.71.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.0...@kiva/kv-components@3.71.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* fixed bug related to icon resizing in voting card ([7dc424c](https://github.com/kiva/kv-ui-elements/commit/7dc424ce0aa83f627240c50bb9925033f50c2cc2))
+
+
+
+
+
 # [3.71.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.70.0...@kiva/kv-components@3.71.0) (2024-04-02)
 
 
