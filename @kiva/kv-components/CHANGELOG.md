@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.71.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.1...@kiva/kv-components@3.71.2) (2024-04-03)
+
+
+### Bug Fixes
+
+* icon needs to be pulled to the right on voting card for small titles ([571d372](https://github.com/kiva/kv-ui-elements/commit/571d372d54c20c08203ef901cd8d55023e12477a))
+* pinned title to top of area below image and vote + progress to bottom of card ([24f1609](https://github.com/kiva/kv-ui-elements/commit/24f1609f4ccc6211c02baef3530dba6bfe593271))
+
+
+
+
+
 ## [3.71.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.0...@kiva/kv-components@3.71.1) (2024-04-03)
 
 
