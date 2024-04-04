@@ -250,6 +250,30 @@ export const Primitives = (args, { argTypes }) => ({
 				</li>
 			</ul>
 		</section>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Text Styles <i>(Italics)</i></h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+				<li
+					v-for="typeStyle in kivaTypography"
+					:key="buildClassName('text', typeStyle)"
+					class="tw-overflow-x-auto tw-w-full"
+				>
+					<button
+						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+						@click="copy(buildClassName('tw-text', typeStyle))"
+					>
+						<p
+							class="tw-mb-1 tw-italic"
+							:class="buildClassName('tw-text', typeStyle)"
+							style="width: 12em;"
+						>
+							The quick brown fox jumps over the lazy dog
+						</p>
+						<span>.{{buildClassName('tw-text', typeStyle)}} .tw-italic</span>
+					</button>
+				</li>
+			</ul>
+		</section>
 		<hr>
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Font Weights</h2>
@@ -263,6 +287,26 @@ export const Primitives = (args, { argTypes }) => ({
 						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
 						<p :class="buildClassName('tw-font', fontWeight[0])">
+							The quick brown fox jumps over the lazy dog
+						</p>
+						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
+					</button>
+				</li>
+			</ul>
+		</section>
+		<hr>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Font Weights (Serif)</h2>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+				<li
+					v-for="fontWeight in fontWeights"
+					:key="buildClassName('tw-font', fontWeight[0])"
+				>
+					<button
+						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+						@click="copy(buildClassName('tw-font', fontWeight[0]))"
+					>
+						<p :class="[buildClassName('tw-font', fontWeight[0]), 'tw-font-serif']">
 							The quick brown fox jumps over the lazy dog
 						</p>
 						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
