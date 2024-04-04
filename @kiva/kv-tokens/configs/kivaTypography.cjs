@@ -3,7 +3,6 @@ const designtokens = require('../primitives.json');
 
 const {
 	fonts,
-	fontFamily,
 	fontSizes,
 	fontWeights,
 	letterSpacings,
@@ -62,7 +61,7 @@ const textBaseColor = 'rgb(var(--text-primary))';
 */
 const textStyles = (() => {
 	const textJumbo = {
-		fontFamily: fontFamily.serif,
+		fontFamily: fonts.serif,
 		fontWeight: fontWeights.bold,
 		fontSize: rem(fontSizes.jumbo.sm),
 		// letterSpacing: letterSpacings['-2'],
@@ -76,7 +75,7 @@ const textStyles = (() => {
 	};
 
 	const textH1 = {
-		fontFamily: fontFamily.serif,
+		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h1.sm),
 		fontWeight: fontWeights.bold,
 		// letterSpacing: em(letterSpacings['-0.3'], fontSizes.h1.sm),
@@ -92,7 +91,7 @@ const textStyles = (() => {
 	};
 
 	const textH2 = {
-		fontFamily: fontFamily.serif,
+		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h2.sm),
 		fontWeight: fontWeights.bold,
 		// letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
