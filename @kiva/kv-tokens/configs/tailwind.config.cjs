@@ -82,6 +82,7 @@ module.exports = {
 		fontWeight: {
 			book: `${fontWeights.book}`,
 			medium: `${fontWeights.medium}`,
+			bold: `${fontWeights.bold}`,
 		},
 		borderWidth: {
 			DEFAULT: rem(borderWidths.default),
@@ -195,6 +196,8 @@ module.exports = {
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,
 				h4: textStyles.textH4,
+				h5: textStyles.textH5,
+				h6: textStyles.textH6,
 				small: textStyles.textSmall,
 				code: {
 					fontSize: '0.875em',
@@ -205,6 +208,9 @@ module.exports = {
 					outline: 'revert', // undo tailwind button focus styling
 				},
 				a: textStyles.textLink,
+				// 'italic, em': {
+				// 	fontStyle: 'italic',
+				// },
 				'strong, b': {
 					fontWeight: fontWeights.medium,
 				},
@@ -229,6 +235,8 @@ module.exports = {
 				'.text-h2': textStyles.textH2,
 				'.text-h3': textStyles.textH3,
 				'.text-h4': textStyles.textH4,
+				'.text-h5': textStyles.textH5,
+				'.text-h6': textStyles.textH6,
 				'.text-subhead': textStyles.textSubhead,
 				'.text-jumbo': textStyles.textJumbo,
 				'.text-small': textStyles.textSmall,
