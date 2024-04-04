@@ -208,9 +208,6 @@ module.exports = {
 					outline: 'revert', // undo tailwind button focus styling
 				},
 				a: textStyles.textLink,
-				// 'italic, em': {
-				// 	fontStyle: 'italic',
-				// },
 				'strong, b': {
 					fontWeight: fontWeights.medium,
 				},
