@@ -29,6 +29,8 @@ const story = (args) => {
 					:photo-path="photoPath"
 					:show-view-loan="showViewLoan"
 					:custom-callouts="customCallouts"
+					:is-team-pick="isTeamPick"
+					:combined-activities="combinedActivities"
 				/>
 			</div>
 		`,
@@ -73,6 +75,40 @@ const loan = {
 	},
 	plannedExpirationDate: nextWeek.toISOString(),
 };
+
+const combinedActivities = [
+	{
+		key: 'Mon Nov 13 2023',
+		data: [
+			{
+				lenderName: 'Erica',
+				lenderImage: 'https://www.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
+				text: 'Erica lent $5',
+				date: '2023-11-13T10:51:10Z',
+				type: 'LendingAction',
+			},
+		],
+	},
+	{
+		key: 'Tue Nov 07 2023',
+		data: [
+			{
+				lenderName: 'Joy',
+				lenderImage: 'https://www.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
+				text: 'Joy left comment <span class="tw-italic">"I know him and his wife and they work hard to make everything they do the best. His farm and bake goods are amazing. He just keeps working harder and harder to do more and reach out to the community in everyway."</span>',
+				date: '2023-11-08T02:37:56Z',
+				type: 'Comment',
+			},
+			{
+				lenderName: 'Joy',
+				lenderImage: 'https://www.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
+				text: 'Joy lent $25',
+				date: '2023-11-08T02:32:20Z',
+				type: 'LendingAction',
+			},
+		],
+	},
+];
 
 const kvTrackFunction = () => { };
 
@@ -302,4 +338,40 @@ export const LendAgain = story({
 	},
 	kvTrackFunction,
 	photoPath,
+});
+
+export const TeamPick = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	isTeamPick: true,
+	isVisitor: false,
+});
+
+export const TeamPickVisitor = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	isTeamPick: true,
+	isVisitor: true,
+});
+
+export const ActivityFeed = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+		lenders: {
+			totalCount: 7,
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	combinedActivities,
 });

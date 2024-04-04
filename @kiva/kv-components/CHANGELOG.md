@@ -3,6 +3,487 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.71.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.1...@kiva/kv-components@3.71.2) (2024-04-03)
+
+
+### Bug Fixes
+
+* icon needs to be pulled to the right on voting card for small titles ([571d372](https://github.com/kiva/kv-ui-elements/commit/571d372d54c20c08203ef901cd8d55023e12477a))
+* pinned title to top of area below image and vote + progress to bottom of card ([24f1609](https://github.com/kiva/kv-ui-elements/commit/24f1609f4ccc6211c02baef3530dba6bfe593271))
+
+
+
+
+
+## [3.71.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.0...@kiva/kv-components@3.71.1) (2024-04-03)
+
+
+### Bug Fixes
+
+* fixed bug related to icon resizing in voting card ([7dc424c](https://github.com/kiva/kv-ui-elements/commit/7dc424ce0aa83f627240c50bb9925033f50c2cc2))
+
+
+
+
+
+# [3.71.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.70.0...@kiva/kv-components@3.71.0) (2024-04-02)
+
+
+### Features
+
+* pass error message to loan card and activity feed ([#384](https://github.com/kiva/kv-ui-elements/issues/384)) ([90f3ebc](https://github.com/kiva/kv-ui-elements/commit/90f3ebc45594ffbcacabe19d454b184573208257))
+
+
+
+
+
+# [3.70.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.1...@kiva/kv-components@3.70.0) (2024-04-01)
+
+
+### Features
+
+* activity feed added to loan card ([#383](https://github.com/kiva/kv-ui-elements/issues/383)) ([a7a3bfc](https://github.com/kiva/kv-ui-elements/commit/a7a3bfc600742b700eb221fa77d9951d793ca86b))
+
+
+
+
+
+## [3.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.69.0...@kiva/kv-components@3.69.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* remove reaction wasn't working ([4fa9d53](https://github.com/kiva/kv-ui-elements/commit/4fa9d5358da329c3bc4fcd49e4d0d6ef4d3d830c))
+
+
+
+
+
+# [3.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.1...@kiva/kv-components@3.69.0) (2024-03-27)
+
+
+### Features
+
+* adjust comment components for chat product ([077a8ff](https://github.com/kiva/kv-ui-elements/commit/077a8fffbd8df44ee91ce2cf97b7f460fdbc1b49))
+
+
+
+
+
+## [3.68.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.68.0...@kiva/kv-components@3.68.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* activity feed item bg should be white ([b60cc9d](https://github.com/kiva/kv-ui-elements/commit/b60cc9d25cd397836d805461f7795092e3a1d187))
+
+
+
+
+
+# [3.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.67.0...@kiva/kv-components@3.68.0) (2024-03-25)
+
+
+### Features
+
+* info icon added to voting card ([cd7eb7e](https://github.com/kiva/kv-ui-elements/commit/cd7eb7ed944637871c45bd0644b20f18b2184401))
+
+
+
+
+
+# [3.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.2...@kiva/kv-components@3.67.0) (2024-03-25)
+
+
+### Features
+
+* inline activity feed amount lent updated ([#376](https://github.com/kiva/kv-ui-elements/issues/376)) ([cdb52ec](https://github.com/kiva/kv-ui-elements/commit/cdb52ec5e85f258efbf5c5e44952523cb0dd454a))
+
+
+
+
+
+## [3.66.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.1...@kiva/kv-components@3.66.2) (2024-03-22)
+
+
+### Bug Fixes
+
+* loan card bug fixed ([#375](https://github.com/kiva/kv-ui-elements/issues/375)) ([724be25](https://github.com/kiva/kv-ui-elements/commit/724be2519ed7ee176a6c1fbe8c47b4fb9a825dc7))
+
+
+
+
+
+## [3.66.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.66.0...@kiva/kv-components@3.66.1) (2024-03-21)
+
+
+### Bug Fixes
+
+* adjust commenting components initially for chat data ([f821dcf](https://github.com/kiva/kv-ui-elements/commit/f821dcf7762f5a0e584a788a5e551fd5762032e6))
+* adjust for new data type ([99a33fb](https://github.com/kiva/kv-ui-elements/commit/99a33fbf4de6e4cab2d5759a7b0b4f94f8a707eb))
+* another data tweak ([770be92](https://github.com/kiva/kv-ui-elements/commit/770be9278f1017a553e5d3480dc530824567a4f1))
+
+
+
+
+
+# [3.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.2...@kiva/kv-components@3.66.0) (2024-03-20)
+
+
+### Features
+
+* collapsable replies list added to commenting component ([#373](https://github.com/kiva/kv-ui-elements/issues/373)) ([612a880](https://github.com/kiva/kv-ui-elements/commit/612a8806ffd74411a774f6bdf5efb30e877abaa1))
+
+
+
+
+
+## [3.65.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.1...@kiva/kv-components@3.65.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* revert level 3 reactions and more specific error src ([dc8acac](https://github.com/kiva/kv-ui-elements/commit/dc8acaca403b438d34daca49e85442627883b08f))
+
+
+
+
+
+## [3.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.65.0...@kiva/kv-components@3.65.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* allow heart on last comment level ([3e876ed](https://github.com/kiva/kv-ui-elements/commit/3e876ed7fa7d113acbbc24983ad8f5f90c29c3da))
+
+
+
+
+
+# [3.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.64.0...@kiva/kv-components@3.65.0) (2024-03-19)
+
+
+### Features
+
+* logged in feats for commenting components ([#370](https://github.com/kiva/kv-ui-elements/issues/370)) ([bee56c9](https://github.com/kiva/kv-ui-elements/commit/bee56c9fa3451ef91e89b3b64a5f7846840fedcf))
+
+
+
+
+
+# [3.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.1...@kiva/kv-components@3.64.0) (2024-03-18)
+
+
+### Features
+
+* team pick label added to loan card component ([#369](https://github.com/kiva/kv-ui-elements/issues/369)) ([76803bf](https://github.com/kiva/kv-ui-elements/commit/76803bfd7b81497f1d34e537c0435d7fa7dd3606))
+
+
+
+
+
+## [3.63.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.63.0...@kiva/kv-components@3.63.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* fix data reference for comment list item ([0955f28](https://github.com/kiva/kv-ui-elements/commit/0955f28b8deeb067e8d393c2365dbdcab79e92df))
+
+
+
+
+
+# [3.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.1...@kiva/kv-components@3.63.0) (2024-03-08)
+
+
+### Features
+
+* inline activity feed components added ([#367](https://github.com/kiva/kv-ui-elements/issues/367)) ([32c782a](https://github.com/kiva/kv-ui-elements/commit/32c782a39d39100dcf24a7a322488d5e25b86d8b))
+
+
+
+
+
+## [3.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.62.0...@kiva/kv-components@3.62.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* remove centering on voting card category ([fc0d036](https://github.com/kiva/kv-ui-elements/commit/fc0d03604bcdf6157b716a93d3e62d758e765aad))
+
+
+
+
+
+# [3.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.61.0...@kiva/kv-components@3.62.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* add comment regarding inject ([7a98c3b](https://github.com/kiva/kv-ui-elements/commit/7a98c3b017c9472c14ef0a26fdad53864aaf3ada))
+* add provide to commenting stories ([01c1e53](https://github.com/kiva/kv-ui-elements/commit/01c1e5305cda4d2885afa1c4a4784630e7a6047d))
+
+
+### Features
+
+* update reply to match other commenting buttons ([6ad68a3](https://github.com/kiva/kv-ui-elements/commit/6ad68a3ddcce48089d12bd473f8fa3bfd7c30b5f))
+
+
+
+
+
+# [3.61.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.60.0...@kiva/kv-components@3.61.0) (2024-03-04)
+
+
+### Features
+
+* fetchlenderinfo method injected to comment item component ([#362](https://github.com/kiva/kv-ui-elements/issues/362)) ([2aba5e0](https://github.com/kiva/kv-ui-elements/commit/2aba5e0837d57eec77f2d1bee48ca2c3c127c1d4))
+
+
+
+
+
+# [3.60.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.59.1...@kiva/kv-components@3.60.0) (2024-03-04)
+
+
+### Bug Fixes
+
+* unit test update ([e0e943b](https://github.com/kiva/kv-ui-elements/commit/e0e943bf51a9f7775f9b1279dc449787d7d05055))
+
+
+### Features
+
+* use new avatar in commenting components ([c707f71](https://github.com/kiva/kv-ui-elements/commit/c707f71e87661feb93486d3b900d4f0a77aff353))
+
+
+
+
+
+## [3.59.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.59.0...@kiva/kv-components@3.59.1) (2024-03-04)
+
+
+### Bug Fixes
+
+* comments count fixed ([#360](https://github.com/kiva/kv-ui-elements/issues/360)) ([cdbaf2d](https://github.com/kiva/kv-ui-elements/commit/cdbaf2d6e19e556cfb769805307466c24021567e))
+
+
+
+
+
+# [3.59.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.58.0...@kiva/kv-components@3.59.0) (2024-03-04)
+
+
+### Features
+
+* replies count added to reply commenting button ([#359](https://github.com/kiva/kv-ui-elements/issues/359)) ([87e4b01](https://github.com/kiva/kv-ui-elements/commit/87e4b01022641e774203274a0b3a353d1b2a37bc))
+
+
+
+
+
+# [3.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.57.0...@kiva/kv-components@3.58.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* fallback to kiva logo if no image or name ([74cdc90](https://github.com/kiva/kv-ui-elements/commit/74cdc900a8c1f9783771a7428f2722f59f5edf09))
+
+
+### Features
+
+* port avatar component from cps to cover different avatar situations ([036506f](https://github.com/kiva/kv-ui-elements/commit/036506f7680646c8e432af1842fb55851a5c6b2c))
+
+
+
+
+
+# [3.57.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.1...@kiva/kv-components@3.57.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* test failed because of whitespaces in value ([4591e93](https://github.com/kiva/kv-ui-elements/commit/4591e932a9c785f97019f47a8d7899142b2c1204))
+
+
+### Features
+
+* show number of likes ([c088fae](https://github.com/kiva/kv-ui-elements/commit/c088fae443da391871ef1783e64712d306b84007))
+
+
+
+
+
+## [3.56.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.56.0...@kiva/kv-components@3.56.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* remove country from voting card ([fee3dcb](https://github.com/kiva/kv-ui-elements/commit/fee3dcb7af0fd103dedca70c14448cfab91c66eb))
+
+
+
+
+
+# [3.56.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.2...@kiva/kv-components@3.56.0) (2024-03-01)
+
+
+### Features
+
+* update vote card to be able to hide percentage portion of card ([11c15b8](https://github.com/kiva/kv-ui-elements/commit/11c15b84b939f1a1781c5a24a6dbfd2be378c096))
+
+
+
+
+
+## [3.55.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.1...@kiva/kv-components@3.55.2) (2024-03-01)
+
+
+### Bug Fixes
+
+* remove const var import ([#352](https://github.com/kiva/kv-ui-elements/issues/352)) ([4c1ca6a](https://github.com/kiva/kv-ui-elements/commit/4c1ca6a2d518ce1b1b72933b5f5296513d352fa2))
+
+
+
+
+
+## [3.55.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.55.0...@kiva/kv-components@3.55.1) (2024-02-29)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [3.55.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.54.0...@kiva/kv-components@3.55.0) (2024-02-29)
+
+
+### Bug Fixes
+
+* input width ([2489339](https://github.com/kiva/kv-ui-elements/commit/2489339c622ac45739bcc1eefc0a69837f90b841))
+* when to send hide event and test not recognizing vue3 ([c3941a7](https://github.com/kiva/kv-ui-elements/commit/c3941a7a73a439846e6abf16b6dd0b29fa0e36f7))
+
+
+### Features
+
+* adding input for comment reply ([b18edf0](https://github.com/kiva/kv-ui-elements/commit/b18edf0ecd300f622379d160237fd750cf117fa1))
+* update tests and remove handleClick for emits ([fc3c586](https://github.com/kiva/kv-ui-elements/commit/fc3c58667248fb4e44bb0a7558f6c88f97f299b1))
+
+
+
+
+
+# [3.54.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.53.0...@kiva/kv-components@3.54.0) (2024-02-28)
+
+
+### Features
+
+* kvcommentsheartbutton added for comments stuff ([#346](https://github.com/kiva/kv-ui-elements/issues/346)) ([57303da](https://github.com/kiva/kv-ui-elements/commit/57303daec80222c199556b296d720462265e53ac))
+
+
+
+
+
+# [3.53.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.1...@kiva/kv-components@3.53.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* indentation in item component ([30aee02](https://github.com/kiva/kv-ui-elements/commit/30aee02d3c2e58c7c98fe6a58689a9824f56ef60))
+* optional chaining for comment object ([bac9ba1](https://github.com/kiva/kv-ui-elements/commit/bac9ba199970966564bfab7d6a2e64bb92fea286))
+* revert profile image and small fixes ([fc8cf74](https://github.com/kiva/kv-ui-elements/commit/fc8cf7440fb355fbfee0e8acfb2a849dd6513a11))
+* using more accurate data for components ([043f1c2](https://github.com/kiva/kv-ui-elements/commit/043f1c2d47a5d22157785b9d972246823572e4fd))
+
+
+### Features
+
+* provisional comment list and item components ([642745c](https://github.com/kiva/kv-ui-elements/commit/642745ce1359e5cc9e3d98d122f26728b3dffda0))
+
+
+
+
+
+## [3.52.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.52.0...@kiva/kv-components@3.52.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* add back in comments container ([36a8a97](https://github.com/kiva/kv-ui-elements/commit/36a8a979aac47c425e32d87cd13160ad68b913cf))
+* another tweak to how events emitted ([029367a](https://github.com/kiva/kv-ui-elements/commit/029367aeb1f38151a7d36e0a2246b82b14489cb3))
+* minor test fix ([c95c486](https://github.com/kiva/kv-ui-elements/commit/c95c4866d05b2e711e8895868d72ddc6bb5b7a43))
+* remove unneeded comment container ([71365b0](https://github.com/kiva/kv-ui-elements/commit/71365b0f6628d1d280f9fbd2b0adbad8688fd57c))
+
+
+
+
+
+# [3.52.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.51.0...@kiva/kv-components@3.52.0) (2024-01-31)
+
+
+### Bug Fixes
+
+* added missing suppression classes ([5d04867](https://github.com/kiva/kv-ui-elements/commit/5d048672f078d2d229372e37b896c9be025457d9))
+
+
+### Features
+
+* add comments add component ([1bf5fc3](https://github.com/kiva/kv-ui-elements/commit/1bf5fc388fee61a63f49775a15b50728c140a569))
+
+
+
+
+
+# [3.51.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.50.0...@kiva/kv-components@3.51.0) (2024-01-25)
+
+
+### Features
+
+* add basic comments container for future comment work ([4f1b3ab](https://github.com/kiva/kv-ui-elements/commit/4f1b3aba7f78ead3cf53a955bbb1b1243c4b2cda))
+
+
+
+
+
+# [3.50.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.1...@kiva/kv-components@3.50.0) (2024-01-19)
+
+
+### Bug Fixes
+
+* change component to take in a slot ([a3b733c](https://github.com/kiva/kv-ui-elements/commit/a3b733c644c7a431fb592e1b159cd551bd5e0f3c))
+* restore missing class ([6781e31](https://github.com/kiva/kv-ui-elements/commit/6781e31170c729cf484a0aff11ca544f8cca7aec))
+
+
+### Features
+
+* make the voting cards capable of using borrower image or direct url as img src ([cedc03c](https://github.com/kiva/kv-ui-elements/commit/cedc03ce887815ef133e29e61a9770b633493d8f))
+
+
+
+
+
+## [3.49.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.49.0...@kiva/kv-components@3.49.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* correcting mistake with wrong function call ([904d39d](https://github.com/kiva/kv-ui-elements/commit/904d39df4afa9d470fc91a96d7e76fe782898448))
+* editing classes for country / name tag ([aaac1c5](https://github.com/kiva/kv-ui-elements/commit/aaac1c561a24a192031977c7ea5a365789228740))
+
+
+
+
+
+# [3.49.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.3...@kiva/kv-components@3.49.0) (2024-01-16)
+
+
+### Features
+
+* vote button variant ([d58fe0c](https://github.com/kiva/kv-ui-elements/commit/d58fe0c9d16b3139d36e7d61bc2c3b4fbb5d1f0d))
+* voting category cards ([8938dff](https://github.com/kiva/kv-ui-elements/commit/8938dff740c79eaf09e8543ad384c97decee2634))
+
+
+
+
+
 ## [3.48.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.48.2...@kiva/kv-components@3.48.3) (2023-12-08)
 
 

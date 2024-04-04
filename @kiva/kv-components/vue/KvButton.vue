@@ -53,14 +53,14 @@ export default {
 	props: {
 		/**
 		 * Use if linking to a Vue route
-		 * */
+		 */
 		to: {
 			type: [String, Object],
 			default: null,
 		},
 		/**
 		 * Use if linking to an external link or old-stack page
-		 * */
+		 */
 		href: {
 			type: String,
 			default: null,
@@ -68,7 +68,7 @@ export default {
 		/**
 		 * The behavior of the button when used in an HTML form.
 		 * `button (default), submit, reset`
-		 * */
+		 */
 		type: {
 			type: String,
 			default: 'button',
@@ -79,7 +79,7 @@ export default {
 		/**
 		 * Appearance of the button
 		 * `primary (default), secondary, danger, link, ghost`
-		 * */
+		 */
 		variant: {
 			type: String,
 			default: 'primary',
@@ -90,7 +90,7 @@ export default {
 		/**
 		 * State of the button
 		 * `'' (default), active, disabled, loading`
-		 * */
+		 */
 		state: {
 			type: String,
 			default: '',

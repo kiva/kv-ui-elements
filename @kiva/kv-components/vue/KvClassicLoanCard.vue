@@ -67,6 +67,13 @@
 							</p>
 						</div>
 					</component>
+					<kv-loan-team-pick
+						v-if="isTeamPick"
+						class="tw-absolute"
+						:class="{ 'tw-right-6': !isVisitor, 'tw-right-0': isVisitor }"
+						style="top: -6px;"
+						data-testid="loan-card-teampick"
+					/>
 					<kv-loan-bookmark
 						v-if="!isVisitor"
 						:loan-id="loanId"
@@ -170,22 +177,24 @@
 				/>
 			</div>
 
-			<component
-				:is="tag"
-				v-if="unreservedAmount > 0"
-				:to="readMorePath"
-				:href="readMorePath"
-				class="loan-card-progress tw-mt-1"
-				aria-label="Loan progress"
-				@click="clickReadMore('Progress')"
-			>
-				<kv-loan-progress-group
-					id="loanProgress"
-					:money-left="`${unreservedAmount}`"
-					:progress-percent="fundraisingPercent"
-					class="tw-text-black"
-				/>
-			</component>
+			<div>
+				<component
+					:is="tag"
+					v-if="unreservedAmount > 0"
+					:to="readMorePath"
+					:href="readMorePath"
+					class="loan-card-progress tw-mt-1"
+					aria-label="Loan progress"
+					@click="clickReadMore('Progress')"
+				>
+					<kv-loan-progress-group
+						id="loanProgress"
+						:money-left="`${unreservedAmount}`"
+						:progress-percent="fundraisingPercent"
+						class="tw-text-black"
+					/>
+				</component>
+			</div>
 
 			<!-- CTA Button -->
 			<kv-loading-placeholder
@@ -216,6 +225,30 @@
 				@show-loan-details="clickReadMore('ViewLoan')"
 			/>
 		</div>
+		<div
+			v-if="combinedActivities.length > 0"
+			class="tw-pt-1.5"
+		>
+			<hr class="tw-border-tertiary tw-mb-1 tw-w-5/6 tw-mx-auto">
+			<KvLoanActivities
+				:loan="loan"
+				:combined-activities="combinedActivities"
+				:kv-track-function="kvTrackFunction"
+				:basket-items="basketItems"
+				:is-adding="isAdding"
+				:enable-five-dollars-notes="enableFiveDollarsNotes"
+				:five-dollars-selected="fiveDollarsSelected"
+				:show-view-loan="showViewLoan"
+				:custom-loan-details="customLoanDetails"
+				:external-links="externalLinks"
+				:route="route"
+				:user-balance="userBalance"
+				:get-cookie="getCookie"
+				:set-cookie="setCookie"
+				:error-msg="errorMsg"
+				@add-to-basket="$emit('add-to-basket', $event)"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -231,6 +264,8 @@ import KvLoanBookmark from './KvLoanBookmark.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvLoanTeamPick from './KvLoanTeamPick.vue';
+import KvLoanActivities from './KvLoanActivities.vue';
 
 export default {
 	name: 'KvClassicLoanCard',
@@ -244,6 +279,8 @@ export default {
 		KvLoanTag,
 		KvLoanCallouts,
 		KvLoanBookmark,
+		KvLoanTeamPick,
+		KvLoanActivities,
 	},
 	props: {
 		loanId: {
@@ -333,6 +370,18 @@ export default {
 		largeCard: {
 			type: Boolean,
 			default: false,
+		},
+		isTeamPick: {
+			type: Boolean,
+			default: false,
+		},
+		combinedActivities: {
+			type: Array,
+			default: () => ([]),
+		},
+		errorMsg: {
+			type: String,
+			default: '',
 		},
 	},
 	setup(props) {

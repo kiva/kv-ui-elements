@@ -3,6 +3,378 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.19](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.18...@kiva/kv-shop@1.10.19) (2024-04-03)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.18](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.17...@kiva/kv-shop@1.10.18) (2024-04-03)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.17](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.16...@kiva/kv-shop@1.10.17) (2024-04-02)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.16](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.15...@kiva/kv-shop@1.10.16) (2024-04-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.15](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.14...@kiva/kv-shop@1.10.15) (2024-03-27)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.14](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.13...@kiva/kv-shop@1.10.14) (2024-03-27)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.13](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.12...@kiva/kv-shop@1.10.13) (2024-03-26)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.12](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.11...@kiva/kv-shop@1.10.12) (2024-03-25)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.11](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.10...@kiva/kv-shop@1.10.11) (2024-03-25)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.10](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.9...@kiva/kv-shop@1.10.10) (2024-03-22)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.9](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.8...@kiva/kv-shop@1.10.9) (2024-03-21)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.7...@kiva/kv-shop@1.10.8) (2024-03-20)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.6...@kiva/kv-shop@1.10.7) (2024-03-19)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.5...@kiva/kv-shop@1.10.6) (2024-03-19)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.4...@kiva/kv-shop@1.10.5) (2024-03-19)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.3...@kiva/kv-shop@1.10.4) (2024-03-18)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.2...@kiva/kv-shop@1.10.3) (2024-03-12)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.1...@kiva/kv-shop@1.10.2) (2024-03-08)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.0...@kiva/kv-shop@1.10.1) (2024-03-07)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+# [1.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.15...@kiva/kv-shop@1.10.0) (2024-03-06)
+
+
+### Features
+
+* credit amount needed should always hit the network ([fd19678](https://github.com/kiva/kv-ui-elements/commit/fd19678084dd40d235ca7efc8f55a8fb04844e8d))
+
+
+
+
+
+## [1.9.15](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.14...@kiva/kv-shop@1.9.15) (2024-03-05)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.14](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.13...@kiva/kv-shop@1.9.14) (2024-03-04)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.13](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.12...@kiva/kv-shop@1.9.13) (2024-03-04)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.12](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.11...@kiva/kv-shop@1.9.12) (2024-03-04)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.11](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.10...@kiva/kv-shop@1.9.11) (2024-03-04)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.10](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.9...@kiva/kv-shop@1.9.10) (2024-03-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.9](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.8...@kiva/kv-shop@1.9.9) (2024-03-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.7...@kiva/kv-shop@1.9.8) (2024-03-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.6...@kiva/kv-shop@1.9.7) (2024-03-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.5...@kiva/kv-shop@1.9.6) (2024-03-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.4...@kiva/kv-shop@1.9.5) (2024-02-29)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.3...@kiva/kv-shop@1.9.4) (2024-02-29)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.2...@kiva/kv-shop@1.9.3) (2024-02-28)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.1...@kiva/kv-shop@1.9.2) (2024-02-26)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.9.0...@kiva/kv-shop@1.9.1) (2024-02-22)
+
+
+### Bug Fixes
+
+* inviter param wasn't being used ([0c7d48a](https://github.com/kiva/kv-ui-elements/commit/0c7d48a1decc77a902995944f6fce7c4f9dc4077))
+
+
+
+
+
+# [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.1...@kiva/kv-shop@1.9.0) (2024-02-16)
+
+
+### Bug Fixes
+
+* add inviter to validatePreCheckout query ([b2f6996](https://github.com/kiva/kv-ui-elements/commit/b2f6996a4a0fb0a4428183c1ecb173645034726b))
+
+
+### Features
+
+* add invitationUrl to inviter param ([1163285](https://github.com/kiva/kv-ui-elements/commit/1163285a4565cb678bd25f9483433866b4a08712))
+
+
+
+
+
+## [1.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.8.0...@kiva/kv-shop@1.8.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* checkoutStatus query was only called once, the apollo cache returns same response until timeout ([c597c32](https://github.com/kiva/kv-ui-elements/commit/c597c328c19de30bd650104e0898d0954362522d))
+
+
+
+
+
+# [1.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.7...@kiva/kv-shop@1.8.0) (2024-02-09)
+
+
+### Features
+
+* valetinviter param added to executeonetimecheckout ([#340](https://github.com/kiva/kv-ui-elements/issues/340)) ([272daf7](https://github.com/kiva/kv-ui-elements/commit/272daf738a9c362f10897b96cc490a9b99ddc314))
+
+
+
+
+
+## [1.7.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.6...@kiva/kv-shop@1.7.7) (2024-02-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.7.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.5...@kiva/kv-shop@1.7.6) (2024-01-31)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.7.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.4...@kiva/kv-shop@1.7.5) (2024-01-25)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.7.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.3...@kiva/kv-shop@1.7.4) (2024-01-19)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.7.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.2...@kiva/kv-shop@1.7.3) (2024-01-17)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.7.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.1...@kiva/kv-shop@1.7.2) (2024-01-16)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [1.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.7.0...@kiva/kv-shop@1.7.1) (2023-12-08)
 
 **Note:** Version bump only for package @kiva/kv-shop

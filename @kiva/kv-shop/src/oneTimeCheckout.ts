@@ -39,6 +39,7 @@ async function creditAmountNeeded(apollo: ApolloClient<any>): Promise<string|nul
 				}
 			}
 		`,
+		fetchPolicy: 'network-only',
 	}, 0);
 	return data?.shop?.basket?.totals?.creditAmountNeeded;
 }
@@ -162,11 +163,17 @@ async function trackSuccess(
 	}
 }
 
+export type ValetInviter = {
+	inviterId: string,
+	invitationUrl: string,
+};
+
 export interface OneTimeCheckoutOptions {
 	apollo: ApolloClient<any>,
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
+	valetInviter?: ValetInviter,
 }
 
 export async function executeOneTimeCheckout({
@@ -174,6 +181,7 @@ export async function executeOneTimeCheckout({
 	braintree,
 	emailAddress,
 	emailOptIn,
+	valetInviter,
 }: OneTimeCheckoutOptions) {
 	// do pre-checkout validation
 	// TODO: promo guest checkout validation
@@ -181,6 +189,7 @@ export async function executeOneTimeCheckout({
 		apollo,
 		emailAddress,
 		emailOptIn,
+		valetInviter,
 	});
 
 	const creditNeeded = await creditAmountNeeded(apollo);
@@ -225,5 +234,9 @@ export async function executeOneTimeCheckout({
 	// TODO: redirect needs to handle challenge completion parameters
 
 	// redirect to thanks page
-	await redirectTo(`/checkout/post-purchase?kiva_transaction_id=${checkoutId}`);
+	let redirectUrl = `/checkout/post-purchase?kiva_transaction_id=${checkoutId}`;
+	if (valetInviter?.inviterId) {
+		redirectUrl += `&valet_inviter=${valetInviter.inviterId}`;
+	}
+	await redirectTo(redirectUrl);
 }

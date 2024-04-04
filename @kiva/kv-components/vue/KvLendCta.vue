@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="tw-whitespace-nowrap">
 		<!-- Continue to checkout button -->
 		<kv-ui-button
 			v-if="isInBasket"
