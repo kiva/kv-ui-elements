@@ -21,6 +21,8 @@ const story = (args) => {
 					:kv-track-function="kvTrackFunction"
 					:show-view-loan="showViewLoan"
 					:custom-loan-details="customLoanDetails"
+					:enable-huge-amount="enableHugeAmount"
+					:is-visitor="isVisitor"
 				/>
 			</div>
 		`,
@@ -66,6 +68,28 @@ export const Dropdown = story({
 		unreservedAmount: '150.00',
 	},
 	kvTrackFunction,
+});
+
+export const HugeLentAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '12850.00',
+	},
+	kvTrackFunction,
+	enableHugeAmount: true,
+	isVisitor: false,
+});
+
+export const Between500and1000 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '850.00',
+	},
+	kvTrackFunction,
+	enableHugeAmount: true,
+	isVisitor: false,
 });
 
 export const FiveDollar = story({
