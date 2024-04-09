@@ -62,9 +62,9 @@ const textBaseColor = 'rgb(var(--text-primary))';
 const textStyles = (() => {
 	const textJumbo = {
 		fontFamily: fonts.serif,
-		fontWeight: fontWeights.bold,
+		fontWeight: fontWeights.medium,
 		fontSize: rem(fontSizes.jumbo.sm),
-		// letterSpacing: letterSpacings['-2'],
+		letterSpacing: letterSpacings['-2'],
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.jumbo.md),
@@ -77,48 +77,44 @@ const textStyles = (() => {
 	const textH1 = {
 		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h1.sm),
-		fontWeight: fontWeights.bold,
-		// letterSpacing: em(letterSpacings['-0.3'], fontSizes.h1.sm),
+		fontWeight: fontWeights.medium,
+		letterSpacing: em(letterSpacings['-1'], fontSizes.h1.md),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h1.md),
-			// letterSpacing: em(letterSpacings['-1'], fontSizes.h1.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h1.lg),
-			// letterSpacing: em(letterSpacings['-2'], fontSizes.h1.lg),
 		},
 	};
 
 	const textH2 = {
 		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h2.sm),
-		fontWeight: fontWeights.bold,
-		// letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
+		fontWeight: fontWeights.medium,
+		letterSpacing: em(letterSpacings.normal, fontSizes.h2.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h2.md),
-			// letterSpacing: em(letterSpacings['-1'], fontSizes.h2.md),
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
-			// letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
-			lineHeight: lineHeights.normal,
+			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
+			lineHeight: lineHeights['nearly-none'],
 		},
 	};
 
 	const textH3 = {
 		fontSize: rem(fontSizes.h3.sm),
-		fontWeight: fontWeights.bold,
+		fontWeight: fontWeights.medium,
 		letterSpacing: em(letterSpacings['-1'], fontSizes.h3.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h3.md),
-			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h3.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h3.lg),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h3.lg),
 		},
 	};
 
@@ -151,31 +147,17 @@ const textStyles = (() => {
 		},
 	};
 
-	const textH6 = {
-		fontSize: rem(fontSizes.h6.sm),
-		fontWeight: fontWeights.medium,
-		lineHeight: lineHeights.normal,
-		'@screen md': {
-			fontSize: rem(fontSizes.h6.md),
-		},
-		'@screen lg': {
-			fontSize: rem(fontSizes.h6.lg),
-		},
-	};
-
 	const textSubhead = {
-		fontFamily: fonts.serif,
+		fontFamily: fonts.sans,
 		fontSize: rem(fontSizes.subhead.sm),
 		fontWeight: fontWeights.medium,
-		// letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.sm),
-		lineHeight: lineHeights.normal,
+		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
+		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.subhead.md),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.subhead.lg),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.lg),
 		},
 	};
 
@@ -211,6 +193,20 @@ const textStyles = (() => {
 		fontWeight: fontWeights.book,
 	};
 
+	const textBlockquote = {
+		fontFamily: fonts.serif,
+		fontSize: rem(fontSizes.h2.sm),
+		fontWeight: fontWeights.medium,
+		letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
+		lineHeight: lineHeights.tight,
+		'@screen md': {
+			fontSize: rem(fontSizes.h2.md),
+		},
+		'@screen lg': {
+			fontSize: rem(fontSizes.h2.lg),
+		},
+	};
+
 	return {
 		textJumbo,
 		textH1,
@@ -218,12 +214,12 @@ const textStyles = (() => {
 		textH3,
 		textH4,
 		textH5,
-		textH6,
 		textSubhead,
 		textBase,
 		textSmall,
 		textLink,
 		textPlaceholder,
+		textBlockquote,
 	};
 })();
 
@@ -331,12 +327,6 @@ const proseOverrides = () => ({
 				color: textBaseColor,
 			},
 			h5: {
-				letterSpacing: false,
-				marginTop: false,
-				marginBottom: rem(space[2]),
-				color: textBaseColor,
-			},
-			h6: {
 				letterSpacing: false,
 				marginTop: false,
 				marginBottom: rem(space[2]),
