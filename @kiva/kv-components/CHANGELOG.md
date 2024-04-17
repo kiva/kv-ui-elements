@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.73.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.72.0...@kiva/kv-components@3.73.0) (2024-04-10)
+
+
+### Features
+
+* change voting card icon ([#388](https://github.com/kiva/kv-ui-elements/issues/388)) ([c7a5061](https://github.com/kiva/kv-ui-elements/commit/c7a50617a591e9734f996ad87e80d06b2292dc4d))
+
+
+
+
+
+# [3.72.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.2...@kiva/kv-components@3.72.0) (2024-04-05)
+
+
+### Features
+
+* huge lent amount added to lend cta dropdown ([#387](https://github.com/kiva/kv-ui-elements/issues/387)) ([0874f5c](https://github.com/kiva/kv-ui-elements/commit/0874f5c888bb388fc9e9f7dc857f2c92b919c78b))
+
+
+
+
+
 ## [3.71.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.71.1...@kiva/kv-components@3.71.2) (2024-04-03)
 
 

@@ -25,10 +25,24 @@
 					tw-items-center"
 				style="padding: 2px 6px; text-transform: capitalize;"
 			>
-				<kv-material-icon
-					class="tw-h-2 tw-w-2 tw-truncate"
-					:icon="mapMarkerIcon"
-				/>
+				<span
+					class="tw-inline-flex tw-align-text-top"
+					aria-hidden="true"
+					role="img"
+				>
+					<svg
+						class="tw-h-2 tw-w-2.5"
+						viewBox="0 0 20 20"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<!-- eslint-disable max-len -->
+						<path
+							d="m3.12088 18.7441c12.86212 0 15.87912-14.52631 15.87912-16.99996h-1.1209c-12.85272 0-15.8791 14.51376-15.8791 16.99996z"
+							fill="currentColor"
+						/>
+					<!-- eslint-enable max-len -->
+					</svg>
+				</span>
 				<div>
 					{{ borrowerName }}
 				</div>
@@ -74,7 +88,7 @@
 </template>
 
 <script>
-import { mdiInformation, mdiMapMarker } from '@mdi/js';
+import { mdiInformation } from '@mdi/js';
 import { computed } from 'vue-demi';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
@@ -118,10 +132,8 @@ export default {
 		},
 	},
 	setup() {
-		const mapMarkerIcon = computed(() => mdiMapMarker);
 		const infoIcon = computed(() => mdiInformation);
 		return {
-			mapMarkerIcon,
 			infoIcon,
 		};
 	},

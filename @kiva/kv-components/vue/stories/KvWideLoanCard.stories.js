@@ -27,6 +27,7 @@ const story = (args) => {
 				:photo-path="photoPath"
 				:show-view-loan="showViewLoan"
 				:custom-callouts="customCallouts"
+				:enable-huge-amount="enableHugeAmount"
 			/>
 		</div>
 	`,
@@ -276,4 +277,16 @@ export const LendAgain = story({
 	customLoanDetails: true,
 	kvTrackFunction,
 	photoPath,
+});
+
+export const HugeLentAmount = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		unreservedAmount: '850.00',
+	},
+	kvTrackFunction,
+	photoPath,
+	isVisitor: false,
+	enableHugeAmount: true,
 });

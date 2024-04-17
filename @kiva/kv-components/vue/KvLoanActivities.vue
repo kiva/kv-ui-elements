@@ -65,6 +65,8 @@
 						:basket-items="basketItems"
 						:route="route"
 						:is-adding="isAdding"
+						:enable-huge-amount="enableHugeAmount"
+						:is-visitor="isVisitor"
 						:enable-five-dollars-notes="enableFiveDollarsNotes"
 						@add-to-basket="$emit('add-to-basket', $event)"
 					/>
@@ -163,6 +165,14 @@ export default {
 		enableFiveDollarsNotes: {
 			type: Boolean,
 			default: false,
+		},
+		enableHugeAmount: {
+			type: Boolean,
+			default: false,
+		},
+		isVisitor: {
+			type: Boolean,
+			default: true,
 		},
 	},
 	emits: [

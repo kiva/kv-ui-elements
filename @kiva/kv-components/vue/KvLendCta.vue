@@ -199,6 +199,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		enableHugeAmount: {
+			type: Boolean,
+			default: false,
+		},
+		isVisitor: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	data() {
 		return {
@@ -420,11 +428,37 @@ export default {
 			}
 			return priceArray;
 		},
+		buildHugePriceArray(amountLeft) {
+			const minAmount = 100;
+			const limitAmount = amountLeft > 1000 ? 1000 : amountLeft;
+			const N = limitAmount / minAmount;
+
+			const priceArray = [];
+			for (let i = 1; i <= N; i += 1) {
+				const price = minAmount * i + 500;
+				if (price > limitAmount) break;
+				priceArray.push(numeral(price).format('0,0'));
+			}
+
+			if (!priceArray.includes(numeral(limitAmount).format('0,0'))) {
+				priceArray.push(numeral(limitAmount).format('0,0'));
+			}
+
+			return priceArray;
+		},
 		getDropdownPriceArray(unreservedAmount, minAmount, enableFiveDollarsNotes, inPfp = false) {
 			const parsedAmountLeft = parseFloat(unreservedAmount);
-			return (enableFiveDollarsNotes && !inPfp)
+			let combinedPricesArray = [];
+			const priceArray = (enableFiveDollarsNotes && !inPfp)
 				? this.build5DollarsPriceArray(parsedAmountLeft).slice(0, 28)
 				: this.buildPriceArray(parsedAmountLeft, minAmount).slice(0, 20);
+
+			const showHugeAmount = this.enableHugeAmount && parsedAmountLeft > 500 && !this.isVisitor;
+			if (showHugeAmount) {
+				const hugePriceArray = this.buildHugePriceArray(parsedAmountLeft);
+				combinedPricesArray = priceArray.concat(hugePriceArray);
+			}
+			return showHugeAmount ? combinedPricesArray : priceArray;
 		},
 	},
 };

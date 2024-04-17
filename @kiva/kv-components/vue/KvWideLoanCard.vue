@@ -215,6 +215,8 @@
 					:user-balance="userBalance"
 					:get-cookie="getCookie"
 					:set-cookie="setCookie"
+					:enable-huge-amount="enableHugeAmount"
+					:is-visitor="isVisitor"
 					class="tw-mt-auto tw-self-end"
 					:class="{'tw-flex-grow' : unreservedAmount === 0, 'tw-flex-shrink-0' : unreservedAmount > 0}"
 					@add-to-basket="$emit('add-to-basket', $event)"
@@ -330,6 +332,10 @@ export default {
 		customCallouts: {
 			type: Array,
 			default: () => ([]),
+		},
+		enableHugeAmount: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {

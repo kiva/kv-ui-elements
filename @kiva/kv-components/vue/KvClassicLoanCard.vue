@@ -219,6 +219,8 @@
 				:user-balance="userBalance"
 				:get-cookie="getCookie"
 				:set-cookie="setCookie"
+				:enable-huge-amount="enableHugeAmount"
+				:is-visitor="isVisitor"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
@@ -246,6 +248,8 @@
 				:get-cookie="getCookie"
 				:set-cookie="setCookie"
 				:error-msg="errorMsg"
+				:enable-huge-amount="enableHugeAmount"
+				:is-visitor="isVisitor"
 				@add-to-basket="$emit('add-to-basket', $event)"
 			/>
 		</div>
@@ -382,6 +386,10 @@ export default {
 		errorMsg: {
 			type: String,
 			default: '',
+		},
+		enableHugeAmount: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {

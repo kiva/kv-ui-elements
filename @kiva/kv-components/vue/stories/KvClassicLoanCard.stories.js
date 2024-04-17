@@ -31,6 +31,7 @@ const story = (args) => {
 					:custom-callouts="customCallouts"
 					:is-team-pick="isTeamPick"
 					:combined-activities="combinedActivities"
+					:enable-huge-amount="enableHugeAmount"
 				/>
 			</div>
 		`,
@@ -374,4 +375,16 @@ export const ActivityFeed = story({
 	kvTrackFunction,
 	photoPath,
 	combinedActivities,
+});
+
+export const HugeLentAmount = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		unreservedAmount: '850.00',
+	},
+	kvTrackFunction,
+	photoPath,
+	isVisitor: false,
+	enableHugeAmount: true,
 });
