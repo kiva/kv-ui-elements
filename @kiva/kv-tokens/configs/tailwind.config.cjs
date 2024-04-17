@@ -80,9 +80,11 @@ module.exports = {
 			serif: [`${fonts.serif}, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif`],
 		},
 		fontWeight: {
-			book: `${fontWeights.book}`,
+			// Keeping "book" defined here for backwards compatibility
+			book: `${fontWeights.light}`,
+			light: `${fontWeights.light}`,
+			normal: `${fontWeights.normal}`,
 			medium: `${fontWeights.medium}`,
-			bold: `${fontWeights.bold}`,
 		},
 		borderWidth: {
 			DEFAULT: rem(borderWidths.default),
@@ -208,7 +210,7 @@ module.exports = {
 				},
 				a: textStyles.textLink,
 				'strong, b': {
-					fontWeight: fontWeights.medium,
+					fontWeight: fontWeights.normal,
 				},
 				hr: {
 					borderColor: colors.gray['500'],

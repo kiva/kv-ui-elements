@@ -241,9 +241,9 @@
 		}
 	},
 	"fontWeights": {
-		"book": 300,
-		"medium": 400,
-		"bold": 700
+		"light": 300,
+		"normal": 400,
+		"medium": 500
 	},
 	"lineHeights": {
 		"nearly-none": 1.05,

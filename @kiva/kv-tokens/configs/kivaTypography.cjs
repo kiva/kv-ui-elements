@@ -15,24 +15,29 @@ const {
  WEB FONT DEFINITIONS
 */
 const webFonts = [
+	// Note corresponding font weight in Tailwind is "normal"
 	{
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
 			fontWeight: '400',
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
+			// eslint-disable-next-line max-len
 			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
 		},
 	},
+	// Note corresponding font weight in Tailwind is "normal"
 	{
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
 			fontWeight: '400',
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
+			// eslint-disable-next-line max-len
 			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-MediumItalic.133f41d.woff2) format(\'woff2\')',
 		},
 	},
+	// Note corresponding font weight in Tailwind is "light"
 	{
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
@@ -42,12 +47,14 @@ const webFonts = [
 			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
 		},
 	},
+	// Note corresponding font weight in Tailwind is "light"
 	{
 		'@font-face': {
 			fontFamily: 'PostGrotesk',
 			fontWeight: '300',
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
+			// eslint-disable-next-line max-len
 			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
 		},
 	},
@@ -107,7 +114,7 @@ const textStyles = (() => {
 
 	const textH3 = {
 		fontSize: rem(fontSizes.h3.sm),
-		fontWeight: fontWeights.medium,
+		fontWeight: fontWeights.normal,
 		letterSpacing: em(letterSpacings['-1'], fontSizes.h3.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
@@ -120,7 +127,7 @@ const textStyles = (() => {
 
 	const textH4 = {
 		fontSize: rem(fontSizes.h4.sm),
-		fontWeight: fontWeights.medium,
+		fontWeight: fontWeights.normal,
 		lineHeight: lineHeights.normal,
 		textTransform: 'uppercase',
 		'@screen md': {
@@ -133,24 +140,16 @@ const textStyles = (() => {
 
 	const textH5 = {
 		fontFamily: fonts.serif,
-		fontSize: rem(fontSizes.subhead.sm),
-		fontWeight: fontWeights.medium,
-		// letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.sm),
-		lineHeight: lineHeights.normal,
-		'@screen md': {
-			fontSize: rem(fontSizes.subhead.md),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.md),
-		},
-		'@screen lg': {
-			fontSize: rem(fontSizes.subhead.lg),
-			letterSpacing: em(letterSpacings['-0.5'], fontSizes.subhead.lg),
-		},
+		fontSize: rem(fontSizes.h4.sm),
+		fontWeight: fontWeights.normal,
+		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
+		lineHeight: lineHeights['nearly-none'],
 	};
 
 	const textSubhead = {
 		fontFamily: fonts.sans,
 		fontSize: rem(fontSizes.subhead.sm),
-		fontWeight: fontWeights.medium,
+		fontWeight: fontWeights.normal,
 		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
@@ -162,11 +161,13 @@ const textStyles = (() => {
 	};
 
 	const textBase = {
-		fontWeight: fontWeights.book,
+		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
+		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
 		lineHeight: lineHeights.normal,
 		'@screen lg': {
 			fontSize: rem(fontSizes.base.lg),
+			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
 		},
 	};
 
@@ -190,7 +191,7 @@ const textStyles = (() => {
 	const textPlaceholder = {
 		color: 'rgb(var(--text-tertiary))',
 		opacity: 1,
-		fontWeight: fontWeights.book,
+		fontWeight: fontWeights.light,
 	};
 
 	const textBlockquote = {
