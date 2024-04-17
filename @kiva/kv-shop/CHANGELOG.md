@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.22](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.21...@kiva/kv-shop@1.10.22) (2024-04-17)
+
+
+### Bug Fixes
+
+* upgrade to latest vue-demi to support vue 2.7 ([c86ea1f](https://github.com/kiva/kv-ui-elements/commit/c86ea1f4d5a2cb56e813d0f1c2ee59e7cfcf0ca4))
+
+
+
+
+
 ## [1.10.21](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.20...@kiva/kv-shop@1.10.21) (2024-04-10)
 
 **Note:** Version bump only for package @kiva/kv-shop

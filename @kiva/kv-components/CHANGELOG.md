@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.73.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.73.0...@kiva/kv-components@3.73.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* upgrade to latest vue-demi to support vue 2.7 ([c86ea1f](https://github.com/kiva/kv-ui-elements/commit/c86ea1f4d5a2cb56e813d0f1c2ee59e7cfcf0ca4))
+
+
+
+
+
 # [3.73.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.72.0...@kiva/kv-components@3.73.0) (2024-04-10)
 
 
