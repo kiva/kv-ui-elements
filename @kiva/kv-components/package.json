@@ -64,7 +64,7 @@
     "moment": "^2.29.4",
     "nanoid": "^3.1.23",
     "numeral": "^2.0.6",
-    "vue-demi": "^0.12.1"
+    "vue-demi": "^0.14.7"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
