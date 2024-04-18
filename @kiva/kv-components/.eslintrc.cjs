@@ -18,5 +18,6 @@ module.exports = {
 				normal: 'never',
 			},
 		}],
+		'import/prefer-default-export': 'off',
 	},
 };
