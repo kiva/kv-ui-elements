@@ -171,7 +171,7 @@ function buildPriceArray(amountLeft, minAmount) {
 }
 
 /**
- *	Gets the dropdown price values for the loan CTA
+ *	Gets the dropdown price values for the lend CTA
  *
  * @param {string} unreservedAmount The unreserved amount of the loan
  * @param {boolean} isCompleteLoanActive Whether to include option that would complete loan
