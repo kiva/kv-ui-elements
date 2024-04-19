@@ -1,3 +1,5 @@
+import numeral from 'numeral';
+
 export const ERL_COOKIE_NAME = 'kverlfivedollarnotes';
 export const TOP_UP_CAMPAIGN = 'TOPUP-VB-BALANCE-MPV1';
 export const BASE_CAMPAIGN = 'BASE-VB_BALANCE_MPV1';
@@ -108,4 +110,91 @@ export function getLendCtaSelectedOption(
 
 	// $25 is the fallback default selected option
 	return '25';
+}
+
+function buildHugePriceArray(amountLeft) {
+	const minAmount = 100;
+	const limitAmount = amountLeft > 1000 ? 1000 : amountLeft;
+	const N = limitAmount / minAmount;
+
+	const priceArray = [];
+	for (let i = 1; i <= N; i += 1) {
+		const price = minAmount * i + 500;
+		if (price > limitAmount) break;
+		priceArray.push(numeral(price).format('0,0'));
+	}
+
+	if (!priceArray.includes(numeral(limitAmount).format('0,0'))) {
+		priceArray.push(numeral(limitAmount).format('0,0'));
+	}
+
+	return priceArray;
+}
+
+function build5DollarsPriceArray(amountLeft) {
+	const limit5Notes = amountLeft < 50 ? amountLeft : 50;
+	const numberOf5 = limit5Notes / 5;
+	const numberOf25 = Math.ceil((amountLeft - limit5Notes) / 25) + 1;
+	const priceArray = [];
+	for (let i = 1; i <= numberOf5; i += 1) {
+		priceArray.push(numeral(5 * i).format('0,0'));
+	}
+	if (amountLeft > limit5Notes) {
+		for (let i = 3; i <= numberOf25; i += 1) {
+			priceArray.push(numeral(25 * i).format('0,0'));
+		}
+	}
+	return priceArray;
+}
+
+function buildPriceArray(amountLeft, minAmount) {
+	// Get count of shares based on available remaining amount
+	const shareCount = amountLeft / minAmount;
+	// Convert this to formatted array for our select element
+	const priceArray = []; // ex. priceArray = ['25', '50', '75']
+	for (let i = 1; i <= shareCount; i += 1) {
+		priceArray.push(numeral(minAmount * i).format('0,0'));
+	}
+	return priceArray;
+}
+
+/**
+ *	Gets the dropdown price values for the loan CTA
+ *
+ * @param {string} unreservedAmount The unreserved amount of the loan
+ * @param {boolean} isCompleteLoanActive Whether to include option that would complete loan
+ * @param {number} minAmount The min amount to show in the dropdown
+ * @param {boolean} enableFiveDollarsNotes Whether five dollar notes are enabled
+ * @param {boolean} enableHugeAmount Whether huge loan amounts are enabled
+ * @param {boolean} isVisitor Whether the current user is a visitor
+ * @param {boolean} inPfp Whether the loan is in PFP
+ * @returns {string[]} Price value array for the CTA dropdown
+ */
+export function getDropdownPriceArray(
+	unreservedAmount,
+	isCompleteLoanActive = false,
+	minAmount = 25,
+	enableFiveDollarsNotes = false,
+	enableHugeAmount = false,
+	isVisitor = true,
+	inPfp = false,
+) {
+	const parsedAmountLeft = parseFloat(unreservedAmount);
+	let combinedPricesArray = [];
+	let priceArray = (enableFiveDollarsNotes && !inPfp)
+		? build5DollarsPriceArray(parsedAmountLeft).slice(0, 28)
+		: buildPriceArray(parsedAmountLeft, minAmount).slice(0, 20);
+
+	const showHugeAmount = enableHugeAmount && parsedAmountLeft > 500 && !isVisitor;
+	if (showHugeAmount) {
+		const hugePriceArray = buildHugePriceArray(parsedAmountLeft);
+		combinedPricesArray = priceArray.concat(hugePriceArray);
+	}
+	priceArray = showHugeAmount ? combinedPricesArray : priceArray;
+
+	if (isCompleteLoanActive && !priceArray.includes(Number(unreservedAmount).toFixed())) {
+		priceArray.push(Number(unreservedAmount).toFixed());
+	}
+
+	return priceArray;
 }
