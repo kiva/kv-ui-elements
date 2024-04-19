@@ -71,7 +71,7 @@ const textStyles = (() => {
 		fontFamily: fonts.serif,
 		fontWeight: fontWeights.medium,
 		fontSize: rem(fontSizes.jumbo.sm),
-		letterSpacing: letterSpacings['-2'],
+		letterSpacing: letterSpacings['-1'],
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.jumbo.md),
@@ -85,7 +85,7 @@ const textStyles = (() => {
 		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h1.sm),
 		fontWeight: fontWeights.medium,
-		letterSpacing: em(letterSpacings['-1'], fontSizes.h1.md),
+		letterSpacing: em(letterSpacings['-0.5'], fontSizes.h1.md),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h1.md),
@@ -103,11 +103,11 @@ const textStyles = (() => {
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h2.md),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.md),
+			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h2.md),
 		},
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
-			letterSpacing: em(letterSpacings['-1'], fontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h2.lg),
 			lineHeight: lineHeights['nearly-none'],
 		},
 	};
@@ -115,7 +115,7 @@ const textStyles = (() => {
 	const textH3 = {
 		fontSize: rem(fontSizes.h3.sm),
 		fontWeight: fontWeights.normal,
-		letterSpacing: em(letterSpacings['-1'], fontSizes.h3.sm),
+		letterSpacing: em(letterSpacings['-0.3'], fontSizes.h3.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h3.md),
@@ -139,7 +139,7 @@ const textStyles = (() => {
 	};
 
 	const textH5 = {
-		fontFamily: fonts.serif,
+		fontFamily: fonts.sans,
 		fontSize: rem(fontSizes.h4.sm),
 		fontWeight: fontWeights.normal,
 		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
@@ -149,7 +149,7 @@ const textStyles = (() => {
 	const textSubhead = {
 		fontFamily: fonts.sans,
 		fontSize: rem(fontSizes.subhead.sm),
-		fontWeight: fontWeights.normal,
+		fontWeight: fontWeights.light,
 		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
@@ -197,8 +197,9 @@ const textStyles = (() => {
 	const textBlockquote = {
 		fontFamily: fonts.serif,
 		fontSize: rem(fontSizes.h2.sm),
+		fontStyle: 'italic',
 		fontWeight: fontWeights.medium,
-		letterSpacing: em(letterSpacings['-1'], fontSizes.h2.sm),
+		letterSpacing: em(letterSpacings['-0.5'], fontSizes.h2.sm),
 		lineHeight: lineHeights.tight,
 		'@screen md': {
 			fontSize: rem(fontSizes.h2.md),

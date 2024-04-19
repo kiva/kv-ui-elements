@@ -238,6 +238,7 @@ module.exports = {
 				'.text-jumbo': textStyles.textJumbo,
 				'.text-small': textStyles.textSmall,
 				'.text-link': textStyles.textLink,
+				'.text-blockquote': textStyles.textBlockquote,
 			}, ['responsive']);
 		}),
 	],
