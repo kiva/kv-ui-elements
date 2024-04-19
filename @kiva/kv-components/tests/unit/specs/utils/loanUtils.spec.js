@@ -366,6 +366,47 @@ describe('loanUtils', () => {
 			]);
 		});
 
+		it('should return huge dropdown values up to 10,000', () => {
+			const result = getDropdownPriceArray('11000.00', false, 25, false, true, false);
+
+			expect(result).toEqual([
+				'25',
+				'50',
+				'75',
+				'100',
+				'125',
+				'150',
+				'175',
+				'200',
+				'225',
+				'250',
+				'275',
+				'300',
+				'325',
+				'350',
+				'375',
+				'400',
+				'425',
+				'450',
+				'475',
+				'500',
+				'600',
+				'700',
+				'800',
+				'900',
+				'1,000',
+				'2,000',
+				'3,000',
+				'4,000',
+				'5,000',
+				'6,000',
+				'7,000',
+				'8,000',
+				'9,000',
+				'10,000',
+			]);
+		});
+
 		it('should return not huge dropdown values for visitor', () => {
 			const result = getDropdownPriceArray('650.00', false, 25, false, true, true);
 

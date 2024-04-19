@@ -113,17 +113,29 @@ export function getLendCtaSelectedOption(
 }
 
 function buildHugePriceArray(amountLeft) {
-	const minAmount = 100;
-	const limitAmount = amountLeft > 1000 ? 1000 : amountLeft;
-	const N = limitAmount / minAmount;
-
 	const priceArray = [];
-	for (let i = 1; i <= N; i += 1) {
+
+	// Add $100 options up to $1,000
+	let minAmount = 100;
+	let limitAmount = amountLeft > 1000 ? 1000 : amountLeft;
+	let optionCount = limitAmount / minAmount;
+	for (let i = 1; i <= optionCount; i += 1) {
 		const price = minAmount * i + 500;
 		if (price > limitAmount) break;
 		priceArray.push(numeral(price).format('0,0'));
 	}
 
+	// Add $1000 options up to $10,000
+	minAmount = 1000;
+	limitAmount = amountLeft > 10000 ? 10000 : amountLeft;
+	optionCount = limitAmount / minAmount;
+	for (let i = 1; i <= optionCount; i += 1) {
+		const price = minAmount * i + 1000;
+		if (price > limitAmount) break;
+		priceArray.push(numeral(price).format('0,0'));
+	}
+
+	// Ensure final option is added
 	if (!priceArray.includes(numeral(limitAmount).format('0,0'))) {
 		priceArray.push(numeral(limitAmount).format('0,0'));
 	}
@@ -149,10 +161,10 @@ function build5DollarsPriceArray(amountLeft) {
 
 function buildPriceArray(amountLeft, minAmount) {
 	// Get count of shares based on available remaining amount
-	const shareCount = amountLeft / minAmount;
+	const optionCount = amountLeft / minAmount;
 	// Convert this to formatted array for our select element
 	const priceArray = []; // ex. priceArray = ['25', '50', '75']
-	for (let i = 1; i <= shareCount; i += 1) {
+	for (let i = 1; i <= optionCount; i += 1) {
 		priceArray.push(numeral(minAmount * i).format('0,0'));
 	}
 	return priceArray;
@@ -180,17 +192,14 @@ export function getDropdownPriceArray(
 	inPfp = false,
 ) {
 	const parsedAmountLeft = parseFloat(unreservedAmount);
-	let combinedPricesArray = [];
 	let priceArray = (enableFiveDollarsNotes && !inPfp)
 		? build5DollarsPriceArray(parsedAmountLeft).slice(0, 28)
 		: buildPriceArray(parsedAmountLeft, minAmount).slice(0, 20);
 
-	const showHugeAmount = enableHugeAmount && parsedAmountLeft > 500 && !isVisitor;
-	if (showHugeAmount) {
+	if (enableHugeAmount && parsedAmountLeft > 500 && !isVisitor) {
 		const hugePriceArray = buildHugePriceArray(parsedAmountLeft);
-		combinedPricesArray = priceArray.concat(hugePriceArray);
+		priceArray = priceArray.concat(hugePriceArray);
 	}
-	priceArray = showHugeAmount ? combinedPricesArray : priceArray;
 
 	if (isCompleteLoanActive && !priceArray.includes(Number(unreservedAmount).toFixed())) {
 		priceArray.push(Number(unreservedAmount).toFixed());
