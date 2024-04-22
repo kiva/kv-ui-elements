@@ -331,12 +331,6 @@ describe('loanUtils', () => {
 			expect(result).toEqual(['25', '50', '75', '100']);
 		});
 
-		it('should return huge dropdown values', () => {
-			const result = getDropdownPriceArray('100.00');
-
-			expect(result).toEqual(['25', '50', '75', '100']);
-		});
-
 		it('should return huge dropdown values between 500 and 1000', () => {
 			const result = getDropdownPriceArray('650.00', false, 25, false, true, false);
 
