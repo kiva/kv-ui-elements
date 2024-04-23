@@ -74,10 +74,16 @@ module.exports = {
 			16: rem(space['16']),
 		},
 		fontFamily: {
+			// eslint-disable-next-line max-len
 			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
+			// eslint-disable-next-line max-len
+			serif: [`${fonts.serif}, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif`],
 		},
 		fontWeight: {
-			book: `${fontWeights.book}`,
+			// Keeping "book" defined here for backwards compatibility
+			book: `${fontWeights.light}`,
+			light: `${fontWeights.light}`,
+			normal: `${fontWeights.normal}`,
 			medium: `${fontWeights.medium}`,
 		},
 		borderWidth: {
@@ -192,18 +198,19 @@ module.exports = {
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,
 				h4: textStyles.textH4,
+				h5: textStyles.textH5,
 				small: textStyles.textSmall,
 				code: {
 					fontSize: '0.875em',
 				},
-				blockquote: textStyles.textSubhead,
+				blockquote: textStyles.textBlockquote,
 				'figure figcaption': textStyles.textSmall,
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
 				a: textStyles.textLink,
 				'strong, b': {
-					fontWeight: fontWeights.medium,
+					fontWeight: fontWeights.normal,
 				},
 				hr: {
 					borderColor: colors.gray['500'],
@@ -226,10 +233,12 @@ module.exports = {
 				'.text-h2': textStyles.textH2,
 				'.text-h3': textStyles.textH3,
 				'.text-h4': textStyles.textH4,
+				'.text-h5': textStyles.textH5,
 				'.text-subhead': textStyles.textSubhead,
 				'.text-jumbo': textStyles.textJumbo,
 				'.text-small': textStyles.textSmall,
 				'.text-link': textStyles.textLink,
+				'.text-blockquote': textStyles.textBlockquote,
 			}, ['responsive']);
 		}),
 	],

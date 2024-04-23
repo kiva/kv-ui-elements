@@ -190,7 +190,8 @@
 		"16": 128
 	},
 	"fonts": {
-		"sans": "PostGrotesk"
+		"sans": "PostGrotesk",
+		"serif": "dovetail-mvb"
 	},
 	"fontSizes": {
 		"base": {
@@ -199,9 +200,9 @@
 			"lg": 17
 		},
 		"jumbo": {
-			"sm": 64,
-			"md": 96,
-			"lg": 112
+			"sm": 42,
+			"md": 48,
+			"lg": 72
 		},
 		"small": {
 			"sm": 13,
@@ -209,36 +210,43 @@
 			"lg": 14
 		},
 		"h1": {
-			"sm": 40,
-			"md": 50,
-			"lg": 54
+			"sm": 36,
+			"md": 40,
+			"lg": 48
 		},
 		"h2": {
-			"sm": 24,
+			"sm": 28,
 			"md": 28,
 			"lg": 32
 		},
 		"h3": {
-			"sm": 20,
+			"sm": 22,
 			"md": 22,
 			"lg": 24
 		},
 		"h4": {
-			"sm": 12,
+			"sm": 14,
 			"md": 14,
 			"lg": 14
 		},
+		"h5": {
+			"sm": 13,
+			"md": 13,
+			"lg": 14
+		},
 		"subhead": {
-			"sm": 20,
+			"sm": 22,
 			"md": 22,
 			"lg": 24
 		}
 	},
 	"fontWeights": {
-		"book": 300,
-		"medium": 400
+		"light": 300,
+		"normal": 400,
+		"medium": 500
 	},
 	"lineHeights": {
+		"nearly-none": 1.05,
 		"tight": 1.25,
 		"normal": 1.5
 	},
