@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.74.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.73.2...@kiva/kv-components@3.74.0) (2024-04-23)
+
+
+### Bug Fixes
+
+* adjusted comment ([e73e6a8](https://github.com/kiva/kv-ui-elements/commit/e73e6a842486ec5ce951a3130348cb1e3428288d))
+* extracted CTA dropdown methods and added unit tests ([4ef99de](https://github.com/kiva/kv-ui-elements/commit/4ef99deb24399fcb619c41d20370ad79812f1b00))
+* removed duplicate test ([838d6d4](https://github.com/kiva/kv-ui-elements/commit/838d6d48c85bbfd7759fd5266498219817e00cd7))
+
+
+### Features
+
+* $1000 lend CTA options ([4f89352](https://github.com/kiva/kv-ui-elements/commit/4f8935237acb9c1f1655b77cc604fe68b21ab077))
+
+
+
+
+
 ## [3.73.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.73.1...@kiva/kv-components@3.73.2) (2024-04-23)
 
 
