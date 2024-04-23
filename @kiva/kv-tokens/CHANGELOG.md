@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.10.0...@kiva/kv-tokens@2.11.0) (2024-04-23)
+
+
+### Bug Fixes
+
+* adjust type styles for dovetail-mvb 500, adjust font weights to match tailwind naming ([75e32d1](https://github.com/kiva/kv-ui-elements/commit/75e32d110b0c0c99fce77366b6bef621bbcd2401))
+* import serif from primitives ([dd96190](https://github.com/kiva/kv-ui-elements/commit/dd961906c359c9d67943ea05762224fd5500ed0a))
+* refine letter spacing to match figma to our dynamic em calculations ([6567f6c](https://github.com/kiva/kv-ui-elements/commit/6567f6c9b147bdab812c006ea9f7c403d5937a8e))
+* remove h6, re-apply letter spacing, remove bold dovetail styles ([163b657](https://github.com/kiva/kv-ui-elements/commit/163b65793cd1490210368f5fac9325a881e11354))
+* set h3 bold, remove unused italic/em element style ([9835f05](https://github.com/kiva/kv-ui-elements/commit/9835f05358f03cc8903db835b95dd7dd03399aba))
+* testing baseline configs for including new dovetail webfont ([7079590](https://github.com/kiva/kv-ui-elements/commit/7079590f9b3ab0bbfb91b81ab6aa98fd4ae2f113))
+
+
+### Features
+
+* implement kiva ecosystem default type styles ([c87d6fc](https://github.com/kiva/kv-ui-elements/commit/c87d6fc700cb130a4c55b0723438a89202c985ee))
+
+
+
+
+
 # [2.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.9.0...@kiva/kv-tokens@2.10.0) (2023-09-07)
 
 

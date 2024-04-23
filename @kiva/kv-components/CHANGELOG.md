@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.73.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.73.1...@kiva/kv-components@3.73.2) (2024-04-23)
+
+
+### Bug Fixes
+
+* add type stories for italics and font weight for serif ([1133777](https://github.com/kiva/kv-ui-elements/commit/11337774fcb8b12ecc93bd11943b11f66bdc53e6))
+* testing baseline configs for including new dovetail webfont ([7079590](https://github.com/kiva/kv-ui-elements/commit/7079590f9b3ab0bbfb91b81ab6aa98fd4ae2f113))
+
+
+
+
+
 ## [3.73.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.73.0...@kiva/kv-components@3.73.1) (2024-04-17)
 
 
