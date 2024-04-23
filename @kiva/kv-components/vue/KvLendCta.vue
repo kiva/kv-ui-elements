@@ -126,13 +126,12 @@
 </template>
 
 <script>
-import numeral from 'numeral';
 import { mdiChevronRight } from '@mdi/js';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
-import { getLendCtaSelectedOption } from '../utils/loanUtils';
+import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
 
 export default {
 	name: 'KvLendCta',
@@ -251,15 +250,14 @@ export default {
 			// If we wanted to show this interface on loans with less than 25 remaining they would see the selector
 			const minAmount = parseFloat(this.unreservedAmount < 25 ? this.minNoteSize : 25);
 			// Limit price options
-			const priceArray = this.getDropdownPriceArray(
+			return getDropdownPriceArray(
 				this.unreservedAmount,
+				this.isCompleteLoanActive,
 				minAmount,
 				this.enableFiveDollarsNotes,
+				this.enableHugeAmount,
+				this.isVisitor,
 			);
-			if (this.isCompleteLoanActive && !priceArray.includes(Number(this.unreservedAmount).toFixed())) {
-				priceArray.push(Number(this.unreservedAmount).toFixed());
-			}
-			return priceArray;
 		},
 		ctaButtonText() {
 			if (this.isCompleteLoanActive) {
@@ -402,63 +400,6 @@ export default {
 				this.loanId,
 				this.loanId,
 			);
-		},
-		build5DollarsPriceArray(amountLeft) {
-			const limit5Notes = amountLeft < 50 ? amountLeft : 50;
-			const numberOf5 = limit5Notes / 5;
-			const numberOf25 = Math.ceil((amountLeft - limit5Notes) / 25) + 1;
-			const priceArray = [];
-			for (let i = 1; i <= numberOf5; i += 1) {
-				priceArray.push(numeral(5 * i).format('0,0'));
-			}
-			if (amountLeft > limit5Notes) {
-				for (let i = 3; i <= numberOf25; i += 1) {
-					priceArray.push(numeral(25 * i).format('0,0'));
-				}
-			}
-			return priceArray;
-		},
-		buildPriceArray(amountLeft, minAmount) {
-			// get count of shares based on available remaining amount.
-			const N = amountLeft / minAmount;
-			// convert this to formatted array for our select element
-			const priceArray = []; // ex. priceArray = ['25', '50', '75']
-			for (let i = 1; i <= N; i += 1) {
-				priceArray.push(numeral(minAmount * i).format('0,0'));
-			}
-			return priceArray;
-		},
-		buildHugePriceArray(amountLeft) {
-			const minAmount = 100;
-			const limitAmount = amountLeft > 1000 ? 1000 : amountLeft;
-			const N = limitAmount / minAmount;
-
-			const priceArray = [];
-			for (let i = 1; i <= N; i += 1) {
-				const price = minAmount * i + 500;
-				if (price > limitAmount) break;
-				priceArray.push(numeral(price).format('0,0'));
-			}
-
-			if (!priceArray.includes(numeral(limitAmount).format('0,0'))) {
-				priceArray.push(numeral(limitAmount).format('0,0'));
-			}
-
-			return priceArray;
-		},
-		getDropdownPriceArray(unreservedAmount, minAmount, enableFiveDollarsNotes, inPfp = false) {
-			const parsedAmountLeft = parseFloat(unreservedAmount);
-			let combinedPricesArray = [];
-			const priceArray = (enableFiveDollarsNotes && !inPfp)
-				? this.build5DollarsPriceArray(parsedAmountLeft).slice(0, 28)
-				: this.buildPriceArray(parsedAmountLeft, minAmount).slice(0, 20);
-
-			const showHugeAmount = this.enableHugeAmount && parsedAmountLeft > 500 && !this.isVisitor;
-			if (showHugeAmount) {
-				const hugePriceArray = this.buildHugePriceArray(parsedAmountLeft);
-				combinedPricesArray = priceArray.concat(hugePriceArray);
-			}
-			return showHugeAmount ? combinedPricesArray : priceArray;
 		},
 	},
 };

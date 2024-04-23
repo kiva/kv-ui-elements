@@ -2,6 +2,7 @@ import {
 	isBetween25And50,
 	isLessThan25,
 	getLendCtaSelectedOption,
+	getDropdownPriceArray,
 	ERL_COOKIE_NAME,
 	TOP_UP_CAMPAIGN,
 	BASE_CAMPAIGN,
@@ -308,6 +309,129 @@ describe('loanUtils', () => {
 			expect(result).toBe('25');
 			expect(mockCookieStoreGet).toHaveBeenCalledTimes(0);
 			expect(mockCookieStoreSet).toHaveBeenCalledTimes(0);
+		});
+	});
+
+	describe('getDropdownPriceArray', () => {
+		it('should return less than 25', () => {
+			const result = getDropdownPriceArray('15.00', true, 15);
+
+			expect(result).toEqual(['15']);
+		});
+
+		it('should return non-25 increments', () => {
+			const result = getDropdownPriceArray('30.00', true);
+
+			expect(result).toEqual(['25', '30']);
+		});
+
+		it('should return dropdown values', () => {
+			const result = getDropdownPriceArray('100.00');
+
+			expect(result).toEqual(['25', '50', '75', '100']);
+		});
+
+		it('should return huge dropdown values between 500 and 1000', () => {
+			const result = getDropdownPriceArray('650.00', false, 25, false, true, false);
+
+			expect(result).toEqual([
+				'25',
+				'50',
+				'75',
+				'100',
+				'125',
+				'150',
+				'175',
+				'200',
+				'225',
+				'250',
+				'275',
+				'300',
+				'325',
+				'350',
+				'375',
+				'400',
+				'425',
+				'450',
+				'475',
+				'500',
+				'600',
+				'650',
+			]);
+		});
+
+		it('should return huge dropdown values up to 10,000', () => {
+			const result = getDropdownPriceArray('11000.00', false, 25, false, true, false);
+
+			expect(result).toEqual([
+				'25',
+				'50',
+				'75',
+				'100',
+				'125',
+				'150',
+				'175',
+				'200',
+				'225',
+				'250',
+				'275',
+				'300',
+				'325',
+				'350',
+				'375',
+				'400',
+				'425',
+				'450',
+				'475',
+				'500',
+				'600',
+				'700',
+				'800',
+				'900',
+				'1,000',
+				'2,000',
+				'3,000',
+				'4,000',
+				'5,000',
+				'6,000',
+				'7,000',
+				'8,000',
+				'9,000',
+				'10,000',
+			]);
+		});
+
+		it('should return not huge dropdown values for visitor', () => {
+			const result = getDropdownPriceArray('650.00', false, 25, false, true, true);
+
+			expect(result).toEqual([
+				'25',
+				'50',
+				'75',
+				'100',
+				'125',
+				'150',
+				'175',
+				'200',
+				'225',
+				'250',
+				'275',
+				'300',
+				'325',
+				'350',
+				'375',
+				'400',
+				'425',
+				'450',
+				'475',
+				'500',
+			]);
+		});
+
+		it('should return 5 dollar notes', () => {
+			const result = getDropdownPriceArray('30.00', true, 25, true);
+
+			expect(result).toEqual(['5', '10', '15', '20', '25', '30']);
 		});
 	});
 });

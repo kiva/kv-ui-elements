@@ -70,7 +70,7 @@ export const Dropdown = story({
 	kvTrackFunction,
 });
 
-export const HugeLentAmount = story({
+export const HugeAmount = story({
 	isLoading: false,
 	loan: {
 		id: 1,
@@ -81,7 +81,7 @@ export const HugeLentAmount = story({
 	isVisitor: false,
 });
 
-export const Between500and1000 = story({
+export const HugeAmountUnder1000 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
