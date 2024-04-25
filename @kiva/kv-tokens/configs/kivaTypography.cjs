@@ -100,7 +100,7 @@ const textStyles = (() => {
 		fontSize: rem(fontSizes.h2.sm),
 		fontWeight: fontWeights.medium,
 		letterSpacing: em(letterSpacings.normal, fontSizes.h2.sm),
-		lineHeight: lineHeights.tight,
+		lineHeight: lineHeights.normal,
 		'@screen md': {
 			fontSize: rem(fontSizes.h2.md),
 			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h2.md),
@@ -108,7 +108,6 @@ const textStyles = (() => {
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
 			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h2.lg),
-			lineHeight: lineHeights['nearly-none'],
 		},
 	};
 
