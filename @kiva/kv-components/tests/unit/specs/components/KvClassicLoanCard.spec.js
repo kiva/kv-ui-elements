@@ -211,10 +211,10 @@ describe('KvClassicLoanCard', () => {
 					enableClickableTags: true,
 				},
 			});
-		const tagSpan = getByText('Dairy');
+		const tagSpan = getByText('Agriculture');
 
 		await userEvent.click(tagSpan);
 
-		expect(emitted()['jump-filter-page']).toEqual([[{ id: 61, label: 'Dairy', type: 'activity' }]]);
+		expect(emitted()['jump-filter-page']).toEqual([[{ id: 1, label: 'Agriculture', type: 'sector' }]]);
 	});
 });
