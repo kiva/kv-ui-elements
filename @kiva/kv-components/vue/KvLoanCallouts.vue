@@ -60,7 +60,7 @@ export default {
 		} = toRefs(props);
 
 		const isClickable = (tag) => {
-			const clickableTypes = ['activity', 'sector', 'tag', 'theme'];
+			const clickableTypes = ['sector', 'tag', 'attribute'];
 			const isClickableType = clickableTypes.includes(tag.type);
 
 			return enableClickable.value && isClickableType && !!tag.id;

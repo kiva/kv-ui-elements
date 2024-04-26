@@ -24,11 +24,10 @@ export const Default = story({ callouts: [{ label: 'callout 1' }, { label: 'call
 
 export const Clickable = story({
 	callouts: [
-		{ id: 1, label: 'callout 1', type: 'activity' },
 		{ label: 'callout 2' },
 		{ id: 33, label: 'callout 3', type: 'sector' },
 		{ id: null, label: 'callout 4', type: 'tag' },
-		{ id: 12, label: 'callout 5', type: 'theme' },
+		{ id: 12, label: 'callout 5', type: 'attribute' },
 	],
 	enableClickable: true,
 });

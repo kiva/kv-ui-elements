@@ -11,7 +11,7 @@ const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
 const SINGLE_PARENT_KEY = 'SINGLE PARENT';
 const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
-const findCalloutData = (tags, tagName) => tags?.find((t) => t.name.toUpperCase() === tagName.toUpperCase()) ?? {};
+const findCalloutData = (tags, tagName) => tags?.find((t) => t.name.replace('#', '').toUpperCase() === tagName.toUpperCase()) ?? {}; // eslint-disable-line max-len
 
 export function loanCardComputedProperties(props) {
 	const {
@@ -142,7 +142,7 @@ export function loanCardComputedProperties(props) {
 			const id = themeData?.id ?? null;
 			if (!callouts.filter((c) => c.label.toUpperCase() === theme.toUpperCase()).length
 				&& theme.toUpperCase() !== categoryPageName.value?.toUpperCase()) {
-				callouts.push({ label: theme, type: 'theme', id });
+				callouts.push({ label: theme, type: 'attribute', id });
 			}
 		}
 
