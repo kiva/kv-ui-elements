@@ -1,4 +1,5 @@
 import { render } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import KvClassicLoanCard from '../../../../vue/KvClassicLoanCard.vue';
 
@@ -197,5 +198,23 @@ describe('KvClassicLoanCard', () => {
 		const activityBtn = getByRole('button', { name: 'See all activity' });
 		expect(activityText).toBeDefined();
 		expect(activityBtn).toBeDefined();
+	});
+
+	it('should emit clicked tag data', async () => {
+		const { getByText, emitted } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan,
+					kvTrackFunction,
+					photoPath,
+					enableClickableTags: true,
+				},
+			});
+		const tagSpan = getByText('Dairy');
+
+		await userEvent.click(tagSpan);
+
+		expect(emitted()['jump-filter-page']).toEqual([[{ id: 61, label: 'Dairy', type: 'activity' }]]);
 	});
 });

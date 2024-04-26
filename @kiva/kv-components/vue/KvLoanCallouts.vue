@@ -13,8 +13,8 @@
 		>
 			<span
 				v-for="tag in callouts"
-				:key="tag"
-				:title="tag"
+				:key="tag.label"
+				:title="tag.label"
 				class="
 					loan-callout
 					tw-text-ellipsis
@@ -27,14 +27,18 @@
 					tw-mb-0.5
 					tw-text-small
 				"
+				:class="{ 'tw-cursor-pointer hover:tw-underline': isClickable(tag) }"
+				@click="clickCallout(tag)"
 			>
-				{{ tag }}
+				{{ tag.label }}
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
+import { toRefs } from 'vue-demi';
+
 export default {
 	name: 'KvLoanCallouts',
 	props: {
@@ -42,6 +46,36 @@ export default {
 			type: Array,
 			required: true,
 		},
+		enableClickable: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	emits: [
+		'click',
+	],
+	setup(props, { emit }) {
+		const {
+			enableClickable,
+		} = toRefs(props);
+
+		const isClickable = (tag) => {
+			const clickableTypes = ['activity', 'sector', 'tag', 'theme'];
+			const isClickableType = clickableTypes.includes(tag.type);
+
+			return enableClickable.value && isClickableType && !!tag.id;
+		};
+
+		const clickCallout = (tag) => {
+			if (isClickable(tag)) {
+				emit('click', tag);
+			}
+		};
+
+		return {
+			isClickable,
+			clickCallout,
+		};
 	},
 };
 </script>
