@@ -101,12 +101,12 @@ export function loanCardComputedProperties(props) {
 			if (categories.ecoFriendly
 				// eslint-disable-next-line max-len
 				&& !callouts.find((c) => c.label.toUpperCase() === ECO_FRIENDLY_KEY || c.label.toUpperCase() === SUSTAINABLE_AG_KEY)) {
-				callouts.push({ label: 'Eco-friendly' });
+				callouts.push({ label: 'Eco-friendly', type: 'tag', id: 9 });
 			} else if (categories.refugeesIdps) {
-				callouts.push({ label: 'Refugees and IDPs' });
+				callouts.push({ label: 'Refugees and IDPs', type: 'attribute', id: 28 });
 			} else if (categories.singleParents
 				&& !callouts.find((c) => c.label.toUpperCase() === SINGLE_PARENT_KEY)) {
-				callouts.push({ label: 'Single Parent' });
+				callouts.push({ label: 'Single Parent', type: 'tag', id: 17 });
 			}
 		}
 
