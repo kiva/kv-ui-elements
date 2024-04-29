@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.75.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.75.1...@kiva/kv-components@3.75.2) (2024-04-29)
+
+
+### Bug Fixes
+
+* category callouts were missing props to make them clickable ([6d7918b](https://github.com/kiva/kv-ui-elements/commit/6d7918bda0ddb8bff1dc38fa985409503c2d2616))
+
+
+
+
+
 ## [3.75.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.75.0...@kiva/kv-components@3.75.1) (2024-04-26)
 
 
