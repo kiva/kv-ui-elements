@@ -7,6 +7,7 @@
 			tw-items-center
 			tw-flex
 			tw-flex-row
+			tw-cursor-pointer
 			tw-whitespace-nowrap
 			"
 			@click="handleClick"
@@ -14,7 +15,7 @@
 			<div class="tw-text-small">
 				{{ title }}
 			</div>
-			<div class="close-button-container tw-text-right">
+			<div class="close-button-container tw-pt-2 tw-text-right">
 				<kv-material-icon
 					name="small-x"
 					class="close-button tw-fill-gray-600"
@@ -48,7 +49,6 @@ export default {
 
 	.chip {
 		border-radius: rem-calc(4);
-		cursor: pointer;
 		height: rem-calc(32);
 		margin-bottom: rem-calc(6);
 		margin-right: rem-calc(6);
@@ -61,7 +61,6 @@ export default {
 
 		.close-button-container {
 			margin-left: rem-calc(11.6);
-			padding-top: rem-calc(1);
 
 			.close-button {
 				height: rem-calc(9.5);
