@@ -11,15 +11,33 @@ const story = (args) => {
 		components: { KvChip },
 		template: `
 			<kv-chip
-			:title="title"
-			:email="email"
-			/>
+			>
+			<h3 class="tw-text-small"> Chip Title </h3>
+			</kv-chip>
 		`,
 	});
 	template.args = args;
 	return template;
 };
 
-export const Default = story({ title: 'Chip Title' });
-export const LongChipTitle = story({ title: 'Longer Chip Title' });
-export const EmailAddress = story({ title: '@bankofamerica.com', email: true });
+export const Default = story();
+export const LongChipTitle = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvChip },
+	template: `
+			<kv-chip
+			>
+			<h3 class="tw-text-small"> Longer Chip Title </h3>
+			</kv-chip>
+		`,
+});
+export const EmailAddress = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvChip },
+	template: `
+			<kv-chip
+			>
+			<h4> @BankofAmerica.com </h4>
+			</kv-chip>
+		`,
+});
