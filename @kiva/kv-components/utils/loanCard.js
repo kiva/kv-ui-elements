@@ -11,6 +11,8 @@ const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
 const SINGLE_PARENT_KEY = 'SINGLE PARENT';
 const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
+const findCalloutData = (tags, tagName) => tags?.find((t) => t.name.replace('#', '').toUpperCase() === tagName.toUpperCase()) ?? {}; // eslint-disable-line max-len
+
 export function loanCardComputedProperties(props) {
 	const {
 		externalLinks,
@@ -64,8 +66,11 @@ export function loanCardComputedProperties(props) {
 
 	const loanCallouts = computed(() => {
 		const callouts = [];
+
 		const activityName = loan.value?.activity?.name ?? '';
+		const activityId = loan.value?.activity?.id ?? null;
 		const sectorName = loan.value?.sector?.name ?? '';
+		const sectorId = loan.value?.sector?.id ?? null;
 		const tags = loan.value?.tags?.filter((loantag) => loantag.charAt(0) === '#')
 			.map((loantag) => loantag.substring(1)) ?? [];
 		const themes = loan.value?.themes ?? [];
@@ -78,47 +83,54 @@ export function loanCardComputedProperties(props) {
 
 		const isLseLoan = loan.value?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
 
+		const tagsData = loan.value?.tagsData ?? [];
+		const themesData = loan.value?.themesData ?? [];
+
 		// P1 Category
 		// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
 		// Tag as first option for LSE loans
 		if (isLseLoan && tags.length) {
 			const position = Math.floor(Math.random() * tags.length);
 			const p1Tag = tags[position];
-			callouts.push(p1Tag);
+			const tagData = findCalloutData(tagsData, p1Tag);
+			const id = tagData?.id ?? null;
+			callouts.push({ label: p1Tag, type: 'tag', id });
 		}
 
 		if (!categoryPageName.value) {
 			if (categories.ecoFriendly
 				// eslint-disable-next-line max-len
-				&& !callouts.find((c) => c.toUpperCase() === ECO_FRIENDLY_KEY || c.toUpperCase() === SUSTAINABLE_AG_KEY)) {
-				callouts.push('Eco-friendly');
+				&& !callouts.find((c) => c.label.toUpperCase() === ECO_FRIENDLY_KEY || c.label.toUpperCase() === SUSTAINABLE_AG_KEY)) {
+				callouts.push({ label: 'Eco-friendly', type: 'tag', id: 9 });
 			} else if (categories.refugeesIdps) {
-				callouts.push('Refugees and IDPs');
+				callouts.push({ label: 'Refugees and IDPs', type: 'attribute', id: 28 });
 			} else if (categories.singleParents
-				&& !callouts.find((c) => c.toUpperCase() === SINGLE_PARENT_KEY)) {
-				callouts.push('Single Parent');
+				&& !callouts.find((c) => c.label.toUpperCase() === SINGLE_PARENT_KEY)) {
+				callouts.push({ label: 'Single Parent', type: 'tag', id: 17 });
 			}
 		}
 
 		// P2 Activity
-		if (activityName && categoryPageName.value?.toUpperCase() !== activityName.toUpperCase()) {
-			callouts.push(activityName);
+		if (activityName && activityId && categoryPageName.value?.toUpperCase() !== activityName.toUpperCase()) {
+			callouts.push({ id: activityId, label: activityName, type: 'activity' });
 		}
 
 		// P3 Sector
-		if (sectorName
+		if (sectorName && sectorId
 			&& (activityName.toUpperCase() !== sectorName.toUpperCase())
 			&& (sectorName.toUpperCase() !== categoryPageName.value?.toUpperCase())
 			&& callouts.length < 2) {
-			callouts.push(sectorName);
+			callouts.push({ id: sectorId, label: sectorName, type: 'sector' });
 		}
 
 		// P4 Tag
 		if (!!tags.length && callouts.length < 2) {
 			const position = Math.floor(Math.random() * tags.length);
 			const p4Tag = tags[position];
-			if (!callouts.filter((c) => c.toUpperCase() === p4Tag.toUpperCase()).length) {
-				callouts.push(p4Tag);
+			const tagData = findCalloutData(tagsData, p4Tag);
+			const id = tagData?.id ?? null;
+			if (!callouts.filter((c) => c.label.toUpperCase() === p4Tag.toUpperCase()).length) {
+				callouts.push({ label: p4Tag, type: 'tag', id });
 			}
 		}
 
@@ -126,9 +138,11 @@ export function loanCardComputedProperties(props) {
 		if (!!themes.length && callouts.length < 2) {
 			const position = Math.floor(Math.random() * themes.length);
 			const theme = themes[position];
-			if (!callouts.filter((c) => c.toUpperCase() === theme.toUpperCase()).length
+			const themeData = findCalloutData(themesData, theme);
+			const id = themeData?.id ?? null;
+			if (!callouts.filter((c) => c.label.toUpperCase() === theme.toUpperCase()).length
 				&& theme.toUpperCase() !== categoryPageName.value?.toUpperCase()) {
-				callouts.push(theme);
+				callouts.push({ label: theme, type: 'attribute', id });
 			}
 		}
 
@@ -136,7 +150,8 @@ export function loanCardComputedProperties(props) {
 		if (isLseLoan && callouts.length > 1) return [callouts.shift()];
 
 		// Add all custom callouts if available
-		callouts.push(...customCallouts?.value);
+		const customTags = customCallouts.value?.map((c) => ({ label: c })) ?? [];
+		callouts.push(...customTags);
 		return callouts;
 	});
 

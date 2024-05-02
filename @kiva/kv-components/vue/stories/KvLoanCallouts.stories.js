@@ -12,6 +12,7 @@ const story = (args) => {
 		template: `
 			<kv-loan-callouts
 				:callouts="callouts"
+				:enableClickable="enableClickable"
 			/>
 		`,
 	});
@@ -19,4 +20,14 @@ const story = (args) => {
 	return template;
 };
 
-export const Default = story({ callouts: ['callout 1', 'callout 2', 'callout 3'] });
+export const Default = story({ callouts: [{ label: 'callout 1' }, { label: 'callout 2' }, { label: 'callout 3' }] });
+
+export const Clickable = story({
+	callouts: [
+		{ label: 'callout 2' },
+		{ id: 33, label: 'callout 3', type: 'sector' },
+		{ id: null, label: 'callout 4', type: 'tag' },
+		{ id: 12, label: 'callout 5', type: 'attribute' },
+	],
+	enableClickable: true,
+});

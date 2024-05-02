@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.0...@kiva/kv-tokens@2.11.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* increate h2 line height ([d30382d](https://github.com/kiva/kv-ui-elements/commit/d30382d99294e3769812f4f3aece645d3fdebf03))
+
+
+
+
+
 # [2.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.10.0...@kiva/kv-tokens@2.11.0) (2024-04-23)
 
 

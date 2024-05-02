@@ -32,6 +32,7 @@ const story = (args) => {
 					:is-team-pick="isTeamPick"
 					:combined-activities="combinedActivities"
 					:enable-huge-amount="enableHugeAmount"
+					:enable-clickable-tags="enableClickableTags"
 				/>
 			</div>
 		`,
@@ -387,4 +388,12 @@ export const HugeLentAmount = story({
 	photoPath,
 	isVisitor: false,
 	enableHugeAmount: true,
+});
+
+export const ClickableTags = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	enableClickableTags: true,
 });
