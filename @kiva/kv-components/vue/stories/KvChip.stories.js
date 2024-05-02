@@ -12,7 +12,7 @@ const story = (args) => {
 		template: `
 			<kv-chip
 			>
-			<h3 class="tw-text-small"> Chip Title </h3>
+			<p> Chip Title </p>
 			</kv-chip>
 		`,
 	});
@@ -27,7 +27,7 @@ export const LongChipTitle = (args, { argTypes }) => ({
 	template: `
 			<kv-chip
 			>
-			<h3 class="tw-text-small"> Longer Chip Title </h3>
+			<p> Longer Chip Title </p>
 			</kv-chip>
 		`,
 });

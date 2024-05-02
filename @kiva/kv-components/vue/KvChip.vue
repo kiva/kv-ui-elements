@@ -18,7 +18,7 @@
 			@click="handleClick"
 		>
 			<div
-				class="tw-text-small tw-pr-1"
+				class="tw-text-base tw-pr-1"
 			>
 				<slot></slot>
 			</div>
