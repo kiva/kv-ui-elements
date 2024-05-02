@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.76.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.75.2...@kiva/kv-components@3.76.0) (2024-05-02)
+
+
+### Bug Fixes
+
+* removal of unnecessary classes, v-if, and added slot tag ([dd46624](https://github.com/kiva/kv-ui-elements/commit/dd46624bde0f99f3889d11cc0c68bf5b0eeab182))
+* style classes -> Tailwinds classes ([920e364](https://github.com/kiva/kv-ui-elements/commit/920e364749d47a8e73770a3c43eb5c3e1a36df1d))
+* tags within storybook component, also font for title ([23e6c0d](https://github.com/kiva/kv-ui-elements/commit/23e6c0d7c50d6c097960553356740aa10c9ffff2))
+
+
+### Features
+
+* newly created global chip component [CIT-1429] ([82cb335](https://github.com/kiva/kv-ui-elements/commit/82cb33538cadbc0c817501df70e36a37c21d5dd8))
+* scss section removal, additional stories, new props + setup ([c7000d7](https://github.com/kiva/kv-ui-elements/commit/c7000d7f4d0e4446b40de0840805079aa863473a))
+
+
+
+
+
 ## [3.75.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.75.1...@kiva/kv-components@3.75.2) (2024-04-29)
 
 
