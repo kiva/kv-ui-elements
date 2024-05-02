@@ -2,23 +2,41 @@
 	<div class="tw-inline-flex">
 		<button
 			class="
-			chip
-			tw-bg-tertiary
+			tw-bg-secondary
+			hover:tw-bg-tertiary
 			tw-items-center
 			tw-flex
 			tw-flex-row
 			tw-cursor-pointer
 			tw-whitespace-nowrap
+			tw-rounded
+			tw-h-2
+			tw-py-2
+			tw-px-2
+			tw-mr-2
+			tw-mb-2
+			tw-select-none
 			"
 			@click="handleClick"
 		>
-			<div class="tw-text-small">
-				{{ title }}
+			<div>
+				<div
+					v-if="!email"
+					class="tw-text-small"
+				>
+					{{ title }}
+				</div>
+				<div
+					v-else
+					class="tw-text-h4"
+				>
+					{{ title }}
+				</div>
 			</div>
-			<div class="close-button-container tw-pt-2 tw-text-right">
+			<div class="tw-ml-2 tw-pt-1 tw-text-right">
 				<kv-material-icon
-					name="small-x"
-					class="close-button tw-fill-gray-600"
+					:icon="closeButton"
+					class="tw-w-2 tw-h-2 tw-fill-gray-600"
 					:from-sprite="true"
 				/>
 			</div>
@@ -26,6 +44,8 @@
 	</div>
 </template>
 <script>
+import { mdiClose } from '@mdi/js';
+import { computed } from 'vue-demi';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
@@ -34,8 +54,21 @@ export default {
 	props: {
 		title: {
 			type: String,
-			required: true,
+			default: '',
 		},
+		email: {
+			type: Boolean,
+			default: false,
+		},
+	},
+	emits: [
+		'click-chip',
+	],
+	setup() {
+		const closeButton = computed(() => mdiClose);
+		return {
+			closeButton,
+		};
 	},
 	methods: {
 		handleClick() {
@@ -44,29 +77,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="scss" scoped>
-
-	.chip {
-		border-radius: rem-calc(4);
-		height: rem-calc(32);
-		margin-bottom: rem-calc(6);
-		margin-right: rem-calc(6);
-		padding-bottom: rem-calc(8);
-		padding-left: rem-calc(12);
-		padding-top: rem-calc(9);
-		padding-right: rem-calc(11.6);
-		transition: background-color 0.15s linear;
-		user-select: none;
-
-		.close-button-container {
-			margin-left: rem-calc(11.6);
-
-			.close-button {
-				height: rem-calc(9.5);
-				width: rem-calc(9.5);
-			}
-		}
-	}
-
-</style>

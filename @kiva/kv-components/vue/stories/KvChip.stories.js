@@ -11,7 +11,8 @@ const story = (args) => {
 		components: { KvChip },
 		template: `
 			<kv-chip
-			:title="chip-title"
+			:title="title"
+			:email="email"
 			/>
 		`,
 	});
@@ -20,3 +21,5 @@ const story = (args) => {
 };
 
 export const Default = story({ title: 'Chip Title' });
+export const LongChipTitle = story({ title: 'Longer Chip Title' });
+export const EmailAddress = story({ title: '@bankofamerica.com', email: true });
