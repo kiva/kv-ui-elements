@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.77.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.76.0...@kiva/kv-components@3.77.0) (2024-05-08)
+
+
+### Features
+
+* clickable activity tag ([#397](https://github.com/kiva/kv-ui-elements/issues/397)) ([0b808a5](https://github.com/kiva/kv-ui-elements/commit/0b808a591d1b6f43c12df8f6f54920cd77f59125))
+
+
+
+
+
 # [3.76.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.75.2...@kiva/kv-components@3.76.0) (2024-05-02)
 
 
