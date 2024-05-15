@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.78.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.77.0...@kiva/kv-components@3.78.0) (2024-05-15)
+
+
+### Features
+
+* start index added to kvcarousel component ([#398](https://github.com/kiva/kv-ui-elements/issues/398)) ([0477155](https://github.com/kiva/kv-ui-elements/commit/0477155d8bb02cce80777dbb3d2296b63d146ea8))
+
+
+
+
+
 # [3.77.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.76.0...@kiva/kv-components@3.77.0) (2024-05-08)
 
 
