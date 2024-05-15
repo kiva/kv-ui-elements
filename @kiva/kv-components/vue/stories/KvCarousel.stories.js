@@ -310,3 +310,46 @@ export const ResponsiveSlides = () => ({
 		</kv-carousel>
 	`,
 });
+
+export const CustomStartIndex = () => ({
+	components: {
+		KvCarousel,
+		KvButton,
+	},
+	template: `
+		<kv-carousel
+			:embla-options="{ loop: false, align: 'center', startIndex: 1 }"
+			:multiple-slides-visible="true"
+			slides-to-scroll="visible"
+			style="max-width: 1072px;"
+		>
+			<template #slide1>
+				${generateLoanCardTemplate(1)}
+			</template>
+			<template #slide2>
+				${generateLoanCardTemplate(2)}
+			</template>
+			<template #slide3>
+				${generateLoanCardTemplate(3)}
+			</template>
+			<template #slide4>
+				${generateLoanCardTemplate(4)}
+			</template>
+			<template #slide5>
+				${generateLoanCardTemplate(5)}
+			</template>
+			<template #slide6>
+				${generateLoanCardTemplate(6)}
+			</template>
+			<template #slide7>
+				${generateLoanCardTemplate(7)}
+			</template>
+			<template #slide8>
+				${generateLoanCardTemplate(8)}
+			</template>
+			<template #slide9>
+				${generateLoanCardTemplate(9)}
+			</template>
+		</kv-carousel>
+	`,
+});

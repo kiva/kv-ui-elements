@@ -146,7 +146,8 @@ export default {
 		const rootEl = ref(null);
 		const embla = ref(null);
 		const slides = ref([]);
-		const currentIndex = ref(0);
+		const startIndex = emblaOptions.value?.startIndex ?? 0;
+		const currentIndex = ref(startIndex);
 		// The indicator count may differ from the slide count when multiple slides are in view
 		const slideIndicatorCount = ref(0);
 
