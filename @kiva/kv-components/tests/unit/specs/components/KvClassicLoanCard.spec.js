@@ -194,7 +194,7 @@ describe('KvClassicLoanCard', () => {
 				},
 			});
 
-		const activityText = getByText('7 members lent $950.');
+		const activityText = getByText('7 lenders lent $950.');
 		const activityBtn = getByRole('button', { name: 'See all activity' });
 		expect(activityText).toBeDefined();
 		expect(activityBtn).toBeDefined();
