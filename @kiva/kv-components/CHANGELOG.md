@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.78.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.78.0...@kiva/kv-components@3.78.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* change activity copy in team pick loan ([190ea03](https://github.com/kiva/kv-ui-elements/commit/190ea03a93befc0fb60587a61b408c06a9f84be0))
+
+
+
+
+
 # [3.78.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.77.0...@kiva/kv-components@3.78.0) (2024-05-15)
 
 
