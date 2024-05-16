@@ -43,3 +43,53 @@ export async function removeKivaCredit(apollo: ApolloClient<any>): Promise<boole
 
 	return !!data?.shop?.removeCreditByType;
 }
+
+export interface ApplyPromoCreditData {
+	shop: {
+		id: string,
+		addCreditByType: boolean,
+	} | null,
+}
+
+export async function applyPromoCredit(apollo: ApolloClient<any>): Promise<boolean> {
+	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
+		awaitRefetchQueries: true,
+		mutation: gql`mutation applyPromoCredit(
+			$basketId: String,
+			$creditType: CreditTypeEnum!,
+			$redemptionCode: String
+		) {
+			shop (basketId: $basketId) {
+				id
+				addCreditByType(creditType: $creditType, redemptionCode: $redemptionCode)
+			}
+		}`,
+	});
+
+	return !!data?.shop?.addCreditByType;
+}
+
+export interface RemovePromoCreditData {
+	shop: {
+		id: string,
+		removeCreditByType: boolean,
+	} | null,
+}
+
+export async function removePromoCredit(apollo: ApolloClient<any>): Promise<boolean> {
+	const data = await callShopMutation<RemovePromoCreditData>(apollo, {
+		awaitRefetchQueries: true,
+		mutation: gql`mutation removePromoCredit(
+			$basketId: String,
+			$creditType: CreditTypeEnum!,
+			$redemptionCode: String
+		) {
+			shop (basketId: $basketId) {
+				id
+				removeCreditByType(creditType: $creditType, redemptionCode: $redemptionCode)
+			}
+		}`,
+	});
+
+	return !!data?.shop?.removeCreditByType;
+}
