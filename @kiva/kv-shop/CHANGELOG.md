@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.32...@kiva/kv-shop@1.11.0) (2024-05-17)
+
+
+### Features
+
+* implement add and remove promo credit mutations and tests ([a7f6e6b](https://github.com/kiva/kv-ui-elements/commit/a7f6e6b14b83566d0ec63b645f9a90c70aff2585))
+* implement managedAccount promoCampaign query with tests ([8a26e7c](https://github.com/kiva/kv-ui-elements/commit/8a26e7c72f71e83d99c4a2295059e881aabe8baf))
+
+
+
+
+
 ## [1.10.32](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.31...@kiva/kv-shop@1.10.32) (2024-05-15)
 
 **Note:** Version bump only for package @kiva/kv-shop
