@@ -33,6 +33,9 @@ const story = (args) => {
 					:combined-activities="combinedActivities"
 					:enable-huge-amount="enableHugeAmount"
 					:enable-clickable-tags="enableClickableTags"
+					:primary-button-text="primaryButtonText"
+					:secondary-button-text="secondaryButtonText"
+					:secondary-button-handler="secondaryButtonHandler"
 				/>
 			</div>
 		`,
@@ -396,4 +399,33 @@ export const ClickableTags = story({
 	kvTrackFunction,
 	photoPath,
 	enableClickableTags: true,
+});
+
+export const SupportButton = story({
+	loanId: loan.id,
+	loan,
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const SupportAgain = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		userProperties: { lentTo: true },
+	},
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const RemoveButton = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
+	showRemoveButton: true,
+	secondaryButtonText: 'Remove Loan',
 });
