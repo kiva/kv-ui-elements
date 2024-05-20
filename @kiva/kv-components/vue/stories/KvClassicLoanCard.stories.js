@@ -31,6 +31,9 @@ const story = (args) => {
 					:custom-callouts="customCallouts"
 					:is-team-pick="isTeamPick"
 					:combined-activities="combinedActivities"
+					:primary-button-text="primaryButtonText"
+					:secondary-button-text="secondaryButtonText"
+					:secondary-button-handler="secondaryButtonHandler"
 				/>
 			</div>
 		`,
@@ -374,4 +377,33 @@ export const ActivityFeed = story({
 	kvTrackFunction,
 	photoPath,
 	combinedActivities,
+});
+
+export const SupportButton = story({
+	loanId: loan.id,
+	loan,
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const SupportAgain = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		userProperties: { lentTo: true },
+	},
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const RemoveButton = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
+	showRemoveButton: true,
+	secondaryButtonText: 'Remove Loan',
 });

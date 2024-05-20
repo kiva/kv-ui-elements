@@ -139,115 +139,119 @@
 						</div>
 					</div>
 				</component>
+
+				<!-- Loan call outs -->
+				<kv-loading-placeholder
+					v-if="isLoading || typeof loanCallouts === 'undefined'"
+					class="tw-mt-1.5 tw-mb-1"
+					:class="{ 'tw-mx-1': largeCard }"
+					:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
+				/>
+
+				<kv-loan-callouts
+					v-else
+					:callouts="loanCallouts"
+					class="tw-mt-1.5"
+					:class="{ 'tw-px-1': largeCard }"
+				/>
 			</div>
 
-			<!-- Loan call outs -->
-			<kv-loading-placeholder
-				v-if="isLoading || typeof loanCallouts === 'undefined'"
-				class="tw-mt-1.5 tw-mb-1"
-				:class="{ 'tw-mx-1': largeCard }"
-				:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
-			/>
-
-			<kv-loan-callouts
-				v-else
-				:callouts="loanCallouts"
-				class="tw-mt-1.5"
-				:class="{ 'tw-px-1': largeCard }"
-			/>
-		</div>
-
-		<div
-			class="tw-flex tw-justify-between tw-mt-2"
-			:class="{ 'tw-px-1': largeCard }"
-		>
-			<!-- Fundraising -->
 			<div
-				v-if="!hasProgressData"
-				class="tw-w-full tw-pt-1 tw-pr-1"
+				class="tw-flex tw-justify-between tw-mt-2"
+				:class="{ 'tw-px-1': largeCard }"
 			>
-				<kv-loading-placeholder
-					class="tw-mb-0.5"
-					:style="{ width: '70%', height: '1.3rem' }"
-				/>
-
-				<kv-loading-placeholder
-					class="tw-rounded"
-					:style="{ width: '70%', height: '0.5rem' }"
-				/>
-			</div>
-
-			<div>
-				<component
-					:is="tag"
-					v-if="unreservedAmount > 0"
-					:to="readMorePath"
-					:href="readMorePath"
-					class="loan-card-progress tw-mt-1"
-					aria-label="Loan progress"
-					@click="clickReadMore('Progress')"
+				<!-- Fundraising -->
+				<div
+					v-if="!hasProgressData"
+					class="tw-w-full tw-pt-1 tw-pr-1"
 				>
-					<kv-loan-progress-group
-						id="loanProgress"
-						:money-left="`${unreservedAmount}`"
-						:progress-percent="fundraisingPercent"
-						class="tw-text-black"
+					<kv-loading-placeholder
+						class="tw-mb-0.5"
+						:style="{ width: '70%', height: '1.3rem' }"
 					/>
-				</component>
+
+					<kv-loading-placeholder
+						class="tw-rounded"
+						:style="{ width: '70%', height: '0.5rem' }"
+					/>
+				</div>
+
+				<div>
+					<component
+						:is="tag"
+						v-if="unreservedAmount > 0"
+						:to="readMorePath"
+						:href="readMorePath"
+						class="loan-card-progress tw-mt-1"
+						aria-label="Loan progress"
+						@click="clickReadMore('Progress')"
+					>
+						<kv-loan-progress-group
+							id="loanProgress"
+							:money-left="`${unreservedAmount}`"
+							:progress-percent="fundraisingPercent"
+							class="tw-text-black"
+						/>
+					</component>
+				</div>
+
+				<!-- CTA Button -->
+				<kv-loading-placeholder
+					v-if="!allDataLoaded"
+					class="tw-rounded tw-self-start"
+					:style="{ width: '9rem', height: '3rem' }"
+				/>
+
+				<kv-lend-cta
+					v-else
+					:loan="loan"
+					:basket-items="basketItems"
+					:is-loading="isLoading"
+					:is-adding="isAdding"
+					:enable-five-dollars-notes="enableFiveDollarsNotes"
+					:five-dollars-selected="fiveDollarsSelected"
+					:kv-track-function="kvTrackFunction"
+					:show-view-loan="showViewLoan"
+					:custom-loan-details="customLoanDetails"
+					:external-links="externalLinks"
+					:route="route"
+					:user-balance="userBalance"
+					:get-cookie="getCookie"
+					:set-cookie="setCookie"
+					:primary-button-text="primaryButtonText"
+					:secondary-button-text="secondaryButtonText"
+					:secondary-button-handler="secondaryButtonHandler"
+					class="tw-mt-auto"
+					:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
+					@add-to-basket="$emit('add-to-basket', $event)"
+					@show-loan-details="clickReadMore('ViewLoan')"
+					@remove-from-basket="$emit('remove-from-basket', $event)"
+				/>
 			</div>
-
-			<!-- CTA Button -->
-			<kv-loading-placeholder
-				v-if="!allDataLoaded"
-				class="tw-rounded tw-self-start"
-				:style="{ width: '9rem', height: '3rem' }"
-			/>
-
-			<kv-lend-cta
-				v-else
-				:loan="loan"
-				:basket-items="basketItems"
-				:is-loading="isLoading"
-				:is-adding="isAdding"
-				:enable-five-dollars-notes="enableFiveDollarsNotes"
-				:five-dollars-selected="fiveDollarsSelected"
-				:kv-track-function="kvTrackFunction"
-				:show-view-loan="showViewLoan"
-				:custom-loan-details="customLoanDetails"
-				:external-links="externalLinks"
-				:route="route"
-				:user-balance="userBalance"
-				:get-cookie="getCookie"
-				:set-cookie="setCookie"
-				class="tw-mt-auto"
-				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
-				@add-to-basket="$emit('add-to-basket', $event)"
-				@show-loan-details="clickReadMore('ViewLoan')"
-			/>
-		</div>
-		<div
-			v-if="combinedActivities.length > 0"
-			class="tw-pt-1.5"
-		>
-			<hr class="tw-border-tertiary tw-mb-1 tw-w-5/6 tw-mx-auto">
-			<KvLoanActivities
-				:loan="loan"
-				:combined-activities="combinedActivities"
-				:kv-track-function="kvTrackFunction"
-				:basket-items="basketItems"
-				:is-adding="isAdding"
-				:enable-five-dollars-notes="enableFiveDollarsNotes"
-				:five-dollars-selected="fiveDollarsSelected"
-				:show-view-loan="showViewLoan"
-				:custom-loan-details="customLoanDetails"
-				:external-links="externalLinks"
-				:route="route"
-				:user-balance="userBalance"
-				:get-cookie="getCookie"
-				:set-cookie="setCookie"
-				:error-msg="errorMsg"
-				@add-to-basket="$emit('add-to-basket', $event)"
-			/>
+			<div
+				v-if="combinedActivities.length > 0"
+				class="tw-pt-1.5"
+			>
+				<hr class="tw-border-tertiary tw-mb-1 tw-w-5/6 tw-mx-auto">
+				<KvLoanActivities
+					:loan="loan"
+					:combined-activities="combinedActivities"
+					:kv-track-function="kvTrackFunction"
+					:basket-items="basketItems"
+					:is-adding="isAdding"
+					:enable-five-dollars-notes="enableFiveDollarsNotes"
+					:five-dollars-selected="fiveDollarsSelected"
+					:show-view-loan="showViewLoan"
+					:custom-loan-details="customLoanDetails"
+					:external-links="externalLinks"
+					:route="route"
+					:user-balance="userBalance"
+					:get-cookie="getCookie"
+					:set-cookie="setCookie"
+					:error-msg="errorMsg"
+					@add-to-basket="$emit('add-to-basket', $event)"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -382,6 +386,22 @@ export default {
 		errorMsg: {
 			type: String,
 			default: '',
+		},
+		primaryButtonText: {
+			type: String,
+			default: 'Lend',
+		},
+		secondaryButtonHandler: {
+			type: Function,
+			default: undefined,
+		},
+		secondaryButtonText: {
+			type: String,
+			default: 'Checkout now',
+		},
+		showContributions: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {
