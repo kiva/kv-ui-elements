@@ -208,11 +208,11 @@ export default {
 		},
 		primaryButtonText: {
 			type: String,
-			default: '',
+			default: 'Lend',
 		},
 		secondaryButtonText: {
 			type: String,
-			default: '',
+			default: 'Checkout now',
 		},
 		secondaryButtonHandler: {
 			type: Function,
