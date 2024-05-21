@@ -426,6 +426,6 @@ export const RemoveButton = story({
 	kvTrackFunction,
 	photoPath,
 	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
-	showRemoveButton: true,
 	secondaryButtonText: 'Remove Loan',
+	secondaryButtonHandler: () => {},
 });
