@@ -8,9 +8,9 @@
 			data-testid="bp-lend-cta-checkout-button"
 			:to="!externalLinks ? '/basket' : undefined"
 			:href="externalLinks ? '/basket' : undefined"
-			@click.native="clickCheckout"
+			@click.native="clickSecondaryButton"
 		>
-			Checkout now
+			{{ loanInBasketButtonText }}
 		</kv-ui-button>
 
 		<!-- Refunded, allSharesReserved button -->
@@ -98,7 +98,7 @@
 						data-testid="bp-lend-cta-lend-again-button"
 						type="submit"
 					>
-						Lend again
+						{{ primaryButtonText || 'Lend' }} again
 					</kv-ui-button>
 				</div>
 
@@ -206,6 +206,18 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		primaryButtonText: {
+			type: String,
+			default: 'Lend',
+		},
+		secondaryButtonText: {
+			type: String,
+			default: 'Checkout now',
+		},
+		secondaryButtonHandler: {
+			type: Function,
+			default: undefined,
+		},
 	},
 	data() {
 		return {
@@ -261,7 +273,7 @@ export default {
 		},
 		ctaButtonText() {
 			if (this.isCompleteLoanActive) {
-				return 'Lend';
+				return this.primaryButtonText || 'Lend';
 			}
 			switch (this.state) {
 				case 'loading':
@@ -269,8 +281,11 @@ export default {
 				case 'refunded':
 				case 'expired':
 				default:
-					return 'Lend';
+					return this.primaryButtonText || 'Lend';
 			}
+		},
+		loanInBasketButtonText() {
+			return this.secondaryButtonText;
 		},
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
@@ -392,7 +407,16 @@ export default {
 		clickDropdown() {
 			this.kvTrackFunction('Lending', 'click-Modify loan amount', 'open dialog', this.loanId, this.loanId);
 		},
-		clickCheckout() {
+		clickSecondaryButton() {
+			if (this.secondaryButtonHandler) {
+				// Custom secondary button behavior
+				this.secondaryButtonHandler();
+			} else {
+				// Default secondary button behavior
+				this.handleCheckout();
+			}
+		},
+		handleCheckout() {
 			this.kvTrackFunction(
 				'Lending',
 				'click-Continue-to-checkout',

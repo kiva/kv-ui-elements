@@ -223,10 +223,14 @@
 				:set-cookie="setCookie"
 				:enable-huge-amount="enableHugeAmount"
 				:is-visitor="isVisitor"
+				:primary-button-text="primaryButtonText"
+				:secondary-button-text="secondaryButtonText"
+				:secondary-button-handler="secondaryButtonHandler"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
 				@show-loan-details="clickReadMore('ViewLoan')"
+				@remove-from-basket="$emit('remove-from-basket', $event)"
 			/>
 		</div>
 		<div
@@ -396,6 +400,18 @@ export default {
 		enableClickableTags: {
 			type: Boolean,
 			default: false,
+		},
+		primaryButtonText: {
+			type: String,
+			default: 'Lend',
+		},
+		secondaryButtonHandler: {
+			type: Function,
+			default: undefined,
+		},
+		secondaryButtonText: {
+			type: String,
+			default: 'Checkout now',
 		},
 	},
 	setup(props) {
