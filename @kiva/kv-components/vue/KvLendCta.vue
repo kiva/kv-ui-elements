@@ -10,7 +10,7 @@
 			:href="externalLinks ? '/basket' : undefined"
 			@click.native="clickSecondaryButton"
 		>
-			{{ cta2ButtonText }}
+			{{ loanInBasketButtonText }}
 		</kv-ui-button>
 
 		<!-- Refunded, allSharesReserved button -->
@@ -284,7 +284,7 @@ export default {
 					return this.primaryButtonText || 'Lend';
 			}
 		},
-		cta2ButtonText() {
+		loanInBasketButtonText() {
 			return this.secondaryButtonText;
 		},
 		useFormSubmit() {
