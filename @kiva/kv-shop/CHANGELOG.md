@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.1...@kiva/kv-shop@1.11.2) (2024-05-21)
+
+
+### Bug Fixes
+
+* add options and variable handling for promo credit mutations and promoCampaign query ([8b246e6](https://github.com/kiva/kv-ui-elements/commit/8b246e60b2140d290f42fdd0ade317a8562f2703))
+* allow passing of fetchPolicy variable ([3f39adc](https://github.com/kiva/kv-ui-elements/commit/3f39adcbbb0381aac8085f08bba3a8b17348dd83))
+* export managedAccount module ([86c8398](https://github.com/kiva/kv-ui-elements/commit/86c8398967d7f60d6fc95489dd588fd519769944))
+
+
+
+
+
 ## [1.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.0...@kiva/kv-shop@1.11.1) (2024-05-20)
 
 **Note:** Version bump only for package @kiva/kv-shop
