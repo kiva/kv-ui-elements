@@ -1,4 +1,4 @@
-import type { ApolloClient, QueryOptions } from '@apollo/client/core';
+import type { ApolloClient, MutationOptions } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
 import { callShopMutation } from './shopQueries';
 
@@ -53,13 +53,14 @@ export interface ApplyPromoCreditData {
 
 export async function applyPromoCredit(
 	apollo: ApolloClient<any>,
-	options: QueryOptions<any>,
+	options: MutationOptions<any>,
 ): Promise<boolean> {
 	if (!options?.variables?.creditType && !options?.variables?.redemptionCode) {
 		return Promise.resolve(false);
 	}
 	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
+		fetchPolicy: options?.fetchPolicy ?? 'network-only',
 		mutation: gql`mutation applyPromoCredit(
 			$basketId: String,
 			$creditType: CreditTypeEnum!,
@@ -85,13 +86,14 @@ export interface RemovePromoCreditData {
 
 export async function removePromoCredit(
 	apollo: ApolloClient<any>,
-	options: QueryOptions<any>,
+	options: MutationOptions<any>,
 ): Promise<boolean> {
 	if (!options?.variables?.creditType && !options?.variables?.redemptionCode) {
 		return Promise.resolve(false);
 	}
 	const data = await callShopMutation<RemovePromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
+		fetchPolicy: options?.fetchPolicy ?? 'network-only',
 		mutation: gql`mutation removePromoCredit(
 			$basketId: String,
 			$creditType: CreditTypeEnum!,
