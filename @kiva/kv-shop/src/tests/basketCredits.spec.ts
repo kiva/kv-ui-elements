@@ -119,7 +119,14 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await applyPromoCredit(apollo as any);
+			const options = {
+				variables: {
+					creditType: 'universal_code',
+					redemptionCode: '123',
+				},
+			};
+
+			const result = await applyPromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(true);
 		});
@@ -136,7 +143,9 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await applyPromoCredit(apollo as any);
+			const options = {};
+
+			const result = await applyPromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(false);
 		});
@@ -150,7 +159,25 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await applyPromoCredit(apollo as any);
+			const options = {};
+
+			const result = await applyPromoCredit(apollo as any, options as any);
+
+			expect(result).toBe(false);
+		});
+
+		it('should return false if the mutation variables are missing', async () => {
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue({
+					data: {
+						shop: null,
+					},
+				}),
+			};
+
+			const options = {};
+
+			const result = await applyPromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(false);
 		});
@@ -169,7 +196,14 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await removePromoCredit(apollo as any);
+			const options = {
+				variables: {
+					creditType: 'universal_code',
+					redemptionCode: '123',
+				},
+			};
+
+			const result = await removePromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(true);
 		});
@@ -186,7 +220,9 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await removePromoCredit(apollo as any);
+			const options = {};
+
+			const result = await removePromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(false);
 		});
@@ -200,7 +236,25 @@ describe('basketCredits', () => {
 				}),
 			};
 
-			const result = await removePromoCredit(apollo as any);
+			const options = {};
+
+			const result = await removePromoCredit(apollo as any, options as any);
+
+			expect(result).toBe(false);
+		});
+
+		it('should return false if the mutation variables are missing', async () => {
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue({
+					data: {
+						shop: null,
+					},
+				}),
+			};
+
+			const options = {};
+
+			const result = await removePromoCredit(apollo as any, options as any);
 
 			expect(result).toBe(false);
 		});

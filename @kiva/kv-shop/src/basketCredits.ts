@@ -1,4 +1,4 @@
-import type { ApolloClient } from '@apollo/client/core';
+import type { ApolloClient, QueryOptions } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
 import { callShopMutation } from './shopQueries';
 
@@ -51,7 +51,13 @@ export interface ApplyPromoCreditData {
 	} | null,
 }
 
-export async function applyPromoCredit(apollo: ApolloClient<any>): Promise<boolean> {
+export async function applyPromoCredit(
+	apollo: ApolloClient<any>,
+	options: QueryOptions<any>,
+): Promise<boolean> {
+	if (!options?.variables?.creditType && !options?.variables?.redemptionCode) {
+		return Promise.resolve(false);
+	}
 	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
 		mutation: gql`mutation applyPromoCredit(
@@ -64,6 +70,7 @@ export async function applyPromoCredit(apollo: ApolloClient<any>): Promise<boole
 				addCreditByType(creditType: $creditType, redemptionCode: $redemptionCode)
 			}
 		}`,
+		variables: { ...options?.variables },
 	});
 
 	return !!data?.shop?.addCreditByType;
@@ -76,7 +83,13 @@ export interface RemovePromoCreditData {
 	} | null,
 }
 
-export async function removePromoCredit(apollo: ApolloClient<any>): Promise<boolean> {
+export async function removePromoCredit(
+	apollo: ApolloClient<any>,
+	options: QueryOptions<any>,
+): Promise<boolean> {
+	if (!options?.variables?.creditType && !options?.variables?.redemptionCode) {
+		return Promise.resolve(false);
+	}
 	const data = await callShopMutation<RemovePromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
 		mutation: gql`mutation removePromoCredit(
@@ -89,6 +102,7 @@ export async function removePromoCredit(apollo: ApolloClient<any>): Promise<bool
 				removeCreditByType(creditType: $creditType, redemptionCode: $redemptionCode)
 			}
 		}`,
+		variables: { ...options?.variables },
 	});
 
 	return !!data?.shop?.removeCreditByType;
