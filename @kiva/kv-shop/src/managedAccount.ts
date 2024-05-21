@@ -1,23 +1,23 @@
-import type { ApolloClient } from '@apollo/client/core';
+import type { ApolloClient, QueryOptions } from '@apollo/client/core';
 import { gql } from '@apollo/client/core';
 import { callShopQuery } from './shopQueries';
 
-interface ShopPromoCampaignData {
-	shop: {
+export interface ShopPromoCampaignData {
+	shop?: {
 		id: string,
-		promoCampaign: {
-			promoFund: {
+		promoCampaign?: {
+			promoFund?: {
 				id: number,
 				displayName: string,
 				displayDescription: string,
 				promoPrice: string,
 			},
-			promoGroup: {
+			promoGroup?: {
 				id: number,
 				type: string,
 				teamId: number,
 			},
-			managedAccount: {
+			managedAccount?: {
 				managementType: string,
 				audience: string,
 				allowDonations: string,
@@ -53,8 +53,21 @@ interface ShopPromoCampaignData {
 	} | null,
 }
 
-export async function getPromoFromBasket(apollo: ApolloClient<any>): Promise<ShopPromoCampaignData|null> {
-	const data = await callShopQuery<ShopPromoCampaignData>(apollo, {
+export interface ShopPromoCampaignError {
+	shop?: any,
+	error?: string | null,
+}
+
+export async function getPromoFromBasket(
+	apollo: ApolloClient<any>,
+	options: QueryOptions<any>,
+):Promise<ShopPromoCampaignData|ShopPromoCampaignError|null> {
+	if (!options?.variables?.promoFundId && !options?.variables?.basketId) {
+		// eslint-disable-next-line prefer-promise-reject-errors
+		return Promise.resolve({ error: 'promoFundId or basketId variable required' });
+	}
+	const data = await callShopQuery<any>(apollo, {
+		variables: { ...options?.variables },
 		query: gql`
 			query promoCampaign($basketId: String, $promoFundId: String) {
 				shop (basketId: $basketId) {
@@ -107,7 +120,7 @@ export async function getPromoFromBasket(apollo: ApolloClient<any>): Promise<Sho
 				}
 			}
 		`,
-		fetchPolicy: 'network-only',
+		fetchPolicy: options?.fetchPolicy ?? 'network-only',
 	}, 0);
-	return data;
+	return data as ShopPromoCampaignData | null;
 }
