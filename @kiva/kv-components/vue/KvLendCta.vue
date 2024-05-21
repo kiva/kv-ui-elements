@@ -2,7 +2,7 @@
 	<div class="tw-whitespace-nowrap">
 		<!-- Continue to checkout button -->
 		<kv-ui-button
-			v-if="showSecondaryButton"
+			v-if="isInBasket"
 			variant="secondary"
 			class="tw-inline-flex tw-flex-1"
 			data-testid="bp-lend-cta-checkout-button"
@@ -358,9 +358,6 @@ export default {
 		},
 		showLendAgain() {
 			return this.isLentTo && !this.isLessThan25;
-		},
-		showSecondaryButton() {
-			return this.isInBasket;
 		},
 	},
 	watch: {
