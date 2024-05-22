@@ -429,3 +429,20 @@ export const RemoveButton = story({
 	secondaryButtonText: 'Remove Loan',
 	secondaryButtonHandler: () => {},
 });
+
+export const ContributorsAndAmount = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			reservedAmount: '0.00',
+			isExpiringSoon: false,
+		},
+		lenders: {
+			totalCount: 7,
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+});

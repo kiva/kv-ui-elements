@@ -233,6 +233,16 @@
 				@remove-from-basket="$emit('remove-from-basket', $event)"
 			/>
 		</div>
+
+		<div
+			v-if="lendersNumber && amountLent"
+			class="tw-text-center tw-w-full tw-mt-1 tw-font-medium "
+		>
+			<p>
+				{{ lendersNumber }} people contributed {{ amountLent }}
+			</p>
+		</div>
+
 		<div
 			v-if="combinedActivities.length > 0"
 			class="tw-pt-1.5"
@@ -263,6 +273,7 @@
 </template>
 
 <script>
+import numeral from 'numeral';
 import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
 
 import KvLoanUse from './KvLoanUse.vue';
@@ -413,6 +424,10 @@ export default {
 			type: String,
 			default: 'Checkout now',
 		},
+		showContributors: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props) {
 		const {
@@ -492,6 +507,13 @@ export default {
 				{ width: 374, viewSize: 414 },
 				{ width: 335, viewSize: 375 },
 			];
+		},
+		lendersNumber() {
+			return this.loan?.lenders?.totalCount ?? 0;
+		},
+		amountLent() {
+			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
+			return numeral(parseFloat(amount)).format('$0,0');
 		},
 	},
 };
