@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.80.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.79.0...@kiva/kv-components@3.80.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* add showContributors condition ([2fe0be3](https://github.com/kiva/kv-ui-elements/commit/2fe0be34ea8cb18fdce37a0eba979d089a850426))
+
+
+### Features
+
+* show contributors section of loan card ([e65e80f](https://github.com/kiva/kv-ui-elements/commit/e65e80f1862c93e45b9f3a05a3a01d3585b4fc7c))
+
+
+
+
+
 # [3.79.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.78.2...@kiva/kv-components@3.79.0) (2024-05-21)
 
 
