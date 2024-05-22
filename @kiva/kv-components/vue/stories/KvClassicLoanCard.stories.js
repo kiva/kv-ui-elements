@@ -31,6 +31,7 @@ const story = (args) => {
 					:custom-callouts="customCallouts"
 					:is-team-pick="isTeamPick"
 					:combined-activities="combinedActivities"
+					:showContributors="showContributors"
 					:enable-huge-amount="enableHugeAmount"
 					:enable-clickable-tags="enableClickableTags"
 					:primary-button-text="primaryButtonText"
@@ -445,4 +446,5 @@ export const ContributorsAndAmount = story({
 	},
 	kvTrackFunction,
 	photoPath,
+	showContributors: true,
 });
