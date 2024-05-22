@@ -235,7 +235,7 @@
 		</div>
 
 		<div
-			v-if="lendersNumber && amountLent"
+			v-if="showContributors && lendersNumber && amountLent"
 			class="tw-text-center tw-w-full tw-mt-1 tw-font-medium "
 		>
 			<p>
