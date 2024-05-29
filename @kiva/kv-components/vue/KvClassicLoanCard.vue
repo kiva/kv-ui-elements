@@ -211,6 +211,7 @@
 				:basket-items="basketItems"
 				:is-loading="isLoading"
 				:is-adding="isAdding"
+				:is-removing="isRemoving"
 				:enable-five-dollars-notes="enableFiveDollarsNotes"
 				:five-dollars-selected="fiveDollarsSelected"
 				:kv-track-function="kvTrackFunction"
@@ -329,6 +330,10 @@ export default {
 			default: false,
 		},
 		isAdding: {
+			type: Boolean,
+			default: false,
+		},
+		isRemoving: {
 			type: Boolean,
 			default: false,
 		},
