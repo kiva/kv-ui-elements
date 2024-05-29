@@ -6,8 +6,8 @@
 			variant="secondary"
 			class="tw-inline-flex tw-flex-1"
 			data-testid="bp-lend-cta-checkout-button"
-			:to="!externalLinks ? '/basket' : undefined"
-			:href="externalLinks ? '/basket' : undefined"
+			:to="!externalLinks || secondaryButtonHandler ? '/basket' : undefined"
+			:href="externalLinks || secondaryButtonHandler ? '/basket' : undefined"
 			@click.native="clickSecondaryButton"
 		>
 			{{ loanInBasketButtonText }}
