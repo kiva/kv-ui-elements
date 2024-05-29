@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.81.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.80.1...@kiva/kv-components@3.81.0) (2024-05-29)
+
+
+### Bug Fixes
+
+* removed unneeded code ([15c19bb](https://github.com/kiva/kv-ui-elements/commit/15c19bb1cdd6ac65910117d077dff38d48fa9cb3))
+
+
+### Features
+
+* secondary handler remove default behavior if set ([bbf91f8](https://github.com/kiva/kv-ui-elements/commit/bbf91f8b77a79f8204b0050ef1c466573f63228a))
+
+
+
+
+
 ## [3.80.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.80.0...@kiva/kv-components@3.80.1) (2024-05-22)
 
 
