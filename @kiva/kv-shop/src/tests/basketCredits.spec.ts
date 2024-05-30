@@ -134,7 +134,7 @@ describe('basketCredits', () => {
 		const missingParamResponse = {
 			errors: [
 				{
-					message: 'Missing require parameter.',
+					message: 'Missing required parameter.',
 					extensions: { code: 'upc.missing_parameter' },
 				},
 			],
