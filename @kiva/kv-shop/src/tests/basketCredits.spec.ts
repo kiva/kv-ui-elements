@@ -107,79 +107,48 @@ describe('basketCredits', () => {
 	});
 
 	describe('applyPromoCredit', () => {
-		it('should return true if the mutation returns true', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: {
-							id: '123',
-							addCreditByType: true,
-						},
-					},
-				}),
-			};
-
-			const options = {
-				variables: {
-					creditType: 'universal_code',
-					redemptionCode: '123',
+		const applyPromoCreditResponse = {
+			data: {
+				shop: {
+					id: '123',
+					addCreditByType: true,
 				},
+			},
+		};
+
+		const options = {
+			variables: {
+				creditType: 'universal_code',
+				redemptionCode: '123',
+			},
+		};
+
+		it('should return shop data', async () => {
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue(applyPromoCreditResponse),
 			};
-
 			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(true);
+			expect(result).toEqual(applyPromoCreditResponse.data);
 		});
 
-		it('should return false if the mutation returns false', async () => {
+		const missingParamResponse = {
+			errors: [
+				{
+					message: 'Missing required parameter.',
+					extensions: { code: 'upc.missing_parameter' },
+				},
+			],
+		};
+
+		it('should return error for missing parameters', async () => {
 			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: {
-							id: '123',
-							addCreditByType: false,
-						},
-					},
-				}),
+				mutate: jest.fn(),
 			};
-
-			const options = {};
-
-			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
-		});
-
-		it('should return false if the mutation returns null', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: null,
-					},
-				}),
+			const optionsWithMissingParams = {
+				variables: {},
 			};
-
-			const options = {};
-
-			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
-		});
-
-		it('should return false if the mutation variables are missing', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: null,
-					},
-				}),
-			};
-
-			const options = {};
-
-			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
+			const result = await applyPromoCredit(apollo as any, optionsWithMissingParams as any);
+			expect(result).toEqual(missingParamResponse);
 		});
 	});
 

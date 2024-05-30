@@ -54,9 +54,17 @@ export interface ApplyPromoCreditData {
 export async function applyPromoCredit(
 	apollo: ApolloClient<any>,
 	options: MutationOptions<any>,
-): Promise<boolean> {
-	if (!options?.variables?.creditType && !options?.variables?.redemptionCode) {
-		return Promise.resolve(false);
+): Promise<any> {
+	if (!options?.variables?.creditType || !options?.variables?.redemptionCode) {
+		return Promise.resolve({
+			errors:
+			[
+				{
+					message: 'Missing required parameter.',
+					extensions: { code: 'upc.missing_parameter' },
+				},
+			],
+		});
 	}
 	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
@@ -74,7 +82,7 @@ export async function applyPromoCredit(
 		variables: { ...options?.variables },
 	});
 
-	return !!data?.shop?.addCreditByType;
+	return data;
 }
 
 export interface RemovePromoCreditData {
