@@ -82,7 +82,7 @@ export async function applyPromoCredit(
 		variables: { ...options?.variables },
 	});
 
-	return Promise.resolve(data);
+	return data;
 }
 
 export interface RemovePromoCreditData {
