@@ -130,6 +130,26 @@ describe('basketCredits', () => {
 			const result = await applyPromoCredit(apollo as any, options as any);
 			expect(result).toEqual(applyPromoCreditResponse.data);
 		});
+
+		const missingParamResponse = {
+			errors: [
+				{
+					message: 'Missing require parameter.',
+					extensions: { code: 'upc.missing_parameter' },
+				},
+			],
+		};
+
+		it('should return error for missing parameters', async () => {
+			const apollo = {
+				mutate: jest.fn(),
+			};
+			const optionsWithMissingParams = {
+				variables: {},
+			};
+			const result = await applyPromoCredit(apollo as any, optionsWithMissingParams as any);
+			expect(result).toEqual(missingParamResponse);
+		});
 	});
 
 	describe('removePromoCredit', () => {

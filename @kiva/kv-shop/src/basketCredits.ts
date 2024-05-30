@@ -56,7 +56,15 @@ export async function applyPromoCredit(
 	options: MutationOptions<any>,
 ): Promise<any> {
 	if (!options?.variables?.creditType || !options?.variables?.redemptionCode) {
-		return Promise.resolve(false);
+		return Promise.resolve({
+			errors:
+			[
+				{
+					message: 'Missing require parameter.',
+					extensions: { code: 'upc.missing_parameter' },
+				},
+			],
+		});
 	}
 	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
@@ -74,7 +82,7 @@ export async function applyPromoCredit(
 		variables: { ...options?.variables },
 	});
 
-	return data;
+	return Promise.resolve(data);
 }
 
 export interface RemovePromoCreditData {
