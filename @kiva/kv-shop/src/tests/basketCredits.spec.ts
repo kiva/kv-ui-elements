@@ -110,18 +110,16 @@ describe('basketCredits', () => {
 		const applyPromoCreditResponse = {
 			data: {
 				shop: {
-					id: 'GQiC3v8YCSpbz5nJEGHyRw==',
+					id: '123',
 					addCreditByType: true,
-					__typename: 'ShopMutation',
 				},
 			},
 		};
 
 		const options = {
 			variables: {
-				basketId: 'GQiC3v8YCSpbz5nJEGHyRw==',
 				creditType: 'universal_code',
-				redemptionCode: 'HIltiFdn',
+				redemptionCode: '123',
 			},
 		};
 
