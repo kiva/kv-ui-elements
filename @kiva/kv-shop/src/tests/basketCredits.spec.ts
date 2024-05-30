@@ -128,7 +128,7 @@ describe('basketCredits', () => {
 				mutate: jest.fn().mockResolvedValue(applyPromoCreditResponse),
 			};
 			const result = await applyPromoCredit(apollo as any, options as any);
-			expect(result).toEqual(applyPromoCreditResponse.data.shop);
+			expect(result).toEqual(applyPromoCreditResponse.data);
 		});
 	});
 

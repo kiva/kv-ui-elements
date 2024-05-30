@@ -74,7 +74,7 @@ export async function applyPromoCredit(
 		variables: { ...options?.variables },
 	});
 
-	return data?.shop;
+	return data;
 }
 
 export interface RemovePromoCreditData {
