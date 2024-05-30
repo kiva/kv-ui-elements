@@ -107,79 +107,30 @@ describe('basketCredits', () => {
 	});
 
 	describe('applyPromoCredit', () => {
-		it('should return true if the mutation returns true', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: {
-							id: '123',
-							addCreditByType: true,
-						},
-					},
-				}),
-			};
-
-			const options = {
-				variables: {
-					creditType: 'universal_code',
-					redemptionCode: '123',
+		const applyPromoCreditResponse = {
+			data: {
+				shop: {
+					id: 'GQiC3v8YCSpbz5nJEGHyRw==',
+					addCreditByType: true,
+					__typename: 'ShopMutation',
 				},
-			};
+			},
+		};
 
-			const result = await applyPromoCredit(apollo as any, options as any);
+		const options = {
+			variables: {
+				basketId: 'GQiC3v8YCSpbz5nJEGHyRw==',
+				creditType: 'universal_code',
+				redemptionCode: 'HIltiFdn',
+			},
+		};
 
-			expect(result).toBe(true);
-		});
-
-		it('should return false if the mutation returns false', async () => {
+		it('should return shop data', async () => {
 			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: {
-							id: '123',
-							addCreditByType: false,
-						},
-					},
-				}),
+				mutate: jest.fn().mockResolvedValue(applyPromoCreditResponse),
 			};
-
-			const options = {};
-
 			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
-		});
-
-		it('should return false if the mutation returns null', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: null,
-					},
-				}),
-			};
-
-			const options = {};
-
-			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
-		});
-
-		it('should return false if the mutation variables are missing', async () => {
-			const apollo = {
-				mutate: jest.fn().mockResolvedValue({
-					data: {
-						shop: null,
-					},
-				}),
-			};
-
-			const options = {};
-
-			const result = await applyPromoCredit(apollo as any, options as any);
-
-			expect(result).toBe(false);
+			expect(result).toEqual(applyPromoCreditResponse.data.shop);
 		});
 	});
 
