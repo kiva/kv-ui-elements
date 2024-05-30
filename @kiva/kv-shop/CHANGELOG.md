@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.6...@kiva/kv-shop@1.12.0) (2024-05-30)
+
+
+### Bug Fixes
+
+* pr edit ([a2d4b56](https://github.com/kiva/kv-ui-elements/commit/a2d4b5616d5de53b0d24a41a606e2ed7b73e617c))
+* reinstate promise resolution ([4248c85](https://github.com/kiva/kv-ui-elements/commit/4248c852095d0abfac46439932cb9fcb6ac29520))
+* restore test data from before ([e09242f](https://github.com/kiva/kv-ui-elements/commit/e09242fb2e51ecc17633e1fc6b6dd995229b5dee))
+* return data obj instead of shop ([6fb8b02](https://github.com/kiva/kv-ui-elements/commit/6fb8b02f30a229a84ae657e8c3951cb926fe03c6))
+* typo fix ([6f3d8fb](https://github.com/kiva/kv-ui-elements/commit/6f3d8fbd9bc32db6a12fffaf24990a5b412775c4))
+
+
+### Features
+
+* missing param response ([e2c88ac](https://github.com/kiva/kv-ui-elements/commit/e2c88ac11556027dc3ae6938bb1d06544836724b))
+* return shop data for applyPromoCredit including errors ([c843302](https://github.com/kiva/kv-ui-elements/commit/c84330213952d0a47c5099f68c15702736126e81))
+
+
+
+
+
 ## [1.11.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.5...@kiva/kv-shop@1.11.6) (2024-05-29)
 
 **Note:** Version bump only for package @kiva/kv-shop
