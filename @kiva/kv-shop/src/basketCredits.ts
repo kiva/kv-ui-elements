@@ -56,7 +56,7 @@ export async function applyPromoCredit(
 	options: MutationOptions<any>,
 ): Promise<any> {
 	if (!options?.variables?.creditType || !options?.variables?.redemptionCode) {
-		return false;
+		return Promise.resolve(false);
 	}
 	const data = await callShopMutation<ApplyPromoCreditData>(apollo, {
 		awaitRefetchQueries: true,
