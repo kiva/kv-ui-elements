@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.0...@kiva/kv-shop@1.12.1) (2024-05-31)
+
+
+### Bug Fixes
+
+* add option to deactivateRedirect to executeOnetimeCheckout method ([548a1b2](https://github.com/kiva/kv-ui-elements/commit/548a1b24562d87a101e024dbeb444e8880826901))
+* correct spelling of deactivateRedirect option ([71c6859](https://github.com/kiva/kv-ui-elements/commit/71c68597f9204fdb92a91b6d9f1c8f8e1c923e23))
+
+
+
+
+
 # [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.6...@kiva/kv-shop@1.12.0) (2024-05-30)
 
 
