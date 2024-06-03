@@ -9,7 +9,7 @@
 			class="activity-avatar"
 		/>
 		<p class="tw-text-base tw-whitespace-nowrap">
-			<span class="data-hj-suppress">{{ lenderName }}</span> contributed ${{ amountLent }}
+			<span class="data-hj-suppress">{{ lenderName }}</span> contributed
 		</p>
 	</div>
 </template>
@@ -39,15 +39,10 @@ export default {
 
 		const lenderName = computed(() => activity?.value?.lender?.name ?? '');
 		const lenderImageUrl = computed(() => activity?.value?.lender?.image?.url ?? '');
-		const amountLent = computed(() => {
-			const amount = activity?.value?.amountLent ?? 0;
-			return parseFloat(amount).toFixed();
-		});
 
 		return {
 			lenderImageUrl,
 			lenderName,
-			amountLent,
 		};
 	},
 };
