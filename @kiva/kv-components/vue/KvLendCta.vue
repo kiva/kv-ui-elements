@@ -6,9 +6,9 @@
 			variant="secondary"
 			class="tw-inline-flex tw-flex-1"
 			data-testid="bp-lend-cta-checkout-button"
-			:to="!externalLinks || secondaryButtonHandler ? '/basket' : undefined"
-			:href="externalLinks || secondaryButtonHandler ? '/basket' : undefined"
-			@click.native="clickSecondaryButton"
+			:to="!externalLinks ? '/basket' : undefined"
+			:href="externalLinks ? '/basket' : undefined"
+			@click.native="clickSecondaryButton($event)"
 		>
 			{{ loanInBasketButtonText }}
 		</kv-ui-button>
@@ -407,8 +407,10 @@ export default {
 		clickDropdown() {
 			this.kvTrackFunction('Lending', 'click-Modify loan amount', 'open dialog', this.loanId, this.loanId);
 		},
-		clickSecondaryButton() {
+		clickSecondaryButton(event) {
 			if (this.secondaryButtonHandler) {
+				event.preventDefault();
+				event.stopPropagation();
 				// Custom secondary button behavior
 				this.secondaryButtonHandler();
 			} else {
