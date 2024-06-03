@@ -3,6 +3,120 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.0...@kiva/kv-shop@1.12.1) (2024-05-31)
+
+
+### Bug Fixes
+
+* add option to deactivateRedirect to executeOnetimeCheckout method ([548a1b2](https://github.com/kiva/kv-ui-elements/commit/548a1b24562d87a101e024dbeb444e8880826901))
+* correct spelling of deactivateRedirect option ([71c6859](https://github.com/kiva/kv-ui-elements/commit/71c68597f9204fdb92a91b6d9f1c8f8e1c923e23))
+
+
+
+
+
+# [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.6...@kiva/kv-shop@1.12.0) (2024-05-30)
+
+
+### Bug Fixes
+
+* pr edit ([a2d4b56](https://github.com/kiva/kv-ui-elements/commit/a2d4b5616d5de53b0d24a41a606e2ed7b73e617c))
+* reinstate promise resolution ([4248c85](https://github.com/kiva/kv-ui-elements/commit/4248c852095d0abfac46439932cb9fcb6ac29520))
+* restore test data from before ([e09242f](https://github.com/kiva/kv-ui-elements/commit/e09242fb2e51ecc17633e1fc6b6dd995229b5dee))
+* return data obj instead of shop ([6fb8b02](https://github.com/kiva/kv-ui-elements/commit/6fb8b02f30a229a84ae657e8c3951cb926fe03c6))
+* typo fix ([6f3d8fb](https://github.com/kiva/kv-ui-elements/commit/6f3d8fbd9bc32db6a12fffaf24990a5b412775c4))
+
+
+### Features
+
+* missing param response ([e2c88ac](https://github.com/kiva/kv-ui-elements/commit/e2c88ac11556027dc3ae6938bb1d06544836724b))
+* return shop data for applyPromoCredit including errors ([c843302](https://github.com/kiva/kv-ui-elements/commit/c84330213952d0a47c5099f68c15702736126e81))
+
+
+
+
+
+## [1.11.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.5...@kiva/kv-shop@1.11.6) (2024-05-29)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.11.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.4...@kiva/kv-shop@1.11.5) (2024-05-22)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.11.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.3...@kiva/kv-shop@1.11.4) (2024-05-22)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.11.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.2...@kiva/kv-shop@1.11.3) (2024-05-21)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.1...@kiva/kv-shop@1.11.2) (2024-05-21)
+
+
+### Bug Fixes
+
+* add options and variable handling for promo credit mutations and promoCampaign query ([8b246e6](https://github.com/kiva/kv-ui-elements/commit/8b246e60b2140d290f42fdd0ade317a8562f2703))
+* allow passing of fetchPolicy variable ([3f39adc](https://github.com/kiva/kv-ui-elements/commit/3f39adcbbb0381aac8085f08bba3a8b17348dd83))
+* export managedAccount module ([86c8398](https://github.com/kiva/kv-ui-elements/commit/86c8398967d7f60d6fc95489dd588fd519769944))
+
+
+
+
+
+## [1.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.11.0...@kiva/kv-shop@1.11.1) (2024-05-20)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+# [1.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.32...@kiva/kv-shop@1.11.0) (2024-05-17)
+
+
+### Features
+
+* implement add and remove promo credit mutations and tests ([a7f6e6b](https://github.com/kiva/kv-ui-elements/commit/a7f6e6b14b83566d0ec63b645f9a90c70aff2585))
+* implement managedAccount promoCampaign query with tests ([8a26e7c](https://github.com/kiva/kv-ui-elements/commit/8a26e7c72f71e83d99c4a2295059e881aabe8baf))
+
+
+
+
+
+## [1.10.32](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.31...@kiva/kv-shop@1.10.32) (2024-05-15)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [1.10.31](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.30...@kiva/kv-shop@1.10.31) (2024-05-15)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [1.10.30](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.10.29...@kiva/kv-shop@1.10.30) (2024-05-08)
 
 **Note:** Version bump only for package @kiva/kv-shop

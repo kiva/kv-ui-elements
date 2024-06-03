@@ -223,12 +223,26 @@
 				:set-cookie="setCookie"
 				:enable-huge-amount="enableHugeAmount"
 				:is-visitor="isVisitor"
+				:primary-button-text="primaryButtonText"
+				:secondary-button-text="secondaryButtonText"
+				:secondary-button-handler="secondaryButtonHandler"
 				class="tw-mt-auto"
 				:class="{ 'tw-w-full' : unreservedAmount <= 0 }"
 				@add-to-basket="$emit('add-to-basket', $event)"
 				@show-loan-details="clickReadMore('ViewLoan')"
+				@remove-from-basket="$emit('remove-from-basket', $event)"
 			/>
 		</div>
+
+		<div
+			v-if="showContributors && lendersNumber && amountLent"
+			class="tw-text-center tw-w-full tw-mt-1 tw-font-medium "
+		>
+			<p>
+				{{ lendersNumber }} people contributed {{ amountLent }}
+			</p>
+		</div>
+
 		<div
 			v-if="combinedActivities.length > 0"
 			class="tw-pt-1.5"
@@ -259,6 +273,7 @@
 </template>
 
 <script>
+import numeral from 'numeral';
 import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
 
 import KvLoanUse from './KvLoanUse.vue';
@@ -397,6 +412,22 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		primaryButtonText: {
+			type: String,
+			default: 'Lend',
+		},
+		secondaryButtonHandler: {
+			type: Function,
+			default: undefined,
+		},
+		secondaryButtonText: {
+			type: String,
+			default: 'Checkout now',
+		},
+		showContributors: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props) {
 		const {
@@ -476,6 +507,13 @@ export default {
 				{ width: 374, viewSize: 414 },
 				{ width: 335, viewSize: 375 },
 			];
+		},
+		lendersNumber() {
+			return this.loan?.lenders?.totalCount ?? 0;
+		},
+		amountLent() {
+			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
+			return numeral(parseFloat(amount)).format('$0,0');
 		},
 	},
 };

@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.81.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.80.1...@kiva/kv-components@3.81.0) (2024-05-29)
+
+
+### Bug Fixes
+
+* removed unneeded code ([15c19bb](https://github.com/kiva/kv-ui-elements/commit/15c19bb1cdd6ac65910117d077dff38d48fa9cb3))
+
+
+### Features
+
+* secondary handler remove default behavior if set ([bbf91f8](https://github.com/kiva/kv-ui-elements/commit/bbf91f8b77a79f8204b0050ef1c466573f63228a))
+
+
+
+
+
+## [3.80.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.80.0...@kiva/kv-components@3.80.1) (2024-05-22)
+
+
+### Bug Fixes
+
+* left some unsaved changes out of the branch, adding those in ([a8498a3](https://github.com/kiva/kv-ui-elements/commit/a8498a3012abe50cf6254e3734a47df31314c473))
+
+
+
+
+
+# [3.80.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.79.0...@kiva/kv-components@3.80.0) (2024-05-22)
+
+
+### Bug Fixes
+
+* add showContributors condition ([2fe0be3](https://github.com/kiva/kv-ui-elements/commit/2fe0be34ea8cb18fdce37a0eba979d089a850426))
+
+
+### Features
+
+* show contributors section of loan card ([e65e80f](https://github.com/kiva/kv-ui-elements/commit/e65e80f1862c93e45b9f3a05a3a01d3585b4fc7c))
+
+
+
+
+
+# [3.79.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.78.2...@kiva/kv-components@3.79.0) (2024-05-21)
+
+
+### Bug Fixes
+
+* change cta2ButtonText to loanInBasketButtonText ([f052b7b](https://github.com/kiva/kv-ui-elements/commit/f052b7bdee874b5e2447b437cd90c7751ced4bce))
+* remove button story edits ([9dfbf98](https://github.com/kiva/kv-ui-elements/commit/9dfbf981adc2f90384650044f35e6179dbbd851f))
+* remove showSecondaryButton in favor of condition to make code more readable ([8223460](https://github.com/kiva/kv-ui-elements/commit/8223460d56480267b2d4f16e99c7becc1e72b40e))
+* set consistent default values for buttons ([041fef2](https://github.com/kiva/kv-ui-elements/commit/041fef2cc21b11b4b4d11f342c8fb7a7dcee222f))
+
+
+### Features
+
+* loan card primary and secondary button customization options ([77ecb2e](https://github.com/kiva/kv-ui-elements/commit/77ecb2e90c1df81201029ba8906f217cf9f9d6b2))
+
+
+
+
+
+## [3.78.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.78.1...@kiva/kv-components@3.78.2) (2024-05-20)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [3.78.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.78.0...@kiva/kv-components@3.78.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* change activity copy in team pick loan ([190ea03](https://github.com/kiva/kv-ui-elements/commit/190ea03a93befc0fb60587a61b408c06a9f84be0))
+
+
+
+
+
+# [3.78.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.77.0...@kiva/kv-components@3.78.0) (2024-05-15)
+
+
+### Features
+
+* start index added to kvcarousel component ([#398](https://github.com/kiva/kv-ui-elements/issues/398)) ([0477155](https://github.com/kiva/kv-ui-elements/commit/0477155d8bb02cce80777dbb3d2296b63d146ea8))
+
+
+
+
+
 # [3.77.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.76.0...@kiva/kv-components@3.77.0) (2024-05-08)
 
 

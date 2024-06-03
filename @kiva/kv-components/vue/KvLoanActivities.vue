@@ -10,7 +10,7 @@
 		</div>
 		<div class="tw-flex tw-justify-center tw-mt-1 tw-text-small">
 			<span v-if="lendersNumber && amountLent">
-				{{ lendersNumber }} members lent {{ amountLent }}. &nbsp;
+				{{ lendersNumber }} lenders lent {{ amountLent }}. &nbsp;
 			</span>
 			<button
 				class="tw-text-action hover:tw-underline"

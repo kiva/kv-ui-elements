@@ -31,8 +31,12 @@ const story = (args) => {
 					:custom-callouts="customCallouts"
 					:is-team-pick="isTeamPick"
 					:combined-activities="combinedActivities"
+					:showContributors="showContributors"
 					:enable-huge-amount="enableHugeAmount"
 					:enable-clickable-tags="enableClickableTags"
+					:primary-button-text="primaryButtonText"
+					:secondary-button-text="secondaryButtonText"
+					:secondary-button-handler="secondaryButtonHandler"
 				/>
 			</div>
 		`,
@@ -396,4 +400,51 @@ export const ClickableTags = story({
 	kvTrackFunction,
 	photoPath,
 	enableClickableTags: true,
+});
+
+export const SupportButton = story({
+	loanId: loan.id,
+	loan,
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const SupportAgain = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		userProperties: { lentTo: true },
+	},
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+});
+
+export const RemoveButton = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
+	secondaryButtonText: 'Remove Loan',
+	secondaryButtonHandler: () => {},
+});
+
+export const ContributorsAndAmount = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			fundedAmount: '950.00',
+			reservedAmount: '0.00',
+			isExpiringSoon: false,
+		},
+		lenders: {
+			totalCount: 7,
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showContributors: true,
 });

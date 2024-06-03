@@ -174,6 +174,7 @@ export interface OneTimeCheckoutOptions {
 	emailAddress?: string,
 	emailOptIn?: boolean,
 	valetInviter?: ValetInviter,
+	deactivateRedirect?: boolean,
 }
 
 export async function executeOneTimeCheckout({
@@ -182,6 +183,7 @@ export async function executeOneTimeCheckout({
 	emailAddress,
 	emailOptIn,
 	valetInviter,
+	deactivateRedirect,
 }: OneTimeCheckoutOptions) {
 	// do pre-checkout validation
 	// TODO: promo guest checkout validation
@@ -230,6 +232,11 @@ export async function executeOneTimeCheckout({
 	// track success
 	const checkoutId = result.data?.checkoutStatus?.receipt?.checkoutId;
 	await trackSuccess(apollo, checkoutId, paymentType);
+
+	// if redirect is deactivated, return transaction result
+	if (deactivateRedirect) {
+		return result;
+	}
 
 	// TODO: redirect needs to handle challenge completion parameters
 
