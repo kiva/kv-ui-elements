@@ -91,14 +91,12 @@ export function parseShopError(error: any) {
 		}, errorMessage);
 	}
 
-	// These errors are prefixed with the error code so the format looks like
-	// "upc.promoNotYetStarted: The [promo name] promotion has not yet
-	// started, but you can still use your own credit to checkout.
+	// Return error message & code for all upc errors
 	if (errorCode.startsWith('upc')) {
 		return new ShopError({
 			code: errorCode,
 			original: error,
-		}, `${errorCode}: ${errorMessage}`);
+		}, errorMessage);
 	}
 
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...
