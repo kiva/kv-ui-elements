@@ -91,21 +91,11 @@ export function parseShopError(error: any) {
 		}, errorMessage);
 	}
 
-	if (
-		errorCode === 'upc.promoNotYetStarted'
-		|| errorCode === 'upc.promoHasEnded'
-	) {
-		return new ShopError({
-			code: errorCode,
-			original: error,
-		}, errorCode);
-	}
-
 	if (errorCode.startsWith('upc')) {
 		return new ShopError({
 			code: errorCode,
 			original: error,
-		}, errorMessage);
+		}, `${errorCode}: ${errorMessage}`);
 	}
 
 	// TODO: Handle errors (`${code}: ${message}`) similar to ...
