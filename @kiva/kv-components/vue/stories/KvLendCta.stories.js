@@ -23,6 +23,8 @@ const story = (args) => {
 					:custom-loan-details="customLoanDetails"
 					:enable-huge-amount="enableHugeAmount"
 					:is-visitor="isVisitor"
+					:secondary-button-handler="secondaryButtonHandler"
+					:external-links="externalLinks"
 				/>
 			</div>
 		`,
@@ -32,6 +34,8 @@ const story = (args) => {
 };
 
 const kvTrackFunction = () => { };
+
+const secondaryButtonHandler = () => { console.log('secondary button handler'); };
 
 export const Loading = story({ isLoading: true, kvTrackFunction });
 
@@ -47,6 +51,20 @@ export const Basketed = story({
 		},
 	],
 	kvTrackFunction,
+});
+
+export const BasketedWithSecondaryAction = story({
+	isLoading: false,
+	loan: { id: 1 },
+	basketItems: [
+		{
+			__typename: 'LoanReservation',
+			id: 1,
+		},
+	],
+	externalLinks: true,
+	kvTrackFunction,
+	secondaryButtonHandler,
 });
 
 export const Funded = story({

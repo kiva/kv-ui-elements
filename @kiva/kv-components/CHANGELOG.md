@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.82.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.82.0...@kiva/kv-components@3.82.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* loan card button secondary action and destination ([#411](https://github.com/kiva/kv-ui-elements/issues/411)) ([9cf20db](https://github.com/kiva/kv-ui-elements/commit/9cf20dbd9865a685ae19a5a4d553bb3345c680b8))
+
+
+
+
+
+# [3.82.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.81.0...@kiva/kv-components@3.82.0) (2024-06-03)
+
+
+### Features
+
+* remove amount lent activity feed ([#410](https://github.com/kiva/kv-ui-elements/issues/410)) ([82a2216](https://github.com/kiva/kv-ui-elements/commit/82a22166f70085ad5a725e3e58f2fb3dd7eafa78))
+
+
+
+
+
 # [3.81.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.80.1...@kiva/kv-components@3.81.0) (2024-05-29)
 
 
