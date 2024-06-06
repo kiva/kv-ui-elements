@@ -5,6 +5,7 @@ export const mockState = {
 	sortBy: 'expiringSoon',
 	themeId: [1],
 	tagId: [1],
+	dafEligible: null,
 	distributionModel: 'DIRECT',
 	isIndividual: false,
 	lenderRepaymentTerm: { min: 0, max: 8, __typename: 'MinMaxRange' },
