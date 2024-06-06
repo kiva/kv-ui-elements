@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.11.0...@kiva/kv-loan-filters@1.12.0) (2024-06-06)
+
+
+### Features
+
+* add dafEligible as a valid loan filter for flss ([5d09f20](https://github.com/kiva/kv-ui-elements/commit/5d09f207288df270c337eec1667fcb41828d9427))
+
+
+
+
+
 # [1.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.10.0...@kiva/kv-loan-filters@1.11.0) (2024-03-05)
 
 
