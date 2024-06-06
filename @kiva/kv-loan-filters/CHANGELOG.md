@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.0...@kiva/kv-loan-filters@1.12.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* ensure pass distributionModel value is capitalized when lowercase, converted from legacy ([55572ac](https://github.com/kiva/kv-ui-elements/commit/55572ac0a1b69f3ed864a63e78aeb2e2c3ad02ae))
+
+
+
+
+
 # [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.11.0...@kiva/kv-loan-filters@1.12.0) (2024-06-06)
 
 
