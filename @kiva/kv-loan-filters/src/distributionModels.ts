@@ -84,7 +84,8 @@ export default {
 		distributionModel: distributionModelEnumMap[loanSearchState?.distributionModel?.toUpperCase()],
 	}),
 	getFlssFilter: (loanSearchState) => ({
-		...(loanSearchState?.distributionModel && { distributionModel: { eq: loanSearchState.distributionModel } }),
+		...(loanSearchState?.distributionModel
+			&& { distributionModel: { eq: loanSearchState.distributionModel.toUpperCase() } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
 		distributionModel: allFacets?.distributionModels?.includes(loanSearchState?.distributionModel?.toUpperCase())
