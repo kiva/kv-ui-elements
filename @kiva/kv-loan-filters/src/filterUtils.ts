@@ -15,6 +15,7 @@ import partnerRiskRating, { facetsKey as partnerRiskRatingKey } from './partnerR
 import partnerDefaultRate, { facetsKey as partnerDefaultRateKey } from './partnerDefaultRate';
 import partnerAvgProfitability, { facetsKey as partnerAvgProfitabilityKey } from './partnerAvgProfitability';
 import activities, { facetsKey as activitiesKey } from './activities';
+import dafEligible, { facetsKey as dafEligibleKey } from './dafEligible';
 import isMatchable, { facetsKey as isMatchableKey } from './isMatchable';
 import categories, { facetsKey as categoriesKey } from './categories';
 import flexibleFundraisingEnabled, { facetsKey as flexibleFundraisingEnabledKey } from './flexibleFundraisingEnabled';
@@ -37,6 +38,7 @@ const filters = {
 	[partnerDefaultRateKey]: partnerDefaultRate,
 	[partnerAvgProfitabilityKey]: partnerAvgProfitability,
 	[activitiesKey]: activities,
+	[dafEligibleKey]: dafEligible,
 	[isMatchableKey]: isMatchable,
 	[categoriesKey]: categories,
 	[flexibleFundraisingEnabledKey]: flexibleFundraisingEnabled,
