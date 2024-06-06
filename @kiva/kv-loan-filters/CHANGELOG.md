@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.1...@kiva/kv-loan-filters@1.12.2) (2024-06-06)
+
+
+### Bug Fixes
+
+* add dafEligible to ui configs ([9bcbbce](https://github.com/kiva/kv-ui-elements/commit/9bcbbcee85eaf620ac81fac7a827c5a4947eb607))
+* make dafEligible available to filterUtils ([78e8355](https://github.com/kiva/kv-ui-elements/commit/78e8355524c3c6de83a0e356de3b7d0c0cda45ea))
+
+
+
+
+
 ## [1.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.0...@kiva/kv-loan-filters@1.12.1) (2024-06-06)
 
 
