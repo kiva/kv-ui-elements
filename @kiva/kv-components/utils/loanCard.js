@@ -179,22 +179,26 @@ export function loanCardComputedProperties(props) {
 	};
 }
 
-export function loanCardMethods(props) {
+export function loanCardMethods(props, emit) {
 	const {
 		loanId,
 		customLoanDetails,
 		kvTrackFunction,
 	} = toRefs(props);
 
-	function showLoanDetails(e) {
+	function showLoanDetails(event) {
 		if (customLoanDetails.value) {
-			e.preventDefault();
-			this.$emit('show-loan-details');
+			event.preventDefault();
+			emit('show-loan-details');
 		}
 	}
 
-	function clickReadMore(target) {
+	function clickReadMore(target, event) {
 		kvTrackFunction.value('Lending', 'click-Read more', target, loanId.value);
+		if (customLoanDetails.value) {
+			event.preventDefault();
+			emit('show-loan-details');
+		}
 	}
 
 	return {

@@ -35,7 +35,7 @@
 					:href="readMorePath"
 					class="tw-flex"
 					aria-label="Borrower image"
-					@click="clickReadMore('Photo')"
+					@click.native="clickReadMore('Photo', $event)"
 				>
 					<kv-borrower-image
 						class="
@@ -102,7 +102,7 @@
 				:href="readMorePath"
 				class="tw-flex hover:tw-no-underline focus:tw-no-underline"
 				aria-label="Loan tag"
-				@click="clickReadMore('Tag')"
+				@click.native="clickReadMore('Tag', $event)"
 			>
 				<kv-loan-tag
 					v-if="showTags && !isLoading"
@@ -182,7 +182,7 @@
 					:href="readMorePath"
 					class="loan-card-progress tw-mt-1 tw-flex-grow"
 					aria-label="Loan progress"
-					@click="clickReadMore('Progress')"
+					@click.native="clickReadMore('Progress', $event)"
 				>
 					<kv-loan-progress-group
 						id="loanProgress"
@@ -220,7 +220,7 @@
 					class="tw-mt-auto tw-self-end"
 					:class="{'tw-flex-grow' : unreservedAmount === 0, 'tw-flex-shrink-0' : unreservedAmount > 0}"
 					@add-to-basket="$emit('add-to-basket', $event)"
-					@show-loan-details="clickReadMore('ViewLoan')"
+					@show-loan-details="clickReadMore('ViewLoan', $event)"
 				/>
 			</div>
 		</div>
@@ -338,7 +338,7 @@ export default {
 			default: false,
 		},
 	},
-	setup(props) {
+	setup(props, { emit }) {
 		const {
 			allDataLoaded,
 			borrowerName,
@@ -365,7 +365,7 @@ export default {
 		const {
 			clickReadMore,
 			showLoanDetails,
-		} = loanCardMethods(props);
+		} = loanCardMethods(props, emit);
 
 		return {
 			allDataLoaded,
