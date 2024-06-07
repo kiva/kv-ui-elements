@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.83.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.0...@kiva/kv-components@3.83.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* event is firing twice ([#417](https://github.com/kiva/kv-ui-elements/issues/417)) ([3e30e40](https://github.com/kiva/kv-ui-elements/commit/3e30e4023c6d6af324fc99e805b0f10d36934c2e))
+
+
+
+
+
 # [3.83.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.82.1...@kiva/kv-components@3.83.0) (2024-06-07)
 
 
