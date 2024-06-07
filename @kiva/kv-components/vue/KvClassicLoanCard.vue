@@ -17,7 +17,6 @@
 				<div
 					v-else
 					class="tw-relative"
-					@click="showLoanDetails"
 				>
 					<component
 						:is="tag"
@@ -455,7 +454,6 @@ export default {
 
 		const {
 			clickReadMore,
-			showLoanDetails,
 		} = loanCardMethods(props, emit);
 
 		return {
@@ -480,7 +478,6 @@ export default {
 			tag,
 			unreservedAmount,
 			clickReadMore,
-			showLoanDetails,
 		};
 	},
 	computed: {
