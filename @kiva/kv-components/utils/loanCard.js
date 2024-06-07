@@ -186,13 +186,6 @@ export function loanCardMethods(props, emit) {
 		kvTrackFunction,
 	} = toRefs(props);
 
-	function showLoanDetails(event) {
-		if (customLoanDetails.value) {
-			event.preventDefault();
-			emit('show-loan-details');
-		}
-	}
-
 	function clickReadMore(target, event) {
 		kvTrackFunction.value('Lending', 'click-Read more', target, loanId.value);
 		if (customLoanDetails.value) {
@@ -202,7 +195,6 @@ export function loanCardMethods(props, emit) {
 	}
 
 	return {
-		showLoanDetails,
 		clickReadMore,
 	};
 }
