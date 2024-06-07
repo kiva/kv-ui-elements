@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.83.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.82.1...@kiva/kv-components@3.83.0) (2024-06-07)
+
+
+### Features
+
+* implement custom loan details on loan card ([#416](https://github.com/kiva/kv-ui-elements/issues/416)) ([13a7a39](https://github.com/kiva/kv-ui-elements/commit/13a7a39ed9d073aa3ee7319b69c6b46f26d45d5b))
+
+
+
+
+
 ## [3.82.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.82.0...@kiva/kv-components@3.82.1) (2024-06-03)
 
 
