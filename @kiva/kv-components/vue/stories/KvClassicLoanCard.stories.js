@@ -37,9 +37,15 @@ const story = (args) => {
 					:primary-button-text="primaryButtonText"
 					:secondary-button-text="secondaryButtonText"
 					:secondary-button-handler="secondaryButtonHandler"
+					@show-loan-details="showLoanDetails"
 				/>
 			</div>
 		`,
+		methods: {
+			showLoanDetails() {
+				console.log('show-loan-details');
+			},
+		},
 	});
 	template.args = args;
 	return template;
@@ -421,6 +427,18 @@ export const SupportAgain = story({
 	photoPath,
 });
 
+export const CustomShowLoanDetails = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		userProperties: { lentTo: true },
+	},
+	primaryButtonText: 'Support',
+	kvTrackFunction,
+	photoPath,
+	customLoanDetails: true,
+});
+
 export const RemoveButton = story({
 	loanId: loan.id,
 	loan,
@@ -428,7 +446,7 @@ export const RemoveButton = story({
 	photoPath,
 	basketItems: [{ id: loan.id, __typename: 'LoanReservation' }],
 	secondaryButtonText: 'Remove Loan',
-	secondaryButtonHandler: () => {},
+	secondaryButtonHandler: () => { },
 });
 
 export const ContributorsAndAmount = story({
