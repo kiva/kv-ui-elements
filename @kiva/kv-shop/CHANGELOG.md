@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.5...@kiva/kv-shop@1.12.6) (2024-06-14)
+
+
+### Bug Fixes
+
+* use auth0 package file name to be compatible with es modules ([364f2bb](https://github.com/kiva/kv-ui-elements/commit/364f2bbe728f6f19f8f528c4a6cc73042da986ab))
+
+
+
+
+
 ## [1.12.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.4...@kiva/kv-shop@1.12.5) (2024-06-07)
 
 **Note:** Version bump only for package @kiva/kv-shop
