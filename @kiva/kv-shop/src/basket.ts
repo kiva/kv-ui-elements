@@ -1,5 +1,4 @@
-import type { ApolloClient } from '@apollo/client/core';
-import { gql } from '@apollo/client/core';
+import { gql, type ApolloClient } from '@apollo/client/core/core.cjs';
 import { getCookieValue, setCookieValue } from './util/cookie';
 import { parseShopError } from './shopError';
 
