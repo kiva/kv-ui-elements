@@ -5,7 +5,7 @@ import type {
 	MutationOptions,
 	QueryOptions,
 	WatchQueryOptions,
-} from '@apollo/client/core';
+} from '@apollo/client/core/core.cjs';
 import { getBasketID, hasBasketExpired, createBasket } from './basket';
 import { parseShopError } from './shopError';
 

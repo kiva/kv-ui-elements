@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client/core';
+import { gql } from '@apollo/client/core/core.cjs';
 import type { PaymentMethodPayload } from 'braintree-web-drop-in';
 import { parseShopError, ShopError } from './shopError';
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { gql } from '@apollo/client/core';
+import { gql } from '@apollo/client/core/core.cjs';
 import numeral from 'numeral';
 import type { Ref } from 'vue-demi';
 import { ref } from 'vue-demi';

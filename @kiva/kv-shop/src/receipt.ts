@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import type { ApolloClient, ApolloQueryResult } from '@apollo/client/core';
+import { gql, type ApolloClient, type ApolloQueryResult } from '@apollo/client/core/core.cjs';
 import type { TransactionData } from '@kiva/kv-analytics';
-import { gql } from '@apollo/client/core';
 import { getVisitorID } from './util/visitorId';
 
 export async function getFTDStatus(apollo: ApolloClient<any>) {
