@@ -4,7 +4,7 @@ export default {
 	title: 'KvContentfulImg',
 	component: KvContentfulImg,
 	args: {
-		contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/2TWV32iioxapwjn26ZpigZ/84ac39a1396d6be9eea472cf8791faa7/Cynthia.png',
+		contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/35lkLRfbLxzFPlDVgA4aKI/c435630d811f9ad35ddfc88eaea22b08/Blog-import-1082518_us_shawn_16.jpg',
 		fallbackFormat: 'jpg',
 		width: 200,
 		height: null,
@@ -77,6 +77,7 @@ export const ResponsiveImageSet = (args, { argTypes }) => ({
 		/>
 	`,
 });
+
 ResponsiveImageSet.args = {
 	fit: 'fill',
 	focus: 'face',
@@ -168,3 +169,28 @@ export const WithCaption = (args, { argTypes }) => ({
 		/>
 	`,
 });
+
+export const GiantImage = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	template: `
+		<kv-contentful-img
+			:contentful-src="contentfulSrc"
+			:fallback-format="fallbackFormat"
+			:width="width"
+			:height="height"
+			alt="Descriptive alt text"
+			:loading="loading"
+			:fit="fit"
+			:focus="focus"
+		/>
+	`,
+});
+
+GiantImage.args = {
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7dVINOyAxRaXM8p6aq7p5s/9213f63ff10dec57c5f740c056afe8a8/gradient-hero-bg__1_.jpg',
+	width: 4000,
+	height: 2000,
+};

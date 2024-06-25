@@ -213,9 +213,22 @@ export default {
 
 		const buildUrl = (image = null, multiplier = 1) => {
 			let src = image && image.url ? `${image.url}?` : `${contentfulSrc.value}?`;
-			const imgWidth = image ? image.width : width.value;
-			const imgHeight = image ? image.height : height.value;
-
+			let imgWidth = image ? image.width : width.value;
+			let imgHeight = image ? image.height : height.value;
+			// The max contentful image size is 4000px so we have to
+			// impose a limit of 2000px here for both height and width
+			// so when we request the retina x2 image we don't go over the 4000px limit
+			let newMultiplier;
+			if (imgWidth >= 2000) {
+				newMultiplier = imgWidth / 1999;
+				imgWidth = 1999;
+				imgHeight = Math.round(imgHeight / newMultiplier);
+			}
+			if (imgHeight >= 2000) {
+				newMultiplier = imgHeight / 1999;
+				imgHeight = 1999;
+				imgWidth = Math.round(imgWidth / newMultiplier);
+			}
 			if (imgWidth) {
 				src += `w=${imgWidth * multiplier}`;
 			}
