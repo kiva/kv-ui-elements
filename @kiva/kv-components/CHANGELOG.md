@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.83.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.1...@kiva/kv-components@3.83.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* max dimensions on kvContentfulImg ([#419](https://github.com/kiva/kv-ui-elements/issues/419)) ([4496979](https://github.com/kiva/kv-ui-elements/commit/4496979544fa7d9d941111bff234aae58aa5ca16))
+
+
+
+
+
 ## [3.83.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.0...@kiva/kv-components@3.83.1) (2024-06-07)
 
 
