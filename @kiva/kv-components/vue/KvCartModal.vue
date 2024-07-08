@@ -334,6 +334,6 @@ export default {
 
 <style lang="postcss" scoped>
 .loan-image {
-	width: 60px !important;
+	width: 3.75rem;
 }
 </style>
