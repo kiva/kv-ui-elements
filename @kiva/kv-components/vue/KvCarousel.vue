@@ -8,7 +8,7 @@
 		<!-- Carousel Content -->
 		<div
 			class="tw-flex tw-gap-x-4"
-			:class="{ 'tw-mx-auto lg:tw-w-[82%]': asideControls }"
+			:class="{ 'tw-mx-auto aside-controls-content': asideControls }"
 			@click.capture="onCarouselContainerClick"
 		>
 			<div
@@ -380,3 +380,11 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.aside-controls-content {
+	@screen lg {
+		width: 82%;
+	}
+}
+</style>
