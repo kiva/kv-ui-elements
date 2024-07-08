@@ -2,11 +2,13 @@
 	<section
 		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
+		:class="{ 'lg:tw-relative': asideControls }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
 		<div
 			class="tw-flex tw-gap-x-4"
+			:class="{ 'tw-mx-auto aside-controls-content': asideControls }"
 			@click.capture="onCarouselContainerClick"
 		>
 			<div
@@ -32,6 +34,7 @@
 			class="kv-carousel__controls tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
+			:class="{ 'lg:tw-hidden': asideControls }"
 		>
 			<button
 				class="tw-text-primary
@@ -72,6 +75,50 @@
 				<span class="tw-sr-only">Show next slide</span>
 			</button>
 		</div>
+		<!-- Aside Buttons -->
+		<template v-if="asideControls">
+			<div
+				class="tw-hidden lg:tw-flex tw-absolute tw-h-full tw-top-0 tw-items-center"
+				style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
+			>
+				<button
+					class="tw-text-primary tw-bg-gray-100
+						tw-rounded-full
+						tw-h-6 tw-w-6 tw-ml-3
+						tw-flex tw-items-center tw-justify-center
+						disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollPrev()"
+					@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiArrowLeft"
+					/>
+					<span class="tw-sr-only">Show previous slide</span>
+				</button>
+			</div>
+			<div
+				class="tw-hidden lg:tw-flex tw-absolute tw-h-full
+					tw-top-0 tw-right-0 tw-items-center tw-justify-end tw-w-16"
+				style="background: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
+			>
+				<button
+					class="tw-text-primary tw-bg-gray-100
+						tw-rounded-full
+						tw-h-6 tw-w-6 tw-mr-3
+						tw-flex tw-items-center tw-justify-center
+						disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollNext()"
+					@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiArrowRight"
+					/>
+					<span class="tw-sr-only">Show next slide</span>
+				</button>
+			</div>
+		</template>
 	</section>
 </template>
 
@@ -85,7 +132,12 @@ import {
 	nextTick,
 } from 'vue-demi';
 import EmblaCarousel from 'embla-carousel';
-import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
+import {
+	mdiChevronLeft,
+	mdiChevronRight,
+	mdiArrowLeft,
+	mdiArrowRight,
+} from '@mdi/js';
 import { throttle } from '../utils/throttle';
 
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -132,6 +184,13 @@ export default {
 		slideMaxWidth: {
 			type: String,
 			default: '',
+		},
+		/**
+		 * Aside controls version of the carousel
+		 * */
+		asideControls: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
@@ -301,6 +360,8 @@ export default {
 			rootEl,
 			mdiChevronLeft,
 			mdiChevronRight,
+			mdiArrowLeft,
+			mdiArrowRight,
 			embla,
 			slides,
 			currentIndex,
@@ -319,3 +380,11 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.aside-controls-content {
+	@screen lg {
+		width: 82%;
+	}
+}
+</style>

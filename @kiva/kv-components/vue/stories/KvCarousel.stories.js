@@ -353,3 +353,44 @@ export const CustomStartIndex = () => ({
 		</kv-carousel>
 	`,
 });
+
+export const AsideControls = () => ({
+	components: {
+		KvCarousel,
+		KvButton,
+	},
+	template: `
+		<kv-carousel
+			:embla-options="{ loop: false }"
+			:multiple-slides-visible="true"
+			:aside-controls="true"
+			slides-to-scroll="visible"
+			class="tw-w-full"
+		>
+			<template #slide1>
+				${generateLoanCardTemplate(1)}
+			</template>
+			<template #slide2>
+				${generateLoanCardTemplate(2)}
+			</template>
+			<template #slide3>
+				${generateLoanCardTemplate(3)}
+			</template>
+			<template #slide4>
+				${generateLoanCardTemplate(4)}
+			</template>
+			<template #slide5>
+				${generateLoanCardTemplate(5)}
+			</template>
+			<template #slide6>
+				${generateLoanCardTemplate(6)}
+			</template>
+			<template #slide7>
+				${generateLoanCardTemplate(7)}
+			</template>
+			<template #slide8>
+				${generateLoanCardTemplate(8)}
+			</template>
+		</kv-carousel>
+	`,
+});
