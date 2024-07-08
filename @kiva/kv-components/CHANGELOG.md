@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.84.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.2...@kiva/kv-components@3.84.0) (2024-07-08)
+
+
+### Features
+
+* aside controls variant added to carousel component ([#420](https://github.com/kiva/kv-ui-elements/issues/420)) ([d50ca9e](https://github.com/kiva/kv-ui-elements/commit/d50ca9eaa9023d437a5b9e385b95bfdecee7b122))
+
+
+
+
+
 ## [3.83.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.1...@kiva/kv-components@3.83.2) (2024-06-25)
 
 
