@@ -79,7 +79,7 @@
 		<div
 			v-if="asideControls"
 			class="tw-hidden lg:tw-flex tw-absolute tw-h-full tw-top-0 tw-items-center"
-			style="background: linear-gradient(270deg, rgba(46, 39, 30, 0) 0%, #2E271E 100%); width: 8%;"
+			style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
 		>
 			<button
 				class="tw-text-primary tw-bg-gray-100
@@ -101,7 +101,7 @@
 			v-if="asideControls"
 			class="tw-hidden lg:tw-flex tw-absolute tw-h-full
 				tw-top-0 tw-right-0 tw-items-center tw-justify-end tw-w-16"
-			style="background: linear-gradient(90deg, rgba(46, 39, 30, 0) 0%, #2E271E 100%); width: 8%;"
+			style="background: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
 		>
 			<button
 				class="tw-text-primary tw-bg-gray-100
