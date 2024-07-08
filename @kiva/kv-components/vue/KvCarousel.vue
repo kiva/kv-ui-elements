@@ -76,49 +76,49 @@
 			</button>
 		</div>
 		<!-- Aside Buttons -->
-		<div
-			v-if="asideControls"
-			class="tw-hidden lg:tw-flex tw-absolute tw-h-full tw-top-0 tw-items-center"
-			style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
-		>
-			<button
-				class="tw-text-primary tw-bg-gray-100
-					tw-rounded-full
-					tw-h-6 tw-w-6 tw-ml-3
-					tw-flex tw-items-center tw-justify-center
-					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:disabled="embla && !embla.canScrollPrev()"
-				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
+		<template v-if="asideControls">
+			<div
+				class="tw-hidden lg:tw-flex tw-absolute tw-h-full tw-top-0 tw-items-center"
+				style="background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
 			>
-				<kv-material-icon
-					class="tw-w-4"
-					:icon="mdiArrowLeft"
-				/>
-				<span class="tw-sr-only">Show previous slide</span>
-			</button>
-		</div>
-		<div
-			v-if="asideControls"
-			class="tw-hidden lg:tw-flex tw-absolute tw-h-full
-				tw-top-0 tw-right-0 tw-items-center tw-justify-end tw-w-16"
-			style="background: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
-		>
-			<button
-				class="tw-text-primary tw-bg-gray-100
-					tw-rounded-full
-					tw-h-6 tw-w-6 tw-mr-3
-					tw-flex tw-items-center tw-justify-center
-					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:disabled="embla && !embla.canScrollNext()"
-				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
+				<button
+					class="tw-text-primary tw-bg-gray-100
+						tw-rounded-full
+						tw-h-6 tw-w-6 tw-ml-3
+						tw-flex tw-items-center tw-justify-center
+						disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollPrev()"
+					@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiArrowLeft"
+					/>
+					<span class="tw-sr-only">Show previous slide</span>
+				</button>
+			</div>
+			<div
+				class="tw-hidden lg:tw-flex tw-absolute tw-h-full
+					tw-top-0 tw-right-0 tw-items-center tw-justify-end tw-w-16"
+				style="background: linear-gradient(270deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); width: 8%;"
 			>
-				<kv-material-icon
-					class="tw-w-4"
-					:icon="mdiArrowRight"
-				/>
-				<span class="tw-sr-only">Show next slide</span>
-			</button>
-		</div>
+				<button
+					class="tw-text-primary tw-bg-gray-100
+						tw-rounded-full
+						tw-h-6 tw-w-6 tw-mr-3
+						tw-flex tw-items-center tw-justify-center
+						disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollNext()"
+					@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiArrowRight"
+					/>
+					<span class="tw-sr-only">Show next slide</span>
+				</button>
+			</div>
+		</template>
 	</section>
 </template>
 
