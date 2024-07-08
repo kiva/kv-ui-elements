@@ -33,8 +33,8 @@
 						data-test="kv-cart-modal"
 						class="
 							tw-bg-primary
-              md:tw-absolute
-              md:tw-right-0
+							md:tw-absolute
+							md:tw-right-0
 							tw-w-full md:tw-w-auto
 							tw-rounded-b
 						"
@@ -64,11 +64,11 @@
 								<button
 									v-if="!preventClose"
 									class="
-                    tw-grid tw-content-center tw-justify-center
-                    tw-ml-auto
-                    tw-w-6 tw-h-6 tw--m-2
-                    hover:tw-text-action-highlight
-                  "
+										tw-grid tw-content-center tw-justify-center
+										tw-ml-auto
+										tw-w-6 tw-h-6 tw--m-2
+										hover:tw-text-action-highlight
+									"
 									@click.stop="hide('close-x')"
 								>
 									<kv-material-icon
@@ -86,7 +86,7 @@
 							ref="kvCartModalBody"
 							class="
 								tw-flex
-                tw-gap-2
+								tw-gap-2
 								tw-px-2.5 md:tw-px-4
 							"
 							style="height: 3.75rem;"
@@ -334,6 +334,6 @@ export default {
 
 <style lang="postcss" scoped>
 .loan-image {
-  width: 60px !important;
+	width: 60px !important;
 }
 </style>
