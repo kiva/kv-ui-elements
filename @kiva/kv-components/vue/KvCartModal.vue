@@ -69,7 +69,7 @@
 										tw-w-6 tw-h-6 tw--m-2
 										hover:tw-text-action-highlight
 									"
-									@click.stop="hide('close-x')"
+									@click.stop="hide('x-button')"
 								>
 									<kv-material-icon
 										class="tw-w-3 tw-h-3"
@@ -123,7 +123,7 @@
 						>
 							<kv-button
 								class="tw-w-full"
-								href="/checkout"
+								@click="viewBasket"
 							>
 								View basket ({{ basketCount }})
 							</kv-button>
@@ -251,7 +251,7 @@ export default {
 
 		const onScreenClick = () => {
 			if (!preventClose.value) {
-				hide('background-click');
+				hide('background');
 			}
 		};
 
@@ -294,6 +294,10 @@ export default {
 			return addedLoan.value.amount ?? '';
 		});
 
+		const viewBasket = () => {
+			hide('view-basket');
+		};
+
 		watch(visible, () => {
 			if (visible.value) {
 				show();
@@ -306,9 +310,9 @@ export default {
 			if (visible.value) {
 				show();
 				setTimeout(() => {
-					// Automatically close the cart modal after 5 seconds
+					// Automatically close the cart modal after 10 seconds
 					emit('cart-modal-closed', { type: 'time' });
-				}, 5000);
+				}, 10000);
 			}
 		});
 
@@ -323,6 +327,7 @@ export default {
 			show,
 			controlsRef,
 
+			viewBasket,
 			borrowerName,
 			borrowerImage,
 			borrowerCountry,
