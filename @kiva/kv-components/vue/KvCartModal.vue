@@ -118,14 +118,21 @@
 							ref="controlsRef"
 							class="
 								tw-flex-shrink-0 tw-flex tw-justify-end tw-gap-x-2.5
-								tw-p-2.5 md:tw-px-4 md:tw-pb-4
+								tw-p-2.5 md:tw-px-4 md:tw-pb-4 tw-flex-col tw-gap-1
 							"
 						>
 							<kv-button
 								class="tw-w-full"
-								@click="viewBasket"
+								@click="handleClick('view-basket')"
 							>
 								View basket ({{ basketCount }})
+							</kv-button>
+							<kv-button
+								class="tw-w-full"
+								variant="secondary"
+								@click="handleClick('help-another-person')"
+							>
+								Help another person
 							</kv-button>
 						</div>
 					</div>
@@ -156,7 +163,7 @@ import KvBorrowerImage from './KvBorrowerImage.vue';
 
 /**
  * Based on KvLightbox functionality
- */
+ * */
 
 export default {
 	components: {
@@ -209,7 +216,6 @@ export default {
 
 		const trapElements = computed(() => [
 			kvCartModal.value, // This cart modal
-			'[role="alert"]', // Any open toasts/alerts on the page
 		]);
 		const {
 			activate: activateFocusTrap,
@@ -294,8 +300,8 @@ export default {
 			return addedLoan.value.amount ?? '';
 		});
 
-		const viewBasket = () => {
-			hide('view-basket');
+		const handleClick = (cta) => {
+			hide(cta);
 		};
 
 		watch(visible, () => {
@@ -327,7 +333,7 @@ export default {
 			show,
 			controlsRef,
 
-			viewBasket,
+			handleClick,
 			borrowerName,
 			borrowerImage,
 			borrowerCountry,

@@ -32,7 +32,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 			<kv-cart-modal
 				:visible="isVisible"
 				:prevent-close="preventClose"
-        :added-loan="addedLoan"
+				:added-loan="addedLoan"
 				:photo-path="photoPath"
 				@cart-modal-closed="isVisible = false"
 			>
