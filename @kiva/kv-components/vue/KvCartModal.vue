@@ -187,14 +187,23 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * The number of loans in the basket
+		 * */
 		basketCount: {
 			type: Number,
 			default: 0,
 		},
+		/**
+		 * The loan added to the basket
+		 * */
 		addedLoan: {
 			type: Object,
 			default: () => ({}),
 		},
+		/**
+		 * The photo path for the borrower image
+		 * */
 		photoPath: {
 			type: String,
 			default: '',
