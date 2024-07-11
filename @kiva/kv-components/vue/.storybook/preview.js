@@ -1,5 +1,5 @@
 import './tailwind.css';
-import addons from '@storybook/addons';
+import { addons } from '@storybook/preview-api';
 import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import Vue from 'vue';
@@ -11,19 +11,19 @@ Vue.use(VueCompositionApi);
 
 Vue.use(VueRouter);
 
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
-  },
-  options: {
-    storySort: {
-      order: ['Base Styling', '*'],
-    },
-  },
+const parameters = {
+	actions: { argTypesRegex: "^on[A-Z].*" },
+	controls: {
+		matchers: {
+			color: /(background|color)$/i,
+			date: /Date$/,
+		},
+	},
+	options: {
+		storySort: {
+			order: ['Base Styling', '*'],
+		},
+	},
 }
 
 // Listen for events from the dark mode plugin
@@ -31,7 +31,7 @@ export const parameters = {
 const channel = addons.getChannel();
 
 // Wrap all stories with the kv-theme-provider component
-export const decorators = [(story) => ({
+const decorators = [(story) => ({
 	components: { story, KvThemeProvider },
 	template: '<kv-theme-provider :theme="theme"><story /></kv-theme-provider>',
 	data() {
@@ -52,3 +52,10 @@ export const decorators = [(story) => ({
 	},
 	router: new VueRouter(),
 })];
+
+const preview = {
+	parameters,
+	decorators,
+};
+
+export default preview;

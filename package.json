@@ -38,7 +38,7 @@
     "*.{ts,js,vue}": "npm run lint -- -- --cache --fix"
   },
   "engines": {
-    "node": ">= 15.13.0",
-    "npm": ">= 7.7.6"
+    "node": ">= 18.20.4",
+    "npm": ">= 10.7.0"
   }
 }
