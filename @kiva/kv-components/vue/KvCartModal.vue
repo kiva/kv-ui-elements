@@ -10,13 +10,7 @@
 		<!-- the screen -->
 		<div
 			v-show="visible"
-			class="
-				tw-z-modal
-				tw-absolute
-				tw-inset-0
-				tw-bg-black
-				tw-bg-opacity-[75%]
-			"
+			class="screen"
 			@click.stop.prevent="onScreenClick"
 		>
 			<div>
@@ -31,14 +25,7 @@
 						ref="kvCartModal"
 						tabindex="-1"
 						data-test="kv-cart-modal"
-						class="
-							tw-bg-primary
-							md:tw-absolute
-							md:tw-right-0
-							tw-w-full md:tw-w-auto
-							tw-rounded-b
-						"
-						style="max-width: 30rem; max-height: 90%"
+						class="modal"
 						aria-modal="true"
 						aria-label="Added to basket"
 						@click.stop
@@ -84,12 +71,7 @@
 						<div
 							id="kvCartModalBody"
 							ref="kvCartModalBody"
-							class="
-								tw-flex
-								tw-gap-2
-								tw-px-2.5 md:tw-px-4
-							"
-							style="height: 3.75rem;"
+							class="modal__body"
 						>
 							<div>
 								<kv-borrower-image
@@ -353,6 +335,22 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.screen {
+	@apply tw-z-modal tw-absolute tw-inset-0;
+	background-color: rgb(0, 0, 0, 0.2);
+}
+
+.modal {
+	@apply tw-bg-primary md:tw-absolute md:tw-right-0 tw-w-full md:tw-w-auto tw-rounded-b;
+	max-width: 30rem;
+	max-height: 90%;
+}
+
+.modal__body {
+	@apply tw-flex tw-gap-2 tw-px-2.5 md:tw-px-4;
+	height: 3.75rem;
+}
+
 .loan-image {
 	width: 3.75rem;
 }
