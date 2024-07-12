@@ -167,10 +167,35 @@
 			"dark-stone": {
 				"text": {
 					"primary": "#F5F5F5",
-					"action": "#F5F5F5"
+					"primary-inverse": "#212121",
+					"secondary": "#9E9E9E",
+					"tertiary": "#757575",
+					"action": "#4AB67E",
+					"action-highlight": "#6AC395",
+					"danger": "#E42A2A",
+					"danger-highlight": "#CE2626"
 				},
 				"background": {
-					"secondary": "#2E271E"
+					"primary": "#000000",
+					"primary-inverse": "#F5F5F5",
+					"secondary": "#2E271E",
+					"tertiary": "#454545",
+					"action": "#4AB67E",
+					"action-highlight": "#6AC395",
+					"danger": "#E42A2A",
+					"danger-highlight": "#CE2626",
+					"caution": "#E6CB55",
+					"caution-highlight": "#D9BC3B"
+				},
+				"border": {
+					"primary": "#F5F5F5",
+					"primary-inverse": "#212121",
+					"secondary": "#9E9E9E",
+					"tertiary": "#757575",
+					"action": "#4AB67E",
+					"action-highlight": "#6AC395",
+					"danger": "#E42A2A",
+					"danger-highlight": "#CE2626"
 				}
 			}
 		}
