@@ -80,10 +80,12 @@
 									:photo-path="photoPath"
 								/>
 							</div>
-							<div class="tw-flex tw-items-center tw-justify-between tw-w-full">
+							<div class="tw-flex tw-items-center tw-justify-between tw-w-full tw-gap-1">
 								<div class="tw-flex tw-flex-col tw-h-full tw-justify-between">
-									<p>{{ borrowerName }}</p>
-									<p class="tw-p-1 tw-text-center tw-rounded tw-bg-secondary tw-text-h5">
+									<p class="tw-overflow-hidden tw-text-ellipsis tw-line-clamp-1">
+										{{ borrowerName }}
+									</p>
+									<p class="tw-p-1 tw-text-center tw-rounded tw-bg-secondary tw-text-h5 tw-w-max">
 										{{ borrowerCountry }}
 									</p>
 								</div>
