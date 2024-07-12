@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.87.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.86.2...@kiva/kv-components@3.87.0) (2024-07-12)
+
+
+### Features
+
+* dark stone theme provider added ([#426](https://github.com/kiva/kv-ui-elements/issues/426)) ([8a8ea0a](https://github.com/kiva/kv-ui-elements/commit/8a8ea0aa548c9e0e125fa2219a53a2870cca289c))
+
+
+
+
+
 ## [3.86.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.86.1...@kiva/kv-components@3.86.2) (2024-07-12)
 
 **Note:** Version bump only for package @kiva/kv-components
