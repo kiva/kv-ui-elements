@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.86.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.86.0...@kiva/kv-components@3.86.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* modal size on desktop ([79edbb9](https://github.com/kiva/kv-ui-elements/commit/79edbb9127259d9883b93ba1b564b3627452d90a))
+* modal title ([69074c6](https://github.com/kiva/kv-ui-elements/commit/69074c67647fb873ea4eef703f5f8263544d1638))
+
+
+
+
+
 # [3.86.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.85.0...@kiva/kv-components@3.86.0) (2024-07-12)
 
 
