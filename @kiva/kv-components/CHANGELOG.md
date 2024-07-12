@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.86.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.85.0...@kiva/kv-components@3.86.0) (2024-07-12)
+
+
+### Bug Fixes
+
+* adding tracking info ([a666513](https://github.com/kiva/kv-ui-elements/commit/a6665130d65f350d119c5e5669b6dd45a7e0ddef))
+* lint ([a197c47](https://github.com/kiva/kv-ui-elements/commit/a197c47ea65c2927d4b60bb9f2533622dbae6f85))
+* missing js docs ([1370e81](https://github.com/kiva/kv-ui-elements/commit/1370e81d8baecf49e6b40b84cad527ea68779763))
+* remove unnecesary important in loan img ([014b48d](https://github.com/kiva/kv-ui-elements/commit/014b48d5506782fdcb6aa102ec3fc4d68f042012))
+
+
+### Features
+
+* add secondary btn ([579c61a](https://github.com/kiva/kv-ui-elements/commit/579c61ad6d7c0b25cb0a6f7e01fb2da5c58c9c86))
+* create new cart modal component ([3719d2b](https://github.com/kiva/kv-ui-elements/commit/3719d2b3aaa47cb2f9b856c577aa1230619aab11))
+
+
+
+
+
+# [3.85.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.84.0...@kiva/kv-components@3.85.0) (2024-07-10)
+
+
+### Features
+
+* carousel controls arrow added for aside version ([#423](https://github.com/kiva/kv-ui-elements/issues/423)) ([f1f8fb3](https://github.com/kiva/kv-ui-elements/commit/f1f8fb337b4a8ffb343e8341ce7a8d932805df1f))
+
+
+
+
+
 # [3.84.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.83.2...@kiva/kv-components@3.84.0) (2024-07-08)
 
 

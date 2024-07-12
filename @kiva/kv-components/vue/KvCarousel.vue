@@ -48,7 +48,7 @@
 			>
 				<kv-material-icon
 					class="tw-w-4"
-					:icon="mdiChevronLeft"
+					:icon="asideControls? mdiArrowLeft : mdiChevronLeft"
 				/>
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
@@ -70,7 +70,7 @@
 			>
 				<kv-material-icon
 					class="tw-w-4"
-					:icon="mdiChevronRight"
+					:icon="asideControls ? mdiArrowRight : mdiChevronRight"
 				/>
 				<span class="tw-sr-only">Show next slide</span>
 			</button>
