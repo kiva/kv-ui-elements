@@ -15,11 +15,7 @@
 		>
 			<div>
 				<div
-					class="
-						tw-absolute
-						tw-inset-0
-						md:tw-px-2
-					"
+					class="container"
 				>
 					<div
 						ref="kvCartModal"
@@ -336,12 +332,12 @@ export default {
 
 <style lang="postcss" scoped>
 .screen {
-	@apply tw-z-modal tw-absolute tw-inset-0;
+	@apply tw-z-modal tw-fixed tw-inset-0;
 	background-color: rgb(0, 0, 0, 0.2);
 }
 
 .modal {
-	@apply tw-bg-primary md:tw-absolute md:tw-right-0 tw-w-full md:tw-w-auto tw-rounded-b;
+	@apply tw-bg-primary md:tw-absolute md:tw-right-0 tw-w-full tw-rounded-b;
 	max-width: 30rem;
 	max-height: 90%;
 }
@@ -354,4 +350,19 @@ export default {
 .loan-image {
 	width: 3.75rem;
 }
+
+.container {
+	@apply tw-absolute tw-inset-0 md:tw-mt-9;
+}
+
+@screen md {
+	.container {
+		margin-right: 5%;
+	}
+
+	.modal {
+		max-width: 24.5rem;
+	}
+}
+
 </style>
