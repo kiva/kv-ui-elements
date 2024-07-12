@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.87.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.0...@kiva/kv-components@3.87.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* handle long names in cart modal ([a4a5afa](https://github.com/kiva/kv-ui-elements/commit/a4a5afa60b65fcdd18016af4e156eb0421c86fe3))
+
+
+
+
+
 # [3.87.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.86.2...@kiva/kv-components@3.87.0) (2024-07-12)
 
 
