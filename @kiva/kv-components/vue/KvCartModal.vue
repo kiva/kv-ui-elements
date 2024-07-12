@@ -40,9 +40,9 @@
 										class="tw-w-4 tw-h-4 tw-text-brand"
 										:icon="mdiCheckCircle"
 									/>
-									<h3	class="tw-text-h3 tw-flex-1">
-										Added to Basket
-									</h3>
+									<p class="tw-flex-1 tw-font-medium">
+										Added to basket
+									</p>
 								</slot>
 								<button
 									v-if="!preventClose"
