@@ -340,7 +340,6 @@ export default {
 
 .modal {
 	@apply tw-bg-primary md:tw-absolute md:tw-right-0 tw-w-full tw-rounded-b;
-	max-width: 30rem;
 	max-height: 90%;
 }
 
