@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "3.85.0",
+  "version": "3.87.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -59,7 +59,7 @@
     "build": "echo No build needed for @kiva/kv-components."
   },
   "dependencies": {
-    "@kiva/kv-tokens": "^2.11.2",
+    "@kiva/kv-tokens": "^2.12.0",
     "@mdi/js": "^5.9.55",
     "@vueuse/integrations": "^7.6.0",
     "aria-hidden": "^1.1.3",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.2...@kiva/kv-tokens@2.12.0) (2024-07-12)
+
+
+### Features
+
+* brown theme added to tokens ([#422](https://github.com/kiva/kv-ui-elements/issues/422)) ([c638ec4](https://github.com/kiva/kv-ui-elements/commit/c638ec4b214b61fbd686371abede2ec1100664f1))
+
+
+
+
+
 ## [2.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.1...@kiva/kv-tokens@2.11.2) (2024-05-20)
 
 **Note:** Version bump only for package @kiva/kv-tokens
