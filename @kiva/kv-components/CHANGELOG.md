@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.87.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.2...@kiva/kv-components@3.87.3) (2024-07-16)
+
+
+### Bug Fixes
+
+* set full width for cart modal in tablet ([e04445a](https://github.com/kiva/kv-ui-elements/commit/e04445a14cace3c6b3988a95dd2114b44bf7828b))
+
+
+
+
+
 ## [3.87.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.1...@kiva/kv-components@3.87.2) (2024-07-16)
 
 **Note:** Version bump only for package @kiva/kv-components
