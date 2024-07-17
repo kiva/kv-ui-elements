@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.87.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.3...@kiva/kv-components@3.87.4) (2024-07-17)
+
+
+### Bug Fixes
+
+* increase quality setting for small contentful images ([9a75d76](https://github.com/kiva/kv-ui-elements/commit/9a75d76837240dc7f07cd04097575677bd7cbdac))
+
+
+
+
+
 ## [3.87.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.2...@kiva/kv-components@3.87.3) (2024-07-16)
 
 
