@@ -18,10 +18,11 @@
 					:width="image.width ? image.width : null"
 					:height="image.height ? image.height : null"
 					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(image.width, '2x')} 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(image.width, '1x')} 1x`"
 				>
 				<!-- browser doesn't support webp -->
+				<!-- eslint-disable max-len -->
 				<source
 					v-for="(image, index) in sourceSizes"
 					:key="'fallback-image'+index"
@@ -29,17 +30,20 @@
 					:width="image.width ? image.width : null"
 					:height="image.height ? image.height : null"
 					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
+						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(image.width, '2x')} 2x,
+						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(image.width, '1x')} 1x`"
 				>
+				<!-- eslint-enable max-len -->
 				<!-- browser doesn't support picture element -->
+				<!-- eslint-disable max-len -->
 				<img
 					class="tw-max-w-full tw-max-h-full"
 					style="width: inherit; height: inherit; object-fit: inherit;"
-					:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
+					:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
 					:alt="caption || alt"
 					:loading="loading"
 				>
+				<!-- eslint-enable max-len -->
 			</template>
 
 			<!-- Single image -->
@@ -48,17 +52,17 @@
 				<source
 					type="image/webp"
 					:srcset="`
-						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=65 2x,
-						${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=80 1x`"
+						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(width, '2x')} 2x,
+						${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(width, '1x')} 1x`"
 				>
 				<!-- browser doesn't support webp or browser doesn't support picture element -->
 				<img
 					class="tw-max-w-full tw-max-h-full"
 					style="width: inherit; height: inherit; object-fit: inherit;"
 					:srcset="`
-						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=65 2x,
-						${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80 1x`"
-					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=80`"
+						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '2x')} 2x,
+						${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')} 1x`"
+					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
 					:width="width ? width : null"
 					:height="height ? height : null"
 					:alt="caption || alt"
@@ -241,6 +245,17 @@ export default {
 			return src;
 		};
 
+		const setQuality = (imgWidth, imgScale) => {
+			if (imgScale === '2x') {
+				return 65;
+			}
+			// Smaller images show a marked degradation at 80 quality so we bump it up to 95
+			if (imgWidth && parseInt(imgWidth, 10) < 200) {
+				return 95;
+			}
+			return 80;
+		};
+
 		const caption = computed(() => {
 			if (alt.value && alt.value.charAt(0) === '^') {
 				return alt.value.slice(1).trim();
@@ -251,6 +266,7 @@ export default {
 		return {
 			buildUrl,
 			caption,
+			setQuality,
 		};
 	},
 };
