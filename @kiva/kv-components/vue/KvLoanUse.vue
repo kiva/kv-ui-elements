@@ -46,6 +46,10 @@ export default {
 			type: String,
 			default: '',
 		},
+		introductionCard: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -65,6 +69,12 @@ export default {
 		loanUse() {
 			if (this.anonymizationLevel === 'full' || this.use.length === 0) {
 				return 'For the borrower\'s privacy, this loan has been made anonymous.';
+			}
+
+			if (this.introductionCard) {
+				return `Help <span class="data-hj-suppress">${this.name}</span> `
+					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
+				+ `${this.whySpecialSentence}`;
 			}
 
 			const isGroup = this.borrowerCount > 1;

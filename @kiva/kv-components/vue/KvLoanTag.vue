@@ -2,6 +2,7 @@
 	<div
 		v-if="!!variation"
 		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
+		:class="{'!tw-text-brand tw-text-center' : introductionCard}"
 		style="color: #CE4A00;"
 	>
 		{{ tagText }}
@@ -32,6 +33,10 @@ export default {
 		kvTrackFunction: {
 			type: Function,
 			required: true,
+		},
+		introductionCard: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {

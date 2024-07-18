@@ -2,7 +2,7 @@
 	<figure>
 		<h4
 			class="tw-lowercase tw-mb-0.5"
-			:class="{ 'progress-group-amount-low': amountLow }"
+			:class="{ 'progress-group-amount-low': amountLow, '!tw-text-secondary': introductionCard }"
 		>
 			{{ fundingText }}
 		</h4>
@@ -30,6 +30,10 @@ export default {
 		progressPercent: {
 			type: Number,
 			default: 0,
+		},
+		introductionCard: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	computed: {
