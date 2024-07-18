@@ -95,6 +95,9 @@
 					"action-highlight": "#277056",
 					"danger": "#E42A2A",
 					"danger-highlight": "#CE2626"
+				},
+				"heading-underline": {
+					"primary": "#2AA967"
 				}
 			},
 			"dark": {

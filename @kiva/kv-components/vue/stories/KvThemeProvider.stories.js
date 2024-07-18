@@ -47,6 +47,9 @@ const demoTemplate = `
 				<span>{{textVariable}}</span>
 				<span class="tw-text-opacity-low" :class="textVariable">text-opacity-low</span>
 			</p>
+			<h1 class="tw-text-jumbo tw-mb-2">Jumbo Heading with <u>underlined words</u></h1>
+			<h1 class="tw-mb-2">Heading 1 with <u>underlined words</u></h1>
+			<h2 class="tw-mb-2">Heading 2 with <u>underlined words</u></h2>
 			<p>Body text: Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
 		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2" style="background-color: gray;">

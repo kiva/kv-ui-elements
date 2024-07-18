@@ -65,6 +65,8 @@ export default {
 		 *    --border-action-highlight: '255, 255, 255',
 		 *    --border-danger: '255, 255, 255',
 		 *    --border-danger-highlight: '255, 255, 255',
+		 *
+		 *    --heading-underline-primary: url('/heading-underline.svg#FFFFFF'),
 		 * }
 		 * ```
 		 *
@@ -76,3 +78,38 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss">
+/* heading underline styling, intentionally not scoped */
+.tw-text-jumbo u,
+.tw-text-h1 u,
+.tw-text-h2 u,
+h1 u,
+h2 u {
+  text-decoration: none;
+  background-image: var(--heading-underline-primary);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+.tw-text-jumbo u {
+	background-size: auto 0.75rem;
+	padding-bottom: 0.5rem;
+}
+.tw-text-h1 u,
+h1 u {
+  background-size: auto 0.75rem;
+  padding-bottom: 0.5rem;
+}
+.tw-text-h2 u,
+h2 u {
+  background-size: auto 0.375rem;
+  padding-bottom: 0.125rem;
+}
+
+@screen lg {
+	.tw-text-jumbo u {
+		background-size: auto 1rem;
+		padding-bottom: 0.625rem;
+	}
+}
+</style>
