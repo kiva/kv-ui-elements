@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.12.0...@kiva/kv-tokens@2.13.0) (2024-07-19)
+
+
+### Bug Fixes
+
+* adjust underline after review ([979d47c](https://github.com/kiva/kv-ui-elements/commit/979d47c6a96c22f4e49b799e57dba412e39e15db))
+* correct heading-underline theme property name and remove extra hash in ID ([9f6f85b](https://github.com/kiva/kv-ui-elements/commit/9f6f85b94e85533bcc51253ba4456ad78ff31880))
+
+
+### Features
+
+* brush-stroke underline for headings mvp MP-348 ([6211527](https://github.com/kiva/kv-ui-elements/commit/621152741bd537da6026984569a7775767a2c3ec))
+
+
+
+
+
 # [2.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.2...@kiva/kv-tokens@2.12.0) (2024-07-12)
 
 

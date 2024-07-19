@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.88.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.4...@kiva/kv-components@3.88.0) (2024-07-19)
+
+
+### Bug Fixes
+
+* adjust underline after review ([979d47c](https://github.com/kiva/kv-ui-elements/commit/979d47c6a96c22f4e49b799e57dba412e39e15db))
+
+
+### Features
+
+* brush-stroke underline for headings mvp MP-348 ([6211527](https://github.com/kiva/kv-ui-elements/commit/621152741bd537da6026984569a7775767a2c3ec))
+
+
+
+
+
 ## [3.87.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.3...@kiva/kv-components@3.87.4) (2024-07-17)
 
 
