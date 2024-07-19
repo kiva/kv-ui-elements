@@ -1,11 +1,19 @@
 <template>
 	<figure>
-		<h4
-			class="tw-lowercase tw-mb-0.5"
-			:class="{ 'progress-group-amount-low': amountLow, '!tw-text-secondary': introductionCard }"
-		>
-			{{ fundingText }}
-		</h4>
+		<div :class="{'tw-flex tw-justify-between': amountGoal}">
+			<h4
+				class="tw-lowercase tw-mb-0.5"
+				:class="{ 'progress-group-amount-low': amountLow}"
+			>
+				{{ fundingText }}
+			</h4>
+			<h4
+				v-if="amountGoal"
+				class="tw-lowercase tw-mb-0.5"
+			>
+				{{ goalText }}
+			</h4>
+		</div>
 		<kv-progress-bar
 			aria-label="Percent the loan has funded"
 			:value="progressPercent * 100"
@@ -31,9 +39,9 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		introductionCard: {
-			type: Boolean,
-			default: false,
+		amountGoal: {
+			type: String,
+			default: '',
 		},
 	},
 	computed: {
@@ -48,6 +56,14 @@ export default {
 			const formattedMoneyLeft = this.numeralLeft.format('$0,0[.]00');
 			const exclamationMark = this.amountLow ? '!' : '';
 			return `${formattedMoneyLeft} to go${exclamationMark}`;
+		},
+		numeralGoal() {
+			return numeral(this.amountGoal);
+		},
+		goalText() {
+			if (!this.numeralGoal.value()) return '';
+			const formattedGoal = this.numeralGoal.format('$0,0[.]00');
+			return `${formattedGoal} goal`;
 		},
 	},
 };

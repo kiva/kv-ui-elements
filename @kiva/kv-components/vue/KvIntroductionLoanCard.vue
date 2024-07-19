@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
+		class="card-container"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
 		:style="{ minWidth: '230px', maxWidth: '20.5rem' }"
@@ -10,7 +10,7 @@
 				<!-- Borrower image -->
 				<kv-loading-placeholder
 					v-if="isLoading"
-					class="tw-mt-1 tw-w-full tw-rounded-t"
+					class="tw-w-full tw-rounded-t"
 					:style="{ height: '11rem' }"
 				/>
 				<div
@@ -61,7 +61,7 @@
 								<kv-flag
 									class="tw-mr-0.5"
 									:country="countryCode"
-									width-override="15px"
+									width-override="0.725rem"
 								/>
 								{{ formattedLocation }}
 							</p>
@@ -73,7 +73,7 @@
 
 				<kv-loading-placeholder
 					v-if="isLoading || typeof loanCallouts === 'undefined'"
-					class="tw-mt-3 tw-mb-1 tw-mx-auto"
+					class="tw-mt-1 tw-mx-auto"
 					:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
 				/>
 
@@ -92,17 +92,17 @@
 				>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
-						class="tw-mt-1.5 tw-mb-1"
+						class="tw-mt-0.5 tw-mb-1"
 						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
-						class="tw-mt-1.5 tw-mb-1"
+						class="tw-mt-0.5 tw-mb-1"
 						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
-						class="tw-mt-1.5 tw-mb-1"
+						class="tw-mt-0.5 tw-mb-1"
 						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
 					/>
 				</div>
@@ -131,7 +131,10 @@
 					@click.native="clickReadMore('Use', $event)"
 				>
 					<!-- Loan use  -->
-					<div class="tw-mb-1.5 tw-pt-1 tw-px-1">
+					<div
+						class="tw-pt-1 tw-px-1"
+						:class="{'tw-mb-1.5': !isLoading}"
+					>
 						<div
 							v-if="isLoading"
 							class="tw-w-full"
@@ -153,7 +156,8 @@
 								:borrower-count="loanBorrowerCount"
 								:name="borrowerName"
 								:distribution-model="distributionModel"
-								introduction-card
+								avoid-loan-amount
+								class="tw-line-clamp-3"
 							/>
 						</div>
 					</div>
@@ -162,7 +166,7 @@
 		</div>
 
 		<div
-			class="tw-px-1"
+			class="tw-px-1 tw-grow"
 		>
 			<!-- Fundraising -->
 			<div
@@ -199,27 +203,29 @@
 					<kv-loan-progress-group
 						id="loanProgress"
 						:money-left="`${unreservedAmount}`"
+						:amount-goal="`${loanAmount}`"
 						:progress-percent="fundraisingPercent"
-						class="tw-text-black"
-						introduction-card
+						class="tw-text-secondary"
 					/>
 				</component>
 			</div>
+
+			<!-- Loan Match -->
+			<kv-loading-placeholder
+				v-if="isLoading"
+				class="tw-rounded tw-mx-auto tw-mt-1"
+				:style="{ width: '9rem', height: '1rem' }"
+			/>
+
+			<div class="tw-pb-2.5">
+				<kv-loan-tag
+					v-if="matchingText"
+					:loan="loan"
+					variation="matched-loan"
+					class="tw-text-center !tw-text-brand"
+				/>
+			</div>
 		</div>
-
-		<!-- Loan Match -->
-		<kv-loading-placeholder
-			v-if="isLoading"
-			class="tw-rounded tw-mx-auto tw-mt-1"
-			:style="{ width: '9rem', height: '1rem' }"
-		/>
-
-		<kv-loan-tag
-			v-if="matchingText"
-			:loan="loan"
-			variation="matched-loan"
-			introduction-card
-		/>
 	</div>
 </template>
 
@@ -375,6 +381,15 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.card-container {
+	@apply tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1;
+	height: 415px;
+}
+@screen md {
+	.card-container {
+		height: 423px;
+	}
+}
 .loan-card-use:hover,
 .loan-card-use:focus {
 	@apply tw-text-primary;
