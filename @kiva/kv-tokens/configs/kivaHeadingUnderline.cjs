@@ -17,11 +17,13 @@ const svgOpenTag = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 921 16"
 function generateExternalSVG() {
 	const { theme } = colors;
 	const themeColors = Object.keys(theme)
-		.filter((key) => theme[key].underline)
-		.flatMap((key) => Object.values(theme[key].underline));
+		.filter((key) => theme[key]['heading-underline'])
+		.flatMap((key) => Object.values(theme[key]['heading-underline']));
 	const colorList = [...new Set(themeColors)];
 
-	const colorDefs = colorList.map((color) => `<g id="${color}"><use href="#hu-path" fill="${color}" /></g>`);
+	const colorDefs = colorList.map((color) => {
+		return `<g id="${color.replace('#', '')}"><use href="#hu-path" fill="${color}" /></g>`;
+	});
 	return `${svgOpenTag}
 		<defs>
 			<style>
