@@ -52,7 +52,7 @@ const loan = {
 	image: { hash: '9673d0722a7675b9b8d11f90849d9b44' },
 	fundraisingPercent: 0.5,
 	unreservedAmount: '500.00',
-	use: 'to purchase heifers to increase headcount of cattle and sales of organic milk. fadsfas ffadsf asd fadsfads ff asdfdasfasdfads  fasdfads',
+	use: 'to purchase heifers to increase headcount of cattle and sales of organic milk. The profits from the loan will be used wisely.',
 	status: 'fundraising',
 	loanAmount: '1000.00',
 	borrowerCount: 1,
