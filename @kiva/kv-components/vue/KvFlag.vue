@@ -58,7 +58,7 @@ export default {
 		},
 	},
 	async setup() {
-		const countryList = await import('../node_modules/flag-icons/country.json');
+		const countryList = await import('../../../node_modules/flag-icons/country.json');
 
 		return {
 			countryList,
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import "/node_modules/flag-icons/css/flag-icons.min.css";
+@import "../../../node_modules/flag-icons/css/flag-icons.min.css";
 
 .kv-flag__wrapper {
   line-height: 0;
