@@ -47,6 +47,9 @@ const demoTemplate = `
 				<span>{{textVariable}}</span>
 				<span class="tw-text-opacity-low" :class="textVariable">text-opacity-low</span>
 			</p>
+			<h1 class="tw-text-jumbo tw-mb-2">Jumbo: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h1>
+			<h1 class="tw-mb-2">H1: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h1>
+			<h2 class="tw-mb-2">H2: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h2>
 			<p>Body text: Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
 		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2" style="background-color: gray;">

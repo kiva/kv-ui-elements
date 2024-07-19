@@ -15,4 +15,14 @@ const hexToRGB = (hex) => {
 	return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
 };
 
-module.exports = { rem, em, hexToRGB };
+const base64 = (str) => {
+	if (typeof window === 'undefined') return Buffer.from(str).toString('base64');
+	return window.btoa(str);
+};
+
+module.exports = {
+	rem,
+	em,
+	hexToRGB,
+	base64,
+};
