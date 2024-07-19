@@ -157,7 +157,7 @@
 								:name="borrowerName"
 								:distribution-model="distributionModel"
 								avoid-loan-amount
-								class="tw-line-clamp-3"
+								class="!tw-line-clamp-3"
 							/>
 						</div>
 					</div>
