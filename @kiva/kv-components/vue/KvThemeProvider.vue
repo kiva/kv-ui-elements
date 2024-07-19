@@ -87,29 +87,30 @@ export default {
 h1 u,
 h2 u {
   text-decoration: none;
+  box-decoration-break: clone;
   background-image: var(--heading-underline-primary);
   background-repeat: no-repeat;
   background-position: left bottom;
 }
 .tw-text-jumbo u {
-	background-size: auto 0.75rem;
-	padding-bottom: 0.5rem;
+	background-size: 100% 0.75rem;
+	padding-bottom: 0.375rem;
 }
 .tw-text-h1 u,
 h1 u {
-  background-size: auto 0.75rem;
-  padding-bottom: 0.5rem;
+  background-size: 100% 0.75rem;
+  padding-bottom: 0.375rem;
 }
 .tw-text-h2 u,
 h2 u {
-  background-size: auto 0.375rem;
+  background-size: 100% 0.375rem;
   padding-bottom: 0.125rem;
 }
 
 @screen lg {
 	.tw-text-jumbo u {
-		background-size: auto 1rem;
-		padding-bottom: 0.625rem;
+		background-size: 100% 1rem;
+		padding-bottom: 0.375rem;
 	}
 }
 </style>
