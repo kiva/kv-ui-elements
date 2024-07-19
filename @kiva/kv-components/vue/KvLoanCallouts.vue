@@ -27,8 +27,7 @@
 					tw-mb-0.5
 					tw-text-small
 				"
-				:class="{ 'tw-cursor-pointer hover:tw-underline': isClickable(tag),
-					'!tw-bg-transparent tw-text-brand': introductionCard }"
+				:class="{ 'tw-cursor-pointer hover:tw-underline': isClickable(tag)}"
 				@click="clickCallout(tag)"
 			>
 				{{ tag.label }}
@@ -50,10 +49,6 @@ export default {
 		enableClickable: {
 			type: Boolean,
 			default: false,
-		},
-		introductionCard: {
-			type: Boolean,
-			default: true,
 		},
 	},
 	emits: [

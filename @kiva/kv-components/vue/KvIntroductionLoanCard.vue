@@ -58,11 +58,7 @@
 									tw-items-center"
 								style="padding: 2px 6px; text-transform: capitalize;"
 							>
-								<kv-flag
-									class="tw-mr-0.5"
-									:country="countryCode"
-									width-override="0.725rem"
-								/>
+								<span class="tw-mr-0.5"> {{ country2flag(countryCode) }} </span>
 								{{ formattedLocation }}
 							</p>
 						</div>
@@ -119,6 +115,7 @@
 					<kv-loan-callouts
 						:callouts="loanCallouts"
 						:add-bg-color="false"
+						class="loan-callouts"
 					/>
 				</component>
 
@@ -377,6 +374,15 @@ export default {
 			return this.loan?.matchingText ?? '';
 		},
 	},
+	methods: {
+		country2flag(countryCode) {
+			return countryCode
+				.toUpperCase()
+				.split('')
+				.map((char) => String.fromCodePoint(char.charCodeAt(0) + 0x1F1A5))
+				.join('');
+		},
+	},
 };
 </script>
 
@@ -389,6 +395,9 @@ export default {
 	.card-container {
 		height: 423px;
 	}
+}
+.loan-callouts >>> span {
+	@apply !tw-bg-transparent tw-text-brand;
 }
 .loan-card-use:hover,
 .loan-card-use:focus {
