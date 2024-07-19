@@ -58,9 +58,10 @@
 									tw-items-center"
 								style="padding: 2px 6px; text-transform: capitalize;"
 							>
-								<kv-material-icon
-									class="tw-h-2 tw-w-2"
-									:icon="mdiMapMarker"
+								<kv-flag
+									class="tw-mr-0.5"
+									:country="countryCode"
+									width-override="15px"
 								/>
 								{{ formattedLocation }}
 							</p>
@@ -233,6 +234,7 @@ import KvLoanCallouts from './KvLoanCallouts.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvFlag from './KvFlag.vue';
 
 export default {
 	name: 'KvIntroductionLoanCard',
@@ -244,6 +246,7 @@ export default {
 		KvMaterialIcon,
 		KvLoanTag,
 		KvLoanCallouts,
+		KvFlag,
 	},
 	props: {
 		loanId: {
@@ -293,6 +296,7 @@ export default {
 			borrowerName,
 			city,
 			countryName,
+			countryCode,
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
@@ -320,6 +324,7 @@ export default {
 			borrowerName,
 			city,
 			countryName,
+			countryCode,
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
