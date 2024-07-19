@@ -237,7 +237,6 @@ import KvLoanCallouts from './KvLoanCallouts.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
-import KvFlag from './KvFlag.vue';
 
 export default {
 	name: 'KvIntroductionLoanCard',
@@ -249,7 +248,6 @@ export default {
 		KvMaterialIcon,
 		KvLoanTag,
 		KvLoanCallouts,
-		KvFlag,
 	},
 	props: {
 		loanId: {
