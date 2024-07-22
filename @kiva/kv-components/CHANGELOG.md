@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.88.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.88.0...@kiva/kv-components@3.88.1) (2024-07-22)
+
+
+### Bug Fixes
+
+* remove margin in cart modal ([3f40f9a](https://github.com/kiva/kv-ui-elements/commit/3f40f9a1239af24eb7c00359c2825d2d55edefa9))
+
+
+
+
+
 # [3.88.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.87.4...@kiva/kv-components@3.88.0) (2024-07-19)
 
 
