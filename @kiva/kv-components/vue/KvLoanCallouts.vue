@@ -27,7 +27,7 @@
 					tw-mb-0.5
 					tw-text-small
 				"
-				:class="{ 'tw-cursor-pointer hover:tw-underline': isClickable(tag)}"
+				:class="{ 'tw-cursor-pointer hover:tw-underline': isClickable(tag) }"
 				@click="clickCallout(tag)"
 			>
 				{{ tag.label }}

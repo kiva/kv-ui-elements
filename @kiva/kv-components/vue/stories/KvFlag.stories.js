@@ -11,10 +11,10 @@ const story = (args) => {
 		components: { KvFlag },
 		setup() { return { args: templateArgs }; },
 		template: `
-      <div style="width: 100px; height: 100px;">
-        <KvFlag v-bind="args" />
-      </div>
-    `,
+			<div style="width: 100px; height: 100px;">
+				<KvFlag v-bind="args" />
+			</div>
+		`,
 	});
 	template.args = args;
 	return template;

@@ -46,7 +46,7 @@ export default {
 			type: String,
 			default: '',
 		},
-		avoidLoanAmount: {
+		hideLoanAmount: {
 			type: Boolean,
 			default: false,
 		},
@@ -71,7 +71,7 @@ export default {
 				return 'For the borrower\'s privacy, this loan has been made anonymous.';
 			}
 
-			if (this.avoidLoanAmount) {
+			if (this.hideLoanAmount) {
 				return `Help <span class="data-hj-suppress">${this.name}</span> `
 					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
 				+ `${this.whySpecialSentence}`;

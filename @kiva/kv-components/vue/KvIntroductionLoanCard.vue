@@ -55,10 +55,16 @@
 									tw-mr-2
 									tw-text-h4
 									tw-inline-flex
-									tw-items-center"
-								style="padding: 2px 6px; text-transform: capitalize;"
+									tw-items-center
+									!tw-capitalize
+								"
+								style="padding: 2px 6px;"
 							>
-								<span class="tw-mr-0.5"> {{ country2flag(countryCode) }} </span>
+								<kv-flag
+									class="tw-mr-0.5"
+									:country="countryCode"
+									width-override="0.725rem"
+								/>
 								{{ formattedLocation }}
 							</p>
 						</div>
@@ -153,7 +159,7 @@
 								:borrower-count="loanBorrowerCount"
 								:name="borrowerName"
 								:distribution-model="distributionModel"
-								avoid-loan-amount
+								hide-loan-amount
 								class="!tw-line-clamp-3"
 							/>
 						</div>
@@ -237,6 +243,7 @@ import KvLoanCallouts from './KvLoanCallouts.vue';
 import KvLoanTag from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvFlag from './KvFlag.vue';
 
 export default {
 	name: 'KvIntroductionLoanCard',
@@ -248,6 +255,7 @@ export default {
 		KvMaterialIcon,
 		KvLoanTag,
 		KvLoanCallouts,
+		KvFlag,
 	},
 	props: {
 		loanId: {
@@ -370,15 +378,6 @@ export default {
 		},
 		matchingText() {
 			return this.loan?.matchingText ?? '';
-		},
-	},
-	methods: {
-		country2flag(countryCode) {
-			return countryCode
-				.toUpperCase()
-				.split('')
-				.map((char) => String.fromCodePoint(char.charCodeAt(0) + 0x1F1A5))
-				.join('');
 		},
 	},
 };

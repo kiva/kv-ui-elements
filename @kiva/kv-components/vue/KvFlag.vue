@@ -6,18 +6,18 @@
 	>
 		<div
 			class="
-        kv-flag__wrapper
-        kv-flag-svg
-        tw-bg-gray-100
-        tw-relative
-        tw-overflow-hidden
-        tw-h-0
-        tw-w-full
-        tw-border
-        tw-border-gray-600
+				kv-flag__wrapper
+				kv-flag-svg
+				tw-bg-gray-100
+				tw-relative
+				tw-overflow-hidden
+				tw-h-0
+				tw-w-full
+				tw-border
+				tw-border-gray-600
 				!tw-bg-cover
 				fib
-      "
+			"
 			:class="`fi-${country.toLowerCase()}`"
 		>
 			<span class="tw-sr-only">{{ countryName }}</span>
@@ -48,10 +48,16 @@ export default {
 			type: String,
 			default: '4x3',
 		},
+		/**
+		 * Show the name of the country next to the flag
+		 */
 		showName: {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Override the width of the flag
+		 */
 		widthOverride: {
 			type: String,
 			default: null,
@@ -88,14 +94,14 @@ export default {
 @import "../../../node_modules/flag-icons/css/flag-icons.min.css";
 
 .kv-flag__wrapper {
-  line-height: 0;
+	line-height: 0;
 }
 
 .kv-flag--4x3 .kv-flag__wrapper.kv-flag-svg {
-  padding-bottom: 71%;
+	padding-bottom: 71%;
 }
 
 .kv-flag--1x1 .kv-flag__wrapper.kv-flag-svg {
-  padding-bottom: 96%;
+	padding-bottom: 96%;
 }
 </style>
