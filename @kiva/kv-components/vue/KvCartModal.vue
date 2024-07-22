@@ -357,10 +357,6 @@ export default {
 }
 
 @screen md {
-	.container {
-		margin-right: 5%;
-	}
-
 	.modal {
 		max-width: 24.5rem;
 	}
