@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.89.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.88.1...@kiva/kv-components@3.89.0) (2024-07-23)
+
+
+### Bug Fixes
+
+* flag-icons import ([0b58418](https://github.com/kiva/kv-ui-elements/commit/0b58418bf5aeb58cb8eefc265c228092e6e761e4))
+* indent, use kvFlag and some refactor ([4fbc11a](https://github.com/kiva/kv-ui-elements/commit/4fbc11a03fa2970e7d8c3cc340aa144b9da35c24))
+* line-clamp in loan use ([f4cf963](https://github.com/kiva/kv-ui-elements/commit/f4cf963a567adc6ba23349cbe0da1bc2d15f24d1))
+* loan name clickable ([18f63ca](https://github.com/kiva/kv-ui-elements/commit/18f63ca60d08f92e034cae73e3eb326b2a61f735))
+* loan use template ([4efe849](https://github.com/kiva/kv-ui-elements/commit/4efe8493ec1dce8a3edb73d17e47c1fb8e308be2))
+* remove class props for deep ([c6923dc](https://github.com/kiva/kv-ui-elements/commit/c6923dc3ff576be80efc69f72a9cf6d35974aef7))
+* remove kvflag from loan card ([1e2bba8](https://github.com/kiva/kv-ui-elements/commit/1e2bba8c726e7702aa52efb765651a138feb2220))
+
+
+### Features
+
+* introduction card component and story ([7115800](https://github.com/kiva/kv-ui-elements/commit/71158004b0b9a18e9bf1ba8375c213c1c3ca251f))
+* kvflag component and new loan card for homepage ([8cf61bb](https://github.com/kiva/kv-ui-elements/commit/8cf61bb62820c6f9ce280d0f864f5b58d5279694))
+* toggle flag border ([2a782a1](https://github.com/kiva/kv-ui-elements/commit/2a782a1c9bec4ca9d0d3f60a7e9a6d44a310956c))
+* using flag emoticons ([159497b](https://github.com/kiva/kv-ui-elements/commit/159497b08bb1efb5989544df068624cca3c6929b))
+
+
+
+
+
 ## [3.88.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.88.0...@kiva/kv-components@3.88.1) (2024-07-22)
 
 
