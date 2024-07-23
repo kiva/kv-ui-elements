@@ -28,6 +28,7 @@ export function loanCardComputedProperties(props) {
 	const isLoading = computed(() => !loanId.value || !loan.value);
 	const borrowerName = computed(() => loan.value?.name || '');
 	const countryName = computed(() => loan.value?.geocode?.country?.name || '');
+	const countryCode = computed(() => loan.value?.geocode?.country?.isoCode || '');
 	const city = computed(() => loan.value?.geocode?.city || '');
 	const state = computed(() => loan.value?.geocode?.state || '');
 	const distributionModel = computed(() => loan.value?.distributionModel || '');
@@ -161,6 +162,7 @@ export function loanCardComputedProperties(props) {
 		isLoading,
 		borrowerName,
 		countryName,
+		countryCode,
 		city,
 		state,
 		distributionModel,
