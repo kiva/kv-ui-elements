@@ -81,8 +81,9 @@
 				/>
 
 				<h2
-					class="tw-pt-1 tw-px-3 tw-text-ellipsis tw-overflow-hidden tw-line-clamp-1"
+					class="loan-card-name"
 					:class="{'tw-text-center': borrowerName.length < 20}"
+					@click="clickReadMore('Name', $event)"
 				>
 					{{ borrowerName }}
 				</h2>
@@ -401,7 +402,7 @@ export default {
 .loan-card-use:focus {
 	@apply tw-text-primary;
 }
-.loan-card-active-hover:hover .loan-card-use {
+.loan-card-active-hover:hover .loan-card-use, .loan-card-active-hover:hover .loan-card-name {
 	@apply tw-underline;
 }
 .loan-card-progress:hover,
@@ -410,5 +411,8 @@ export default {
 }
 .borrower-image >>> img {
 	@apply tw-object-cover;
+}
+.loan-card-name {
+	@apply tw-pt-1 tw-px-3 tw-text-ellipsis tw-overflow-hidden tw-line-clamp-1 tw-cursor-pointer;
 }
 </style>
