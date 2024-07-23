@@ -64,6 +64,7 @@
 									class="tw-mr-0.5"
 									:country="countryCode"
 									width-override="0.725rem"
+									hide-border
 								/>
 								{{ formattedLocation }}
 							</p>

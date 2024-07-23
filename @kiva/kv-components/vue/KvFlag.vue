@@ -18,7 +18,7 @@
 				!tw-bg-cover
 				fib
 			"
-			:class="`fi-${country.toLowerCase()}`"
+			:class="classes"
 		>
 			<span class="tw-sr-only">{{ countryName }}</span>
 		</div>
@@ -62,6 +62,13 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Hide the border around the flag
+		 */
+		hideBorder: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	async setup() {
 		const countryList = await import('../../../node_modules/flag-icons/country.json');
@@ -79,6 +86,12 @@ export default {
 		},
 		countryName() {
 			return `Flag of ${this.getNameByCode(this.country)}`;
+		},
+		classes() {
+			return {
+				[`fi-${this.country.toLowerCase()}`]: true,
+				'tw-border-0': this.hideBorder,
+			};
 		},
 	},
 	methods: {
