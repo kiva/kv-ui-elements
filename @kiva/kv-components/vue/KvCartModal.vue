@@ -353,7 +353,7 @@ export default {
 }
 
 .container {
-	@apply tw-absolute tw-inset-0 md:tw-mt-9;
+	@apply tw-absolute tw-inset-0;
 }
 
 @screen md {
