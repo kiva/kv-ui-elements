@@ -16,7 +16,6 @@ const story = (args) => {
 		template: `
 			<kv-loan-tag
 				:loan="loan"
-				:kv-track-function="kvTrackFunction"
 			/>
 		`,
 	});
@@ -30,9 +29,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
 
-const kvTrackFunction = () => { };
-
-export const EndingSoon = story({ loan: { plannedExpirationDate: tomorrow.toISOString() }, kvTrackFunction });
+export const EndingSoon = story({ loan: { plannedExpirationDate: tomorrow.toISOString() } });
 
 export const AlmostFunded = story({
 	loan: {
@@ -40,7 +37,6 @@ export const AlmostFunded = story({
 		plannedExpirationDate: nextWeek.toISOString(),
 		loanFundraisingInfo: { fundedAmount: 50, reservedAmount: 50 },
 	},
-	kvTrackFunction,
 });
 
 export const Matched = story({
@@ -51,7 +47,6 @@ export const Matched = story({
 		loanAmount: 199,
 		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
 	},
-	kvTrackFunction,
 });
 
 export const LseLoan = story({
@@ -63,5 +58,4 @@ export const LseLoan = story({
 		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
 		partnerName: 'N/A, direct to Novulis',
 	},
-	kvTrackFunction,
 });

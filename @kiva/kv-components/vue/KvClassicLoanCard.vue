@@ -97,7 +97,6 @@
 					<kv-loan-tag
 						v-if="showTags && !isLoading"
 						:loan="loan"
-						:kv-track-function="kvTrackFunction"
 					/>
 				</component>
 
