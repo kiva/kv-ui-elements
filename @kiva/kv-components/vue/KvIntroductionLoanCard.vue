@@ -228,6 +228,7 @@
 					:loan="loan"
 					variation="matched-loan"
 					class="tw-text-center !tw-text-brand"
+					:kv-track-function="kvTrackFunction"
 				/>
 			</div>
 		</div>

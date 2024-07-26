@@ -33,7 +33,6 @@ const story = (args) => {
 					:combined-activities="combinedActivities"
 					:showContributors="showContributors"
 					:enable-huge-amount="enableHugeAmount"
-					:enable-clickable-tags="enableClickableTags"
 					:primary-button-text="primaryButtonText"
 					:secondary-button-text="secondaryButtonText"
 					:secondary-button-handler="secondaryButtonHandler"
@@ -398,14 +397,6 @@ export const HugeLentAmount = story({
 	photoPath,
 	isVisitor: false,
 	enableHugeAmount: true,
-});
-
-export const ClickableTags = story({
-	loanId: loan.id,
-	loan,
-	kvTrackFunction,
-	photoPath,
-	enableClickableTags: true,
 });
 
 export const SupportButton = story({
