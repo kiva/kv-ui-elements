@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.90.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.89.1...@kiva/kv-components@3.90.0) (2024-07-26)
+
+
+### Bug Fixes
+
+* revert new loan card ([84ee01e](https://github.com/kiva/kv-ui-elements/commit/84ee01e11c23d45f41389c003acaba843b50d103))
+
+
+### Features
+
+* remove clickable tags exp ([afba87d](https://github.com/kiva/kv-ui-elements/commit/afba87dd24a9123607ccf6d8a83e81efab2a2a34))
+
+
+
+
+
 ## [3.89.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.89.0...@kiva/kv-components@3.89.1) (2024-07-24)
 
 
