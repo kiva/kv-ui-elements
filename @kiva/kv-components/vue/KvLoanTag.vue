@@ -29,10 +29,6 @@ export default {
 			type: Object,
 			required: true,
 		},
-		kvTrackFunction: {
-			type: Function,
-			required: true,
-		},
 	},
 	data() {
 		return {

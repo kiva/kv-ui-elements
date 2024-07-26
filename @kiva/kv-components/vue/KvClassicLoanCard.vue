@@ -97,7 +97,6 @@
 					<kv-loan-tag
 						v-if="showTags && !isLoading"
 						:loan="loan"
-						:kv-track-function="kvTrackFunction"
 					/>
 				</component>
 
@@ -151,7 +150,6 @@
 			<kv-loan-callouts
 				v-else
 				:callouts="loanCallouts"
-				:enable-clickable="enableClickableTags"
 				class="tw-mt-1.5"
 				:class="{ 'tw-px-1': largeCard }"
 				@click="$emit('jump-filter-page', $event)"
@@ -404,10 +402,6 @@ export default {
 			default: '',
 		},
 		enableHugeAmount: {
-			type: Boolean,
-			default: false,
-		},
-		enableClickableTags: {
 			type: Boolean,
 			default: false,
 		},
