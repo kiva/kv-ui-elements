@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="card-container"
+		class="loan-card card-container"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
 		:style="{ minWidth: '230px', maxWidth: '20.5rem' }"

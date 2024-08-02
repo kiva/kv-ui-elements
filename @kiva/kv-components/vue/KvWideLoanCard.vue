@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="
+			loan-card
 			tw-flex
 			tw-flex-row
 			tw-flex-wrap
