@@ -2,6 +2,7 @@
 	<div
 		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
 		:class="{ 'tw-p-1': !largeCard, 'tw-pointer-events-none' : isLoading }"
+		data-testid="loan-card"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
 		:style="{ minWidth: '230px', maxWidth: cardWidth }"
 	>

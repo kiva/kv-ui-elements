@@ -13,6 +13,7 @@
 			tw-items-center
 		"
 		:class="{'tw-pointer-events-none' : isLoading }"
+		data-testid="loan-card"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
 	>
 		<div
