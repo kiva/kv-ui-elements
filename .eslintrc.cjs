@@ -1,5 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
+const path = require('path');
+
 module.exports = {
 	env: {
 		browser: true,
@@ -36,5 +38,15 @@ module.exports = {
 			},
 		},
 	],
+	settings: {
+		'import/resolver': {
+			alias: {
+				map: [
+					['~/node_modules', path.resolve(__dirname, './node_modules/')],
+				],
+				extensions: ['.ts', '.js', '.json'],
+			},
+		},
+	},
 	root: true,
 };

@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = {
 	stories: [
 		'../stories/Styleguide.stories.js', // show the base styleguide first
@@ -62,6 +64,10 @@ const config = {
 				}
 			]
 		});
+		config.resolve.alias = {
+			...config.resolve.alias,
+			'~/node_modules': path.resolve(__dirname, '../../../../node_modules/'),
+		};
 		return config;
 	},
 
