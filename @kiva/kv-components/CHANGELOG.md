@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.90.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.4...@kiva/kv-components@3.90.5) (2024-08-06)
+
+
+### Bug Fixes
+
+* use TW class inline to make overwriting simpler ([3af651f](https://github.com/kiva/kv-ui-elements/commit/3af651fbf961d06a631381029daa43f02550546c))
+
+
+
+
+
 ## [3.90.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.3...@kiva/kv-components@3.90.4) (2024-08-06)
 
 
