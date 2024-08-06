@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.90.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.3...@kiva/kv-components@3.90.4) (2024-08-06)
+
+
+### Bug Fixes
+
+* use an image size we already have a retina size for ([109a303](https://github.com/kiva/kv-ui-elements/commit/109a303ba7ce6bd6830109e4323a9e25636556bf))
+
+
+
+
+
 ## [3.90.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.2...@kiva/kv-components@3.90.3) (2024-08-06)
 
 
