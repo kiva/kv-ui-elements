@@ -171,9 +171,7 @@
 			</div>
 		</div>
 
-		<div
-			class="tw-px-1 tw-grow"
-		>
+		<div class="tw-px-1">
 			<!-- Fundraising -->
 			<div
 				v-if="!hasProgressData"
@@ -358,18 +356,14 @@ export default {
 	},
 	computed: {
 		imageAspectRatio() {
-			return 178 / 328;
+			return 1 / 2;
 		},
 		imageDefaultWidth() {
-			return 336;
+			return 500;
 		},
 		imageSizes() {
 			return [
-				{ width: this.imageDefaultWidth, viewSize: 1024 },
-				{ width: this.imageDefaultWidth, viewSize: 768 },
-				{ width: 416, viewSize: 480 },
-				{ width: 374, viewSize: 414 },
-				{ width: 335, viewSize: 375 },
+				{ width: this.imageDefaultWidth, viewSize: 375 },
 			];
 		},
 		lendersNumber() {
@@ -389,12 +383,6 @@ export default {
 <style lang="postcss" scoped>
 .card-container {
 	@apply tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1;
-	height: 415px;
-}
-@screen md {
-	.card-container {
-		height: 423px;
-	}
 }
 .loan-callouts >>> span {
 	@apply !tw-bg-transparent tw-text-brand;
@@ -409,9 +397,6 @@ export default {
 .loan-card-progress:hover,
 .loan-card-progress:focus {
 	@apply tw-no-underline;
-}
-.borrower-image >>> img {
-	@apply tw-object-cover;
 }
 .loan-card-name {
 	@apply tw-pt-1 tw-px-3 tw-text-ellipsis tw-overflow-hidden tw-line-clamp-1 tw-cursor-pointer;
