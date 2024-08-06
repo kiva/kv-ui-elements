@@ -16,7 +16,8 @@
 				/>
 				<div
 					v-else
-					class="tw-relative"
+					:style="{ height: '11rem' }"
+					class="tw-relative tw-overflow-hidden"
 				>
 					<component
 						:is="tag"
@@ -356,10 +357,10 @@ export default {
 	},
 	computed: {
 		imageAspectRatio() {
-			return 1 / 2;
+			return 5 / 8;
 		},
 		imageDefaultWidth() {
-			return 500;
+			return 480;
 		},
 		imageSizes() {
 			return [
