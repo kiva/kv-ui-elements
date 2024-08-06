@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.90.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.2...@kiva/kv-components@3.90.3) (2024-08-06)
+
+
+### Bug Fixes
+
+* adjust new card styling ([875d701](https://github.com/kiva/kv-ui-elements/commit/875d701b951660444f8d00d7ae1596958df604f3))
+
+
+
+
+
 ## [3.90.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.1...@kiva/kv-components@3.90.2) (2024-08-05)
 
 
