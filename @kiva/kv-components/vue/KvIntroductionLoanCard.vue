@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="card-container"
+		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
@@ -382,9 +382,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.card-container {
-	@apply tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1;
-}
 .loan-callouts >>> span {
 	@apply !tw-bg-transparent tw-text-brand;
 }
