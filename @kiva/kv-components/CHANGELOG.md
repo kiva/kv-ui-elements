@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.91.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.5...@kiva/kv-components@3.91.0) (2024-08-14)
+
+
+### Features
+
+* country layers added to leaflet map ([#441](https://github.com/kiva/kv-ui-elements/issues/441)) ([97c35b5](https://github.com/kiva/kv-ui-elements/commit/97c35b5cd79f8d53a48b879694d988acfb4823e6))
+
+
+
+
+
 ## [3.90.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.4...@kiva/kv-components@3.90.5) (2024-08-06)
 
 
