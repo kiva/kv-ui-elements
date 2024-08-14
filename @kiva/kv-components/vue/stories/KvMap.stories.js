@@ -1,3 +1,4 @@
+import mockLenderCountries from '../../tests/fixtures/mockLenderCountries';
 import KvMap from '../KvMap.vue';
 
 export default {
@@ -32,6 +33,11 @@ const Template = (args, { argTypes }) => ({
 		:width="width"
 		:zoom-level="zoomLevel"
 		:advanced-animation="advancedAnimation"
+		:show-zoom-control="showZoomControl"
+		:allow-dragging="allowDragging"
+		:show-labels="showLabels"
+		:countries-data="countriesData"
+		:show-fundraising-loans="showFundraisingLoans"
 	/>`,
 });
 
@@ -97,4 +103,19 @@ AdvancedAnimation.args = {
 	lat: 21.096,
 	long: -31.690,
 	advancedAnimation,
+};
+
+export const LoansMap = Template.bind({});
+LoansMap.args = {
+	autoZoomDelay: 500,
+	aspectRatio: 1.8,
+	lat: 30,
+	long: 1,
+	zoomLevel: 2,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: mockLenderCountries,
+	showFundraisingLoans: true,
 };
