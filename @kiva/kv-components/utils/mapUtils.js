@@ -1,3 +1,5 @@
+import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
+
 /**
  * Code to generate random coordinates
  * */
@@ -9,6 +11,18 @@ const randomCoordinates = Array.from(
 	{ length: 20 },
 	() => [getRandomInRange(-180, 180, 3), getRandomInRange(-90, 90, 3)],
 );
+
+/**
+ * Color indexes for the map
+ * */
+const mapColors = [
+	100,
+	300,
+	500,
+	650,
+	800,
+	1000,
+];
 
 /**
  * Given 2 coordinates and the number of steps return an array of coordinates in between
@@ -275,7 +289,7 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
  * This function returns an array of not overlapped intervals between min and max
  * @param {Integer} min - min number of the interval
  * @param {Integer} max - max number of the interval
- * * @param {Integer} nbIntervals - number of intervals
+ * @param {Integer} nbIntervals - number of intervals
  * @returns {Array} - array with intervals
  * */
 export const getLoansIntervals = (min, max, nbIntervals) => {
@@ -307,4 +321,42 @@ export const getLoansIntervals = (min, max, nbIntervals) => {
 	}
 
 	return result;
+};
+
+/**
+ * This function returns the color of the country based on the number of loans
+ * @param {Integer} lenderLoans - number of loans per country
+ * @param {Array} countriesData - data of countries
+ * @param {Object} kvTokensPrimitives - kv tokens for colors
+ * @returns {String} - color of the country
+ * */
+export const getCountryColor = (lenderLoans, countriesData) => {
+	const loanCountsArray = [];
+	countriesData.forEach((country) => {
+		loanCountsArray.push(country.value);
+	});
+
+	const maxNumLoansToOneCountry = Math.max(...loanCountsArray);
+	const intervals = getLoansIntervals(1, maxNumLoansToOneCountry, 6);
+
+	if (intervals.length === 1) {
+		const [inf, sup] = intervals[0]; // eslint-disable-line no-unused-vars
+
+		for (let i = 0; i < sup; i += 1) {
+			const loansNumber = i + 1;
+
+			if (lenderLoans && lenderLoans >= loansNumber && lenderLoans < loansNumber + 1) {
+				return kvTokensPrimitives.colors.brand[mapColors[i]];
+			}
+		}
+	} else {
+		for (let i = 0; i < intervals.length; i += 1) {
+			const [inf, sup] = intervals[i];
+			if (lenderLoans && lenderLoans >= inf && lenderLoans <= sup) {
+				return kvTokensPrimitives.colors.brand[mapColors[i]];
+			}
+		}
+	}
+
+	return kvTokensPrimitives.colors.gray[300];
 };

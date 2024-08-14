@@ -1,9 +1,12 @@
+import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
 import {
 	getCoordinatesBetween,
 	getLoansIntervals,
+	getCountryColor,
 } from '../../../../utils/mapUtils';
+import mockLenderCountries from '../../../fixtures/mockLenderCountries';
 
-describe('mapAnimation', () => {
+describe('mapUtils', () => {
 	describe('getCoordinatesBetween', () => {
 		it('should return empty array if inputs are invalid', () => {
 			expect(getCoordinatesBetween([100, 88], undefined, 10)).toStrictEqual([]);
@@ -42,9 +45,7 @@ describe('mapAnimation', () => {
 			);
 		});
 	});
-});
 
-describe('mapUtils', () => {
 	describe('getLoansIntervals', () => {
 		it('should return array of length 1 if max number is smaller than number of interval', () => {
 			const result = getLoansIntervals(1, 5, 6);
@@ -59,6 +60,13 @@ describe('mapUtils', () => {
 		it('should have a difference by one between intervals', () => {
 			const result = getLoansIntervals(1, 120, 6);
 			expect(result[0][1]).toBe(result[1][0] - 1);
+		});
+	});
+
+	describe('getCountryColor', () => {
+		it('should return #C4C4C4 gray as default color', () => {
+			const result = getCountryColor(0, mockLenderCountries, kvTokensPrimitives);
+			expect(result).toBe('#C4C4C4');
 		});
 	});
 });

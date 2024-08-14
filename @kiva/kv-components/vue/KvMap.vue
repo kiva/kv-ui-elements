@@ -14,7 +14,7 @@
 
 <script>
 import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
-import { animationCoordinator, generateMapMarkers, getLoansIntervals } from '../utils/mapUtils';
+import { animationCoordinator, generateMapMarkers, getCountryColor } from '../utils/mapUtils';
 import countriesBorders from '../data/countries-borders.json';
 
 export default {
@@ -164,14 +164,6 @@ export default {
 			mapLibreReady: false,
 			mapLoaded: false,
 			zoomActive: false,
-			mapColors: [
-				100,
-				300,
-				500,
-				650,
-				800,
-				1000,
-			],
 		};
 	},
 	computed: {
@@ -521,40 +513,10 @@ export default {
 		countryStyle(feature) {
 			return {
 				color: kvTokensPrimitives.colors.white,
-				fillColor: this.getCountryColor(feature.lenderLoans),
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData),
 				weight: 1,
 				fillOpacity: 1,
 			};
-		},
-		getCountryColor(lenderLoans) {
-			const loanCountsArray = [];
-			this.countriesData.forEach((country) => {
-				loanCountsArray.push(country.value);
-			});
-
-			const maxNumLoansToOneCountry = Math.max(...loanCountsArray);
-			const intervals = getLoansIntervals(1, maxNumLoansToOneCountry, 6);
-
-			if (intervals.length === 1) {
-				const [inf, sup] = intervals[0]; // eslint-disable-line no-unused-vars
-
-				for (let i = 0; i < sup; i += 1) {
-					const loansNumber = i + 1;
-
-					if (lenderLoans && lenderLoans >= loansNumber && lenderLoans < loansNumber + 1) {
-						return kvTokensPrimitives.colors.brand[this.mapColors[i]];
-					}
-				}
-			} else {
-				for (let i = 0; i < intervals.length; i += 1) {
-					const [inf, sup] = intervals[i];
-					if (lenderLoans && lenderLoans >= inf && lenderLoans <= sup) {
-						return kvTokensPrimitives.colors.brand[this.mapColors[i]];
-					}
-				}
-			}
-
-			return kvTokensPrimitives.colors.gray[300];
 		},
 		onEachCountryFeature(feature, layer) {
 			const loansString = feature.lenderLoans
@@ -583,17 +545,11 @@ export default {
 			const { feature } = layer;
 
 			layer.setStyle({
-				fillColor: this.getCountryColor(feature.lenderLoans),
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData),
 			});
 		},
 		circleMapClicked(countryIso) {
 			this.$emit('country-lend-filter', countryIso);
-			this.$router.push({
-				path: '/lend/filter',
-				query: {
-					country: countryIso,
-				},
-			});
 		},
 	},
 };
