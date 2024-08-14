@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.91.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.91.0...@kiva/kv-components@3.91.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* resolve issue found in ui vue migration ([0050e5e](https://github.com/kiva/kv-ui-elements/commit/0050e5e93cf189f18fda0c468a577546f5f1911c))
+
+
+
+
+
 # [3.91.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.90.5...@kiva/kv-components@3.91.0) (2024-08-14)
 
 
