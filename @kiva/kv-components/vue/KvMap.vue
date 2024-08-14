@@ -13,7 +13,9 @@
 </template>
 
 <script>
-import { animationCoordinator, generateMapMarkers } from '../utils/mapAnimation';
+import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
+import { animationCoordinator, generateMapMarkers, getLoansIntervals } from '../utils/mapUtils';
+import countriesBorders from '../data/countries-borders.json';
 
 export default {
 	name: 'KvMap',
@@ -115,6 +117,44 @@ export default {
 			required: false,
 			default: () => ({}),
 		},
+		/**
+		 * Show the zoom control
+		 */
+		showZoomControl: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Allow dragging of the map
+		 */
+		allowDragging: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Show labels on the map
+		 * Working for leaflet only
+		 */
+		showLabels: {
+			type: Boolean,
+			default: true,
+		},
+		/**
+		 * Lender data for the map
+		 * Working for leaflet only
+		 */
+		countriesData: {
+			type: Array,
+			default: () => ([]),
+		},
+		/**
+		 * Show fundraising loans
+		 * Working for leaflet only
+		 */
+		showFundraisingLoans: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -124,6 +164,14 @@ export default {
 			mapLibreReady: false,
 			mapLoaded: false,
 			zoomActive: false,
+			mapColors: [
+				100,
+				300,
+				500,
+				650,
+				800,
+				1000,
+			],
 		};
 	},
 	computed: {
@@ -152,6 +200,12 @@ export default {
 		long(next, prev) {
 			if (prev === null && this.lat && !this.mapLibreReady && !this.leafletReady) {
 				this.initializeMap();
+			}
+		},
+		showFundraisingLoans() {
+			if (this.mapInstance) {
+				this.mapInstance.remove();
+				this.initializeLeaflet();
 			}
 		},
 	},
@@ -287,8 +341,8 @@ export default {
 				center: [this.lat, this.long],
 				zoom: this.initialZoom || this.zoomLevel,
 				// todo make props for the following options
-				dragging: false,
-				zoomControl: false,
+				dragging: this.allowDragging,
+				zoomControl: this.showZoomControl,
 				animate: true,
 				scrollWheelZoom: false,
 				doubleClickZoom: false,
@@ -296,12 +350,45 @@ export default {
 			});
 			/* eslint-disable quotes */
 			// Add our tileset to the mapInstance
-			L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=n1Mz5ziX3k6JfdjFe7mx', {
+			let tileLayer = 'https://api.maptiler.com/maps/landscape/{z}/{x}/{y}.png?key=n1Mz5ziX3k6JfdjFe7mx';
+			if (this.showLabels) {
+				tileLayer = 'https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=n1Mz5ziX3k6JfdjFe7mx';
+			}
+			L.tileLayer(tileLayer, {
 				tileSize: 512,
 				zoomOffset: -1,
 				minZoom: 1,
 				crossOrigin: true,
 			}).addTo(this.mapInstance);
+
+			if (this.countriesData.length > 0) {
+				L.geoJson(
+					this.getCountriesData(),
+					{
+						style: this.countryStyle,
+						onEachFeature: this.onEachCountryFeature,
+					},
+				).addTo(this.mapInstance);
+
+				this.countriesData.forEach((country) => {
+					if (country.numLoansFundraising > 0 && this.showFundraisingLoans) {
+						const circle = L.circle([country.lat, country.long], {
+							color: kvTokensPrimitives.colors.black,
+							weight: 1,
+							fillColor: kvTokensPrimitives.colors.brand[900],
+							fillOpacity: 1,
+							radius: 130000,
+						}).addTo(this.mapInstance);
+
+						const tooltipText = `Click to see ${country.numLoansFundraising} fundraising loans in ${country.label}`;
+						circle.bindTooltip(tooltipText);
+
+						circle.on('click', () => {
+							this.circleMapClicked(country.isoCode);
+						});
+					}
+				});
+			}
 			/* eslint-enable quotes */
 			/* eslint-enable no-undef, max-len */
 
@@ -314,18 +401,27 @@ export default {
 		},
 		initializeMapLibre() {
 			// Initialize primary mapInstance
-			// eslint-disable-next-line no-undef
+			/* eslint-disable no-undef */
+			let tileLayer = 'https://api.maptiler.com/maps/landscape/style.json?key=n1Mz5ziX3k6JfdjFe7mx';
+			if (this.showLabels) {
+				tileLayer = 'https://api.maptiler.com/maps/bright/style.json?key=n1Mz5ziX3k6JfdjFe7mx';
+			}
+
 			this.mapInstance = new maplibregl.Map({
 				container: `kv-map-holder-${this.mapId}`,
-				style: 'https://api.maptiler.com/maps/bright/style.json?key=n1Mz5ziX3k6JfdjFe7mx',
+				style: tileLayer,
 				center: [this.long, this.lat],
 				zoom: this.initialZoom || this.zoomLevel,
 				attributionControl: false,
-				dragPan: false,
+				dragPan: this.allowDragging,
 				scrollZoom: false,
 				doubleClickZoom: false,
 				dragRotate: false,
 			});
+
+			if (this.showZoomControl) {
+				this.mapInstance.addControl(new maplibregl.NavigationControl());
+			}
 
 			this.mapInstance.on('load', () => {
 				// signify map has loaded
@@ -335,6 +431,7 @@ export default {
 					this.createWrapperObserver();
 				}
 			});
+			/* eslint-enable no-undef */
 		},
 		animateMap() {
 			// remove country labels
@@ -406,6 +503,96 @@ export default {
 					// resolve the promise
 					resolve({ loaded: false });
 				}, timeout);
+			});
+		},
+		getCountriesData() {
+			const countriesFeatures = countriesBorders.features ?? [];
+
+			countriesFeatures.forEach((country, index) => {
+				const countryData = this.countriesData.find((data) => data.isoCode === country.properties.ISO_A2);
+				if (countryData) {
+					countriesFeatures[index].lenderLoans = countryData.value;
+					countriesFeatures[index].numLoansFundraising = countryData.numLoansFundraising;
+				}
+			});
+
+			return countriesBorders;
+		},
+		countryStyle(feature) {
+			return {
+				color: kvTokensPrimitives.colors.white,
+				fillColor: this.getCountryColor(feature.lenderLoans),
+				weight: 1,
+				fillOpacity: 1,
+			};
+		},
+		getCountryColor(lenderLoans) {
+			const loanCountsArray = [];
+			this.countriesData.forEach((country) => {
+				loanCountsArray.push(country.value);
+			});
+
+			const maxNumLoansToOneCountry = Math.max(...loanCountsArray);
+			const intervals = getLoansIntervals(1, maxNumLoansToOneCountry, 6);
+
+			if (intervals.length === 1) {
+				const [inf, sup] = intervals[0]; // eslint-disable-line no-unused-vars
+
+				for (let i = 0; i < sup; i += 1) {
+					const loansNumber = i + 1;
+
+					if (lenderLoans && lenderLoans >= loansNumber && lenderLoans < loansNumber + 1) {
+						return kvTokensPrimitives.colors.brand[this.mapColors[i]];
+					}
+				}
+			} else {
+				for (let i = 0; i < intervals.length; i += 1) {
+					const [inf, sup] = intervals[i];
+					if (lenderLoans && lenderLoans >= inf && lenderLoans <= sup) {
+						return kvTokensPrimitives.colors.brand[this.mapColors[i]];
+					}
+				}
+			}
+
+			return kvTokensPrimitives.colors.gray[300];
+		},
+		onEachCountryFeature(feature, layer) {
+			const loansString = feature.lenderLoans
+				? `${feature.lenderLoans} loan${feature.lenderLoans > 1 ? 's' : ''}`
+				: '0 loans';
+			const countryString = `${feature.properties.NAME} <br/> ${loansString}`;
+
+			layer.bindTooltip(countryString, {
+				sticky: true,
+			});
+
+			layer.on({
+				mouseover: this.highlightFeature,
+				mouseout: this.resetHighlight,
+			});
+		},
+		highlightFeature(e) {
+			const layer = e.target;
+
+			layer.setStyle({
+				fillColor: kvTokensPrimitives.colors.gray[500],
+			});
+		},
+		resetHighlight(e) {
+			const layer = e.target;
+			const { feature } = layer;
+
+			layer.setStyle({
+				fillColor: this.getCountryColor(feature.lenderLoans),
+			});
+		},
+		circleMapClicked(countryIso) {
+			this.$emit('country-lend-filter', countryIso);
+			this.$router.push({
+				path: '/lend/filter',
+				query: {
+					country: countryIso,
+				},
 			});
 		},
 	},

@@ -270,3 +270,41 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
 		flyToPoint(currentPointIndex);
 	});
 }
+
+/**
+ * This function returns an array of not overlapped intervals between min and max
+ * @param {Integer} min - min number of the interval
+ * @param {Integer} max - max number of the interval
+ * * @param {Integer} nbIntervals - number of intervals
+ * @returns {Array} - array with intervals
+ * */
+export const getLoansIntervals = (min, max, nbIntervals) => {
+	const size = Math.floor((max - min) / nbIntervals);
+	const result = [];
+
+	if (size <= 0) return [[min, max]];
+
+	for (let i = 0; i < nbIntervals; i += 1) {
+		let inf = min + (i * size);
+		let sup = ((inf + size) < max) ? inf + size : max;
+
+		if (i > 0) {
+			inf += (1 * i);
+			sup += (1 * i);
+		}
+
+		if (i > 0 && sup > max) {
+			sup = max;
+		}
+
+		if (i === (nbIntervals - 1)) {
+			if (sup < max || sup > max) sup = max;
+		}
+
+		result.push([inf, sup]);
+
+		if (sup >= max) break;
+	}
+
+	return result;
+};
