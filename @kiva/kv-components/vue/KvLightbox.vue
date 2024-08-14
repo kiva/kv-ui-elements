@@ -217,16 +217,23 @@ export default {
 		const kvLightbox = ref(null);
 		const kvLightboxBody = ref(null);
 		const controlsRef = ref(null);
+		const activateFocusTrap = ref(null);
+		const deactivateFocusTrap = ref(null);
 
-		const trapElements = computed(() => [
-			kvLightbox.value, // This lightbox
-			'[role="alert"]', // Any open toasts/alerts on the page
-		]);
-		const {
-			activate: activateFocusTrap,
-			deactivate: deactivateFocusTrap,
-		} = useFocusTrap(trapElements, {
-			allowOutsideClick: true, // allow clicking outside the lightbox to close it
+		// Ensure the lightbox ref isn't null
+		nextTick(() => {
+			const trapElements = computed(() => [
+				kvLightbox.value, // This lightbox
+				'[role="alert"]', // Any open toasts/alerts on the page
+			]);
+			const {
+				activate,
+				deactivate,
+			} = useFocusTrap(trapElements, {
+				allowOutsideClick: true, // allow clicking outside the lightbox to close it
+			});
+			activateFocusTrap.value = activate;
+			deactivateFocusTrap.value = deactivate;
 		});
 
 		let makePageInertCallback = null;
@@ -242,7 +249,7 @@ export default {
 		const hide = (closedBy = '') => {
 			// scroll any content inside the lightbox back to top
 			if (kvLightbox.value && kvLightboxBody.value) {
-				deactivateFocusTrap();
+				deactivateFocusTrap.value?.();
 				kvLightboxBody.value.scrollTop = 0;
 				unlockPrintSingleEl(kvLightboxBody.value);
 			}
@@ -279,7 +286,7 @@ export default {
 
 				nextTick(() => {
 					if (kvLightbox.value && kvLightboxBody.value) {
-						activateFocusTrap();
+						activateFocusTrap.value?.();
 						makePageInertCallback = makePageInert(kvLightbox.value);
 						lockPrintSingleEl(kvLightboxBody.value);
 					}
