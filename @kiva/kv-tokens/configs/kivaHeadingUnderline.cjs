@@ -39,13 +39,15 @@ function generateExternalSVG() {
 }
 
 /*
- * Generates an inline-style SVG string for brush-stroke underlines, in the brand color only. This can be used as a background image in css.
+ * Generates an inline-style SVG string for brush-stroke underlines, in one color only, to be used as a background image in css.
+ *
+ * THIS SHOULD ONLY BE USED FOR DEMO PURPOSES.
+ *
+ * This will greatly increase the size of your css file if used in production with multiple colors.
  */
-function generateInlineSVG() {
-	const { brand } = colors;
-	const brandColor = brand.DEFAULT;
+function generateInlineSVG(color) {
 	const svg = `${svgOpenTag}
-		<g fill="${brandColor}">
+		<g fill="${color}">
 			${underlinePath}
 		</g>
 	</svg>`;
