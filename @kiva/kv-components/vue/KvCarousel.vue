@@ -75,6 +75,26 @@
 				<span class="tw-sr-only">Show next slide</span>
 			</button>
 		</div>
+		<!-- Dotted Controls -->
+		<div
+			v-else-if="slideIndicatorCount > 1"
+			class="kv-carousel__controls tw-flex tw-justify-center tw-items-center tw-gap-1.5 tw-mt-4 tw-w-full"
+		>
+			<button
+				v-for="slide in slideIndicatorCount"
+				:key="slide"
+				@click="goToSlide(slide - 1)"
+			>
+				<div
+					class="tw-rounded-full tw-border tw-transition tw-duration-500 tw-ease-in-out"
+					:class="[
+						{ 'tw-bg-black tw-border-black tw-h-1.5 tw-w-1.5': currentIndex === slide - 1 },
+						{ 'tw-bg-tertiary tw-border-tertiary tw-h-1 tw-w-1': currentIndex !== slide - 1 }
+					]"
+				>
+				</div>
+			</button>
+		</div>
 		<!-- Aside Buttons -->
 		<template v-if="asideControls">
 			<div
@@ -119,26 +139,6 @@
 				</button>
 			</div>
 		</template>
-		<!-- Dotted Controls -->
-		<div
-			v-if="slideIndicatorCount > 1 && isDotted"
-			class="kv-carousel__controls tw-flex tw-justify-center tw-items-center tw-gap-1.5 tw-mt-4 tw-w-full"
-		>
-			<button
-				v-for="slide in slideIndicatorCount"
-				:key="slide"
-				@click="goToSlide(slide - 1)"
-			>
-				<div
-					class="tw-rounded-full tw-border tw-transition tw-duration-500 tw-ease-in-out"
-					:class="[
-						{ 'tw-bg-black tw-border-black tw-h-1.5 tw-w-1.5': currentIndex === slide - 1 },
-						{ 'tw-bg-tertiary tw-border-tertiary tw-h-1 tw-w-1': currentIndex !== slide - 1 }
-					]"
-				>
-				</div>
-			</button>
-		</div>
 	</section>
 </template>
 
