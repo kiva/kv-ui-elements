@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.92.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.91.1...@kiva/kv-components@3.92.0) (2024-08-16)
+
+
+### Features
+
+* dotted version for carousel controls ([#444](https://github.com/kiva/kv-ui-elements/issues/444)) ([a719d75](https://github.com/kiva/kv-ui-elements/commit/a719d75ce7622695668fe1467bf1129d916800c2))
+
+
+
+
+
 ## [3.91.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.91.0...@kiva/kv-components@3.91.1) (2024-08-14)
 
 
