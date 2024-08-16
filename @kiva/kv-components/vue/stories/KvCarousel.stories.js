@@ -394,3 +394,17 @@ export const AsideControls = () => ({
 		</kv-carousel>
 	`,
 });
+
+export const Dotted = () => ({
+	components: {
+		KvCarousel,
+	},
+	template: `
+		<kv-carousel
+			style="max-width: 400px;"
+			is-dotted="true"
+		>
+			${defaultCarouselSlides}
+		</kv-carousel>
+	`,
+});
