@@ -1,5 +1,3 @@
-import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
-
 /**
  * Code to generate random coordinates
  * */
@@ -242,8 +240,8 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
 
 		const flyToPoint = (index) => {
 			mapInstance.flyTo({
-			// These options control the ending camera position: centered at
-			// the target, at zoom level 9, and north up.
+				// These options control the ending camera position: centered at
+				// the target, at zoom level 9, and north up.
 				center: destinationPoints[index],
 				zoom: 4,
 				bearing: 0,
@@ -330,7 +328,7 @@ export const getLoansIntervals = (min, max, nbIntervals) => {
  * @param {Object} kvTokensPrimitives - kv tokens for colors
  * @returns {String} - color of the country
  * */
-export const getCountryColor = (lenderLoans, countriesData) => {
+export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives) => {
 	const loanCountsArray = [];
 	countriesData.forEach((country) => {
 		loanCountsArray.push(country.value);
