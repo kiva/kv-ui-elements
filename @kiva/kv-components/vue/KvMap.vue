@@ -513,7 +513,7 @@ export default {
 		countryStyle(feature) {
 			return {
 				color: kvTokensPrimitives.colors.white,
-				fillColor: getCountryColor(feature.lenderLoans, this.countriesData),
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives),
 				weight: 1,
 				fillOpacity: 1,
 			};
@@ -545,7 +545,7 @@ export default {
 			const { feature } = layer;
 
 			layer.setStyle({
-				fillColor: getCountryColor(feature.lenderLoans, this.countriesData),
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives),
 			});
 		},
 		circleMapClicked(countryIso) {
