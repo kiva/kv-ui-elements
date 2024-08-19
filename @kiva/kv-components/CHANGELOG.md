@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.92.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.92.0...@kiva/kv-components@3.92.1) (2024-08-19)
+
+
+### Bug Fixes
+
+* vite has some complications around importing json ([7a5ced1](https://github.com/kiva/kv-ui-elements/commit/7a5ced1172e319a83b12d674529c81977c95a993))
+
+
+
+
+
 # [3.92.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.91.1...@kiva/kv-components@3.92.0) (2024-08-16)
 
 
