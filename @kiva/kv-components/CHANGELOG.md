@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.93.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.92.1...@kiva/kv-components@3.93.0) (2024-08-22)
+
+
+### Features
+
+* carousel circle effect ([c982be4](https://github.com/kiva/kv-ui-elements/commit/c982be4d088f18cb53b5d97b3071fa7dac72e1c6))
+
+
+
+
+
 ## [3.92.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.92.0...@kiva/kv-components@3.92.1) (2024-08-19)
 
 
