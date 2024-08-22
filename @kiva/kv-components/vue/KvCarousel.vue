@@ -8,7 +8,10 @@
 		<!-- Carousel Content -->
 		<div
 			class="tw-flex tw-gap-x-4"
-			:class="{ 'tw-mx-auto aside-controls-content': asideControls }"
+			:class="{
+				'tw-mx-auto aside-controls-content': asideControls,
+				'circle-carousel': inCircle
+			}"
 			@click.capture="onCarouselContainerClick"
 		>
 			<div
@@ -20,7 +23,7 @@
 				:aria-current="currentIndex === index ? 'true' : 'false'"
 				:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
 				:tab-index="isAriaHidden(index) ? '-1' : false"
-				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth }"
+				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'cirle-slide': inCircle }"
 				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
 			>
 				<slot
@@ -219,6 +222,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Enables carousel slides to have a circle effect
+		 * */
+		inCircle: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'change',
@@ -413,5 +423,24 @@ export default {
 	@screen lg {
 		width: 82%;
 	}
+}
+
+.cirle-slide {
+	width: auto;
+}
+
+.cirle-slide.is-selected >>> img {
+	opacity: 1;
+	transform: scale(1);
+	max-width: 300px;
+}
+
+.cirle-slide:not(.is-selected) >>> img {
+	opacity: 0.5;
+	transform: scale(0.5);
+}
+
+.circle-carousel {
+	margin: 0 auto;
 }
 </style>

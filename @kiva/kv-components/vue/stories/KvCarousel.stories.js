@@ -402,7 +402,23 @@ export const Dotted = () => ({
 	template: `
 		<kv-carousel
 			style="max-width: 400px;"
-			is-dotted="true"
+			:is-dotted="true"
+		>
+			${defaultCarouselSlides}
+		</kv-carousel>
+	`,
+});
+
+export const ThreeDimensional = () => ({
+	components: {
+		KvCarousel,
+	},
+	template: `
+		<kv-carousel
+			:embla-options="{ loop: false, align: 'center' }"
+			style="max-width: 600px;"
+			:is-dotted="true"
+			:in-circle="true"
 		>
 			${defaultCarouselSlides}
 		</kv-carousel>
