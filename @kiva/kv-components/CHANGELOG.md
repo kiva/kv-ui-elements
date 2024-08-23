@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.94.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.93.0...@kiva/kv-components@3.94.0) (2024-08-23)
+
+
+### Features
+
+* charts added to library ([#447](https://github.com/kiva/kv-ui-elements/issues/447)) ([575bd80](https://github.com/kiva/kv-ui-elements/commit/575bd80fb1700a38732a2b8cafbeb5cc5374764b))
+
+
+
+
+
 # [3.93.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.92.1...@kiva/kv-components@3.93.0) (2024-08-22)
 
 
