@@ -71,6 +71,8 @@
     "moment": "^2.29.4",
     "nanoid": "^3.1.23",
     "numeral": "^2.0.6",
+    "popper.js": "^1.16.1",
+    "treemap-squarify": "^1.0.1",
     "vue-demi": "^0.14.7"
   },
   "peerDependencies": {
