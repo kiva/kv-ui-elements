@@ -3,7 +3,7 @@
 		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
-		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
+		style="box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.38);"
 		:style="{ minWidth: '230px', maxWidth: '20.5rem' }"
 	>
 		<div class="tw-grow">
@@ -63,9 +63,9 @@
 								style="padding: 2px 6px;"
 							>
 								<kv-flag
-									class="tw-mr-0.5"
+									class="tw-ml-0.5 tw-mr-1"
 									:country="countryCode"
-									width-override="0.725rem"
+									width-override="16px"
 									hide-border
 								/>
 								{{ formattedLocation }}
@@ -82,13 +82,14 @@
 					:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
 				/>
 
-				<h2
+				<h3
 					class="loan-card-name"
-					:class="{'tw-text-center': borrowerName.length < 20}"
+					:class="{ 'tw-text-center': borrowerName.length < 20 }"
+					style="font-size: 28px;"
 					@click="clickReadMore('Name', $event)"
 				>
 					{{ borrowerName }}
-				</h2>
+				</h3>
 
 				<!-- Loan tag -->
 
@@ -139,7 +140,7 @@
 				>
 					<!-- Loan use  -->
 					<div
-						class="tw-pt-1 tw-px-1"
+						class="tw-pt-0.5 tw-px-2"
 						:class="{'tw-mb-1.5': !isLoading}"
 					>
 						<div
@@ -172,7 +173,7 @@
 			</div>
 		</div>
 
-		<div class="tw-px-1">
+		<div class="tw-px-2">
 			<!-- Fundraising -->
 			<div
 				v-if="!hasProgressData"
@@ -222,12 +223,12 @@
 				:style="{ width: '9rem', height: '1rem' }"
 			/>
 
-			<div class="tw-pb-2.5">
+			<div class="tw-pt-1.5 tw-pb-1">
 				<kv-loan-tag
 					v-if="matchingText"
 					:loan="loan"
 					variation="matched-loan"
-					class="tw-text-center !tw-text-brand"
+					class="tw-text-center !tw-text-action"
 				/>
 			</div>
 		</div>
@@ -383,7 +384,7 @@ export default {
 
 <style lang="postcss" scoped>
 .loan-callouts >>> span {
-	@apply !tw-bg-transparent tw-text-brand;
+	@apply !tw-bg-transparent tw-text-action;
 }
 .loan-card-use:hover,
 .loan-card-use:focus {
