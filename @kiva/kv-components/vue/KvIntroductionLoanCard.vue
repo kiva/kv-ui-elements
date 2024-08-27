@@ -228,6 +228,7 @@
 					v-if="matchingText"
 					:loan="loan"
 					variation="matched-loan"
+					style="font-size: 15px;"
 					class="tw-text-center !tw-text-action"
 				/>
 			</div>
