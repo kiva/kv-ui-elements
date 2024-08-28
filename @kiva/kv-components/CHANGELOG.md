@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.95.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.94.0...@kiva/kv-components@3.95.0) (2024-08-28)
+
+
+### Bug Fixes
+
+* add story for long borrower name ([da58fc9](https://github.com/kiva/kv-ui-elements/commit/da58fc9a078626577370eea41a0d9336edc2c74e))
+* allow new card to be pull width ([59488dc](https://github.com/kiva/kv-ui-elements/commit/59488dc7e9550d8df38f73fe0b859844e65c6576))
+* fully funded card ([17a9156](https://github.com/kiva/kv-ui-elements/commit/17a9156fc8003f2a19feb030cfe1e1ba369222dc))
+* general new loan card styling tweaks ([dac3bb1](https://github.com/kiva/kv-ui-elements/commit/dac3bb14d62c97b04e7979e0c512edc4c90634c8))
+* hide country for US loans ([5353e0f](https://github.com/kiva/kv-ui-elements/commit/5353e0f9b1678d013becf7775bb4c408cf72887a))
+* one more small styling change ([042da40](https://github.com/kiva/kv-ui-elements/commit/042da402e089805260f4e465c8d237baf6bfe642))
+
+
+### Features
+
+* add emojis and colors to loan tags ([8d002c2](https://github.com/kiva/kv-ui-elements/commit/8d002c25a243c305fae5113305a604c2f34746e4))
+
+
+
+
+
 # [3.94.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.93.0...@kiva/kv-components@3.94.0) (2024-08-23)
 
 
