@@ -15,7 +15,6 @@
 <script>
 import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
 import { animationCoordinator, generateMapMarkers, getCountryColor } from '../utils/mapUtils';
-import countriesBorders from '../data/countries-borders.json';
 
 export default {
 	name: 'KvMap',
@@ -164,6 +163,7 @@ export default {
 			mapLibreReady: false,
 			mapLoaded: false,
 			zoomActive: false,
+			countriesBorders: {},
 		};
 	},
 	computed: {
@@ -201,7 +201,11 @@ export default {
 			}
 		},
 	},
-	mounted() {
+	async mounted() {
+		if (this.countriesData) {
+			this.countriesBorders = await import('../data/countries-borders.json');
+		}
+
 		if (!this.mapLibreReady && !this.leafletReady) {
 			this.initializeMap();
 		}
@@ -498,7 +502,7 @@ export default {
 			});
 		},
 		getCountriesData() {
-			const countriesFeatures = countriesBorders.features ?? [];
+			const countriesFeatures = this.countriesBorders.features ?? [];
 
 			countriesFeatures.forEach((country, index) => {
 				const countryData = this.countriesData.find((data) => data.isoCode === country.properties.ISO_A2);
@@ -508,7 +512,7 @@ export default {
 				}
 			});
 
-			return countriesBorders;
+			return this.countriesBorders;
 		},
 		countryStyle(feature) {
 			return {
