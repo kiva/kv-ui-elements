@@ -336,7 +336,7 @@ export default {
 			state,
 			tag,
 			unreservedAmount,
-		} = loanCardComputedProperties({ ...props, hideUnitedStatesText: true });
+		} = loanCardComputedProperties(props, true);
 
 		const {
 			clickReadMore,
