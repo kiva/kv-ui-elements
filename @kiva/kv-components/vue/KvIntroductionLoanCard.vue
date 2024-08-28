@@ -223,6 +223,14 @@
 				:style="{ width: '9rem', height: '1rem' }"
 			/>
 
+			<div
+				v-else-if="isFunded"
+				class="tw-bg-eco-green-1 tw-text-action tw-text-center tw-py-1.5"
+				style="font-weight: bold; font-size: 13px; border-radius: 8px;"
+			>
+				🎉 Fully funded!
+			</div>
+
 			<kv-loan-tag
 				v-else
 				:loan="loan"
@@ -373,6 +381,9 @@ export default {
 		amountLent() {
 			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
 			return numeral(parseFloat(amount)).format('$0,0');
+		},
+		isFunded() {
+			return this.loan?.status === 'funded' || parseFloat(this.unreservedAmount) === 0;
 		},
 	},
 };

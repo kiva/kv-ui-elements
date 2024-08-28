@@ -156,3 +156,13 @@ export const ExpiringSoon = story({
 	kvTrackFunction,
 	photoPath,
 });
+
+export const Funded = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		unreservedAmount: '0.00',
+	},
+	kvTrackFunction,
+	photoPath,
+});
