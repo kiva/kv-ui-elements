@@ -84,14 +84,7 @@ const photoPath = 'https://www-kiva-org.freetls.fastly.net/img/';
 
 export const Default = story({
 	loanId: loan.id,
-	loan: {
-		...loan,
-		loanFundraisingInfo: {
-			fundedAmount: '200.00',
-			isExpiringSoon: false,
-			reservedAmount: '0.00',
-		},
-	},
+	loan,
 	kvTrackFunction,
 	photoPath,
 });
@@ -120,13 +113,46 @@ export const Matched = story({
 		...loan,
 		matchingText: 'Ebay',
 		matchRatio: 1,
+	},
+	kvTrackFunction,
+	photoPath,
+});
+
+export const LseLoan = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		partnerName: 'N/A, direct to Novulis',
+	},
+	kvTrackFunction,
+	photoPath,
+});
+
+export const AlmostFunded = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanAmount: '100.00',
+		unreservedAmount: '10.00',
+		fundraisingPercent: 0.9,
 		loanFundraisingInfo: {
-			fundedAmount: '200.00',
-			isExpiringSoon: false,
+			fundedAmount: '90.00',
 			reservedAmount: '0.00',
 		},
 	},
 	kvTrackFunction,
 	photoPath,
-	loanCallouts: [{ label: 'callout 1' }, { label: 'callout 2' }, { label: 'callout 3' }],
+});
+
+const tomorrow = new Date();
+tomorrow.setDate(new Date().getDate() + 1);
+
+export const ExpiringSoon = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		plannedExpirationDate: tomorrow.toISOString(),
+	},
+	kvTrackFunction,
+	photoPath,
 });

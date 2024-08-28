@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
+		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-2"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
 		style="box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.38);"
@@ -100,17 +100,17 @@
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 				</div>
 
@@ -216,22 +216,20 @@
 				</component>
 			</div>
 
-			<!-- Loan Match -->
+			<!-- Loan Tag -->
 			<kv-loading-placeholder
 				v-if="isLoading"
-				class="tw-rounded tw-mx-auto tw-mt-1"
+				class="tw-rounded tw-mx-auto tw-mt-2"
 				:style="{ width: '9rem', height: '1rem' }"
 			/>
 
-			<div class="tw-pt-1.5 tw-pb-1">
-				<kv-loan-tag
-					v-if="matchingText"
-					:loan="loan"
-					variation="matched-loan"
-					style="font-size: 15px;"
-					class="tw-text-center !tw-text-action"
-				/>
-			</div>
+			<kv-loan-tag
+				v-else
+				:loan="loan"
+				:use-expanded-styles="true"
+				style="font-size: 15px;"
+				class="tw-text-center tw-pt-2"
+			/>
 		</div>
 	</div>
 </template>
@@ -375,9 +373,6 @@ export default {
 		amountLent() {
 			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
 			return numeral(parseFloat(amount)).format('$0,0');
-		},
-		matchingText() {
-			return this.loan?.matchingText ?? '';
 		},
 	},
 };
