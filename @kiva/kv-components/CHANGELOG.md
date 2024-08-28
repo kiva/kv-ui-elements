@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.95.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.95.0...@kiva/kv-components@3.95.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* props usage removed reactivity ([6795042](https://github.com/kiva/kv-ui-elements/commit/6795042bfcc11e133781e2591eaee4035cfd7d63))
+
+
+
+
+
 # [3.95.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.94.0...@kiva/kv-components@3.95.0) (2024-08-28)
 
 
