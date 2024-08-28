@@ -4,7 +4,7 @@
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
 		style="box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.38);"
-		:style="{ minWidth: '230px', maxWidth: '20.5rem' }"
+		:style="{ minWidth: '230px', maxWidth: cardWidth }"
 	>
 		<div class="tw-grow">
 			<div class="loan-card-active-hover">
@@ -308,6 +308,10 @@ export default {
 			type: Object,
 			default: undefined,
 		},
+		useFullWidth: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const {
@@ -364,6 +368,9 @@ export default {
 		};
 	},
 	computed: {
+		cardWidth() {
+			return this.useFullWidth ? '100%' : '20.5rem';
+		},
 		imageAspectRatio() {
 			return 5 / 8;
 		},
