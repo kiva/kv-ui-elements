@@ -457,3 +457,24 @@ export const ContributorsAndAmount = story({
 	photoPath,
 	showContributors: true,
 });
+
+export const USLoan = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		geocode: {
+			city: 'Kittanning',
+			state: 'PA',
+			country: {
+				isoCode: 'US',
+				name: 'United States',
+				region: 'North America',
+				__typename: 'Country',
+			},
+			__typename: 'Geocode',
+		},
+		distributionModel: 'direct',
+	},
+	kvTrackFunction,
+	photoPath,
+});
