@@ -13,7 +13,7 @@ const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
 const findCalloutData = (tags, tagName) => tags?.find((t) => t.name.replace('#', '').toUpperCase() === tagName.toUpperCase()) ?? {}; // eslint-disable-line max-len
 
-export function loanCardComputedProperties(props) {
+export function loanCardComputedProperties(props, hideUnitedStatesText = false) {
 	const {
 		externalLinks,
 		customLoanDetails,
@@ -21,7 +21,6 @@ export function loanCardComputedProperties(props) {
 		loan,
 		categoryPageName,
 		customCallouts,
-		hideUnitedStatesText,
 	} = toRefs(props);
 
 	const tag = computed(() => (externalLinks.value ? 'a' : 'router-link'));
@@ -50,7 +49,7 @@ export function loanCardComputedProperties(props) {
 
 	const formattedLocation = computed(() => {
 		if (distributionModel.value === 'direct') {
-			const countryText = hideUnitedStatesText?.value && countryName.value.toLowerCase() === 'united states'
+			const countryText = hideUnitedStatesText && countryName.value.toLowerCase() === 'united states'
 				? '' : `, ${countryName.value}`;
 			return `${city.value}, ${state.value}${countryText}`;
 		}
