@@ -18,6 +18,7 @@ const story = (args) => {
 					:custom-callouts="customCallouts"
 					:kv-track-function="kvTrackFunction"
 					:photo-path="photoPath"
+					:is-visitor="isVisitor"
 					@show-loan-details="showLoanDetails"
 				/>
 			</div>
@@ -196,4 +197,12 @@ export const USLoan = story({
 	},
 	kvTrackFunction,
 	photoPath,
+});
+
+export const Bookmark = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	isVisitor: false,
 });
