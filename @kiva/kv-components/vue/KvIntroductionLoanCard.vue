@@ -1,10 +1,10 @@
 <template>
 	<div
-		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1"
+		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-2"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
-		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
-		:style="{ minWidth: '230px', maxWidth: '20.5rem' }"
+		style="box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.38);"
+		:style="{ minWidth: '230px', maxWidth: cardWidth }"
 	>
 		<div class="tw-grow">
 			<div class="loan-card-active-hover">
@@ -63,9 +63,9 @@
 								style="padding: 2px 6px;"
 							>
 								<kv-flag
-									class="tw-mr-0.5"
+									class="tw-ml-0.5 tw-mr-1"
 									:country="countryCode"
-									width-override="0.725rem"
+									width-override="16px"
 									hide-border
 								/>
 								{{ formattedLocation }}
@@ -82,13 +82,14 @@
 					:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
 				/>
 
-				<h2
+				<h3
 					class="loan-card-name"
-					:class="{'tw-text-center': borrowerName.length < 20}"
+					:class="{ 'tw-text-center': borrowerName.length < 20 }"
+					style="font-size: 28px;"
 					@click="clickReadMore('Name', $event)"
 				>
 					{{ borrowerName }}
-				</h2>
+				</h3>
 
 				<!-- Loan tag -->
 
@@ -99,17 +100,17 @@
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-0.5 tw-mb-1"
-						:style="{ width: '20%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '20%', height: '1.65rem', 'border-radius': '500rem' }"
 					/>
 				</div>
 
@@ -139,7 +140,7 @@
 				>
 					<!-- Loan use  -->
 					<div
-						class="tw-pt-1 tw-px-1"
+						class="tw-pt-0.5 tw-px-2"
 						:class="{'tw-mb-1.5': !isLoading}"
 					>
 						<div
@@ -172,7 +173,7 @@
 			</div>
 		</div>
 
-		<div class="tw-px-1">
+		<div class="tw-px-2">
 			<!-- Fundraising -->
 			<div
 				v-if="!hasProgressData"
@@ -215,21 +216,28 @@
 				</component>
 			</div>
 
-			<!-- Loan Match -->
+			<!-- Loan Tag -->
 			<kv-loading-placeholder
 				v-if="isLoading"
-				class="tw-rounded tw-mx-auto tw-mt-1"
+				class="tw-rounded tw-mx-auto tw-mt-2"
 				:style="{ width: '9rem', height: '1rem' }"
 			/>
 
-			<div class="tw-pb-2.5">
-				<kv-loan-tag
-					v-if="matchingText"
-					:loan="loan"
-					variation="matched-loan"
-					class="tw-text-center !tw-text-brand"
-				/>
+			<div
+				v-else-if="isFunded"
+				class="tw-bg-eco-green-1 tw-text-action tw-text-center tw-py-1.5"
+				style="font-weight: bold; font-size: 13px; border-radius: 8px;"
+			>
+				🎉 Fully funded!
 			</div>
+
+			<kv-loan-tag
+				v-else
+				:loan="loan"
+				:use-expanded-styles="true"
+				style="font-size: 15px;"
+				class="tw-text-center tw-pt-2"
+			/>
 		</div>
 	</div>
 </template>
@@ -300,6 +308,10 @@ export default {
 			type: Object,
 			default: undefined,
 		},
+		useFullWidth: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props, { emit }) {
 		const {
@@ -324,7 +336,7 @@ export default {
 			state,
 			tag,
 			unreservedAmount,
-		} = loanCardComputedProperties(props);
+		} = loanCardComputedProperties({ ...props, hideUnitedStatesText: true });
 
 		const {
 			clickReadMore,
@@ -356,6 +368,9 @@ export default {
 		};
 	},
 	computed: {
+		cardWidth() {
+			return this.useFullWidth ? '100%' : '20.5rem';
+		},
 		imageAspectRatio() {
 			return 5 / 8;
 		},
@@ -374,8 +389,8 @@ export default {
 			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
 			return numeral(parseFloat(amount)).format('$0,0');
 		},
-		matchingText() {
-			return this.loan?.matchingText ?? '';
+		isFunded() {
+			return this.loan?.status === 'funded' || parseFloat(this.unreservedAmount) === 0;
 		},
 	},
 };
@@ -383,7 +398,7 @@ export default {
 
 <style lang="postcss" scoped>
 .loan-callouts >>> span {
-	@apply !tw-bg-transparent tw-text-brand;
+	@apply !tw-bg-transparent tw-text-action;
 }
 .loan-card-use:hover,
 .loan-card-use:focus {

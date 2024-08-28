@@ -2,7 +2,7 @@
 	<div
 		v-if="!!variation"
 		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
-		style="color: #CE4A00;"
+		:style="{ color: tagColor }"
 	>
 		{{ tagText }}
 		<kv-countdown-timer
@@ -28,6 +28,10 @@ export default {
 		loan: {
 			type: Object,
 			required: true,
+		},
+		useExpandedStyles: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {
@@ -59,11 +63,22 @@ export default {
 		},
 		tagText() {
 			switch (this.variation) {
-				case 'lse-loan': return 'High community impact';
-				case 'almost-funded': return 'Almost funded';
-				case 'matched-loan': return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
-				default: return 'Ending soon: ';
+				case 'lse-loan': return `${this.useExpandedStyles ? '⚡ ' : ''}High community impact`;
+				case 'almost-funded': return `${this.useExpandedStyles ? '💸 ' : ''}Almost funded`;
+				// eslint-disable-next-line max-len
+				case 'matched-loan': return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
+				default: return `${this.useExpandedStyles ? '⏰ ' : ''}Ending soon: `;
 			}
+		},
+		tagColor() {
+			if (this.useExpandedStyles) {
+				switch (this.variation) {
+					case 'almost-funded': return '#AF741C';
+					case 'ending-soon': return '#CE2626';
+					default: return '#2B7C5F';
+				}
+			}
+			return '#CE4A00';
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;

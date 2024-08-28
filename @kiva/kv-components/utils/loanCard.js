@@ -21,6 +21,7 @@ export function loanCardComputedProperties(props) {
 		loan,
 		categoryPageName,
 		customCallouts,
+		hideUnitedStatesText,
 	} = toRefs(props);
 
 	const tag = computed(() => (externalLinks.value ? 'a' : 'router-link'));
@@ -49,7 +50,9 @@ export function loanCardComputedProperties(props) {
 
 	const formattedLocation = computed(() => {
 		if (distributionModel.value === 'direct') {
-			return `${city.value}, ${state.value}, ${countryName.value}`;
+			const countryText = hideUnitedStatesText?.value && countryName.value.toLowerCase() === 'united states'
+				? '' : `, ${countryName.value}`;
+			return `${city.value}, ${state.value}${countryText}`;
 		}
 		if (countryName.value === 'Puerto Rico') {
 			return `${city.value}, PR`;
