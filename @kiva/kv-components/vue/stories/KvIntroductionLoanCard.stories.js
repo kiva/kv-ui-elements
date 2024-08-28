@@ -166,3 +166,13 @@ export const Funded = story({
 	kvTrackFunction,
 	photoPath,
 });
+
+export const LongName = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+	},
+	kvTrackFunction,
+	photoPath,
+});
