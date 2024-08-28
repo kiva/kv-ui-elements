@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.96.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.95.1...@kiva/kv-components@3.96.0) (2024-08-28)
+
+
+### Features
+
+* async countries border data import ([#451](https://github.com/kiva/kv-ui-elements/issues/451)) ([aa27135](https://github.com/kiva/kv-ui-elements/commit/aa2713540d61ad2cd780a0fdfbfd8249030d9cbd))
+
+
+
+
+
 ## [3.95.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.95.0...@kiva/kv-components@3.95.1) (2024-08-28)
 
 
