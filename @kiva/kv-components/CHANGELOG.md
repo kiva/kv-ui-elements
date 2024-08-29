@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.97.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.96.0...@kiva/kv-components@3.97.0) (2024-08-29)
+
+
+### Features
+
+* emitted event added to pie chart component ([#452](https://github.com/kiva/kv-ui-elements/issues/452)) ([1d95611](https://github.com/kiva/kv-ui-elements/commit/1d95611471b25b3c2f5fb9e26431295bd1942a1f))
+
+
+
+
+
 # [3.96.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.95.1...@kiva/kv-components@3.96.0) (2024-08-28)
 
 
