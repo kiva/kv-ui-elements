@@ -29,8 +29,8 @@
 					:stroke="slice.color"
 					:stroke-width="lineWidth"
 					fill="none"
-					@mouseenter="activeSlice = slice"
-					@click="activeSlice = slice"
+					@mouseenter="setActiveSlice(slice)"
+					@click="setActiveSlice(slice)"
 				/>
 			</svg>
 			<!-- active slice -->
@@ -59,8 +59,8 @@
 					v-for="(slice, index) in slices.slice(pageIndex * slicesPerPage, (pageIndex + 1) * slicesPerPage)"
 					:key="index"
 					class="tw-flex tw-items-center"
-					@mouseenter="activeSlice = slice"
-					@click="activeSlice = slice"
+					@mouseenter="setActiveSlice(slice)"
+					@click="setActiveSlice(slice)"
 				>
 					<div
 						class="tw-w-2 tw-h-2 tw-mr-1 tw-rounded-full tw-flex-none"
@@ -125,7 +125,10 @@ export default {
 			default: () => ([]),
 		},
 	},
-	setup(props) {
+	emits: [
+		'click',
+	],
+	setup(props, { emit }) {
 		const {
 			values,
 		} = toRefs(props);
@@ -200,6 +203,11 @@ export default {
 			}
 		};
 
+		const setActiveSlice = (slice) => {
+			activeSlice.value = slice;
+			emit('click', slice.label);
+		};
+
 		return {
 			svgSize,
 			lineWidth,
@@ -213,6 +221,7 @@ export default {
 			pageCount,
 			prevPage,
 			nextPage,
+			setActiveSlice,
 		};
 	},
 };
