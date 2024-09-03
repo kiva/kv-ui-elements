@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.98.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.97.0...@kiva/kv-components@3.98.0) (2024-09-03)
+
+
+### Features
+
+* add bookmark functionality to new loan card ([10ddade](https://github.com/kiva/kv-ui-elements/commit/10ddade2555770635b14272534791f6b6931d6d0))
+
+
+
+
+
 # [3.97.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.96.0...@kiva/kv-components@3.97.0) (2024-08-29)
 
 
