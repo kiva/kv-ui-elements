@@ -72,6 +72,15 @@
 							</p>
 						</div>
 					</component>
+
+					<kv-loan-bookmark
+						v-if="!isVisitor"
+						:loan-id="loanId"
+						:is-bookmarked="isBookmarked"
+						class="loan-bookmark tw-absolute tw-right-1.5 tw-top-0"
+						data-testid="loan-card-bookmark"
+						@toggle-bookmark="$emit('toggle-bookmark')"
+					/>
 				</div>
 
 				<!-- Loan name -->
@@ -245,7 +254,7 @@
 <script>
 import numeral from 'numeral';
 import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
-
+import KvLoanBookmark from './KvLoanBookmark.vue';
 import KvLoanUse from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
@@ -266,6 +275,7 @@ export default {
 		KvLoanTag,
 		KvLoanCallouts,
 		KvFlag,
+		KvLoanBookmark,
 	},
 	props: {
 		loanId: {
@@ -309,6 +319,14 @@ export default {
 			default: undefined,
 		},
 		useFullWidth: {
+			type: Boolean,
+			default: false,
+		},
+		isVisitor: {
+			type: Boolean,
+			default: true,
+		},
+		isBookmarked: {
 			type: Boolean,
 			default: false,
 		},
@@ -413,5 +431,8 @@ export default {
 }
 .loan-card-name {
 	@apply tw-pt-1 tw-px-3 tw-text-ellipsis tw-overflow-hidden tw-line-clamp-1 tw-cursor-pointer;
+}
+.loan-bookmark >>> button {
+	@apply !tw-rounded-t-none;
 }
 </style>
