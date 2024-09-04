@@ -80,7 +80,7 @@ export default {
 		 * */
 		kvTrackFunction: {
 			type: Function,
-			default: () => {},
+			default: () => ({}),
 		},
 		/**
 		 * Tracking event category
