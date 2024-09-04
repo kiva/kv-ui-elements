@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.100.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.99.0...@kiva/kv-components@3.100.0) (2024-09-04)
+
+
+### Features
+
+* use kiva fork of treemap repo ([50cc510](https://github.com/kiva/kv-ui-elements/commit/50cc510199e37763512dfb3c8e244153835ab16d))
+
+
+
+
+
 # [3.99.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.98.1...@kiva/kv-components@3.99.0) (2024-09-04)
 
 
