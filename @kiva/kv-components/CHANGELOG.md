@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.98.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.98.0...@kiva/kv-components@3.98.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* resolve chart issue with vue 3 ([93716c6](https://github.com/kiva/kv-ui-elements/commit/93716c61bebff132a6bb6bd8138a3ffab2336c0b))
+
+
+
+
+
 # [3.98.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.97.0...@kiva/kv-components@3.98.0) (2024-09-03)
 
 
