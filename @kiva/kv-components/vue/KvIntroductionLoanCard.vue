@@ -96,6 +96,7 @@
 					:to="readMorePath"
 					:href="readMorePath"
 					aria-label="Borrower name"
+					class="!tw-text-primary"
 					@click.native="clickReadMore('Name', $event)"
 				>
 					<h3
