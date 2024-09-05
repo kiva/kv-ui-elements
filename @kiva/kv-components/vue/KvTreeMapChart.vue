@@ -43,8 +43,8 @@
 
 <script>
 import numeral from 'numeral';
-import { getTreemap } from 'treemap-squarify';
 import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
+import { getTreemap } from '../utils/treemap';
 import { throttle } from '../utils/throttle';
 import KvTooltip from './KvTooltip.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
