@@ -91,14 +91,21 @@
 					:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
 				/>
 
-				<h3
-					class="loan-card-name"
-					:class="{ 'tw-text-center': borrowerName.length < 20 }"
-					style="font-size: 28px;"
-					@click="clickReadMore('Name', $event)"
+				<component
+					:is="tag"
+					:to="readMorePath"
+					:href="readMorePath"
+					aria-label="Borrower name"
+					@click.native="clickReadMore('Name', $event)"
 				>
-					{{ borrowerName }}
-				</h3>
+					<h3
+						class="loan-card-name"
+						:class="{ 'tw-text-center': borrowerName.length < 20 }"
+						style="font-size: 28px;"
+					>
+						{{ borrowerName }}
+					</h3>
+				</component>
 
 				<!-- Loan tag -->
 
