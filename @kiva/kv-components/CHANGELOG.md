@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.101.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.0...@kiva/kv-components@3.101.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* force primary color ([652370b](https://github.com/kiva/kv-ui-elements/commit/652370b54998b4fd9597f434c66c783448d0419e))
+* new loan card name wasn't clickable ([27603b7](https://github.com/kiva/kv-ui-elements/commit/27603b78f1c8d271baa23e93dfde2acc8e7e5727))
+
+
+
+
+
 # [3.101.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.100.0...@kiva/kv-components@3.101.0) (2024-09-05)
 
 
