@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.101.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.100.0...@kiva/kv-components@3.101.0) (2024-09-05)
+
+
+### Features
+
+* move treemap into repo ([e75bd3c](https://github.com/kiva/kv-ui-elements/commit/e75bd3c83d7ede41dc07196392bafdf941b0bcc3))
+
+
+
+
+
 # [3.100.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.99.0...@kiva/kv-components@3.100.0) (2024-09-04)
 
 
