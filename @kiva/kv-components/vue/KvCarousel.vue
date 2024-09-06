@@ -1,8 +1,8 @@
 <template>
 	<section
 		ref="rootEl"
-		class="kv-carousel tw-w-full"
-		:class="{ 'lg:tw-relative': asideControls, 'tw-overflow-hidden': !inCircle }"
+		class="kv-carousel tw-overflow-hidden tw-w-full"
+		:class="{ 'lg:tw-relative': asideControls }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
