@@ -429,15 +429,15 @@ export default {
 	width: auto;
 }
 
-.cirle-slide.is-selected >>> img {
+.cirle-slide.is-selected {
 	opacity: 1;
-	transform: scale(1);
+	transform: scale(1.2);
 	max-width: 300px;
 }
 
-.cirle-slide:not(.is-selected) >>> img {
+.cirle-slide:not(.is-selected) {
 	opacity: 0.5;
-	transform: scale(0.5);
+	transform: scale(0.7);
 }
 
 .circle-carousel {
