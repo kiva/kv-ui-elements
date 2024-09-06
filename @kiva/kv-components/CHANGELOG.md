@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.101.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.1...@kiva/kv-components@3.101.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* handle slide scale instead of img ([8758b9e](https://github.com/kiva/kv-ui-elements/commit/8758b9efccd3d40bf7420a2f808901c6f396d260))
+* overflow ([59529e4](https://github.com/kiva/kv-ui-elements/commit/59529e4e8f8dbbf3b2a2ba413868911702bc95e9))
+
+
+
+
+
 ## [3.101.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.0...@kiva/kv-components@3.101.1) (2024-09-05)
 
 
