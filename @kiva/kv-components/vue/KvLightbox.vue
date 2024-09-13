@@ -222,14 +222,13 @@ export default {
 
 		// Ensure the lightbox ref isn't null
 		nextTick(() => {
-			const trapElements = computed(() => [
-				kvLightbox.value, // This lightbox
-				'[role="alert"]', // Any open toasts/alerts on the page
-			]);
 			const {
 				activate,
 				deactivate,
-			} = useFocusTrap(trapElements, {
+			} = useFocusTrap([
+				kvLightbox.value, // This lightbox
+				'[role="alert"]', // Any open toasts/alerts on the page
+			], {
 				allowOutsideClick: true, // allow clicking outside the lightbox to close it
 			});
 			activateFocusTrap.value = activate;
