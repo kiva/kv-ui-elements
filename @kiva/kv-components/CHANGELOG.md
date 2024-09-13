@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.101.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.2...@kiva/kv-components@3.101.3) (2024-09-13)
+
+
+### Bug Fixes
+
+* remove computed from next tick ([cb7a1fb](https://github.com/kiva/kv-ui-elements/commit/cb7a1fb358799ab99a1a05707bc2fc0b9aa915b7))
+
+
+
+
+
 ## [3.101.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.1...@kiva/kv-components@3.101.2) (2024-09-06)
 
 
