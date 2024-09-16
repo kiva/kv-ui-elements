@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.102.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.3...@kiva/kv-components@3.102.0) (2024-09-16)
+
+
+### Features
+
+* add underline styles for h3 ([#460](https://github.com/kiva/kv-ui-elements/issues/460)) ([b9ea2c4](https://github.com/kiva/kv-ui-elements/commit/b9ea2c4c56108064ad016f4c3c3376f2208f08dd))
+
+
+
+
+
 ## [3.101.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.2...@kiva/kv-components@3.101.3) (2024-09-13)
 
 
