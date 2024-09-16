@@ -84,8 +84,10 @@ export default {
 .tw-text-jumbo u,
 .tw-text-h1 u,
 .tw-text-h2 u,
+.tw-text-h3 u,
 h1 u,
-h2 u {
+h2 u,
+h3 u {
   text-decoration: none;
   box-decoration-break: clone;
   background-image: var(--heading-underline-primary);
@@ -106,7 +108,11 @@ h2 u {
   background-size: 100% 0.375rem;
   padding-bottom: 0.125rem;
 }
-
+.tw-text-h3 u,
+h3 u {
+  background-size: 100% 0.375rem;
+  padding-bottom: 0.2rem;
+}
 @screen lg {
 	.tw-text-jumbo u {
 		background-size: 100% 1rem;
