@@ -174,10 +174,18 @@ export default {
 				const value = values.value[i];
 				const end = start + value.percent;
 				const [startX, startY] = circumPointFromAngle(cX, cY, r, start * Math.PI * 2);
-				const [endX, endY] = circumPointFromAngle(cX, cY, r, end * Math.PI * 2);
-				const largeArc = value.percent > 0.5 ? 1 : 0;
-				// Draw just the outer arc of the slice
-				const path = `M ${startX} ${startY} A ${r} ${r} 0 ${largeArc} 1 ${endX} ${endY}`;
+				let path = `M ${startX},${startY} `;
+				if (value.percent === 1) {
+					// Draw a full circle in two arcs
+					const [midX, midY] = circumPointFromAngle(cX, cY, r, (start + end) * Math.PI);
+					path += `A ${r},${r} 0 0,1 ${midX},${midY} `;
+					path += `A ${r},${r} 0 0,1 ${startX},${startY}`;
+				} else {
+					// Draw just the outer arc of the slice
+					const [endX, endY] = circumPointFromAngle(cX, cY, r, end * Math.PI * 2);
+					const largeArc = value.percent > 0.5 ? 1 : 0;
+					path += `A ${r},${r} 0 ${largeArc},1 ${endX},${endY}`;
+				}
 				slicesArr.push({
 					...value,
 					path,
