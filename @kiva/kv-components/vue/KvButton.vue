@@ -137,12 +137,12 @@ export default {
 					}
 					break;
 				case 'secondary':
-					classes = 'tw-text-action';
+					classes = 'tw-text-action-highlight';
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary`;
 					} else {
 						// eslint-disable-next-line max-len
-						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-action`;
+						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-action-highlight`;
 					}
 					break;
 				case 'danger':
