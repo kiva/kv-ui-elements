@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.102.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.0...@kiva/kv-components@3.102.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* pie chart not visible with only one value MP-791 ([6419cd8](https://github.com/kiva/kv-ui-elements/commit/6419cd8d0f348d32dddadd4170f87a6442bf1b29))
+
+
+
+
+
 # [3.102.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.101.3...@kiva/kv-components@3.102.0) (2024-09-16)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.47](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.46...@kiva/kv-shop@1.12.47) (2024-09-23)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [1.12.46](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.45...@kiva/kv-shop@1.12.46) (2024-09-16)
 
 **Note:** Version bump only for package @kiva/kv-shop
