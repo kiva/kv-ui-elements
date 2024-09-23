@@ -40,3 +40,8 @@ export const ManyValues = Template.bind({});
 ManyValues.args = {
 	values: sectorValues,
 };
+
+export const OneValue = Template.bind({});
+OneValue.args = {
+	values: [{ label: 'Female', value: 1, percent: 1 }],
+};
