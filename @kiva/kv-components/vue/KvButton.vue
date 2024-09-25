@@ -157,9 +157,9 @@ export default {
 				case 'link':
 					classes = 'tw-bg-primary-inverse tw-text-primary-inverse';
 					if (state.value === 'active') {
-						classes = `${classes} tw-border-secondary`;
+						classes = `${classes} tw-border-secondary tw-bg-action`;
 					} else {
-						classes = `${classes} tw-border-primary hover:tw-border-secondary`;
+						classes = `${classes} tw-border-action-highlight hover:tw-border-action hover:tw-bg-action`;
 					}
 					break;
 				case 'ghost':

@@ -83,14 +83,14 @@
 					"action-highlight": "#223829",
 					"danger": "#A24536",
 					"danger-highlight": "#C45F4F",
-					"caution": "#E6CB55",
-					"caution-highlight": "#D9BC3B"
+					"caution": "#F8CD69",
+					"caution-highlight": "#F4B539"
 				},
 				"border": {
-					"primary": "#9E9E9E",
-					"primary-inverse": "#E0E0E0",
-					"secondary": "#276A43",
-					"tertiary": "#78C79F",
+					"primary": "#505050",
+					"primary-inverse": "#FFFFFF",
+					"secondary": "#757575",
+					"tertiary": "#C4C4C4",
 					"action": "#276A43",
 					"action-highlight": "#223829",
 					"danger": "#A24536",
@@ -112,23 +112,23 @@
 					"primary-inverse": "#223829",
 					"secondary": "#F8F2E6",
 					"tertiary": "#F8F2E6",
-					"action": "#F8CD69",
-					"action-highlight": "#F8F2E6"
+					"action": "#2AA967",
+					"action-highlight": "#78C79F"
 				},
 				"background": {
 					"primary": "#223829",
 					"primary-inverse": "#FFFFFF",
-					"secondary": "#EDF4F1",
-					"tertiary": "#223829",
-					"action": "#F8CD69",
-					"action-highlight": "#F8F2E6"
+					"secondary": "#276A43",
+					"tertiary": "#EDF4F1",
+					"action": "#2AA967",
+					"action-highlight": "#78C79F"
 				},
 				"border": {
 					"primary": "#F8F2E6",
 					"primary-inverse": "#593207",
 					"secondary": "#F8CD69",
-					"action": "#F8CD69",
-					"action-highlight": "#F8F2E6"
+					"action": "#2AA967",
+					"action-highlight": "#78C79F"
 				},
 				"heading-underline": {
 					"primary": "#F8CD69"

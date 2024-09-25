@@ -104,7 +104,7 @@ const demoTemplate = `
 		<section>
 			<ul>
 				<li
-					v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+					v-for="variant in ['primary', 'secondary', 'link', 'danger', 'caution', 'ghost']"
 					:key="variant"
 					class="tw-mb-2"
 				>
