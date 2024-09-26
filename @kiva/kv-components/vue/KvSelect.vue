@@ -9,8 +9,8 @@
 			<select
 				:id="id"
 				v-bind="inputAttrs"
+				v-model="inputValue"
 				:disabled="disabled"
-				:value="modelValue"
 				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import 'vue-demi';
+import { ref, watch } from 'vue-demi';
 import { mdiChevronDown } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import { useAttrs } from '../utils/attrs';
@@ -82,6 +82,14 @@ export default {
 			inputListeners,
 		} = useAttrs(context, emits);
 
+		const inputValue = ref(props.modelValue);
+
+		watch(() => props.modelValue, (newValue) => {
+			if (newValue !== inputValue.value) {
+				inputValue.value = newValue;
+			}
+		});
+
 		const onChange = (event) => {
 			/**
 			* The value that the select has changed to
@@ -91,6 +99,7 @@ export default {
 			emit('change', event.target.value);
 			emit('update:modelValue', event.target.value);
 		};
+
 		return {
 			mdiChevronDown,
 			onChange,
@@ -98,6 +107,7 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
+			inputValue,
 		};
 	},
 };
