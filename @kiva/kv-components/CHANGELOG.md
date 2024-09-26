@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.102.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.1...@kiva/kv-components@3.102.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* change how model value is handled for select component ([5626a8f](https://github.com/kiva/kv-ui-elements/commit/5626a8fcb2a464d72abbda06968dec56496e4204))
+
+
+
+
+
 ## [3.102.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.0...@kiva/kv-components@3.102.1) (2024-09-23)
 
 
