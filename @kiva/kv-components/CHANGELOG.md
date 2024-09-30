@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.102.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.2...@kiva/kv-components@3.102.3) (2024-09-30)
+
+
+### Bug Fixes
+
+* width classes added to pie chart ([#463](https://github.com/kiva/kv-ui-elements/issues/463)) ([77715e2](https://github.com/kiva/kv-ui-elements/commit/77715e2d27a19bbb9c3cdd5239a037ae04ee5715))
+
+
+
+
+
 ## [3.102.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.1...@kiva/kv-components@3.102.2) (2024-09-26)
 
 
