@@ -4,7 +4,7 @@
 		@mouseleave="activeSlice = null"
 	>
 		<!-- pie chart -->
-		<div class="tw-relative tw-h-full">
+		<div class="tw-relative tw-w-full md:tw-w-auto tw-h-full">
 			<div
 				v-if="loading"
 				class="pie-placeholder tw-h-full tw-p-2.5"
@@ -15,7 +15,7 @@
 			</div>
 			<svg
 				v-else
-				class="tw-h-full"
+				class="tw-h-full tw-w-full"
 				viewBox="0 0 32 32"
 				xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink"
