@@ -4,18 +4,17 @@
 		@mouseleave="activeSlice = null"
 	>
 		<!-- pie chart -->
-		<div class="tw-relative tw-h-full">
+		<div class="tw-relative">
 			<div
 				v-if="loading"
-				class="pie-placeholder tw-h-full tw-p-2.5"
+				class="pie-placeholder tw-mt-2.5"
 			>
-				<div class="tw-overflow-hidden tw-rounded-full tw-h-full">
+				<div class="tw-overflow-hidden tw-rounded-full">
 					<kv-loading-placeholder />
 				</div>
 			</div>
 			<svg
 				v-else
-				class="tw-h-full"
 				viewBox="0 0 32 32"
 				xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -236,14 +235,13 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.pie-chart {
-	height: 40rem;
-	@screen md {
-		height: 20rem;
-	}
+.pie-chart svg {
+	width: 20rem;
+	height: 20rem;
 }
 
-.pie-placeholder {
-	width: 20rem;
+.pie-placeholder, .pie-placeholder div {
+	width: 17.5rem;
+	height: 17.5rem;
 }
 </style>
