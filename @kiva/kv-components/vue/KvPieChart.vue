@@ -4,7 +4,7 @@
 		@mouseleave="activeSlice = null"
 	>
 		<!-- pie chart -->
-		<div class="tw-relative tw-w-full md:tw-w-auto tw-h-full">
+		<div class="tw-relative tw-w-full md:tw-w-auto tw-max-w-sm tw-h-full">
 			<div
 				v-if="loading"
 				class="pie-placeholder tw-h-full tw-p-2.5"
