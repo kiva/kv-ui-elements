@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.102.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.3...@kiva/kv-components@3.102.4) (2024-10-04)
+
+
+### Bug Fixes
+
+* pie chart not animating in vue 3 ([c15efec](https://github.com/kiva/kv-ui-elements/commit/c15efec2cebf39fcafaa0eb533bd6ef8ffab2d6d))
+
+
+
+
+
 ## [3.102.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.2...@kiva/kv-components@3.102.3) (2024-09-30)
 
 
