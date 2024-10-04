@@ -23,7 +23,7 @@
 					v-for="(slice, index) in slices"
 					:key="index"
 					class="tw-origin-center tw-transition-transform"
-					:style="activeSlice === slice ? { transform: 'scale(1.1)' } : {}"
+					:style="isSliceActive(slice) ? { transform: 'scale(1.1)' } : {}"
 					:d="slice.path"
 					:stroke="slice.color"
 					:stroke-width="lineWidth"
@@ -174,7 +174,7 @@ export default {
 				const end = start + value.percent;
 				const [startX, startY] = circumPointFromAngle(cX, cY, r, start * Math.PI * 2);
 				let path = `M ${startX},${startY} `;
-				if (value.percent === 1) {
+				if (value.percent > 0.99) {
 					// Draw a full circle in two arcs
 					const [midX, midY] = circumPointFromAngle(cX, cY, r, (start + end) * Math.PI);
 					path += `A ${r},${r} 0 0,1 ${midX},${midY} `;
@@ -210,6 +210,10 @@ export default {
 			}
 		};
 
+		const isSliceActive = (slice) => {
+			return activeSlice.value === slice;
+		};
+
 		const setActiveSlice = (slice) => {
 			activeSlice.value = slice;
 			emit('click', slice.label);
@@ -228,6 +232,7 @@ export default {
 			pageCount,
 			prevPage,
 			nextPage,
+			isSliceActive,
 			setActiveSlice,
 		};
 	},
