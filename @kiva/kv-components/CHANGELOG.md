@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.103.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.5...@kiva/kv-components@3.103.0) (2024-10-08)
+
+
+### Features
+
+* new voting card ([#466](https://github.com/kiva/kv-ui-elements/issues/466)) ([039bca4](https://github.com/kiva/kv-ui-elements/commit/039bca45ac0b8fa2f902f4623af04da5d55a0a88))
+
+
+
+
+
 ## [3.102.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.4...@kiva/kv-components@3.102.5) (2024-10-08)
 
 
