@@ -1,0 +1,98 @@
+<template>
+	<div
+		class="vote_card"
+		:style="cssProps"
+	>
+		<h2 class="tw-italic tw-pb-1">
+			{{ title }}
+		</h2>
+		<p class="tw-pb-1.5">
+			{{ description }}
+		</p>
+		<div class="tw-block md:tw-flex tw-justify-between">
+			<div
+				v-if="showPercentage"
+				class="tw-flex tw-items-center tw-w-full tw-max-w-16"
+			>
+				<kv-progress-bar
+					class="tw-flex-grow"
+					:aria-label="'Percent of votes for ' + description"
+					:value="percentage"
+				/>
+				<div class="tw-ml-2">
+					{{ percentage }}%
+				</div>
+			</div>
+			<kv-button
+				v-if="showVoteButton"
+				variant="secondary"
+				class="tw-flex-grow-0 tw-min-w-16 tw-mt-2"
+				@click="castVote"
+			>
+				Vote
+			</kv-button>
+		</div>
+	</div>
+</template>
+
+<script>
+import KvProgressBar from './KvProgressBar.vue';
+import KvButton from './KvButton.vue';
+
+export default {
+	name: 'KvVotingCard',
+	components: {
+		KvProgressBar,
+		KvButton,
+	},
+	props: {
+		title: {
+			type: String,
+			default: '',
+		},
+		description: {
+			type: String,
+			default: '',
+		},
+		backgroundImageUrl: {
+			type: String,
+			default: '',
+		},
+		percentage: {
+			type: Number,
+			default: 0,
+		},
+		showVoteButton: {
+			type: Boolean,
+			default: true,
+		},
+		showPercentage: {
+			type: Boolean,
+			default: true,
+		},
+	},
+	computed: {
+		cssProps() {
+			return {
+				'--background-image': `url(${this.backgroundImageUrl})`,
+			};
+		},
+	},
+	methods: {
+		castVote() {
+			this.$emit('vote');
+		},
+	},
+};
+</script>
+
+<style lang="postcss">
+.vote_card {
+	background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%),
+    var(--background-image);
+	background-size: cover;
+	padding-top: 35%;
+	@apply tw-rounded tw-px-4 tw-pb-4 tw-text-white;
+}
+</style>
