@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.102.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.4...@kiva/kv-components@3.102.5) (2024-10-08)
+
+
+### Bug Fixes
+
+* activeSlice value isn't comparable because it's a Proxy, use toRaw ([046a4c1](https://github.com/kiva/kv-ui-elements/commit/046a4c1518a751f8a6d47ff970a0fd6583655f59))
+
+
+
+
+
 ## [3.102.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.3...@kiva/kv-components@3.102.4) (2024-10-04)
 
 
