@@ -85,7 +85,7 @@ export default {
 
 		const cssProps = computed(() => {
 			return {
-				'--background-image': `url(${backgroundImageUrl.value})`,
+				'--background-image-voting-card': `url(${backgroundImageUrl.value})`,
 			};
 		});
 
@@ -103,7 +103,7 @@ export default {
 .vote_card {
 	background-image:
     linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%),
-    var(--background-image);
+    var(--background-image-voting-card);
 	background-size: cover;
 	padding-top: 35%;
 	@apply tw-rounded tw-px-4 tw-pb-4 tw-text-white;
