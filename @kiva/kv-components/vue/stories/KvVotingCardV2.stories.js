@@ -12,9 +12,14 @@ const Template = (args) => ({
 	},
 	template: `
 	<div style="max-width: 524px;">
-		<kv-voting-card-v2 v-bind="args"/>
+		<kv-voting-card-v2 v-bind="args" @vote="vote"/>
 	</div>
   `,
+	methods: {
+		vote() {
+			console.log('vote');
+		},
+	},
 });
 
 export const Default = Template.bind({});

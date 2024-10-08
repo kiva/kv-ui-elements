@@ -36,6 +36,10 @@
 </template>
 
 <script>
+import {
+	computed,
+	toRefs,
+} from 'vue-demi';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
 
@@ -71,17 +75,26 @@ export default {
 			default: true,
 		},
 	},
-	computed: {
-		cssProps() {
+	emits: [
+		'vote',
+	],
+	setup(props, { emit }) {
+		const {
+			backgroundImageUrl,
+		} = toRefs(props);
+
+		const cssProps = computed(() => {
 			return {
-				'--background-image': `url(${this.backgroundImageUrl})`,
+				'--background-image': `url(${backgroundImageUrl.value})`,
 			};
-		},
-	},
-	methods: {
-		castVote() {
-			this.$emit('vote');
-		},
+		});
+
+		return {
+			cssProps,
+			castVote() {
+				emit('vote');
+			},
+		};
 	},
 };
 </script>
