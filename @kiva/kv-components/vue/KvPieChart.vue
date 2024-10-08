@@ -97,7 +97,12 @@
 
 <script>
 import numeral from 'numeral';
-import { ref, toRefs, computed } from 'vue-demi';
+import {
+	ref,
+	toRaw,
+	toRefs,
+	computed,
+} from 'vue-demi';
 import Alea from '../utils/Alea';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
@@ -211,7 +216,7 @@ export default {
 		};
 
 		const isSliceActive = (slice) => {
-			return activeSlice.value === slice;
+			return toRaw(activeSlice.value) === slice;
 		};
 
 		const setActiveSlice = (slice) => {
