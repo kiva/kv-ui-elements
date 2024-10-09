@@ -1,36 +1,40 @@
 <template>
 	<div
-		class="vote_card"
+		class="vote_card tw-flex tw-flex-col tw-justify-end"
 		:style="cssProps"
 	>
-		<h2 class="tw-italic tw-pb-1">
-			{{ title }}
-		</h2>
-		<p class="tw-pb-1.5">
-			{{ description }}
-		</p>
-		<div class="tw-block md:tw-flex tw-justify-between">
-			<div
-				v-if="showPercentage"
-				class="tw-flex tw-items-center tw-w-full tw-max-w-16"
-			>
-				<kv-progress-bar
-					class="tw-flex-grow"
-					:aria-label="'Percent of votes for ' + description"
-					:value="percentage"
-				/>
-				<div class="tw-ml-2">
-					{{ percentage }}%
+		<div
+			class="tw-flex-grow-0"
+		>
+			<h2 class="tw-italic tw-pb-1">
+				{{ title }}
+			</h2>
+			<p class="tw-pb-1.5">
+				{{ description }}
+			</p>
+			<div class="tw-block md:tw-flex tw-justify-between">
+				<div
+					v-if="showPercentage"
+					class="tw-flex tw-items-center tw-w-full tw-max-w-16"
+				>
+					<kv-progress-bar
+						class="tw-flex-grow"
+						:aria-label="'Percent of votes for ' + description"
+						:value="percentage"
+					/>
+					<div class="tw-ml-2">
+						{{ percentage }}%
+					</div>
 				</div>
+				<kv-button
+					v-if="showVoteButton"
+					variant="secondary"
+					class="tw-flex-grow-0 tw-min-w-16 tw-mt-2"
+					@click="castVote"
+				>
+					Vote
+				</kv-button>
 			</div>
-			<kv-button
-				v-if="showVoteButton"
-				variant="secondary"
-				class="tw-flex-grow-0 tw-min-w-16 tw-mt-2"
-				@click="castVote"
-			>
-				Vote
-			</kv-button>
 		</div>
 	</div>
 </template>
@@ -105,7 +109,6 @@ export default {
     linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%),
     var(--background-image-voting-card);
 	background-size: cover;
-	padding-top: 35%;
 	@apply tw-rounded tw-px-4 tw-pb-4 tw-text-white;
 }
 </style>
