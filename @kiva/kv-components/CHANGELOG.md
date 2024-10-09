@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.104.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.103.0...@kiva/kv-components@3.104.0) (2024-10-09)
+
+
+### Features
+
+* vertically align contents inside voting cards 2 to bottom ([828e24d](https://github.com/kiva/kv-ui-elements/commit/828e24dd12b40674fd2f5079b2741ebf0e014c03))
+
+
+
+
+
 # [3.103.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.102.5...@kiva/kv-components@3.103.0) (2024-10-08)
 
 
