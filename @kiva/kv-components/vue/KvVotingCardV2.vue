@@ -4,13 +4,18 @@
 		:style="cssProps"
 	>
 		<div
-			class="tw-flex-grow-0"
+			class="tw-flex-grow-0 tw-text-white"
 		>
 			<h2 class="tw-italic tw-pb-1">
 				{{ title }}
 			</h2>
 			<p class="tw-pb-1.5">
-				{{ description }}
+				{{ truncatedDescription }}
+				<a
+					v-if="isTruncated"
+					class="tw-underline tw-pl-1 tw-text-white tw-cursor-pointer"
+					@click="isLightboxOpen = true"
+				>read more</a>
 			</p>
 			<div class="tw-block md:tw-flex tw-justify-between">
 				<div
@@ -36,22 +41,39 @@
 				</kv-button>
 			</div>
 		</div>
+		<KvLightbox
+			:title="title"
+			:visible="isLightboxOpen"
+			@lightbox-closed="isLightboxOpen = false"
+		>
+			<template #header>
+				<h3>
+					{{ title }}
+				</h3>
+			</template>
+			<p class="tw-pb-1.5">
+				{{ description }}
+			</p>
+		</KvLightbox>
 	</div>
 </template>
 
 <script>
 import {
 	computed,
+	ref,
 	toRefs,
 } from 'vue-demi';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
+import KvLightbox from './KvLightbox.vue';
 
 export default {
 	name: 'KvVotingCard',
 	components: {
-		KvProgressBar,
 		KvButton,
+		KvLightbox,
+		KvProgressBar,
 	},
 	props: {
 		title: {
@@ -83,8 +105,13 @@ export default {
 		'vote',
 	],
 	setup(props, { emit }) {
+		const isLightboxOpen = ref(false);
+
+		const TRUNCATION_LIMIT = 110;
+
 		const {
 			backgroundImageUrl,
+			description,
 		} = toRefs(props);
 
 		const cssProps = computed(() => {
@@ -93,11 +120,24 @@ export default {
 			};
 		});
 
+		const isTruncated = computed(() => {
+			return description?.value && (description?.value.length > TRUNCATION_LIMIT);
+		});
+
+		const truncatedDescription = computed(() => {
+			if (isTruncated.value) {
+				return `${description.value.substring(0, TRUNCATION_LIMIT)}...`;
+			}
+			return description.value;
+		});
 		return {
 			cssProps,
 			castVote() {
 				emit('vote');
 			},
+			isLightboxOpen,
+			isTruncated,
+			truncatedDescription,
 		};
 	},
 };
@@ -109,6 +149,6 @@ export default {
     linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%),
     var(--background-image-voting-card);
 	background-size: cover;
-	@apply tw-rounded tw-px-4 tw-pb-4 tw-text-white;
+	@apply tw-rounded tw-px-4 tw-pb-4;
 }
 </style>
