@@ -105,6 +105,7 @@ module.exports = {
 		},
 		opacity: {
 			0: '0',
+			10: '0.1',
 			low: `${opacity.low}`,
 			full: '1',
 		},

@@ -1,6 +1,16 @@
 import primitives from '@kiva/kv-tokens/primitives.json';
 import {
-	defaultTheme, darkTheme, darkGreenTheme, mintTheme, darkMintTheme, darkStoneTheme,
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
+	darkTheme,
+	darkGreenTheme,
+	mintTheme,
+	darkMintTheme,
+	darkStoneTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
@@ -94,12 +104,12 @@ const demoTemplate = `
 		<section>
 			<ul>
 				<li
-					v-for="variant in ['primary', 'secondary', 'link', 'danger', 'ghost']"
+					v-for="variant in ['primary', 'secondary', 'link', 'danger', 'caution', 'ghost']"
 					:key="variant"
 					class="tw-mb-2"
 				>
 					<kv-button :variant="variant">
-						Find a borrower
+						{{ variant }}
 					</kv-button>
 				</li>
 			</ul>
@@ -137,6 +147,31 @@ const Template = (args, {
 });
 
 export const Default = Template.bind({});
+
+export const GreenLight = Template.bind({});
+GreenLight.args = {
+	theme: greenLightTheme,
+};
+
+export const GreenDark = Template.bind({});
+GreenDark.args = {
+	theme: greenDarkTheme,
+};
+
+export const MarigoldLight = Template.bind({});
+MarigoldLight.args = {
+	theme: marigoldLightTheme,
+};
+
+export const StoneLight = Template.bind({});
+StoneLight.args = {
+	theme: stoneLightTheme,
+};
+
+export const StoneDark = Template.bind({});
+StoneDark.args = {
+	theme: stoneDarkTheme,
+};
 
 export const Dark = Template.bind({});
 Dark.args = {
