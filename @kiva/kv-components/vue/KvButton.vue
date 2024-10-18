@@ -137,7 +137,7 @@ export default {
 					}
 					break;
 				case 'secondary':
-					classes = 'tw-text-action-highlight';
+					classes = 'tw-text-action-highlight'; // TODO: dark themes want to use text-primary and text-primary-inverse
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary`;
 					} else {
@@ -146,7 +146,7 @@ export default {
 					}
 					break;
 				case 'danger':
-					classes = 'tw-text-primary-inverse';
+					classes = 'tw-text-danger';
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-danger-highlight tw-border-danger-highlight`;
 					} else {
@@ -171,11 +171,12 @@ export default {
 					}
 					break;
 				case 'caution':
-					classes = 'tw-text-primary tw-border-transparent';
+					classes = 'tw-text-caution';
 					if (state.value === 'active') {
-						classes = `${classes} tw-bg-caution-highlight`;
+						classes = `${classes} tw-bg-caution-highlight tw-border-caution-highlight`;
 					} else {
-						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight`;
+						// eslint-disable-next-line max-len
+						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight tw-border-caution hover:tw-border-caution-highlight`;
 					}
 					break;
 			}
