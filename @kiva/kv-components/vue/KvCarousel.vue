@@ -375,7 +375,7 @@ export default {
 			slides.value = embla.value.slideNodes();
 			slideIndicatorListLength();
 
-			embla.value.on('select', () => {
+			embla?.value?.on('select', () => {
 				currentIndex.value = embla.value.selectedScrollSnap();
 				/**
 				 * The index of the slide that the carousel has changed to
@@ -389,8 +389,8 @@ export default {
 		});
 
 		onUnmounted(async () => {
-			embla.value.off('select');
-			embla.value.destroy();
+			embla?.value?.off('select');
+			embla?.value?.destroy();
 		});
 
 		return {
