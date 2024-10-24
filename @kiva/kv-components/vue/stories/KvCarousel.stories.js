@@ -35,7 +35,7 @@ const generateLoanCardTemplate = (index) => {
 
 	return `
 		<div style="width: 336px">
-			<img src="https://via.placeholder.com/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
+			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
 			<h3>Card Title</h3>
 			<h4 class="tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
 			<p class="tw-mt-1 tw-mb-9">${cardCopy?.[index] || cardCopy?.[1]}</p>
@@ -49,16 +49,16 @@ const generateLoanCardTemplate = (index) => {
 
 const defaultCarouselSlides = `
 	<template #slide1>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor(1)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(1)}/000000" class="tw-w-full">
 	</template>
 	<template #slide2>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor(2)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(2)}/000000" class="tw-w-full">
 	</template>
 	<template #slide3>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor(3)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(3)}/000000" class="tw-w-full">
 	</template>
 	<template #slide4>
-		<img src="https://via.placeholder.com/300x220/${randomHexColor(4)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(4)}/000000" class="tw-w-full">
 	</template>
 `;
 
