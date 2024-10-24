@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.105.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.0...@kiva/kv-components@3.105.1) (2024-10-24)
+
+
+### Bug Fixes
+
+* add more complete kv-carousel render to test, update to stable source for placeholder images ([03ee704](https://github.com/kiva/kv-ui-elements/commit/03ee704cbbb8345d4129a6b4cc63c8adfc9d83a9))
+
+
+
+
+
 # [3.105.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.104.0...@kiva/kv-components@3.105.0) (2024-10-15)
 
 
