@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.105.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.1...@kiva/kv-components@3.105.2) (2024-10-25)
+
+
+### Bug Fixes
+
+* swap updated map file for global loans map ([444d164](https://github.com/kiva/kv-ui-elements/commit/444d164ab313a864fb70ed754a41948e96d95315))
+* update data accessors to match new file letter casing ([a3dcf62](https://github.com/kiva/kv-ui-elements/commit/a3dcf62a3b696a1bde2046cc363671219aa41e6f))
+
+
+
+
+
 ## [3.105.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.0...@kiva/kv-components@3.105.1) (2024-10-24)
 
 
