@@ -203,7 +203,7 @@ export default {
 	},
 	async mounted() {
 		if (this.countriesData) {
-			this.countriesBorders = await import('../data/countries-borders.json');
+			this.countriesBorders = await import('../data/ne_110m_admin_0_countries.json');
 		}
 
 		if (!this.mapLibreReady && !this.leafletReady) {
