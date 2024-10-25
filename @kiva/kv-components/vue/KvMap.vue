@@ -505,7 +505,7 @@ export default {
 			const countriesFeatures = this.countriesBorders.features ?? [];
 
 			countriesFeatures.forEach((country, index) => {
-				const countryData = this.countriesData.find((data) => data.isoCode === country.properties.ISO_A2);
+				const countryData = this.countriesData.find((data) => data.isoCode === country.properties.iso_a2);
 				if (countryData) {
 					countriesFeatures[index].lenderLoans = countryData.value;
 					countriesFeatures[index].numLoansFundraising = countryData.numLoansFundraising;
@@ -526,7 +526,7 @@ export default {
 			const loansString = feature.lenderLoans
 				? `${feature.lenderLoans} loan${feature.lenderLoans > 1 ? 's' : ''}`
 				: '0 loans';
-			const countryString = `${feature.properties.NAME} <br/> ${loansString}`;
+			const countryString = `${feature.properties.name} <br/> ${loansString}`;
 
 			layer.bindTooltip(countryString, {
 				sticky: true,
