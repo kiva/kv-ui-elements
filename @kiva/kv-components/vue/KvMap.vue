@@ -203,6 +203,8 @@ export default {
 	},
 	async mounted() {
 		if (this.countriesData) {
+			// current source data is from https://geojson.xyz/ under "admin 0 countries"
+			// https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson
 			this.countriesBorders = await import('../data/ne_110m_admin_0_countries.json');
 		}
 
