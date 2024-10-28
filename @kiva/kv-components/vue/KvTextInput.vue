@@ -28,7 +28,7 @@
 						: valid && !disabled,
 					'tw-border-tertiary focus:tw-ring-action'
 						: valid,
-					'tw-pr-6 tw-bg-danger-highlight tw-border-danger-highlight tw-bg-opacity-10 focus:tw-ring-danger-highlight'
+					'tw-pr-6 tw-bg-danger-highlight tw-border-danger focus:tw-ring-danger-highlight'
 						: !valid,
 					'tw-bg-tertiary'
 						: disabled,
