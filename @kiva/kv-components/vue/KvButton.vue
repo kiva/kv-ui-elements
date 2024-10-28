@@ -137,7 +137,7 @@ export default {
 					}
 					break;
 				case 'secondary':
-					classes = 'tw-text-action-highlight'; // TODO: dark themes want to use text-primary and text-primary-inverse
+					classes = 'tw-text-action-highlight';
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-secondary`;
 					} else {

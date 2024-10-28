@@ -122,7 +122,7 @@
 				"background": {
 					"primary": "#223829",
 					"primary-inverse": "#FFFFFF",
-					"secondary": "#EDF4F1",
+					"secondary": "#276A43",
 					"tertiary": "#C4C4C4",
 					"action": "#78C79F",
 					"action-highlight": "#EDF4F1",
@@ -208,7 +208,7 @@
 				"background": {
 					"primary": "#2E271E",
 					"primary-inverse": "#F3F1EF",
-					"secondary": "#FFFFFF",
+					"secondary": "#635544",
 					"action": "#DFD0BC",
 					"action-highlight": "#F3F1EF",
 					"caution-highlight": "#F8F2E6",
