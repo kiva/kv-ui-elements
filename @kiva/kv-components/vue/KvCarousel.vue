@@ -23,7 +23,7 @@
 				:aria-current="currentIndex === index ? 'true' : 'false'"
 				:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
 				:tab-index="isAriaHidden(index) ? '-1' : false"
-				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'cirle-slide': inCircle }"
+				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'circle-slide': inCircle }"
 				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
 			>
 				<slot
@@ -147,21 +147,12 @@
 
 <script>
 import {
-	computed,
-	onMounted,
-	onUnmounted,
-	ref,
-	toRefs,
-	nextTick,
-} from 'vue-demi';
-import EmblaCarousel from 'embla-carousel';
-import {
 	mdiChevronLeft,
 	mdiChevronRight,
 	mdiArrowLeft,
 	mdiArrowRight,
 } from '@mdi/js';
-import { throttle } from '../utils/throttle';
+import { carouselUtil } from '../utils/carousels';
 
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -236,183 +227,43 @@ export default {
 	],
 	setup(props, { emit, slots }) {
 		const {
-			emblaOptions,
-			slidesToScroll,
-		} = toRefs(props);
-		const rootEl = ref(null);
-		const embla = ref(null);
-		const slides = ref([]);
-		const startIndex = emblaOptions.value?.startIndex ?? 0;
-		const currentIndex = ref(startIndex);
-		// The indicator count may differ from the slide count when multiple slides are in view
-		const slideIndicatorCount = ref(0);
-
-		const componentSlotKeys = computed(() => {
-			const keys = Object.keys(slots);
-			return keys;
-		});
-
-		const nextIndex = computed(() => {
-			const nextSlideIndex = currentIndex.value + 1;
-			if (nextSlideIndex < slides.value.length) {
-				return nextSlideIndex;
-			}
-			return 0;
-		});
-
-		const previousIndex = computed(() => {
-			const previousSlideIndex = currentIndex.value - 1;
-			if (previousSlideIndex >= 0) {
-				return previousSlideIndex;
-			}
-			return slides.value.length - 1;
-		});
-
-		/**
-		 * Jump to a specific slide index
-		 *
-		 * @param {Number} num Index of slide to show
-		 * @public This is a public method
-		 */
-		const goToSlide = (index) => {
-			embla.value.scrollTo(index);
-		};
-		const handleUserInteraction = async (index, interactionType) => {
-			if (index !== null && typeof index !== 'undefined') {
-				await nextTick(); // wait for embla.
-				goToSlide(index);
-			}
-			/**
-			 * Fires when the user interacts with the carousel.
-			 * Contains the interaction type (swipe-left, click-left-arrow, etc.)
-			 * @event interact-carousel
-			 * @type {Event}
-			 */
-			emit('interact-carousel', interactionType);
-		};
-
-		/**
-		 * Returns number of slides in the carousel
-		 *
-		 * @returns {Number}
-		 */
-		const slideIndicatorListLength = () => {
-			const indicator = embla.value ? embla.value.scrollSnapList().length : 0;
-			slideIndicatorCount.value = indicator;
-			return indicator;
-		};
-
-		/**
-		 * Reinitialize the carousel.
-		 * Used after adding slides dynamically.
-		 *
-		 * @public This is a public method
-		 */
-		const reInitVisible = () => {
-			const slidesInView = embla.value.slidesInView(true).length;
-			if (slidesInView) {
-				embla.value.reInit({
-					slidesToScroll: slidesInView,
-					inViewThreshold: 0.9,
-				});
-			}
-		};
-		const reInit = () => {
-			embla.value.reInit();
-			if (slidesToScroll.value === 'visible') {
-				reInitVisible();
-			}
-			slides.value = embla.value.slideNodes();
-			slideIndicatorListLength();
-		};
-		const onCarouselContainerClick = (e) => {
-			// If we're dragging, block click handlers within slides
-			if (embla.value && !embla.value.clickAllowed()) {
-				e.preventDefault();
-				e.stopPropagation();
-			}
-		};
-		/**
-		 * If the slide is not completely in view in the carousel
-		 * it should be aria-hidden
-		 *
-		 * @param {Number} index The current index of the slide
-		 * @returns {Boolean}
-		 */
-		const isAriaHidden = (index) => {
-			if (embla.value) {
-				return !embla.value.slidesInView(true).includes(index);
-			}
-			return false;
-		};
-
-		onMounted(async () => {
-			embla.value = EmblaCarousel(rootEl.value, {
-				loop: true,
-				containScroll: 'trimSnaps',
-				inViewThreshold: 0.9,
-				align: 'start',
-				...emblaOptions.value,
-			});
-
-			if (slidesToScroll.value === 'visible') {
-				reInitVisible();
-
-				embla.value.on(
-					'resize',
-					throttle(() => {
-						embla.value.reInit({
-							slidesToScroll: embla.value.slidesInView(true).length || 'auto',
-							inViewThreshold: 0.9,
-						});
-						slides.value = embla.value.slideNodes();
-						slideIndicatorListLength();
-					}, 250),
-				);
-			}
-
-			// get slide components
-			slides.value = embla.value.slideNodes();
-			slideIndicatorListLength();
-
-			embla?.value?.on('select', () => {
-				currentIndex.value = embla.value.selectedScrollSnap();
-				/**
-				 * The index of the slide that the carousel has changed to
-				 * @event change
-				 * @type {Event}
-				 */
-				nextTick(() => {
-					emit('change', currentIndex);
-				});
-			});
-		});
-
-		onUnmounted(async () => {
-			embla?.value?.off('select');
-			embla?.value?.destroy();
-		});
-
-		return {
-			rootEl,
-			mdiChevronLeft,
-			mdiChevronRight,
-			mdiArrowLeft,
-			mdiArrowRight,
-			embla,
-			slides,
-			currentIndex,
 			componentSlotKeys,
-			nextIndex,
-			previousIndex,
-			slideIndicatorCount,
-			handleUserInteraction,
+			currentIndex,
+			embla,
 			goToSlide,
+			handleUserInteraction,
+			isAriaHidden,
+			nextIndex,
+			onCarouselContainerClick,
+			previousIndex,
 			reInit,
 			reInitVisible,
-			onCarouselContainerClick,
-			isAriaHidden,
+			rootEl,
+			slideIndicatorCount,
 			slideIndicatorListLength,
+			slides,
+		} = carouselUtil(props, { emit, slots });
+
+		return {
+			componentSlotKeys,
+			currentIndex,
+			embla,
+			goToSlide,
+			handleUserInteraction,
+			isAriaHidden,
+			mdiArrowLeft,
+			mdiArrowRight,
+			mdiChevronLeft,
+			mdiChevronRight,
+			nextIndex,
+			onCarouselContainerClick,
+			previousIndex,
+			reInit,
+			reInitVisible,
+			rootEl,
+			slideIndicatorCount,
+			slideIndicatorListLength,
+			slides,
 		};
 	},
 };
@@ -425,17 +276,17 @@ export default {
 	}
 }
 
-.cirle-slide {
+.circle-slide {
 	width: auto;
 }
 
-.cirle-slide.is-selected {
+.circle-slide.is-selected {
 	opacity: 1;
 	transform: scale(1.2);
 	max-width: 300px;
 }
 
-.cirle-slide:not(.is-selected) {
+.circle-slide:not(.is-selected) {
 	opacity: 0.5;
 	transform: scale(0.7);
 }
