@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.106.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.3...@kiva/kv-components@3.106.0) (2024-11-01)
+
+
+### Features
+
+* basic vertical carousel ([6a40563](https://github.com/kiva/kv-ui-elements/commit/6a405637ee4186d3cb5a7dbf71f87d8a04d46d86))
+
+
+
+
+
 ## [3.105.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.2...@kiva/kv-components@3.105.3) (2024-10-28)
 
 **Note:** Version bump only for package @kiva/kv-components
