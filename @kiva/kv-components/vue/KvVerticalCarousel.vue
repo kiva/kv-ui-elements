@@ -7,7 +7,7 @@
 		>
 			<!-- Carousel Content -->
 			<div
-				class="tw-flex tw-flex-col tw-gap-y-1"
+				class="tw-flex tw-flex-col"
 				:style="`height: ${heightStyle}`"
 				@click.capture="onCarouselContainerClick"
 			>
