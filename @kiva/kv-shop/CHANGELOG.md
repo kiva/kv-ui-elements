@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.59](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.58...@kiva/kv-shop@1.12.59) (2024-11-04)
+
+
+### Bug Fixes
+
+* centralize braintree helper text ([8a0ea37](https://github.com/kiva/kv-ui-elements/commit/8a0ea379b2e2efd28c5a9623fcc7d3070cec6716))
+
+
+
+
+
 ## [1.12.58](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.57...@kiva/kv-shop@1.12.58) (2024-11-01)
 
 **Note:** Version bump only for package @kiva/kv-shop
