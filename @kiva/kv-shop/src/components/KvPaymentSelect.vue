@@ -370,4 +370,11 @@ Form field labels */
 	@apply tw-text-base;
 	@apply tw-font-medium;
 }
+
+/* Helper text for non-card Braintree payments */
+.braintree-sheet__container > .braintree-sheet:not(.braintree-card)::before {
+  @apply tw-absolute tw-w-full tw-left-0 tw-top-3 tw-font-medium;
+
+  content: 'Click payment method again to continue';
+}
 </style>
