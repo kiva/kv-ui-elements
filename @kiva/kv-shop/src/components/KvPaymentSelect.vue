@@ -16,7 +16,7 @@
 import {
 	defineComponent, onMounted, ref, toRefs, watch,
 } from 'vue-demi';
-import KvLoadingSpinner from '@kiva/kv-components/vue/KvLoadingSpinner.vue';
+import KvLoadingSpinner from '@kiva/kv-components/dist/components/KvLoadingSpinner.vue';
 import type { PropType } from 'vue-demi';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';

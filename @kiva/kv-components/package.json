@@ -5,8 +5,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "dist/utils/index.cjs",
+  "module": "dist/utils/index.js",
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/eslint-parser": "^7.13.14",
@@ -58,7 +58,7 @@
     "build-storybook": "vue-demi-switch 2 && storybook build -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
     "test": "npm run lint",
-    "build": "tsup utils/*.js --format cjs,esm --clean"
+    "build": "tsup utils/*.js --outDir dist/utils --format cjs,esm --clean && cp -R vue/ dist/components/ && cp -R data/ dist/data/"
   },
   "dependencies": {
     "@kiva/kv-tokens": "^2.13.0",
@@ -78,8 +78,8 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "require": "./dist/utils/index.cjs",
+      "import": "./dist/utils/index.js"
     }
   },
   "peerDependencies": {
