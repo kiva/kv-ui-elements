@@ -80,6 +80,10 @@
     ".": {
       "require": "./dist/utils/index.cjs",
       "import": "./dist/utils/index.js"
+    },
+    "./dist/components/*.vue": {
+      "import": "./dist/components/*.vue",
+      "require": "./dist/components/*.vue"
     }
   },
   "peerDependencies": {
