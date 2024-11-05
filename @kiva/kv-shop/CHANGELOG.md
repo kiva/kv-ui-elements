@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.61](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.60...@kiva/kv-shop@1.12.61) (2024-11-05)
+
+
+### Bug Fixes
+
+* add components to dist folder as well ([0b20c69](https://github.com/kiva/kv-ui-elements/commit/0b20c69ed132a9a46da040523c559a6d900143d1))
+
+
+
+
+
 ## [1.12.60](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.59...@kiva/kv-shop@1.12.60) (2024-11-05)
 
 **Note:** Version bump only for package @kiva/kv-shop
