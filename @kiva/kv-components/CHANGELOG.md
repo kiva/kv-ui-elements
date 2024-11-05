@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.107.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.0...@kiva/kv-components@3.107.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* add components to dist folder as well ([0b20c69](https://github.com/kiva/kv-ui-elements/commit/0b20c69ed132a9a46da040523c559a6d900143d1))
+
+
+
+
+
 # [3.107.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.106.0...@kiva/kv-components@3.107.0) (2024-11-05)
 
 
