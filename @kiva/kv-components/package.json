@@ -78,8 +78,12 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "require": "./dist/utils/index.cjs",
+      "import": "./dist/utils/index.js"
+    },
+    "./dist/components/*.vue": {
+      "import": "./dist/components/*.vue",
+      "require": "./dist/components/*.vue"
     }
   },
   "peerDependencies": {
