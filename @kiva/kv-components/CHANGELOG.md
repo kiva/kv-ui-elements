@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.107.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.1...@kiva/kv-components@3.107.2) (2024-11-05)
+
+
+### Bug Fixes
+
+* add specifier for vue imports ([f62b249](https://github.com/kiva/kv-ui-elements/commit/f62b249e67deaf46a398c5ad59251990befe788d))
+
+
+
+
+
 ## [3.107.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.0...@kiva/kv-components@3.107.1) (2024-11-05)
 
 
