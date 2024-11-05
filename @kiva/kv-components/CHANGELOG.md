@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.107.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.106.0...@kiva/kv-components@3.107.0) (2024-11-05)
+
+
+### Features
+
+* compile kv-component utils ([7b41391](https://github.com/kiva/kv-ui-elements/commit/7b413912c3bcf2659e729072fe1705427a78c1ba))
+
+
+
+
+
 # [3.106.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.105.3...@kiva/kv-components@3.106.0) (2024-11-01)
 
 
