@@ -1,5 +1,4 @@
 const { hexToRGB } = require('./util.cjs');
-const { generateInlineSVG } = require('./kivaHeadingUnderline.cjs');
 const designtokens = require('../primitives.json');
 
 const {
@@ -34,9 +33,7 @@ const buildCSSVarsFromTokens = (theme) => {
 		properties.forEach((property) => {
 			const key = `--${twPrefix}-${property}`;
 			if (category === 'heading-underline') {
-				// TODO: use this when we have the themable heading-underline.svg file
-				// customProperties[key] = `url('/heading-underline.svg${theme[category][property]}')`;
-				customProperties[key] = generateInlineSVG(theme[category][property]);
+				customProperties[key] = `url('/heading-underline.svg${theme[category][property]}')`;
 			} else {
 				customProperties[key] = hexToRGB(theme[category][property]);
 			}

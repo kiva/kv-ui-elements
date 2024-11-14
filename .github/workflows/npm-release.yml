@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+env:
+  GITHUB_PAT: "${{ secrets.KIVA_ROBOT_GITHUB_PAT || github.token }}"
+  AWS_REGION: "us-west-2"
+  AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+  AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -32,6 +38,15 @@ jobs:
           # Personal Access Token with the 'public_repo' scope, to allow tagging the latest release
           token: ${{ secrets.PUBLISH_PAT }}
 
+      # Checkout shared GitHub Actions workflows
+      - name: Checkout shared workflows
+        uses: actions/checkout@v3
+        with:
+          repository: kiva/github-actions
+          ref: main
+          token: ${{ env.GITHUB_PAT }}
+          path: .github/
+
       # Configure Git user email and name for the release tags
       - name: Configure Git user
         run: |
@@ -45,6 +60,12 @@ jobs:
       # Build projects
       - name: Build projects
         run: npm run build
+
+      # Upload static asssets
+      - name: upload static assets
+        uses: ./.github/actions/upload-static-assets
+        with:
+          source_dir: "dist/assets"
 
       # Tag release and publish to NPM
       - name: Publish release
