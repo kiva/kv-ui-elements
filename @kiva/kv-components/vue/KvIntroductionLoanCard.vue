@@ -96,7 +96,7 @@
 					:to="readMorePath"
 					:href="readMorePath"
 					aria-label="Borrower name"
-					class="!tw-text-primary"
+					class="!tw-text-primary tw-no-underline"
 					@click.native="clickReadMore('Name', $event)"
 				>
 					<h3
@@ -136,7 +136,7 @@
 					v-else
 					:to="readMorePath"
 					:href="readMorePath"
-					class="tw-flex hover:tw-no-underline focus:tw-no-underline tw-justify-center"
+					class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline tw-justify-center"
 					aria-label="Loan tag"
 					@click.native="clickReadMore('Tag', $event)"
 				>
@@ -151,7 +151,7 @@
 					:is="tag"
 					:to="readMorePath"
 					:href="readMorePath"
-					class="loan-card-use tw-text-primary"
+					class="loan-card-use tw-text-primary tw-no-underline"
 					aria-label="Loan use"
 					@click.native="clickReadMore('Use', $event)"
 				>
@@ -433,6 +433,7 @@ export default {
 .loan-card-active-hover:hover .loan-card-use, .loan-card-active-hover:hover .loan-card-name {
 	@apply tw-underline;
 }
+.loan-card-progress,
 .loan-card-progress:hover,
 .loan-card-progress:focus {
 	@apply tw-no-underline;

@@ -90,7 +90,7 @@
 					:is="tag"
 					:to="readMorePath"
 					:href="readMorePath"
-					class="tw-flex hover:tw-no-underline focus:tw-no-underline"
+					class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline"
 					:class="{ 'tw-px-1': largeCard }"
 					aria-label="Loan tag"
 					@click.native="clickReadMore('Tag', $event)"
@@ -105,7 +105,7 @@
 					:is="tag"
 					:to="readMorePath"
 					:href="readMorePath"
-					class="loan-card-use tw-text-primary"
+					class="loan-card-use tw-no-underline tw-text-primary"
 					aria-label="Loan use"
 					@click.native="clickReadMore('Use', $event)"
 				>
@@ -183,7 +183,7 @@
 					v-if="unreservedAmount > 0"
 					:to="readMorePath"
 					:href="readMorePath"
-					class="loan-card-progress tw-mt-1"
+					class="loan-card-progress tw-no-underline tw-mt-1"
 					aria-label="Loan progress"
 					@click.native="clickReadMore('Progress', $event)"
 				>

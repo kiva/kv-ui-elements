@@ -100,7 +100,7 @@
 				:is="tag"
 				:to="readMorePath"
 				:href="readMorePath"
-				class="tw-flex hover:tw-no-underline focus:tw-no-underline"
+				class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline"
 				aria-label="Loan tag"
 				@click.native="clickReadMore('Tag', $event)"
 			>
@@ -114,7 +114,7 @@
 				:is="tag"
 				:to="readMorePath"
 				:href="readMorePath"
-				class="loan-card-use tw-text-primary"
+				class="loan-card-use tw-no-underline tw-text-primary"
 				aria-label="Loan use"
 				@click="clickReadMore('Use')"
 			>
@@ -421,6 +421,7 @@ export default {
 .loan-card-active-hover:hover .loan-card-use {
 	@apply tw-underline;
 }
+.loan-card-progress,
 .loan-card-progress:hover,
 .loan-card-progress:focus {
 	@apply tw-no-underline;
