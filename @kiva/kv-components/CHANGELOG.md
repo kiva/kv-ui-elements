@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.108.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.2...@kiva/kv-components@3.108.0) (2024-11-15)
+
+
+### Bug Fixes
+
+* change error text color for KvTextInput ([5dbf6ad](https://github.com/kiva/kv-ui-elements/commit/5dbf6ad72b436d7aabf868cf8bac0ed7f1439412))
+* color updates for default theme and KvButton ([e27b124](https://github.com/kiva/kv-ui-elements/commit/e27b1243e797322c95cf52f505787e6c9b5eceac))
+* handle underline styles for buttons and clickable loan cards ([ef4d19f](https://github.com/kiva/kv-ui-elements/commit/ef4d19f420b00201baf5e0c0dcd39194a2be970c))
+* more wip for ecosystem themes ([3fd83ab](https://github.com/kiva/kv-ui-elements/commit/3fd83ab38e0e9463c375a94fc84012fa38948cdb))
+* more wip work for new ecosystem themes ([90447d4](https://github.com/kiva/kv-ui-elements/commit/90447d471178b410637d8ba50d535180c8b03718))
+* secondary button styling ([4602efa](https://github.com/kiva/kv-ui-elements/commit/4602efac93b4755015b847090d1eb1e24d70c1d9))
+* switch vertical tab active color to action instead of action-highlight ([cc1e2d5](https://github.com/kiva/kv-ui-elements/commit/cc1e2d5b12f7981ffb7a8e724036c65bc0f60d6d))
+
+
+### Features
+
+* update styling for KvTextInput error state ([361cdba](https://github.com/kiva/kv-ui-elements/commit/361cdbacd2f56e1f38e330efe7425b4922c89443))
+* use external file for heading underline svg MP-544 MP-545 ([fad8f16](https://github.com/kiva/kv-ui-elements/commit/fad8f16b5555916624c26a24828ff39dcbc5edbf))
+* use green-3 and stone-3 for bg-secondary in dark themes ([d13d63e](https://github.com/kiva/kv-ui-elements/commit/d13d63e08346b936a1bb2bc61c4d3fc6c5a4e8d0))
+* wip initial pass at ecosystem themes ([680dbbc](https://github.com/kiva/kv-ui-elements/commit/680dbbc7aab575f9db43d7b10bdcba9003fd589e))
+
+
+
+
+
 ## [3.107.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.1...@kiva/kv-components@3.107.2) (2024-11-05)
 
 

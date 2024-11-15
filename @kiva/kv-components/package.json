@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "3.107.2",
+  "version": "3.108.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -61,7 +61,7 @@
     "build": "tsup utils/*.js --outDir dist/utils --format cjs,esm --clean && cp -R vue/ dist/components/ && cp -R data/ dist/data/"
   },
   "dependencies": {
-    "@kiva/kv-tokens": "^2.13.0",
+    "@kiva/kv-tokens": "^2.14.0",
     "@mdi/js": "^5.9.55",
     "@vueuse/integrations": "^7.6.0",
     "aria-hidden": "^1.1.3",
