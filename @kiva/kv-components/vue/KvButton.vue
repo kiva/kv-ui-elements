@@ -5,7 +5,7 @@
 		:to="to"
 		:type="computedType"
 		:disabled="isDisabled"
-		class="hover:tw-no-underline focus:tw-no-underline tw-inline-block"
+		class="tw-no-underline hover:tw-no-underline focus:tw-no-underline tw-inline-block"
 		:class="{
 			'tw-opacity-low': state === 'disabled',
 			'tw-pointer-events-none': state === 'loading' || isDisabled
@@ -137,16 +137,16 @@ export default {
 					}
 					break;
 				case 'secondary':
-					classes = 'tw-text-primary';
+					classes = 'tw-text-action-highlight';
 					if (state.value === 'active') {
-						classes = `${classes} tw-bg-secondary tw-border-primary`;
+						classes = `${classes} tw-bg-secondary`;
 					} else {
 						// eslint-disable-next-line max-len
-						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-tertiary hover:tw-border-primary`;
+						classes = `${classes} tw-bg-primary hover:tw-bg-secondary tw-border-action-highlight`;
 					}
 					break;
 				case 'danger':
-					classes = 'tw-text-primary-inverse';
+					classes = 'tw-text-danger';
 					if (state.value === 'active') {
 						classes = `${classes} tw-bg-danger-highlight tw-border-danger-highlight`;
 					} else {
@@ -157,9 +157,9 @@ export default {
 				case 'link':
 					classes = 'tw-bg-primary-inverse tw-text-primary-inverse';
 					if (state.value === 'active') {
-						classes = `${classes} tw-border-secondary`;
+						classes = `${classes} tw-border-secondary tw-bg-action`;
 					} else {
-						classes = `${classes} tw-border-primary hover:tw-border-secondary`;
+						classes = `${classes} tw-border-action-highlight hover:tw-border-action hover:tw-bg-action`;
 					}
 					break;
 				case 'ghost':
@@ -171,11 +171,12 @@ export default {
 					}
 					break;
 				case 'caution':
-					classes = 'tw-text-primary tw-border-transparent';
+					classes = 'tw-text-caution';
 					if (state.value === 'active') {
-						classes = `${classes} tw-bg-caution-highlight`;
+						classes = `${classes} tw-bg-caution-highlight tw-border-caution-highlight`;
 					} else {
-						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight`;
+						// eslint-disable-next-line max-len
+						classes = `${classes} tw-bg-caution hover:tw-bg-caution-highlight tw-border-caution hover:tw-border-caution-highlight`;
 					}
 					break;
 			}

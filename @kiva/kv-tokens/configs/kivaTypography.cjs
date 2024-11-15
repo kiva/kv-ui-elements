@@ -180,7 +180,7 @@ const textStyles = (() => {
 
 	const textLink = {
 		color: 'rgb(var(--text-action))',
-		textDecoration: 'none',
+		textDecoration: 'underline',
 		'&:hover, &:focus': {
 			color: 'rgb(var(--text-action-highlight))',
 			textDecoration: 'underline',

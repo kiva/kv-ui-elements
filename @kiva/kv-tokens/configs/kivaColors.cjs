@@ -1,9 +1,13 @@
 const { hexToRGB } = require('./util.cjs');
-const { generateInlineSVG } = require('./kivaHeadingUnderline.cjs');
 const designtokens = require('../primitives.json');
 
 const {
 	DEFAULT: defaultThemeTokens,
+	'green-light': greenLightThemeTokens,
+	'green-dark': greenDarkThemeTokens,
+	'marigold-light': marigoldLightThemeTokens,
+	'stone-light': stoneLightThemeTokens,
+	'stone-dark': stoneDarkThemeTokens,
 	dark: darkThemeTokens,
 	'dark-green': darkGreenThemeTokens,
 	mint: mintThemeTokens,
@@ -29,9 +33,7 @@ const buildCSSVarsFromTokens = (theme) => {
 		properties.forEach((property) => {
 			const key = `--${twPrefix}-${property}`;
 			if (category === 'heading-underline') {
-				// TODO: use this when we have the themable heading-underline.svg file
-				// customProperties[key] = `url('/heading-underline.svg${theme[category][property]}')`;
-				customProperties[key] = generateInlineSVG();
+				customProperties[key] = `url('/heading-underline.svg${theme[category][property]}')`;
 			} else {
 				customProperties[key] = hexToRGB(theme[category][property]);
 			}
@@ -41,6 +43,11 @@ const buildCSSVarsFromTokens = (theme) => {
 };
 
 const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
+const greenLightTheme = buildCSSVarsFromTokens(greenLightThemeTokens);
+const greenDarkTheme = buildCSSVarsFromTokens(greenDarkThemeTokens);
+const marigoldLightTheme = buildCSSVarsFromTokens(marigoldLightThemeTokens);
+const stoneLightTheme = buildCSSVarsFromTokens(stoneLightThemeTokens);
+const stoneDarkTheme = buildCSSVarsFromTokens(stoneDarkThemeTokens);
 const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
 const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
 const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
@@ -93,6 +100,11 @@ const buildColorChoices = (themeProperty) => {
 module.exports = {
 	buildColorChoices,
 	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
 	darkTheme,
 	darkGreenTheme,
 	mintTheme,

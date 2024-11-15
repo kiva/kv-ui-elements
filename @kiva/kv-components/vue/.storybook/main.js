@@ -7,6 +7,10 @@ const config = {
 		'../stories/**/*.stories.@(js|jsx|ts|tsx)'
 	],
 
+	staticDirs: [
+		'../../../../dist/assets',
+	],
+
 	addons: [
 		"@storybook/addon-links",
 		"@storybook/addon-essentials",
@@ -23,7 +27,7 @@ const config = {
 							'style-loader',
 							{
 								loader: 'css-loader',
-								options: { importLoaders: 1 }
+								options: { importLoaders: 1, url: false }
 							},
 							{
 								// Gets options from `postcss.config.js` in your project root

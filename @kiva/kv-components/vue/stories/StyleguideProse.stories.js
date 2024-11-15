@@ -1,18 +1,74 @@
+import {
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
+	darkTheme,
+	darkGreenTheme,
+	mintTheme,
+	darkMintTheme,
+	darkStoneTheme,
+} from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
 	title: 'Base Styling/Prose Demo',
+	args: {
+		theme: 'greenLight',
+	},
+	argTypes: {
+		theme: {
+			control: {
+				type: 'select',
+			},
+			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark', 'dark', 'darkGreen', 'mint', 'darkMint', 'darkStone'],
+		},
+	},
 };
 
 export const ProseDemo = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvPageContainer, KvGrid },
+	computed: {
+		themeStyles() {
+			switch (this.theme) {
+				case 'greenLight':
+					return greenLightTheme;
+				case 'greenDark':
+					return greenDarkTheme;
+				case 'marigoldLight':
+					return marigoldLightTheme;
+				case 'stoneLight':
+					return stoneLightTheme;
+				case 'stoneDark':
+					return stoneDarkTheme;
+				case 'dark':
+					return darkTheme;
+				case 'darkGreen':
+					return darkGreenTheme;
+				case 'mint':
+					return mintTheme;
+				case 'darkMint':
+					return darkMintTheme;
+				case 'darkStone':
+					return darkStoneTheme;
+				default:
+					return defaultTheme;
+			}
+		},
+	},
 	template: `
-	<kv-page-container>
+	<kv-page-container :style="{
+		...themeStyles,
+		color: 'rgb(var(--text-primary))',
+		backgroundColor: 'rgb(var(--bg-primary))',
+	}">
 		<kv-grid class="tw-grid-cols-12 tw-prose">
 			<div class="tw-col-span-full md:tw-col-span-10 md:tw-col-start-2 lg:tw-col-span-8 lg:tw-col-start-3">
-				<h1>Typography</h1>
+				<h1><u>Typography</u></h1>
 				<p class="tw-text-subhead">Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</p>
 				<p>By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you <em>really are</em> just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.</p>
 				<p>We get lots of complaints about it actually, with people regularly asking us things like:</p>

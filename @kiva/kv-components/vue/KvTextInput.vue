@@ -16,16 +16,19 @@
 				class="
 					tw-h-6 tw-w-full
 					tw-px-2
-					tw-border tw-border-tertiary
+					tw-border
 					tw-rounded-sm
 					tw-appearance-none
 					tw-text-base
-					tw-bg-primary
 					tw-ring-inset
-					focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent
+					focus:tw-outline-none focus:tw-ring-2 focus:tw-border-transparent
 				"
 				:class="{
-					'tw-pr-6 tw-bg-danger tw-border-danger-highlight tw-bg-opacity-low focus:tw-ring-danger-highlight'
+					'tw-bg-primary'
+						: valid && !disabled,
+					'tw-border-tertiary focus:tw-ring-action'
+						: valid,
+					'tw-pr-6 tw-bg-danger-highlight tw-border-danger focus:tw-ring-danger-highlight'
 						: !valid,
 					'tw-bg-tertiary'
 						: disabled,
@@ -64,7 +67,7 @@
 			</button>
 			<div
 				v-if="$slots.error"
-				class="tw-text-danger tw-text-small tw-font-medium tw-mt-1"
+				class="tw-text-danger-highlight tw-text-small tw-font-medium tw-mt-1"
 			>
 				<!-- @slot Used in conjuction with the `valid` prop to tell the user what must be fixed -->
 				<slot name="error"></slot>
