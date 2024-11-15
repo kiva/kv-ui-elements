@@ -2,9 +2,9 @@
 	<button
 		:id="`kv-tab-${forPanel}`"
 		class="tw-text-h3 tw-mb-1.5 tw-whitespace-nowrap tw-text-left"
-		:class="{ 'hover:tw-text-action-highlight' : !isActive,
+		:class="{ 'hover:tw-text-action' : !isActive,
 			'md:tw-border-l-2 tw-border-transparent md:tw-pl-2' : vertical,
-			'tw-text-action-highlight' : isActive && vertical
+			'tw-text-action' : isActive && vertical
 		}"
 		role="tab"
 		:aria-selected="isActive"
