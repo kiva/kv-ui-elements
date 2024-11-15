@@ -62,10 +62,14 @@ jobs:
         run: npm run build
 
       # Upload static asssets
-      - name: upload static assets
+      - name: Upload static assets
         uses: ./.github/actions/upload-static-assets
         with:
           source_dir: "dist/assets"
+
+      # Reset the git working directory to the last commit before publishing with lerna
+      - name: Reset git working directory
+        run: git reset --hard HEAD
 
       # Tag release and publish to NPM
       - name: Publish release
