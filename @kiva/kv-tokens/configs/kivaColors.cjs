@@ -33,7 +33,7 @@ const buildCSSVarsFromTokens = (theme) => {
 		properties.forEach((property) => {
 			const key = `--${twPrefix}-${property}`;
 			if (category === 'heading-underline') {
-				customProperties[key] = `url('/heading-underline.svg${theme[category][property]}')`;
+				customProperties[key] = `url('/kvui/heading-underline.svg${theme[category][property]}')`;
 			} else {
 				customProperties[key] = hexToRGB(theme[category][property]);
 			}

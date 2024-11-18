@@ -66,7 +66,7 @@ export default {
 		 *    --border-danger: '255, 255, 255',
 		 *    --border-danger-highlight: '255, 255, 255',
 		 *
-		 *    --heading-underline-primary: url('/heading-underline.svg#FFFFFF'),
+		 *    --heading-underline-primary: url('/kvui/heading-underline.svg#FFFFFF'),
 		 * }
 		 * ```
 		 *
