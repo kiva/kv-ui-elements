@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.109.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.108.0...@kiva/kv-components@3.109.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* storybook static directory should include all of /dist ([64a5b22](https://github.com/kiva/kv-ui-elements/commit/64a5b22d0f5e3bb9b02c8693dcdb59291b43061e))
+
+
+### Features
+
+* serve static assets from kvui directory MP-544 ([840f6de](https://github.com/kiva/kv-ui-elements/commit/840f6de89f213143218d28e82a7ef0be1de319b6))
+
+
+
+
+
 # [3.108.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.107.2...@kiva/kv-components@3.108.0) (2024-11-15)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.14.0...@kiva/kv-tokens@2.15.0) (2024-11-18)
+
+
+### Features
+
+* serve static assets from kvui directory MP-544 ([840f6de](https://github.com/kiva/kv-ui-elements/commit/840f6de89f213143218d28e82a7ef0be1de319b6))
+
+
+
+
+
 # [2.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.13.0...@kiva/kv-tokens@2.14.0) (2024-11-15)
 
 
