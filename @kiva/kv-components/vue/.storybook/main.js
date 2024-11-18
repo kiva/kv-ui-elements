@@ -8,7 +8,7 @@ const config = {
 	],
 
 	staticDirs: [
-		'../../../../dist/assets',
+		'../../../../dist/kvui',
 	],
 
 	addons: [

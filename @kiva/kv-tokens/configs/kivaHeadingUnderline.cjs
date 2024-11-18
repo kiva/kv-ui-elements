@@ -10,7 +10,7 @@ const svgOpenTag = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 921 16"
  * achieved by creating one path for the brush stroke, and then using multiple <use> elements to
  * reference the path and fill it with the desired color (a sprite sheet technique from
  * https://css-tricks.com/svg-fragment-identifiers-work/). The SVG is then used as a background
- * image, and can be referenced by the color hex code, e.g. `url('/heading-underline.svg#2AA967')`.
+ * image, and can be referenced by the color hex code, e.g. `url('/kvui/heading-underline.svg#2AA967')`.
  * This allows us to use the same SVG for all themes, and change the color with CSS custom
  * properties, rather than having to generate a new SVG for each color.
  */
