@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.109.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.0...@kiva/kv-components@3.109.1) (2024-11-19)
+
+
+### Bug Fixes
+
+* add tailwind config to kv-components exports ([74388fc](https://github.com/kiva/kv-ui-elements/commit/74388fc3f65f679e6cb7e16ea51d6f71b6d96412))
+
+
+
+
+
 # [3.109.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.108.0...@kiva/kv-components@3.109.0) (2024-11-18)
 
 
