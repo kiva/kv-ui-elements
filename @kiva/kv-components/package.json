@@ -84,7 +84,11 @@
     "./dist/components/*.vue": {
       "import": "./dist/components/*.vue",
       "require": "./dist/components/*.vue"
-    }
+    },
+	"./tailwind.config.cjs": {
+	  "import": "./tailwind.config.cjs",
+	  "require": "./tailwind.config.cjs"
+	}
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
