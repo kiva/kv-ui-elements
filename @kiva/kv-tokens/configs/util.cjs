@@ -20,9 +20,25 @@ const base64 = (str) => {
 	return window.btoa(str);
 };
 
+const flattenJSON = (obj, parentKey = '') => {
+	const flattened = {};
+
+	Object.keys(obj).forEach((key) => {
+		const newKey = parentKey ? `${parentKey}-${key}` : key;
+		if (typeof obj[key] === 'object') {
+			Object.assign(flattened, flattenJSON(obj[key], newKey));
+		} else {
+			flattened[newKey] = obj[key];
+		}
+	});
+
+	return flattened;
+};
+
 module.exports = {
 	rem,
 	em,
 	hexToRGB,
 	base64,
+	flattenJSON,
 };
