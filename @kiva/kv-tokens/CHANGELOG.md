@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.15.0...@kiva/kv-tokens@2.16.0) (2024-11-20)
+
+
+### Features
+
+* **kv-tokens:** generate scss variables from primitives.json during build ([1567bbf](https://github.com/kiva/kv-ui-elements/commit/1567bbfe3411f003963b439e63628326822e57ac))
+
+
+
+
+
 # [2.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.14.0...@kiva/kv-tokens@2.15.0) (2024-11-18)
 
 
