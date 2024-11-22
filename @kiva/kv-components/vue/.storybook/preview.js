@@ -1,17 +1,15 @@
 import './tailwind.css';
+import {
+	setup
+} from '@storybook/vue3';
 import { addons } from '@storybook/preview-api';
 import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import Vue from 'vue';
-import VueCompositionApi from '@vue/composition-api';
-import VueRouter from 'vue-router';
 
-// Add vue composition api
-Vue.use(VueCompositionApi);
+setup((app) => {
+});
 
-Vue.use(VueRouter);
-
-const parameters = {
+export const parameters = {
 	actions: { argTypesRegex: "^on[A-Z].*" },
 	controls: {
 		matchers: {
@@ -31,7 +29,7 @@ const parameters = {
 const channel = addons.getChannel();
 
 // Wrap all stories with the kv-theme-provider component
-const decorators = [(story) => ({
+export const decorators = [(story) => ({
 	components: { story, KvThemeProvider },
 	template: '<kv-theme-provider :theme="theme"><story /></kv-theme-provider>',
 	data() {
@@ -50,12 +48,4 @@ const decorators = [(story) => ({
 	destroyed() {
 		channel.off('DARK_MODE', this.setTheme);
 	},
-	router: new VueRouter(),
 })];
-
-const preview = {
-	parameters,
-	decorators,
-};
-
-export default preview;
