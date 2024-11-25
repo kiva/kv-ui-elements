@@ -6,11 +6,12 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanBookmark },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
-			<kv-loan-bookmark :is-bookmarked="isBookmarked" />
+			<kv-loan-bookmark v-bind="args" />
 		`,
 	});
 	template.args = args;

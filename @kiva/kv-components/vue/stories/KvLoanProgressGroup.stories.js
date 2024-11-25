@@ -6,14 +6,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanProgressGroup },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<div style="width: 200px">
 				<kv-loan-progress-group
-					:money-left="moneyLeft"
-					:progress-percent="progressPercent"
+					v-bind="args"
 				/>
 			</div>
 		`,
