@@ -18,6 +18,7 @@ import {
 	mdiMagnify,
 	mdiStar,
 	mdiStarOutline,
+	mdiTimerSandComplete,
 } from '@mdi/js';
 
 import KvMaterialIcon from '../KvMaterialIcon.vue';
@@ -70,6 +71,7 @@ export const Common = (args, { argTypes }) => ({
 					mdiChevronUp,
 					mdiClose,
 					mdiMagnify,
+					mdiTimerSandComplete,
 				]"
 				:key="i"
 				:icon="icon"
@@ -93,6 +95,7 @@ export const Common = (args, { argTypes }) => ({
 			mdiChevronUp,
 			mdiClose,
 			mdiMagnify,
+			mdiTimerSandComplete,
 		};
 	},
 });
