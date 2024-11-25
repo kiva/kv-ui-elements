@@ -7,6 +7,8 @@ import KvThemeProvider from '../KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 
 setup((app) => {
+	// Mock analytics
+	app.directive('kv-track-event', () => { });
 });
 
 export const parameters = {

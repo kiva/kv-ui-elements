@@ -12,11 +12,13 @@ const activity = {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvActivityRow },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `<KvActivityRow
-			:activity="activity" />`,
+			v-bind="args"
+		/>`,
 	});
 	template.args = args;
 	return template;

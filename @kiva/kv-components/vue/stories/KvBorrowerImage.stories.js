@@ -6,19 +6,13 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvBorrowerImage },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<div style="width: 336px;">
-				<kv-borrower-image
-					:alt="alt"
-					:aspect-ratio="aspectRatio"
-					:default-image="defaultImage"
-					:hash="hash"
-					:images="images"
-					:photo-path="photoPath"
-				/>
+				<kv-borrower-image v-bind="args"/>
 			</div>
 		`,
 	});

@@ -62,12 +62,14 @@
 								"
 								style="padding: 2px 6px;"
 							>
-								<kv-flag
-									class="tw-ml-0.5 tw-mr-1"
-									:country="countryCode"
-									width-override="16px"
-									hide-border
-								/>
+								<suspense>
+									<kv-flag
+										class="tw-ml-0.5 tw-mr-1"
+										:country="countryCode"
+										width-override="16px"
+										hide-border
+									/>
+								</suspense>
 								{{ formattedLocation }}
 							</p>
 						</div>

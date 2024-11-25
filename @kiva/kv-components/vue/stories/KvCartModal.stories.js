@@ -25,17 +25,14 @@ export default {
 const DefaultTemplate = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvCartModal, KvButton },
+	setup() { return { args }; },
 	template: `
 		<div>
 			<kv-button @click="isVisible = true;">Show cart modal</kv-button>
 			<p>The lightbox is visible: {{isVisible}}</p>
 
 			<kv-cart-modal
-				:visible="isVisible"
-				:prevent-close="preventClose"
-				:added-loan="addedLoan"
-				:photo-path="photoPath"
-				:basket-count="basketCount"
+				v-bind="args"
 				@cart-modal-closed="isVisible = false"
 			>
 			</kv-cart-modal>

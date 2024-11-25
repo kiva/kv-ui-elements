@@ -1,4 +1,5 @@
 import KvIntroductionLoanCard from '../KvIntroductionLoanCard.vue';
+import KvFlag from '../KvFlag.vue';
 
 export default {
 	title: 'KvIntroductionLoanCard',
@@ -6,19 +7,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
-		components: { KvIntroductionLoanCard },
+		components: { KvIntroductionLoanCard, KvFlag },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<div style="width: 600px;">
 				<kv-introduction-loan-card
-					:loanId="loanId"
-					:loan="loan"
-					:category-page-name="categoryPageName"
-					:custom-callouts="customCallouts"
-					:kv-track-function="kvTrackFunction"
-					:photo-path="photoPath"
-					:is-visitor="isVisitor"
+					v-bind="args"
 					@show-loan-details="showLoanDetails"
 				/>
 			</div>
