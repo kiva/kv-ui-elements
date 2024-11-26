@@ -8,9 +8,7 @@
     "@kiva/kv-tokens",
     "@kiva/kv-loan-filters",
     "@kiva/kv-shop",
-    "@kiva/kv-activity-feed",
-    "test-vue2",
-    "test-vue3"
+    "@kiva/kv-activity-feed"
   ],
   "scripts": {
     "lint": "npm run lint --workspaces",
