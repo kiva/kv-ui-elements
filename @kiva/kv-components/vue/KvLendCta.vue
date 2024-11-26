@@ -36,7 +36,7 @@
 			:to="!externalLinks ? readMorePath : undefined"
 			:href="externalLinks ? readMorePath : undefined"
 			class="tw-mb-0"
-			@click="$emit('show-loan-details')"
+			@click.native="$emit('show-loan-details', $event)"
 		>
 			<span class="tw-flex">
 				View loan
