@@ -14,6 +14,7 @@ const Template = (args, {
 		KvSideSheet,
 		KvButton,
 	},
+	setup() { return { args }; },
 	template: `
 		<div>
 			<kv-button @click="isVisible = true">Show Side Sheet</kv-button>
@@ -47,4 +48,4 @@ const Template = (args, {
 	},
 });
 
-export const Default = Template.bind({});
+export const Default = Template.bind({ visible: false });

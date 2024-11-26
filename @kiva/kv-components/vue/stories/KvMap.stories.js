@@ -18,26 +18,13 @@ export default {
 	},
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMap },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `<kv-map
 		class="tw-rounded tw-overflow-hidden"
-		:auto-zoom-delay="autoZoomDelay"
-		:height="height"
-		:lat="lat"
-		:long="long"
-		:initial-zoom="initialZoom"
-		:map-id="mapId"
-		:use-leaflet="useLeaflet"
-		:width="width"
-		:zoom-level="zoomLevel"
-		:advanced-animation="advancedAnimation"
-		:show-zoom-control="showZoomControl"
-		:allow-dragging="allowDragging"
-		:show-labels="showLabels"
-		:countries-data="countriesData"
-		:show-fundraising-loans="showFundraisingLoans"
+		v-bind="args"
 	/>`,
 });
 

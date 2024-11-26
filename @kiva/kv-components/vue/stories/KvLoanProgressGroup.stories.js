@@ -24,6 +24,6 @@ const story = (args) => {
 
 export const Default = story();
 
-export const LowAmount = story({ moneyLeft: 5, progressPercent: 0.9 });
+export const LowAmount = story({ moneyLeft: '5', progressPercent: 0.9 });
 
-export const HighAmount = story({ moneyLeft: 150, progressPercent: 0.5 });
+export const HighAmount = story({ moneyLeft: '150', progressPercent: 0.5 });

@@ -12,18 +12,18 @@ export default {
 	},
 };
 
-const Template = (args, {
+const Template = (templateArgs, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
+	setup() { return { args: { ...templateArgs } }; },
 	components: {
 		KvPieChart,
 	},
 	template: `
 		<div>
 			<kv-pie-chart
-                :values="values"
-                :loading="loading"
+				v-bind="args"
             />
 		</div>`,
 });

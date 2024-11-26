@@ -11,23 +11,19 @@ export default {
 	},
 	argTypes: {
 		state: {
-			control: {
-				type: 'select',
-				options: ['', 'disabled'],
-			},
+			control: 'select',
+			options: ['', 'disabled'],
 		},
 	},
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvTextLink },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<kv-text-link
-			:state="state"
-			:href="href"
-			:to="to"
-			:icon="icon"
+			v-bind="args"
 			@click="onClick"
 		>
 			Find a borrower

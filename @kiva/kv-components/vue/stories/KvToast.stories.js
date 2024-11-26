@@ -11,30 +11,22 @@ export default {
 	},
 	argTypes: {
 		message: {
-			control: {
-				type: 'text',
-			},
+			control: 'text',
 		},
 		type: {
 			options: ['confirmation', 'warning', 'error'],
-			control: {
-				type: 'select',
-			},
+			control: 'select',
 		},
 		persist: {
-			control: {
-				type: 'boolean',
-			},
+			control: 'boolean',
 		},
 		hideDelay: {
-			control: {
-				type: 'number',
-			},
+			control: 'number',
 		},
 	},
 };
 
-const Template = (args, {
+const Template = (templateArgs, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
@@ -42,9 +34,10 @@ const Template = (args, {
 		KvToast,
 		KvButton,
 	},
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
-			<kv-button @click="showToast(message, type, persist, hideDelay)">Show Toast</kv-button>
+			<kv-button @click="showToast(message, args.type, persist, hideDelay)">Show Toast</kv-button>
 
 			<!-- div below is a kludge for storybook docs -->
 			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">
@@ -80,7 +73,7 @@ persist.args = { persist: true };
 export const hideDelay = Template.bind({});
 hideDelay.args = { hideDelay: 10000 };
 
-const KivaLogoTemplate = (args, {
+const KivaLogoTemplate = (templateArgs, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
@@ -88,9 +81,10 @@ const KivaLogoTemplate = (args, {
 		KvToast,
 		KvButton,
 	},
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
-			<kv-button @click="showToast(message, type, persist)">Show Toast</kv-button>
+			<kv-button @click="showToast(message, args.type, persist)">Show Toast</kv-button>
 
 			<!-- div below is a kludge for storybook docs -->
 			<div class="tw-fixed tw-z-toast tw-inset-0 tw-pointer-events-none">

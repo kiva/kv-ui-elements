@@ -32,15 +32,13 @@ export default {
 	title: 'KvThemeProvider',
 	component: KvThemeProvider,
 	args: {
-		theme: '',
+		theme: {},
 		customTheme: null,
 	},
 	argTypes: {
 		theme: {
-			control: {
-				type: 'select',
-				options: ['', 'dark', 'darkGreen', 'mint'],
-			},
+			control: 'select',
+			options: ['', 'dark', 'darkGreen', 'mint'],
 		},
 	},
 };
@@ -117,7 +115,7 @@ const demoTemplate = `
 	</div>
 `;
 
-const Template = (args, {
+const Template = (templateArgs, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
@@ -128,6 +126,7 @@ const Template = (args, {
 		KvTextLink,
 		KvThemeProvider,
 	},
+	setup() { return { args: { ...templateArgs } }; },
 	data() {
 		return {
 			bgVariables: buildTailwindClasses('background'),
@@ -141,7 +140,7 @@ const Template = (args, {
 		};
 	},
 	template: `
-		<kv-theme-provider :theme="theme">
+		<kv-theme-provider v-bind="args">
 			${demoTemplate}
 		</kv-theme-provider>`,
 });

@@ -6,16 +6,12 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvPagination },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `<kv-pagination
-			:limit="limit"
-			:total="total"
-			:offset="offset"
-			:extra-pages="extraPages"
-			:kv-track-function="kvTrackMock"
-			:track-event-category="trackEventCategory"
+				v-bind="args"
 			/>`,
 		methods: {
 			kvTrackMock(

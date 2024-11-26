@@ -13,18 +13,13 @@ export default {
 	},
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvProgressBar },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<kv-progress-bar
-			:aria-label="ariaLabel"
-			:min="min"
-			:max="max"
-			:value="value"
-			:variant="variant"
-			:bg-variant="bgVariant"
-
+			v-bind="args"
 		></kv-progress-bar>`,
 });
 
