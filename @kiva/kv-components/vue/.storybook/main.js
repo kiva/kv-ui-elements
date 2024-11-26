@@ -75,11 +75,11 @@ module.exports = {
 	},
 
 	framework: {
-		name: "@storybook/vue3-webpack5",
+		name: '@storybook/vue3-webpack5',
 		options: {}
 	},
 	core: {
-		builder: "@storybook/builder-webpack5"
+		builder: '@storybook/builder-webpack5'
 	},
 	docs: {
 		autodocs: true,
