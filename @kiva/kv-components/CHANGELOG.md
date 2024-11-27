@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.109.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.3...@kiva/kv-components@3.109.4) (2024-11-26)
+
+
+### Bug Fixes
+
+* preventDefault from undefined with showViewLoan and showLoanDetails enabled ([6354931](https://github.com/kiva/kv-ui-elements/commit/63549310e55d3d058b29e4020c0ffaa174bbe1f0))
+* remove native on click ([e10bf2b](https://github.com/kiva/kv-ui-elements/commit/e10bf2b50060110bca6681deff215d49394dceda))
+
+
+
+
+
 ## [3.109.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.2...@kiva/kv-components@3.109.3) (2024-11-25)
 
 **Note:** Version bump only for package @kiva/kv-components
