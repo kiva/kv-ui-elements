@@ -49,9 +49,10 @@ Default.args = {
 	icon: mdiCart,
 };
 
-export const Common = (args, { argTypes }) => ({
+export const Common = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div class="tw-flex tw-gap-1">
 			<kv-material-icon
@@ -100,9 +101,10 @@ export const Common = (args, { argTypes }) => ({
 	},
 });
 
-export const Colored = (args, { argTypes }) => ({
+export const Colored = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
 			<p class="tw-mb-2">Use text-color to set the icon color</p>
@@ -123,9 +125,10 @@ export const Colored = (args, { argTypes }) => ({
 	},
 });
 
-export const InlineWithText = (args, { argTypes }) => ({
+export const InlineWithText = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<a href="#" class="tw-inline-flex">
 			<span class="tw-text-h4">He went thataway</span>
@@ -138,9 +141,10 @@ export const InlineWithText = (args, { argTypes }) => ({
 	},
 });
 
-export const Sizing = (args, { argTypes }) => ({
+export const Sizing = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
 			<p class="tw-mb-2">Icons can be sized using any of the standard sizing classes (.tw-w-2, .tw-w-3, .tw-w-full, etc.). By default they are 24 x 24 (.tw-w-3).</p>
@@ -156,9 +160,10 @@ export const Sizing = (args, { argTypes }) => ({
 	},
 });
 
-export const WithAccessibleText = (args, { argTypes }) => ({
+export const WithAccessibleText = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
 			<p class="tw-mb-2">If you don't include text and your icon is not decorative, be sure to include screen-reader text</p>
@@ -174,9 +179,10 @@ export const WithAccessibleText = (args, { argTypes }) => ({
 	},
 });
 
-export const StarsDemo = (args, { argTypes }) => ({
+export const StarsDemo = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvMaterialIcon },
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div class="tw-flex">
 			<button

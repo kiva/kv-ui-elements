@@ -5,14 +5,15 @@ export default {
 	component: KvLineGraph,
 };
 
-const Template = (_args, { argTypes }) => ({
+const Template = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvLineGraph,
 	},
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div style="height: 500px; width: 500px;">
-			<kv-line-graph :points="points" :axis-label="axisLabel" />
+			<kv-line-graph v-bind="args" />
 		</div>
 	`,
 });

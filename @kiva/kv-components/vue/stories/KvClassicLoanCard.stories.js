@@ -6,36 +6,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvClassicLoanCard },
+		setup() { return { args: templateArgs }; },
 		template: `
 			<div style="width: 600px;">
 				<kv-classic-loan-card
-					:loanId="loanId"
-					:loan="loan"
-					:custom-loan-details="customLoanDetails"
-					:use-full-width="useFullWidth"
-					:show-tags="showTags"
-					:category-page-name="categoryPageName"
-					:enable-five-dollars-notes="enableFiveDollarsNotes"
-					:five-dollars-selected="fiveDollarsSelected"
-					:large-card="largeCard"
-					:is-adding="isAdding"
-					:is-visitor="isVisitor"
-					:basket-items="basketItems"
-					:is-bookmarked="isBookmarked"
-					:kv-track-function="kvTrackFunction"
-					:photo-path="photoPath"
-					:show-view-loan="showViewLoan"
-					:custom-callouts="customCallouts"
-					:is-team-pick="isTeamPick"
-					:combined-activities="combinedActivities"
-					:showContributors="showContributors"
-					:enable-huge-amount="enableHugeAmount"
-					:primary-button-text="primaryButtonText"
-					:secondary-button-text="secondaryButtonText"
-					:secondary-button-handler="secondaryButtonHandler"
+				v-bind="args"
 					@show-loan-details="showLoanDetails"
 				/>
 			</div>

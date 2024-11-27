@@ -6,28 +6,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvWideLoanCard },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 		<div style="max-width: 800px;">
 			<kv-wide-loan-card
-				:loanId="loanId"
-				:loan="loan"
-				:custom-loan-details="customLoanDetails"
-				:show-tags="showTags"
-				:category-page-name="categoryPageName"
-				:enable-five-dollars-notes="enableFiveDollarsNotes"
-				:five-dollars-selected="fiveDollarsSelected"
-				:is-adding="isAdding"
-				:is-visitor="isVisitor"
-				:basket-items="basketItems"
-				:is-bookmarked="isBookmarked"
-				:kv-track-function="kvTrackFunction"
-				:photo-path="photoPath"
-				:show-view-loan="showViewLoan"
-				:custom-callouts="customCallouts"
-				:enable-huge-amount="enableHugeAmount"
+				v-bind="args"
 			/>
 		</div>
 	`,

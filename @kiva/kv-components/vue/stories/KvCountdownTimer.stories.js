@@ -6,14 +6,15 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
+		setup() { return { args: { ...templateArgs } }; },
 		components: {
 			KvCountdownTimer,
 		},
 		template: `
 			<kv-countdown-timer
-				:ms-left="msLeft"
+				v-bind="args"
 			/>
 		`,
 	});

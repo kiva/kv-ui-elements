@@ -6,19 +6,13 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanUse },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<kv-loan-use
-				:anonymization-level="anonymizationLevel"
-				:use="use"
-				:loan-amount="loanAmount"
-				:status="status"
-				:borrower-count="borrowerCount"
-				:name="name"
-				:distribution-model="distributionModel"
-				:why-special="whySpecial"
+				v-bind="args"
 			/>
 		`,
 	});

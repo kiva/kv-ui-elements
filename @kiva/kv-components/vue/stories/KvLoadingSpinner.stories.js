@@ -5,16 +5,12 @@ export default {
 	component: KvLoadingSpinner,
 	argTypes: {
 		size: {
-			control: {
-				type: 'select',
-				options: ['small', 'medium', 'large'],
-			},
+			control: 'select',
+			options: ['small', 'medium', 'large'],
 		},
 		color: {
-			control: {
-				type: 'select',
-				options: ['brand', 'white', 'black'],
-			},
+			control: 'select',
+			options: ['brand', 'white', 'black'],
 		},
 	},
 };
@@ -23,10 +19,11 @@ export default {
 export const SingleLoader = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvLoadingSpinner },
+	setup() { return { args }; },
 	template: `
 		<kv-loading-spinner
-			:size="size"
-			:color="color"
+			:size="args.size"
+			:color="args.color"
 		/>`,
 });
 
@@ -34,6 +31,7 @@ export const SingleLoader = (args, { argTypes }) => ({
 export const AllVariants = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvLoadingSpinner },
+	setup() { return { args }; },
 	template: `
 		<div>
 			<ul v-for="color in ['brand', 'white', 'black']" :key="color">
@@ -43,8 +41,8 @@ export const AllVariants = (args, { argTypes }) => ({
 					class="tw-mb-2"
 				>
 					<kv-loading-spinner
-						:size="size"
-						:color="color"
+						:size="args.size"
+						:color="args.color"
 					/>
 				</li>
 			</ul>

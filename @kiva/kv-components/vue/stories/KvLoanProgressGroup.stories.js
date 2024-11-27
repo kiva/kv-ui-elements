@@ -6,14 +6,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanProgressGroup },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<div style="width: 200px">
 				<kv-loan-progress-group
-					:money-left="moneyLeft"
-					:progress-percent="progressPercent"
+					v-bind="args"
 				/>
 			</div>
 		`,
@@ -24,6 +24,6 @@ const story = (args) => {
 
 export const Default = story();
 
-export const LowAmount = story({ moneyLeft: 5, progressPercent: 0.9 });
+export const LowAmount = story({ moneyLeft: '5', progressPercent: 0.9 });
 
-export const HighAmount = story({ moneyLeft: 150, progressPercent: 0.5 });
+export const HighAmount = story({ moneyLeft: '150', progressPercent: 0.5 });

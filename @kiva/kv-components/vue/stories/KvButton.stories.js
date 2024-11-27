@@ -5,17 +5,12 @@ export default {
 	component: KvButton,
 	argTypes: {
 		variant: {
-			control: {
-				type: 'select',
-				options: ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution'],
-			},
+			control: 'select',
+			options: ['primary', 'secondary', 'link', 'danger', 'ghost', 'caution'],
 		},
 		state: {
-			control: {
-				type: 'select',
-				options: ['', 'disabled', 'loading'],
-				defaultValue: null,
-			},
+			control: 'select',
+			options: ['', 'disabled', 'loading'],
 		},
 	},
 };
@@ -23,12 +18,13 @@ export default {
 const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvButton },
+	setup() { return { args }; },
 	template: `
 		<kv-button
-			:variant="variant"
-			:state="state"
-			:to="to"
-			:href="href"
+			:variant="args.variant"
+			:state="args.state"
+			:to="args.to"
+			:href="args.href"
 			@click="onClick"
 		>
 			Find a borrower
@@ -41,6 +37,7 @@ const Template = (args, { argTypes }) => ({
 const VariantTemplate = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvButton },
+	setup() { return { args }; },
 	template: `
 		<ul>
 			<li
@@ -50,9 +47,9 @@ const VariantTemplate = (args, { argTypes }) => ({
 			>
 				<kv-button
 					:variant="variant"
-					:state="state"
-					:to="to"
-					:href="href"
+					:state="args.state"
+					:to="args.to"
+					:href="args.href"
 				>
 					Find a borrower
 				</kv-button>
@@ -119,6 +116,7 @@ WithHref.args = {
 export const FullWidth = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvButton },
+	setup() { return { args }; },
 	template: `
 	<ul>
 		<li
@@ -129,9 +127,9 @@ export const FullWidth = (args, { argTypes }) => ({
 			<kv-button
 				class="tw-w-full"
 				:variant="variant"
-				:state="state"
-				:to="to"
-				:href="href"
+				:state="args.state"
+				:to="args.to"
+				:href="args.href"
 				@click="onClick"
 			>
 				Find a borrower

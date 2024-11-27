@@ -14,28 +14,20 @@ export default {
 	},
 	argTypes: {
 		fallbackFormat: {
-			control: {
-				type: 'select',
-				options: ['jpg', 'png', 'webp'],
-			},
+			control: 'select',
+			options: ['jpg', 'png', 'webp'],
 		},
 		loading: {
-			control: {
-				type: 'select',
-				options: ['lazy', 'eager'],
-			},
+			control: 'select',
+			options: ['lazy', 'eager'],
 		},
 		fit: {
-			control: {
-				type: 'select',
-				options: ['pad', 'fill', 'scale', 'crop', 'thumb'],
-			},
+			control: 'select',
+			options: ['pad', 'fill', 'scale', 'crop', 'thumb'],
 		},
 		focus: {
-			control: {
-				type: 'select',
-				options: ['center', 'top', 'right', 'left', 'bottom', 'top_right', 'top_left', 'bottom_right', 'bottom_left', 'face', 'faces'],
-			},
+			control: 'select',
+			options: ['center', 'top', 'right', 'left', 'bottom', 'top_right', 'top_left', 'bottom_right', 'bottom_left', 'face', 'faces'],
 		},
 	},
 };
@@ -45,35 +37,31 @@ export const Default = (args, { argTypes }) => ({
 	components: {
 		KvContentfulImg,
 	},
+	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			:contentful-src="contentfulSrc"
-			:fallback-format="fallbackFormat"
-			:width="width"
-			:height="height"
 			alt="Descriptive alt text"
-			:loading="loading"
-			:fit="fit"
-			:focus="focus"
+			v-bind="args"
 		/>
 	`,
 });
+
+Default.args = {
+	fit: 'fill',
+	focus: 'face',
+	sourceSizes: [],
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7mY5ZujL9UfbluRkVkHgkX/5ec83a74e7c1dc387f3fa35af34f5243/mg-hppromo-1-wxga-retina.jpg',
+};
 
 export const ResponsiveImageSet = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvContentfulImg,
 	},
+	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			:contentful-src="contentfulSrc"
-			:fallback-format="fallbackFormat"
-			:alt="alt"
-			:loading="loading"
-			:height="540"
-			:source-sizes="sourceSizes"
-			:fit="fit"
-			:focus="focus"
+			v-bind="args"
 		/>
 	`,
 });
@@ -116,14 +104,10 @@ export const AdaptiveImageSet = (args, { argTypes }) => ({
 	components: {
 		KvContentfulImg,
 	},
+	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			:contentful-src="contentfulSrc"
-			:fallback-format="fallbackFormat"
-			:alt="alt"
-			:loading="loading"
-			:height="540"
-			:source-sizes="sourceSizes"
+			v-bind="args"
 		/>
 	`,
 });
@@ -156,35 +140,27 @@ export const WithCaption = (args, { argTypes }) => ({
 	components: {
 		KvContentfulImg,
 	},
+	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			:contentful-src="contentfulSrc"
-			:fallback-format="fallbackFormat"
-			:width="width"
-			:height="height"
 			alt="^ A descriptive caption"
-			:loading="loading"
-			:fit="fit"
-			:focus="focus"
+			v-bind="args"
 		/>
 	`,
 });
+
+WithCaption.args = AdaptiveImageSet.args;
 
 export const GiantImage = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvContentfulImg,
 	},
+	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			:contentful-src="contentfulSrc"
-			:fallback-format="fallbackFormat"
-			:width="width"
-			:height="height"
 			alt="Descriptive alt text"
-			:loading="loading"
-			:fit="fit"
-			:focus="focus"
+			v-bind="args"
 		/>
 	`,
 });
@@ -193,4 +169,5 @@ GiantImage.args = {
 	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7dVINOyAxRaXM8p6aq7p5s/9213f63ff10dec57c5f740c056afe8a8/gradient-hero-bg__1_.jpg',
 	width: 4000,
 	height: 2000,
+	sourceSizes: [],
 };

@@ -28,7 +28,7 @@ describe('Default Button', () => {
 			props: { to: '/home' },
 		});
 		const anchorEl = getByRole('link', { name: 'Test Button' });
-		expect(anchorEl.href).toEqual('http://localhost/#/home');
+		expect(anchorEl.href).toEqual('http://localhost/home');
 	});
 
 	it('renders as an anchor tag when passed a route object', () => {
@@ -43,7 +43,7 @@ describe('Default Button', () => {
 			},
 		});
 		const anchorEl = getByRole('link', { name: 'Test Button' });
-		expect(anchorEl.href).toEqual('http://localhost/#/test-route-with-query?param1=a');
+		expect(anchorEl.href).toEqual('http://localhost/test-route-with-query?param1=a');
 	});
 
 	it('shows a ripple animation when clicked', async () => {

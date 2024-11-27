@@ -12,18 +12,18 @@ export default {
 	},
 };
 
-const Template = (args, {
+const Template = (templateArgs, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvTreeMapChart,
 	},
+	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<div>
 			<kv-tree-map-chart
-                :values="values"
-                :loading="loading"
+				v-bind="args"
             />
 		</div>`,
 });

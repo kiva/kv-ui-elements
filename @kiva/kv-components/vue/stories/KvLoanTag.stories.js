@@ -7,15 +7,16 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: {
 			KvLoanTag,
 			KvCountdownTimer,
 		},
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<kv-loan-tag
-				:loan="loan"
+				v-bind="args"
 			/>
 		`,
 	});

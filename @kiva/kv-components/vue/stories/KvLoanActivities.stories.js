@@ -85,15 +85,14 @@ const combinedActivities = [
 const kvTrackFunction = () => { };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanActivities },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 		<div style="max-width: 400px;">
 			<KvLoanActivities
-				:loan="loan"
-				:combined-activities="combinedActivities"
-				:kv-track-function="kvTrackFunction"
+				v-bind="args"
 			/>
 		</div>`,
 	});

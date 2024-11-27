@@ -31,17 +31,17 @@ module.exports = {
 
 	// A map from regular expressions to paths to transformers
 	transform: {
-		'^.+\\.vue$': '@vue/vue2-jest',
+		'^.+\\.vue$': '@vue/vue3-jest',
 		'^.+\\.js$': 'babel-jest',
 		'^.+\\.mjs$': 'babel-jest',
 	},
 
 	transformIgnorePatterns: [
-		'node_modules/(?!@vueuse)',
+		'node_modules/(?!@vueuse)/',
 	],
 
 	// Files to be executed after the test environment is setup but before tests are run
 	setupFilesAfterEnv: [
-		'./local/tests/unit/jest-setup.js',
+		'./tests/unit/jest-setup.js',
 	],
 };

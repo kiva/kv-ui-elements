@@ -6,25 +6,14 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLendCta },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<div style="width: 300px;">
 				<kv-lend-cta
-					:loan="loan"
-					:basket-items="basketItems"
-					:is-loading="isLoading"
-					:is-adding="isAdding"
-					:enable-five-dollars-notes="enableFiveDollarsNotes"
-					:five-dollars-selected="fiveDollarsSelected"
-					:kv-track-function="kvTrackFunction"
-					:show-view-loan="showViewLoan"
-					:custom-loan-details="customLoanDetails"
-					:enable-huge-amount="enableHugeAmount"
-					:is-visitor="isVisitor"
-					:secondary-button-handler="secondaryButtonHandler"
-					:external-links="externalLinks"
+					v-bind="args"
 				/>
 			</div>
 		`,

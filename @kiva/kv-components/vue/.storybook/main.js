@@ -1,6 +1,5 @@
 const path = require('path');
-
-const config = {
+module.exports = {
 	stories: [
 		'../stories/Styleguide.stories.js', // show the base styleguide first
 		'../stories/**/*.stories.mdx',
@@ -76,14 +75,14 @@ const config = {
 	},
 
 	framework: {
-		name: "@storybook/vue-webpack5",
+		name: '@storybook/vue3-webpack5',
 		options: {}
 	},
-
+	core: {
+		builder: '@storybook/builder-webpack5'
+	},
 	docs: {
 		autodocs: true,
 		defaultName: 'Kv Components',
 	}
-}
-
-export default config;
+};

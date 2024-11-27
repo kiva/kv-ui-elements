@@ -6,12 +6,13 @@ export default {
 };
 
 const story = (args) => {
-	const template = (_args, { argTypes }) => ({
+	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanCallouts },
+		setup() { return { args: { ...templateArgs } }; },
 		template: `
 			<kv-loan-callouts
-				:callouts="callouts"
+				v-bind="args"
 			/>
 		`,
 	});
