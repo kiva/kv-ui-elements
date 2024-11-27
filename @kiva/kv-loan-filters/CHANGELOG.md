@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.2...@kiva/kv-loan-filters@1.12.3) (2024-11-27)
+
+
+### Bug Fixes
+
+* add ts-jest types dependency ([d5fecd2](https://github.com/kiva/kv-ui-elements/commit/d5fecd255a194fdc390e2a7c8eb4e299935dc365))
+
+
+
+
+
 ## [1.12.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.1...@kiva/kv-loan-filters@1.12.2) (2024-06-06)
 
 

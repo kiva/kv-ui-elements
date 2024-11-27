@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.69](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.68...@kiva/kv-shop@1.12.69) (2024-11-27)
+
+
+### Bug Fixes
+
+* add ts-jest types dependency ([d5fecd2](https://github.com/kiva/kv-ui-elements/commit/d5fecd255a194fdc390e2a7c8eb4e299935dc365))
+
+
+
+
+
 ## [1.12.68](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.67...@kiva/kv-shop@1.12.68) (2024-11-26)
 
 **Note:** Version bump only for package @kiva/kv-shop

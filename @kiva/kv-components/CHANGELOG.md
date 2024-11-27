@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.4...@kiva/kv-components@4.0.0) (2024-11-27)
+
+
+### Bug Fixes
+
+* additional story refactoring for vue3 storybook 8 ([af16665](https://github.com/kiva/kv-ui-elements/commit/af166656eed90ef1a49b23fb9fe5a08308c92cc4))
+* fix more stories for vue3 storybook 8 ([aeb19aa](https://github.com/kiva/kv-ui-elements/commit/aeb19aaec30263ab6524f739492f31441cd663ba))
+* fix more stories for vue3 storybook 8 ([6fa71f7](https://github.com/kiva/kv-ui-elements/commit/6fa71f7c752c2fcfdfdb322264fe1fe846299747))
+* fix primitives story for vue3 storybook 8 ([0c271cf](https://github.com/kiva/kv-ui-elements/commit/0c271cf18c1342179932df74229da3f708644bee))
+* jest imports from [@vueuse](https://github.com/vueuse) ([3465f4e](https://github.com/kiva/kv-ui-elements/commit/3465f4e98f5f86db9c85bac4d1a80d6d18b6eff9))
+* lock storybook package versions ([4e39c6d](https://github.com/kiva/kv-ui-elements/commit/4e39c6dbb9970f8037e0aa099533545e97ab49cd))
+* remove comment ([a3109d0](https://github.com/kiva/kv-ui-elements/commit/a3109d01569171ff004543ef5e7dbee197645674))
+* remove vue 2/3 testing, add test config to kv-components ([cb0ddf2](https://github.com/kiva/kv-ui-elements/commit/cb0ddf23c06de65eea6da48cb24c3b2775ab2216))
+* tests ([e67a114](https://github.com/kiva/kv-ui-elements/commit/e67a114bb821f99a491ca8c5b1a3d93b90464dae))
+
+
+### Features
+
+* update to vue3 and storybook 8 ([51f609d](https://github.com/kiva/kv-ui-elements/commit/51f609df48b3643b90653e44b36d7c9028f08825))
+
+
+### BREAKING CHANGES
+
+* Vue3 is now required
+
+
+
+
+
 ## [3.109.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.3...@kiva/kv-components@3.109.4) (2024-11-26)
 
 
