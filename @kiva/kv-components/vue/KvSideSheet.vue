@@ -1,8 +1,8 @@
 <template>
 	<div
 		v-if="visible"
-		class="tw-hidden lg:tw-block tw-fixed tw-inset-0
-            tw-bg-black tw-transition-all tw-duration-150 tw-z-modal tw-mt-8"
+		class="tw-hidden lg:tw-block tw-absolute tw-inset-0
+            tw-bg-black tw-transition-all tw-duration-150 tw-z-modal"
 		:class="{
 			'tw-bg-opacity-0 tw-delay-300': !open,
 			'tw-bg-opacity-low': open,
