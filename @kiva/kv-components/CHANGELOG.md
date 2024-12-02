@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.0.1...@kiva/kv-components@4.1.0) (2024-12-02)
+
+
+### Features
+
+* adjust sidesheet for mobile and tablet views ([21a6e6c](https://github.com/kiva/kv-ui-elements/commit/21a6e6ce193be8e200a292de4625175105b2cd1a))
+
+
+
+
+
 ## [4.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.0.0...@kiva/kv-components@4.0.1) (2024-12-02)
 
 
