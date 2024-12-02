@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.0.0...@kiva/kv-components@4.0.1) (2024-12-02)
+
+
+### Bug Fixes
+
+* removing margin and fixed position ([7c6c8ea](https://github.com/kiva/kv-ui-elements/commit/7c6c8eac840359cbf22b9d36f01115db96305f55))
+
+
+
+
+
 # [4.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@3.109.4...@kiva/kv-components@4.0.0) (2024-11-27)
 
 
