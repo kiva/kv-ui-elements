@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="visible"
-		class="tw-hidden lg:tw-block tw-absolute tw-inset-0
+		class="tw-block tw-absolute tw-inset-0
             tw-bg-black tw-transition-all tw-duration-150 tw-z-modal"
 		:class="{
 			'tw-bg-opacity-0 tw-delay-300': !open,
@@ -13,7 +13,7 @@
 			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white"
 			:class="{
 				'tw-w-0 tw-p-0 tw-delay-200': !open,
-				'tw-w-1/2 tw-p-2': open,
+				'lg:tw-w-1/2 tw-w-full tw-p-2': open,
 			}"
 		>
 			<div class="tw-flex tw-justify-between">
