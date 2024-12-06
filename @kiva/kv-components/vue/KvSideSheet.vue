@@ -14,7 +14,7 @@
 			:class="{
 				'tw-w-0 tw-p-0 tw-delay-200': !open && !expandEffect,
 				'lg:tw-w-1/2 tw-w-full tw-p-2': open && !expandEffect,
-				'tw-w-full tw-overflow-hidden !tw-bg-action': expandEffect
+				'tw-w-full tw-overflow-hidden': expandEffect
 			}"
 			:style="modalStyles"
 			@transitionend="onTransitionEnd"
