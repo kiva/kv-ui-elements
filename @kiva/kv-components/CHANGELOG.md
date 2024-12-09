@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.1.0...@kiva/kv-components@4.2.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* fix transition and remove unused code ([664b00e](https://github.com/kiva/kv-ui-elements/commit/664b00e1b27a6afd51ce9cc85069b9dd4f5dc5d7))
+* remove bg ([43c8a0d](https://github.com/kiva/kv-ui-elements/commit/43c8a0db295be4dd86b414a41145ebcc6e2606f8))
+* set default values for element ([c21852d](https://github.com/kiva/kv-ui-elements/commit/c21852d54e2c94f99098b5a234233addfe0a1ed2))
+
+
+### Features
+
+* sidesheet expand effect ([4fbe553](https://github.com/kiva/kv-ui-elements/commit/4fbe5533d437af0d77b6d79b2f8ec8880f51c3dd))
+
+
+
+
+
 # [4.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.0.1...@kiva/kv-components@4.1.0) (2024-12-02)
 
 
