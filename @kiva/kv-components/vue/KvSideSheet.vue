@@ -13,7 +13,7 @@
 			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white
 				tw-overflow-hidden"
 			:class="{
-				'tw-w-0 tw-p-0 tw-delay-200 tw-opacity-low': !open,
+				'tw-w-0 tw-p-0 tw-delay-200 tw-opacity-0': !open,
 				'lg:tw-w-1/2 tw-w-full tw-p-2 tw-opacity-full': open,
 			}"
 			:style="modalStyles"
