@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.0...@kiva/kv-components@4.2.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* height modal and not necessary fixed position ([c922c7d](https://github.com/kiva/kv-ui-elements/commit/c922c7d9e3ff44ec498ed037bad6fc7c95240444))
+
+
+
+
+
 # [4.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.1.0...@kiva/kv-components@4.2.0) (2024-12-09)
 
 
