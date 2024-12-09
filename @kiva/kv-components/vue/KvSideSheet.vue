@@ -10,18 +10,20 @@
 		@click.self="closeSideSheet"
 	>
 		<div
-			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white"
+			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white
+				tw-overflow-hidden"
 			:class="{
-				'tw-w-0 tw-p-0 tw-delay-200': !open && !expandEffect,
-				'lg:tw-w-1/2 tw-w-full tw-p-2': open && !expandEffect,
-				'tw-w-full tw-overflow-hidden': expandEffect
+				'tw-w-0 tw-p-0 tw-delay-200 tw-opacity-low': !open,
+				'lg:tw-w-1/2 tw-w-full tw-p-2 tw-opacity-full': open,
 			}"
 			:style="modalStyles"
-			@transitionend="onTransitionEnd"
 		>
 			<div
-				class="tw-flex tw-justify-between"
-				:class="{'tw-hidden': !open && expandEffect}"
+				class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200"
+				:class="{
+					'tw-opacity-0': !open,
+					'tw-opacity-full': open,
+				}"
 			>
 				<button
 					class="hover:tw-text-action-highlight"
@@ -96,16 +98,9 @@ export default {
 			default: '',
 		},
 		/**
-		 * Give an effect of expand and shrink on the sheet
+		 * Source element position for expand animation
 		 */
-		expandEffect: {
-			type: Boolean,
-			default: false,
-		},
-		/**
-		 * Only used when expandEffect is true to set initial position where sheet will be expanded
-		 */
-		initialStyles: {
+		animationSourceElement: {
 			type: Object,
 			default: () => ({}),
 		},
@@ -118,38 +113,26 @@ export default {
 			visible,
 			kvTrackFunction,
 			trackEventCategory,
-			expandEffect,
-			initialStyles,
+			animationSourceElement,
 		} = toRefs(props);
 
 		const open = ref(false);
-		const animating = ref(false);
-
+		const initialStyles = ref({});
 		const modalStyles = ref({});
-
-		if (expandEffect.value) {
-			modalStyles.value = {
-				...initialStyles,
-				transition: 'none',
-			};
-		}
 
 		const closeSideSheet = () => {
 			open.value = false;
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
 
-			if (expandEffect.value) {
-				animating.value = true;
-
+			if (animationSourceElement.value) {
 				modalStyles.value = {
 					...initialStyles.value,
-					transition: 'all 0.7s ease-in-out',
+					transition: 'all 0.5s ease-in-out',
 				};
 			}
 
 			setTimeout(() => {
 				emit('side-sheet-closed');
-				animating.value = false;
 			}, '700');
 		};
 
@@ -157,18 +140,28 @@ export default {
 			emit('go-to-link');
 		};
 
-		const onTransitionEnd = () => {
-			animating.value = false;
-		};
-
 		watch(visible, () => {
 			if (visible.value) {
 				setTimeout(() => {
 					open.value = true;
-				}, '300');
+				}, 100);
 
-				if (expandEffect.value) {
-					animating.value = true;
+				const rect = animationSourceElement.value?.getBoundingClientRect();
+
+				if (rect?.top) {
+					initialStyles.value = {
+						position: 'fixed',
+						top: `${rect.top}px`,
+						left: `${rect.left}px`,
+						width: `${rect.width}px`,
+						height: `${rect.height}px`,
+					};
+
+					modalStyles.value = {
+						...initialStyles.value,
+						transition: 'none',
+					};
+
 					setTimeout(() => {
 						modalStyles.value = {
 							top: '0',
@@ -177,16 +170,9 @@ export default {
 							height: '100vh',
 							transition: 'all 0.5s ease-in-out',
 						};
-					}, 100);
+					}, 10);
 				}
 			}
-		});
-
-		watch(initialStyles, (newStyles) => {
-			modalStyles.value = {
-				...newStyles,
-				transition: 'none',
-			};
 		});
 
 		return {
@@ -195,9 +181,7 @@ export default {
 			open,
 			closeSideSheet,
 			goToLink,
-			onTransitionEnd,
 			modalStyles,
-			animating,
 		};
 	},
 };

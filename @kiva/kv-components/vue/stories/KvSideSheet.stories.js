@@ -26,9 +26,7 @@ const Template = (args, {
 				track-event-category="new-loan-card"
 				:show-go-to-link="true"
 				@side-sheet-closed="isVisible = false"
-				:initial-styles="modalInitialStyles"
-				:expand-effect="expandEffect"
-				@close="closeModal"
+				:animation-source-element="animationSourceElement"
 			>
 				<div>
 					Some content
@@ -38,8 +36,8 @@ const Template = (args, {
 	data() {
 		return {
 			isVisible: args.visible,
-			modalInitialStyles: {},
 			expandEffect: args.expandEffect,
+			animationSourceElement: null,
 		};
 	},
 	methods: {
@@ -54,24 +52,9 @@ const Template = (args, {
 		},
 		openModal(event) {
 			if (this.expandEffect) {
-				const card = event.currentTarget;
-				if (card) {
-					const rect = card.getBoundingClientRect();
-
-					this.modalInitialStyles = {
-						position: 'fixed',
-						top: `${rect.top}px`,
-						left: `${rect.left}px`,
-						width: `${rect.width}px`,
-						height: `${rect.height}px`,
-					};
-				}
+				this.animationSourceElement = event.currentTarget;
 			}
-
 			this.isVisible = true;
-		},
-		closeModal() {
-			this.isVisible = false;
 		},
 	},
 });
