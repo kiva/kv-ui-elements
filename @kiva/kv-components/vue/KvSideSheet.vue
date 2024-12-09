@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="visible"
-		class="tw-block tw-fixed lg:tw-mt-0 md:tw-absolute tw-inset-0
+		class="tw-block lg:tw-mt-0 tw-absolute tw-inset-0
             tw-bg-black tw-transition-all md:tw-duration-150 tw-z-modal"
 		:class="{
 			'tw-bg-opacity-0 tw-delay-300': !open,
@@ -172,7 +172,7 @@ export default {
 							top: '0',
 							left: '0',
 							width: '100vw',
-							height: '100vh',
+							height: '100%',
 							transition: 'all 0.5s ease-in-out',
 						};
 					}, 10);
