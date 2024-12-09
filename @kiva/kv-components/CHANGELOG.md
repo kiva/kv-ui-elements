@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.1...@kiva/kv-components@4.2.2) (2024-12-09)
+
+
+### Bug Fixes
+
+* opacity-low left a white space when closing sidesheet ([5ac062e](https://github.com/kiva/kv-ui-elements/commit/5ac062ed16bf4ddba1fc8a64ada95084b271546f))
+
+
+
+
+
 ## [4.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.0...@kiva/kv-components@4.2.1) (2024-12-09)
 
 
