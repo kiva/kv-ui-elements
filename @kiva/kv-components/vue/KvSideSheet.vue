@@ -148,13 +148,18 @@ export default {
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
 
-				if (rect?.top) {
+				const top = rect?.top ?? 0;
+				const left = rect?.left ?? 0;
+				const width = rect?.width ?? 0;
+				const height = rect?.height ?? 0;
+
+				if (top || left || width || height) {
 					initialStyles.value = {
 						position: 'fixed',
-						top: `${rect.top}px`,
-						left: `${rect.left}px`,
-						width: `${rect.width}px`,
-						height: `${rect.height}px`,
+						top: `${top}px`,
+						left: `${left}px`,
+						width: `${width}px`,
+						height: `${height}px`,
 					};
 
 					modalStyles.value = {
