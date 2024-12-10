@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.2...@kiva/kv-components@4.3.0) (2024-12-10)
+
+
+### Features
+
+* scroll user to original position when sheet is opening in mobile ([0c783fa](https://github.com/kiva/kv-ui-elements/commit/0c783fae5f61cb2958fb6220baa284c4287bedac))
+
+
+
+
+
 ## [4.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.1...@kiva/kv-components@4.2.2) (2024-12-09)
 
 
