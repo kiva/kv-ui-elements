@@ -119,12 +119,18 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
+		const userScrollPosition = ref(0);
 
 		const closeSideSheet = () => {
 			open.value = false;
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
 
-			if (animationSourceElement.value) {
+			if (animationSourceElement.value && window.scrollTo) {
+				window.scrollTo({
+					top: userScrollPosition.value,
+					behavior: 'smooth',
+				});
+
 				modalStyles.value = {
 					...initialStyles.value,
 					transition: 'all 0.5s ease-in-out',
@@ -154,6 +160,8 @@ export default {
 				const height = rect?.height ?? 0;
 
 				if (top || left || width || height) {
+					userScrollPosition.value = window.scrollY ?? 0;
+
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
