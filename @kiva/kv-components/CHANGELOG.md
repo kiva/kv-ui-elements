@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.0...@kiva/kv-components@4.3.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* resolve issue when screen size is changed and opening behavior changes ([c51d62e](https://github.com/kiva/kv-ui-elements/commit/c51d62e6b2f4efaee4ddcb6efa33cfe9523fd69f))
+
+
+
+
+
 # [4.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.2.2...@kiva/kv-components@4.3.0) (2024-12-10)
 
 
