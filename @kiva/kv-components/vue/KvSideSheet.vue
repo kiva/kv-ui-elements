@@ -11,7 +11,7 @@
 	>
 		<div
 			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white
-				tw-overflow-hidden tw-p-2"
+				tw-overflow-y-auto tw-p-2"
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
 				'lg:tw-w-1/2 tw-w-full tw-opacity-full': open,
