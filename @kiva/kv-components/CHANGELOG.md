@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.1...@kiva/kv-components@4.3.2) (2024-12-16)
+
+
+### Bug Fixes
+
+* overflow fallback ([1cd05db](https://github.com/kiva/kv-ui-elements/commit/1cd05db96ccc96424e7c364fb49156acedb6d101))
+* smooth out side sheet animation ([d65df74](https://github.com/kiva/kv-ui-elements/commit/d65df74824ef936fdcfc3f07870107a0676d194e))
+
+
+
+
+
 ## [4.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.0...@kiva/kv-components@4.3.1) (2024-12-11)
 
 
