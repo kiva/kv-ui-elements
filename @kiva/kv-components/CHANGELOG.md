@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.2...@kiva/kv-components@4.3.3) (2024-12-20)
+
+
+### Bug Fixes
+
+* side sheet shouldn't be full height ([d7e680f](https://github.com/kiva/kv-ui-elements/commit/d7e680fe172a1776bd5cc97d99cbb32d988b7c55))
+
+
+
+
+
 ## [4.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.1...@kiva/kv-components@4.3.2) (2024-12-16)
 
 
