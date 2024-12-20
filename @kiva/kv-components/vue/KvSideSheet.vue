@@ -10,7 +10,7 @@
 		@click.self="closeSideSheet"
 	>
 		<div
-			class="tw-absolute tw-right-0 tw-h-full tw-transition-all tw-duration-300 tw-bg-white
+			class="tw-absolute tw-right-0 tw-transition-all tw-duration-300 tw-bg-white
 				tw-overflow-y-auto tw-p-2"
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
