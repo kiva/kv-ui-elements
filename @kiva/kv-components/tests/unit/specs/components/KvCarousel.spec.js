@@ -33,6 +33,35 @@ const defaultCarouselSlides = `
 	</template>
 `;
 
+// Mocking IntersectionObserver and ResizeObserver and matchMedia
+// required for embla carousel
+Object.defineProperty(window, 'IntersectionObserver', {
+	writable: true,
+	value: jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	})),
+});
+
+Object.defineProperty(window, 'matchMedia', {
+	writable: true,
+	value: jest.fn().mockImplementation((query) => ({
+		matches: [].includes(query),
+		addEventListener: jest.fn(),
+		removeEventListener: jest.fn(),
+	})),
+});
+
+Object.defineProperty(window, 'ResizeObserver', {
+	writable: true,
+	value: jest.fn().mockImplementation(() => ({
+		observe: jest.fn(),
+		unobserve: jest.fn(),
+		disconnect: jest.fn(),
+	})),
+});
+
 describe('KvCarousel', () => {
 	it('has no automated accessibility violations', async () => {
 		const TestComponent = {
