@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.3...@kiva/kv-components@4.4.0) (2025-01-02)
+
+
+### Features
+
+* add browser API mocks to test embla carousel ([e4e8bd1](https://github.com/kiva/kv-ui-elements/commit/e4e8bd11812faf75ed12d7258cdaf7f024f86c45))
+* update embla to latest version ([6d37f77](https://github.com/kiva/kv-ui-elements/commit/6d37f7734072e595e6648592050b55027be537a5))
+
+
+
+
+
 ## [4.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.2...@kiva/kv-components@4.3.3) (2024-12-20)
 
 
