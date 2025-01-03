@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.4.0...@kiva/kv-components@4.5.0) (2025-01-03)
+
+
+### Features
+
+* add autoplay and fade plugin options for carousels ([b85b0c2](https://github.com/kiva/kv-ui-elements/commit/b85b0c20fbff52663c823a984db53fbb41baf0a4))
+
+
+
+
+
 # [4.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.3.3...@kiva/kv-components@4.4.0) (2025-01-02)
 
 
