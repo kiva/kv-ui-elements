@@ -8,10 +8,14 @@ import {
 	nextTick,
 } from 'vue-demi';
 import EmblaCarousel from 'embla-carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import Fade from 'embla-carousel-fade';
 import { throttle } from './throttle';
 
 export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	const {
+		autoplayOptions,
+		fadeEnabled,
 		emblaOptions,
 		slidesToScroll,
 	} = toRefs(props);
@@ -53,6 +57,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	const goToSlide = (index) => {
 		embla.value.scrollTo(index);
 	};
+
 	const handleUserInteraction = async (index, interactionType) => {
 		if (index !== null && typeof index !== 'undefined') {
 			await nextTick(); // wait for embla.
@@ -66,7 +71,29 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		 */
 		emit('interact-carousel', interactionType);
 	};
+	/**
+	 * Start/Stop autoplay
+	 *
+	 * @public This is a public method
+	 */
+	const toggleAutoPlay = () => {
+		const autoplay = embla.value?.plugins()?.autoplay;
+		if (!autoplay) return;
+		const playOrStop = autoplay.isPlaying() ? autoplay.stop : autoplay.play;
+		playOrStop();
+		handleUserInteraction(null, 'autoplay');
+	};
 
+	/**
+	 * Returns true if the carousel is autoplaying
+	 *
+	 * @public This is a public method
+	 */
+	const isAutoplaying = () => {
+		const autoplay = embla.value?.plugins()?.autoplay;
+		if (!autoplay) return false;
+		return autoplay.isPlaying();
+	};
 	/**
 	 * Returns number of slides in the carousel
 	 *
@@ -93,6 +120,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 			});
 		}
 	};
+
 	const reInit = () => {
 		embla.value.reInit();
 		if (slidesToScroll.value === 'visible') {
@@ -123,6 +151,13 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	};
 
 	onMounted(async () => {
+		const combinedPluginOptions = [];
+		if (Object.keys(autoplayOptions.value).length !== 0) {
+			combinedPluginOptions.push(Autoplay(autoplayOptions.value));
+		}
+		if (fadeEnabled.value) {
+			combinedPluginOptions.push(Fade());
+		}
 		embla.value = EmblaCarousel(rootEl.value, {
 			loop: true,
 			containScroll: 'trimSnaps',
@@ -130,7 +165,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 			align: 'start',
 			...extraEmblaOptions,
 			...emblaOptions.value,
-		});
+		}, combinedPluginOptions);
 
 		if (slidesToScroll.value === 'visible') {
 			reInitVisible();
@@ -185,6 +220,8 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		reInitVisible,
 		onCarouselContainerClick,
 		isAriaHidden,
+		isAutoplaying,
 		slideIndicatorListLength,
+		toggleAutoPlay,
 	};
 }

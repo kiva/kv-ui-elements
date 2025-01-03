@@ -107,6 +107,22 @@ export default {
 			default: 'auto',
 			validator: (value) => ['visible', 'auto'].indexOf(value) !== -1,
 		},
+		/**
+		 * Options for the autoplay plugin - // https://www.embla-carousel.com/plugins/autoplay/#options
+		 * */
+		autoplayOptions: {
+			type: Object,
+			default() {
+				return {};
+			},
+		},
+		/**
+		 * Enable fade plugin - // https://www.embla-carousel.com/plugins/fade/
+		 * */
+		fadeEnabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'change',
@@ -120,6 +136,7 @@ export default {
 			goToSlide,
 			handleUserInteraction,
 			isAriaHidden,
+			isAutoplaying,
 			nextIndex,
 			onCarouselContainerClick,
 			previousIndex,
@@ -128,6 +145,7 @@ export default {
 			rootEl,
 			slideIndicatorCount,
 			slides,
+			toggleAutoPlay,
 		} = carouselUtil(props, { emit, slots }, { axis: 'y' });
 
 		return {
@@ -137,6 +155,7 @@ export default {
 			goToSlide,
 			handleUserInteraction,
 			isAriaHidden,
+			isAutoplaying,
 			mdiChevronDown,
 			mdiChevronUp,
 			nextIndex,
@@ -147,6 +166,7 @@ export default {
 			rootEl,
 			slideIndicatorCount,
 			slides,
+			toggleAutoPlay,
 		};
 	},
 };

@@ -166,3 +166,81 @@ export const CustomStartIndex = () => ({
 		</kv-vertical-carousel>
 	`,
 });
+
+export const AutoPlayAutomatically = () => ({
+	components: {
+		KvVerticalCarousel,
+	},
+	template: `
+		<kv-vertical-carousel
+			style="max-width: 400px;"
+			:embla-options="{ loop: false }"
+			:autoplay-options="{ playOnInit: true, delay: 3000 }"
+		>
+			${defaultCarouselSlides}
+		</kv-vertical-carousel>
+	`,
+});
+
+export const AutoPlayButton = () => ({
+	components: {
+		KvVerticalCarousel,
+	},
+	data() {
+		return {
+			isPlaying: false,
+		};
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		});
+	},
+	template: `
+		<div>
+			<kv-vertical-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:autoplay-options="{ playOnInit: true, delay: 3000 }"
+				@interact-carousel="carouselInteraction"
+			>
+				${defaultCarouselSlides}
+			</kv-vertical-carousel>
+			<a href="#" @click.native.prevent="toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<br/>
+			<p>AutoPlay is: {{ isPlaying ? 'ON' : 'OFF' }}</p>
+		</div>
+	`,
+	methods: {
+		toggleAutoPlay() {
+			this.$refs.sampleCarousel.toggleAutoPlay();
+		},
+		carouselInteraction() {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		},
+	},
+});
+
+export const Fade = () => ({
+	components: {
+		KvVerticalCarousel,
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		});
+	},
+	template: `
+		<div>
+			<kv-vertical-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:fade-enabled="true"
+			>
+				${defaultCarouselSlides}
+			</kv-vertical-carousel>
+		</div>
+	`,
+});
