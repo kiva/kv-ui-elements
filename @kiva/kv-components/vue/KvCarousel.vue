@@ -181,6 +181,22 @@ export default {
 			},
 		},
 		/**
+		 * Options for the autoplay plugin - // https://www.embla-carousel.com/plugins/autoplay/#options
+		 * */
+		autoplayOptions: {
+			type: Object,
+			default() {
+				return {};
+			},
+		},
+		/**
+		 * Enable fade plugin - // https://www.embla-carousel.com/plugins/fade/
+		 * */
+		fadeEnabled: {
+			type: Boolean,
+			default: false,
+		},
+		/**
 		 * The type of logic to implement when deciding how many slides
 		 * to scroll when pressing the next/prev button
 		 * `visible, auto`
@@ -233,6 +249,7 @@ export default {
 			goToSlide,
 			handleUserInteraction,
 			isAriaHidden,
+			isAutoplaying,
 			nextIndex,
 			onCarouselContainerClick,
 			previousIndex,
@@ -242,6 +259,7 @@ export default {
 			slideIndicatorCount,
 			slideIndicatorListLength,
 			slides,
+			toggleAutoPlay,
 		} = carouselUtil(props, { emit, slots });
 
 		return {
@@ -251,6 +269,7 @@ export default {
 			goToSlide,
 			handleUserInteraction,
 			isAriaHidden,
+			isAutoplaying,
 			mdiArrowLeft,
 			mdiArrowRight,
 			mdiChevronLeft,
@@ -264,6 +283,7 @@ export default {
 			slideIndicatorCount,
 			slideIndicatorListLength,
 			slides,
+			toggleAutoPlay,
 		};
 	},
 };

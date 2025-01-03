@@ -424,3 +424,81 @@ export const ThreeDimensional = () => ({
 		</kv-carousel>
 	`,
 });
+
+export const AutoPlayAutomatically = () => ({
+	components: {
+		KvCarousel,
+	},
+	template: `
+		<kv-carousel
+			style="max-width: 400px;"
+			:embla-options="{ loop: false }"
+			:autoplay-options="{ playOnInit: true, delay: 3000 }"
+		>
+			${defaultCarouselSlides}
+		</kv-carousel>
+	`,
+});
+
+export const AutoPlayButton = () => ({
+	components: {
+		KvCarousel,
+	},
+	data() {
+		return {
+			isPlaying: false,
+		};
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		});
+	},
+	template: `
+		<div>
+			<kv-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:autoplay-options="{ playOnInit: true, delay: 3000 }"
+				@interact-carousel="carouselInteraction"
+			>
+				${defaultCarouselSlides}
+			</kv-carousel>
+			<a href="#" @click.native.prevent="toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<br/>
+			<p>AutoPlay is: {{ isPlaying ? 'ON' : 'OFF' }}</p>
+		</div>
+	`,
+	methods: {
+		toggleAutoPlay() {
+			this.$refs.sampleCarousel.toggleAutoPlay();
+		},
+		carouselInteraction() {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		},
+	},
+});
+
+export const Fade = () => ({
+	components: {
+		KvCarousel,
+	},
+	mounted() {
+		this.$nextTick(() => {
+			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		});
+	},
+	template: `
+		<div>
+			<kv-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:fade-enabled="true"
+			>
+				${defaultCarouselSlides}
+			</kv-carousel>
+		</div>
+	`,
+});
