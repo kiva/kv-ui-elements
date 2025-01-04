@@ -23,7 +23,7 @@ const webFonts = [
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
 		},
 	},
 	// Note corresponding font weight in Tailwind is "normal"
@@ -34,7 +34,7 @@ const webFonts = [
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-MediumItalic.133f41d.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-MediumItalic.133f41d.woff2) format(\'woff2\')',
 		},
 	},
 	// Note corresponding font weight in Tailwind is "light"
@@ -44,7 +44,7 @@ const webFonts = [
 			fontWeight: '300',
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
 		},
 	},
 	// Note corresponding font weight in Tailwind is "light"
@@ -55,7 +55,7 @@ const webFonts = [
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www-kiva-org.freetls.fastly.net/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
 		},
 	},
 ];
