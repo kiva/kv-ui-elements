@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.0...@kiva/kv-tokens@2.16.1) (2025-01-04)
+
+
+### Bug Fixes
+
+* update font cdn url ([b0e3d37](https://github.com/kiva/kv-ui-elements/commit/b0e3d37694064aa372b5776e311d1109f552ff5a))
+
+
+
+
+
 # [2.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.15.0...@kiva/kv-tokens@2.16.0) (2024-11-20)
 
 
