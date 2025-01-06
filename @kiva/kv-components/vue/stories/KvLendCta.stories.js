@@ -164,3 +164,48 @@ export const ViewLoanFunded = story({
 	kvTrackFunction,
 	showViewLoan: true,
 });
+
+export const WithPresetOptions = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		name: 'John',
+		unreservedAmount: '150.00',
+		borrowerCount: 1,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsGroup = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsUnreservedAmountOnly = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '40.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsEqualToLastAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '75.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});

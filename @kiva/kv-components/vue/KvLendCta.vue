@@ -54,10 +54,54 @@
 		>
 			<fieldset
 				class="tw-w-full tw-flex"
+				:class="{'tw-flex-col tw-gap-1': showPresetAmounts}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
 			>
-				<div class="amountDropdownWrapper">
+				<div
+					v-if="showPresetAmounts"
+					class="tw-flex tw-gap-1"
+				>
+					<template v-if="!showUnreservedAmountOnly">
+						<kv-ui-button
+							v-for="option in defaultAmountOptions"
+							:key="option"
+							:state="`${ unreservedAmount < option ? 'disabled' : ''}`"
+							variant="secondary"
+							class="tw-inline-flex tw-flex-1 preset-option"
+							:class="{'selected-option': selectedButtonOption === option }"
+							data-testid="bp-lend-cta-lend-button"
+							type="submit"
+							@click="selectedButtonOption = option"
+						>
+							${{ option }}
+						</kv-ui-button>
+						<kv-ui-select
+							v-if="hideShowLendDropdown"
+							:id="`LoanAmountDropdown_${loanId}`"
+							v-model="selectedOption"
+							:disabled="unreservedAmount <= defaultAmountOptions[2]"
+							class="tw-min-w-12 tw-rounded filtered-dropdown"
+							:class="{'unselected-dropdown': !selectedDropdown, 'selected-dropdown': selectedDropdown}"
+							aria-label="Lend amount"
+							@update:modelValue="trackLendAmountSelection"
+							@click.native.stop="clickDropdown"
+						>
+							<option
+								v-for="priceOption in presetDropdownPrices"
+								:key="priceOption"
+								:value="priceOption"
+							>
+								{{ isNaN(priceOption) ? priceOption : `$${priceOption}` }}
+							</option>
+						</kv-ui-select>
+					</template>
+				</div>
+
+				<div
+					v-else-if="!showPresetAmounts"
+					class="amountDropdownWrapper"
+				>
 					<kv-ui-select
 						v-if="hideShowLendDropdown && !isLessThan25"
 						:id="`LoanAmountDropdown_${loanId}`"
@@ -79,11 +123,12 @@
 				</div>
 
 				<!-- Lend button -->
-				<div :class="{ 'lendButtonWrapper': hideShowLendDropdown }">
+				<div :class="{ 'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts}">
 					<kv-ui-button
-						v-if="lendButtonVisibility && !isLessThan25"
+						v-if="lendButtonVisibility && !isLessThan25 && !showUnreservedAmountOnly"
 						key="lendButton"
 						class="tw-inline-flex tw-flex-1"
+						:class="{'tw-w-full': showPresetAmounts }"
 						data-testid="bp-lend-cta-lend-button"
 						type="submit"
 					>
@@ -95,6 +140,7 @@
 						v-else-if="showLendAgain"
 						key="lendAgainButton"
 						class="lend-again"
+						:class="{'tw-w-full': showPresetAmounts }"
 						data-testid="bp-lend-cta-lend-again-button"
 						type="submit"
 					>
@@ -104,7 +150,7 @@
 
 				<!-- Stranded loans -->
 				<kv-lend-amount-button
-					v-if="isLendAmountButton && !enableFiveDollarsNotes"
+					v-if="isLendAmountButton && !enableFiveDollarsNotes || showUnreservedAmountOnly"
 					class="tw-w-full"
 					:loan-id="loanId"
 					:show-now="false"
@@ -218,11 +264,25 @@ export default {
 			type: Function,
 			default: undefined,
 		},
+		showPresetAmounts: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
 			mdiChevronRight,
-			selectedOption: getLendCtaSelectedOption(
+			selectedOption: this.showPresetAmounts ? 'Other' : getLendCtaSelectedOption(
+				this.getCookie,
+				this.setCookie,
+				this.enableFiveDollarsNotes,
+				this.route?.query?.utm_campaign,
+				this.loan?.unreservedAmount,
+				this.userBalance,
+				this.fiveDollarsSelected,
+			),
+			defaultAmountOptions: [25, 50, 75],
+			selectedButtonOption: getLendCtaSelectedOption(
 				this.getCookie,
 				this.setCookie,
 				this.enableFiveDollarsNotes,
@@ -271,7 +331,16 @@ export default {
 				this.isVisitor,
 			);
 		},
+		presetDropdownPrices() {
+			const extraDropdownPrices = this.prices.slice(this.defaultAmountOptions.length);
+			extraDropdownPrices.unshift('Other');
+
+			return extraDropdownPrices;
+		},
 		ctaButtonText() {
+			if (this.showPresetAmounts) {
+				return this.loan?.borrowerCount > 1 ? 'Support' : `Support ${this.loan?.name}`;
+			}
 			if (this.isCompleteLoanActive) {
 				return this.primaryButtonText || 'Lend';
 			}
@@ -347,17 +416,26 @@ export default {
 				|| this.isAmountBetween25And500(this.unreservedAmount));
 		},
 		isLendAmountButton() {
-			return (this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(this.unreservedAmount);
+			return ((this.lendButtonVisibility || this.state === 'lent-to')
+				&& this.isAmountLessThan25(this.unreservedAmount));
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
 		},
 		amountToLend() {
+			if (this.showPresetAmounts && this.selectedButtonOption) {
+				return this.showUnreservedAmountOnly ? this.unreservedAmount : this.selectedButtonOption;
+			}
 			return this.isLessThan25 ? this.unreservedAmount : this.selectedOption;
 		},
 		showLendAgain() {
 			return this.isLentTo && !this.isLessThan25;
+		},
+		selectedDropdown() {
+			return !this.selectedButtonOption;
+		},
+		showUnreservedAmountOnly() {
+			return this.showPresetAmounts && (this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0);
 		},
 	},
 	watch: {
@@ -372,6 +450,10 @@ export default {
 					this.userBalance,
 					this.fiveDollarsSelected,
 				);
+			}
+
+			if (this.showPresetAmounts) {
+				this.selectedOption = 'Other';
 			}
 		},
 	},
@@ -396,6 +478,10 @@ export default {
 			return unreservedAmount < 500 && unreservedAmount >= 25;
 		},
 		trackLendAmountSelection(selectedDollarAmount) {
+			if (this.showPresetAmounts) {
+				this.selectedButtonOption = null;
+			}
+
 			this.kvTrackFunction(
 				'Lending',
 				'Modify lend amount',
@@ -447,5 +533,25 @@ export default {
 
 .lendButtonWrapper >>> span:first-child {
 	border-radius: 0 14px 14px 0;
+}
+
+.filtered-dropdown >>> select {
+	@apply tw-rounded tw-border-2 tw-font-medium;
+}
+
+.unselected-dropdown >>> select {
+	@apply tw-border-gray-400;
+}
+
+.selected-dropdown >>> select {
+	@apply tw-border-eco-green-4;
+}
+
+.preset-option >>> span.tw-w-full:first-child {
+	@apply tw-border-2 tw-border-gray-400;
+}
+
+.selected-option >>> span.tw-w-full:first-child {
+	@apply tw-border-eco-green-4;
 }
 </style>
