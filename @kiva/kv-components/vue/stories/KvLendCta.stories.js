@@ -188,7 +188,40 @@ export const WithPresetOptionsGroup = story({
 	showPresetAmounts: true,
 });
 
-export const WithPresetOptionsUnreservedAmountOnly = story({
+export const WithPresetOptionsEqualThanLastAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '75.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThanLastAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '50.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan25 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '10.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan50 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
@@ -199,13 +232,67 @@ export const WithPresetOptionsUnreservedAmountOnly = story({
 	showPresetAmounts: true,
 });
 
-export const WithPresetOptionsEqualToLastAmount = story({
-	isLoading: false,
+export const WithPresetOptionsLoading = story({
+	isLoading: true,
+	kvTrackFunction,
 	loan: {
 		id: 1,
-		unreservedAmount: '75.00',
+		unreservedAmount: '150.00',
 		borrowerCount: 2,
 	},
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsAdding = story({
+	isLoading: false,
+	isAdding: true,
+	kvTrackFunction,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+		borrowerCount: 2,
+	},
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsBasketed = story({
+	isLoading: false,
+	loan: { id: 1 },
+	basketItems: [
+		{
+			__typename: 'LoanReservation',
+			id: 1,
+		},
+	],
+	showPresetAmounts: true,
+	kvTrackFunction,
+});
+
+export const WithPresetOptionsBasketedWithSecondaryAction = story({
+	isLoading: false,
+	loan: { id: 1 },
+	basketItems: [
+		{
+			__typename: 'LoanReservation',
+			id: 1,
+		},
+	],
+	externalLinks: true,
+	kvTrackFunction,
+	secondaryButtonHandler,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsFunded = story({
+	isLoading: false,
+	loan: { status: 'funded' },
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsNonActionable = story({
+	isLoading: false,
+	loan: { status: 'refunded' },
 	kvTrackFunction,
 	showPresetAmounts: true,
 });

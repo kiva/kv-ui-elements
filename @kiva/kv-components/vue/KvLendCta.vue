@@ -54,7 +54,7 @@
 		>
 			<fieldset
 				class="tw-w-full tw-flex"
-				:class="{'tw-flex-col tw-gap-1': showPresetAmounts}"
+				:class="{'tw-flex-col tw-gap-1 md:tw-flex-row md:tw-justify-between': showPresetAmounts}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
 			>
@@ -62,40 +62,38 @@
 					v-if="showPresetAmounts"
 					class="tw-flex tw-gap-1"
 				>
-					<template v-if="!showUnreservedAmountOnly">
-						<kv-ui-button
-							v-for="option in defaultAmountOptions"
-							:key="option"
-							:state="`${ unreservedAmount < option ? 'disabled' : ''}`"
-							variant="secondary"
-							class="tw-inline-flex tw-flex-1 preset-option"
-							:class="{'selected-option': selectedButtonOption === option }"
-							data-testid="bp-lend-cta-lend-button"
-							type="submit"
-							@click="selectedButtonOption = option"
+					<kv-ui-button
+						v-for="option in defaultAmountOptions"
+						:key="option"
+						:state="`${ disablePresetButtons ? 'disabled' : ''}`"
+						variant="secondary"
+						class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
+						:class="{'selected-option': selectedButtonOption === option }"
+						data-testid="bp-lend-cta-lend-button"
+						type="submit"
+						@click="clickPresetButton(option)"
+					>
+						${{ option }}
+					</kv-ui-button>
+					<kv-ui-select
+						v-if="hideShowLendDropdown"
+						:id="`LoanAmountDropdown_${loanId}`"
+						v-model="selectedOption"
+						:disabled="disableFilteredDropdown"
+						class="tw-flex-1 tw-min-w-12 tw-rounded filtered-dropdown"
+						:class="{'unselected-dropdown': !selectedDropdown, 'selected-dropdown': selectedDropdown}"
+						aria-label="Lend amount"
+						@update:modelValue="trackLendAmountSelection"
+						@click.native.stop="clickDropdown"
+					>
+						<option
+							v-for="priceOption in presetDropdownPrices"
+							:key="priceOption"
+							:value="priceOption"
 						>
-							${{ option }}
-						</kv-ui-button>
-						<kv-ui-select
-							v-if="hideShowLendDropdown"
-							:id="`LoanAmountDropdown_${loanId}`"
-							v-model="selectedOption"
-							:disabled="unreservedAmount <= defaultAmountOptions[2]"
-							class="tw-min-w-12 tw-rounded filtered-dropdown"
-							:class="{'unselected-dropdown': !selectedDropdown, 'selected-dropdown': selectedDropdown}"
-							aria-label="Lend amount"
-							@update:modelValue="trackLendAmountSelection"
-							@click.native.stop="clickDropdown"
-						>
-							<option
-								v-for="priceOption in presetDropdownPrices"
-								:key="priceOption"
-								:value="priceOption"
-							>
-								{{ isNaN(priceOption) ? priceOption : `$${priceOption}` }}
-							</option>
-						</kv-ui-select>
-					</template>
+							{{ isNaN(priceOption) ? priceOption : `$${priceOption}` }}
+						</option>
+					</kv-ui-select>
 				</div>
 
 				<div
@@ -123,7 +121,12 @@
 				</div>
 
 				<!-- Lend button -->
-				<div :class="{ 'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts}">
+				<div
+					:class="{
+						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
+						'tw-hidden': isAdding && showPresetAmounts
+					}"
+				>
 					<kv-ui-button
 						v-if="lendButtonVisibility && !isLessThan25 && !showUnreservedAmountOnly"
 						key="lendButton"
@@ -337,24 +340,28 @@ export default {
 
 			return extraDropdownPrices;
 		},
+		loanName() {
+			return this.loan?.name ?? '';
+		},
+		presetAmountCtaButtonText() {
+			return this.loan?.borrowerCount > 1 ? 'Support' : `Support ${this.loanName}`;
+		},
+		defaultCtaButtonText() {
+			if (this.showPresetAmounts) return this.presetAmountCtaButtonText;
+			return this.primaryButtonText || 'Lend';
+		},
 		ctaButtonText() {
-			if (this.showPresetAmounts) {
-				return this.loan?.borrowerCount > 1 ? 'Support' : `Support ${this.loan?.name}`;
-			}
-			if (this.isCompleteLoanActive) {
-				return this.primaryButtonText || 'Lend';
-			}
 			switch (this.state) {
 				case 'loading':
 					return 'Loading...';
 				case 'refunded':
 				case 'expired':
 				default:
-					return this.primaryButtonText || 'Lend';
+					return this.defaultCtaButtonText;
 			}
 		},
 		loanInBasketButtonText() {
-			return this.secondaryButtonText;
+			return this.showPresetAmounts ? 'Continue to basket' : this.secondaryButtonText;
 		},
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
@@ -434,8 +441,15 @@ export default {
 		selectedDropdown() {
 			return !this.selectedButtonOption;
 		},
+		disablePresetButtons() {
+			return this.unreservedAmount < this.defaultAmountOptions[2];
+		},
+		disableFilteredDropdown() {
+			return this.unreservedAmount <= this.defaultAmountOptions[2];
+		},
 		showUnreservedAmountOnly() {
-			return this.showPresetAmounts && (this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0);
+			return this.showPresetAmounts && ((this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0)
+				|| this.disablePresetButtons);
 		},
 	},
 	watch: {
@@ -504,6 +518,10 @@ export default {
 				this.handleCheckout();
 			}
 		},
+		clickPresetButton(selectedDollarAmount) {
+			this.kvTrackFunction('Lending', 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId);
+			this.selectedButtonOption = selectedDollarAmount;
+		},
 		handleCheckout() {
 			this.kvTrackFunction(
 				'Lending',
@@ -536,7 +554,7 @@ export default {
 }
 
 .filtered-dropdown >>> select {
-	@apply tw-rounded tw-border-2 tw-font-medium;
+	@apply tw-rounded tw-border-2 tw-font-medium tw-cursor-pointer;
 }
 
 .unselected-dropdown >>> select {
