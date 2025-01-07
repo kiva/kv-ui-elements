@@ -65,7 +65,7 @@
 					<kv-ui-button
 						v-for="option in defaultAmountOptions"
 						:key="option"
-						:state="`${ disablePresetButtons ? 'disabled' : ''}`"
+						:state="`${ unreservedAmount < option ? 'disabled' : ''}`"
 						variant="secondary"
 						class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
 						:class="{'selected-option': selectedButtonOption === option }"
@@ -294,6 +294,7 @@ export default {
 				this.userBalance,
 				this.fiveDollarsSelected,
 			),
+			switchLendButton: false,
 		};
 	},
 	computed: {
@@ -441,15 +442,13 @@ export default {
 		selectedDropdown() {
 			return !this.selectedButtonOption;
 		},
-		disablePresetButtons() {
-			return this.unreservedAmount < this.defaultAmountOptions[2];
+		showUnreservedAmountOnly() {
+			return this.showPresetAmounts
+				&& (this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0)
+				&& !this.switchLendButton;
 		},
 		disableFilteredDropdown() {
-			return this.unreservedAmount <= this.defaultAmountOptions[2];
-		},
-		showUnreservedAmountOnly() {
-			return this.showPresetAmounts && ((this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0)
-				|| this.disablePresetButtons);
+			return this.unreservedAmount <= this.defaultAmountOptions[2] || this.showUnreservedAmountOnly;
 		},
 	},
 	watch: {
@@ -520,6 +519,7 @@ export default {
 		},
 		clickPresetButton(selectedDollarAmount) {
 			this.kvTrackFunction('Lending', 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId);
+			this.switchLendButton = true;
 			this.selectedButtonOption = selectedDollarAmount;
 		},
 		handleCheckout() {
