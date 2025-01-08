@@ -62,24 +62,24 @@
 					v-if="showPresetAmounts"
 					class="tw-flex tw-gap-1"
 				>
-					<kv-ui-button
-						v-for="option in defaultAmountOptions"
-						:key="option"
-						:state="`${ unreservedAmount < option ? 'disabled' : ''}`"
-						variant="secondary"
-						class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
-						:class="{'selected-option': selectedButtonOption === option }"
-						data-testid="bp-lend-cta-lend-button"
-						type="submit"
-						@click="clickPresetButton(option)"
-					>
-						${{ option }}
-					</kv-ui-button>
+					<template v-if="!isLendAmountButton">
+						<kv-ui-button
+							v-for="option in presetButtonsPrices"
+							:key="option"
+							variant="secondary"
+							class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
+							:class="{'selected-option': selectedOption == option }"
+							data-testid="bp-lend-cta-lend-button"
+							type="submit"
+							@click="clickPresetButton(option)"
+						>
+							${{ option }}
+						</kv-ui-button>
+					</template>
 					<kv-ui-select
-						v-if="hideShowLendDropdown"
+						v-if="showFilteredDropdown"
 						:id="`LoanAmountDropdown_${loanId}`"
-						v-model="selectedOption"
-						:disabled="disableFilteredDropdown"
+						v-model="selectedDropdownOption"
 						class="tw-flex-1 tw-min-w-12 tw-rounded filtered-dropdown"
 						:class="{'unselected-dropdown': !selectedDropdown, 'selected-dropdown': selectedDropdown}"
 						aria-label="Lend amount"
@@ -128,7 +128,7 @@
 					}"
 				>
 					<kv-ui-button
-						v-if="lendButtonVisibility && !isLessThan25 && !showUnreservedAmountOnly"
+						v-if="lendButtonVisibility && !isLessThan25"
 						key="lendButton"
 						class="tw-inline-flex tw-flex-1"
 						:class="{'tw-w-full': showPresetAmounts }"
@@ -153,7 +153,7 @@
 
 				<!-- Stranded loans -->
 				<kv-lend-amount-button
-					v-if="isLendAmountButton && !enableFiveDollarsNotes || showUnreservedAmountOnly"
+					v-if="isLendAmountButton && !enableFiveDollarsNotes"
 					class="tw-w-full"
 					:loan-id="loanId"
 					:show-now="false"
@@ -180,7 +180,7 @@ import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
-import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
+import { getLendCtaSelectedOption, getDropdownPriceArray, getPresetDropdownSelect } from '../utils/loanUtils';
 
 export default {
 	name: 'KvLendCta',
@@ -275,17 +275,8 @@ export default {
 	data() {
 		return {
 			mdiChevronRight,
-			selectedOption: this.showPresetAmounts ? 'Other' : getLendCtaSelectedOption(
-				this.getCookie,
-				this.setCookie,
-				this.enableFiveDollarsNotes,
-				this.route?.query?.utm_campaign,
-				this.loan?.unreservedAmount,
-				this.userBalance,
-				this.fiveDollarsSelected,
-			),
 			defaultAmountOptions: [25, 50, 75],
-			selectedButtonOption: getLendCtaSelectedOption(
+			selectedOption: getLendCtaSelectedOption(
 				this.getCookie,
 				this.setCookie,
 				this.enableFiveDollarsNotes,
@@ -293,8 +284,11 @@ export default {
 				this.loan?.unreservedAmount,
 				this.userBalance,
 				this.fiveDollarsSelected,
+				this.showPresetAmounts,
 			),
-			switchLendButton: false,
+			selectedDropdownOption: getPresetDropdownSelect(
+				this.loan?.unreservedAmount,
+			),
 		};
 	},
 	computed: {
@@ -335,7 +329,22 @@ export default {
 				this.isVisitor,
 			);
 		},
+		presetButtonsPrices() {
+			const prices = this.prices.slice(0, 3);
+
+			// Show only one extra option as button
+			if (this.prices.length === 4) {
+				prices.push(this.prices[3]);
+			}
+
+			return prices;
+		},
 		presetDropdownPrices() {
+			// Hide dropdown if there is only one option
+			if (this.prices.length === 4) {
+				return [];
+			}
+
 			const extraDropdownPrices = this.prices.slice(this.defaultAmountOptions.length);
 			extraDropdownPrices.unshift('Other');
 
@@ -431,8 +440,8 @@ export default {
 			return this.state === 'funded' || this.state === 'fully-reserved';
 		},
 		amountToLend() {
-			if (this.showPresetAmounts && this.selectedButtonOption) {
-				return this.showUnreservedAmountOnly ? this.unreservedAmount : this.selectedButtonOption;
+			if (this.selectedDropdown) {
+				return this.selectedDropdownOption;
 			}
 			return this.isLessThan25 ? this.unreservedAmount : this.selectedOption;
 		},
@@ -440,15 +449,10 @@ export default {
 			return this.isLentTo && !this.isLessThan25;
 		},
 		selectedDropdown() {
-			return !this.selectedButtonOption;
+			return this.selectedDropdownOption !== 'Other';
 		},
-		showUnreservedAmountOnly() {
-			return this.showPresetAmounts
-				&& (this.unreservedAmount > 25 && this.unreservedAmount % 25 !== 0)
-				&& !this.switchLendButton;
-		},
-		disableFilteredDropdown() {
-			return this.unreservedAmount <= this.defaultAmountOptions[2] || this.showUnreservedAmountOnly;
+		showFilteredDropdown() {
+			return this.presetDropdownPrices.length > 1;
 		},
 	},
 	watch: {
@@ -462,6 +466,7 @@ export default {
 					newValue,
 					this.userBalance,
 					this.fiveDollarsSelected,
+					this.showPresetAmounts,
 				);
 			}
 
@@ -492,7 +497,7 @@ export default {
 		},
 		trackLendAmountSelection(selectedDollarAmount) {
 			if (this.showPresetAmounts) {
-				this.selectedButtonOption = null;
+				this.selectedOption = null;
 			}
 
 			this.kvTrackFunction(
@@ -519,8 +524,7 @@ export default {
 		},
 		clickPresetButton(selectedDollarAmount) {
 			this.kvTrackFunction('Lending', 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId);
-			this.switchLendButton = true;
-			this.selectedButtonOption = selectedDollarAmount;
+			this.selectedOption = selectedDollarAmount;
 		},
 		handleCheckout() {
 			this.kvTrackFunction(

@@ -53,7 +53,11 @@ export function getLendCtaSelectedOption(
 	unreservedAmount,
 	userBalance,
 	fiveDollarsSelected,
+	showPresetAmounts,
 ) {
+	if (showPresetAmounts && unreservedAmount % 25 !== 0) {
+		return Number(unreservedAmount);
+	}
 	// defaulted to $5 for fiveDollarsSelected flag even when users come from email with a different balance
 	if (enableFiveDollarsNotes && fiveDollarsSelected) {
 		return '5';
@@ -206,4 +210,16 @@ export function getDropdownPriceArray(
 	}
 
 	return priceArray;
+}
+
+/**
+ * Gets the default of extra dropdown when unreserved amount is not incremental
+ * and preset amounts are enabled
+ *
+ * @param {string} unreservedAmount The unreserved amount of the loan
+ * @returns Default value for the extra dropdown
+ */
+export function getPresetDropdownSelect(unreservedAmount) {
+	if (unreservedAmount % 25 === 0) return 'Other';
+	return Number(unreservedAmount);
 }
