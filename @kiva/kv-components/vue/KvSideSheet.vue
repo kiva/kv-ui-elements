@@ -15,7 +15,6 @@
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
 				'lg:tw-w-1/2 tw-w-full tw-opacity-full': open,
-				'tw-h-screen': stickyControls,
 			}"
 			:style="modalStyles"
 		>
@@ -129,6 +128,7 @@ export default {
 			kvTrackFunction,
 			trackEventCategory,
 			animationSourceElement,
+			stickyControls,
 		} = toRefs(props);
 
 		const open = ref(false);
@@ -200,8 +200,16 @@ export default {
 							transition: 'all 0.5s ease-in-out',
 						};
 					}, 10);
-				} else {
-					modalStyles.value = {};
+				} else if (stickyControls.value) {
+					let sheetHeight = 100;
+					const navElement = document.querySelector('nav'); // Check if header element exists
+					if (window) {
+						sheetHeight = window.innerHeight - (navElement?.offsetHeight ?? 0);
+					}
+
+					modalStyles.value = {
+						height: `${sheetHeight}px`,
+					};
 				}
 			}
 		});
