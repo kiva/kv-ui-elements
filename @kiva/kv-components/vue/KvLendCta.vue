@@ -284,7 +284,6 @@ export default {
 				this.loan?.unreservedAmount,
 				this.userBalance,
 				this.fiveDollarsSelected,
-				this.showPresetAmounts,
 			),
 			selectedDropdownOption: 'Other',
 		};

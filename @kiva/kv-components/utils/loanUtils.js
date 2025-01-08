@@ -53,11 +53,7 @@ export function getLendCtaSelectedOption(
 	unreservedAmount,
 	userBalance,
 	fiveDollarsSelected,
-	showPresetAmounts,
 ) {
-	if (showPresetAmounts && unreservedAmount % 25 !== 0 && unreservedAmount < 100) {
-		return Number(unreservedAmount);
-	}
 	// defaulted to $5 for fiveDollarsSelected flag even when users come from email with a different balance
 	if (enableFiveDollarsNotes && fiveDollarsSelected) {
 		return '5';
