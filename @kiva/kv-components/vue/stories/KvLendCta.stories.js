@@ -164,3 +164,169 @@ export const ViewLoanFunded = story({
 	kvTrackFunction,
 	showViewLoan: true,
 });
+
+export const WithPresetOptions = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		name: 'John',
+		unreservedAmount: '150.00',
+		borrowerCount: 1,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsGroup = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsEqualThanLastAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '75.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThanLastAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '50.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan25 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '10.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan50 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '40.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan100 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '80.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLessThan200 = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '190.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsHugeAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '12850.00',
+	},
+	kvTrackFunction,
+	enableHugeAmount: true,
+	isVisitor: false,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsLoading = story({
+	isLoading: true,
+	kvTrackFunction,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+		borrowerCount: 2,
+	},
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsAdding = story({
+	isLoading: false,
+	isAdding: true,
+	kvTrackFunction,
+	loan: {
+		id: 1,
+		unreservedAmount: '150.00',
+		borrowerCount: 2,
+	},
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsBasketed = story({
+	isLoading: false,
+	loan: { id: 1 },
+	basketItems: [
+		{
+			__typename: 'LoanReservation',
+			id: 1,
+		},
+	],
+	showPresetAmounts: true,
+	kvTrackFunction,
+});
+
+export const WithPresetOptionsBasketedWithSecondaryAction = story({
+	isLoading: false,
+	loan: { id: 1 },
+	basketItems: [
+		{
+			__typename: 'LoanReservation',
+			id: 1,
+		},
+	],
+	externalLinks: true,
+	kvTrackFunction,
+	secondaryButtonHandler,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsFunded = story({
+	isLoading: false,
+	loan: { status: 'funded' },
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsNonActionable = story({
+	isLoading: false,
+	loan: { status: 'refunded' },
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
