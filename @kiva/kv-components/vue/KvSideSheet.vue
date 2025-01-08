@@ -15,6 +15,7 @@
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
 				'lg:tw-w-1/2 tw-w-full tw-opacity-full': open,
+				'tw-h-screen': stickyControls,
 			}"
 			:style="modalStyles"
 		>
@@ -54,6 +55,16 @@
 				}"
 			>
 				<slot></slot>
+			</div>
+
+			<!-- controls -->
+			<div
+				v-if="$slots.controls"
+				ref="controlsRef"
+				:class="{'tw-sticky tw-bottom-0': stickyControls}"
+			>
+				<!-- @slot controls -->
+				<slot name="controls"></slot>
 			</div>
 		</div>
 	</div>
@@ -104,6 +115,10 @@ export default {
 			type: Object,
 			default: () => ({}),
 		},
+		stickyControls: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'side-sheet-closed',
@@ -120,6 +135,7 @@ export default {
 		const initialStyles = ref({});
 		const modalStyles = ref({});
 		const userScrollPosition = ref(0);
+		const controlsRef = ref(null);
 
 		const closeSideSheet = () => {
 			open.value = false;
@@ -197,6 +213,7 @@ export default {
 			closeSideSheet,
 			goToLink,
 			modalStyles,
+			controlsRef,
 		};
 	},
 };

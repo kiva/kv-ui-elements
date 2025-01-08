@@ -27,11 +27,16 @@ const Template = (args, {
 				:show-go-to-link="true"
 				@side-sheet-closed="isVisible = false"
 				:animation-source-element="animationSourceElement"
+				:sticky-controls="stickyControls"
 			>
 				<div>
 					Some content
 					<img src="https://www-kiva-org.freetls.fastly.net/img/w600h450/9673d0722a7675b9b8d11f90849d9b44.jpg" />
 				</div>
+
+				<template #controls>
+					<p>Controls</p>
+				<template>
 			</kv-side-sheet>
 		</div>`,
 	data() {
@@ -39,6 +44,7 @@ const Template = (args, {
 			isVisible: args.visible,
 			expandEffect: args.expandEffect,
 			animationSourceElement: null,
+			stickyControls: args.stickyControls,
 		};
 	},
 	methods: {
@@ -61,6 +67,11 @@ const Template = (args, {
 });
 
 export const Default = Template.bind({});
+
+export const StickyControls = Template.bind({});
+StickyControls.args = {
+	stickyControls: true,
+};
 
 export const ExpandEffect = Template.bind({});
 ExpandEffect.args = {
