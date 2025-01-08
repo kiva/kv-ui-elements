@@ -61,6 +61,7 @@
 				<div
 					v-if="showPresetAmounts"
 					class="tw-flex tw-gap-1"
+					:class="{'tw-flex-wrap md:tw-flex-nowrap': enableHugeAmount}"
 				>
 					<template v-if="!isLendAmountButton">
 						<kv-ui-button
@@ -80,8 +81,12 @@
 						v-if="showFilteredDropdown"
 						:id="`LoanAmountDropdown_${loanId}`"
 						v-model="selectedDropdownOption"
-						class="tw-flex-1 tw-min-w-12 tw-rounded filtered-dropdown"
-						:class="{'unselected-dropdown': !selectedDropdown, 'selected-dropdown': selectedDropdown}"
+						class="tw-min-w-12 tw-rounded filtered-dropdown"
+						:class="{
+							'unselected-dropdown': !selectedDropdown,
+							'selected-dropdown': selectedDropdown,
+							'tw-w-full': enableHugeAmount
+						}"
 						aria-label="Lend amount"
 						@update:modelValue="trackLendAmountSelection"
 						@click.native.stop="clickDropdown"
@@ -270,6 +275,10 @@ export default {
 		showPresetAmounts: {
 			type: Boolean,
 			default: false,
+		},
+		kvTrackCategory: {
+			type: String,
+			default: 'Lending',
 		},
 	},
 	data() {
@@ -475,7 +484,7 @@ export default {
 	methods: {
 		async addToBasket() {
 			this.kvTrackFunction(
-				'Lending',
+				this.kvTrackCategory,
 				'Add to basket',
 				this.showLendAgain ? 'Lend again' : 'lend-button-click',
 				this.loanId,
@@ -498,7 +507,7 @@ export default {
 			}
 
 			this.kvTrackFunction(
-				'Lending',
+				this.kvTrackCategory,
 				'Modify lend amount',
 				selectedDollarAmount,
 				this.loanId,
@@ -506,7 +515,9 @@ export default {
 			);
 		},
 		clickDropdown() {
-			this.kvTrackFunction('Lending', 'click-Modify loan amount', 'open dialog', this.loanId, this.loanId);
+			this.kvTrackFunction(
+				this.kvTrackCategory, 'click-Modify loan amount', 'open dialog', this.loanId, this.loanId,
+			);
 		},
 		clickSecondaryButton(event) {
 			if (this.secondaryButtonHandler) {
@@ -520,12 +531,14 @@ export default {
 			}
 		},
 		clickPresetButton(selectedDollarAmount) {
-			this.kvTrackFunction('Lending', 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId);
+			this.kvTrackFunction(
+				this.kvTrackCategory, 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId,
+			);
 			this.selectedOption = selectedDollarAmount;
 		},
 		handleCheckout() {
 			this.kvTrackFunction(
-				'Lending',
+				this.kvTrackCategory,
 				'click-Continue-to-checkout',
 				'Continue to checkout',
 				this.loanId,
