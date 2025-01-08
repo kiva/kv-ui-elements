@@ -180,7 +180,7 @@ import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
-import { getLendCtaSelectedOption, getDropdownPriceArray, getPresetDropdownSelect } from '../utils/loanUtils';
+import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
 
 export default {
 	name: 'KvLendCta',
@@ -286,9 +286,7 @@ export default {
 				this.fiveDollarsSelected,
 				this.showPresetAmounts,
 			),
-			selectedDropdownOption: getPresetDropdownSelect(
-				this.loan?.unreservedAmount,
-			),
+			selectedDropdownOption: 'Other',
 		};
 	},
 	computed: {
