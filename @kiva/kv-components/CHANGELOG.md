@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.5.1...@kiva/kv-components@4.6.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* case when unreserved amount is greater first dropdown option ([af7bac1](https://github.com/kiva/kv-ui-elements/commit/af7bac155c18e902c7fe9594d75bd74ee966564a))
+* edge cases for unreserved amount and select dropdown by default ([273e13f](https://github.com/kiva/kv-ui-elements/commit/273e13fa377277bf49684ea3032da56f0e5537ff))
+* new cases for unreserved amount ([2de1302](https://github.com/kiva/kv-ui-elements/commit/2de1302de738d0f2489f56721efc30d1f6ab448a))
+* remove lendCtaSelectedOption modification ([10c98d0](https://github.com/kiva/kv-ui-elements/commit/10c98d04bc72eba67591e6d7dbaf6347f5026bdf))
+* resolve comments and add new cases in stories ([310c152](https://github.com/kiva/kv-ui-elements/commit/310c15273d21e2610f7e7bd67c46e5c6d5bf32d5))
+
+
+### Features
+
+* add enableHugeAmount option to preset buttons ([c07a4b1](https://github.com/kiva/kv-ui-elements/commit/c07a4b1f74532b57f15a7aef9337659462c57b2e))
+* new lendCta variant with preset options as buttons plus dropdown ([1e464a7](https://github.com/kiva/kv-ui-elements/commit/1e464a7518e77657deb59cadb90f78f1dc0db287))
+* new line for dropdown when huge amount flag is enabled ([c66a90e](https://github.com/kiva/kv-ui-elements/commit/c66a90e6ac0e7b4bdc15ca28f681a97eab43dfca))
+
+
+
+
+
 ## [4.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.5.0...@kiva/kv-components@4.5.1) (2025-01-04)
 
 **Note:** Version bump only for package @kiva/kv-components
