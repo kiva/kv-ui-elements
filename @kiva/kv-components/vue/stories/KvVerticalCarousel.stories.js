@@ -1,3 +1,4 @@
+import { watch } from 'vue';
 import KvVerticalCarousel from '../KvVerticalCarousel.vue';
 import KvButton from '../KvButton.vue';
 
@@ -186,14 +187,12 @@ export const AutoPlayButton = () => ({
 	components: {
 		KvVerticalCarousel,
 	},
-	data() {
-		return {
-			isPlaying: false,
-		};
-	},
+	data: () => ({
+		isAutoplaying: false,
+	}),
 	mounted() {
-		this.$nextTick(() => {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		watch(() => this.$refs?.sampleCarousel?.isAutoplaying, (newValue) => {
+			this.isAutoplaying = newValue;
 		});
 	},
 	template: `
@@ -203,33 +202,20 @@ export const AutoPlayButton = () => ({
 				style="max-width: 400px;"
 				:embla-options="{ loop: false }"
 				:autoplay-options="{ playOnInit: true, delay: 3000 }"
-				@interact-carousel="carouselInteraction"
 			>
 				${defaultCarouselSlides}
 			</kv-vertical-carousel>
-			<a href="#" @click.native.prevent="toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
 			<br/>
-			<p>AutoPlay is: {{ isPlaying ? 'ON' : 'OFF' }}</p>
+			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 		</div>
 	`,
-	methods: {
-		toggleAutoPlay() {
-			this.$refs.sampleCarousel.toggleAutoPlay();
-		},
-		carouselInteraction() {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
-		},
-	},
 });
 
+/** Fade really only works when the carousel displays 1 slide at a time, this story is wonky as expected */
 export const Fade = () => ({
 	components: {
 		KvVerticalCarousel,
-	},
-	mounted() {
-		this.$nextTick(() => {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
-		});
 	},
 	template: `
 		<div>

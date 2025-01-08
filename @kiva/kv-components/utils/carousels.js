@@ -22,6 +22,8 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	const rootEl = ref(null);
 	const embla = ref(null);
 	const slides = ref([]);
+	const isAutoplaying = ref(false);
+
 	const startIndex = emblaOptions.value?.startIndex ?? 0;
 	const currentIndex = ref(startIndex);
 	// The indicator count may differ from the slide count when multiple slides are in view
@@ -63,6 +65,13 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 			await nextTick(); // wait for embla.
 			goToSlide(index);
 		}
+
+		/** Stop autoplay on user interaction */
+		const autoplay = embla.value?.plugins()?.autoplay;
+		if (autoplay) {
+			autoplay.stop();
+		}
+
 		/**
 		 * Fires when the user interacts with the carousel.
 		 * Contains the interaction type (swipe-left, click-left-arrow, etc.)
@@ -81,19 +90,8 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		if (!autoplay) return;
 		const playOrStop = autoplay.isPlaying() ? autoplay.stop : autoplay.play;
 		playOrStop();
-		handleUserInteraction(null, 'autoplay');
 	};
 
-	/**
-	 * Returns true if the carousel is autoplaying
-	 *
-	 * @public This is a public method
-	 */
-	const isAutoplaying = () => {
-		const autoplay = embla.value?.plugins()?.autoplay;
-		if (!autoplay) return false;
-		return autoplay.isPlaying();
-	};
 	/**
 	 * Returns number of slides in the carousel
 	 *
@@ -198,10 +196,32 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 				emit('change', currentIndex);
 			});
 		});
+
+		embla?.value?.on('autoplay:play', () => {
+			console.log('autoplay:play');
+			/**
+			 * Fires when autoplay starts
+			 * @event autoplay-play
+			 * @type {Event}
+			 */
+			isAutoplaying.value = true;
+		});
+
+		embla?.value?.on('autoplay:stop', () => {
+			console.log('autoplay:stop');
+			/**
+			 * Fires when autoplay starts
+			 * @event autoplay-play
+			 * @type {Event}
+			 */
+			isAutoplaying.value = false;
+		});
 	});
 
 	onUnmounted(async () => {
 		embla?.value?.off('select');
+		embla?.value?.off('autoplay:play');
+		embla?.value?.off('autoplay:stop');
 		embla?.value?.destroy();
 	});
 

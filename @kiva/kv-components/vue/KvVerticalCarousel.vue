@@ -29,40 +29,69 @@
 		<!-- Carousel Controls -->
 		<div
 			class="kv-carousel__controls tw-flex
-			tw-justify-between md:tw-justify-center tw-items-center tw-gap-2
-			tw-mt-2 tw-w-full"
+			tw-items-center tw-gap-2
+			tw-mt-2 tw-w-full
+			tw-justify-between md:tw-justify-center"
 		>
+			<div
+				class="tw-flex tw-gap-2 tw-w-full md:tw-w-auto"
+				:class="{'tw-justify-between md:tw-justify-center': !hasAutoplay}"
+			>
+				<button
+					class="tw-text-primary
+					tw-rounded-full
+					tw-border-2 tw-border-primary
+					tw-h-4 tw-w-4
+					tw-flex tw-items-center tw-justify-center
+					disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollPrev()"
+					@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiChevronUp"
+					/>
+					<span class="tw-sr-only">Show previous slide</span>
+				</button>
+				<button
+					class="tw-text-primary
+					tw-rounded-full
+					tw-border-2 tw-border-primary
+					tw-h-4 tw-w-4
+					tw-flex tw-items-center tw-justify-center
+					disabled:tw-opacity-low disabled:tw-cursor-default"
+					:disabled="embla && !embla.canScrollNext()"
+					@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
+				>
+					<kv-material-icon
+						class="tw-w-4"
+						:icon="mdiChevronDown"
+					/>
+					<span class="tw-sr-only">Show next slide</span>
+				</button>
+			</div>
+
 			<button
+				v-if="hasAutoplay"
 				class="tw-text-primary
 					tw-rounded-full
 					tw-border-2 tw-border-primary
 					tw-h-4 tw-w-4
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:disabled="embla && !embla.canScrollPrev()"
-				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
+				@click.native.prevent="toggleAutoPlay()"
 			>
 				<kv-material-icon
+					v-if="isAutoplaying"
 					class="tw-w-4"
-					:icon="mdiChevronUp"
+					:icon="mdiPause"
+				/>
+				<kv-material-icon
+					v-else
+					class="tw-w-4"
+					:icon="mdiPlay"
 				/>
 				<span class="tw-sr-only">Show previous slide</span>
-			</button>
-			<button
-				class="tw-text-primary
-					tw-rounded-full
-					tw-border-2 tw-border-primary
-					tw-h-4 tw-w-4
-					tw-flex tw-items-center tw-justify-center
-					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:disabled="embla && !embla.canScrollNext()"
-				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
-			>
-				<kv-material-icon
-					class="tw-w-4"
-					:icon="mdiChevronDown"
-				/>
-				<span class="tw-sr-only">Show next slide</span>
 			</button>
 		</div>
 	</div>
@@ -70,9 +99,15 @@
 
 <script>
 import {
+	toRefs,
+} from 'vue-demi';
+import {
+	mdiPause,
+	mdiPlay,
 	mdiChevronUp,
 	mdiChevronDown,
 } from '@mdi/js';
+import { computed } from 'vue';
 import { carouselUtil } from '../utils/carousels';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -130,6 +165,10 @@ export default {
 	],
 	setup(props, { emit, slots }) {
 		const {
+			autoplayOptions,
+		} = toRefs(props);
+
+		const {
 			componentSlotKeys,
 			currentIndex,
 			embla,
@@ -148,7 +187,12 @@ export default {
 			toggleAutoPlay,
 		} = carouselUtil(props, { emit, slots }, { axis: 'y' });
 
+		const hasAutoplay = computed(() => {
+			return Object.keys(autoplayOptions.value).length !== 0;
+		});
+
 		return {
+			hasAutoplay,
 			componentSlotKeys,
 			currentIndex,
 			embla,
@@ -156,6 +200,8 @@ export default {
 			handleUserInteraction,
 			isAriaHidden,
 			isAutoplaying,
+			mdiPause,
+			mdiPlay,
 			mdiChevronDown,
 			mdiChevronUp,
 			nextIndex,
