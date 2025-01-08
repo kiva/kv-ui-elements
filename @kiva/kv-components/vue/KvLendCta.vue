@@ -91,7 +91,7 @@
 							:key="priceOption"
 							:value="priceOption"
 						>
-							{{ isNaN(priceOption) ? priceOption : `$${priceOption}` }}
+							{{ priceOption !== 'Other' ? `$${priceOption}` : priceOption }}
 						</option>
 					</kv-ui-select>
 				</div>
