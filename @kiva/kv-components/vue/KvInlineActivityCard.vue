@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.activity-avatar, .activity-avatar >>> img, .activity-avatar >>> div {
+.activity-avatar, .activity-avatar :deep(img), .activity-avatar :deep(div) {
     @apply tw-w-4 tw-h-4;
 }
 </style>

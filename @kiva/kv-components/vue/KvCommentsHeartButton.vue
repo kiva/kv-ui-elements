@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style scoped>
-.filled >>> svg {
+.filled :deep(svg) {
     fill: #F60059;
 }
 </style>

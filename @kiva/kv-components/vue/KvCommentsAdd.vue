@@ -116,20 +116,20 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
->>> input {
+:deep(input) {
 	@apply tw-border-t-0 tw-border-r-0 tw-border-l-0 tw-rounded-none tw-p-0 tw-h-4;
 }
 
->>> input:focus {
+:deep(input:focus) {
 	@apply tw-border-tertiary;
 	box-shadow: none;
 }
 
->>> button > span {
+:deep(button > span) {
 	@apply tw-min-h-0;
 }
 
->>> button > span > span {
+:deep(button > span > span) {
 	@apply tw-py-0 tw-px-0.5;
 }
 </style>
