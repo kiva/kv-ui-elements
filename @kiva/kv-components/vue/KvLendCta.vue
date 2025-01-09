@@ -550,39 +550,39 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.amountDropdownWrapper >>> select {
+.amountDropdownWrapper :deep(select) {
 	border-radius: 14px 0 0 14px;
 }
 
-.lend-again >>> span {
+.lend-again :deep(span) {
 	@apply tw-px-0;
 }
 
-.lend-again >>> span {
+.lend-again :deep(span) {
 	@apply tw-px-1;
 }
 
-.lendButtonWrapper >>> span:first-child {
+.lendButtonWrapper :deep(span:first-child) {
 	border-radius: 0 14px 14px 0;
 }
 
-.filtered-dropdown >>> select {
+.filtered-dropdown :deep(select) {
 	@apply tw-rounded tw-border-2 tw-font-medium tw-cursor-pointer;
 }
 
-.unselected-dropdown >>> select {
+.unselected-dropdown :deep(select) {
 	@apply tw-border-gray-400;
 }
 
-.selected-dropdown >>> select {
+.selected-dropdown :deep(select) {
 	@apply tw-border-eco-green-4;
 }
 
-.preset-option >>> span.tw-w-full:first-child {
+.preset-option :deep(span.tw-w-full:first-child) {
 	@apply tw-border-2 tw-border-gray-400;
 }
 
-.selected-option >>> span.tw-w-full:first-child {
+.selected-option :deep(span.tw-w-full:first-child) {
 	@apply tw-border-eco-green-4;
 }
 </style>

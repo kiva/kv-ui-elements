@@ -425,7 +425,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.loan-callouts >>> span {
+.loan-callouts :deep(span) {
 	@apply !tw-bg-transparent tw-text-action;
 }
 .loan-card-use:hover,
@@ -443,7 +443,7 @@ export default {
 .loan-card-name {
 	@apply tw-pt-1 tw-px-3 tw-text-ellipsis tw-overflow-hidden tw-line-clamp-1 tw-cursor-pointer;
 }
-.loan-bookmark >>> button {
+.loan-bookmark :deep(button) {
 	@apply !tw-rounded-t-none;
 }
 </style>

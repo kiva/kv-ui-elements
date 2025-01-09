@@ -38,15 +38,15 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
->>> span {
+:deep(span) {
 	@apply tw-min-h-0;
 }
 
->>> span > span {
+:deep(span > span) {
 	@apply tw-py-0 tw-px-0.5 tw-flex tw-items-center;
 }
 
->>> svg {
+:deep(svg) {
 	@apply tw-mx-0.5;
 }
 </style>

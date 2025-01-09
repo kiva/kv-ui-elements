@@ -427,7 +427,7 @@ export default {
 	@apply tw-no-underline;
 }
 /** Unique to this loan card */
-.loan-callouts >>> div{
+.loan-callouts :deep(div) {
 	@apply tw-flex-wrap tw-h-auto;
 }
 </style>

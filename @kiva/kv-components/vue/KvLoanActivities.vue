@@ -233,24 +233,24 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-.loan-activity >>> #kvLightboxBody {
+.loan-activity :deep(#kvLightboxBody) {
 	@apply tw-flex tw-flex-col tw-px-0 tw-pb-0;
 }
 
-.loan-activity >>> div > div > div > div > div:first-child {
+.loan-activity :deep(div > div > div > div > div:first-child) {
 	box-shadow: var(--kiva-box-shadow);
 }
 
-.loan-activity >>> div > div > div > div > div:first-child > div,
-.loan-activity >>> #kvLightboxBody div {
+.loan-activity :deep(div > div > div > div > div:first-child > div),
+.loan-activity :deep(#kvLightboxBody div) {
 	box-shadow: none;
 }
 
-.loan-activity >>> #kvLightboxBody > div:first-child {
+.loan-activity :deep(#kvLightboxBody > div:first-child) {
 	@apply tw-px-4;
 }
 
-.loan-activity >>> [role=dialog] {
+.loan-activity :deep([role=dialog]) {
 	min-width: 840px;
 	max-width: 840px !important;
 
@@ -260,7 +260,7 @@ export default {
 	}
 }
 
-.loan-activity >>> #kvLightboxBody > div:nth-child(2) {
+.loan-activity :deep(#kvLightboxBody > div:nth-child(2)) {
 	@apply tw-px-4;
 
 	box-shadow: var(--kiva-negative-box-shadow);
