@@ -71,7 +71,6 @@
 							class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
 							:class="{'selected-option': selectedOption == option }"
 							data-testid="bp-lend-cta-lend-button"
-							type="submit"
 							@click="clickPresetButton(option)"
 						>
 							${{ option }}
