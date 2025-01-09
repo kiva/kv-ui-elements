@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.7.1...@kiva/kv-components@4.8.0) (2025-01-09)
+
+
+### Features
+
+* make sure autoplay stops on carousel interactions ([a973201](https://github.com/kiva/kv-ui-elements/commit/a97320125351e82ccdd946abd91507a2f619b1d3))
+
+
+
+
+
 ## [4.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.7.0...@kiva/kv-components@4.7.1) (2025-01-09)
 
 
