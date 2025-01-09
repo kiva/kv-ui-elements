@@ -1,3 +1,4 @@
+import { watch } from 'vue';
 import KvCarousel from '../KvCarousel.vue';
 import KvLoadingSpinner from '../KvLoadingSpinner.vue';
 import KvButton from '../KvButton.vue';
@@ -444,14 +445,12 @@ export const AutoPlayButton = () => ({
 	components: {
 		KvCarousel,
 	},
-	data() {
-		return {
-			isPlaying: false,
-		};
-	},
+	data: () => ({
+		isAutoplaying: false,
+	}),
 	mounted() {
-		this.$nextTick(() => {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
+		watch(() => this.$refs?.sampleCarousel?.isAutoplaying, (newValue) => {
+			this.isAutoplaying = newValue;
 		});
 	},
 	template: `
@@ -461,33 +460,19 @@ export const AutoPlayButton = () => ({
 				style="max-width: 400px;"
 				:embla-options="{ loop: false }"
 				:autoplay-options="{ playOnInit: true, delay: 3000 }"
-				@interact-carousel="carouselInteraction"
 			>
 				${defaultCarouselSlides}
 			</kv-carousel>
-			<a href="#" @click.native.prevent="toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
 			<br/>
-			<p>AutoPlay is: {{ isPlaying ? 'ON' : 'OFF' }}</p>
+			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 		</div>
 	`,
-	methods: {
-		toggleAutoPlay() {
-			this.$refs.sampleCarousel.toggleAutoPlay();
-		},
-		carouselInteraction() {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
-		},
-	},
 });
 
 export const Fade = () => ({
 	components: {
 		KvCarousel,
-	},
-	mounted() {
-		this.$nextTick(() => {
-			this.isPlaying = this.$refs.sampleCarousel.isAutoplaying();
-		});
 	},
 	template: `
 		<div>
