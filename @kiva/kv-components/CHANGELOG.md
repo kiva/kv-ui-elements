@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.7.0...@kiva/kv-components@4.7.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* preset button was adding to basket because of type ([994a42f](https://github.com/kiva/kv-ui-elements/commit/994a42f36b2065c57994d1903c48ad9a14ad5c69))
+
+
+
+
+
 # [4.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.6.0...@kiva/kv-components@4.7.0) (2025-01-09)
 
 
