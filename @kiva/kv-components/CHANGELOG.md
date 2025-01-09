@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.1...@kiva/kv-components@4.8.2) (2025-01-09)
+
+
+### Bug Fixes
+
+* set full width for continue to basket state ([cacc5a2](https://github.com/kiva/kv-ui-elements/commit/cacc5a2ec697dd37466fc6b1b4ff4fef40edf5ef))
+
+
+
+
+
 ## [4.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.0...@kiva/kv-components@4.8.1) (2025-01-09)
 
 **Note:** Version bump only for package @kiva/kv-components
