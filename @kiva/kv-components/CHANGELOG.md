@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.6.0...@kiva/kv-components@4.7.0) (2025-01-09)
+
+
+### Features
+
+* add autoplay button if autoplay plugin is enabled ([8bebbe5](https://github.com/kiva/kv-ui-elements/commit/8bebbe5945dd4e34c922f9f511a4145564ae005a))
+
+
+
+
+
 # [4.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.5.1...@kiva/kv-components@4.6.0) (2025-01-08)
 
 
