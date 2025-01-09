@@ -57,6 +57,11 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	 * @public This is a public method
 	 */
 	const goToSlide = (index) => {
+		/** Stop autoplay on go to slide interaction */
+		const autoplay = embla.value?.plugins()?.autoplay;
+		if (autoplay) {
+			autoplay.stop();
+		}
 		embla.value.scrollTo(index);
 	};
 
@@ -198,7 +203,6 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		});
 
 		embla?.value?.on('autoplay:play', () => {
-			console.log('autoplay:play');
 			/**
 			 * Fires when autoplay starts
 			 * @event autoplay-play
@@ -208,7 +212,6 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		});
 
 		embla?.value?.on('autoplay:stop', () => {
-			console.log('autoplay:stop');
 			/**
 			 * Fires when autoplay starts
 			 * @event autoplay-play

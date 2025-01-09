@@ -208,6 +208,7 @@ export const AutoPlayButton = () => ({
 			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
 			<br/>
 			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.goToSlide(0)">Go To Slide 0</a>
 		</div>
 	`,
 });
