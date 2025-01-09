@@ -5,6 +5,7 @@
 			v-if="isInBasket"
 			variant="secondary"
 			class="tw-inline-flex tw-flex-1"
+			:class="{ 'tw-w-full': showPresetAmounts }"
 			data-testid="bp-lend-cta-checkout-button"
 			:to="!externalLinks ? '/basket' : undefined"
 			:href="externalLinks ? '/basket' : undefined"
