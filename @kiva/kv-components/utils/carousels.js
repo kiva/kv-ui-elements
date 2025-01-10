@@ -71,12 +71,6 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 			goToSlide(index);
 		}
 
-		/** Stop autoplay on user interaction */
-		const autoplay = embla.value?.plugins()?.autoplay;
-		if (autoplay) {
-			autoplay.stop();
-		}
-
 		/**
 		 * Fires when the user interacts with the carousel.
 		 * Contains the interaction type (swipe-left, click-left-arrow, etc.)
@@ -134,7 +128,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	};
 	const onCarouselContainerClick = (e) => {
 		// If we're dragging, block click handlers within slides
-		if (embla.value && !embla.value.clickAllowed()) {
+		if (embla.value) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
@@ -153,14 +147,18 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		return false;
 	};
 
-	onMounted(async () => {
-		const combinedPluginOptions = [];
+	const combinedPluginOptions = computed(() => {
+		const options = [];
 		if (Object.keys(autoplayOptions.value).length !== 0) {
-			combinedPluginOptions.push(Autoplay(autoplayOptions.value));
+			options.push(Autoplay(autoplayOptions.value));
 		}
 		if (fadeEnabled.value) {
-			combinedPluginOptions.push(Fade());
+			options.push(Fade());
 		}
+		return options;
+	});
+
+	onMounted(async () => {
 		embla.value = EmblaCarousel(rootEl.value, {
 			loop: true,
 			containScroll: 'trimSnaps',
@@ -168,7 +166,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 			align: 'start',
 			...extraEmblaOptions,
 			...emblaOptions.value,
-		}, combinedPluginOptions);
+		}, combinedPluginOptions.value);
 
 		if (slidesToScroll.value === 'visible') {
 			reInitVisible();
@@ -192,6 +190,17 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 
 		embla?.value?.on('select', () => {
 			currentIndex.value = embla.value.selectedScrollSnap();
+
+			/** After the select event, it is possible that embla will itself trigger a reinit.
+			 * For example, if the act of selecting a slide causes it to change dimensions and the carousel
+			 * needs to recalculate.
+			 * When this reinit happens, autoplay settings will reset to the initial plugin options.
+			 * Set playOnInit equal to the current state of autoplay to prevent this.
+			*/
+			const autoplay = embla.value?.plugins()?.autoplay;
+			if (autoplay) {
+				embla.value.plugins().autoplay.options.playOnInit = autoplay.isPlaying();
+			}
 			/**
 			 * The index of the slide that the carousel has changed to
 			 * @event change

@@ -189,11 +189,17 @@ export const AutoPlayButton = () => ({
 	},
 	data: () => ({
 		isAutoplaying: false,
+		currentSlide: 0,
 	}),
 	mounted() {
 		watch(() => this.$refs?.sampleCarousel?.isAutoplaying, (newValue) => {
 			this.isAutoplaying = newValue;
 		});
+	},
+	methods: {
+		changeEvent(index) {
+			this.currentSlide = index;
+		},
 	},
 	template: `
 		<div>
@@ -202,6 +208,7 @@ export const AutoPlayButton = () => ({
 				style="max-width: 400px;"
 				:embla-options="{ loop: false }"
 				:autoplay-options="{ playOnInit: true, delay: 3000 }"
+				@change="changeEvent"
 			>
 				${defaultCarouselSlides}
 			</kv-vertical-carousel>
@@ -209,6 +216,60 @@ export const AutoPlayButton = () => ({
 			<br/>
 			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 			<a href="#" @click.native.prevent="$refs.sampleCarousel.goToSlide(0)">Go To Slide 0</a>
+			<p>Current Slide: {{ currentSlide }}</p>
+		</div>
+	`,
+});
+
+export const AutoPlayWithDynamicSlides = () => ({
+	components: {
+		KvVerticalCarousel,
+	},
+	data: () => ({
+		isAutoplaying: false,
+		currentSlide: 0,
+	}),
+	mounted() {
+		watch(() => this.$refs?.sampleCarousel?.isAutoplaying, (newValue) => {
+			this.isAutoplaying = newValue;
+		});
+	},
+	methods: {
+		changeEvent(index) {
+			this.currentSlide = index;
+		},
+	},
+	template: `
+		<div>
+			<kv-vertical-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:autoplay-options="{ playOnInit: true, delay: 3000 }"
+				@change="changeEvent"
+			>
+					<template #slide1 >
+						<img src="https://placehold.co/400x150/${randomHexColor(1)}/000000">
+						<p style="background-color: #${randomHexColor(1)};" v-if="currentSlide === 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					</template>
+					<template #slide2>
+						<img src="https://placehold.co/400x150/${randomHexColor(2)}/000000">
+						<p style="background-color: #${randomHexColor(2)};" v-if="currentSlide === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					</template>
+					<template #slide3>
+						<img src="https://placehold.co/400x150/${randomHexColor(3)}/000000">
+						<p style="background-color: #${randomHexColor(3)};" v-if="currentSlide === 2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					</template>
+					<template #slide4>
+						<img src="https://placehold.co/400x150/${randomHexColor(4)}/000000">
+						<p style="background-color: #${randomHexColor(4)};" v-if="currentSlide === 3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					</template>
+			</kv-vertical-carousel>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<br/>
+			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.goToSlide(0)">Go To Slide 0</a>
+			<p>Current Slide: {{ currentSlide }}</p>
 		</div>
 	`,
 });
