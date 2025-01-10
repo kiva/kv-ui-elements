@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.2...@kiva/kv-components@4.8.3) (2025-01-10)
+
+
+### Bug Fixes
+
+* padding in preset buttons ([7ea60b0](https://github.com/kiva/kv-ui-elements/commit/7ea60b09571ae913f5ca7b363bf3d0ff027f04d6))
+
+
+
+
+
 ## [4.8.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.1...@kiva/kv-components@4.8.2) (2025-01-09)
 
 
