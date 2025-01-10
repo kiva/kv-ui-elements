@@ -126,13 +126,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		slides.value = embla.value.slideNodes();
 		slideIndicatorListLength();
 	};
-	const onCarouselContainerClick = (e) => {
-		// If we're dragging, block click handlers within slides
-		if (embla.value) {
-			e.preventDefault();
-			e.stopPropagation();
-		}
-	};
+
 	/**
 	 * If the slide is not completely in view in the carousel
 	 * it should be aria-hidden
@@ -250,7 +244,6 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		goToSlide,
 		reInit,
 		reInitVisible,
-		onCarouselContainerClick,
 		isAriaHidden,
 		isAutoplaying,
 		slideIndicatorListLength,
