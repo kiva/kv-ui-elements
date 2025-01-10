@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.4...@kiva/kv-components@4.8.5) (2025-01-10)
+
+
+### Bug Fixes
+
+* click events after removal of clickAllowed ([58388bb](https://github.com/kiva/kv-ui-elements/commit/58388bbfbf1b16a803a6f6e8a327babebb6393e2))
+
+
+
+
+
 ## [4.8.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.3...@kiva/kv-components@4.8.4) (2025-01-10)
 
 
