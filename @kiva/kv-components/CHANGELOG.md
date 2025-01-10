@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.3...@kiva/kv-components@4.8.4) (2025-01-10)
+
+
+### Bug Fixes
+
+* carousel autoplay issues ([ae1e7eb](https://github.com/kiva/kv-ui-elements/commit/ae1e7ebf82181b3c9fed505d3ad5afce41dcabba))
+
+
+
+
+
 ## [4.8.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.2...@kiva/kv-components@4.8.3) (2025-01-10)
 
 
