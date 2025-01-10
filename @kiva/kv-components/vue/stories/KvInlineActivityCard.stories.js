@@ -1,4 +1,4 @@
-import KvInlineActivityCard from '../KvInlineActivityCard.vue';
+import KvInlineActivityCard from '../KvInlineActivityCard';
 
 export default {
 	title: 'KvInlineActivityCard',
@@ -11,7 +11,7 @@ const story = (args) => {
 		components: { KvInlineActivityCard },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<div style="max-width: 200px;">	
+			<div style="max-width: 200px;">
 				<KvInlineActivityCard v-bind="args" />
 			</div>
 		`,

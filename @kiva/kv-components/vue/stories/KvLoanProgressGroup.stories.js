@@ -1,4 +1,4 @@
-import KvLoanProgressGroup from '../KvLoanProgressGroup.vue';
+import KvLoanProgressGroup from '../KvLoanProgressGroup';
 
 export default {
 	title: 'KvLoanProgressGroup',

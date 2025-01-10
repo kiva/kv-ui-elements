@@ -7,7 +7,10 @@ module.exports = {
 		'../../.eslintrc.cjs',
 		'plugin:vue/recommended',
 	],
-	ignorePatterns: ["dist/*"],
+	ignorePatterns: [
+		'dist/*',
+		'vite.config.js',
+	],
 	plugins: [
 		'vue',
 	],

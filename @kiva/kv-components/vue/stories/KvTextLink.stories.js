@@ -1,7 +1,7 @@
 import {
 	mdiArrowRight,
 } from '@mdi/js';
-import KvTextLink from '../KvTextLink.vue';
+import KvTextLink from '../KvTextLink';
 
 export default {
 	title: 'KvTextLink',

@@ -1,4 +1,4 @@
-import KvLoanActivities from '../KvLoanActivities.vue';
+import KvLoanActivities from '../KvLoanActivities';
 
 export default {
 	title: 'KvLoanActivities',

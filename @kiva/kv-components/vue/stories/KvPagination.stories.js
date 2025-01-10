@@ -1,4 +1,4 @@
-import KvPagination from '../KvPagination.vue';
+import KvPagination from '../KvPagination';
 
 export default {
 	title: 'KvPagination',

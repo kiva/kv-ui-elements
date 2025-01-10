@@ -1,4 +1,4 @@
-import KvFlag from '../KvFlag.vue';
+import KvFlag from '../KvFlag';
 
 export default {
 	title: 'Components/KvFlag',

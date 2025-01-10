@@ -1,4 +1,4 @@
-import KvImpactDashboardHeader from '../KvImpactDashboardHeader.vue';
+import KvImpactDashboardHeader from '../KvImpactDashboardHeader';
 
 export default {
 	title: 'KvImpactDashboardHeader',

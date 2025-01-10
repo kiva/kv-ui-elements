@@ -11,8 +11,8 @@ import {
 	darkMintTheme,
 	darkStoneTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import KvGrid from '../KvGrid.vue';
-import KvPageContainer from '../KvPageContainer.vue';
+import KvGrid from '../KvGrid';
+import KvPageContainer from '../KvPageContainer';
 
 export default {
 	title: 'Base Styling/Prose Demo',

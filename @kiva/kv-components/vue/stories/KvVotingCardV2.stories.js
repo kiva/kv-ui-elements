@@ -1,4 +1,4 @@
-import KvVotingCardV2 from '../KvVotingCardV2.vue';
+import KvVotingCardV2 from '../KvVotingCardV2';
 
 export default {
 	title: 'KvVotingCardV2',

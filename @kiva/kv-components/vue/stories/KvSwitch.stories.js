@@ -1,4 +1,4 @@
-import KvSwitch from '../KvSwitch.vue';
+import KvSwitch from '../KvSwitch';
 
 export default {
 	title: 'Forms/KvSwitch',

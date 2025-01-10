@@ -21,7 +21,7 @@ import {
 	mdiTimerSandComplete,
 } from '@mdi/js';
 
-import KvMaterialIcon from '../KvMaterialIcon.vue';
+import KvMaterialIcon from '../KvMaterialIcon';
 
 export default {
 	title: 'KvMaterialIcon',

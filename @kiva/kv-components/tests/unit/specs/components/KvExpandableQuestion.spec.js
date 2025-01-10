@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/vue';
-import KvExpandableQuestion from '../../../../vue/KvExpandableQuestion.vue';
+import KvExpandableQuestion from '../../../../vue/KvExpandableQuestion';
 
 describe('KvExpandableQuestion', () => {
 	it('renders KvExpandableQuestion that opens and closes when clicking the title', async () => {

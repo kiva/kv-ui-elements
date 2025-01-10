@@ -2,10 +2,10 @@ import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import '../../../../__mocks__/ResizeObserver';
-import KvTab from '../../../../vue/KvTab.vue';
-import KvTabPanel from '../../../../vue/KvTabPanel.vue';
-import KvTabs from '../../../../vue/KvTabs.vue';
-import KvButton from '../../../../vue/KvButton.vue';
+import KvTab from '../../../../vue/KvTab';
+import KvTabPanel from '../../../../vue/KvTabPanel';
+import KvTabs from '../../../../vue/KvTabs';
+import KvButton from '../../../../vue/KvButton';
 import addVueRouter from '../../utils/addVueRouter';
 
 // jsdom does not include scrollIntoView, so define it to avoid errors when switching tabs

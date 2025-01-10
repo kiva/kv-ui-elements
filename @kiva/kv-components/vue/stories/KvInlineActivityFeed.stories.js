@@ -1,4 +1,4 @@
-import KvInlineActivityFeed from '../KvInlineActivityFeed.vue';
+import KvInlineActivityFeed from '../KvInlineActivityFeed';
 
 const activities = [
 	{
@@ -64,7 +64,7 @@ const story = (args) => {
 		components: { KvInlineActivityFeed },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<div style="max-width: 1200px;">	
+			<div style="max-width: 1200px;">
 				<KvInlineActivityFeed v-bind="args" />
 			</div>
 		`,

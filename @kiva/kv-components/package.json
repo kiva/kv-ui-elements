@@ -5,29 +5,35 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/utils/index.cjs",
-  "module": "dist/utils/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./vue/*": "./dist/vue/*"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.24.8",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@storybook/addon-a11y": "8.0.9",
-    "@storybook/addon-essentials": "8.0.9",
-    "@storybook/addon-links": "8.0.9",
-    "@storybook/addon-storysource": "8.0.9",
+    "@laynezh/vite-plugin-lib-assets": "^0.6.1",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-links": "^8.4.7",
+    "@storybook/addon-storysource": "^8.4.7",
     "@storybook/addon-styling-webpack": "^1.0.1",
-    "@storybook/addon-viewport": "8.0.9",
-    "@storybook/builder-webpack5": "8.0.9",
-    "@storybook/core-common": "8.0.9",
-    "@storybook/theming": "8.0.9",
-    "@storybook/vue3": "8.0.9",
-    "@storybook/vue3-webpack5": "8.0.9",
+    "@storybook/addon-viewport": "^8.4.7",
+    "@storybook/builder-vite": "^8.4.7",
+    "@storybook/builder-webpack5": "^8.4.7",
+    "@storybook/core-common": "^8.4.7",
+    "@storybook/theming": "^8.4.7",
+    "@storybook/vue3": "^8.4.7",
+    "@storybook/vue3-vite": "^8.4.7",
+    "@storybook/vue3-webpack5": "^8.4.7",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/user-event": "^13.2.1",
     "@testing-library/vue": "^8.1.0",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/reactivity": "3.2.37",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
     "autoprefixer": "^10.4.2",
@@ -47,10 +53,12 @@
     "postcss-loader": "^7.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "storybook": "8.0.9",
+    "storybook": "^8.4.7",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.3",
     "tsup": "^6.7.0",
+    "vite": "^6.0.7",
+    "vite-plugin-no-bundle": "^4.0.0",
     "vue": "^3.2.37",
     "vue-loader": "^15.9.6",
     "vue-router": "^4.5.0",
@@ -61,7 +69,7 @@
     "build-storybook": "storybook build -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
     "test": "npm run lint && jest",
-    "build": "tsup utils/*.js --outDir dist/utils --format cjs,esm --clean && cp -R vue/ dist/components/ && cp -R data/ dist/data/"
+    "build": "vite build && mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
   },
   "dependencies": {
     "@kiva/kv-tokens": "^2.16.1",
@@ -80,20 +88,6 @@
     "numeral": "^2.0.6",
     "popper.js": "^1.16.1",
     "vue-demi": "^0.14.7"
-  },
-  "exports": {
-    ".": {
-      "require": "./dist/utils/index.cjs",
-      "import": "./dist/utils/index.js"
-    },
-    "./dist/components/*.vue": {
-      "import": "./dist/components/*.vue",
-      "require": "./dist/components/*.vue"
-    },
-    "./tailwind.config.cjs": {
-      "import": "./tailwind.config.cjs",
-      "require": "./tailwind.config.cjs"
-    }
   },
   "peerDependencies": {
     "vue": ">=3.0.0"

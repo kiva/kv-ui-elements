@@ -1,4 +1,4 @@
-import KvLoanCallouts from '../KvLoanCallouts.vue';
+import KvLoanCallouts from '../KvLoanCallouts';
 
 export default {
 	title: 'KvLoanCallouts',

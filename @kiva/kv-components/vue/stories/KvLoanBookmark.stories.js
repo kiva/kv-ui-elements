@@ -1,4 +1,4 @@
-import KvLoanBookmark from '../KvLoanBookmark.vue';
+import KvLoanBookmark from '../KvLoanBookmark';
 
 export default {
 	title: 'KvLoanBookmark',

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/vue';
-import KvLoanProgressGroup from '../../../../vue/KvLoanProgressGroup.vue';
+import KvLoanProgressGroup from '../../../../vue/KvLoanProgressGroup';
 
 describe('KvLoanProgressGroup', () => {
 	it('should display default message', () => {

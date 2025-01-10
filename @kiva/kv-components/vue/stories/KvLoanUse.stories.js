@@ -1,4 +1,4 @@
-import KvLoanUse from '../KvLoanUse.vue';
+import KvLoanUse from '../KvLoanUse';
 
 export default {
 	title: 'KvLoanUse',

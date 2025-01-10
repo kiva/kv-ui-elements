@@ -1,4 +1,4 @@
-import KvLendCta from '../KvLendCta.vue';
+import KvLendCta from '../KvLendCta';
 
 export default {
 	title: 'KvLendCta',

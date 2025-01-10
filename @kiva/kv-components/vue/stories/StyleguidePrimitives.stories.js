@@ -1,12 +1,12 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
 import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config.cjs';
 import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography.cjs';
-import KvGrid from '../KvGrid.vue';
-import KvPageContainer from '../KvPageContainer.vue';
-import KvTab from '../KvTab.vue';
-import KvTabs from '../KvTabs.vue';
-import KvTabPanel from '../KvTabPanel.vue';
-import KvToast from '../KvToast.vue';
+import KvGrid from '../KvGrid';
+import KvPageContainer from '../KvPageContainer';
+import KvTab from '../KvTab';
+import KvTabs from '../KvTabs';
+import KvTabPanel from '../KvTabPanel';
+import KvToast from '../KvToast';
 
 const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils.cjs');
 

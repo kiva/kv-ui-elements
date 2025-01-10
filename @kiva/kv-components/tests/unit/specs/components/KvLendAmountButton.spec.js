@@ -1,5 +1,5 @@
 import { render } from '@testing-library/vue';
-import KvLendAmountButton from '../../../../vue/KvLendAmountButton.vue';
+import KvLendAmountButton from '../../../../vue/KvLendAmountButton';
 
 describe('KvLendAmountButton', () => {
 	it('should display amount with a number input', async () => {

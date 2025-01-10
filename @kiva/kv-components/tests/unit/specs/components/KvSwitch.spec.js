@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvSwitch from '../../../../vue/KvSwitch.vue';
+import KvSwitch from '../../../../vue/KvSwitch';
 
 describe('KvSwitch', () => {
 	const renderTestSwitch = (options) => render(KvSwitch, {

@@ -1,8 +1,8 @@
-const path = require('path');
-module.exports = {
+import path from 'node:path';
+
+export default {
 	stories: [
-		'../stories/Styleguide.stories.js', // show the base styleguide first
-		'../stories/**/*.stories.mdx',
+		'../stories/StyleguidePrimitives.stories.js', // show the base styleguide first
 		'../stories/**/*.stories.@(js|jsx|ts|tsx)'
 	],
 

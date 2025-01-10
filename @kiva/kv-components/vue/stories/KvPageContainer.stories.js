@@ -1,4 +1,4 @@
-import KvPageContainer from '../KvPageContainer.vue';
+import KvPageContainer from '../KvPageContainer';
 
 export default {
 	title: 'Layout/KvPageContainer',

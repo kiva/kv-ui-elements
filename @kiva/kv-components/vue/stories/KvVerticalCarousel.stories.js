@@ -1,6 +1,6 @@
 import { watch } from 'vue';
-import KvVerticalCarousel from '../KvVerticalCarousel.vue';
-import KvButton from '../KvButton.vue';
+import KvVerticalCarousel from '../KvVerticalCarousel';
+import KvButton from '../KvButton';
 
 const randomHexColor = (index) => {
 	const defaultColor = '96d4b3';

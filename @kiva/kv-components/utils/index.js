@@ -1,4 +1,5 @@
 export * from './Alea';
+export { default as Alea } from './Alea';
 export * from './attrs';
 export * from './carousels';
 export * from './expander';
