@@ -12,7 +12,6 @@
 				'tw-mx-auto aside-controls-content': asideControls,
 				'circle-carousel': inCircle
 			}"
-			@click.capture="onCarouselContainerClick"
 		>
 			<div
 				v-for="(slotName, index) in componentSlotKeys"
@@ -251,7 +250,6 @@ export default {
 			isAriaHidden,
 			isAutoplaying,
 			nextIndex,
-			onCarouselContainerClick,
 			previousIndex,
 			reInit,
 			reInitVisible,
@@ -275,7 +273,6 @@ export default {
 			mdiChevronLeft,
 			mdiChevronRight,
 			nextIndex,
-			onCarouselContainerClick,
 			previousIndex,
 			reInit,
 			reInitVisible,

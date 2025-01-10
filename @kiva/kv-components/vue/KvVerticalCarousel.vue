@@ -9,7 +9,6 @@
 			<div
 				class="tw-flex tw-flex-col"
 				:style="`height: ${heightStyle}`"
-				@click.capture="onCarouselContainerClick"
 			>
 				<div
 					v-for="(slotName, index) in componentSlotKeys"
@@ -177,7 +176,6 @@ export default {
 			isAriaHidden,
 			isAutoplaying,
 			nextIndex,
-			onCarouselContainerClick,
 			previousIndex,
 			reInit,
 			reInitVisible,
@@ -205,7 +203,6 @@ export default {
 			mdiChevronDown,
 			mdiChevronUp,
 			nextIndex,
-			onCarouselContainerClick,
 			previousIndex,
 			reInit,
 			reInitVisible,
