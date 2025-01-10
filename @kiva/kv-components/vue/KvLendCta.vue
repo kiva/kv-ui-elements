@@ -55,13 +55,13 @@
 		>
 			<fieldset
 				class="tw-w-full tw-flex"
-				:class="{'tw-flex-col tw-gap-1 md:tw-flex-row md:tw-justify-between': showPresetAmounts}"
+				:class="{'tw-flex-col tw-gap-1.5 md:tw-flex-row md:tw-justify-between': showPresetAmounts}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
 			>
 				<div
 					v-if="showPresetAmounts"
-					class="tw-flex tw-gap-1"
+					class="tw-flex tw-gap-1 lg:tw-gap-2"
 					:class="{'tw-flex-wrap md:tw-flex-nowrap': enableHugeAmount}"
 				>
 					<template v-if="!isLendAmountButton">
