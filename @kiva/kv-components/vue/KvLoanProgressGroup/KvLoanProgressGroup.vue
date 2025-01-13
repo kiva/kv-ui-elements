@@ -23,7 +23,7 @@
 
 <script>
 import numeral from 'numeral';
-import KvProgressBar from '../KvProgressBar';
+import KvProgressBar from '#components/KvProgressBar';
 
 export default {
 	name: 'KvLoanProgressGroup',

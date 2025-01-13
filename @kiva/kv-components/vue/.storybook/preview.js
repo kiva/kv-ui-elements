@@ -3,7 +3,7 @@ import {
 	setup
 } from '@storybook/vue3';
 import { addons } from '@storybook/preview-api';
-import KvThemeProvider from '../KvThemeProvider';
+import KvThemeProvider from '#components/KvThemeProvider';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 
 setup((app) => {

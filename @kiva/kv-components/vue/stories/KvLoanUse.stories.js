@@ -1,4 +1,4 @@
-import KvLoanUse from '../KvLoanUse';
+import KvLoanUse from '#components/KvLoanUse';
 
 export default {
 	title: 'KvLoanUse',

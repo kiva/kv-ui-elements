@@ -44,10 +44,10 @@
 <script>
 import numeral from 'numeral';
 import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
-import { getTreemap } from '../../utils/treemap';
-import { throttle } from '../../utils/throttle';
-import KvTooltip from '../KvTooltip';
-import KvLoadingPlaceholder from '../KvLoadingPlaceholder';
+import { getTreemap } from '#utils/treemap';
+import { throttle } from '#utils/throttle';
+import KvTooltip from '#components/KvTooltip';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
 
 const { breakpoints } = kvTokensPrimitives;
 

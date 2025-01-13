@@ -1,5 +1,5 @@
-import KvCartModal from '../KvCartModal';
-import KvButton from '../KvButton';
+import KvCartModal from '#components/KvCartModal';
+import KvButton from '#components/KvButton';
 
 export default {
 	title: 'KvCartModal',

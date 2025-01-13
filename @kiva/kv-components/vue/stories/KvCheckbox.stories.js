@@ -1,4 +1,4 @@
-import KvCheckbox from '../KvCheckbox';
+import KvCheckbox from '#components/KvCheckbox';
 
 export default {
 	title: 'Forms/KvCheckbox',

@@ -4,6 +4,12 @@ import noBundlePlugin from 'vite-plugin-no-bundle';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+	resolve: {
+		alias: {
+			'#components': '/vue',
+			'#utils': '/utils',
+		},
+	},
 	build: {
 		outDir: 'dist',
 		minify: false,

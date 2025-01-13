@@ -1,9 +1,9 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import ListComponent from '../../../../vue/KvCommentsList';
+import ListComponent from '#components/KvCommentsList';
+import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '#components/KvCommentsListItem';
+import { ADD_REACTION_EVENT } from '#components/KvCommentsContainer';
 import { comments } from '../../../fixtures/mockCommentsData';
-import { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '../../../../vue/KvCommentsListItem';
-import { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer';
 
 const LOGGED_IN_USER = 'TEST_USER';
 

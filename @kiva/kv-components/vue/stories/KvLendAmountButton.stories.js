@@ -1,4 +1,4 @@
-import KvLendAmountButton from '../KvLendAmountButton';
+import KvLendAmountButton from '#components/KvLendAmountButton';
 
 export default {
 	title: 'KvLendAmountButton',

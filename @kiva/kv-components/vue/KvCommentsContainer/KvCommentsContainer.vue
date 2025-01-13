@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import KvCommentsAdd from '../KvCommentsAdd';
-import KvCommentsList from '../KvCommentsList';
+import KvCommentsAdd from '#components/KvCommentsAdd';
+import KvCommentsList from '#components/KvCommentsList';
 
 export const ADD_COMMENT_EVENT = 'add-comment';
 export const ADD_REACTION_EVENT = 'add-reaction';

@@ -63,7 +63,7 @@
 <script>
 import { ref, toRefs, watch } from 'vue-demi';
 import { mdiClose, mdiLaunch } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	components: {

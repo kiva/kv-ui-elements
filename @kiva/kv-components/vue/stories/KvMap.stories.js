@@ -1,5 +1,5 @@
+import KvMap from '#components/KvMap';
 import mockLenderCountries from '../../tests/fixtures/mockLenderCountries';
-import KvMap from '../KvMap';
 
 export default {
 	title: 'KvMap',

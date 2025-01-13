@@ -1,4 +1,4 @@
-import KvCommentsHeartButton from '../KvCommentsHeartButton';
+import KvCommentsHeartButton from '#components/KvCommentsHeartButton';
 
 export default {
 	title: 'KvCommentsHeartButton',

@@ -107,8 +107,8 @@ import {
 	mdiChevronDown,
 } from '@mdi/js';
 import { computed } from 'vue';
-import { carouselUtil } from '../../utils/carousels';
-import KvMaterialIcon from '../KvMaterialIcon';
+import { carouselUtil } from '#utils/carousels';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	components: {

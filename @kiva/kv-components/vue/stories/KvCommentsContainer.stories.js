@@ -1,4 +1,4 @@
-import KvCommentsContainer from '../KvCommentsContainer';
+import KvCommentsContainer from '#components/KvCommentsContainer';
 import { publicLenderId, comments } from '../../tests/fixtures/mockCommentsData';
 
 export default {

@@ -16,7 +16,7 @@
 
 <script>
 import { mdiBookmarkOutline, mdiBookmark } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	name: 'KvLoanBookmark',

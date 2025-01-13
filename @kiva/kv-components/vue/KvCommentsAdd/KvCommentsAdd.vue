@@ -41,9 +41,9 @@
 
 <script>
 import { computed, ref } from 'vue-demi';
-import KvButton from '../KvButton';
-import KvTextInput from '../KvTextInput';
-import KvUserAvatar from '../KvUserAvatar';
+import KvButton from '#components/KvButton';
+import KvTextInput from '#components/KvTextInput';
+import KvUserAvatar from '#components/KvUserAvatar';
 
 export const ADD_COMMENT_ID = 'add-comment-value';
 export const ADD_COMMENT_EVENT = 'add-comment';

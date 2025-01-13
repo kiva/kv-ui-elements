@@ -1,4 +1,4 @@
-import KvVotingCard from '../KvVotingCard';
+import KvVotingCard from '#components/KvVotingCard';
 
 export default {
 	title: 'KvVotingCard',

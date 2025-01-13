@@ -181,11 +181,11 @@
 
 <script>
 import { mdiChevronRight } from '@mdi/js';
-import KvLendAmountButton from '../KvLendAmountButton';
-import KvUiSelect from '../KvSelect';
-import KvUiButton from '../KvButton';
-import KvMaterialIcon from '../KvMaterialIcon';
-import { getLendCtaSelectedOption, getDropdownPriceArray } from '../../utils/loanUtils';
+import KvLendAmountButton from '#components/KvLendAmountButton';
+import KvUiSelect from '#components/KvSelect';
+import KvUiButton from '#components/KvButton';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import { getLendCtaSelectedOption, getDropdownPriceArray } from '#utils/loanUtils';
 
 export default {
 	name: 'KvLendCta',

@@ -1,4 +1,4 @@
-import KvInlineActivityFeed from '../KvInlineActivityFeed';
+import KvInlineActivityFeed from '#components/KvInlineActivityFeed';
 
 const activities = [
 	{

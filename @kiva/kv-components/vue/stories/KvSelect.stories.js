@@ -1,4 +1,4 @@
-import KvSelect from '../KvSelect';
+import KvSelect from '#components/KvSelect';
 
 export default {
 	title: 'Forms/KvSelect',

@@ -1,4 +1,4 @@
-import KvLoanBookmark from '../KvLoanBookmark';
+import KvLoanBookmark from '#components/KvLoanBookmark';
 
 export default {
 	title: 'KvLoanBookmark',

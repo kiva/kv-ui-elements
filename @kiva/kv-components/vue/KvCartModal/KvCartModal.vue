@@ -135,11 +135,11 @@ import {
 import { mdiClose, mdiCheckCircle } from '@mdi/js';
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';
-import { lockScroll, unlockScroll } from '../../utils/scrollLock';
-import { lockPrintSingleEl, unlockPrintSingleEl } from '../../utils/printing';
-import KvButton from '../KvButton';
-import KvMaterialIcon from '../KvMaterialIcon';
-import KvBorrowerImage from '../KvBorrowerImage';
+import { lockScroll, unlockScroll } from '#utils/scrollLock';
+import { lockPrintSingleEl, unlockPrintSingleEl } from '#utils/printing';
+import KvButton from '#components/KvButton';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import KvBorrowerImage from '#components/KvBorrowerImage';
 
 /**
  * Based on KvLightbox functionality

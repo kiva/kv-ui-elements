@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvLightbox from '../../../../vue/KvLightbox';
+import KvLightbox from '#components/KvLightbox';
 
 describe('KvLightbox', () => {
 	it('has no automated accessibility violations', async () => {

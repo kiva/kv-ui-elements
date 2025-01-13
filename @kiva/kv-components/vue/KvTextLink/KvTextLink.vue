@@ -32,7 +32,7 @@ import {
 	toRefs,
 	watch,
 } from 'vue-demi';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 /**
  * A component for displaying a stylized button or link with or without an icon

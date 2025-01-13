@@ -1,4 +1,4 @@
-import KvLendCta from '../KvLendCta';
+import KvLendCta from '#components/KvLendCta';
 
 export default {
 	title: 'KvLendCta',

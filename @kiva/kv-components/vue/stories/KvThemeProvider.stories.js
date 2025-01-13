@@ -12,11 +12,11 @@ import {
 	darkMintTheme,
 	darkStoneTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import KvButton from '../KvButton';
-import KvGrid from '../KvGrid';
-import KvPageContainer from '../KvPageContainer';
-import KvTextLink from '../KvTextLink';
-import KvThemeProvider from '../KvThemeProvider';
+import KvButton from '#components/KvButton';
+import KvGrid from '#components/KvGrid';
+import KvPageContainer from '#components/KvPageContainer';
+import KvTextLink from '#components/KvTextLink';
+import KvThemeProvider from '#components/KvThemeProvider';
 
 const defaultThemeTokens = primitives.colors.theme.DEFAULT;
 

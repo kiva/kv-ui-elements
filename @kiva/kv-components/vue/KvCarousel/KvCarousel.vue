@@ -151,9 +151,9 @@ import {
 	mdiArrowLeft,
 	mdiArrowRight,
 } from '@mdi/js';
-import { carouselUtil } from '../../utils/carousels';
+import { carouselUtil } from '#utils/carousels';
 
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	components: {

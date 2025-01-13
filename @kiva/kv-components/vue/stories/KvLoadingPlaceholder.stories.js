@@ -1,4 +1,4 @@
-import KvLoadingPlaceholder from '../KvLoadingPlaceholder';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
 
 export default {
 	title: 'KvLoadingPlaceholder',

@@ -103,8 +103,8 @@ import {
 	toRefs,
 	computed,
 } from 'vue-demi';
-import Alea from '../../utils/Alea';
-import KvLoadingPlaceholder from '../KvLoadingPlaceholder';
+import Alea from '#utils/Alea';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
 
 // convenience function to get point on circumference of a given circle (from https://codepen.io/grieve/pen/xwGMJp)
 function circumPointFromAngle(cx, cy, r, a) {

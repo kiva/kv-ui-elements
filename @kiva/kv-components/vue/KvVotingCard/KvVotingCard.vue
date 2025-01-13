@@ -90,9 +90,9 @@
 <script>
 import { mdiInformation } from '@mdi/js';
 import { computed } from 'vue-demi';
-import KvProgressBar from '../KvProgressBar';
-import KvButton from '../KvButton';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvProgressBar from '#components/KvProgressBar';
+import KvButton from '#components/KvButton';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	name: 'KvVotingCard',

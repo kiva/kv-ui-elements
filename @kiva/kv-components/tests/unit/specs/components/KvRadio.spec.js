@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvRadio from '../../../../vue/KvRadio';
+import KvRadio from '#components/KvRadio';
 
 const radioGroup = {
 	components: { KvRadio },

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import Container, { ADD_REACTION_EVENT } from '../../../../vue/KvCommentsContainer';
-import { ADD_COMMENT_ID, ADD_COMMENT_EVENT } from '../../../../vue/KvCommentsAdd';
+import Container, { ADD_REACTION_EVENT } from '#components/KvCommentsContainer';
+import { ADD_COMMENT_ID, ADD_COMMENT_EVENT } from '#components/KvCommentsAdd';
 
 const LOGGED_IN_USER = 'TEST_USER';
 

@@ -263,16 +263,16 @@
 
 <script>
 import numeral from 'numeral';
-import { loanCardComputedProperties, loanCardMethods } from '../../utils/loanCard';
-import KvLoanBookmark from '../KvLoanBookmark';
-import KvLoanUse from '../KvLoanUse';
-import KvBorrowerImage from '../KvBorrowerImage';
-import KvLoanProgressGroup from '../KvLoanProgressGroup';
-import KvLoanCallouts from '../KvLoanCallouts';
-import KvLoanTag from '../KvLoanTag';
-import KvMaterialIcon from '../KvMaterialIcon';
-import KvLoadingPlaceholder from '../KvLoadingPlaceholder';
-import KvFlag from '../KvFlag';
+import { loanCardComputedProperties, loanCardMethods } from '#utils/loanCard';
+import KvLoanBookmark from '#components/KvLoanBookmark';
+import KvLoanUse from '#components/KvLoanUse';
+import KvBorrowerImage from '#components/KvBorrowerImage';
+import KvLoanProgressGroup from '#components/KvLoanProgressGroup';
+import KvLoanCallouts from '#components/KvLoanCallouts';
+import KvLoanTag from '#components/KvLoanTag';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
+import KvFlag from '#components/KvFlag';
 
 export default {
 	name: 'KvIntroductionLoanCard',

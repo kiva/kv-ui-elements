@@ -16,7 +16,7 @@ import {
 	onBodyTouchstart,
 	offBodyTouchstart,
 	isTargetElement,
-} from '../../utils/touchEvents';
+} from '#utils/touchEvents';
 
 export default {
 	name: 'KvPopper',

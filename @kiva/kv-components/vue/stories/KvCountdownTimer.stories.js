@@ -1,4 +1,4 @@
-import KvCountdownTimer from '../KvCountdownTimer';
+import KvCountdownTimer from '#components/KvCountdownTimer';
 
 export default {
 	title: 'KvCountdownTimer',

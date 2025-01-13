@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvCarousel from '../../../../vue/KvCarousel';
+import KvCarousel from '#components/KvCarousel';
 
 const randomHexColor = (index) => {
 	const defaultColor = '96d4b3';

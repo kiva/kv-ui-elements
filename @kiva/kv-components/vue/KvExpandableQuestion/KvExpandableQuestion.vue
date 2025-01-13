@@ -44,8 +44,8 @@ import {
 } from '@mdi/js';
 import { paramCase } from 'change-case';
 
-import KvExpandable from '../KvExpandable';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvExpandable from '#components/KvExpandable';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	components: {

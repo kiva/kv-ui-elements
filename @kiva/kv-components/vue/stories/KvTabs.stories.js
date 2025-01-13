@@ -1,6 +1,6 @@
-import KvTabs from '../KvTabs';
-import KvTab from '../KvTab';
-import KvTabPanel from '../KvTabPanel';
+import KvTabs from '#components/KvTabs';
+import KvTab from '#components/KvTab';
+import KvTabPanel from '#components/KvTabPanel';
 
 export default {
 	title: 'KvTabs',

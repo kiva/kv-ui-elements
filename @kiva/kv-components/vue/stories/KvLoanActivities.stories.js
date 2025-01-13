@@ -1,4 +1,4 @@
-import KvLoanActivities from '../KvLoanActivities';
+import KvLoanActivities from '#components/KvLoanActivities';
 
 export default {
 	title: 'KvLoanActivities',

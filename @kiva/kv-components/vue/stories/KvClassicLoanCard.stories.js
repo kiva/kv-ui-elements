@@ -1,4 +1,4 @@
-import KvClassicLoanCard from '../KvClassicLoanCard';
+import KvClassicLoanCard from '#components/KvClassicLoanCard';
 
 export default {
 	title: 'KvClassicLoanCard',

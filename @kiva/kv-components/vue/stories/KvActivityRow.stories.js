@@ -1,4 +1,4 @@
-import KvActivityRow from '../KvActivityRow';
+import KvActivityRow from '#components/KvActivityRow';
 
 export default {
 	title: 'KvActivityRow',

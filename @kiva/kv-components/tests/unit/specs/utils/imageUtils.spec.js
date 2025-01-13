@@ -1,4 +1,4 @@
-import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../../../../utils/imageUtils';
+import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '#utils/imageUtils';
 
 describe('imageUtils.ts', () => {
 	describe('isLegacyPlaceholderAvatar', () => {

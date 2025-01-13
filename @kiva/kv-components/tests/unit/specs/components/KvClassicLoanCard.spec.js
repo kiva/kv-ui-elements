@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvClassicLoanCard from '../../../../vue/KvClassicLoanCard';
+import KvClassicLoanCard from '#components/KvClassicLoanCard';
 
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);

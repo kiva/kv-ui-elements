@@ -1,4 +1,4 @@
-import KvCommentsAdd from '../KvCommentsAdd';
+import KvCommentsAdd from '#components/KvCommentsAdd';
 
 export default {
 	title: 'KvCommentsAdd',

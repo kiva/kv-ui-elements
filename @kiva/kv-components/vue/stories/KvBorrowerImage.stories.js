@@ -1,4 +1,4 @@
-import KvBorrowerImage from '../KvBorrowerImage';
+import KvBorrowerImage from '#components/KvBorrowerImage';
 
 export default {
 	title: 'KvBorrowerImage',

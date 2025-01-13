@@ -1,4 +1,4 @@
-import KvExpandableQuestion from '../KvExpandableQuestion';
+import KvExpandableQuestion from '#components/KvExpandableQuestion';
 
 export default {
 	title: 'KvExpandableQuestion',

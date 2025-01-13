@@ -82,8 +82,8 @@ import {
 	toRefs,
 } from 'vue-demi';
 import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
-import { useAttrs } from '../../utils/attrs';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import { useAttrs } from '#utils/attrs';
 
 const emits = [
 	'input',

@@ -1,5 +1,5 @@
-import KvButton from '../KvButton';
-import KvToast from '../KvToast';
+import KvButton from '#components/KvButton';
+import KvToast from '#components/KvToast';
 
 export default {
 	title: 'KvToast',

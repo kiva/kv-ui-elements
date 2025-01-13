@@ -80,9 +80,9 @@
 import { computed, ref, toRefs } from 'vue-demi';
 import numeral from 'numeral';
 import { format } from 'date-fns';
-import KvActivityRow from '../KvActivityRow';
-import KvLightbox from '../KvLightbox';
-import KvLendCta from '../KvLendCta';
+import KvActivityRow from '#components/KvActivityRow';
+import KvLightbox from '#components/KvLightbox';
+import KvLendCta from '#components/KvLendCta';
 
 export default {
 	name: 'KvLoanActivities',

@@ -1,4 +1,4 @@
-import KvPageContainer from '../KvPageContainer';
+import KvPageContainer from '#components/KvPageContainer';
 
 export default {
 	title: 'Layout/KvPageContainer',

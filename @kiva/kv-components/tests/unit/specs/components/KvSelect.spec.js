@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
-import KvSelect from '../../../../vue/KvSelect';
+import KvSelect from '#components/KvSelect';
 
 describe('KvSelect', () => {
 	it('renders with a role of "select"', () => {

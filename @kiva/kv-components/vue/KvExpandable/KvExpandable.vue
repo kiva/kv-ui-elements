@@ -11,7 +11,7 @@
 import {
 	toRefs,
 } from 'vue-demi';
-import { expand, collapse } from '../../utils/expander';
+import { expand, collapse } from '#utils/expander';
 
 export default {
 	props: {

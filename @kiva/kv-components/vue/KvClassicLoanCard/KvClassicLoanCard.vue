@@ -272,19 +272,19 @@
 
 <script>
 import numeral from 'numeral';
-import { loanCardComputedProperties, loanCardMethods } from '../../utils/loanCard';
+import { loanCardComputedProperties, loanCardMethods } from '#utils/loanCard';
 
-import KvLoanUse from '../KvLoanUse';
-import KvBorrowerImage from '../KvBorrowerImage';
-import KvLoanProgressGroup from '../KvLoanProgressGroup';
-import KvLoanCallouts from '../KvLoanCallouts';
-import KvLendCta from '../KvLendCta';
-import KvLoanBookmark from '../KvLoanBookmark';
-import KvLoanTag from '../KvLoanTag';
-import KvMaterialIcon from '../KvMaterialIcon';
-import KvLoadingPlaceholder from '../KvLoadingPlaceholder';
-import KvLoanTeamPick from '../KvLoanTeamPick';
-import KvLoanActivities from '../KvLoanActivities';
+import KvLoanUse from '#components/KvLoanUse';
+import KvBorrowerImage from '#components/KvBorrowerImage';
+import KvLoanProgressGroup from '#components/KvLoanProgressGroup';
+import KvLoanCallouts from '#components/KvLoanCallouts';
+import KvLendCta from '#components/KvLendCta';
+import KvLoanBookmark from '#components/KvLoanBookmark';
+import KvLoanTag from '#components/KvLoanTag';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
+import KvLoanTeamPick from '#components/KvLoanTeamPick';
+import KvLoanActivities from '#components/KvLoanActivities';
 
 export default {
 	name: 'KvClassicLoanCard',

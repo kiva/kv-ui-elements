@@ -1,14 +1,14 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
 import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config.cjs';
 import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography.cjs';
-import KvGrid from '../KvGrid';
-import KvPageContainer from '../KvPageContainer';
-import KvTab from '../KvTab';
-import KvTabs from '../KvTabs';
-import KvTabPanel from '../KvTabPanel';
-import KvToast from '../KvToast';
+import KvGrid from '#components/KvGrid';
+import KvPageContainer from '#components/KvPageContainer';
+import KvTab from '#components/KvTab';
+import KvTabs from '#components/KvTabs';
+import KvTabPanel from '#components/KvTabPanel';
+import KvToast from '#components/KvToast';
 
-const { headerNumberCase, kebabCase, removeObjectProperty } = require('../../utils/themeUtils.cjs');
+const { headerNumberCase, kebabCase, removeObjectProperty } = require('#utils/themeUtils.cjs');
 
 const config = resolveConfig(tailwindConfig);
 const { theme } = config;

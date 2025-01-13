@@ -1,4 +1,4 @@
-import KvSwitch from '../KvSwitch';
+import KvSwitch from '#components/KvSwitch';
 
 export default {
 	title: 'Forms/KvSwitch',

@@ -30,8 +30,8 @@
 <script>
 import { ref, watch } from 'vue-demi';
 import { mdiChevronDown } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
-import { useAttrs } from '../../utils/attrs';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import { useAttrs } from '#utils/attrs';
 
 const emits = [
 	'change',

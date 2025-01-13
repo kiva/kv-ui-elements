@@ -136,10 +136,10 @@ import {
 import { mdiClose } from '@mdi/js';
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';
-import { lockScroll, unlockScroll } from '../../utils/scrollLock';
-import { lockPrintSingleEl, unlockPrintSingleEl } from '../../utils/printing';
+import { lockScroll, unlockScroll } from '#utils/scrollLock';
+import { lockPrintSingleEl, unlockPrintSingleEl } from '#utils/printing';
 
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 /**
  * Alert or a lightbox

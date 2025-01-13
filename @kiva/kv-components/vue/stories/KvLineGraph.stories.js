@@ -1,4 +1,4 @@
-import KvLineGraph from '../KvLineGraph';
+import KvLineGraph from '#components/KvLineGraph';
 
 export default {
 	title: 'KvLineGraph',

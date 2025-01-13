@@ -16,7 +16,7 @@
 
 <script>
 import { computed, toRefs } from 'vue-demi';
-import KvUserAvatar from '../KvUserAvatar';
+import KvUserAvatar from '#components/KvUserAvatar';
 
 export default {
 	name: 'KvInlineActivityCard',

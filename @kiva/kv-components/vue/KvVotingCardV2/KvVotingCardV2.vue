@@ -64,9 +64,9 @@ import {
 	ref,
 	toRefs,
 } from 'vue-demi';
-import KvProgressBar from '../KvProgressBar';
-import KvButton from '../KvButton';
-import KvLightbox from '../KvLightbox';
+import KvProgressBar from '#components/KvProgressBar';
+import KvButton from '#components/KvButton';
+import KvLightbox from '#components/KvLightbox';
 
 export default {
 	name: 'KvVotingCard',

@@ -1,5 +1,5 @@
-import KvIntroductionLoanCard from '../KvIntroductionLoanCard';
-import KvFlag from '../KvFlag';
+import KvIntroductionLoanCard from '#components/KvIntroductionLoanCard';
+import KvFlag from '#components/KvFlag';
 
 export default {
 	title: 'KvIntroductionLoanCard',

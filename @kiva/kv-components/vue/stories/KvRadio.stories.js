@@ -1,4 +1,4 @@
-import KvRadio from '../KvRadio';
+import KvRadio from '#components/KvRadio';
 
 export default {
 	title: 'Forms/KvRadio',

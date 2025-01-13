@@ -1,4 +1,4 @@
-import KvInlineActivityCard from '../KvInlineActivityCard';
+import KvInlineActivityCard from '#components/KvInlineActivityCard';
 
 export default {
 	title: 'KvInlineActivityCard',

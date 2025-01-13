@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import KvUserAvatar from '../KvUserAvatar';
+import KvUserAvatar from '#components/KvUserAvatar';
 
 export default {
 	name: 'KvActivityRow',

@@ -55,7 +55,7 @@ import {
 	onMounted,
 } from 'vue-demi';
 import { nanoid } from 'nanoid';
-import { useAttrs } from '../../utils/attrs';
+import { useAttrs } from '#utils/attrs';
 
 const emits = [
 	'update:modelValue',

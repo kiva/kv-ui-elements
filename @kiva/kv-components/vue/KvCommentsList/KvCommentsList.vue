@@ -17,7 +17,7 @@
 
 <script>
 
-import KvCommentsListItem from '../KvCommentsListItem';
+import KvCommentsListItem from '#components/KvCommentsListItem';
 
 const ADD_REACTION_EVENT = 'add-reaction';
 

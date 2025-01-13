@@ -1,4 +1,4 @@
-import KvProgressBar from '../KvProgressBar';
+import KvProgressBar from '#components/KvProgressBar';
 
 export default {
 	title: 'KvProgressBar',

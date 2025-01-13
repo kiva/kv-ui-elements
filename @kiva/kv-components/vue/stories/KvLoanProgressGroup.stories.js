@@ -1,4 +1,4 @@
-import KvLoanProgressGroup from '../KvLoanProgressGroup';
+import KvLoanProgressGroup from '#components/KvLoanProgressGroup';
 
 export default {
 	title: 'KvLoanProgressGroup',

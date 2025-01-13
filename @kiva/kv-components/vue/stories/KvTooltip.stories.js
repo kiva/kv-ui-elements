@@ -1,4 +1,4 @@
-import KvTooltip from '../KvTooltip';
+import KvTooltip from '#components/KvTooltip';
 
 export default {
 	title: 'KvTooltip',

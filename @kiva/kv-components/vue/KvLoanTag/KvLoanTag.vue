@@ -15,7 +15,7 @@
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
 import numeral from 'numeral';
-import KvCountdownTimer from '../KvCountdownTimer';
+import KvCountdownTimer from '#components/KvCountdownTimer';
 
 const LSE_LOAN_KEY = 'N/A';
 

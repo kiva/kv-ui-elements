@@ -1,4 +1,4 @@
-import KvFlag from '../KvFlag';
+import KvFlag from '#components/KvFlag';
 
 export default {
 	title: 'Components/KvFlag',

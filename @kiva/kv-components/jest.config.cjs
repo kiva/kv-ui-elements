@@ -26,6 +26,11 @@ module.exports = {
 		'vue',
 	],
 
+	moduleNameMapper: {
+		'^#components/(.*)$': '<rootDir>/vue/$1',
+		'^#utils/(.*)$': '<rootDir>/utils/$1',
+	},
+
 	// The test environment that will be used for testing
 	testEnvironment: 'jsdom',
 

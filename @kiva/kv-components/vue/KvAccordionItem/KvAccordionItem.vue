@@ -49,8 +49,8 @@ import {
 	toRefs,
 } from 'vue-demi';
 import { mdiChevronDown } from '@mdi/js';
-import KvExpandable from '../KvExpandable';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvExpandable from '#components/KvExpandable';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	components: {

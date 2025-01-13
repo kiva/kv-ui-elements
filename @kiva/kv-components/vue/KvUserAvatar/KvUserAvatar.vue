@@ -69,7 +69,7 @@
 
 <script>
 import { computed, toRefs } from 'vue-demi';
-import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../../utils/imageUtils';
+import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '#utils/imageUtils';
 
 export default {
 	name: 'KvUserAvatar',

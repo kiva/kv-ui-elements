@@ -38,8 +38,8 @@ import {
 	darkTheme,
 	mintTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import KvPopper from '../KvPopper';
-import KvThemeProvider from '../KvThemeProvider';
+import KvPopper from '#components/KvPopper';
+import KvThemeProvider from '#components/KvThemeProvider';
 
 export default {
 	name: 'KvTooltip',

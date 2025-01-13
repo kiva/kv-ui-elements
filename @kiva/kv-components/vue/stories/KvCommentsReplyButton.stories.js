@@ -1,4 +1,4 @@
-import KvCommentsReplyButton from '../KvCommentsReplyButton';
+import KvCommentsReplyButton from '#components/KvCommentsReplyButton';
 
 export default {
 	title: 'KvCommentsReplyButton',

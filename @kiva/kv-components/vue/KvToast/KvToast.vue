@@ -118,8 +118,8 @@ import {
 import {
 	mdiClose, mdiAlertCircle, mdiAlert, mdiCheckCircle,
 } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
-import KvPageContainer from '../KvPageContainer';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import KvPageContainer from '#components/KvPageContainer';
 
 /**
  * A component which displays a temporary notice to the user.

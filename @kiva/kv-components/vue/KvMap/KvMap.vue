@@ -14,7 +14,7 @@
 
 <script>
 import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
-import { animationCoordinator, generateMapMarkers, getCountryColor } from '../../utils/mapUtils';
+import { animationCoordinator, generateMapMarkers, getCountryColor } from '#utils/mapUtils';
 
 export default {
 	name: 'KvMap',

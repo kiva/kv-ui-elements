@@ -99,11 +99,11 @@ import {
 	onMounted,
 	inject,
 } from 'vue-demi';
-import KvMaterialIcon from '../KvMaterialIcon';
-import KvCommentsReplyButton from '../KvCommentsReplyButton';
-import KvCommentsHeartButton from '../KvCommentsHeartButton';
-import KvCommentsAdd from '../KvCommentsAdd';
-import KvUserAvatar from '../KvUserAvatar';
+import KvMaterialIcon from '#components/KvMaterialIcon';
+import KvCommentsReplyButton from '#components/KvCommentsReplyButton';
+import KvCommentsHeartButton from '#components/KvCommentsHeartButton';
+import KvCommentsAdd from '#components/KvCommentsAdd';
+import KvUserAvatar from '#components/KvUserAvatar';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';

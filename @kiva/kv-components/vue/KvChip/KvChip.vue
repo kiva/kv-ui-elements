@@ -32,7 +32,7 @@
 </template>
 <script>
 import { mdiClose } from '@mdi/js';
-import KvMaterialIcon from '../KvMaterialIcon';
+import KvMaterialIcon from '#components/KvMaterialIcon';
 
 export default {
 	name: 'KvChip',

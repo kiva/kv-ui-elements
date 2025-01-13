@@ -3,7 +3,7 @@ import {
 	getCoordinatesBetween,
 	getLoansIntervals,
 	getCountryColor,
-} from '../../../../utils/mapUtils';
+} from '#utils/mapUtils';
 import mockLenderCountries from '../../../fixtures/mockLenderCountries';
 
 describe('mapUtils', () => {
