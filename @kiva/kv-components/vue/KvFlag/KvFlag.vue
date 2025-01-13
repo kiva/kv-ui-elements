@@ -20,12 +20,12 @@
 			"
 			:class="classes"
 		>
-			<span class="tw-sr-only">{{ countryName }}</span>
+			<span class="tw-sr-only">Flag of {{ name }}</span>
 		</div>
 		<span
 			v-if="showName"
 			class="tw-text-h4 tw-my-2"
-		>{{ getNameByCode(country) }}</span>
+		>{{ name }}</span>
 	</div>
 </template>
 
@@ -37,6 +37,13 @@ export default {
 		 * 2 letter ISO country code of the flag to show
 		* */
 		country: {
+			type: String,
+			required: true,
+		},
+		/**
+		 * Name of the country of the flag
+		* */
+		name: {
 			type: String,
 			required: true,
 		},
@@ -70,13 +77,6 @@ export default {
 			default: false,
 		},
 	},
-	async setup() {
-		const countryList = await import('flag-icons/country.json');
-
-		return {
-			countryList,
-		};
-	},
 	computed: {
 		spriteWidth() {
 			if (this.widthOverride) {
@@ -84,20 +84,11 @@ export default {
 			}
 			return '100%';
 		},
-		countryName() {
-			return `Flag of ${this.getNameByCode(this.country)}`;
-		},
 		classes() {
 			return {
 				[`fi-${this.country.toLowerCase()}`]: true,
 				'tw-border-0': this.hideBorder,
 			};
-		},
-	},
-	methods: {
-		getNameByCode(code) {
-			const uppercaseCode = code?.toLowerCase() ?? '';
-			return this.countryList?.default?.find((country) => country.code === uppercaseCode)?.name ?? '';
 		},
 	},
 };
