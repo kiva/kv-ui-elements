@@ -16,9 +16,9 @@
 				tw-border
 				tw-border-gray-600
 				!tw-bg-cover
-				fib
 			"
 			:class="classes"
+			:style="{ backgroundImage: `url(${svgUrl})` }"
 		>
 			<span class="tw-sr-only">Flag of {{ name }}</span>
 		</div>
@@ -30,6 +30,9 @@
 </template>
 
 <script>
+const imgImport = import.meta.glob('./flags/**/*.svg', { query: '?url', eager: true });
+const flagUrl = (country, aspectRatio) => imgImport[`./flags/${aspectRatio}/${country.toLowerCase()}.svg`].default;
+
 export default {
 	name: 'KvFlag',
 	props: {
@@ -54,6 +57,7 @@ export default {
 		aspectRatio: {
 			type: String,
 			default: '4x3',
+			validator: (value) => ['4x3', '1x1'].includes(value),
 		},
 		/**
 		 * Show the name of the country next to the flag
@@ -90,15 +94,19 @@ export default {
 				'tw-border-0': this.hideBorder,
 			};
 		},
+		svgUrl() {
+			return flagUrl(this.country, this.aspectRatio);
+		},
 	},
 };
 </script>
 
 <style lang="postcss" scoped>
-@import "flag-icons/css/flag-icons.min.css";
-
 .kv-flag__wrapper {
 	line-height: 0;
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
 }
 
 .kv-flag--4x3 .kv-flag__wrapper.kv-flag-svg {

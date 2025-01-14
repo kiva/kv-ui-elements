@@ -47,6 +47,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-storybook": "^0.5.6",
     "eslint-plugin-vue": "^7.9.0",
+    "import-meta-loader": "^1.1.0",
     "jest": "^27.4.3",
     "jest-axe": "^5.0.1",
     "postcss": "^8.4.5",
@@ -69,7 +70,9 @@
     "build-storybook": "storybook build -c vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
     "test": "npm run lint && jest",
-    "build": "vite build && mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
+    "prebuild": "node build/copyFlags.js",
+    "build": "vite build",
+    "postbuild": "mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
   },
   "dependencies": {
     "@kiva/kv-tokens": "^2.16.1",

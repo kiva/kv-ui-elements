@@ -47,6 +47,10 @@ export default {
 			type: 'javascript/auto'
 		});
 		config.module.rules.push({
+			test: /\.js$/,
+			loader: 'import-meta-loader',
+		});
+		config.module.rules.push({
 			test: /\.postcss$/,
 			use: [
 				'style-loader',
