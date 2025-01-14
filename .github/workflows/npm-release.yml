@@ -22,7 +22,7 @@ jobs:
       - name: Configure Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.x'
+          node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
 
       # Check that the NODE_AUTH_TOKEN is valid
