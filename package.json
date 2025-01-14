@@ -16,8 +16,10 @@
     "build": "rimraf dist && npm run build --workspaces",
     "prepare": "husky install",
     "publish-release": "lerna publish -m 'chore: publish'",
-    "prestorybook": "npm run build -w @kiva/kv-tokens && npm run prebuild -w @kiva/kv-components",
+    "prepare-storybook": "npm run build -w @kiva/kv-tokens && npm run prebuild -w @kiva/kv-components",
+    "prestorybook": "npm run prepare-storybook",
     "storybook": "npm run storybook -w @kiva/kv-components",
+    "prebuild-storybook": "npm run prepare-storybook",
     "build-storybook": "npm run build-storybook -w @kiva/kv-components"
   },
   "devDependencies": {
