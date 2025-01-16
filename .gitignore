@@ -4,7 +4,7 @@ dist/
 .nuxt/
 npm-debug.log*
 .eslintcache
-@kiva/kv-components/vue/flags/
+@kiva/kv-components/src/vue/flags/
 
 # Editor directories and files
 .idea

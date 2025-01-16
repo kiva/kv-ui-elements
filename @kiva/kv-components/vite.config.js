@@ -6,15 +6,15 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
 	resolve: {
 		alias: {
-			'#components': '/vue',
-			'#utils': '/utils',
+			'#components': '/src/vue',
+			'#utils': '/src/utils',
 		},
 	},
 	build: {
 		outDir: 'dist',
 		cssCodeSplit: true,
 		lib: {
-			entry: 'index.js',
+			entry: 'src/index.js',
 			formats: ['es'],
 			fileName: (format, entryName) => {
 				const suffix = format === 'es' ? '.js' : '.cjs';
@@ -27,7 +27,14 @@ export default defineConfig({
 	},
 	plugins: [
 		vue(),
-		noBundlePlugin(),
+		noBundlePlugin({
+			internal: [
+				'embla-carousel',
+				'embla-carousel-autoplay',
+				'embla-carousel-fade',
+				'popper.js',
+			],
+		}),
 		libAssetsPlugin({
 			name: '[name].[contenthash:8].[ext]',
 			outputPath: 'kvui',

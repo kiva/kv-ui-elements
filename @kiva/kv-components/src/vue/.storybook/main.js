@@ -76,6 +76,7 @@ export default {
 			'~/node_modules': path.resolve(__dirname, '../../../../node_modules/'),
 			'#components': path.resolve(__dirname, '../../vue'),
 			'#utils': path.resolve(__dirname, '../../utils'),
+			'#fixtures': path.resolve(__dirname, '../../../tests/fixtures'),
 		};
 		return config;
 	},

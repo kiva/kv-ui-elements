@@ -27,8 +27,8 @@ module.exports = {
 	],
 
 	moduleNameMapper: {
-		'^#components/(.*)$': '<rootDir>/vue/$1',
-		'^#utils/(.*)$': '<rootDir>/utils/$1',
+		'^#components/(.*)$': '<rootDir>/src/vue/$1',
+		'^#utils/(.*)$': '<rootDir>/src/utils/$1',
 	},
 
 	// The test environment that will be used for testing

@@ -1,5 +1,5 @@
+import mockLenderCountries from '#fixtures/mockLenderCountries';
 import KvMap from '../KvMap.vue';
-import mockLenderCountries from '../../tests/fixtures/mockLenderCountries';
 
 export default {
 	title: 'KvMap',

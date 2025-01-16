@@ -1,5 +1,5 @@
+import { publicLenderId, comments } from '#fixtures/mockCommentsData';
 import KvCommentsList from '../KvCommentsList.vue';
-import { publicLenderId, comments } from '../../tests/fixtures/mockCommentsData';
 
 export default {
 	title: 'KvCommentsList',

@@ -20,8 +20,9 @@ module.exports = {
 		'import/resolver': {
 			alias: {
 				map: [
-					['#components', path.resolve(__dirname, 'vue')],
-					['#utils', path.resolve(__dirname, 'utils')],
+					['#components', path.resolve(__dirname, 'src/vue')],
+					['#utils', path.resolve(__dirname, 'src/utils')],
+					['#fixtures', path.resolve(__dirname, 'tests/fixtures')],
 				],
 				extensions: ['.ts', '.js', '.json', '.vue'],
 			},

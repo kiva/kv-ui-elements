@@ -5,7 +5,7 @@ import path from 'node:path';
 async function copyFlags() {
 	const flagIconPath = import.meta.resolve('flag-icons/flags');
 	const src = flagIconPath.replace('file://', '');
-	const dest = path.resolve(import.meta.dirname, '../vue/flags');
+	const dest = path.resolve(import.meta.dirname, '../src/vue/flags');
 	await fs.cp(src, dest, { recursive: true });
 }
 copyFlags();
