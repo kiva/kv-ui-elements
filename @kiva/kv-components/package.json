@@ -8,9 +8,9 @@
   "exports": {
     ".": "./dist/index.js",
     "./utils/*": "./dist/utils/*.js",
-	"./utils/*.js": "./dist/utils/*.js",
+    "./utils/*.js": "./dist/utils/*.js",
     "./vue/*": "./dist/vue/*.js",
-	"./vue/*.js": "./dist/vue/*.js"
+    "./vue/*.js": "./dist/vue/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
@@ -25,12 +25,10 @@
     "@storybook/addon-storysource": "^8.4.7",
     "@storybook/addon-styling-webpack": "^1.0.1",
     "@storybook/addon-viewport": "^8.4.7",
-    "@storybook/builder-vite": "^8.4.7",
     "@storybook/builder-webpack5": "^8.4.7",
     "@storybook/core-common": "^8.4.7",
     "@storybook/theming": "^8.4.7",
     "@storybook/vue3": "^8.4.7",
-    "@storybook/vue3-vite": "^8.4.7",
     "@storybook/vue3-webpack5": "^8.4.7",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.2",
@@ -60,7 +58,6 @@
     "storybook": "^8.4.7",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.3",
-    "tsup": "^6.7.0",
     "vite": "^6.0.7",
     "vite-plugin-no-bundle": "^4.0.0",
     "vue": "^3.2.37",
