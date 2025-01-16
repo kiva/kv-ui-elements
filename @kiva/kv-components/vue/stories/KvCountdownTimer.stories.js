@@ -1,3 +1,4 @@
+import { add } from 'date-fns';
 import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
@@ -22,10 +23,10 @@ const story = (args) => {
 	return template;
 };
 
-export const Seconds = story({ msLeft: 1000 * 10 });
+export const Seconds = story({ deadline: add(new Date(), { seconds: 10 }) });
 
-export const Tomorrow = story({ msLeft: 1000 * 60 * 60 * 24 });
+export const Tomorrow = story({ deadline: add(new Date(), { days: 1 }) });
 
-export const Expired = story({ msLeft: 0 });
+export const Expired = story({ deadline: new Date() });
 
-export const Overmorrow = story({ msLeft: 1000 * 60 * 60 * 48 });
+export const Overmorrow = story({ deadline: add(new Date(), { days: 2 }) });

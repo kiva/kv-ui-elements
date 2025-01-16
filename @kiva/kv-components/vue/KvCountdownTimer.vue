@@ -1,6 +1,6 @@
 <template>
 	<span v-if="timeLeft">
-		{{ remainingHours }}h {{ timeLeft.minutes() }}m {{ timeLeft.seconds() }}s
+		{{ remainingHours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s
 	</span>
 </template>
 
@@ -10,41 +10,43 @@ import {
 	toRefs,
 	onBeforeUnmount,
 	onMounted,
-	computed,
 } from 'vue';
-import moment from 'moment';
+import { differenceInHours, intervalToDuration, isBefore } from 'date-fns';
 
 export default {
 	props: {
-		msLeft: {
-			type: Number,
+		deadline: {
+			type: Date,
 			required: true,
 		},
 	},
 	setup(props) {
-		const { msLeft } = toRefs(props);
+		const { deadline } = toRefs(props);
 
 		const interval = ref(null);
 		const timeLeft = ref(null);
+		const remainingHours = ref(null);
 
-		const remainingHours = computed(() => {
-			return Math.floor(timeLeft.value.asHours());
-		});
+		const setTimeLeft = () => {
+			const now = new Date();
+			if (isBefore(now, deadline.value)) {
+				timeLeft.value = intervalToDuration({ start: now, end: deadline.value });
+				remainingHours.value = differenceInHours(deadline.value, now);
+			} else {
+				timeLeft.value = null;
+				remainingHours.value = null;
+			}
+		};
 
 		onMounted(() => {
-			timeLeft.value = moment.duration(msLeft.value > 0 ? msLeft.value : 0, 'milliseconds');
+			setTimeLeft();
 
-			if (timeLeft.value > 0) {
-				const countdownInterval = 1000;
-
-				interval.value = setInterval(() => {
-					timeLeft.value = moment.duration(timeLeft.value - countdownInterval, 'milliseconds');
-
-					if (timeLeft.value <= 0) {
-						clearInterval(interval.value);
-					}
-				}, countdownInterval);
-			}
+			interval.value = setInterval(() => {
+				setTimeLeft();
+				if (!timeLeft.value) {
+					clearInterval(interval.value);
+				}
+			}, 1000);
 		});
 
 		onBeforeUnmount(() => {

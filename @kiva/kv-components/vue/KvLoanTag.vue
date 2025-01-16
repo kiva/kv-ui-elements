@@ -7,7 +7,7 @@
 		{{ tagText }}
 		<kv-countdown-timer
 			v-if="variation === 'ending-soon'"
-			:ms-left="msLeft"
+			:deadline="deadline"
 		/>
 	</div>
 </template>
@@ -34,13 +34,10 @@ export default {
 			default: false,
 		},
 	},
-	data() {
-		return {
-			interval: null,
-			msLeft: parseISO(this.loan?.plannedExpirationDate).getTime() - new Date().getTime(),
-		};
-	},
 	computed: {
+		deadline() {
+			return parseISO(this.loan?.plannedExpirationDate);
+		},
 		isLseLoan() {
 			return this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY) ?? false;
 		},
