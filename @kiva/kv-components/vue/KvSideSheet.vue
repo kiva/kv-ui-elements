@@ -1,7 +1,7 @@
 <template>
 	<div
 		v-if="visible"
-		class="tw-block lg:tw-mt-0 tw-absolute tw-inset-0
+		class="tw-block lg:tw-mt-0 tw-fixed tw-inset-0
             tw-bg-black tw-transition-all md:tw-duration-150 tw-z-modal"
 		:class="{
 			'tw-bg-opacity-0 tw-delay-300': !open,
@@ -10,7 +10,7 @@
 		@click.self="closeSideSheet"
 	>
 		<div
-			class="tw-absolute tw-right-0 tw-transition-all tw-duration-300 tw-bg-white
+			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white
 				tw-overflow-y-auto tw-p-2"
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
@@ -47,7 +47,8 @@
 				</button>
 			</div>
 			<div
-				class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200"
+				class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
+					tw-overscroll-y-contain"
 				:class="{
 					'tw-opacity-0': !open,
 					'tw-opacity-full': open,
@@ -119,18 +120,12 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
-		const userScrollPosition = ref(0);
 
 		const closeSideSheet = () => {
 			open.value = false;
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
 
-			if (animationSourceElement.value && window.scrollTo) {
-				window.scrollTo({
-					top: userScrollPosition.value,
-					behavior: 'smooth',
-				});
-
+			if (animationSourceElement.value) {
 				modalStyles.value = {
 					...initialStyles.value,
 					transition: 'all 0.5s ease-in-out',
@@ -160,8 +155,6 @@ export default {
 				const height = rect?.height ?? 0;
 
 				if (top || left || width || height) {
-					userScrollPosition.value = window.scrollY ?? 0;
-
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
