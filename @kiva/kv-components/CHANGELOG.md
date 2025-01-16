@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.5...@kiva/kv-components@4.8.6) (2025-01-16)
+
+
+### Bug Fixes
+
+* adjust modal position and remove scroll when visible ([af17714](https://github.com/kiva/kv-ui-elements/commit/af17714803c84ca2b4f3d9f1a9f7730303429530))
+
+
+
+
+
 ## [4.8.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.4...@kiva/kv-components@4.8.5) (2025-01-10)
 
 
