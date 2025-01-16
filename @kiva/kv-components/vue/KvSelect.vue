@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue-demi';
+import { ref, watch } from 'vue';
 import { mdiChevronDown } from '@mdi/js';
 import { useAttrs } from '../utils/attrs';
 import KvMaterialIcon from './KvMaterialIcon.vue';

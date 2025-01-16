@@ -43,7 +43,7 @@ import {
 	ref,
 	toRefs,
 	watch,
-} from 'vue-demi';
+} from 'vue';
 import KvLoadingSpinner from './KvLoadingSpinner.vue';
 
 export default {

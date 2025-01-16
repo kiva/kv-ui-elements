@@ -53,7 +53,7 @@
 import {
 	ref,
 	onMounted,
-} from 'vue-demi';
+} from 'vue';
 import { nanoid } from 'nanoid';
 import { useAttrs } from '../utils/attrs';
 

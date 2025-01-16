@@ -6,7 +6,7 @@ import {
 	ref,
 	toRefs,
 	nextTick,
-} from 'vue-demi';
+} from 'vue';
 import EmblaCarousel from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Fade from 'embla-carousel-fade';

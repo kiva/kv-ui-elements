@@ -11,7 +11,7 @@ import {
 	onBeforeUnmount,
 	onMounted,
 	computed,
-} from 'vue-demi';
+} from 'vue';
 import moment from 'moment';
 
 export default {

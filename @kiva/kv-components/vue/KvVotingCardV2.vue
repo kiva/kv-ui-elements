@@ -63,7 +63,7 @@ import {
 	computed,
 	ref,
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
 import KvLightbox from './KvLightbox.vue';

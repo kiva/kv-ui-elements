@@ -23,7 +23,7 @@ import {
 	computed,
 	onMounted,
 	getCurrentInstance,
-} from 'vue-demi';
+} from 'vue';
 
 export default {
 	props: {

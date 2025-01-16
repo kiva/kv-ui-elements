@@ -68,7 +68,7 @@ import {
 	onMounted,
 	getCurrentInstance,
 	onBeforeUnmount,
-} from 'vue-demi';
+} from 'vue';
 
 export default {
 	props: {

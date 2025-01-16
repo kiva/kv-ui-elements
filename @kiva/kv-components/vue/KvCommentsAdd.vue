@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue-demi';
+import { computed, ref } from 'vue';
 import KvButton from './KvButton.vue';
 import KvTextInput from './KvTextInput.vue';
 import KvUserAvatar from './KvUserAvatar.vue';

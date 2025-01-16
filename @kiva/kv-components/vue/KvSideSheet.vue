@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { ref, toRefs, watch } from 'vue-demi';
+import { ref, toRefs, watch } from 'vue';
 import { mdiClose, mdiLaunch } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 

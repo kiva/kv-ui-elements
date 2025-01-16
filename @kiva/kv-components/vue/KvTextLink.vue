@@ -31,7 +31,7 @@ import {
 	ref,
 	toRefs,
 	watch,
-} from 'vue-demi';
+} from 'vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 /**

@@ -12,7 +12,6 @@ export default defineConfig({
 	},
 	build: {
 		outDir: 'dist',
-		minify: false,
 		cssCodeSplit: true,
 		lib: {
 			entry: 'index.js',

@@ -1,7 +1,7 @@
 import {
 	computed,
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 
 import { mdiMapMarker } from '@mdi/js';
 

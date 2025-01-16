@@ -58,7 +58,7 @@ import {
 	onMounted,
 	ref,
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 import { useAttrs } from '../utils/attrs';
 
 const emits = [

@@ -32,7 +32,7 @@ import {
 	computed,
 	onMounted,
 	nextTick,
-} from 'vue-demi';
+} from 'vue';
 
 export default {
 	props: {

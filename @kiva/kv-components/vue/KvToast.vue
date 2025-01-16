@@ -114,7 +114,7 @@
 import {
 	ref,
 	computed,
-} from 'vue-demi';
+} from 'vue';
 import {
 	mdiClose, mdiAlertCircle, mdiAlert, mdiCheckCircle,
 } from '@mdi/js';

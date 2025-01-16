@@ -10,7 +10,7 @@
 <script>
 import {
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 import { expand, collapse } from '../utils/expander';
 
 export default {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { ref, toRefs, computed } from 'vue-demi';
+import { ref, toRefs, computed } from 'vue';
 import {
 	darkTheme,
 	mintTheme,

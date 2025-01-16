@@ -37,7 +37,7 @@ import {
 	watch,
 	ref,
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 import {
 	mdiChevronDown,
 	mdiChevronUp,

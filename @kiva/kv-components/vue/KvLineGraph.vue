@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue';
 
 export default {
 	props: {

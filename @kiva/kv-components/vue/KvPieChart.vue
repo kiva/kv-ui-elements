@@ -102,7 +102,7 @@ import {
 	toRaw,
 	toRefs,
 	computed,
-} from 'vue-demi';
+} from 'vue';
 import Alea from '../utils/Alea';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 

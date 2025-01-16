@@ -26,7 +26,7 @@ import {
 	computed,
 	toRefs,
 	inject,
-} from 'vue-demi';
+} from 'vue';
 
 export default {
 	props: {

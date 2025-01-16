@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue';
 // Since it's easy for marketing or other to upload massive images to contentful,
 // in order to be performant respectful of our users data plans, and not damage
 // our SEO, we shouldn't send the source image directly to our users.

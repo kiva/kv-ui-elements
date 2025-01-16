@@ -80,7 +80,7 @@
 import {
 	ref,
 	toRefs,
-} from 'vue-demi';
+} from 'vue';
 import { mdiAlertCircleOutline, mdiClose } from '@mdi/js';
 import { useAttrs } from '../utils/attrs';
 import KvMaterialIcon from './KvMaterialIcon.vue';

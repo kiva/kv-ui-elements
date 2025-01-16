@@ -131,7 +131,7 @@ import {
 	watch,
 	onBeforeUnmount,
 	onMounted,
-} from 'vue-demi';
+} from 'vue';
 import { mdiClose, mdiCheckCircle } from '@mdi/js';
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap';
 import { hideOthers as makePageInert } from 'aria-hidden';

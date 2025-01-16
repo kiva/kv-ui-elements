@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue';
 import KvUserAvatar from './KvUserAvatar.vue';
 
 export default {

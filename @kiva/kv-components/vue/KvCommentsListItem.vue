@@ -98,7 +98,7 @@ import {
 	toRefs,
 	onMounted,
 	inject,
-} from 'vue-demi';
+} from 'vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvCommentsReplyButton from './KvCommentsReplyButton.vue';
 import KvCommentsHeartButton from './KvCommentsHeartButton.vue';

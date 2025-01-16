@@ -98,15 +98,12 @@
 
 <script>
 import {
-	toRefs,
-} from 'vue-demi';
-import {
 	mdiPause,
 	mdiPlay,
 	mdiChevronUp,
 	mdiChevronDown,
 } from '@mdi/js';
-import { computed } from 'vue';
+import { computed, toRefs } from 'vue';
 import { carouselUtil } from '../utils/carousels';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 

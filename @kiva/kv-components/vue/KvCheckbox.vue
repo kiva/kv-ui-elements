@@ -69,7 +69,7 @@ import {
 	ref,
 	toRefs,
 	watch,
-} from 'vue-demi';
+} from 'vue';
 import { useAttrs } from '../utils/attrs';
 
 const emits = [

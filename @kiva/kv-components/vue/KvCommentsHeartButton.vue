@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue';
 import { mdiHeart, mdiHeartOutline } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 

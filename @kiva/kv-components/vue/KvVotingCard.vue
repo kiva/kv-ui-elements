@@ -89,7 +89,7 @@
 
 <script>
 import { mdiInformation } from '@mdi/js';
-import { computed } from 'vue-demi';
+import { computed } from 'vue';
 import KvProgressBar from './KvProgressBar.vue';
 import KvButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';

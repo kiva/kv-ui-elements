@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue-demi';
+import { computed, toRefs } from 'vue';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
 
 export default {

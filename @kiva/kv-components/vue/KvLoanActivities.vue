@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { computed, ref, toRefs } from 'vue-demi';
+import { computed, ref, toRefs } from 'vue';
 import numeral from 'numeral';
 import { format } from 'date-fns';
 import KvActivityRow from './KvActivityRow.vue';
