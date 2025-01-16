@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import KvCommentsHeartButton from '#components/KvCommentsHeartButton';
+import KvCommentsHeartButton from '#components/KvCommentsHeartButton.vue';
 
 const CLICK_EVENT = 'click';
 

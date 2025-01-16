@@ -1,4 +1,4 @@
-import KvLineGraph from '#components/KvLineGraph';
+import KvLineGraph from '../KvLineGraph.vue';
 
 export default {
 	title: 'KvLineGraph',

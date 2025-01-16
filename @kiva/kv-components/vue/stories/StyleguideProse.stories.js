@@ -10,9 +10,9 @@ import {
 	mintTheme,
 	darkMintTheme,
 	darkStoneTheme,
-} from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import KvGrid from '#components/KvGrid';
-import KvPageContainer from '#components/KvPageContainer';
+} from '@kiva/kv-tokens/configs/kivaColors';
+import KvGrid from '../KvGrid.vue';
+import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
 	title: 'Base Styling/Prose Demo',

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvToast from '#components/KvToast';
+import KvToast from '#components/KvToast.vue';
 
 describe('KvToast', () => {
 	it('has no automated accessibility violations', async () => {

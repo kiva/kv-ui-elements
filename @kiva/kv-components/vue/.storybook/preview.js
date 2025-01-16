@@ -4,7 +4,7 @@ import {
 } from '@storybook/vue3';
 import { addons } from '@storybook/preview-api';
 import KvThemeProvider from '#components/KvThemeProvider';
-import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors.cjs';
+import { defaultTheme, darkTheme } from '@kiva/kv-tokens/configs/kivaColors';
 
 setup((app) => {
 	// Mock analytics

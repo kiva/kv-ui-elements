@@ -1,8 +1,8 @@
-import KvCheckbox from '#components/KvCheckbox';
-import KvRadio from '#components/KvRadio';
-import KvSelect from '#components/KvSelect';
-import KvSwitch from '#components/KvSwitch';
-import KvTextInput from '#components/KvTextInput';
+import KvCheckbox from '../KvCheckbox.vue';
+import KvRadio from '../KvRadio.vue';
+import KvSelect from '../KvSelect.vue';
+import KvSwitch from '../KvSwitch.vue';
+import KvTextInput from '../KvTextInput.vue';
 
 import { Multiple as CheckboxDefault } from './KvCheckbox.stories';
 import { Default as RadioDefault } from './KvRadio.stories';

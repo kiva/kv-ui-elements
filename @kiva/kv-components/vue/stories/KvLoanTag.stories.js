@@ -1,5 +1,5 @@
-import KvLoanTag from '#components/KvLoanTag';
-import KvCountdownTimer from '#components/KvCountdownTimer';
+import KvLoanTag from '../KvLoanTag.vue';
+import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
 	title: 'KvLoanTag',

@@ -1,4 +1,4 @@
-import KvUserAvatar from '#components/KvUserAvatar';
+import KvUserAvatar from '../KvUserAvatar.vue';
 
 export default {
 	title: 'KvUserAvatar',

@@ -1,4 +1,4 @@
-import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
+import kvTokensPrimitives from '@kiva/kv-tokens';
 import {
 	getCoordinatesBetween,
 	getLoansIntervals,

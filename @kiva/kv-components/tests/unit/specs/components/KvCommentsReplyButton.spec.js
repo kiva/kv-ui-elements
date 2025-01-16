@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import KvCommentsReplyButton from '#components/KvCommentsReplyButton';
+import KvCommentsReplyButton from '#components/KvCommentsReplyButton.vue';
 
 const CLICK_EVENT = 'click';
 

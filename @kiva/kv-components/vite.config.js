@@ -17,25 +17,13 @@ export default defineConfig({
 		lib: {
 			entry: 'index.js',
 			formats: ['es'],
-		},
-		rollupOptions: {
-			external: [
-				'@kiva/kv-tokens',
-				'@mdi/js',
-				'@vueuse',
-				'aria-hidden',
-				'change-case',
-				'date-fns',
-				'embla-carousel',
-				'embla-carousel-autoplay',
-				'embla-carousel-fade',
-				'focus-trap',
-				'moment',
-				'nanoid',
-				'numeral',
-				'popper.js',
-				'vue',
-			],
+			fileName: (format, entryName) => {
+				const suffix = format === 'es' ? '.js' : '.cjs';
+				if (entryName.slice(-4) === '.vue') {
+					return `${entryName.slice(0, -4)}${suffix}`;
+				}
+				return `${entryName}${suffix}`;
+			},
 		},
 	},
 	plugins: [

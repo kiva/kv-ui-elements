@@ -1,4 +1,4 @@
-import KvCountdownTimer from '#components/KvCountdownTimer';
+import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
 	title: 'KvCountdownTimer',

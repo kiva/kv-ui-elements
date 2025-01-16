@@ -1,4 +1,4 @@
-import KvCommentsAdd from '#components/KvCommentsAdd';
+import KvCommentsAdd from '../KvCommentsAdd.vue';
 
 export default {
 	title: 'KvCommentsAdd',

@@ -1,4 +1,4 @@
-import primitives from '@kiva/kv-tokens/primitives.json';
+import primitives from '@kiva/kv-tokens';
 import {
 	defaultTheme,
 	greenLightTheme,
@@ -11,12 +11,12 @@ import {
 	mintTheme,
 	darkMintTheme,
 	darkStoneTheme,
-} from '@kiva/kv-tokens/configs/kivaColors.cjs';
-import KvButton from '#components/KvButton';
-import KvGrid from '#components/KvGrid';
-import KvPageContainer from '#components/KvPageContainer';
-import KvTextLink from '#components/KvTextLink';
-import KvThemeProvider from '#components/KvThemeProvider';
+} from '@kiva/kv-tokens/configs/kivaColors';
+import KvButton from '../KvButton.vue';
+import KvGrid from '../KvGrid.vue';
+import KvPageContainer from '../KvPageContainer.vue';
+import KvTextLink from '../KvTextLink.vue';
+import KvThemeProvider from '../KvThemeProvider.vue';
 
 const defaultThemeTokens = primitives.colors.theme.DEFAULT;
 

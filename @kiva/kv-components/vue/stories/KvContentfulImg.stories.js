@@ -1,4 +1,4 @@
-import KvContentfulImg from '#components/KvContentfulImg';
+import KvContentfulImg from '../KvContentfulImg.vue';
 
 export default {
 	title: 'KvContentfulImg',

@@ -1,4 +1,4 @@
-import KvLendAmountButton from '#components/KvLendAmountButton';
+import KvLendAmountButton from '../KvLendAmountButton.vue';
 
 export default {
 	title: 'KvLendAmountButton',

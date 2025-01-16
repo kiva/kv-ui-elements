@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import KvCommentsListItem, { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '#components/KvCommentsListItem';
-import { ADD_REACTION_EVENT } from '#components/KvCommentsContainer';
+import KvCommentsListItem, { LIKE_COMMENT_EVENT, REPLY_COMMENT_EVENT } from '#components/KvCommentsListItem.vue';
+import { ADD_REACTION_EVENT } from '#components/KvCommentsContainer.vue';
 import { comments } from '../../../fixtures/mockCommentsData';
 
 const comment = comments[0];

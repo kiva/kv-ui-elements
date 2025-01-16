@@ -1,6 +1,6 @@
 import { mdiMagnify } from '@mdi/js';
 import { nanoid } from 'nanoid';
-import KvTextInput from '#components/KvTextInput';
+import KvTextInput from '../KvTextInput.vue';
 
 export default {
 	title: 'Forms/KvTextInput',

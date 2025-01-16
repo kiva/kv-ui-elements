@@ -1,4 +1,4 @@
-import KvChip from '#components/KvChip';
+import KvChip from '../KvChip.vue';
 
 export default {
 	title: 'KvChip',

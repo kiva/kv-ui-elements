@@ -1,4 +1,4 @@
-import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder';
+import KvLoadingPlaceholder from '../KvLoadingPlaceholder.vue';
 
 export default {
 	title: 'KvLoadingPlaceholder',

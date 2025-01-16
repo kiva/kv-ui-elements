@@ -1,4 +1,4 @@
-import KvActivityRow from '#components/KvActivityRow';
+import KvActivityRow from '../KvActivityRow.vue';
 
 export default {
 	title: 'KvActivityRow',

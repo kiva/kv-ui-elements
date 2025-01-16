@@ -7,7 +7,10 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./vue/*": "./dist/vue/*"
+    "./utils/*": "./dist/utils/*.js",
+	"./utils/*.js": "./dist/utils/*.js",
+    "./vue/*": "./dist/vue/*.js",
+	"./vue/*.js": "./dist/vue/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

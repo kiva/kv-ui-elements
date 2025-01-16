@@ -1,4 +1,4 @@
-import KvCommentsHeartButton from '#components/KvCommentsHeartButton';
+import KvCommentsHeartButton from '../KvCommentsHeartButton.vue';
 
 export default {
 	title: 'KvCommentsHeartButton',

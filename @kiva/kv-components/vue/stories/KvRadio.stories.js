@@ -1,4 +1,4 @@
-import KvRadio from '#components/KvRadio';
+import KvRadio from '../KvRadio.vue';
 
 export default {
 	title: 'Forms/KvRadio',

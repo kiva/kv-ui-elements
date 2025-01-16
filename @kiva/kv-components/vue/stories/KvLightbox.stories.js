@@ -1,8 +1,8 @@
 import { mdiLightningBolt } from '@mdi/js';
-import KvLightbox from '#components/KvLightbox';
-import KvMaterialIcon from '#components/KvMaterialIcon';
-import KvButton from '#components/KvButton';
-import KvToast from '#components/KvToast';
+import KvLightbox from '../KvLightbox.vue';
+import KvMaterialIcon from '../KvMaterialIcon.vue';
+import KvButton from '../KvButton.vue';
+import KvToast from '../KvToast.vue';
 
 export default {
 	title: 'KvLightbox',

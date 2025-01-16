@@ -1,5 +1,5 @@
-import KvSideSheet from '#components/KvSideSheet';
-import KvButton from '#components/KvButton';
+import KvSideSheet from '../KvSideSheet.vue';
+import KvButton from '../KvButton.vue';
 
 export default {
 	title: 'KvSideSheet',

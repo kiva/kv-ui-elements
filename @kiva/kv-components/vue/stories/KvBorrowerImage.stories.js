@@ -1,4 +1,4 @@
-import KvBorrowerImage from '#components/KvBorrowerImage';
+import KvBorrowerImage from '../KvBorrowerImage.vue';
 
 export default {
 	title: 'KvBorrowerImage',

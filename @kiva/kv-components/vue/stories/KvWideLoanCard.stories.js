@@ -1,4 +1,4 @@
-import KvWideLoanCard from '#components/KvWideLoanCard';
+import KvWideLoanCard from '../KvWideLoanCard.vue';
 
 export default {
 	title: 'KvWideLoanCard',

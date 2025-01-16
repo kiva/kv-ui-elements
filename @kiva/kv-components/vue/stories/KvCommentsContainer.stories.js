@@ -1,4 +1,4 @@
-import KvCommentsContainer from '#components/KvCommentsContainer';
+import KvCommentsContainer from '../KvCommentsContainer.vue';
 import { publicLenderId, comments } from '../../tests/fixtures/mockCommentsData';
 
 export default {

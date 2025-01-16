@@ -1,4 +1,4 @@
-import KvLoadingSpinner from '#components/KvLoadingSpinner';
+import KvLoadingSpinner from '../KvLoadingSpinner.vue';
 
 export default {
 	title: 'KvLoadingSpinner',

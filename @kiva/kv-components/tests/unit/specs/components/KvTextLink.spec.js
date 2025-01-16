@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvTextLink from '#components/KvTextLink';
+import KvTextLink from '#components/KvTextLink.vue';
 import addVueRouter from '../../utils/addVueRouter';
 
 describe('Default Button', () => {

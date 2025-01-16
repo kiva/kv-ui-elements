@@ -1,4 +1,4 @@
-import KvLoanTeamPick from '#components/KvLoanTeamPick';
+import KvLoanTeamPick from '../KvLoanTeamPick.vue';
 
 export default {
 	title: 'KvLoanTeamPick',

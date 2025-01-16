@@ -1,4 +1,4 @@
-import KvCheckbox from '#components/KvCheckbox';
+import KvCheckbox from '../KvCheckbox.vue';
 
 export default {
 	title: 'Forms/KvCheckbox',

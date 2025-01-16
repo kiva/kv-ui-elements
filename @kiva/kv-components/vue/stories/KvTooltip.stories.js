@@ -1,4 +1,4 @@
-import KvTooltip from '#components/KvTooltip';
+import KvTooltip from '../KvTooltip.vue';
 
 export default {
 	title: 'KvTooltip',

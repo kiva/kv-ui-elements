@@ -1,5 +1,5 @@
-import KvIntroductionLoanCard from '#components/KvIntroductionLoanCard';
-import KvFlag from '#components/KvFlag';
+import KvIntroductionLoanCard from '../KvIntroductionLoanCard.vue';
+import KvFlag from '../KvFlag.vue';
 
 export default {
 	title: 'KvIntroductionLoanCard',

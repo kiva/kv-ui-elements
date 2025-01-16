@@ -1,4 +1,4 @@
-import KvProgressBar from '#components/KvProgressBar';
+import KvProgressBar from '../KvProgressBar.vue';
 
 export default {
 	title: 'KvProgressBar',

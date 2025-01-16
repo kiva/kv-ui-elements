@@ -1,4 +1,4 @@
-import KvExpandableQuestion from '#components/KvExpandableQuestion';
+import KvExpandableQuestion from '../KvExpandableQuestion.vue';
 
 export default {
 	title: 'KvExpandableQuestion',

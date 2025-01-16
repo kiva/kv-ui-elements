@@ -1,4 +1,4 @@
-import KvButton from '#components/KvButton';
+import KvButton from '../KvButton.vue';
 
 export default {
 	title: 'KvButton',

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/vue';
-import KvProgressBar from '#components/KvProgressBar';
+import KvProgressBar from '#components/KvProgressBar.vue';
 
 describe('KvProgressBar', () => {
 	it('renders with a role of "progressbar"', () => {
