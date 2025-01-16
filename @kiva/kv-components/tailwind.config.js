@@ -1,9 +1,7 @@
-const resolveConfig = require('tailwindcss/resolveConfig'); // eslint-disable-line import/no-extraneous-dependencies
-const { textStyles } = require('@kiva/kv-tokens/configs/kivaTypography.cjs');
-const sharedConfig = require('@kiva/kv-tokens/configs/tailwind.config.cjs');
-const {
-	headerNumberCase, kebabCase, buildTailwindClassName,
-} = require('./utils/themeUtils.cjs');
+import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
+import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
+import sharedConfig from '@kiva/kv-tokens/configs/tailwind.config';
+import { headerNumberCase, kebabCase, buildTailwindClassName } from './utils/themeUtils';
 
 const config = resolveConfig(sharedConfig);
 const { theme } = config;
@@ -53,7 +51,7 @@ const safelist = [
 	...boxShadows.map((boxShadow) => buildTailwindClassName(`${themePrefix}shadow`, boxShadow)),
 ];
 
-module.exports = {
+export default {
 	presets: [sharedConfig],
 	content: [
 		'./vue/**/*.vue',

@@ -1,9 +1,14 @@
-const plugin = require('tailwindcss/plugin');
-const typographyPlugin = require('@tailwindcss/typography');
-const kivaTypography = require('./kivaTypography.cjs');
-const { defaultTheme, buildColorChoices } = require('./kivaColors.cjs');
-const designtokens = require('../primitives.json');
-const { rem } = require('./util.cjs');
+import plugin from 'tailwindcss/plugin.js';
+import typographyPlugin from '@tailwindcss/typography';
+import {
+	proseOverrides,
+	textBaseColor,
+	textStyles,
+	webFonts,
+} from './kivaTypography.js';
+import { defaultTheme, buildColorChoices } from './kivaColors.js';
+import designTokens from '../primitives.js';
+import { rem } from './util.js';
 
 const {
 	fonts,
@@ -15,9 +20,9 @@ const {
 	space,
 	radii,
 	zIndices,
-} = designtokens;
+} = designTokens;
 
-module.exports = {
+export default {
 	content: ['./**.*.js'],
 	prefix: 'tw-', // prefixes all tailwinds classes with tw. e.g., 'tw-flex tw-mb-2'
 	corePlugins: {
@@ -136,7 +141,7 @@ module.exports = {
 			lg: '0 4px 12px rgba(0, 0, 0, 0.08)',
 		},
 		extend: {
-			typography: kivaTypography.proseOverrides, // prose plugin overrides
+			typography: proseOverrides, // prose plugin overrides
 			height: {
 				40: rem(320),
 				57.5: rem(460),
@@ -182,7 +187,6 @@ module.exports = {
 	plugins: [
 		typographyPlugin, // prose plugin. See overrides in theme.extend.typography
 		plugin(({ addBase, addUtilities }) => {
-			const { webFonts, textStyles, textBaseColor } = kivaTypography;
 			addBase(webFonts);
 			addBase({
 				body: {

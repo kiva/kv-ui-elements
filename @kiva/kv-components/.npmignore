@@ -7,5 +7,5 @@
 /CHANGELOG.md
 /jest.config.cjs
 /postcss.config.cjs
-/tailwind.config.cjs
+/tailwind.config.js
 /vite.config.js

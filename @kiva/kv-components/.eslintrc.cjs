@@ -18,10 +18,13 @@ module.exports = {
 	],
 	settings: {
 		'import/resolver': {
-			alias: [
-				['#components', path.resolve(__dirname, 'vue')],
-				['#utils', path.resolve(__dirname, 'utils')],
-			],
+			alias: {
+				map: [
+					['#components', path.resolve(__dirname, 'vue')],
+					['#utils', path.resolve(__dirname, 'utils')],
+				],
+				extensions: ['.ts', '.js', '.json', '.vue'],
+			},
 		},
 	},
 	rules: {

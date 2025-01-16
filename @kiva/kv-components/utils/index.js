@@ -9,7 +9,7 @@ export * from './loanUtils';
 export * from './mapUtils';
 export * from './printing';
 export * from './scrollLock';
-export * from './themeUtils.cjs';
+export * from './themeUtils';
 export * from './throttle';
 export * from './touchEvents';
 export * from './treemap';

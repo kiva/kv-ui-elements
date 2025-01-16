@@ -1,5 +1,5 @@
-const { rem, em } = require('./util.cjs');
-const designtokens = require('../primitives.json');
+import { rem, em } from './util.js';
+import designTokens from '../primitives.js';
 
 const {
 	fonts,
@@ -9,12 +9,12 @@ const {
 	lineHeights,
 	radii,
 	space,
-} = designtokens;
+} = designTokens;
 
 /**
  WEB FONT DEFINITIONS
 */
-const webFonts = [
+export const webFonts = [
 	// Note corresponding font weight in Tailwind is "normal"
 	{
 		'@font-face': {
@@ -61,12 +61,12 @@ const webFonts = [
 ];
 
 /** BASE TEXT COLOR */
-const textBaseColor = 'rgb(var(--text-primary))';
+export const textBaseColor = 'rgb(var(--text-primary))';
 
 /**
  REUSABLE TYPE STYLES
 */
-const textStyles = (() => {
+export const textStyles = (() => {
 	const textJumbo = {
 		fontFamily: fonts.serif,
 		fontWeight: fontWeights.medium,
@@ -234,7 +234,7 @@ See plugin styling here:
 https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
 */
 
-const proseOverrides = () => ({
+export const proseOverrides = () => ({
 	DEFAULT: {
 		css: [{
 			color: false,
@@ -448,10 +448,3 @@ const proseOverrides = () => ({
 	xl: false,
 	'2xl': false,
 });
-
-module.exports = {
-	webFonts,
-	textBaseColor,
-	textStyles,
-	proseOverrides,
-};

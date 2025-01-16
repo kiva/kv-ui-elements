@@ -3,10 +3,10 @@ const round = (num) => num
 	.replace(/(\.[0-9]+?)0+$/, '$1')
 	.replace(/\.0$/, '');
 
-const rem = (px) => `${round(px / 16)}rem`;
-const em = (px, base) => `${round(px / base)}em`;
+export const rem = (px) => `${round(px / 16)}rem`;
+export const em = (px, base) => `${round(px / base)}em`;
 
-const hexToRGB = (hex) => {
+export const hexToRGB = (hex) => {
 	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
 	const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	const replacedHex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
@@ -15,12 +15,12 @@ const hexToRGB = (hex) => {
 	return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
 };
 
-const base64 = (str) => {
+export const base64 = (str) => {
 	if (typeof window === 'undefined') return Buffer.from(str).toString('base64');
 	return window.btoa(str);
 };
 
-const flattenJSON = (obj, parentKey = '') => {
+export const flattenJSON = (obj, parentKey = '') => {
 	const flattened = {};
 
 	Object.keys(obj).forEach((key) => {
@@ -33,12 +33,4 @@ const flattenJSON = (obj, parentKey = '') => {
 	});
 
 	return flattened;
-};
-
-module.exports = {
-	rem,
-	em,
-	hexToRGB,
-	base64,
-	flattenJSON,
 };

@@ -1,5 +1,5 @@
-const { hexToRGB } = require('./util.cjs');
-const designtokens = require('../primitives.json');
+import { hexToRGB } from './util.js';
+import designTokens from '../primitives.js';
 
 const {
 	DEFAULT: defaultThemeTokens,
@@ -13,7 +13,7 @@ const {
 	mint: mintThemeTokens,
 	'dark-mint': darkMintThemeTokens,
 	'dark-stone': darkStoneThemeTokens,
-} = designtokens.colors.theme;
+} = designTokens.colors.theme;
 
 /**
  * Loops through a theme object and builds a set of CSS custom properties
@@ -42,17 +42,17 @@ const buildCSSVarsFromTokens = (theme) => {
 	return customProperties;
 };
 
-const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
-const greenLightTheme = buildCSSVarsFromTokens(greenLightThemeTokens);
-const greenDarkTheme = buildCSSVarsFromTokens(greenDarkThemeTokens);
-const marigoldLightTheme = buildCSSVarsFromTokens(marigoldLightThemeTokens);
-const stoneLightTheme = buildCSSVarsFromTokens(stoneLightThemeTokens);
-const stoneDarkTheme = buildCSSVarsFromTokens(stoneDarkThemeTokens);
-const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
-const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
-const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
-const darkMintTheme = buildCSSVarsFromTokens(darkMintThemeTokens);
-const darkStoneTheme = buildCSSVarsFromTokens(darkStoneThemeTokens);
+export const defaultTheme = buildCSSVarsFromTokens(defaultThemeTokens);
+export const greenLightTheme = buildCSSVarsFromTokens(greenLightThemeTokens);
+export const greenDarkTheme = buildCSSVarsFromTokens(greenDarkThemeTokens);
+export const marigoldLightTheme = buildCSSVarsFromTokens(marigoldLightThemeTokens);
+export const stoneLightTheme = buildCSSVarsFromTokens(stoneLightThemeTokens);
+export const stoneDarkTheme = buildCSSVarsFromTokens(stoneDarkThemeTokens);
+export const darkTheme = buildCSSVarsFromTokens(darkThemeTokens);
+export const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
+export const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
+export const darkMintTheme = buildCSSVarsFromTokens(darkMintThemeTokens);
+export const darkStoneTheme = buildCSSVarsFromTokens(darkStoneThemeTokens);
 
 // function to allow background opacity and text opacity with tailwind colors
 // https://www.youtube.com/watch?v=MAtaT8BZEAo
@@ -82,7 +82,7 @@ const withOpacity = (variableName) => ({ opacityValue }) => {
  *   ...
  * }
  */
-const buildColorChoices = (themeProperty) => {
+export const buildColorChoices = (themeProperty) => {
 	let twPrefix = themeProperty;
 	if (themeProperty === 'background') {
 		twPrefix = 'bg';
@@ -95,19 +95,4 @@ const buildColorChoices = (themeProperty) => {
 		property[key] = withOpacity(`--${twPrefix}-${key}`);
 	});
 	return property;
-};
-
-module.exports = {
-	buildColorChoices,
-	defaultTheme,
-	greenLightTheme,
-	greenDarkTheme,
-	marigoldLightTheme,
-	stoneLightTheme,
-	stoneDarkTheme,
-	darkTheme,
-	darkGreenTheme,
-	mintTheme,
-	darkMintTheme,
-	darkStoneTheme,
 };

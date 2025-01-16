@@ -1,7 +1,7 @@
-const fs = require('node:fs');
-const primitives = require('../primitives.json');
-const { generateExternalSVG } = require('../configs/kivaHeadingUnderline.cjs');
-const { flattenJSON } = require('../configs/util.cjs');
+import fs from 'node:fs';
+import designTokens from '../primitives.js';
+import { generateExternalSVG } from '../configs/kivaHeadingUnderline.js';
+import { flattenJSON } from '../configs/util.js';
 
 // Note: dir is relative to the root of the kv-tokens package
 const dir = '../../dist/kvui';
@@ -17,7 +17,7 @@ fs.writeFileSync(`${dir}/heading-underline.svg`, svg);
 
 // Generate SCSS variables
 const today = new Date().toUTCString();
-const variables = flattenJSON(primitives);
+const variables = flattenJSON(designTokens);
 const scss = Object.keys(variables)
 	.map((key) => `$${key.toLowerCase().replace('.', '-')}: ${variables[key]};`)
 	.join('\n');
