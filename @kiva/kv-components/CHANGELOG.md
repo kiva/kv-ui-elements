@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.0.0...@kiva/kv-components@5.1.0) (2025-01-17)
+
+
+### Bug Fixes
+
+* **kv-components:** match kv-tokens peer version with current dev dependency major ([ec92f1b](https://github.com/kiva/kv-ui-elements/commit/ec92f1b0ca7e1cb2aee438cc7e10fd80455502cd))
+* remove method from return ([e547cc7](https://github.com/kiva/kv-ui-elements/commit/e547cc7d6442db02b109f7cd311b49a99792384e))
+
+
+### Features
+
+* avoid page scroll when sidesheet open and fix sheet shown in left sometimes ([9602d5b](https://github.com/kiva/kv-ui-elements/commit/9602d5bbb7c53abfd80398a28eb77839a06ec4aa))
+
+
+
+
+
 # [5.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.6...@kiva/kv-components@5.0.0) (2025-01-17)
 
 
