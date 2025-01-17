@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.1...@kiva/kv-tokens@3.0.0) (2025-01-17)
+
+
+* refactor(kv-tokens)!: convert all modules to esm ([f09dd82](https://github.com/kiva/kv-ui-elements/commit/f09dd821e4060570767abb490db45836ecd9b80a))
+
+
+### BREAKING CHANGES
+
+* modules now use import/export and .js extensions
+
+
+
+
+
 ## [2.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.0...@kiva/kv-tokens@2.16.1) (2025-01-04)
 
 

@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.6...@kiva/kv-components@5.0.0) (2025-01-17)
+
+
+### Bug Fixes
+
+* **KvCountdownTimer:** show all zeros when time expires ([8b844ff](https://github.com/kiva/kv-ui-elements/commit/8b844ff96998844a3c114201405c6febca37d2be))
+
+
+* perf(KvCountdownTimer)!: use date-fns instead of moment and expect deadline Date prop ([d7052a4](https://github.com/kiva/kv-ui-elements/commit/d7052a4f9abef3d88783d5ef8c86d9e5f6dad88e))
+* refactor(kv-tokens)!: convert all modules to esm ([f09dd82](https://github.com/kiva/kv-ui-elements/commit/f09dd821e4060570767abb490db45836ecd9b80a))
+* refactor(kv-components)!: distribute components as es modules ([3f8bd88](https://github.com/kiva/kv-ui-elements/commit/3f8bd88e98adf9da97f46d4d3b41be714d11e0a6))
+* perf(KvFlag)!: country name for KvFlag must be provided as a prop SHUA-137 ([0cdc6bf](https://github.com/kiva/kv-ui-elements/commit/0cdc6bfb890b91dbb7bd3c1ebcb68cc86ecba8c5))
+* refactor(kv-components)!: use vite to transpile vue components, update storybook ([f3ec580](https://github.com/kiva/kv-ui-elements/commit/f3ec5803a9746d44966817c4721abfb23896fd87))
+
+
+### Performance Improvements
+
+* **KvFlag:** import flag icon svg urls to use as background image SHUA-129 ([7c3a794](https://github.com/kiva/kv-ui-elements/commit/7c3a7947a894fd255f44064c545a70b03cf17254))
+
+
+### BREAKING CHANGES
+
+* msLeft Number prop replaced with deadline Date prop
+* modules now use import/export and .js extensions
+* components exported at vue/* to match source path
+* country name must be provided to KvFlag
+* dist folder structure is different, so existing import statements will not work
+
+
+
+
+
 ## [4.8.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@4.8.5...@kiva/kv-components@4.8.6) (2025-01-16)
 
 

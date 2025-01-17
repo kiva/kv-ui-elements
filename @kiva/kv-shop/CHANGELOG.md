@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.91...@kiva/kv-shop@2.0.0) (2025-01-17)
+
+
+* refactor(kv-components)!: use vite to transpile vue components, update storybook ([f3ec580](https://github.com/kiva/kv-ui-elements/commit/f3ec5803a9746d44966817c4721abfb23896fd87))
+
+
+### BREAKING CHANGES
+
+* dist folder structure is different, so existing import statements will not work
+
+
+
+
+
 ## [1.12.91](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@1.12.90...@kiva/kv-shop@1.12.91) (2025-01-16)
 
 **Note:** Version bump only for package @kiva/kv-shop
