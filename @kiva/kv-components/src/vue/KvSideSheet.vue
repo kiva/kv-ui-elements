@@ -121,8 +121,18 @@ export default {
 		const initialStyles = ref({});
 		const modalStyles = ref({});
 
+		const avoidBodyScroll = () => {
+			const bodyClasses = 'tw-overflow-hidden';
+			if (open.value) {
+				document.body.classList.add(bodyClasses);
+			} else {
+				document.body.classList.remove(bodyClasses);
+			}
+		};
+
 		const closeSideSheet = () => {
 			open.value = false;
+			avoidBodyScroll();
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
 
 			if (animationSourceElement.value) {
@@ -145,6 +155,7 @@ export default {
 			if (visible.value) {
 				setTimeout(() => {
 					open.value = true;
+					avoidBodyScroll();
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
@@ -158,7 +169,6 @@ export default {
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
-						left: `${left}px`,
 						width: `${width}px`,
 						height: `${height}px`,
 					};
@@ -171,7 +181,6 @@ export default {
 					setTimeout(() => {
 						modalStyles.value = {
 							top: '0',
-							left: '0',
 							width: '100vw',
 							height: '100%',
 							transition: 'all 0.5s ease-in-out',
