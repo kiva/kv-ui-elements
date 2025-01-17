@@ -66,6 +66,7 @@
 									<kv-flag
 										class="tw-ml-0.5 tw-mr-1"
 										:country="countryCode"
+										:name="countryName"
 										width-override="16px"
 										hide-border
 									/>
