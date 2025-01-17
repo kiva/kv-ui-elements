@@ -199,7 +199,6 @@ export default {
 			closeSideSheet,
 			goToLink,
 			modalStyles,
-			avoidBodyScroll,
 		};
 	},
 };
