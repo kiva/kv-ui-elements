@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.0...@kiva/kv-components@5.1.1) (2025-01-17)
+
+
+### Bug Fixes
+
+* **KvIntroductionLoanCard:** provide country name to KvFlag ([6a80105](https://github.com/kiva/kv-ui-elements/commit/6a80105c9df68a4e3edb896c8ac2497ca955779f))
+
+
+
+
+
 # [5.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.0.0...@kiva/kv-components@5.1.0) (2025-01-17)
 
 
