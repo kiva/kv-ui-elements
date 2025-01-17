@@ -33,8 +33,8 @@ export default {
 				timeLeft.value = intervalToDuration({ start: now, end: deadline.value });
 				remainingHours.value = differenceInHours(deadline.value, now);
 			} else {
-				timeLeft.value = null;
-				remainingHours.value = null;
+				timeLeft.value = { minutes: 0, seconds: 0 };
+				remainingHours.value = 0;
 			}
 		};
 
