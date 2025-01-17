@@ -1,3 +1,3 @@
-const tokens = require('./primitives.json');
+import tokens from './primitives.js';
 
 export default tokens;

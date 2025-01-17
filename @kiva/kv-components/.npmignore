@@ -1,0 +1,10 @@
+/__mocks__/
+/src/
+/tests/
+/.eslintrc.cjs
+/babel.config.cjs
+/CHANGELOG.md
+/jest.config.cjs
+/postcss.config.cjs
+/tailwind.config.js
+/vite.config.js
