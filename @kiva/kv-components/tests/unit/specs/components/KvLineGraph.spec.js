@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
-import KvLineGraph from '../../../../vue/KvLineGraph.vue';
+import KvLineGraph from '#components/KvLineGraph.vue';
 
 describe('KvLineGraph', () => {
 	const points = [

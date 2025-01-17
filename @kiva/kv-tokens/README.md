@@ -12,7 +12,7 @@ The package contains
 ## Using the Design Definitions
 
 ```js
-const designTokens = require("@kiva/kv-tokens/primitives.json");
+import designTokens from '@kiva/kv-tokens';
 
 const primaryTextColor = designTokens.colors.theme.DEFAULT.text.primary;
 ```

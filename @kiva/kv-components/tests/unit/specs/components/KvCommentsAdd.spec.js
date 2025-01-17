@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import CommentsAdd, { ADD_COMMENT_EVENT, HIDE_INPUT_EVENT } from '../../../../vue/KvCommentsAdd.vue';
+import CommentsAdd, { ADD_COMMENT_EVENT, HIDE_INPUT_EVENT } from '#components/KvCommentsAdd.vue';
 
 const renderCommentsAdd = (props = {}) => {
 	return render(CommentsAdd, { props });

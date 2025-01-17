@@ -13,7 +13,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18.x"
+          node-version: "22.x"
         # 👇 Version 2 of the action
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -21,8 +21,8 @@ jobs:
           fetch-depth: 0 # 👈 Required to retrieve git history
       - name: Install dependencies
         run: npm ci
-      - name: Build kv-tokens
-        run: npm run build -w @kiva/kv-tokens
+      - name: Prepare Storybook assets
+        run: npm run prepare-storybook
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
         uses: chromaui/action@v11.4.0

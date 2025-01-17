@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import KvPagination from '../../../../vue/KvPagination.vue';
+import KvPagination from '#components/KvPagination.vue';
 
 global.scrollTo = jest.fn();
 

@@ -1,4 +1,4 @@
-import { getTreemap } from '../../../../utils/treemap';
+import { getTreemap } from '#utils/treemap';
 
 describe('treemap.js', () => {
 	describe('getTreemap', () => {

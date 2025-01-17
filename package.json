@@ -13,10 +13,13 @@
   "scripts": {
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
-    "build": "npm run build --workspaces",
+    "build": "rimraf dist && npm run build --workspaces",
     "prepare": "husky install",
     "publish-release": "lerna publish -m 'chore: publish'",
-    "storybook": "npm run build -w @kiva/kv-tokens && npm run storybook -w @kiva/kv-components",
+    "prepare-storybook": "npm run build -w @kiva/kv-tokens && npm run prebuild -w @kiva/kv-components",
+    "prestorybook": "npm run prepare-storybook",
+    "storybook": "npm run storybook -w @kiva/kv-components",
+    "prebuild-storybook": "npm run prepare-storybook",
     "build-storybook": "npm run build-storybook -w @kiva/kv-components"
   },
   "devDependencies": {
@@ -25,7 +28,8 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "husky": "^6.0.0",
     "lerna": "^6.6.1",
-    "lint-staged": "^10.5.4"
+    "lint-staged": "^10.5.4",
+    "rimraf": "^5.0.10"
   },
   "repository": {
     "type": "git",

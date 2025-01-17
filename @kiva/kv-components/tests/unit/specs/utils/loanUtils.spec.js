@@ -6,7 +6,7 @@ import {
 	ERL_COOKIE_NAME,
 	TOP_UP_CAMPAIGN,
 	BASE_CAMPAIGN,
-} from '../../../../utils/loanUtils';
+} from '#utils/loanUtils';
 
 describe('loanUtils', () => {
 	describe('isBetween25And50', () => {

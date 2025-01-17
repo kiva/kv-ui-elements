@@ -1,9 +1,9 @@
-import kvTokensPrimitives from '@kiva/kv-tokens/primitives.json';
+import kvTokensPrimitives from '@kiva/kv-tokens';
 import {
 	getCoordinatesBetween,
 	getLoansIntervals,
 	getCountryColor,
-} from '../../../../utils/mapUtils';
+} from '#utils/mapUtils';
 import mockLenderCountries from '../../../fixtures/mockLenderCountries';
 
 describe('mapUtils', () => {

@@ -9,7 +9,7 @@
     "scripts": {
         "test": "echo No tests specified for @kiva/kv-tokens.",
         "lint": "eslint --ext .js ./",
-        "build": "node ./build/build.cjs"
+        "build": "node ./build/build"
     },
     "dependencies": {
         "@tailwindcss/typography": "^0.5.1",
