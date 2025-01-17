@@ -7,7 +7,7 @@ export default {
 	],
 
 	staticDirs: [
-		'../../../../dist',
+		'../../../../../dist',
 	],
 
 	addons: [

@@ -54,9 +54,9 @@ const safelist = [
 export default {
 	presets: [sharedConfig],
 	content: [
-		'./vue/**/*.vue',
-		'./vue/stories/**/*.stories.js',
-		'./utils/**/*.js',
+		'./src/vue/**/*.vue',
+		'./src/vue/stories/**/*.stories.js',
+		'./src/utils/**/*.js',
 	],
 	safelist,
 };

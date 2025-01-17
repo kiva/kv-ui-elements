@@ -1,6 +1,5 @@
 /__mocks__/
-/vue/.storybook/
-/vue/stories/
+/src/
 /tests/
 /.eslintrc.cjs
 /babel.config.cjs

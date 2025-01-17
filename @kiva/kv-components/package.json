@@ -80,8 +80,8 @@
     "vue-template-compiler": "2.6.14"
   },
   "scripts": {
-    "storybook": "storybook dev -p 6006 -c vue/.storybook",
-    "build-storybook": "storybook build -c vue/.storybook",
+    "storybook": "storybook dev -p 6006 -c src/vue/.storybook",
+    "build-storybook": "storybook build -c src/vue/.storybook",
     "lint": "eslint --ext .js,.vue ./",
     "test": "npm run lint && jest",
     "prebuild": "node build/copyFlags.js",
