@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.1...@kiva/kv-components@5.1.2) (2025-01-21)
+
+
+### Bug Fixes
+
+* **kv-components:** use .mjs extension for bundled node_modules ([d76b633](https://github.com/kiva/kv-ui-elements/commit/d76b633da9a24f7b1bce8ec1a8ffb40f9c944498))
+
+
+
+
+
 ## [5.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.0...@kiva/kv-components@5.1.1) (2025-01-17)
 
 
