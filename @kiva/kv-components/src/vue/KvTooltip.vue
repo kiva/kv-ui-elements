@@ -37,7 +37,7 @@ import { ref, toRefs, computed } from 'vue';
 import {
 	darkTheme,
 	mintTheme,
-} from '@kiva/kv-tokens/configs/kivaColors';
+} from '@kiva/kv-tokens';
 import KvPopper from './KvPopper.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 

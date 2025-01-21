@@ -1,6 +1,5 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
-import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
-import sharedConfig from '@kiva/kv-tokens/configs/tailwind.config';
+import { textStyles, tailwindConfig as sharedConfig } from '@kiva/kv-tokens';
 import { headerNumberCase, kebabCase, buildTailwindClassName } from './src/utils/themeUtils';
 
 const config = resolveConfig(sharedConfig);

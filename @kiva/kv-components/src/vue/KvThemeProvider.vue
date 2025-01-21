@@ -21,7 +21,7 @@
  *   darkGreenTheme,
  *   mintTheme,
  *   defaultTheme
- * } from '@kiva/kv-tokens/configs/kivaColors';
+ * } from '@kiva/kv-tokens';
  * ...
  * data() { return { darkTheme }; }
  * ...

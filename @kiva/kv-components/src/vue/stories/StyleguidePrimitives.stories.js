@@ -1,6 +1,5 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
-import tailwindConfig from '@kiva/kv-tokens/configs/tailwind.config';
-import { textStyles } from '@kiva/kv-tokens/configs/kivaTypography';
+import { tailwindConfig, textStyles } from '@kiva/kv-tokens';
 import { headerNumberCase, kebabCase, removeObjectProperty } from '#utils/themeUtils';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';

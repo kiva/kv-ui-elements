@@ -21,8 +21,10 @@ const primaryTextColor = designTokens.colors.theme.DEFAULT.text.primary;
 
 ```js
 // tailwind.config.js
-module.exports = {
-	presets: [require("@kiva/kv-tokens/configs/tailwind.config")],
+import { tailwindConfig } from "@kiva/kv-tokens";
+
+export default {
+	presets: [tailwindConfig],
 	// Project-specific customizations
 	theme: {
 		//...

@@ -10,7 +10,7 @@ import {
 	mintTheme,
 	darkMintTheme,
 	darkStoneTheme,
-} from '@kiva/kv-tokens/configs/kivaColors';
+} from '@kiva/kv-tokens';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
@@ -34,7 +34,7 @@ export const ProseDemo = (args, { argTypes }) => ({
 	components: { KvPageContainer, KvGrid },
 	computed: {
 		themeStyles() {
-			switch (this.theme) {
+			switch (args.theme) {
 				case 'greenLight':
 					return greenLightTheme;
 				case 'greenDark':
