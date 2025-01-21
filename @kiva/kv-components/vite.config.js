@@ -21,9 +21,9 @@ export default defineConfig({
 			fileName: (format, entryName) => {
 				// Since we have declared type: module in package.json, we use .js for ES modules and .cjs for CommonJS modules
 				let suffix = format === 'es' ? '.js' : '.cjs';
-				// Entries in node_modules won't have a packge.json file, so we need to use .mjs for ES modules
-				if (entryName.includes('node_modules') && format === 'es') {
-					suffix = '.mjs';
+				// Rename node_modules directory from bundled dependencies to avoid module resolution issues
+				if (entryName.startsWith('node_modules')) {
+					return `${entryName.replace('node_modules/', 'vendor/')}${suffix}`;
 				}
 				// Remove .vue extension from entryName for SFCs
 				if (entryName.slice(-4) === '.vue') {
