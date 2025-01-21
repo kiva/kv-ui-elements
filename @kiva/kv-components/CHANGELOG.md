@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.0...@kiva/kv-components@5.2.1) (2025-01-21)
+
+
+### Bug Fixes
+
+* **kv-components:** bundled dependencies in vendor instead of node_modules avoids resolution issues ([4965e84](https://github.com/kiva/kv-ui-elements/commit/4965e843ad1f07b56f29b02117c2887009318f53))
+
+
+
+
+
 # [5.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.2...@kiva/kv-components@5.2.0) (2025-01-21)
 
 
