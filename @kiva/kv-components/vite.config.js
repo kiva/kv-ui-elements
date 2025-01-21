@@ -19,8 +19,12 @@ export default defineConfig({
 			entry: 'src/index.js',
 			formats: ['es'],
 			fileName: (format, entryName) => {
-				// Add .js or .cjs suffix to entryName based on format
-				const suffix = format === 'es' ? '.js' : '.cjs';
+				// Since we have declared type: module in package.json, we use .js for ES modules and .cjs for CommonJS modules
+				let suffix = format === 'es' ? '.js' : '.cjs';
+				// Entries in node_modules won't have a packge.json file, so we need to use .mjs for ES modules
+				if (entryName.includes('node_modules') && format === 'es') {
+					suffix = '.mjs';
+				}
 				// Remove .vue extension from entryName for SFCs
 				if (entryName.slice(-4) === '.vue') {
 					return `${entryName.slice(0, -4)}${suffix}`;
