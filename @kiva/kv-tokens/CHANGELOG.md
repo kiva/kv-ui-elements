@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.0.0...@kiva/kv-tokens@3.1.0) (2025-01-21)
+
+
+### Features
+
+* **kv-tokens:** export configs from main ([f405e6d](https://github.com/kiva/kv-ui-elements/commit/f405e6def81d504d7558068f8aba52b1388b073b))
+
+
+
+
+
 # [3.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.1...@kiva/kv-tokens@3.0.0) (2025-01-17)
 
 

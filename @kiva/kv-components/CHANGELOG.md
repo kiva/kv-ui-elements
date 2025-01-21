@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.2...@kiva/kv-components@5.2.0) (2025-01-21)
+
+
+### Features
+
+* **kv-tokens:** export configs from main ([f405e6d](https://github.com/kiva/kv-ui-elements/commit/f405e6def81d504d7558068f8aba52b1388b073b))
+
+
+
+
+
 ## [5.1.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.1.1...@kiva/kv-components@5.1.2) (2025-01-21)
 
 
