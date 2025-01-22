@@ -120,6 +120,7 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
+		let onKeyUp = null;
 
 		const avoidBodyScroll = () => {
 			const bodyClasses = 'tw-overflow-hidden';
@@ -145,14 +146,24 @@ export default {
 			setTimeout(() => {
 				emit('side-sheet-closed');
 			}, '700');
+
+			document.removeEventListener('keyup', onKeyUp);
 		};
 
 		const goToLink = () => {
 			emit('go-to-link');
 		};
 
+		onKeyUp = (e) => {
+			if (!!e && e.key === 'Escape') {
+				closeSideSheet();
+			}
+		};
+
 		watch(visible, () => {
 			if (visible.value) {
+				document.addEventListener('keyup', onKeyUp);
+
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
