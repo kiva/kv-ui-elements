@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import libAssetsPlugin from '@laynezh/vite-plugin-lib-assets'
 import noBundlePlugin from 'vite-plugin-no-bundle';
 import vue from '@vitejs/plugin-vue';
+import libCss from './build/libCss';
 
 export default defineConfig({
 	resolve: {
@@ -54,5 +55,7 @@ export default defineConfig({
 			outputPath: 'kvui',
 			publicUrl: 'https://www.kiva.org/',
 		}),
+		// Ensure component css is imported into the final build
+		libCss(),
 	],
 });
