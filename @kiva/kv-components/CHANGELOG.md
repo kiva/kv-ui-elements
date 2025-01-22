@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.2...@kiva/kv-components@5.3.0) (2025-01-22)
+
+
+### Features
+
+* esc key event added to side sheet component ([#511](https://github.com/kiva/kv-ui-elements/issues/511)) ([66f901f](https://github.com/kiva/kv-ui-elements/commit/66f901f75280262ec715da337b1a5a0efd7843fe))
+
+
+
+
+
 ## [5.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.1...@kiva/kv-components@5.2.2) (2025-01-22)
 
 
