@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.0...@kiva/kv-components@5.3.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* sidesheet width on mobile after adding loan to basket ([4bb15a0](https://github.com/kiva/kv-ui-elements/commit/4bb15a0ed69761dc391fe07c812497e9dea368fd))
+
+
+
+
+
 # [5.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.2...@kiva/kv-components@5.3.0) (2025-01-22)
 
 
