@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.1...@kiva/kv-components@5.2.2) (2025-01-22)
+
+
+### Bug Fixes
+
+* **kv-components:** include import line for component css files ([46cf73a](https://github.com/kiva/kv-ui-elements/commit/46cf73a57f02963ae3acbf05755fffa08b709019))
+
+
+
+
+
 ## [5.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.2.0...@kiva/kv-components@5.2.1) (2025-01-21)
 
 
