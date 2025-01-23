@@ -221,6 +221,17 @@ export const WithPresetOptionsLessThan25 = story({
 	showPresetAmounts: true,
 });
 
+export const WithPresetOptionsSingleOption = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		unreservedAmount: '25.00',
+		borrowerCount: 2,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
 export const WithPresetOptionsLessThan50 = story({
 	isLoading: false,
 	loan: {

@@ -129,7 +129,7 @@
 				<div
 					:class="{
 						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
-						'tw-hidden': isAdding && showPresetAmounts
+						'tw-hidden': hideLendButton,
 					}"
 				>
 					<kv-ui-button
@@ -440,7 +440,8 @@ export default {
 		},
 		isLendAmountButton() {
 			return ((this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(this.unreservedAmount));
+				&& this.isAmountLessThan25(this.unreservedAmount))
+				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1);
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
@@ -459,6 +460,9 @@ export default {
 		},
 		showFilteredDropdown() {
 			return this.presetDropdownPrices.length > 1;
+		},
+		hideLendButton() {
+			return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
 		},
 	},
 	watch: {
