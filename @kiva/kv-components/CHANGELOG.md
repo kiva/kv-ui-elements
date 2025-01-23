@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.1...@kiva/kv-components@5.3.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* single preset button option should be shown as lend amount button ([ac90ea9](https://github.com/kiva/kv-ui-elements/commit/ac90ea94eb2a26e400fc6feeaf96c61e15364779))
+
+
+
+
+
 ## [5.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.0...@kiva/kv-components@5.3.1) (2025-01-22)
 
 
