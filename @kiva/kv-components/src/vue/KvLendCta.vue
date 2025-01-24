@@ -60,7 +60,7 @@
 				data-testid="bp-lend-cta-select-and-button"
 			>
 				<div
-					v-if="showPresetAmounts"
+					v-if="showPresetAmounts && !isAdding"
 					class="tw-flex tw-gap-1 lg:tw-gap-2"
 					:class="{'tw-flex-wrap md:tw-flex-nowrap': enableHugeAmount}"
 				>
@@ -441,7 +441,7 @@ export default {
 		isLendAmountButton() {
 			return ((this.lendButtonVisibility || this.state === 'lent-to')
 				&& this.isAmountLessThan25(this.unreservedAmount))
-				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1);
+				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
