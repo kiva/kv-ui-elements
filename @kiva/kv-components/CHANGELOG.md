@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.2...@kiva/kv-components@5.3.3) (2025-01-27)
+
+
+### Bug Fixes
+
+* hide preset amount when adding loan to basket ([09ede60](https://github.com/kiva/kv-ui-elements/commit/09ede608c3fac175b91f28d26d6a2b308b79734a))
+
+
+
+
+
 ## [5.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.1...@kiva/kv-components@5.3.2) (2025-01-23)
 
 
