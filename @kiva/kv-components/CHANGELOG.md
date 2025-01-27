@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.3...@kiva/kv-components@5.3.4) (2025-01-27)
+
+
+### Bug Fixes
+
+* gap from fieldset when adding state in showPresetAmount variant ([886a84d](https://github.com/kiva/kv-ui-elements/commit/886a84db693ce224445f81d6a1e2bcb742f38480))
+
+
+
+
+
 ## [5.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.2...@kiva/kv-components@5.3.3) (2025-01-27)
 
 
