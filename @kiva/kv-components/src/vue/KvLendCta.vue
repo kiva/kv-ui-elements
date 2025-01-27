@@ -55,7 +55,10 @@
 		>
 			<fieldset
 				class="tw-w-full tw-flex"
-				:class="{'tw-flex-col tw-gap-1.5 md:tw-flex-row md:tw-justify-between': showPresetAmounts}"
+				:class="{
+					'tw-flex-col md:tw-flex-row md:tw-justify-between': showPresetAmounts,
+					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton
+				}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
 			>
