@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.4...@kiva/kv-components@5.3.5) (2025-02-03)
+
+
+### Bug Fixes
+
+* change border color on button for lend cta ([b342fff](https://github.com/kiva/kv-ui-elements/commit/b342ffff9cc9ef9d531fffc6d8de3acde518151e))
+
+
+
+
+
 ## [5.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.3...@kiva/kv-components@5.3.4) (2025-01-27)
 
 
