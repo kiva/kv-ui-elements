@@ -99,7 +99,7 @@
 							:key="priceOption"
 							:value="priceOption"
 						>
-							{{ priceOption !== 'Other' ? `$${priceOption}` : priceOption }}
+							{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
 						</option>
 					</kv-ui-select>
 				</div>
@@ -189,6 +189,8 @@ import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+
+const OTHER_OPTION = 'Other';
 
 export default {
 	name: 'KvLendCta',
@@ -297,7 +299,8 @@ export default {
 				this.userBalance,
 				this.fiveDollarsSelected,
 			),
-			selectedDropdownOption: 'Other',
+			selectedDropdownOption: OTHER_OPTION,
+			OTHER_OPTION,
 		};
 	},
 	computed: {
@@ -355,7 +358,7 @@ export default {
 			}
 
 			const extraDropdownPrices = this.prices.slice(this.defaultAmountOptions.length);
-			extraDropdownPrices.unshift('Other');
+			extraDropdownPrices.unshift(OTHER_OPTION);
 
 			return extraDropdownPrices;
 		},
@@ -459,7 +462,7 @@ export default {
 			return this.isLentTo && !this.isLessThan25;
 		},
 		selectedDropdown() {
-			return this.selectedDropdownOption !== 'Other';
+			return this.selectedDropdownOption !== OTHER_OPTION;
 		},
 		showFilteredDropdown() {
 			return this.presetDropdownPrices.length > 1;
@@ -484,7 +487,7 @@ export default {
 			}
 
 			if (this.showPresetAmounts) {
-				this.selectedOption = 'Other';
+				this.selectedOption = OTHER_OPTION;
 			}
 		},
 	},
@@ -542,6 +545,7 @@ export default {
 				this.kvTrackCategory, 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId,
 			);
 			this.selectedOption = selectedDollarAmount;
+			this.selectedDropdownOption = OTHER_OPTION;
 		},
 		handleCheckout() {
 			this.kvTrackFunction(
