@@ -591,6 +591,6 @@ export default {
 }
 
 .selected-option :deep(span.tw-w-full:first-child) {
-	@apply tw-border-eco-green-4;
+	@apply tw-border-action;
 }
 </style>
