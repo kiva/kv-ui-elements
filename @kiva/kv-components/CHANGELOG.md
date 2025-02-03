@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.5...@kiva/kv-components@5.3.6) (2025-02-03)
+
+
+### Bug Fixes
+
+* resolve issue where preset options dropdown needed to be reset ([a8bd1ef](https://github.com/kiva/kv-ui-elements/commit/a8bd1ef572cbe3ad949589d71d5a25b3580c1e98))
+
+
+
+
+
 ## [5.3.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.4...@kiva/kv-components@5.3.5) (2025-02-03)
 
 
