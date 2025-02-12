@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@2.0.13...@kiva/kv-shop@2.1.0) (2025-02-12)
+
+
+### Features
+
+* add metadata input to donation mutation ([dd37e7f](https://github.com/kiva/kv-ui-elements/commit/dd37e7f9836bde8f5d5fa09fe6e1ff0bce26ccbf))
+
+
+
+
+
 ## [2.0.13](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@2.0.12...@kiva/kv-shop@2.0.13) (2025-02-03)
 
 **Note:** Version bump only for package @kiva/kv-shop
