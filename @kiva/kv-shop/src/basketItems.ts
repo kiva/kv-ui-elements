@@ -36,7 +36,6 @@ export async function setTipDonation({ amount, apollo, metadata }: SetTipDonatio
 					id
 					price
 					isTip
-					metadata
 				}
 			}
 		}`,
