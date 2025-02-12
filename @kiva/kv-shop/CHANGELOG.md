@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@2.1.0...@kiva/kv-shop@2.1.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* can't query metadata in response ([4ed3026](https://github.com/kiva/kv-ui-elements/commit/4ed3026e676089c6bb594bb410f5d8207bbc7c61))
+
+
+
+
+
 # [2.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@2.0.13...@kiva/kv-shop@2.1.0) (2025-02-12)
 
 
