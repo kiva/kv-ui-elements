@@ -27,20 +27,17 @@
 						@click.stop
 					>
 						<!-- header -->
-						<div
-							class="
-								tw-flex
-								tw-p-2.5 md:tw-px-4 md:tw-pt-4 md:tw-pb-3.5
-							"
-						>
-							<div class="tw-flex tw-flex-grow tw-gap-1 tw-items-center">
+						<div class="tw-flex tw-pt-2 tw-px-2.5">
+							<div
+								class="tw-flex tw-flex-grow tw-gap-1 tw-items-center tw-pb-2"
+							>
 								<!-- header -->
 								<slot name="header">
 									<kv-material-icon
-										class="tw-w-4 tw-h-4 tw-text-brand"
+										class="tw-w-3.5 tw-h-3.5 tw-text-brand"
 										:icon="mdiCheckCircle"
 									/>
-									<p class="tw-flex-1 tw-font-medium">
+									<p class="tw-flex-1 tw-font-medium tw-text-center">
 										Added to basket
 									</p>
 								</slot>
@@ -55,7 +52,7 @@
 									@click.stop="hide('x-button')"
 								>
 									<kv-material-icon
-										class="tw-w-3 tw-h-3"
+										class="tw-w-3.5 tw-h-3.5"
 										:icon="mdiClose"
 									/>
 									<span class="tw-sr-only">Close</span>
@@ -69,28 +66,8 @@
 							ref="kvCartModalBody"
 							class="modal__body"
 						>
-							<div>
-								<kv-borrower-image
-									class="tw-rounded loan-image"
-									:alt="borrowerImage.alt"
-									:aspect-ratio="borrowerImage.aspectRatio"
-									:default-image="borrowerImage.defaultImage"
-									:hash="borrowerImage.hash"
-									:images="borrowerImage.images"
-									:photo-path="photoPath"
-								/>
-							</div>
-							<div class="tw-flex tw-items-center tw-justify-between tw-w-full tw-gap-1">
-								<div class="tw-flex tw-flex-col tw-h-full tw-justify-between">
-									<p class="tw-overflow-hidden tw-text-ellipsis tw-line-clamp-1">
-										{{ borrowerName }}
-									</p>
-									<p class="tw-p-1 tw-text-center tw-rounded tw-bg-secondary tw-text-h5 tw-w-max">
-										{{ borrowerCountry }}
-									</p>
-								</div>
-								<p> ${{ amount }}</p>
-							</div>
+							<!--@slot content -->
+							<slot name="content"></slot>
 						</div>
 
 						<!-- controls -->
@@ -98,7 +75,7 @@
 							ref="controlsRef"
 							class="
 								tw-flex-shrink-0 tw-flex tw-justify-end tw-gap-x-2.5
-								tw-p-2.5 md:tw-px-4 md:tw-pb-4 tw-flex-col tw-gap-1
+								tw-px-2.5 tw-pb-2 tw-flex-col tw-gap-1
 							"
 						>
 							<kv-button
@@ -106,13 +83,6 @@
 								@click="handleClick('view-basket')"
 							>
 								View basket ({{ basketCount }})
-							</kv-button>
-							<kv-button
-								class="tw-w-full"
-								variant="secondary"
-								@click="handleClick('help-another-person')"
-							>
-								Help another person
 							</kv-button>
 						</div>
 					</div>
@@ -139,7 +109,6 @@ import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { lockPrintSingleEl, unlockPrintSingleEl } from '../utils/printing';
 import KvButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
-import KvBorrowerImage from './KvBorrowerImage.vue';
 
 /**
  * Based on KvLightbox functionality
@@ -149,7 +118,6 @@ export default {
 	components: {
 		KvMaterialIcon,
 		KvButton,
-		KvBorrowerImage,
 	},
 	props: {
 		/**
@@ -174,20 +142,6 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		/**
-		 * The loan added to the basket
-		 * */
-		addedLoan: {
-			type: Object,
-			default: () => ({}),
-		},
-		/**
-		 * The photo path for the borrower image
-		 * */
-		photoPath: {
-			type: String,
-			default: '',
-		},
 	},
 	emits: [
 		'cart-modal-closed',
@@ -196,7 +150,6 @@ export default {
 		const {
 			visible,
 			preventClose,
-			addedLoan,
 		} = toRefs(props);
 
 		const kvCartModal = ref(null);
@@ -265,30 +218,6 @@ export default {
 			}
 		};
 
-		const borrowerName = computed(() => {
-			return addedLoan.value?.name ?? '';
-		});
-		const borrowerImage = computed(() => {
-			return {
-				alt: `Photo of ${borrowerName.value}`,
-				aspectRatio: 1,
-				defaultImage: { width: 300 },
-				hash: addedLoan.value.imageHash,
-				images: [
-					{
-						width: 300,
-					},
-				],
-			};
-		});
-		const borrowerCountry = computed(() => {
-			return addedLoan.value.country ?? '';
-		});
-
-		const amount = computed(() => {
-			return addedLoan.value.amount ?? '';
-		});
-
 		const handleClick = (cta) => {
 			hide(cta);
 		};
@@ -323,10 +252,6 @@ export default {
 			controlsRef,
 
 			handleClick,
-			borrowerName,
-			borrowerImage,
-			borrowerCountry,
-			amount,
 		};
 	},
 };
@@ -345,11 +270,6 @@ export default {
 
 .modal__body {
 	@apply tw-flex tw-gap-2 tw-px-2.5 md:tw-px-4;
-	height: 3.75rem;
-}
-
-.loan-image {
-	width: 3.75rem;
 }
 
 .container {

@@ -11,13 +11,6 @@ export default {
 		visible: true,
 		title: '',
 		preventClose: false,
-		addedLoan: {
-			name: 'This is a Loan with a very long name',
-			amount: 100,
-			country: 'Kenya',
-			imageHash: '9673d0722a7675b9b8d11f90849d9b44',
-		},
-		photoPath: 'https://www-kiva-org.freetls.fastly.net/img/',
 		basketCount: 1,
 	},
 };
