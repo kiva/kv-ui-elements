@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.6...@kiva/kv-components@5.3.7) (2025-02-19)
+
+
+### Bug Fixes
+
+* adjust kv cart modal design ([db4c7f4](https://github.com/kiva/kv-ui-elements/commit/db4c7f4cd42570d13631dea1a026c953378f09e4))
+
+
+
+
+
 ## [5.3.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.5...@kiva/kv-components@5.3.6) (2025-02-03)
 
 
