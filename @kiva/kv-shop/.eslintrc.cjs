@@ -3,6 +3,9 @@ module.exports = {
 	parserOptions: {
 		parser: '@typescript-eslint/parser',
 	},
+	ignorePatterns: [
+		'dist/*',
+	],
 	plugins: [
 		'@typescript-eslint',
 		'vue',

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { gql } from '@apollo/client/core/core.cjs';
+import { gql } from '@apollo/client';
 import numeral from 'numeral';
-import type { Ref } from 'vue-demi';
-import { ref } from 'vue-demi';
+import { ref, type Ref } from 'vue';
 import type { ApplePayPaymentRequest } from 'braintree-web';
 import type { Dropin, PaymentMethodPayload } from 'braintree-web-drop-in';
 import { ShopError, parseShopError } from './shopError';
@@ -91,7 +90,7 @@ function initBraintreeDropin(): DropInWrapper {
 		}
 
 		// listen for "requestable" payment method (ex. completing PayPal signin)
-		// eslint-disable-next-line no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		instance.on('paymentMethodRequestable', (event) => {
 			// Returns event object { paymentMethodIsSelected, type}
 			// TODO: add additional check for Postal Code validation during during new card input

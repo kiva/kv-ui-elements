@@ -1,4 +1,4 @@
-import { gql, type ApolloClient, type QueryOptions } from '@apollo/client/core/core.cjs';
+import { gql, type ApolloClient, type QueryOptions } from '@apollo/client';
 import { callShopQuery } from './shopQueries';
 
 export interface ShopPromoCampaignData {

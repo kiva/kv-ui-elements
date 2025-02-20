@@ -1,4 +1,4 @@
-import { gql, type ApolloClient, type MutationOptions } from '@apollo/client/core/core.cjs';
+import { gql, type ApolloClient, type MutationOptions } from '@apollo/client';
 import { callShopMutation } from './shopQueries';
 
 export interface ApplyKivaCreditData {

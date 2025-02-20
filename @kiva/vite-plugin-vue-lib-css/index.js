@@ -8,7 +8,7 @@ import {
 
 let viteConfig;
 
-export default function libCss() {
+export default function vueLibCss() {
 	return {
 		name: 'lib-css',
 		apply: 'build',

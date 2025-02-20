@@ -19,6 +19,7 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@kiva/kv-tokens": "^3.1.0",
+    "@kiva/vite-plugin-vue-lib-css": "^1.0.0",
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
     "@mdi/js": "^7.4.47",
     "@storybook/addon-a11y": "^8.4.7",
@@ -99,7 +100,7 @@
     "numeral": "2.x",
     "vue": "3.x"
   },
-  "bundledDependencies": [
+  "bundleDependencies": [
     "aria-hidden",
     "embla-carousel",
     "embla-carousel-autoplay",
