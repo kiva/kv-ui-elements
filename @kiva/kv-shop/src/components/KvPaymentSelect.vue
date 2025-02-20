@@ -14,14 +14,17 @@
 
 <script lang="ts">
 import {
-	defineComponent, onMounted, ref, toRefs, watch,
-} from 'vue-demi';
+	onMounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue';
+import type { PropType, Component } from 'vue';
 import { KvLoadingSpinner } from '@kiva/kv-components';
-import type { PropType } from 'vue-demi';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
 
-export default defineComponent({
+export default {
 	components: {
 		KvLoadingSpinner,
 	},
@@ -89,7 +92,7 @@ export default defineComponent({
 			paymentTypes,
 			preselectVaultedPaymentMethod,
 		} = toRefs(props);
-		const container = ref<HTMLInputElement | null>(null);
+		const container = ref<any>(null);
 		const updatingPaymentWrapper = ref(false);
 		const {
 			initDropIn,
@@ -138,7 +141,7 @@ export default defineComponent({
 			requestPaymentMethod,
 		};
 	},
-});
+} as Component;
 </script>
 
 <style lang="postcss">

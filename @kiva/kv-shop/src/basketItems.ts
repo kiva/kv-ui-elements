@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client/core/core.cjs';
+import { gql, type ApolloClient } from '@apollo/client';
 import numeral from 'numeral';
 import { callShopMutation } from './shopQueries';
 
