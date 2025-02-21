@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client';
+import { gql, type ApolloClient } from '@apollo/client/core';
 import { watchShopQuery } from './shopQueries';
 
 export const basketTotalsQuery = gql`query basketTotals($basketId: String) {

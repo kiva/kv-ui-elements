@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client';
+import { gql, type ApolloClient } from '@apollo/client/core';
 import { callShopMutation } from './shopQueries';
 import { getVisitorID } from './util/visitorId';
 import { ShopError, parseShopError } from './shopError';

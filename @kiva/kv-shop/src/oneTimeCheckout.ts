@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client';
+import { gql, type ApolloClient } from '@apollo/client/core';
 import { trackTransaction } from '@kiva/kv-analytics';
 import numeral from 'numeral';
 import type { DropInWrapper } from './useBraintreeDropIn';

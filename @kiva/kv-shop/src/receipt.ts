@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { gql, type ApolloClient, type ApolloQueryResult } from '@apollo/client';
+import { gql, type ApolloClient, type ApolloQueryResult } from '@apollo/client/core';
 import type { TransactionData } from '@kiva/kv-analytics';
 import { getVisitorID } from './util/visitorId';
 

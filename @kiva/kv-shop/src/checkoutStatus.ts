@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client';
+import { gql, type ApolloClient } from '@apollo/client/core';
 import { poll } from './util/poll';
 import { getVisitorID } from './util/visitorId';
 
