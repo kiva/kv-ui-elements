@@ -16,7 +16,7 @@
     "test": "npm run test --workspaces",
     "build": "rimraf dist && npm run build --workspaces",
     "prepare": "husky install",
-    "publish-release": "lerna publish -m 'chore: publish'",
+    "publish-release": "lerna publish -m 'chore: publish [skip ci]'",
     "prepare-storybook": "npm run build -w @kiva/kv-tokens && npm run prebuild -w @kiva/kv-components",
     "prestorybook": "npm run prepare-storybook",
     "storybook": "npm run storybook -w @kiva/kv-components",
