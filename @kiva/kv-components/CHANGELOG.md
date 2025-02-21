@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.7...@kiva/kv-components@6.0.0) (2025-02-21)
+
+
+* feat(kv-shop)!: compile kv-shop with vite ([98b3a78](https://github.com/kiva/kv-ui-elements/commit/98b3a78cc49232d1499974c2f7c58f301b1e87f0))
+
+
+### BREAKING CHANGES
+
+* kv-shop exports compiled vue components instead of SFCs
+
+
+
+
+
 ## [5.3.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.6...@kiva/kv-components@5.3.7) (2025-02-19)
 
 

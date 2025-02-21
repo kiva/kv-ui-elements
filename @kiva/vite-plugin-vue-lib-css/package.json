@@ -1,6 +1,6 @@
 {
   "name": "@kiva/vite-plugin-vue-lib-css",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "vite plugin to inject css import statements in compiled vue components",
   "license": "UNLICENSED",
   "type": "module",
