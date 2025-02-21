@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.1...@kiva/kv-shop@3.0.2) (2025-02-21)
+
+
+### Bug Fixes
+
+* **kv-shop:** import gql from apollo/client/core to avoid importing react ([1d4c530](https://github.com/kiva/kv-ui-elements/commit/1d4c5308c691cb4555bd2ed7560b4b21ba7d79b4))
+
+
+
+
+
 ## [3.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.0...@kiva/kv-shop@3.0.1) (2025-02-21)
 
 
