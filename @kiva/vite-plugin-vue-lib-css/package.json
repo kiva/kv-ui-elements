@@ -9,7 +9,7 @@
     "index.js"
   ],
   "exports": {
-	".": "./index.js"
+    ".": "./index.js"
   },
   "private": true,
   "repository": {
@@ -17,8 +17,8 @@
     "url": "git+https://github.com/kiva/kv-ui-elements.git"
   },
   "scripts": {
-	"build": "echo \"No build specified\"",
-	"lint": "eslint --ext .ts,.js,.vue .",
-	"test": "echo \"No test specified\""
+    "build": "echo \"No build specified\"",
+    "lint": "eslint --ext .ts,.js,.vue .",
+    "test": "echo \"No test specified\""
   }
 }
