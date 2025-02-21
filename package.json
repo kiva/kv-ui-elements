@@ -9,7 +9,7 @@
     "@kiva/kv-loan-filters",
     "@kiva/kv-shop",
     "@kiva/kv-activity-feed",
-	"@kiva/vite-plugin-vue-lib-css"
+    "@kiva/vite-plugin-vue-lib-css"
   ],
   "scripts": {
     "lint": "npm run lint --workspaces",
