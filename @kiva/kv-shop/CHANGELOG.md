@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.0...@kiva/kv-shop@3.0.1) (2025-02-21)
+
+
+### Bug Fixes
+
+* **kv-shop:** update approved kv-components peer version to include 6 ([f2340c8](https://github.com/kiva/kv-ui-elements/commit/f2340c8b8e5a14bcbe5e5af211af89ea4e603ec9))
+
+
+
+
+
 # [3.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@2.1.2...@kiva/kv-shop@3.0.0) (2025-02-21)
 
 
