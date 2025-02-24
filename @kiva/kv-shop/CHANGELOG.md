@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.2...@kiva/kv-shop@3.0.3) (2025-02-24)
+
+
+### Bug Fixes
+
+* use commonjs braintree dropin instead of amd browser build ([e54c7c4](https://github.com/kiva/kv-ui-elements/commit/e54c7c4ba4acf6f0cc7239b152255c8d981fd56a))
+
+
+
+
+
 ## [3.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.1...@kiva/kv-shop@3.0.2) (2025-02-21)
 
 
