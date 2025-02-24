@@ -37,7 +37,7 @@ export default defineConfig({
 		noBundlePlugin({
 			// Dependencies that should be included in the final build. Update package.json bundleDependencies when changing this list.
 			internal: [
-				'braintree-web-drop-in',
+				'braintree-web-drop-in/index.js',
 			],
 		}),
 		// Ensure component css is imported into the final build
