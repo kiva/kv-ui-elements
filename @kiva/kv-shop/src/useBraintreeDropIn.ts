@@ -125,7 +125,7 @@ function initBraintreeDropin(): DropInWrapper {
 		paypalFlow = 'checkout',
 	}: DropInInitOptions) {
 		formattedAmount = numeral(amount).format('0.00');
-		const { default: DropIn } = await import('braintree-web-drop-in');
+		const { default: DropIn } = await import('braintree-web-drop-in/index.js');
 
 		try {
 			instance = await (DropIn.create({
