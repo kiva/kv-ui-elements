@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.3...@kiva/kv-shop@3.0.4) (2025-02-25)
+
+
+### Bug Fixes
+
+* **kv-shop:** require braintree-web-drop-in as a peer dependency ([44111ab](https://github.com/kiva/kv-ui-elements/commit/44111abc446a73984763bf411f1029a021fc26ae))
+
+
+
+
+
 ## [3.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.2...@kiva/kv-shop@3.0.3) (2025-02-24)
 
 
