@@ -34,12 +34,7 @@ export default defineConfig({
 		// Support Vue 3 single-file components
 		vue(),
 		// Make the output match the src file structure instead of bundling into one large file
-		noBundlePlugin({
-			// Dependencies that should be included in the final build. Update package.json bundleDependencies when changing this list.
-			internal: [
-				'braintree-web-drop-in/index.js',
-			],
-		}),
+		noBundlePlugin(),
 		// Ensure component css is imported into the final build
 		vueLibCss(),
 		// Generate type declarations for the final build
