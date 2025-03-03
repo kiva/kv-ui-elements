@@ -27,14 +27,24 @@ export default {
 		KvUserAvatar,
 	},
 	props: {
+		/**
+		 * Query selector for the target element to animate the bubble to
+		 */
 		bubbleTargetQuery: {
 			type: String,
 			default: '',
+			required: true,
 		},
+		/**
+		 * Name of the borrower
+		 */
 		borrowerName: {
 			type: String,
 			default: '',
 		},
+		/**
+		 * Image URL of the borrower that will be displayed in the bubble
+		 */
 		borrowerImageUrl: {
 			type: String,
 			default: '',
@@ -68,21 +78,24 @@ export default {
 			const {
 				top, left, width, height,
 			} = getTargetPosition();
-			showBubble.value = true;
 
-			nextTick(() => {
-				const bubbleRect = bubble.value.getBoundingClientRect();
-				const targetX = left - bubbleRect.left
-            + width / 2 - bubbleRect.width / 2;
-				const targetY = top - bubbleRect.top
-            + height / 2 - bubbleRect.height / 2;
-				isAnimating.value = true;
-				bubbleStyle.value = {
-					...bubbleStyle,
-					transform: `translate(${targetX}px, ${targetY}px)`,
-					opacity: 0,
-				};
-			});
+			if (width || height) {
+				showBubble.value = true;
+
+				nextTick(() => {
+					const bubbleRect = bubble.value.getBoundingClientRect();
+					const targetX = left - bubbleRect.left
+							+ width / 2 - bubbleRect.width / 2;
+					const targetY = top - bubbleRect.top
+							+ height / 2 - bubbleRect.height / 2;
+					isAnimating.value = true;
+					bubbleStyle.value = {
+						...bubbleStyle,
+						transform: `translate(${targetX}px, ${targetY}px)`,
+						opacity: 0,
+					};
+				});
+			}
 		};
 		return {
 			bubble,
