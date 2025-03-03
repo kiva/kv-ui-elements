@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.0.0...@kiva/kv-components@6.1.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* remove required prop for query ([7f19b13](https://github.com/kiva/kv-ui-elements/commit/7f19b13a3f31bd32acef91717b4964fb10c8cfef))
+
+
+### Features
+
+* avatar bubble component for new atb experiment ([c7a2bf6](https://github.com/kiva/kv-ui-elements/commit/c7a2bf6b2ab8b61ea7e93d56566a5add46a50f32))
+* prevent showing bubble if there is no target ([877d3ad](https://github.com/kiva/kv-ui-elements/commit/877d3ad63cc22d2188ec58edfb0879e453c64a2f))
+
+
+
+
+
 # [6.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@5.3.7...@kiva/kv-components@6.0.0) (2025-02-21)
 
 
