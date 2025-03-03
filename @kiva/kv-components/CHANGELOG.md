@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.1.0...@kiva/kv-components@6.2.0) (2025-03-03)
+
+
+### Features
+
+* atb modal kept open if mouse is over ([#526](https://github.com/kiva/kv-ui-elements/issues/526)) ([61992ff](https://github.com/kiva/kv-ui-elements/commit/61992ff5d00032e57007278f5d86b087b86439c4))
+
+
+
+
+
 # [6.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.0.0...@kiva/kv-components@6.1.0) (2025-03-03)
 
 
