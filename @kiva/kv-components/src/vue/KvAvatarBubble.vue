@@ -33,7 +33,6 @@ export default {
 		bubbleTargetQuery: {
 			type: String,
 			default: '',
-			required: true,
 		},
 		/**
 		 * Name of the borrower
