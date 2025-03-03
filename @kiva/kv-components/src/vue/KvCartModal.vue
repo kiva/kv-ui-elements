@@ -228,7 +228,7 @@ export default {
 		const setAutomaticClose = () => {
 			if (!preventClose.value) {
 				timeoutId.value = setTimeout(() => {
-				// Automatically close the cart modal after 10 seconds
+					// Automatically close the cart modal after 10 seconds
 					emit('cart-modal-closed', { type: 'time' });
 				}, 10000);
 			}
