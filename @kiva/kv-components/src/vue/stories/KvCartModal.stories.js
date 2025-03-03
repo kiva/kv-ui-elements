@@ -8,7 +8,7 @@ export default {
 		layout: 'fullscreen',
 	},
 	args: {
-		visible: true,
+		visible: false,
 		title: '',
 		preventClose: false,
 		basketCount: 1,
@@ -26,6 +26,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 
 			<kv-cart-modal
 				v-bind="args"
+				:visible="isVisible"
 				@cart-modal-closed="isVisible = false"
 			>
 			</kv-cart-modal>

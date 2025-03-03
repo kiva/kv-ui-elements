@@ -25,6 +25,8 @@
 						aria-modal="true"
 						aria-label="Added to basket"
 						@click.stop
+						@mouseenter="clearAutomaticClose()"
+						@mouseleave="setAutomaticClose()"
 					>
 						<!-- header -->
 						<div class="tw-flex tw-pt-2 tw-px-2.5">
@@ -155,6 +157,7 @@ export default {
 		const kvCartModal = ref(null);
 		const kvCartModalBody = ref(null);
 		const controlsRef = ref(null);
+		const timeoutId = ref();
 
 		const trapElements = computed(() => [
 			kvCartModal.value, // This cart modal
@@ -222,9 +225,25 @@ export default {
 			hide(cta);
 		};
 
+		const setAutomaticClose = () => {
+			if (!preventClose.value) {
+				timeoutId.value = setTimeout(() => {
+					// Automatically close the cart modal after 10 seconds
+					emit('cart-modal-closed', { type: 'time' });
+				}, 10000);
+			}
+		};
+
+		const clearAutomaticClose = () => {
+			if (!preventClose.value) {
+				clearTimeout(timeoutId.value);
+			}
+		};
+
 		watch(visible, () => {
 			if (visible.value) {
 				show();
+				setAutomaticClose();
 			} else {
 				hide();
 			}
@@ -233,10 +252,7 @@ export default {
 		onMounted(() => {
 			if (visible.value) {
 				show();
-				setTimeout(() => {
-					// Automatically close the cart modal after 10 seconds
-					emit('cart-modal-closed', { type: 'time' });
-				}, 10000);
+				setAutomaticClose();
 			}
 		});
 
@@ -250,8 +266,9 @@ export default {
 			hide,
 			show,
 			controlsRef,
-
 			handleClick,
+			clearAutomaticClose,
+			setAutomaticClose,
 		};
 	},
 };
