@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.2.0...@kiva/kv-components@6.3.0) (2025-03-05)
+
+
+### Features
+
+* cart pill component for atb ([647ed47](https://github.com/kiva/kv-ui-elements/commit/647ed4774936a27852ba74915b13f980de869ca3))
+
+
+
+
+
 # [6.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.1.0...@kiva/kv-components@6.2.0) (2025-03-03)
 
 
