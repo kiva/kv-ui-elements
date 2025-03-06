@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.3.0...@kiva/kv-components@6.3.1) (2025-03-06)
+
+
+### Bug Fixes
+
+* adding KvCartPill to components index ([2a0061e](https://github.com/kiva/kv-ui-elements/commit/2a0061ed6dd2b5584ebdffb5242fcb36e13bdf2c))
+
+
+
+
+
 # [6.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.2.0...@kiva/kv-components@6.3.0) (2025-03-05)
 
 
