@@ -1,5 +1,47 @@
 <template>
 	<div class="tw-whitespace-nowrap">
+		<kv-cart-pill
+			v-if="showPill && showPresetAmounts"
+			:borrower-name="loanName"
+			class="!tw-w-full tw-justify-center tw-pb-2"
+		>
+			<template #icon>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="25"
+					height="24"
+					viewBox="0 0 25 24"
+					fill="none"
+					class="tw-min-w-3"
+				>
+					<mask
+						id="mask0_5025_974"
+						style="mask-type:alpha"
+						maskUnits="userSpaceOnUse"
+						x="0"
+						y="0"
+						width="25"
+						height="24"
+					>
+						<rect
+							x="0.5"
+							width="24"
+							height="24"
+							fill="#D9D9D9"
+						/>
+					</mask>
+					<g mask="url(#mask0_5025_974)">
+						<!-- eslint-disable max-len -->
+						<path
+							d="M12.5001 21L9.1251 22.125C9.00843 22.1583 8.9001 22.1833 8.8001 22.2C8.7001 22.2167 8.6001 22.225 8.5001 22.225C7.96676 22.225 7.5001 22.0375 7.1001 21.6625C6.7001 21.2875 6.5001 20.8083 6.5001 20.225V14.775L3.9001 10.55C3.8001 10.3833 3.7251 10.2125 3.6751 10.0375C3.6251 9.8625 3.6001 9.68333 3.6001 9.5C3.6001 9.31667 3.6251 9.1375 3.6751 8.9625C3.7251 8.7875 3.8001 8.61667 3.9001 8.45L7.3001 2.95C7.48343 2.65 7.7251 2.41667 8.0251 2.25C8.3251 2.08333 8.6501 2 9.0001 2H16.0001C16.3501 2 16.6751 2.08333 16.9751 2.25C17.2751 2.41667 17.5168 2.65 17.7001 2.95L21.1001 8.45C21.2001 8.61667 21.2751 8.7875 21.3251 8.9625C21.3751 9.1375 21.4001 9.31667 21.4001 9.5C21.4001 9.68333 21.3751 9.8625 21.3251 10.0375C21.2751 10.2125 21.2001 10.3833 21.1001 10.55L18.5001 14.775V20.225C18.5001 20.8083 18.3001 21.2875 17.9001 21.6625C17.5001 22.0375 17.0334 22.225 16.5001 22.225C16.4001 22.225 16.3001 22.2167 16.2001 22.2C16.1001 22.1833 15.9918 22.1583 15.8751 22.125L12.5001 21ZM9.0001 15H16.0001L19.4001 9.5L16.0001 4H9.0001L5.6001 9.5L9.0001 15ZM11.4501 10.75L14.9751 7.2C15.1584 7 15.3876 6.90417 15.6626 6.9125C15.9376 6.92083 16.1751 7.01667 16.3751 7.2C16.5751 7.4 16.6793 7.6375 16.6876 7.9125C16.6959 8.1875 16.6001 8.425 16.4001 8.625L12.1501 12.875C11.9501 13.075 11.7168 13.175 11.4501 13.175C11.1834 13.175 10.9501 13.075 10.7501 12.875L8.6251 10.75C8.4251 10.55 8.3251 10.3125 8.3251 10.0375C8.3251 9.7625 8.4251 9.525 8.6251 9.325C8.8251 9.125 9.0626 9.025 9.3376 9.025C9.6126 9.025 9.8501 9.125 10.0501 9.325L11.4501 10.75Z"
+							fill="#757575"
+						/>
+						<!-- eslint-enable max-len -->
+					</g>
+				</svg>
+			</template>
+		</kv-cart-pill>
+
 		<!-- Continue to checkout button -->
 		<kv-ui-button
 			v-if="isInBasket"
@@ -189,6 +231,7 @@ import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import KvCartPill from './KvCartPill.vue';
 
 const OTHER_OPTION = 'Other';
 
@@ -199,6 +242,7 @@ export default {
 		KvUiButton,
 		KvUiSelect,
 		KvMaterialIcon,
+		KvCartPill,
 	},
 	props: {
 		loan: {
@@ -284,6 +328,10 @@ export default {
 		kvTrackCategory: {
 			type: String,
 			default: 'Lending',
+		},
+		showPill: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data() {

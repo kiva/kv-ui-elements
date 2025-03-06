@@ -11,7 +11,7 @@ const story = (args) => {
 		components: { KvLendCta },
 		setup() { return { args: { ...templateArgs } }; },
 		template: `
-			<div style="width: 300px;">
+			<div style="max-width: 500px;">
 				<kv-lend-cta
 					v-bind="args"
 				/>
@@ -340,4 +340,17 @@ export const WithPresetOptionsNonActionable = story({
 	loan: { status: 'refunded' },
 	kvTrackFunction,
 	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsAndPill = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		name: 'John',
+		unreservedAmount: '150.00',
+		borrowerCount: 1,
+	},
+	kvTrackFunction,
+	showPresetAmounts: true,
+	showPill: true,
 });
