@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.3.1...@kiva/kv-components@6.4.0) (2025-03-06)
+
+
+### Features
+
+* pill added to lend cta ([#529](https://github.com/kiva/kv-ui-elements/issues/529)) ([a343c42](https://github.com/kiva/kv-ui-elements/commit/a343c4203f8af0b68a517120d1ca7a24998d3777))
+
+
+
+
+
 ## [6.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.3.0...@kiva/kv-components@6.3.1) (2025-03-06)
 
 
