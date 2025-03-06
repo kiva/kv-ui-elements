@@ -6,7 +6,7 @@
 		}"
 	>
 		<slot name="icon"></slot>
-		<p class="tw-truncate">
+		<p class="tw-text-wrap">
 			{{ pillCopy }}
 		</p>
 	</div>
