@@ -29,15 +29,33 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		milestonesNumber: {
+			type: Number,
+			default: 1,
+		},
+		isCloseNextMilestone: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props) {
 		const {
 			borrowerName,
+			milestonesNumber,
+			isCloseNextMilestone,
 		} = toRefs(props);
 
 		const pillCopy = computed(() => {
+			if (isCloseNextMilestone.value) {
+				return 'You’re close to your next milestone!';
+			}
+
+			const milestonesCopy = milestonesNumber.value > 1
+				? `${milestonesNumber.value} of your milestones`
+				: 'your next milestone';
+
 			return borrowerName.value
-				? `Supporting ${borrowerName.value} will hit your next milestone!`
+				? `Supporting ${borrowerName.value} will hit ${milestonesCopy}!`
 				: 'Supporting this loan achieves a milestone!';
 		});
 
