@@ -64,10 +64,9 @@
 
 						<!-- body -->
 						<div
-							v-if="showContentSlot"
 							id="kvCartModalBody"
 							ref="kvCartModalBody"
-							class="tw-flex tw-gap-2 tw-mx-2.5 tw-border-t tw-border-tertiary tw-py-2"
+							class="tw-flex tw-gap-2"
 						>
 							<!--@slot content -->
 							<slot name="content"></slot>
@@ -149,7 +148,7 @@ export default {
 	emits: [
 		'cart-modal-closed',
 	],
-	setup(props, { emit, slots }) {
+	setup(props, { emit }) {
 		const {
 			visible,
 			preventClose,
@@ -163,8 +162,6 @@ export default {
 		const trapElements = computed(() => [
 			kvCartModal.value, // This cart modal
 		]);
-
-		const showContentSlot = computed(() => !!slots.content);
 
 		const {
 			activate: activateFocusTrap,
@@ -273,7 +270,6 @@ export default {
 			handleClick,
 			clearAutomaticClose,
 			setAutomaticClose,
-			showContentSlot,
 		};
 	},
 };

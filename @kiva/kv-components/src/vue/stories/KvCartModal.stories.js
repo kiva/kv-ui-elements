@@ -59,7 +59,7 @@ const ContentSlotTemplate = (args, { argTypes }) => ({
 				@cart-modal-closed="isVisible = false"
 			>
 				<template #content>
-					<div style="text-align: center; width: 100%;">
+					<div style="text-align: center; width: 100%; padding: 16px; border-top: 1px solid #ccc;">
 						<h2>{{title}}</h2>
 						<p>Some content</p>
 					</div>
