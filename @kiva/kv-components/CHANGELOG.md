@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.4.1...@kiva/kv-components@6.4.2) (2025-03-12)
+
+
+### Bug Fixes
+
+* kv cart modal slot fix ([#531](https://github.com/kiva/kv-ui-elements/issues/531)) ([96d4606](https://github.com/kiva/kv-ui-elements/commit/96d4606b2dc7373908177739bda8c4b4c5299d1e))
+
+
+
+
+
 ## [6.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.4.0...@kiva/kv-components@6.4.1) (2025-03-11)
 
 **Note:** Version bump only for package @kiva/kv-components
