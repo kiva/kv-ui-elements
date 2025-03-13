@@ -82,10 +82,20 @@
 						>
 							<kv-button
 								class="tw-w-full"
+								@click="handleClick(
+									showCategoryOption ? 'support-another' : 'view-basket'
+								)"
+							>
+								{{ ctaText }}
+							</kv-button>
+
+							<button
+								v-if="showCategoryOption"
+								class="tw-text-action tw-pt-1.5 tw-font-medium"
 								@click="handleClick('view-basket')"
 							>
-								View basket ({{ basketCount }})
-							</kv-button>
+								No thanks, go to basket ({{ basketCount }})
+							</button>
 						</div>
 					</div>
 				</div>
@@ -144,6 +154,13 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		/**
+		 * Category name for the CTA button
+		 * */
+		categoryName: {
+			type: String,
+			default: '',
+		},
 	},
 	emits: [
 		'cart-modal-closed',
@@ -162,6 +179,15 @@ export default {
 		const trapElements = computed(() => [
 			kvCartModal.value, // This cart modal
 		]);
+
+		const showCategoryOption = computed(() => !!props.categoryName);
+
+		const ctaText = computed(() => {
+			if (showCategoryOption.value) {
+				return `Support another ${props.categoryName}`;
+			}
+			return `View basket (${props.basketCount})`;
+		});
 
 		const {
 			activate: activateFocusTrap,
@@ -270,6 +296,8 @@ export default {
 			handleClick,
 			clearAutomaticClose,
 			setAutomaticClose,
+			ctaText,
+			showCategoryOption,
 		};
 	},
 };

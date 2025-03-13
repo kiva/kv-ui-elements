@@ -12,6 +12,7 @@ export default {
 		title: '',
 		preventClose: false,
 		basketCount: 1,
+		categoryName: '',
 	},
 };
 
@@ -77,4 +78,10 @@ const ContentSlotTemplate = (args, { argTypes }) => ({
 export const ContentSlot = ContentSlotTemplate.bind({});
 ContentSlot.args = {
 	title: 'Added to Basket',
+};
+
+export const CategoryOption = ContentSlotTemplate.bind({});
+CategoryOption.args = {
+	title: 'Added to Basket',
+	categoryName: 'women',
 };
