@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.4.2...@kiva/kv-components@6.5.0) (2025-03-13)
+
+
+### Features
+
+* cart modal category option added ([#532](https://github.com/kiva/kv-ui-elements/issues/532)) ([6cd72ff](https://github.com/kiva/kv-ui-elements/commit/6cd72ffa436cba897607fb55273d097db0e78d2a))
+
+
+
+
+
 ## [6.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.4.1...@kiva/kv-components@6.4.2) (2025-03-12)
 
 
