@@ -37,6 +37,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		customMessage: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props) {
 		const {
@@ -46,6 +50,10 @@ export default {
 		} = toRefs(props);
 
 		const pillCopy = computed(() => {
+			if (props.customMessage) {
+				return props.customMessage;
+			}
+
 			if (isCloseNextMilestone.value) {
 				return 'You’re close to your next milestone!';
 			}

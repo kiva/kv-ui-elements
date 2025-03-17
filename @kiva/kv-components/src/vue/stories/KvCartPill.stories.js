@@ -11,6 +11,7 @@ export default {
 		showBg: false,
 		milestonesNumber: 0,
 		isCloseNextMilestone: false,
+		customMessage: '',
 	},
 };
 
@@ -25,6 +26,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				:show-bg="showBg"
 				:milestones-number="milestonesNumber"
 				:is-close-next-milestone="isCloseNextMilestone"
+				:custom-message="customMessage"
 			/>
 		</div>
 	`,
@@ -34,11 +36,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
 			showBg: args.showBg,
 			milestonesNumber: args.milestonesNumber,
 			isCloseNextMilestone: args.isCloseNextMilestone,
+			customMessage: args.customMessage,
 		};
 	},
 });
 
 export const Default = DefaultTemplate.bind({});
+
+export const PillWithCustomMessage = DefaultTemplate.bind({});
+PillWithCustomMessage.args = {
+	customMessage: 'This is a custom message',
+};
 
 export const WithSecondaryBackground = DefaultTemplate.bind({});
 WithSecondaryBackground.args = {
