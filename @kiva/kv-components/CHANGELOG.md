@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.5.0...@kiva/kv-components@6.6.0) (2025-03-17)
+
+
+### Features
+
+* add custom message prop for pill ([ba5ab3d](https://github.com/kiva/kv-ui-elements/commit/ba5ab3de1124cd9adf5a90891b18d29e3d91cb02))
+
+
+
+
+
 # [6.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.4.2...@kiva/kv-components@6.5.0) (2025-03-13)
 
 
