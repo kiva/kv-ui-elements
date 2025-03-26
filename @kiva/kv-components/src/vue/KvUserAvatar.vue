@@ -43,11 +43,18 @@
 		<div
 			v-else-if="!isLegacyPlaceholderAvatar(imageFilename) && imageFilename"
 		>
+			<kv-loading-placeholder
+				v-if="isLoading"
+				class="!tw-rounded-full"
+				:class="{ '!tw-w-3 !tw-h-3': isSmall, '!tw-w-6 !tw-h-6': !isSmall }"
+			/>
 			<img
+				v-show="!isLoading"
 				:src="lenderImageUrl"
 				alt="Image of lender"
 				class="tw-rounded-full tw-inline-block"
 				:class="{ 'tw-w-3 tw-h-3': isSmall, 'tw-w-6 tw-h-6': !isSmall }"
+				@load="onImgLoad()"
 			>
 		</div>
 		<!-- User is not anonymous and does not have an image -->
@@ -68,11 +75,15 @@
 </template>
 
 <script>
-import { computed, toRefs } from 'vue';
+import { computed, toRefs, ref } from 'vue';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
+import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
 export default {
 	name: 'KvUserAvatar',
+	components: {
+		KvLoadingPlaceholder,
+	},
 	props: {
 		/**
 		 * The name of the lender
@@ -103,6 +114,8 @@ export default {
 			isSmall,
 		} = toRefs(props);
 
+		const isLoading = ref(true);
+
 		const isAnonymousUser = computed(() => {
 			return (lenderName.value === '' && lenderImageUrl.value === '') || lenderName.value === 'Anonymous';
 		});
@@ -120,12 +133,18 @@ export default {
 			return lenderName?.value?.substring(0, 1).toUpperCase();
 		});
 
+		const onImgLoad = () => {
+			isLoading.value = false;
+		};
+
 		return {
 			isAnonymousUser,
 			avatarClass,
 			imageFilename,
 			lenderNameFirstLetter,
 			isLegacyPlaceholderAvatar,
+			isLoading,
+			onImgLoad,
 		};
 	},
 };
