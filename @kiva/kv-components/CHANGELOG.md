@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.6.0...@kiva/kv-components@6.7.0) (2025-03-26)
+
+
+### Features
+
+* loader added to kv user avatar component ([#534](https://github.com/kiva/kv-ui-elements/issues/534)) ([6857a80](https://github.com/kiva/kv-ui-elements/commit/6857a80568d6f3486bf86a2f12faa999932c2197))
+
+
+
+
+
 # [6.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.5.0...@kiva/kv-components@6.6.0) (2025-03-17)
 
 
