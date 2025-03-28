@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.15](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.14...@kiva/kv-shop@3.0.15) (2025-03-28)
+
+
+### Bug Fixes
+
+* fix for braintree drop in error in local dev ([a58acd5](https://github.com/kiva/kv-ui-elements/commit/a58acd58d93f720be188795db6cd8f7a94078ac4))
+
+
+
+
+
 ## [3.0.14](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.13...@kiva/kv-shop@3.0.14) (2025-03-26)
 
 **Note:** Version bump only for package @kiva/kv-shop
