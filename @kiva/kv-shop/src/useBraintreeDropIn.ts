@@ -6,6 +6,14 @@ import type { ApplePayPaymentRequest } from 'braintree-web';
 import type { Dropin, PaymentMethodPayload } from 'braintree-web-drop-in';
 import { ShopError, parseShopError } from './shopError';
 
+declare global {
+	interface Window {
+		braintree?: {
+			dropin: typeof import('braintree-web-drop-in');
+		};
+	}
+}
+
 export type PaymentType = 'card' | 'paypal' | 'paypalCredit' | 'venmo' | 'applePay' | 'googlePay';
 export type PayPalFlowType = 'checkout' | 'vault';
 
@@ -125,10 +133,11 @@ function initBraintreeDropin(): DropInWrapper {
 		paypalFlow = 'checkout',
 	}: DropInInitOptions) {
 		formattedAmount = numeral(amount).format('0.00');
-		const { default: DropIn } = await import('braintree-web-drop-in/index.js');
+		const { default: DropIn } = await import('braintree-web-drop-in');
 
+		const dropinInstance = window?.braintree?.dropin || DropIn;
 		try {
-			instance = await (DropIn.create({
+			instance = await (dropinInstance.create({
 				authorization: authToken,
 				container,
 				dataCollector: {
