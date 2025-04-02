@@ -50,6 +50,7 @@
 			/>
 			<img
 				v-show="!isLoading"
+				ref="imageRef"
 				:src="lenderImageUrl"
 				alt="Image of lender"
 				class="tw-rounded-full tw-inline-block"
@@ -75,7 +76,9 @@
 </template>
 
 <script>
-import { computed, toRefs, ref } from 'vue';
+import {
+	computed, toRefs, ref, onMounted,
+} from 'vue';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
@@ -115,6 +118,7 @@ export default {
 		} = toRefs(props);
 
 		const isLoading = ref(true);
+		const imageRef = ref(null);
 
 		const isAnonymousUser = computed(() => {
 			return (lenderName.value === '' && lenderImageUrl.value === '') || lenderName.value === 'Anonymous';
@@ -136,6 +140,13 @@ export default {
 		const onImgLoad = () => {
 			isLoading.value = false;
 		};
+
+		onMounted(() => {
+			const img = imageRef.value;
+			if (img && img?.complete && !img?.naturalWidth) {
+				onImgLoad();
+			}
+		});
 
 		return {
 			isAnonymousUser,
