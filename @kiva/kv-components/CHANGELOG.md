@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.7.0...@kiva/kv-components@6.8.0) (2025-04-02)
+
+
+### Features
+
+* set isLoading to false when image is already loaded ([9b15d67](https://github.com/kiva/kv-ui-elements/commit/9b15d67251ed64dd952a6dd7ce7dab7363d9067a))
+
+
+
+
+
 # [6.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.6.0...@kiva/kv-components@6.7.0) (2025-03-26)
 
 
