@@ -45,8 +45,11 @@
 		>
 			<kv-loading-placeholder
 				v-if="isLoading"
+				:style="{
+					width: isSmall ? '1.5rem' : '3rem',
+					height: isSmall ? '1.5rem' : '3rem',
+				}"
 				class="!tw-rounded-full"
-				:class="{ '!tw-w-3 !tw-h-3': isSmall, '!tw-w-6 !tw-h-6': !isSmall }"
 			/>
 			<img
 				v-show="!isLoading"
@@ -77,7 +80,7 @@
 
 <script>
 import {
-	computed, toRefs, ref, onMounted,
+	computed, toRefs, ref,
 } from 'vue';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
@@ -141,13 +144,6 @@ export default {
 			isLoading.value = false;
 		};
 
-		onMounted(() => {
-			const img = imageRef.value;
-			if (img && img?.complete && !img?.naturalWidth) {
-				onImgLoad();
-			}
-		});
-
 		return {
 			isAnonymousUser,
 			avatarClass,
@@ -156,6 +152,7 @@ export default {
 			isLegacyPlaceholderAvatar,
 			isLoading,
 			onImgLoad,
+			imageRef,
 		};
 	},
 };
