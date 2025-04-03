@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.8.0...@kiva/kv-components@6.8.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* isLoading value ([0288c87](https://github.com/kiva/kv-ui-elements/commit/0288c87d490021b50fb0230626765a2bd5ba5efe))
+* remove important from placeholder size classes ([4b2934f](https://github.com/kiva/kv-ui-elements/commit/4b2934f0d04257d2bbf1be7210015741a1c7ff7e))
+* using styles over classes for placeholder ([81fbfcc](https://github.com/kiva/kv-ui-elements/commit/81fbfcc0dd7c0f1d2554ccefcdbda790e99a7d92))
+
+
+
+
+
 # [6.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.7.0...@kiva/kv-components@6.8.0) (2025-04-02)
 
 
