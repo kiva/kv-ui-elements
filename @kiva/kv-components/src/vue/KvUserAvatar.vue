@@ -80,7 +80,7 @@
 
 <script>
 import {
-	computed, toRefs, ref,
+	computed, toRefs, ref, onMounted,
 } from 'vue';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
@@ -143,6 +143,25 @@ export default {
 		const onImgLoad = () => {
 			isLoading.value = false;
 		};
+
+		const waitForImageToComplete = (img) => {
+			return new Promise((resolve) => {
+				const check = () => {
+					if (img?.complete) {
+						resolve(img);
+					} else {
+						setTimeout(check, 100);
+					}
+				};
+				check();
+			});
+		};
+
+		onMounted(async () => {
+			const img = imageRef.value;
+			await waitForImageToComplete(img);
+			onImgLoad();
+		});
 
 		return {
 			isAnonymousUser,
