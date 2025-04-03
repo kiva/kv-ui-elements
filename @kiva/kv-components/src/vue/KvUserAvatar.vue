@@ -141,7 +141,7 @@ export default {
 		});
 
 		const onImgLoad = () => {
-			// isLoading.value = false;
+			isLoading.value = false;
 		};
 
 		return {
