@@ -9,9 +9,9 @@ const story = (args) => {
 	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvUserAvatar },
-		setup() { return { args: templateArgs, repeat: templateArgs?.repeat ?? 1 }; },
+		setup() { return { args: templateArgs }; },
 		template: `
-			<KvUserAvatar v-for="i in repeat" v-bind="args" />
+			<KvUserAvatar v-bind="args" />
 		`,
 	});
 	template.args = args;
@@ -44,10 +44,41 @@ export const IsSmall = story({
 	isSmall: true,
 });
 
-export const Multiple = story({
-	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
-	lenderName: 'Roger',
-	repeat: 3,
+const multipleAvatarStory = (args) => {
+	const template = (templateArgs, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { KvUserAvatar },
+		setup() { return { args: templateArgs }; },
+		template: `
+			<div class="tw-flex tw-items-center">
+				<KvUserAvatar
+					v-for="(lender, index) in args.lendersImages"
+					:key="index"
+					:lender-image-url="lender.lenderImageUrl"
+					:lender-name="lender.lenderName"
+				/>
+			</div>
+		`,
+	});
+	template.args = args;
+	return template;
+};
+
+export const Multiple = multipleAvatarStory({
+	lendersImages: [
+		{
+			lenderImageUrl: 'https://www.development.kiva.org/img/w500h500/0a35ae21956f8a03818b597877492196.jpg',
+			lenderName: 'Emma',
+		},
+		{
+			lenderImageUrl: 'https://www.development.kiva.org/img/w500h500/957d6191b6f7b33f64fc49bab14bf108.jpg',
+			lenderName: 'Oliver',
+		},
+		{
+			lenderImageUrl: 'https://www.development.kiva.org/img/w500h500/f0012a5353a2fe29d66364dc1d4e49ff.jpg',
+			lenderName: 'John',
+		},
+	],
 });
 
 export const Fallback = story();
