@@ -9,9 +9,9 @@ const story = (args) => {
 	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvUserAvatar },
-		setup() { return { args: templateArgs }; },
+		setup() { return { args: templateArgs, repeat: templateArgs?.repeat ?? 1 }; },
 		template: `
-			<KvUserAvatar v-bind="args" />
+			<KvUserAvatar v-for="i in repeat" v-bind="args" />
 		`,
 	});
 	template.args = args;
@@ -42,6 +42,12 @@ export const IsSmall = story({
 	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	lenderName: 'Roger',
 	isSmall: true,
+});
+
+export const Multiple = story({
+	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	lenderName: 'Roger',
+	repeat: 3,
 });
 
 export const Fallback = story();
