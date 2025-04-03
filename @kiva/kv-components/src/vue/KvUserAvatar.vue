@@ -144,23 +144,31 @@ export default {
 			isLoading.value = false;
 		};
 
-		const waitForImageToComplete = (img) => {
-			return new Promise((resolve) => {
+		const waitForImageToComplete = (img, timeout = 10000) => {
+			return new Promise((resolve, reject) => {
+				const deadline = Date.now() + timeout;
 				const check = () => {
-					if (img?.complete) {
+					if (img.complete) {
 						resolve(img);
+					} else if (Date.now() > deadline) {
+						reject(new Error(`Timeout: ${img.src}`));
 					} else {
-						setTimeout(check, 100);
+						setTimeout(check, 50);
 					}
 				};
+
 				check();
 			});
 		};
 
 		onMounted(async () => {
 			const img = imageRef.value;
-			await waitForImageToComplete(img);
-			onImgLoad();
+			try {
+				await waitForImageToComplete(img);
+				onImgLoad();
+			} catch (err) {
+				console.log(err.message);
+			}
 		});
 
 		return {
