@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.8.1...@kiva/kv-components@6.9.0) (2025-04-03)
+
+
+### Features
+
+* add multiple avatars to story ([132f21e](https://github.com/kiva/kv-ui-elements/commit/132f21eeb329768af336c3c31ebd2c50696d173a))
+* add story for multiple avatars ([400faa2](https://github.com/kiva/kv-ui-elements/commit/400faa24cad8f564ea063eec5d0e05884a0f184b))
+* set timeout for image to load ([326a732](https://github.com/kiva/kv-ui-elements/commit/326a732eaf3cf4967dcfce6a62d1154e6b7dc378))
+* wait for image to complete to avoid infinite loading in user avatar ([df672b4](https://github.com/kiva/kv-ui-elements/commit/df672b43e0748e2d9ac1df24fb96efa231d9a374))
+
+
+
+
+
 ## [6.8.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.8.0...@kiva/kv-components@6.8.1) (2025-04-03)
 
 
