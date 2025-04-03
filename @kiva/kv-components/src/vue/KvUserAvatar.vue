@@ -45,8 +45,11 @@
 		>
 			<kv-loading-placeholder
 				v-if="isLoading"
+				:style="{
+					width: isSmall ? '1.5rem' : '3rem',
+					height: isSmall ? '1.5rem' : '3rem',
+				}"
 				class="!tw-rounded-full"
-				:class="{ 'tw-w-3 tw-h-3': isSmall, 'tw-w-6 tw-h-6': !isSmall }"
 			/>
 			<img
 				v-show="!isLoading"
@@ -138,7 +141,7 @@ export default {
 		});
 
 		const onImgLoad = () => {
-			isLoading.value = false;
+			// isLoading.value = false;
 		};
 
 		return {
