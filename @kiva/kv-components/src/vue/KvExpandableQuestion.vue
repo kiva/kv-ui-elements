@@ -42,7 +42,7 @@ import {
 	mdiChevronDown,
 	mdiChevronUp,
 } from '@mdi/js';
-import { paramCase } from 'change-case';
+import { kebabCase } from 'change-case';
 
 import KvExpandable from './KvExpandable.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -89,7 +89,7 @@ export default {
 			active,
 		} = toRefs(props);
 		const open = ref(active.value || false);
-		const titleSlugified = computed(() => paramCase(title.value));
+		const titleSlugified = computed(() => kebabCase(title.value));
 
 		const toggleFAQ = () => {
 			props.kvTrackFunction('faq', 'toggle', titleSlugified.value, open.value ? 'expand' : 'collapse');
