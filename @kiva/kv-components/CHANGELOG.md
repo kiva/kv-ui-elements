@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.1...@kiva/kv-components@6.9.2) (2025-04-09)
+
+
+### Bug Fixes
+
+* error was being thrown safely on prod ([3cf5970](https://github.com/kiva/kv-ui-elements/commit/3cf5970a8866a955f45478f0296945627ab2ef44))
+
+
+
+
+
 ## [6.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.0...@kiva/kv-components@6.9.1) (2025-04-08)
 
 **Note:** Version bump only for package @kiva/kv-components
