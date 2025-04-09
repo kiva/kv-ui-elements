@@ -148,7 +148,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				const deadline = Date.now() + timeout;
 				const check = () => {
-					if (img.complete) {
+					if (img?.complete) {
 						resolve(img);
 					} else if (Date.now() > deadline) {
 						reject(new Error(`Timeout: ${img.src}`));
