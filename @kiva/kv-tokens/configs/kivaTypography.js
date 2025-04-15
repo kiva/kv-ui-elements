@@ -108,6 +108,7 @@ export const textStyles = (() => {
 		'@screen lg': {
 			fontSize: rem(fontSizes.h2.lg),
 			letterSpacing: em(letterSpacings['-0.3'], fontSizes.h2.lg),
+			lineHeight: lineHeights['nearly-none'],
 		},
 	};
 
