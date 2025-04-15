@@ -487,3 +487,21 @@ export const Fade = () => ({
 		</div>
 	`,
 });
+
+export const RoundedChevron = () => ({
+	components: {
+		KvCarousel,
+	},
+	template: `
+		<div>
+			<kv-carousel
+				ref="sampleCarousel"
+				style="max-width: 400px;"
+				:embla-options="{ loop: false }"
+				:rounded-chevron="true"
+			>
+				${defaultCarouselSlides}
+			</kv-carousel>
+		</div>
+	`,
+});
