@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.1.0...@kiva/kv-tokens@3.2.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* lineHeight for large screens ([4d12094](https://github.com/kiva/kv-ui-elements/commit/4d12094ae75f496fd7dbec6bcb40bcd687d6c9e5))
+
+
+### Features
+
+* changing lineHeight to tight in h2 text ([b5ffeda](https://github.com/kiva/kv-ui-elements/commit/b5ffedac46e0495db649cb27627639f929f38590))
+
+
+
+
+
 # [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.0.0...@kiva/kv-tokens@3.1.0) (2025-01-21)
 
 
