@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.3...@kiva/kv-components@6.9.4) (2025-04-17)
+
+
+### Bug Fixes
+
+* resolve when avatar image disappears ([d81d234](https://github.com/kiva/kv-ui-elements/commit/d81d234dd21367b6ae49efeddecd849d8e190044))
+
+
+
+
+
 ## [6.9.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.2...@kiva/kv-components@6.9.3) (2025-04-15)
 
 **Note:** Version bump only for package @kiva/kv-components
