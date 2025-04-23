@@ -30,11 +30,11 @@
 			class="kv-carousel__controls tw-flex
 			tw-items-center tw-gap-2
 			tw-mt-2 tw-w-full
-			tw-justify-between md:tw-justify-center"
+			tw-justify-center"
 		>
 			<div
 				class="tw-flex tw-gap-2 tw-w-full md:tw-w-auto"
-				:class="{'tw-justify-between md:tw-justify-center': !hasAutoplay}"
+				:class="{'tw-justify-center': !hasAutoplay}"
 			>
 				<button
 					class="tw-text-primary
