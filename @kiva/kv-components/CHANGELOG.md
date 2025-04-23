@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.10.0...@kiva/kv-components@6.11.0) (2025-04-23)
+
+
+### Features
+
+* add secondary button text with show presets ([f8dfb68](https://github.com/kiva/kv-ui-elements/commit/f8dfb68ffedad8ccd3f8f32f8b0d77e46b1a7b57))
+
+
+
+
+
 # [6.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.4...@kiva/kv-components@6.10.0) (2025-04-23)
 
 
