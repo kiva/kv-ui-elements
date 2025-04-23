@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.4...@kiva/kv-components@6.10.0) (2025-04-23)
+
+
+### Features
+
+* center buttons on vertical carousel ([37b150f](https://github.com/kiva/kv-ui-elements/commit/37b150fa4cd0608f40e8c5a135ce2044760cd3b0))
+
+
+
+
+
 ## [6.9.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.9.3...@kiva/kv-components@6.9.4) (2025-04-17)
 
 
