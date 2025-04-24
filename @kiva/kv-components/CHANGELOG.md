@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.11.1...@kiva/kv-components@6.12.0) (2025-04-24)
+
+
+### Features
+
+* change secondary text logic on lendcta ([f1f03c1](https://github.com/kiva/kv-ui-elements/commit/f1f03c192507109f7511ab76dfe5493438de7d5b))
+
+
+
+
+
 ## [6.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.11.0...@kiva/kv-components@6.11.1) (2025-04-24)
 
 **Note:** Version bump only for package @kiva/kv-components
