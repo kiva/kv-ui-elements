@@ -431,7 +431,7 @@ export default {
 			}
 		},
 		loanInBasketButtonText() {
-			return this.secondaryButtonText ? this.secondaryButtonText : 'Continue to basket';
+			return this.showPresetAmounts ? 'Continue to basket' : this.secondaryButtonText;
 		},
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
