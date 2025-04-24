@@ -315,7 +315,7 @@ export default {
 		},
 		secondaryButtonText: {
 			type: String,
-			default: 'Checkout now',
+			default: undefined,
 		},
 		secondaryButtonHandler: {
 			type: Function,
@@ -431,7 +431,11 @@ export default {
 			}
 		},
 		loanInBasketButtonText() {
-			return this.showPresetAmounts ? 'Continue to basket' : this.secondaryButtonText;
+			if (this.secondaryButtonText) {
+				return this.secondaryButtonText;
+			}
+
+			return this.showPresetAmounts ? 'Continue to basket' : 'Checkout now';
 		},
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
