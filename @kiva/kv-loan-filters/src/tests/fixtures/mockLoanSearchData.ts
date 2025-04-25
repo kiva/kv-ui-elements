@@ -114,6 +114,7 @@ export const mockAllFacets = {
 	partnerNames: ['AAA', 'BBB', 'CCC'],
 	state: ['Georgia', 'California'],
 	postalCode: ['30301', '90210'],
+	trusteeId: [1, 2],
 	categoryIds: [28],
 };
 

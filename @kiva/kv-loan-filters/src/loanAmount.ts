@@ -49,7 +49,7 @@ export default {
 		const min = loanSearchState?.loanAmount?.min ?? MIN;
 		const max = loanSearchState?.loanAmount?.max ?? MAX;
 		return {
-			partnerRiskRating: loanSearchState?.loanAmount
+			loanAmount: loanSearchState?.loanAmount
 				? createMinMaxRange(min >= MIN ? min : MIN, max <= MAX ? max : MAX)
 				: null,
 		};

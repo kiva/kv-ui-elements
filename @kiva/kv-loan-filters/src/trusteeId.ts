@@ -29,12 +29,10 @@ export default {
 	getRemovedFacet: () => ({}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
-		...(loanSearchState?.trusteeId?.length && { city: { any: loanSearchState.trusteeId } }),
+		...(loanSearchState?.trusteeId?.length && { trusteeId: { any: loanSearchState.trusteeId } }),
 	}),
-	getValidatedSearchState: (loanSearchState) => ({
-		// Don't worry about validating the filter for now against available facets
-		// We don't display the filter in the UI and only pass it through for baseline campaign searches
-		trusteeId: loanSearchState?.trusteeId ?? [],
+	getValidatedSearchState: (loanSearchState, allFacets) => ({
+		trusteeId: loanSearchState?.trusteeId?.filter((c) => allFacets?.trusteeId?.includes(c)) ?? [],
 	}),
 	getFilterFromQuery: () => ({}),
 	getQueryFromFilter: () => ({}),
