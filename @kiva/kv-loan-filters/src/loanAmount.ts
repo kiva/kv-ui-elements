@@ -1,12 +1,12 @@
 import { getMinMaxRangeFilter, createMinMaxRange } from './minMaxRangeUtils';
 
 /**
- * The min risk rating value
+ * The min loanAmount value
  */
 export const MIN = 25;
 
 /**
- * The max risk rating value
+ * The max loanAmount value
  */
 export const MAX = 1000000;
 
