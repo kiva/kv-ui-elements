@@ -47,8 +47,11 @@ const loan = {
 		__typename: 'Geocode',
 	},
 	image: { hash: '9673d0722a7675b9b8d11f90849d9b44' },
-	fundraisingPercent: 0.5,
-	unreservedAmount: '500.00',
+	loanFundraisingInfo: {
+		id: 1,
+		fundedAmount: '250.00',
+		reservedAmount: '250.00',
+	},
 	use: 'to purchase heifers to increase headcount of cattle and sales of organic milk. The profits from the loan will be used wisely.',
 	status: 'fundraising',
 	loanAmount: '1000.00',
@@ -97,8 +100,7 @@ export const PartialLoading = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: undefined,
-		fundraisingPercent: undefined,
+		loanFundraisingInfo: undefined,
 	},
 	kvTrackFunction,
 	photoPath,
@@ -130,9 +132,8 @@ export const AlmostFunded = story({
 	loan: {
 		...loan,
 		loanAmount: '100.00',
-		unreservedAmount: '10.00',
-		fundraisingPercent: 0.9,
 		loanFundraisingInfo: {
+			id: loan.id,
 			fundedAmount: '90.00',
 			reservedAmount: '0.00',
 		},
@@ -158,7 +159,11 @@ export const Funded = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: '0.00',
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: loan.loanAmount,
+			reservedAmount: '0.00',
+		},
 	},
 	kvTrackFunction,
 	photoPath,

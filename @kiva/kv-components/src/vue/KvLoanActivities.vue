@@ -77,12 +77,26 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import { computed, ref, toRefs } from 'vue';
 import numeral from 'numeral';
 import { format } from 'date-fns';
 import KvActivityRow from './KvActivityRow.vue';
 import KvLightbox from './KvLightbox.vue';
 import KvLendCta from './KvLendCta.vue';
+
+export const KV_LOAN_ACTIVITIES_FRAGMENT = gql`
+	fragment KvLoanActivities on LoanBasic {
+		id
+		lenders(limit: 0) {
+			totalCount
+		}
+		loanFundraisingInfo {
+			id
+			fundedAmount
+		}
+	}
+`;
 
 export default {
 	name: 'KvLoanActivities',

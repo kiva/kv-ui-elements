@@ -219,7 +219,7 @@
 			<div>
 				<component
 					:is="tag"
-					v-if="unreservedAmount > 0"
+					v-if="sharesAvailable"
 					:to="readMorePath"
 					:href="readMorePath"
 					class="loan-card-progress tw-mt-1"
@@ -228,8 +228,8 @@
 				>
 					<kv-loan-progress-group
 						id="loanProgress"
-						:money-left="`${unreservedAmount}`"
-						:amount-goal="`${loanAmount}`"
+						:money-left="unreservedAmount"
+						:amount-goal="loanAmount"
 						:progress-percent="fundraisingPercent"
 						class="tw-text-secondary"
 					/>
@@ -263,17 +263,65 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import numeral from 'numeral';
-import { loanCardComputedProperties, loanCardMethods } from '../utils/loanCard';
-import KvLoanBookmark from './KvLoanBookmark.vue';
-import KvLoanUse from './KvLoanUse.vue';
+import {
+	loanCardComputedProperties,
+	loanCardMethods,
+	LOAN_CALLOUTS_FRAGMENT,
+	LOAN_GEOCODE_FRAGMENT,
+	LOAN_PROGRESS_FRAGMENT,
+} from '../utils/loanCard';
+import KvLoanBookmark, { KV_LOAN_BOOKMARK_FRAGMENT } from './KvLoanBookmark.vue';
+import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
 import KvLoanCallouts from './KvLoanCallouts.vue';
-import KvLoanTag from './KvLoanTag.vue';
+import KvLoanTag, { KV_LOAN_TAG_FRAGMENT } from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 import KvFlag from './KvFlag.vue';
+
+// Use this fragment to get the necessary public data for this loan card
+export const KV_INTRODUCTION_LOAN_CARD_FRAGMENT = gql`
+	fragment KvIntroductionLoanCard on LoanBasic {
+		id
+		image {
+			id
+			hash # for imageHash
+		}
+		lenders(limit: 0) {
+			totalCount # for lendersNumber
+		}
+		loanFundraisingInfo {
+			id
+			fundedAmount # for amountLent
+		}
+		name # for borrowerName
+		status # for isFunded
+		...KvLoanBookmark
+		...KvLoanTag
+		...KvLoanUse
+		...LoanCallouts
+		...LoanGeocode
+		...LoanProgress
+	}
+	${KV_LOAN_BOOKMARK_FRAGMENT}
+	${KV_LOAN_TAG_FRAGMENT}
+	${KV_LOAN_USE_FRAGMENT}
+	${LOAN_CALLOUTS_FRAGMENT}
+	${LOAN_GEOCODE_FRAGMENT}
+	${LOAN_PROGRESS_FRAGMENT}
+`;
+
+// Use this fragment to get the necessary private/user data for this loan card
+export const KV_INTRODUCTION_LOAN_CARD_USER_FRAGMENT = gql`
+	fragment KvIntroductionLoanCardUser on LoanBasic {
+		id
+		...KvLoanBookmark
+	}
+	${KV_LOAN_BOOKMARK_FRAGMENT}
+`;
 
 export default {
 	name: 'KvIntroductionLoanCard',
@@ -365,6 +413,7 @@ export default {
 			state,
 			tag,
 			unreservedAmount,
+			sharesAvailable,
 		} = loanCardComputedProperties(props, true);
 
 		const {
@@ -393,6 +442,7 @@ export default {
 			state,
 			tag,
 			unreservedAmount,
+			sharesAvailable,
 			clickReadMore,
 		};
 	},
@@ -416,10 +466,10 @@ export default {
 		},
 		amountLent() {
 			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
-			return numeral(parseFloat(amount)).format('$0,0');
+			return numeral(amount).format('$0,0');
 		},
 		isFunded() {
-			return this.loan?.status === 'funded' || parseFloat(this.unreservedAmount) === 0;
+			return this.loan?.status === 'funded' || !this.sharesAvailable.value;
 		},
 	},
 };

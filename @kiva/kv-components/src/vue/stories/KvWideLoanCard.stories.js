@@ -40,8 +40,11 @@ const loan = {
 		__typename: 'Geocode',
 	},
 	image: { hash: '9673d0722a7675b9b8d11f90849d9b44' },
-	fundraisingPercent: 0.5,
-	unreservedAmount: '500.00',
+	loanFundraisingInfo: {
+		id: 1,
+		fundedAmount: '250.00',
+		reservedAmount: '250.00',
+	},
 	use: 'to purchase heifers to increase headcount of cattle and sales of organic milk.',
 	status: 'fundraising',
 	loanAmount: '1000.00',
@@ -74,8 +77,7 @@ export const PartialLoading = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: undefined,
-		fundraisingPercent: undefined,
+		loanFundraisingInfo: undefined,
 	},
 	kvTrackFunction,
 	photoPath,
@@ -83,14 +85,7 @@ export const PartialLoading = story({
 
 export const ShowTags = story({
 	loanId: loan.id,
-	loan: {
-		...loan,
-		loanFundraisingInfo: {
-			fundedAmount: '950.00',
-			isExpiringSoon: false,
-			reservedAmount: '0.00',
-		},
-	},
+	loan,
 	kvTrackFunction,
 	photoPath,
 	showTags: true,
@@ -98,14 +93,7 @@ export const ShowTags = story({
 
 export const CustomCallouts = story({
 	loanId: loan.id,
-	loan: {
-		...loan,
-		loanFundraisingInfo: {
-			fundedAmount: '950.00',
-			isExpiringSoon: false,
-			reservedAmount: '0.00',
-		},
-	},
+	loan,
 	kvTrackFunction,
 	photoPath,
 	showTags: true,
@@ -114,14 +102,7 @@ export const CustomCallouts = story({
 
 export const CustomCalloutsWrap = story({
 	loanId: loan.id,
-	loan: {
-		...loan,
-		loanFundraisingInfo: {
-			fundedAmount: '950.00',
-			isExpiringSoon: false,
-			reservedAmount: '0.00',
-		},
-	},
+	loan,
 	kvTrackFunction,
 	photoPath,
 	showTags: true,
@@ -135,7 +116,39 @@ export const Matched = story({
 		matchingText: 'Matched by Ebay',
 		matchRatio: 1,
 		loanFundraisingInfo: {
+			id: loan.id,
 			fundedAmount: '200.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showTags: true,
+});
+
+export const AlmostFunded = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '950.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+});
+
+export const AlmostFundedShowTags = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '950.00',
 			isExpiringSoon: false,
 			reservedAmount: '0.00',
 		},
@@ -149,8 +162,11 @@ export const AllSharesReserved = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: '0.00',
-		fundraisingPercent: 1,
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '200.00',
+			reservedAmount: '800.00',
+		},
 	},
 	kvTrackFunction,
 	photoPath,
@@ -179,11 +195,6 @@ export const LseLoan = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		loanFundraisingInfo: {
-			fundedAmount: '950.00',
-			isExpiringSoon: false,
-			reservedAmount: '0.00',
-		},
 		partnerName: 'N/A, direct to Novulis',
 		tags: [
 			'user_favorite',
@@ -246,8 +257,11 @@ export const ViewLoanFunded = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: '0.00',
-		fundraisingPercent: 1,
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: loan.loanAmount,
+			reservedAmount: '0.00',
+		},
 	},
 	kvTrackFunction,
 	photoPath,
@@ -269,7 +283,11 @@ export const HugeLentAmount = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		unreservedAmount: '850.00',
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '150.00',
+			reservedAmount: '0.00',
+		},
 	},
 	kvTrackFunction,
 	photoPath,

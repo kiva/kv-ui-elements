@@ -7,9 +7,24 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import numeral from 'numeral';
 
 const DIRECT = 'direct';
+
+export const KV_LOAN_USE_FRAGMENT = gql`
+	fragment KvLoanUse on LoanBasic {
+		id
+		anonymizationLevel
+		use
+		loanAmount
+		status
+		borrowerCount
+		name
+		distributionModel
+		whySpecial
+	}
+`;
 
 export default {
 	name: 'KvLoanUse',

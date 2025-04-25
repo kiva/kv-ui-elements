@@ -225,6 +225,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import { mdiChevronRight } from '@mdi/js';
 import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
 import KvLendAmountButton from './KvLendAmountButton.vue';
@@ -234,6 +235,26 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvCartPill from './KvCartPill.vue';
 
 const OTHER_OPTION = 'Other';
+
+// Use this fragment to get the necessary public data for this component
+export const KV_LEND_CTA_FRAGMENT = gql`
+	fragment KvLendCta on LoanBasic {
+		id
+		name
+		status
+		minNoteSize
+	}
+`;
+
+// Use this fragment to get the necessary private/user data for this component
+export const KV_LEND_CTA_USER_FRAGMENT = gql`
+	fragment KvLendCtaUser on LoanBasic {
+		id
+		userProperties {
+			lentTo
+		}
+	}
+`;
 
 export default {
 	name: 'KvLendCta',
@@ -248,6 +269,10 @@ export default {
 		loan: {
 			type: Object,
 			default: () => ({}),
+		},
+		unreservedAmount: {
+			type: String,
+			default: '',
 		},
 		basketItems: {
 			type: Array,
@@ -363,9 +388,6 @@ export default {
 		},
 		minNoteSize() {
 			return this.loan?.minNoteSize ?? '';
-		},
-		unreservedAmount() {
-			return this.loan?.unreservedAmount ?? '';
 		},
 		lentPreviously() {
 			return this.loan?.userProperties?.lentTo ?? false;

@@ -14,10 +14,36 @@
 
 <script>
 import { differenceInDays, parseISO } from 'date-fns';
+import gql from 'graphql-tag';
 import numeral from 'numeral';
 import KvCountdownTimer from './KvCountdownTimer.vue';
 
 const LSE_LOAN_KEY = 'N/A';
+
+const VARIATION = {
+	almostFunded: 'almost-funded',
+	endingSoon: 'ending-soon',
+	matchedLoan: 'matched-loan',
+	lseLoan: 'lse-loan',
+};
+
+export const KV_LOAN_TAG_FRAGMENT = gql`
+	fragment KvLoanTag on LoanBasic {
+		id
+		loanFundraisingInfo {
+			id
+			fundedAmount
+			reservedAmount
+		}
+		loanAmount
+		matchRatio
+		matchingText
+		plannedExpirationDate
+		... on LoanPartner {
+			partnerName
+		}
+	}
+`;
 
 export default {
 	name: 'KvLoanTag',
@@ -48,30 +74,30 @@ export default {
 		},
 		variation() {
 			if (this.loan?.matchingText) {
-				return 'matched-loan';
+				return VARIATION.matchedLoan;
 			} if (this.isLseLoan) {
-				return 'lse-loan';
+				return VARIATION.lseLoan;
 			} if (differenceInDays(parseISO(this.loan?.plannedExpirationDate), Date.now()) <= 3) {
-				return 'ending-soon';
+				return VARIATION.endingSoon;
 			} if (this.amountLeft < 100 && this.amountLeft >= 0) {
-				return 'almost-funded';
+				return VARIATION.almostFunded;
 			}
 			return null;
 		},
 		tagText() {
 			switch (this.variation) {
-				case 'lse-loan': return `${this.useExpandedStyles ? '⚡ ' : ''}High community impact`;
-				case 'almost-funded': return `${this.useExpandedStyles ? '💸 ' : ''}Almost funded`;
+				case VARIATION.lseLoan: return `${this.useExpandedStyles ? '⚡ ' : ''}High community impact`;
+				case VARIATION.almostFunded: return `${this.useExpandedStyles ? '💸 ' : ''}Almost funded`;
 				// eslint-disable-next-line max-len
-				case 'matched-loan': return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
+				case VARIATION.matchedLoan: return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
 				default: return `${this.useExpandedStyles ? '⏰ ' : ''}Ending soon: `;
 			}
 		},
 		tagColor() {
 			if (this.useExpandedStyles) {
 				switch (this.variation) {
-					case 'almost-funded': return '#AF741C';
-					case 'ending-soon': return '#CE2626';
+					case VARIATION.almostFunded: return '#AF741C';
+					case VARIATION.endingSoon: return '#CE2626';
 					default: return '#2B7C5F';
 				}
 			}
