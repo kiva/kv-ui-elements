@@ -15,8 +15,19 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import { mdiBookmarkOutline, mdiBookmark } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+
+// Only use this fragment for logged-in user queries
+export const KV_LOAN_BOOKMARK_FRAGMENT = gql`
+	fragment KvLoanBookmark on LoanBasic {
+		id
+		userProperties {
+			favorited
+		}
+	}
+`;
 
 export default {
 	name: 'KvLoanBookmark',

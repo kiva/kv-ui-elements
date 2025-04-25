@@ -1,3 +1,5 @@
+import gql from 'graphql-tag';
+import numeral from 'numeral';
 import {
 	computed,
 	toRefs,
@@ -12,6 +14,51 @@ const SINGLE_PARENT_KEY = 'SINGLE PARENT';
 const REFUGEE_KEY = 'REFUGEES/DISPLACED';
 
 const findCalloutData = (tags, tagName) => tags?.find((t) => t.name.replace('#', '').toUpperCase() === tagName.toUpperCase()) ?? {}; // eslint-disable-line max-len
+
+export const LOAN_CALLOUTS_FRAGMENT = gql`
+	fragment LoanCallouts on LoanBasic {
+		id
+		activity {
+			id
+			name
+		}
+		sector {
+			id
+			name
+		}
+		tags
+		... on LoanPartner {
+			partnerName
+			themes
+		}
+	}
+`;
+
+export const LOAN_GEOCODE_FRAGMENT = gql`
+	fragment LoanGeocode on LoanBasic {
+		id
+		geocode {
+			city
+			state
+			country {
+				name
+				isoCode
+			}
+		}
+	}
+`;
+
+export const LOAN_PROGRESS_FRAGMENT = gql`
+	fragment LoanProgress on LoanBasic {
+		id
+		loanAmount
+		loanFundraisingInfo {
+			id
+			fundedAmount
+			reservedAmount
+		}
+	}
+`;
 
 export function loanCardComputedProperties(props, hideUnitedStatesText = false) {
 	const {
@@ -34,18 +81,12 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 	const distributionModel = computed(() => loan.value?.distributionModel || '');
 	const imageHash = computed(() => loan.value?.image?.hash ?? '');
 	const hasProgressData = computed(() => {
-		return typeof loan.value?.unreservedAmount !== 'undefined'
-			&& typeof loan.value?.fundraisingPercent !== 'undefined';
+		return typeof loan.value?.loanAmount !== 'undefined'
+			&& typeof loan.value?.loanFundraisingInfo?.fundedAmount !== 'undefined'
+			&& typeof loan.value?.loanFundraisingInfo?.reservedAmount !== 'undefined';
 	});
 
 	const allDataLoaded = computed(() => !isLoading.value && hasProgressData.value);
-
-	const fundraisingPercent = computed(() => loan.value?.fundraisingPercent ?? 0);
-
-	const unreservedAmount = computed(() => {
-		const stringAmount = loan.value?.unreservedAmount ?? '0';
-		return Number(stringAmount);
-	});
 
 	const formattedLocation = computed(() => {
 		if (distributionModel.value === 'direct') {
@@ -64,6 +105,20 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 	const loanStatus = computed(() => loan.value?.status ?? '');
 
 	const loanAmount = computed(() => loan.value?.loanAmount ?? '0');
+	const progressNumeral = computed(() => {
+		return numeral(loan.value?.loanFundraisingInfo?.reservedAmount ?? '0')
+			.add(loan.value?.loanFundraisingInfo?.fundedAmount ?? '0');
+	});
+	const fundraisingPercent = computed(() => {
+		return progressNumeral.value.clone().divide(loanAmount.value).value();
+	});
+	const sharesAvailable = computed(() => {
+		return hasProgressData.value && loanAmount.value - progressNumeral.value.value() > 0;
+	});
+	const unreservedAmount = computed(() => {
+		if (!sharesAvailable.value) return '0';
+		return numeral(loanAmount.value).subtract(progressNumeral.value.value()).format('0.00');
+	});
 
 	const loanBorrowerCount = computed(() => loan.value?.borrowerCount ?? 0);
 
@@ -173,6 +228,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		allDataLoaded,
 		fundraisingPercent,
 		unreservedAmount,
+		sharesAvailable,
 		formattedLocation,
 		loanUse,
 		loanStatus,

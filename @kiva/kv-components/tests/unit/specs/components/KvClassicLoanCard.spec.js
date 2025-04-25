@@ -22,8 +22,11 @@ const loan = {
 		__typename: 'Geocode',
 	},
 	image: { hash: '9673d0722a7675b9b8d11f90849d9b44' },
-	fundraisingPercent: 0.5,
-	unreservedAmount: '500.00',
+	loanFundraisingInfo: {
+		id: 1,
+		fundedAmount: '250.00',
+		reservedAmount: '250.00',
+	},
 	use: 'to purchase heifers to increase headcount of cattle and sales of organic milk.',
 	status: 'fundraising',
 	loanAmount: '1000.00',
@@ -83,8 +86,7 @@ describe('KvClassicLoanCard', () => {
 					loanId: loan.id,
 					loan: {
 						...loan,
-						unreservedAmount: undefined,
-						fundraisingPercent: undefined,
+						loanFundraisingInfo: undefined,
 					},
 					kvTrackFunction,
 					photoPath,
@@ -102,8 +104,7 @@ describe('KvClassicLoanCard', () => {
 					loanId: loan.id,
 					loan: {
 						...loan,
-						unreservedAmount: undefined,
-						fundraisingPercent: undefined,
+						loanFundraisingInfo: undefined,
 						geocode: {
 							city: 'Rincon',
 							country: {
@@ -179,6 +180,7 @@ describe('KvClassicLoanCard', () => {
 					loan: {
 						...loan,
 						loanFundraisingInfo: {
+							id: loan.id,
 							fundedAmount: '950.00',
 							isExpiringSoon: false,
 							reservedAmount: '0.00',

@@ -72,8 +72,8 @@ export const Dropdown = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 });
 
@@ -81,8 +81,8 @@ export const HugeAmount = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '12850.00',
 	},
+	unreservedAmount: '12850.00',
 	kvTrackFunction,
 	enableHugeAmount: true,
 	isVisitor: false,
@@ -92,8 +92,8 @@ export const HugeAmountUnder1000 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '850.00',
 	},
+	unreservedAmount: '850.00',
 	kvTrackFunction,
 	enableHugeAmount: true,
 	isVisitor: false,
@@ -103,8 +103,8 @@ export const FiveDollar = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 	},
+	unreservedAmount: '150.00',
 	enableFiveDollarsNotes: true,
 	kvTrackFunction,
 });
@@ -113,8 +113,8 @@ export const FiveDollarsSelected = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 	},
+	unreservedAmount: '150.00',
 	enableFiveDollarsNotes: true,
 	fiveDollarsSelected: true,
 	kvTrackFunction,
@@ -124,8 +124,8 @@ export const LessThan25 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '20.00',
 	},
+	unreservedAmount: '20.00',
 	kvTrackFunction,
 });
 
@@ -133,8 +133,8 @@ export const Non25Increments = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '30.00',
 	},
+	unreservedAmount: '30.00',
 	kvTrackFunction,
 });
 
@@ -142,9 +142,9 @@ export const LendAgain = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 		userProperties: { lentTo: true },
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 });
 
@@ -152,8 +152,8 @@ export const ViewLoan = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showViewLoan: true,
 });
@@ -170,9 +170,9 @@ export const WithPresetOptions = story({
 	loan: {
 		id: 1,
 		name: 'John',
-		unreservedAmount: '150.00',
 		borrowerCount: 1,
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -181,9 +181,9 @@ export const WithPresetOptionsGroup = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -192,9 +192,9 @@ export const WithPresetOptionsEqualThanLastAmount = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '75.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '75.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -203,9 +203,9 @@ export const WithPresetOptionsLessThanLastAmount = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '50.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '50.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -214,9 +214,9 @@ export const WithPresetOptionsLessThan25 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '10.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '10.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -225,9 +225,9 @@ export const WithPresetOptionsSingleOption = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '25.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '25.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -236,9 +236,9 @@ export const WithPresetOptionsLessThan50 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '40.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '40.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -247,9 +247,9 @@ export const WithPresetOptionsLessThan100 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '80.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '80.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -258,9 +258,9 @@ export const WithPresetOptionsLessThan200 = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '190.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '190.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
@@ -269,8 +269,8 @@ export const WithPresetOptionsHugeAmount = story({
 	isLoading: false,
 	loan: {
 		id: 1,
-		unreservedAmount: '12850.00',
 	},
+	unreservedAmount: '12850.00',
 	kvTrackFunction,
 	enableHugeAmount: true,
 	isVisitor: false,
@@ -282,9 +282,9 @@ export const WithPresetOptionsLoading = story({
 	kvTrackFunction,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '150.00',
 	showPresetAmounts: true,
 });
 
@@ -294,9 +294,9 @@ export const WithPresetOptionsAdding = story({
 	kvTrackFunction,
 	loan: {
 		id: 1,
-		unreservedAmount: '150.00',
 		borrowerCount: 2,
 	},
+	unreservedAmount: '150.00',
 	showPresetAmounts: true,
 });
 
@@ -347,9 +347,9 @@ export const WithPresetOptionsAndPill = story({
 	loan: {
 		id: 1,
 		name: 'John',
-		unreservedAmount: '150.00',
 		borrowerCount: 1,
 	},
+	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
 	showPill: true,
