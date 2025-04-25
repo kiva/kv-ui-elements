@@ -368,7 +368,7 @@ export default {
 				this.setCookie,
 				this.enableFiveDollarsNotes,
 				this.route?.query?.utm_campaign,
-				this.loan?.unreservedAmount,
+				this.unreservedAmount,
 				this.userBalance,
 				this.fiveDollarsSelected,
 			),
