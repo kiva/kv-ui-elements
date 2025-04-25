@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.13.0...@kiva/kv-loan-filters@1.13.1) (2025-04-25)
+
+
+### Bug Fixes
+
+* add new filters to filterUtils and fix facet key on trusteeId ([c6d5e74](https://github.com/kiva/kv-ui-elements/commit/c6d5e743e21244b3eace59b733b3197c775e9126))
+
+
+
+
+
 # [1.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.3...@kiva/kv-loan-filters@1.13.0) (2025-04-25)
 
 
