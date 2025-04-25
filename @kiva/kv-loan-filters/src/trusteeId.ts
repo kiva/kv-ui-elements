@@ -1,4 +1,4 @@
-export const facetsKey = 'state';
+export const facetsKey = 'trusteeId';
 
 export const stateKey = 'trusteeId';
 
