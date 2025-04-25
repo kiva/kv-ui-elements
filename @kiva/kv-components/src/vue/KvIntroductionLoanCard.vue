@@ -469,7 +469,7 @@ export default {
 			return numeral(amount).format('$0,0');
 		},
 		isFunded() {
-			return this.loan?.status === 'funded' || !this.sharesAvailable.value;
+			return this.loan?.status === 'funded' || (this.hasProgressData && !this.sharesAvailable);
 		},
 	},
 };
