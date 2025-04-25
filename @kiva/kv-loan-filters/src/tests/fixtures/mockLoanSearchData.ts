@@ -27,6 +27,7 @@ export const savedSearchParams = {
 };
 
 export const mockAllFacets = {
+	city: ['Atlanta', 'Boston'],
 	countryFacets: [
 		{
 			country: {
@@ -111,6 +112,9 @@ export const mockAllFacets = {
 	],
 	partnerIds: [1, 2, 3],
 	partnerNames: ['AAA', 'BBB', 'CCC'],
+	state: ['Georgia', 'California'],
+	postalCode: ['30301', '90210'],
+	trusteeId: [1, 2],
 	categoryIds: [28],
 };
 
