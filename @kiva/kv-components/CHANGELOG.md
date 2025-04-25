@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.13.2...@kiva/kv-components@6.14.0) (2025-04-25)
+
+
+### Bug Fixes
+
+* isFunded check in KvIntroductionLoanCard ([feeb4d9](https://github.com/kiva/kv-ui-elements/commit/feeb4d92a2ecf2edd3684cd66613a67a2d1267df))
+* use unreservedAmount prop ([e4d614a](https://github.com/kiva/kv-ui-elements/commit/e4d614a5b983bd97262473df9ff8f143c9edaa58))
+
+
+### Features
+
+* colocate fragments in loan card components and calculate unreservedAmount ([20a930b](https://github.com/kiva/kv-ui-elements/commit/20a930b7dce73bf08cd58a5a13406d59bbc7e51e))
+* require graphql-tag as peer dependency for kv-components ([ccc3792](https://github.com/kiva/kv-ui-elements/commit/ccc37924300604a150001c7574781f11ec5b7e11))
+
+
+
+
+
 ## [6.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.13.1...@kiva/kv-components@6.13.2) (2025-04-25)
 
 
