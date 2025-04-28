@@ -346,6 +346,14 @@ export default {
 			type: Function,
 			default: undefined,
 		},
+		/**
+		 * Hide preset buttons under this amount when
+		 * showPresetAmounts is true
+		 * */
+		maxAmount: {
+			type: String,
+			default: '',
+		},
 		showPresetAmounts: {
 			type: Boolean,
 			default: false,
@@ -401,8 +409,8 @@ export default {
 			// We don't want to open up $5 loan shares for loans with more than $25 at this time
 			// If we wanted to show this interface on loans with less than 25 remaining they would see the selector
 			const minAmount = parseFloat(this.unreservedAmount < 25 ? this.minNoteSize : 25);
-			// Limit price options
-			return getDropdownPriceArray(
+
+			const priceArray = getDropdownPriceArray(
 				this.unreservedAmount,
 				this.isCompleteLoanActive,
 				minAmount,
@@ -410,6 +418,11 @@ export default {
 				this.enableHugeAmount,
 				this.isVisitor,
 			);
+			// Limit price options based on the maxAmount
+			if (this.maxAmount) {
+				return priceArray.filter((price) => parseFloat(price) <= parseFloat(this.maxAmount));
+			}
+			return priceArray;
 		},
 		presetButtonsPrices() {
 			const prices = this.prices.slice(0, 3);
@@ -519,9 +532,12 @@ export default {
 				|| this.isAmountBetween25And500(this.unreservedAmount));
 		},
 		isLendAmountButton() {
-			return ((this.lendButtonVisibility || this.state === 'lent-to')
+			if (!this.maxAmount) {
+				return ((this.lendButtonVisibility || this.state === 'lent-to')
 				&& this.isAmountLessThan25(this.unreservedAmount))
 				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
+			}
+			return false;
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
@@ -542,7 +558,9 @@ export default {
 			return this.presetDropdownPrices.length > 1;
 		},
 		hideLendButton() {
-			return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
+			if (!this.maxAmount) {
+				return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
+			} return false;
 		},
 	},
 	watch: {
