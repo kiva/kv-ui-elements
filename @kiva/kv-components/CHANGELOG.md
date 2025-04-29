@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.14.2...@kiva/kv-components@6.15.0) (2025-04-29)
+
+
+### Features
+
+* add a prop to limit amounts shown in presets ([bafcf37](https://github.com/kiva/kv-ui-elements/commit/bafcf372c098869420ccae55b5c15d633ace295b))
+
+
+
+
+
 ## [6.14.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.14.1...@kiva/kv-components@6.14.2) (2025-04-25)
 
 **Note:** Version bump only for package @kiva/kv-components
