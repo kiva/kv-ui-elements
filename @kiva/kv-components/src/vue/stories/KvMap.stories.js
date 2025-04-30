@@ -16,6 +16,13 @@ export default {
 		zoomLevel: 4,
 		advancedAnimation: {},
 	},
+	parameters: {
+		chromatic: {
+			// Default threshold is 0.63 (0 is most strict, 1 is least strict)
+			// Increase threshold to 0.75 to allow for more variation in the map
+			diffThreshold: 0.75,
+		},
+	},
 };
 
 const Template = (templateArgs, { argTypes }) => ({
