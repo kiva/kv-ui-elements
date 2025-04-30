@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.15.0...@kiva/kv-components@6.16.0) (2025-04-30)
+
+
+### Features
+
+* use Alea to get consistent 'random' value for loan callouts and user avatars ([35a4d60](https://github.com/kiva/kv-ui-elements/commit/35a4d60de027a79415ef08d817baca34b69bd118))
+
+
+
+
+
 # [6.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.14.2...@kiva/kv-components@6.15.0) (2025-04-29)
 
 
