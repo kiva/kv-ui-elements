@@ -130,7 +130,7 @@ export default {
 
 		const avatarClass = () => {
 			const smallClass = isSmall?.value ? 'tw-w-3 tw-h-3 tw-text-h4' : 'tw-w-6 tw-h-6 tw-text-h2';
-			return `${randomizedUserAvatarClass()} ${smallClass}`;
+			return `${randomizedUserAvatarClass(lenderName.value)} ${smallClass}`;
 		};
 
 		const imageFilename = computed(() => {
