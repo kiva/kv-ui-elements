@@ -25,5 +25,11 @@ describe('imageUtils.ts', () => {
 			expect(class1).toContain('tw-text-');
 			expect(class1).toContain('tw-bg-');
 		});
+
+		it('should return same classes for same displayName', () => {
+			expect(randomizedUserAvatarClass('test')).toBe(randomizedUserAvatarClass('test'));
+			expect(randomizedUserAvatarClass('test2')).toBe(randomizedUserAvatarClass('test2'));
+			expect(randomizedUserAvatarClass('Lender')).toBe(randomizedUserAvatarClass('Lender'));
+		});
 	});
 });

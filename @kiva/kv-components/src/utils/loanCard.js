@@ -4,8 +4,8 @@ import {
 	computed,
 	toRefs,
 } from 'vue';
-
 import { mdiMapMarker } from '@mdi/js';
+import Alea from './Alea';
 
 const LSE_LOAN_KEY = 'N/A';
 const ECO_FRIENDLY_KEY = 'ECO-FRIENDLY';
@@ -124,6 +124,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 
 	const loanCallouts = computed(() => {
 		const callouts = [];
+		const rng = new Alea(loanId.value, fundraisingPercent.value);
 
 		const activityName = loan.value?.activity?.name ?? '';
 		const activityId = loan.value?.activity?.id ?? null;
@@ -148,7 +149,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
 		// Tag as first option for LSE loans
 		if (isLseLoan && tags.length) {
-			const position = Math.floor(Math.random() * tags.length);
+			const position = Math.floor(rng() * tags.length);
 			const p1Tag = tags[position];
 			const tagData = findCalloutData(tagsData, p1Tag);
 			const id = tagData?.id ?? null;
@@ -183,7 +184,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 
 		// P4 Tag
 		if (!!tags.length && callouts.length < 2) {
-			const position = Math.floor(Math.random() * tags.length);
+			const position = Math.floor(rng() * tags.length);
 			const p4Tag = tags[position];
 			const tagData = findCalloutData(tagsData, p4Tag);
 			const id = tagData?.id ?? null;
@@ -194,7 +195,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 
 		// P5 Theme
 		if (!!themes.length && callouts.length < 2) {
-			const position = Math.floor(Math.random() * themes.length);
+			const position = Math.floor(rng() * themes.length);
 			const theme = themes[position];
 			const themeData = findCalloutData(themesData, theme);
 			const id = themeData?.id ?? null;

@@ -1,3 +1,5 @@
+import Alea from './Alea';
+
 /**
  * Determines if the users avatar is the default legacy placeholder image from the monolith.
  * The legacy avatars are found exclusively at the following urls:
@@ -28,7 +30,8 @@ export function isLegacyPlaceholderAvatar(filename) {
  * Returns a class string to style a user avatar
  * @returns Random user avatar class string
  */
-export function randomizedUserAvatarClass() {
+export function randomizedUserAvatarClass(displayName = '') {
+	const rng = new Alea(displayName);
 	const userCardStyleOptions = [
 		{ color: 'tw-text-action', bg: 'tw-bg-brand-100' },
 		{ color: 'tw-text-black', bg: 'tw-bg-brand-100' },
@@ -38,6 +41,6 @@ export function randomizedUserAvatarClass() {
 		{ color: 'tw-text-white', bg: 'tw-bg-black' },
 		{ color: 'tw-text-action', bg: 'tw-bg-black' },
 	];
-	const randomStyle = userCardStyleOptions[Math.floor(Math.random() * userCardStyleOptions.length)];
+	const randomStyle = userCardStyleOptions[Math.floor(rng() * userCardStyleOptions.length)];
 	return `${randomStyle.color} ${randomStyle.bg}`;
 }
