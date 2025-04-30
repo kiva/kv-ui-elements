@@ -24,7 +24,6 @@ export const parameters = {
 			order: ['Base Styling', '*'],
 		},
 	},
-	chromatic: { ignoreSelectors: ['#kv-user-avatar'] },
 }
 
 // Listen for events from the dark mode plugin
