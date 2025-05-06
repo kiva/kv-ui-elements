@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.16.0...@kiva/kv-components@6.16.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* set full height if controls are present ([926804b](https://github.com/kiva/kv-ui-elements/commit/926804b14eb2c263994b792947fc63cbfb0e6a2c))
+* style tweaks and hide h2 if not present ([3a92e74](https://github.com/kiva/kv-ui-elements/commit/3a92e74b8d14c47bb4ba3fdfd3a72ca4225f9607))
+
+
+
+
+
 # [6.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.15.0...@kiva/kv-components@6.16.0) (2025-04-30)
 
 
