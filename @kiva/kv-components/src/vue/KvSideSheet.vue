@@ -10,51 +10,83 @@
 		@click.self="closeSideSheet"
 	>
 		<div
-			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white
-				tw-overflow-y-auto tw-p-2"
+			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
 			:class="{
 				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
 				'lg:tw-w-1/2 tw-w-full tw-opacity-full': open,
+				'tw-h-full': $slots.controls,
 			}"
-			:style="modalStyles"
 		>
 			<div
-				class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200"
-				:class="{
-					'tw-opacity-0': !open,
-					'tw-opacity-full': open,
-				}"
+				class="tw-relative tw-h-full"
+				:style="modalStyles"
 			>
-				<button
-					class="hover:tw-text-action-highlight"
-					@click="closeSideSheet"
+				<div
+					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200
+					tw-px-3 tw-py-2 tw-border-b tw-border-tertiary"
+					:class="{
+						'tw-opacity-0': !open,
+						'tw-opacity-full': open,
+					}"
 				>
-					<kv-material-icon
-						class="tw-w-3 tw-h-3"
-						:icon="mdiClose"
-					/>
-				</button>
+					<div class="tw-flex tw-items-cente tw-gap-1.5">
+						<button
+							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							@click="closeSideSheet"
+						>
+							<kv-material-icon
+								class="tw-w-3 tw-h-3"
+								:icon="mdiArrowLeft"
+							/>
+						</button>
+						<h2 v-if="headline">
+							{{ headline }}
+						</h2>
+					</div>
 
-				<button
-					v-if="showGoToLink"
-					class="hover:tw-text-action-highlight"
-					@click="goToLink"
+					<div class="tw-flex tw-items-cente tw-gap-1.5">
+						<button
+							v-if="showGoToLink"
+							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							@click="goToLink"
+						>
+							<kv-material-icon
+								class="tw-w-3 tw-h-3"
+								:icon="mdiExportVariant"
+							/>
+						</button>
+						<button
+							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							@click="closeSideSheet"
+						>
+							<kv-material-icon
+								class="tw-w-3 tw-h-3"
+								:icon="mdiClose"
+							/>
+						</button>
+					</div>
+				</div>
+				<div
+					class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
+						tw-overscroll-y-contain"
+					:class="{
+						'tw-opacity-0': !open,
+						'tw-opacity-full': open,
+					}"
 				>
-					<kv-material-icon
-						class="tw-w-3 tw-h-3"
-						:icon="mdiLaunch"
-					/>
-				</button>
-			</div>
-			<div
-				class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
-					tw-overscroll-y-contain"
-				:class="{
-					'tw-opacity-0': !open,
-					'tw-opacity-full': open,
-				}"
-			>
-				<slot></slot>
+					<slot></slot>
+				</div>
+				<div
+					v-if="$slots.controls"
+					ref="controlsRef"
+					class="tw-absolute tw-border-t tw-border-tertiary tw-w-full tw-bottom-0 tw-bg-white"
+					:class="{
+						'tw-opacity-0': !open,
+						'tw-opacity-full': open,
+					}"
+				>
+					<slot name="controls"></slot>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -62,7 +94,9 @@
 
 <script>
 import { ref, toRefs, watch } from 'vue';
-import { mdiClose, mdiLaunch } from '@mdi/js';
+import {
+	mdiClose, mdiArrowLeft, mdiExportVariant,
+} from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
@@ -104,6 +138,13 @@ export default {
 		animationSourceElement: {
 			type: Object,
 			default: () => ({}),
+		},
+		/**
+		 * The headline of the side sheet
+		 */
+		headline: {
+			type: String,
+			default: '',
 		},
 	},
 	emits: [
@@ -205,7 +246,8 @@ export default {
 
 		return {
 			mdiClose,
-			mdiLaunch,
+			mdiArrowLeft,
+			mdiExportVariant,
 			open,
 			closeSideSheet,
 			goToLink,
