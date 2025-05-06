@@ -39,7 +39,7 @@
 								:icon="mdiArrowLeft"
 							/>
 						</button>
-						<h2>
+						<h2 v-if="headline">
 							{{ headline }}
 						</h2>
 					</div>
@@ -79,7 +79,7 @@
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
-					class="tw-absolute tw-border-t tw-border-tertiary tw-w-full tw-bottom-0"
+					class="tw-absolute tw-border-t tw-border-tertiary tw-w-full tw-bottom-0 tw-bg-white"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
