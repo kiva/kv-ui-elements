@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.14.0...@kiva/kv-loan-filters@1.15.0) (2025-05-07)
+
+
+### Features
+
+* loan channel map file updated ([#563](https://github.com/kiva/kv-ui-elements/issues/563)) ([f69c1ae](https://github.com/kiva/kv-ui-elements/commit/f69c1ae12e7cc4b4cff8b1603f47d137ac3a4581))
+
+
+
+
+
 # [1.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.13.1...@kiva/kv-loan-filters@1.14.0) (2025-05-01)
 
 
