@@ -532,13 +532,9 @@ export default {
 				|| this.isAmountBetween25And500(this.unreservedAmount));
 		},
 		isLendAmountButton() {
-			if (!this.maxAmount) {
-				return ((this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(this.unreservedAmount))
-				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
-			}
+			const amountToUse = this.maxAmount ? this.maxAmount : this.unreservedAmount;
 			return ((this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(this.maxAmount))
+				&& this.isAmountLessThan25(amountToUse))
 				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
 		},
 		isFunded() {
