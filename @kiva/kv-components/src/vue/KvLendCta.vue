@@ -207,7 +207,7 @@
 					class="tw-w-full"
 					:loan-id="loanId"
 					:show-now="false"
-					:amount-left="unreservedAmount"
+					:amount-left="amountForLendAmountButton"
 					:is-adding="isAdding"
 					@add-to-basket="addToBasket"
 				/>
@@ -532,12 +532,10 @@ export default {
 				|| this.isAmountBetween25And500(this.unreservedAmount));
 		},
 		isLendAmountButton() {
-			if (!this.maxAmount) {
-				return ((this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(this.unreservedAmount))
+			const amountToUse = this.maxAmount ? this.maxAmount : this.unreservedAmount;
+			return ((this.lendButtonVisibility || this.state === 'lent-to')
+				&& this.isAmountLessThan25(amountToUse))
 				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
-			}
-			return false;
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
@@ -547,6 +545,13 @@ export default {
 				return this.selectedDropdownOption;
 			}
 			return this.isLessThan25 ? this.unreservedAmount : this.selectedOption;
+		},
+		amountForLendAmountButton() {
+			if (this.maxAmount && parseFloat(this.maxAmount) === 25) {
+				// return whichever amount is less either maxAmount or unreservedAmount
+				return Math.min(parseFloat(this.maxAmount), parseFloat(this.unreservedAmount));
+			}
+			return this.unreservedAmount;
 		},
 		showLendAgain() {
 			return this.isLentTo && !this.isLessThan25;
@@ -558,9 +563,7 @@ export default {
 			return this.presetDropdownPrices.length > 1;
 		},
 		hideLendButton() {
-			if (!this.maxAmount) {
-				return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
-			} return false;
+			return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
 		},
 	},
 	watch: {
