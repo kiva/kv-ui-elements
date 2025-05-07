@@ -277,6 +277,18 @@ export const WithPresetOptionsMaxAmount25 = story({
 	showPresetAmounts: true,
 });
 
+export const WithPresetOptionsMaxAmount25AndStranded = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		borrowerCount: 2,
+	},
+	unreservedAmount: '12.00',
+	maxAmount: '25.00',
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
 export const WithPresetOptionsMaxAmountMore = story({
 	isLoading: false,
 	loan: {
