@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.16.1...@kiva/kv-components@6.17.0) (2025-05-07)
+
+
+### Features
+
+* use stranded lend button when max amount is 25 ([c53b13d](https://github.com/kiva/kv-ui-elements/commit/c53b13d813b09e782fdf77f31757557a74b8b8e7))
+
+
+
+
+
 ## [6.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.16.0...@kiva/kv-components@6.16.1) (2025-05-06)
 
 
