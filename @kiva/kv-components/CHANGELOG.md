@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.17.0...@kiva/kv-components@6.18.0) (2025-05-12)
+
+
+### Features
+
+* make sidesheet back button optional ([c71a6df](https://github.com/kiva/kv-ui-elements/commit/c71a6dfef721f1b83de45e7fa0c619b436700596))
+
+
+
+
+
 # [6.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.16.1...@kiva/kv-components@6.17.0) (2025-05-07)
 
 
