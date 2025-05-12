@@ -24,10 +24,9 @@ const Template = (args, {
 				:visible="isVisible"
 				:kv-track-function="kvTrackMock"
 				track-event-category="new-loan-card"
-				:show-go-to-link="true"
 				@side-sheet-closed="isVisible = false"
 				:animation-source-element="animationSourceElement"
-				:headline="headline"
+				v-bind="args"
 			>
 				<div>
 					Some content
@@ -38,7 +37,6 @@ const Template = (args, {
 	data() {
 		return {
 			isVisible: args.visible,
-			expandEffect: args.expandEffect,
 			animationSourceElement: null,
 		};
 	},
@@ -66,6 +64,9 @@ export const Default = Template.bind({});
 export const ExpandEffect = Template.bind({});
 ExpandEffect.args = {
 	expandEffect: true,
+	headline: 'Headline',
+	showGoToLink: true,
+	showBackButton: true,
 };
 
 const TemplateWithControls = (args, {
@@ -86,10 +87,9 @@ const TemplateWithControls = (args, {
 				:visible="isVisible"
 				:kv-track-function="kvTrackMock"
 				track-event-category="new-loan-card"
-				:show-go-to-link="true"
 				@side-sheet-closed="isVisible = false"
 				:animation-source-element="animationSourceElement"
-				:headline="headline"
+				v-bind="args"
 			>
 				<div>
 					Some content
@@ -116,7 +116,6 @@ const TemplateWithControls = (args, {
 			isVisible: args.visible,
 			expandEffect: args.expandEffect,
 			animationSourceElement: null,
-			headline: args.headline,
 		};
 	},
 	methods: {
@@ -142,4 +141,6 @@ export const WithControls = TemplateWithControls.bind({});
 
 WithControls.args = {
 	headline: 'Headline',
+	showGoToLink: true,
+	showBackButton: true,
 };
