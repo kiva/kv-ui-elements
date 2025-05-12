@@ -29,8 +29,11 @@
 						'tw-opacity-full': open,
 					}"
 				>
-					<div class="tw-flex tw-items-cente tw-gap-1.5">
+					<div
+						class="tw-flex tw-gap-1.5"
+					>
 						<button
+							v-if="showBackButton"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
 							@click="closeSideSheet"
 						>
@@ -44,7 +47,7 @@
 						</h2>
 					</div>
 
-					<div class="tw-flex tw-items-cente tw-gap-1.5">
+					<div class="tw-flex tw-gap-1.5">
 						<button
 							v-if="showGoToLink"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
@@ -108,6 +111,13 @@ export default {
 		 * Whether the side sheet is open or not
 		 * */
 		visible: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Show the go to link button
+		 * */
+		showBackButton: {
 			type: Boolean,
 			default: false,
 		},
