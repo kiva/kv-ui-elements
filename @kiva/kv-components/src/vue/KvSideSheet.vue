@@ -104,7 +104,6 @@ import {
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
-	name: 'KvSideSheet',
 	components: {
 		KvMaterialIcon,
 	},
