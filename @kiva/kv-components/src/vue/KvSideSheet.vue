@@ -101,7 +101,7 @@ import { ref, toRefs, watch } from 'vue';
 import {
 	mdiClose, mdiArrowLeft, mdiExportVariant,
 } from '@mdi/js';
-import { KvMaterialIcon } from '@kiva/kv-components';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	name: 'KvSideSheet',
