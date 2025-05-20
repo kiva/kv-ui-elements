@@ -23,10 +23,11 @@
 			>
 				<div
 					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200
-					tw-px-3 tw-py-2 tw-border-b tw-border-tertiary"
+					tw-px-3 tw-py-2 tw-border-tertiary"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
+						'tw-border-b': showHeadlineBorder
 					}"
 				>
 					<div
@@ -70,7 +71,7 @@
 					</div>
 				</div>
 				<div
-					class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
+					class="tw-p-2 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
 						tw-overscroll-y-contain"
 					:class="{
 						'tw-opacity-0': !open,
@@ -100,9 +101,10 @@ import { ref, toRefs, watch } from 'vue';
 import {
 	mdiClose, mdiArrowLeft, mdiExportVariant,
 } from '@mdi/js';
-import KvMaterialIcon from './KvMaterialIcon.vue';
+import { KvMaterialIcon } from '@kiva/kv-components';
 
 export default {
+	name: 'KvSideSheet',
 	components: {
 		KvMaterialIcon,
 	},
@@ -127,6 +129,10 @@ export default {
 		showGoToLink: {
 			type: Boolean,
 			default: false,
+		},
+		showHeadlineBorder: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * Tracking event function
