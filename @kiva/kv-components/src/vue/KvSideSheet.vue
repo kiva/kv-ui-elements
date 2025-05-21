@@ -1,4 +1,3 @@
-```vue
 <template>
 	<div
 		v-if="visible"
@@ -316,4 +315,3 @@ export default {
 	},
 };
 </script>
-```
