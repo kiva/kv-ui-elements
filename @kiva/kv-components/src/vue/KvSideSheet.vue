@@ -1,3 +1,4 @@
+```vue
 <template>
 	<div
 		v-if="visible"
@@ -18,7 +19,7 @@
 			}"
 		>
 			<div
-				class="tw-relative tw-h-full"
+				class="tw-flex tw-flex-col tw-h-full"
 				:style="modalStyles"
 			>
 				<div
@@ -30,9 +31,7 @@
 						'tw-border-b': showHeadlineBorder
 					}"
 				>
-					<div
-						class="tw-flex tw-gap-1.5"
-					>
+					<div class="tw-flex tw-gap-1.5">
 						<button
 							v-if="showBackButton"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
@@ -47,7 +46,6 @@
 							{{ headline }}
 						</h2>
 					</div>
-
 					<div class="tw-flex tw-gap-1.5">
 						<button
 							v-if="showGoToLink"
@@ -70,24 +68,31 @@
 						</button>
 					</div>
 				</div>
+				<!-- Flex container with dynamic padding-bottom -->
 				<div
-					class="tw-p-2 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
-						tw-overscroll-y-contain"
-					:class="{
-						'tw-opacity-0': !open,
-						'tw-opacity-full': open,
-					}"
+					class="tw-flex-1 tw-overflow-y-auto tw-overscroll-y-contain"
+					:style="{ paddingBottom: controlsHeight + 'px' }"
 				>
-					<slot></slot>
+					<div
+						class="tw-p-2 tw-transition-opacity tw-duration-500 tw-delay-200"
+						:class="{
+							'tw-opacity-0': !open,
+							'tw-opacity-full': open,
+						}"
+					>
+						<slot></slot>
+					</div>
 				</div>
+				<!-- Absolutely positioned controls -->
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
-					class="tw-absolute tw-border-t tw-border-tertiary tw-w-full tw-bottom-0 tw-bg-white"
+					class="tw-absolute tw-bottom-0 tw-w-full tw-border-t tw-border-tertiary tw-bg-white"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
 					}"
+					style="z-index: 999"
 				>
 					<slot name="controls"></slot>
 				</div>
@@ -97,9 +102,15 @@
 </template>
 
 <script>
-import { ref, toRefs, watch } from 'vue';
 import {
-	mdiClose, mdiArrowLeft, mdiExportVariant,
+	onMounted,
+	onUnmounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue';
+import {
+	mdiArrowLeft, mdiClose, mdiExportVariant,
 } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -116,7 +127,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Show the go to link button
+		 * Show the back button
 		 * */
 		showBackButton: {
 			type: Boolean,
@@ -129,6 +140,9 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show the border of the headline section
+		 * */
 		showHeadlineBorder: {
 			type: Boolean,
 			default: true,
@@ -149,23 +163,21 @@ export default {
 		},
 		/**
 		 * Source element position for expand animation
-		 */
+		 * */
 		animationSourceElement: {
 			type: Object,
 			default: () => ({}),
 		},
 		/**
 		 * The headline of the side sheet
-		 */
+		 * */
 		headline: {
 			type: String,
 			default: '',
 		},
 	},
-	emits: [
-		'side-sheet-closed',
-	],
-	setup(props, { emit }) {
+	emits: ['side-sheet-closed', 'go-to-link'],
+	setup(props, { emit, slots }) {
 		const {
 			visible,
 			kvTrackFunction,
@@ -176,7 +188,19 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
+		const controlsRef = ref(null);
+		const controlsHeight = ref(0);
 		let onKeyUp = null;
+
+		// Measure controls height
+		const updateControlsHeight = () => {
+			if (slots.controls?.() && controlsRef.value) {
+				const rect = controlsRef.value.getBoundingClientRect();
+				controlsHeight.value = rect.height; // Includes padding and margins
+			} else {
+				controlsHeight.value = 0; // Reset when controls slot is absent
+			}
+		};
 
 		const avoidBodyScroll = () => {
 			const bodyClasses = 'tw-overflow-hidden';
@@ -201,7 +225,7 @@ export default {
 
 			setTimeout(() => {
 				emit('side-sheet-closed');
-			}, '700');
+			}, 700);
 
 			document.removeEventListener('keyup', onKeyUp);
 		};
@@ -211,22 +235,37 @@ export default {
 		};
 
 		onKeyUp = (e) => {
-			if (!!e && e.key === 'Escape') {
+			if (e?.key === 'Escape') {
 				closeSideSheet();
 			}
 		};
 
-		watch(visible, () => {
-			if (visible.value) {
-				document.addEventListener('keyup', onKeyUp);
+		// Set up ResizeObserver
+		onMounted(() => {
+			updateControlsHeight();
+			if (controlsRef.value) {
+				const observer = new ResizeObserver(updateControlsHeight);
+				observer.observe(controlsRef.value);
+				onUnmounted(() => observer.disconnect());
+			}
+		});
 
+		// Watch for changes in slots.controls
+		watch(() => slots.controls?.(), () => {
+			updateControlsHeight();
+		}, { immediate: true });
+
+		// Watch for visibility changes to re-measure
+		watch(visible, (newVisible) => {
+			if (newVisible) {
+				document.addEventListener('keyup', onKeyUp);
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
+					updateControlsHeight(); // Re-measure when side sheet opens
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
-
 				const top = rect?.top ?? 0;
 				const left = rect?.left ?? 0;
 				const width = rect?.width ?? 0;
@@ -256,18 +295,25 @@ export default {
 				} else {
 					modalStyles.value = {};
 				}
+			} else {
+				open.value = false;
+				avoidBodyScroll();
+				document.removeEventListener('keyup', onKeyUp);
 			}
 		});
 
 		return {
-			mdiClose,
-			mdiArrowLeft,
-			mdiExportVariant,
-			open,
 			closeSideSheet,
+			controlsHeight,
+			controlsRef,
 			goToLink,
+			mdiArrowLeft,
+			mdiClose,
+			mdiExportVariant,
 			modalStyles,
+			open,
 		};
 	},
 };
 </script>
+```
