@@ -67,10 +67,9 @@
 						</button>
 					</div>
 				</div>
-				<!-- Flex container with dynamic padding-bottom -->
 				<div
-					class="tw-flex-1 tw-overflow-y-auto tw-overscroll-y-contain"
-					:style="{ paddingBottom: controlsHeight + 'px' }"
+					class="tw-overflow-y-auto tw-overscroll-y-contain"
+					:style="{ height: contentHeight + 'px' }"
 				>
 					<div
 						class="tw-p-2 tw-transition-opacity tw-duration-500 tw-delay-200"
@@ -82,7 +81,6 @@
 						<slot></slot>
 					</div>
 				</div>
-				<!-- Absolutely positioned controls -->
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
@@ -188,17 +186,15 @@ export default {
 		const initialStyles = ref({});
 		const modalStyles = ref({});
 		const controlsRef = ref(null);
-		const controlsHeight = ref(0);
-		let onKeyUp = null;
+		const contentHeight = ref(0);
 
-		// Measure controls height
-		const updateControlsHeight = () => {
+		const updateContentHeight = () => {
+			let controlsHeight = 0;
 			if (slots.controls?.() && controlsRef.value) {
-				const rect = controlsRef.value.getBoundingClientRect();
-				controlsHeight.value = rect.height; // Includes padding and margins
-			} else {
-				controlsHeight.value = 0; // Reset when controls slot is absent
+				const controlsRect = controlsRef.value.getBoundingClientRect();
+				controlsHeight = controlsRect.height;
 			}
+			contentHeight.value = window.innerHeight - controlsHeight;
 		};
 
 		const avoidBodyScroll = () => {
@@ -226,6 +222,7 @@ export default {
 				emit('side-sheet-closed');
 			}, 700);
 
+			// eslint-disable-next-line no-use-before-define
 			document.removeEventListener('keyup', onKeyUp);
 		};
 
@@ -233,25 +230,27 @@ export default {
 			emit('go-to-link');
 		};
 
-		onKeyUp = (e) => {
+		const onKeyUp = (e) => {
 			if (e?.key === 'Escape') {
 				closeSideSheet();
 			}
 		};
 
-		// Set up ResizeObserver
+		// Set up ResizeObserver and window resize listener
 		onMounted(() => {
-			updateControlsHeight();
+			updateContentHeight();
 			if (controlsRef.value) {
-				const observer = new ResizeObserver(updateControlsHeight);
-				observer.observe(controlsRef.value);
-				onUnmounted(() => observer.disconnect());
+				const controlsObserver = new ResizeObserver(updateContentHeight);
+				controlsObserver.observe(controlsRef.value);
+				onUnmounted(() => controlsObserver.disconnect());
 			}
+			window.addEventListener('resize', updateContentHeight);
+			onUnmounted(() => window.removeEventListener('resize', updateContentHeight));
 		});
 
 		// Watch for changes in slots.controls
 		watch(() => slots.controls?.(), () => {
-			updateControlsHeight();
+			updateContentHeight();
 		}, { immediate: true });
 
 		// Watch for visibility changes to re-measure
@@ -261,7 +260,7 @@ export default {
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
-					updateControlsHeight(); // Re-measure when side sheet opens
+					updateContentHeight(); // Re-measure when side sheet opens
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
@@ -303,7 +302,7 @@ export default {
 
 		return {
 			closeSideSheet,
-			controlsHeight,
+			contentHeight,
 			controlsRef,
 			goToLink,
 			mdiArrowLeft,
