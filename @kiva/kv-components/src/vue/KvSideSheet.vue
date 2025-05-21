@@ -22,6 +22,7 @@
 				:style="modalStyles"
 			>
 				<div
+					ref="headlineRef"
 					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200
 					tw-px-3 tw-py-2 tw-border-tertiary"
 					:class="{
@@ -103,8 +104,11 @@ import {
 	onMounted,
 	onUnmounted,
 	ref,
+	reactive,
 	toRefs,
 	watch,
+	computed,
+	nextTick,
 } from 'vue';
 import {
 	mdiArrowLeft, mdiClose, mdiExportVariant,
@@ -186,16 +190,49 @@ export default {
 		const initialStyles = ref({});
 		const modalStyles = ref({});
 		const controlsRef = ref(null);
-		const contentHeight = ref(0);
+		const headlineRef = ref(null);
 
-		const updateContentHeight = () => {
-			let controlsHeight = 0;
-			if (slots.controls?.() && controlsRef.value) {
-				const controlsRect = controlsRef.value.getBoundingClientRect();
-				controlsHeight = controlsRect.height;
-			}
-			contentHeight.value = window.innerHeight - controlsHeight;
+		const heights = reactive({
+			headline: 0,
+			controls: 0,
+		});
+
+		const contentHeight = computed(() => {
+			const height = window.innerHeight - heights.headline - heights.controls;
+			return Math.max(height, 0); // Ensure non-negative height
+		});
+
+		// Debounce function to limit rapid ResizeObserver calls
+		const debounce = (fn, delay) => {
+			let timeout;
+			return (...args) => {
+				clearTimeout(timeout);
+				timeout = setTimeout(() => fn(...args), delay);
+			};
 		};
+
+		const updateHeights = () => {
+			// Use setTimeout to wait for DOM rendering and styling
+			setTimeout(() => {
+				nextTick(() => {
+					if (headlineRef.value) {
+						const headlineRect = headlineRef.value.getBoundingClientRect();
+						heights.headline = headlineRect.height;
+					} else {
+						heights.headline = 0;
+					}
+
+					if (slots.controls?.() && controlsRef.value) {
+						const controlsRect = controlsRef.value.getBoundingClientRect();
+						heights.controls = controlsRect.height;
+					} else {
+						heights.controls = 0;
+					}
+				});
+			}, 300); // Small delay to ensure DOM is fully styled
+		};
+
+		const debouncedUpdateHeights = debounce(updateHeights, 100);
 
 		const avoidBodyScroll = () => {
 			const bodyClasses = 'tw-overflow-hidden';
@@ -236,22 +273,33 @@ export default {
 			}
 		};
 
-		// Set up ResizeObserver and window resize listener
+		// Set up resize listeners
 		onMounted(() => {
-			updateContentHeight();
+			// Initial measurement after a delay to ensure hydration
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+
 			if (controlsRef.value) {
-				const controlsObserver = new ResizeObserver(updateContentHeight);
+				const controlsObserver = new ResizeObserver(debouncedUpdateHeights);
 				controlsObserver.observe(controlsRef.value);
 				onUnmounted(() => controlsObserver.disconnect());
 			}
-			window.addEventListener('resize', updateContentHeight);
-			onUnmounted(() => window.removeEventListener('resize', updateContentHeight));
+			if (headlineRef.value) {
+				const headlineObserver = new ResizeObserver(debouncedUpdateHeights);
+				headlineObserver.observe(headlineRef.value);
+				onUnmounted(() => headlineObserver.disconnect());
+			}
+			window.addEventListener('resize', debouncedUpdateHeights);
+			onUnmounted(() => window.removeEventListener('resize', debouncedUpdateHeights));
 		});
 
-		// Watch for changes in slots.controls
+		// Watch for slot content changes deeply
 		watch(() => slots.controls?.(), () => {
-			updateContentHeight();
-		}, { immediate: true });
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+		}, { deep: true, immediate: true });
 
 		// Watch for visibility changes to re-measure
 		watch(visible, (newVisible) => {
@@ -260,7 +308,7 @@ export default {
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
-					updateContentHeight(); // Re-measure when side sheet opens
+					updateHeights(); // Re-measure when side sheet opens
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
@@ -304,6 +352,7 @@ export default {
 			closeSideSheet,
 			contentHeight,
 			controlsRef,
+			headlineRef,
 			goToLink,
 			mdiArrowLeft,
 			mdiClose,
