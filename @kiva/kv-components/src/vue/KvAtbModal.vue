@@ -365,8 +365,8 @@ export default {
 
 		const isFirstLoan = computed(() => {
 			return myKivaExperimentEnabled.value
-		&& ((isGuest.value && !hasEverLoggedIn.value) || (!isGuest.value && !userData.value?.my?.loans?.totalCount))
-		&& basketCount.value === 1;
+			&& ((isGuest.value && !hasEverLoggedIn.value) || (!isGuest.value && !userData.value?.my?.loans?.totalCount))
+			&& basketCount.value === 1;
 		});
 
 		const showOneAway = computed(() => oneLoanAwayCategory.value && oneLoanAwayFilteredUrl.value && !isFirstLoan.value); // eslint-disable-line max-len
