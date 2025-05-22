@@ -191,6 +191,7 @@ export default {
 		const modalStyles = ref({});
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
+		const windowHeight = ref(window.innerHeight);
 
 		const heights = reactive({
 			headline: 0,
@@ -198,8 +199,8 @@ export default {
 		});
 
 		const contentHeight = computed(() => {
-			const height = window.innerHeight - heights.headline - heights.controls;
-			return Math.max(height, 0); // Ensure non-negative height
+			const height = windowHeight.value - heights.headline - heights.controls;
+			return Math.max(height, 0);
 		});
 
 		// Debounce function to limit rapid ResizeObserver calls
@@ -212,7 +213,7 @@ export default {
 		};
 
 		const updateHeights = () => {
-			// Use setTimeout to wait for DOM rendering and styling
+			windowHeight.value = window.innerHeight;
 			setTimeout(() => {
 				nextTick(() => {
 					if (headlineRef.value) {
@@ -221,7 +222,6 @@ export default {
 					} else {
 						heights.headline = 0;
 					}
-
 					if (slots.controls?.() && controlsRef.value) {
 						const controlsRect = controlsRef.value.getBoundingClientRect();
 						heights.controls = controlsRect.height;
@@ -247,18 +247,15 @@ export default {
 			open.value = false;
 			avoidBodyScroll();
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
-
 			if (animationSourceElement.value) {
 				modalStyles.value = {
 					...initialStyles.value,
 					transition: 'all 0.5s ease-in-out',
 				};
 			}
-
 			setTimeout(() => {
 				emit('side-sheet-closed');
 			}, 700);
-
 			// eslint-disable-next-line no-use-before-define
 			document.removeEventListener('keyup', onKeyUp);
 		};
@@ -275,11 +272,9 @@ export default {
 
 		// Set up resize listeners
 		onMounted(() => {
-			// Initial measurement after a delay to ensure hydration
 			setTimeout(() => {
 				updateHeights();
 			}, 100);
-
 			if (controlsRef.value) {
 				const controlsObserver = new ResizeObserver(debouncedUpdateHeights);
 				controlsObserver.observe(controlsRef.value);
