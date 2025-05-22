@@ -402,17 +402,11 @@ export default {
 				: 'Supporting this loan achieves a milestone!';
 		});
 
-		const resetModal = () => {
-			emit('reset-modal');
-		};
-
 		const handleRedirect = (type) => {
 			if (type === 'view-basket') {
 				emit('close-redirect', { path: '/basket' });
 			} else if (type === 'support-another' && oneLoanAwayFilteredUrl.value) {
 				emit('close-redirect', oneLoanAwayFilteredUrl.value);
-			} else {
-				resetModal();
 			}
 		};
 
@@ -421,7 +415,7 @@ export default {
 			if (type) {
 				handleRedirect(type);
 			}
-			resetModal();
+			emit('reset-modal');
 		};
 
 		const updateHeaderPosition = () => {
