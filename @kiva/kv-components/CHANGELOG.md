@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.1...@kiva/kv-components@6.19.2) (2025-05-23)
+
+
+### Bug Fixes
+
+* kvatbmodal component added to index file ([#569](https://github.com/kiva/kv-ui-elements/issues/569)) ([303c5e9](https://github.com/kiva/kv-ui-elements/commit/303c5e942c108836e56cc96a12dc0946a4e77fdf))
+
+
+
+
+
 ## [6.19.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.0...@kiva/kv-components@6.19.1) (2025-05-23)
 
 
