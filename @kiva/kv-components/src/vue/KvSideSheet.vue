@@ -18,20 +18,20 @@
 			}"
 		>
 			<div
-				class="tw-relative tw-h-full"
+				class="tw-flex tw-flex-col tw-h-full"
 				:style="modalStyles"
 			>
 				<div
+					ref="headlineRef"
 					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200
-					tw-px-3 tw-py-2 tw-border-b tw-border-tertiary"
+					tw-px-3 tw-py-2 tw-border-tertiary"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
+						'tw-border-b': showHeadlineBorder
 					}"
 				>
-					<div
-						class="tw-flex tw-gap-1.5"
-					>
+					<div class="tw-flex tw-gap-1.5">
 						<button
 							v-if="showBackButton"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
@@ -46,7 +46,6 @@
 							{{ headline }}
 						</h2>
 					</div>
-
 					<div class="tw-flex tw-gap-1.5">
 						<button
 							v-if="showGoToLink"
@@ -70,23 +69,28 @@
 					</div>
 				</div>
 				<div
-					class="tw-p-4 tw-overflow-y-auto tw-transition-opacity tw-duration-500 tw-delay-200
-						tw-overscroll-y-contain"
-					:class="{
-						'tw-opacity-0': !open,
-						'tw-opacity-full': open,
-					}"
+					class="tw-overflow-y-auto tw-overscroll-y-contain"
+					:style="{ height: contentHeight + 'px' }"
 				>
-					<slot></slot>
+					<div
+						class="tw-p-2 tw-transition-opacity tw-duration-500 tw-delay-200"
+						:class="{
+							'tw-opacity-0': !open,
+							'tw-opacity-full': open,
+						}"
+					>
+						<slot></slot>
+					</div>
 				</div>
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
-					class="tw-absolute tw-border-t tw-border-tertiary tw-w-full tw-bottom-0 tw-bg-white"
+					class="tw-absolute tw-bottom-0 tw-w-full tw-border-t tw-border-tertiary tw-bg-white"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
 					}"
+					style="z-index: 999"
 				>
 					<slot name="controls"></slot>
 				</div>
@@ -96,9 +100,18 @@
 </template>
 
 <script>
-import { ref, toRefs, watch } from 'vue';
 import {
-	mdiClose, mdiArrowLeft, mdiExportVariant,
+	onMounted,
+	onUnmounted,
+	ref,
+	reactive,
+	toRefs,
+	watch,
+	computed,
+	nextTick,
+} from 'vue';
+import {
+	mdiArrowLeft, mdiClose, mdiExportVariant,
 } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -115,7 +128,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Show the go to link button
+		 * Show the back button
 		 * */
 		showBackButton: {
 			type: Boolean,
@@ -127,6 +140,13 @@ export default {
 		showGoToLink: {
 			type: Boolean,
 			default: false,
+		},
+		/**
+		 * Show the border of the headline section
+		 * */
+		showHeadlineBorder: {
+			type: Boolean,
+			default: true,
 		},
 		/**
 		 * Tracking event function
@@ -144,23 +164,21 @@ export default {
 		},
 		/**
 		 * Source element position for expand animation
-		 */
+		 * */
 		animationSourceElement: {
 			type: Object,
 			default: () => ({}),
 		},
 		/**
 		 * The headline of the side sheet
-		 */
+		 * */
 		headline: {
 			type: String,
 			default: '',
 		},
 	},
-	emits: [
-		'side-sheet-closed',
-	],
-	setup(props, { emit }) {
+	emits: ['side-sheet-closed', 'go-to-link'],
+	setup(props, { emit, slots }) {
 		const {
 			visible,
 			kvTrackFunction,
@@ -171,7 +189,50 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
-		let onKeyUp = null;
+		const controlsRef = ref(null);
+		const headlineRef = ref(null);
+		const windowHeight = ref(window.innerHeight);
+
+		const heights = reactive({
+			headline: 0,
+			controls: 0,
+		});
+
+		const contentHeight = computed(() => {
+			const height = windowHeight.value - heights.headline - heights.controls;
+			return Math.max(height, 0);
+		});
+
+		// Debounce function to limit rapid ResizeObserver calls
+		const debounce = (fn, delay) => {
+			let timeout;
+			return (...args) => {
+				clearTimeout(timeout);
+				timeout = setTimeout(() => fn(...args), delay);
+			};
+		};
+
+		const updateHeights = () => {
+			windowHeight.value = window.innerHeight;
+			setTimeout(() => {
+				nextTick(() => {
+					if (headlineRef.value) {
+						const headlineRect = headlineRef.value.getBoundingClientRect();
+						heights.headline = headlineRect.height;
+					} else {
+						heights.headline = 0;
+					}
+					if (slots.controls?.() && controlsRef.value) {
+						const controlsRect = controlsRef.value.getBoundingClientRect();
+						heights.controls = controlsRect.height;
+					} else {
+						heights.controls = 0;
+					}
+				});
+			}, 300); // Small delay to ensure DOM is fully styled
+		};
+
+		const debouncedUpdateHeights = debounce(updateHeights, 100);
 
 		const avoidBodyScroll = () => {
 			const bodyClasses = 'tw-overflow-hidden';
@@ -186,18 +247,16 @@ export default {
 			open.value = false;
 			avoidBodyScroll();
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
-
 			if (animationSourceElement.value) {
 				modalStyles.value = {
 					...initialStyles.value,
 					transition: 'all 0.5s ease-in-out',
 				};
 			}
-
 			setTimeout(() => {
 				emit('side-sheet-closed');
-			}, '700');
-
+			}, 700);
+			// eslint-disable-next-line no-use-before-define
 			document.removeEventListener('keyup', onKeyUp);
 		};
 
@@ -205,23 +264,49 @@ export default {
 			emit('go-to-link');
 		};
 
-		onKeyUp = (e) => {
-			if (!!e && e.key === 'Escape') {
+		const onKeyUp = (e) => {
+			if (e?.key === 'Escape') {
 				closeSideSheet();
 			}
 		};
 
-		watch(visible, () => {
-			if (visible.value) {
-				document.addEventListener('keyup', onKeyUp);
+		// Set up resize listeners
+		onMounted(() => {
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+			if (controlsRef.value) {
+				const controlsObserver = new ResizeObserver(debouncedUpdateHeights);
+				controlsObserver.observe(controlsRef.value);
+				onUnmounted(() => controlsObserver.disconnect());
+			}
+			if (headlineRef.value) {
+				const headlineObserver = new ResizeObserver(debouncedUpdateHeights);
+				headlineObserver.observe(headlineRef.value);
+				onUnmounted(() => headlineObserver.disconnect());
+			}
+			window.addEventListener('resize', debouncedUpdateHeights);
+			onUnmounted(() => window.removeEventListener('resize', debouncedUpdateHeights));
+		});
 
+		// Watch for slot content changes deeply
+		watch(() => slots.controls?.(), () => {
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+		}, { deep: true, immediate: true });
+
+		// Watch for visibility changes to re-measure
+		watch(visible, (newVisible) => {
+			if (newVisible) {
+				document.addEventListener('keyup', onKeyUp);
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
+					updateHeights(); // Re-measure when side sheet opens
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
-
 				const top = rect?.top ?? 0;
 				const left = rect?.left ?? 0;
 				const width = rect?.width ?? 0;
@@ -251,17 +336,24 @@ export default {
 				} else {
 					modalStyles.value = {};
 				}
+			} else {
+				open.value = false;
+				avoidBodyScroll();
+				document.removeEventListener('keyup', onKeyUp);
 			}
 		});
 
 		return {
-			mdiClose,
-			mdiArrowLeft,
-			mdiExportVariant,
-			open,
 			closeSideSheet,
+			contentHeight,
+			controlsRef,
+			headlineRef,
 			goToLink,
+			mdiArrowLeft,
+			mdiClose,
+			mdiExportVariant,
 			modalStyles,
+			open,
 		};
 	},
 };
