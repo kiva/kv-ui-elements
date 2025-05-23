@@ -404,9 +404,9 @@ export default {
 
 		const handleRedirect = (type) => {
 			if (type === 'view-basket') {
-				emit('close-redirect', { path: '/basket' });
+				emit('close-redirect', { type, path: '/basket' });
 			} else if (type === 'support-another' && oneLoanAwayFilteredUrl.value) {
-				emit('close-redirect', oneLoanAwayFilteredUrl.value);
+				emit('close-redirect', { type, path: oneLoanAwayFilteredUrl.value });
 			}
 		};
 
