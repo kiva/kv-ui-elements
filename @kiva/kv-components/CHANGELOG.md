@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.2...@kiva/kv-components@6.19.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* type passed to redirect handler ([#570](https://github.com/kiva/kv-ui-elements/issues/570)) ([0f19279](https://github.com/kiva/kv-ui-elements/commit/0f19279b2d8e022596ece72ef39eb52ea1bb9455))
+
+
+
+
+
 ## [6.19.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.1...@kiva/kv-components@6.19.2) (2025-05-23)
 
 
