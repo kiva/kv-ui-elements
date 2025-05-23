@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.0...@kiva/kv-components@6.19.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* add window height resizing functionality ([b8ff7f4](https://github.com/kiva/kv-ui-elements/commit/b8ff7f46244148d4e30b24dd9fcb0fa735902db4))
+* create timeouts to ensure proper height measurements ([fab1c46](https://github.com/kiva/kv-ui-elements/commit/fab1c46246429af395075919b2427bbfd2aafadc))
+* fix component import ([305993c](https://github.com/kiva/kv-ui-elements/commit/305993c967b169eb26eac97c482a2d07d0016b2b))
+* improve SideSheet component for BadgeJourneys ([5bf661e](https://github.com/kiva/kv-ui-elements/commit/5bf661e6a1dbeb41470c6832712c89bb43ffdad0))
+* make content height dynamic, not flex-1 ([a7f26af](https://github.com/kiva/kv-ui-elements/commit/a7f26afe6ae9d05b4ebb435a68ccd0fe78e02c10))
+* make controls template padding dynamic ([b4e8203](https://github.com/kiva/kv-ui-elements/commit/b4e8203d3ae5b4f6541169e575b0ec3bb15f0823))
+* remove extraneous code ([fa1393e](https://github.com/kiva/kv-ui-elements/commit/fa1393e1d60c73573a7b00940fa387db3cda41c4))
+
+
+
+
+
 # [6.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.18.0...@kiva/kv-components@6.19.0) (2025-05-23)
 
 
