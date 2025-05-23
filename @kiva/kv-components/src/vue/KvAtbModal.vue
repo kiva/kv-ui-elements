@@ -236,7 +236,7 @@ import {
 	onMounted,
 	onUnmounted,
 } from 'vue';
-import _throttle from 'lodash/throttle'; // eslint-disable-line import/no-extraneous-dependencies
+import { throttle } from '../utils/throttle';
 import KvCartModal from './KvCartModal.vue';
 import KvCartPill from './KvCartPill.vue';
 
@@ -441,7 +441,7 @@ export default {
 			}
 		};
 
-		const updateHeaderPositionThrottled = _throttle(updateHeaderPosition, 100);
+		const updateHeaderPositionThrottled = throttle(updateHeaderPosition, 100);
 
 		onMounted(() => {
 			updateHeaderPosition();
