@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.19.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.3...@kiva/kv-components@6.19.4) (2025-05-23)
+
+
+### Bug Fixes
+
+* atb modal styling fix ([#571](https://github.com/kiva/kv-ui-elements/issues/571)) ([3ca2c0f](https://github.com/kiva/kv-ui-elements/commit/3ca2c0f7023f0af7a51c519554163f19968fb29f))
+
+
+
+
+
 ## [6.19.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.2...@kiva/kv-components@6.19.3) (2025-05-23)
 
 
