@@ -466,3 +466,12 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+@screen md {
+	.cart-modal:deep(div.container) {
+		right: var(--modal-right) !important;
+		top: var(--modal-top) !important;
+	}
+}
+</style>
