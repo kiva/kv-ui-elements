@@ -188,7 +188,7 @@ export default {
 		 * */
 		widthDimensions: {
 			type: [String, Object],
-			default: () => ({ default: '100%', lg: '50%' }),
+			default: () => ({ default: '100%', md: '50%' }),
 			validator: (value) => {
 				if (typeof value === 'string') {
 					return /^(\d+px|[\d.]+%|auto|inherit|initial)$/.test(value);
