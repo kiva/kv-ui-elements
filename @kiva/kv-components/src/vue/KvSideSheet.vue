@@ -11,11 +11,14 @@
 	>
 		<div
 			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
-			:class="{
-				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
-				'lg:tw-w-1/2 tw-w-full tw-opacity-full': open,
-				'tw-h-full': $slots.controls,
-			}"
+			:class="[
+				{
+					'tw-w-0 tw-delay-200 tw-opacity-0': !open,
+					'tw-opacity-full': open,
+					'tw-h-full': $slots.controls,
+				},
+				widthDimensions && open ? widthDimensions : 'lg:tw-w-1/2 tw-w-full'
+			]"
 		>
 			<div
 				class="tw-flex tw-flex-col tw-h-full"
@@ -23,7 +26,7 @@
 			>
 				<div
 					ref="headlineRef"
-					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-500 tw-delay-200
+					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-200
 					tw-px-3 tw-py-2 tw-border-tertiary"
 					:class="{
 						'tw-opacity-0': !open,
@@ -73,7 +76,7 @@
 					:style="{ height: contentHeight + 'px' }"
 				>
 					<div
-						class="tw-p-2 tw-transition-opacity tw-duration-500 tw-delay-200"
+						class="tw-p-2 tw-transition-opacity tw-duration-200"
 						:class="{
 							'tw-opacity-0': !open,
 							'tw-opacity-full': open,
@@ -85,7 +88,9 @@
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
-					class="tw-absolute tw-bottom-0 tw-w-full tw-border-t tw-border-tertiary tw-bg-white"
+					class="tw-absolute tw-bottom-0 tw-w-full tw-border-t
+					tw-border-tertiary tw-bg-white tw-transition-opacity
+					tw-duration-200"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
@@ -176,6 +181,14 @@ export default {
 			type: String,
 			default: '',
 		},
+		/**
+		 * The tailwind string width dimensions of the SideSheet
+		 * Can accept tailwind responsive designs
+		 * */
+		widthDimensions: {
+			type: String,
+			default: '',
+		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
 	setup(props, { emit, slots }) {
@@ -184,6 +197,7 @@ export default {
 			kvTrackFunction,
 			trackEventCategory,
 			animationSourceElement,
+			widthDimensions,
 		} = toRefs(props);
 
 		const open = ref(false);
@@ -297,7 +311,7 @@ export default {
 		}, { deep: true, immediate: true });
 
 		// Watch for visibility changes to re-measure
-		watch(visible, (newVisible) => {
+		watch([visible, widthDimensions], (newVisible) => {
 			if (newVisible) {
 				document.addEventListener('keyup', onKeyUp);
 				setTimeout(() => {
@@ -309,14 +323,12 @@ export default {
 				const rect = animationSourceElement.value?.getBoundingClientRect();
 				const top = rect?.top ?? 0;
 				const left = rect?.left ?? 0;
-				const width = rect?.width ?? 0;
 				const height = rect?.height ?? 0;
 
-				if (top || left || width || height) {
+				if (top || left || height) {
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
-						width: `${width}px`,
 						height: `${height}px`,
 					};
 
@@ -328,13 +340,15 @@ export default {
 					setTimeout(() => {
 						modalStyles.value = {
 							top: '0',
-							width: '100%',
+							// Use widthDimensions if provided, otherwise fallback to 100%
 							height: '100%',
 							transition: 'all 0.5s ease-in-out',
 						};
 					}, 10);
 				} else {
-					modalStyles.value = {};
+					modalStyles.value = {
+						height: '100%',
+					};
 				}
 			} else {
 				open.value = false;
