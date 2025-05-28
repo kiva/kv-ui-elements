@@ -10,15 +10,14 @@
 		@click.self="closeSideSheet"
 	>
 		<div
+			ref="sideSheetRef"
 			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
-			:class="[
-				{
-					'tw-w-0 tw-delay-200 tw-opacity-0': !open,
-					'tw-opacity-full': open,
-					'tw-h-full': $slots.controls,
-				},
-				widthDimensions && open ? widthDimensions : 'lg:tw-w-1/2 tw-w-full'
-			]"
+			:class="{
+				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
+				'tw-opacity-full': open,
+				'tw-h-full': $slots.controls,
+			}"
+			:style="sideSheetStyles"
 		>
 			<div
 				class="tw-flex tw-flex-col tw-h-full"
@@ -88,9 +87,10 @@
 				<div
 					v-if="$slots.controls"
 					ref="controlsRef"
-					class="tw-absolute tw-bottom-0 tw-w-full tw-border-t
-					tw-border-tertiary tw-bg-white tw-transition-opacity
-					tw-duration-200"
+					class="
+						tw-absolute tw-bottom-0 tw-w-full
+						tw-border-t tw-border-tertiary tw-bg-white
+						tw-transition-opacity tw-duration-200"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
@@ -182,12 +182,23 @@ export default {
 			default: '',
 		},
 		/**
-		 * The tailwind string width dimensions of the SideSheet
-		 * Can accept tailwind responsive designs
+		 * The CSS width of the SideSheet, either as a string (e.g., '33.33%') or an object with
+		 * breakpoint-specific widths (e.g., { default: '100%', lg: '50%' }). Supports responsive
+		 * design with breakpoints: default, sm, md, lg, xl, 2xl
 		 * */
 		widthDimensions: {
-			type: String,
-			default: '',
+			type: [String, Object],
+			default: () => ({ default: '100%', lg: '50%' }),
+			validator: (value) => {
+				if (typeof value === 'string') {
+					return /^(\d+px|[\d.]+%|auto|inherit|initial)$/.test(value);
+				}
+				if (typeof value === 'object') {
+					return Object.keys(value).every((key) => ['default', 'sm', 'md', 'lg', 'xl', '2xl'].includes(key)
+						&& /^(\d+px|[\d.]+%|auto|inherit|initial)$/.test(value[key]));
+				}
+				return false;
+			},
 		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
@@ -203,6 +214,7 @@ export default {
 		const open = ref(false);
 		const initialStyles = ref({});
 		const modalStyles = ref({});
+		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
 		const windowHeight = ref(window.innerHeight);
@@ -310,25 +322,41 @@ export default {
 			}, 100);
 		}, { deep: true, immediate: true });
 
+		// Compute side sheet styles based on widthDimensions
+		const sideSheetStyles = computed(() => {
+			if (!open.value) {
+				return {};
+			}
+			if (typeof widthDimensions.value === 'string') {
+				return { width: widthDimensions.value };
+			}
+			// Use the smallest breakpoint's width if no default is provided
+			const widthKeys = ['sm', 'md', 'lg', 'xl', '2xl'];
+			const smallestBreakpoint = widthKeys.find((key) => widthDimensions.value[key]);
+			return { width: widthDimensions.value[smallestBreakpoint] || widthDimensions.value.default || '100%' };
+		});
+
 		// Watch for visibility changes to re-measure
-		watch([visible, widthDimensions], (newVisible) => {
+		watch([visible, widthDimensions], ([newVisible]) => {
 			if (newVisible) {
 				document.addEventListener('keyup', onKeyUp);
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
-					updateHeights(); // Re-measure when side sheet opens
+					updateHeights();
 				}, 100);
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
 				const top = rect?.top ?? 0;
 				const left = rect?.left ?? 0;
+				const width = rect?.width ?? 0;
 				const height = rect?.height ?? 0;
 
-				if (top || left || height) {
+				if (top || left || width || height) {
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
+						width: `${width}px`,
 						height: `${height}px`,
 					};
 
@@ -340,7 +368,6 @@ export default {
 					setTimeout(() => {
 						modalStyles.value = {
 							top: '0',
-							// Use widthDimensions if provided, otherwise fallback to 100%
 							height: '100%',
 							transition: 'all 0.5s ease-in-out',
 						};
@@ -354,6 +381,70 @@ export default {
 				open.value = false;
 				avoidBodyScroll();
 				document.removeEventListener('keyup', onKeyUp);
+				modalStyles.value = animationSourceElement.value ? {
+					...initialStyles.value,
+					transition: 'all 0.5s ease-in-out',
+				} : {};
+			}
+		});
+
+		// Apply responsive styles using <style> block
+		const applyResponsiveStyles = () => {
+			if (typeof widthDimensions.value === 'object' && sideSheetRef.value) {
+				const styleId = 'side-sheet-styles';
+				let styleElement = document.getElementById(styleId);
+				if (!styleElement) {
+					styleElement = document.createElement('style');
+					styleElement.id = styleId;
+					document.head.appendChild(styleElement);
+				}
+
+				const breakpoints = {
+					sm: '640px',
+					md: '768px',
+					lg: '1024px',
+					xl: '1280px',
+					'2xl': '1536px',
+				};
+
+				// Sort breakpoints from smallest to largest to ensure correct cascade
+				const sortedBreakpoints = Object.keys(widthDimensions.value)
+					.filter((key) => key !== 'default')
+					.sort((a, b) => {
+						const order = ['sm', 'md', 'lg', 'xl', '2xl'];
+						return order.indexOf(a) - order.indexOf(b);
+					});
+
+				const cssRules = sortedBreakpoints
+					.map((key) => `
+						@media (min-width: ${breakpoints[key]}) {
+							#side-sheet-${props.trackEventCategory || 'default'} {
+								width: ${widthDimensions.value[key]} !important;
+							}
+						}
+					`)
+					.join('');
+
+				styleElement.textContent = cssRules;
+				sideSheetRef.value.id = `side-sheet-${props.trackEventCategory || 'default'}`;
+
+				onUnmounted(() => {
+					if (styleElement) {
+						styleElement.remove();
+					}
+				});
+			}
+		};
+
+		watch(widthDimensions, () => {
+			if (open.value) {
+				applyResponsiveStyles();
+			}
+		}, { immediate: true });
+
+		watch(open, (newOpen) => {
+			if (newOpen) {
+				applyResponsiveStyles();
 			}
 		});
 
@@ -362,6 +453,8 @@ export default {
 			contentHeight,
 			controlsRef,
 			headlineRef,
+			sideSheetRef,
+			sideSheetStyles,
 			goToLink,
 			mdiArrowLeft,
 			mdiClose,
