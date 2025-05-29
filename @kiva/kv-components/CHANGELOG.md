@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.20.0...@kiva/kv-components@6.21.0) (2025-05-29)
+
+
+### Features
+
+* switching milestones to achievements in atb and pill components ([db315f7](https://github.com/kiva/kv-ui-elements/commit/db315f77ee1543c0c220f310c23f9d5aad8637e0))
+
+
+
+
+
 # [6.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.4...@kiva/kv-components@6.20.0) (2025-05-29)
 
 
