@@ -6,9 +6,7 @@ export default {
 	component: KvSideSheet,
 };
 
-const Template = (args, {
-	argTypes,
-}) => ({
+const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvSideSheet,
@@ -69,9 +67,7 @@ ExpandEffect.args = {
 	showBackButton: true,
 };
 
-const TemplateWithControls = (args, {
-	argTypes,
-}) => ({
+const TemplateWithControls = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
 		KvSideSheet,
@@ -138,9 +134,46 @@ const TemplateWithControls = (args, {
 });
 
 export const WithControls = TemplateWithControls.bind({});
-
 WithControls.args = {
 	headline: 'Headline',
 	showGoToLink: true,
 	showBackButton: true,
+};
+
+export const FixedWidth = Template.bind({});
+FixedWidth.args = {
+	headline: 'Fixed Width',
+	showGoToLink: true,
+	showBackButton: true,
+	expandEffect: true,
+	widthDimensions: '33.33%',
+};
+
+export const ResponsiveWidths = Template.bind({});
+ResponsiveWidths.args = {
+	headline: 'Responsive Widths',
+	showGoToLink: true,
+	showBackButton: true,
+	expandEffect: true,
+	widthDimensions: { lg: '480px', md: '460px', sm: '100%' },
+};
+
+export const ResponsiveWidthsWithControls = TemplateWithControls.bind({});
+ResponsiveWidthsWithControls.args = {
+	headline: 'Responsive Widths with Controls',
+	showGoToLink: true,
+	showBackButton: true,
+	expandEffect: true,
+	widthDimensions: { lg: '480px', md: '460px', sm: '100%' },
+};
+
+export const CustomResponsiveWidths = Template.bind({});
+CustomResponsiveWidths.args = {
+	headline: 'Custom Responsive Widths',
+	showGoToLink: true,
+	showBackButton: true,
+	expandEffect: true,
+	widthDimensions: {
+		default: '100%', sm: '80%', md: '500px', lg: '600px',
+	},
 };
