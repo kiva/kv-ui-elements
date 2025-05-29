@@ -55,16 +55,16 @@ export default {
 			}
 
 			if (isCloseNextMilestone.value) {
-				return 'You’re close to your next milestone!';
+				return 'You’re close to your next achievement!';
 			}
 
 			const milestonesCopy = milestonesNumber.value > 1
-				? `${milestonesNumber.value} of your milestones`
-				: 'your next milestone';
+				? `${milestonesNumber.value} achievements`
+				: 'your next achievement';
 
 			return borrowerName.value
-				? `Supporting ${borrowerName.value} will hit ${milestonesCopy}!`
-				: 'Supporting this loan achieves a milestone!';
+				? `Supporting ${borrowerName.value} will reach ${milestonesCopy}!`
+				: 'Supporting this loan reaches an achievement!';
 		});
 
 		return {

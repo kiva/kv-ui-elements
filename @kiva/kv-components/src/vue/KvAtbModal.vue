@@ -390,16 +390,16 @@ export default {
 				return `${initialHeading} her invest in herself.`;
 			}
 			if (showOneAway.value) {
-				return 'You’re close to your next milestone!';
+				return 'You’re close to your next achievement!';
 			}
 
 			const milestonesCopy = milestonesProgressCount.value > 1
-				? `${milestonesProgressCount.value} of your milestones`
-				: 'your next milestone';
+				? `${milestonesProgressCount.value} achievements`
+				: 'your next achievement';
 
 			return borrowerName.value
-				? `Supporting ${borrowerName.value} will hit ${milestonesCopy}!`
-				: 'Supporting this loan achieves a milestone!';
+				? `Supporting ${borrowerName.value} will reach ${milestonesCopy}!`
+				: 'Supporting this loan reaches an achievement!';
 		});
 
 		const handleRedirect = (type) => {
