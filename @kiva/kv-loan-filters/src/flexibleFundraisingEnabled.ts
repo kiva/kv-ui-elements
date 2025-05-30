@@ -43,8 +43,6 @@ export const typeName = 'FlexibleFundraisingEnabled';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: false,
 	title: 'Loan Funding Type',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -60,6 +58,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformOptions(),
 	showSavedSearch: (loanSearchState) => loanSearchState.flexibleFundraisingEnabled !== null,

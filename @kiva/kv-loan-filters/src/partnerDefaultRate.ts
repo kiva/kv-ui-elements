@@ -23,8 +23,6 @@ export const stateKey = 'partnerDefaultRate';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: false,
 	title: 'Default rate',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -40,6 +38,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ({ min: MIN, max: MAX, step: STEP }),
 	showSavedSearch: (loanSearchState) => !!loanSearchState.partnerDefaultRate,

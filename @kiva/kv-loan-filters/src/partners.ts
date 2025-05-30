@@ -54,8 +54,6 @@ export const stateKey = 'partnerId';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: false,
 	title: 'Partner info',
 	shouldDisplayTitle: true,
 	itemHeaderKey: 'region',
@@ -71,6 +69,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformPartners(allFacets?.partnerFacets ?? []),
 	showSavedSearch: (loanSearchState) => loanSearchState.partnerId.length > 0,

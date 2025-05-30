@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.20.0...@kiva/kv-components@6.21.0) (2025-05-29)
+
+
+### Features
+
+* switching milestones to achievements in atb and pill components ([db315f7](https://github.com/kiva/kv-ui-elements/commit/db315f77ee1543c0c220f310c23f9d5aad8637e0))
+
+
+
+
+
+# [6.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.4...@kiva/kv-components@6.20.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* make widthDimensions CSS rules ([a1580b6](https://github.com/kiva/kv-ui-elements/commit/a1580b635046e177c97ff8be204f03f318906546))
+* slight change to default widthDimensions ([81d5167](https://github.com/kiva/kv-ui-elements/commit/81d5167b89b5515a3bc2819642002e3fb51a6e29))
+* style fix ([2d55cad](https://github.com/kiva/kv-ui-elements/commit/2d55caddbe356a1436531998f0c10ac99ed12df7))
+
+
+### Features
+
+* add widthDimensions prop to KvSideSheet ([fee3309](https://github.com/kiva/kv-ui-elements/commit/fee330993e671b513c4c277b44bbe794e80848e3))
+
+
+
+
+
 ## [6.19.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.19.3...@kiva/kv-components@6.19.4) (2025-05-23)
 
 
