@@ -52,8 +52,6 @@ export const stateKey = 'isIndividual';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: false,
-	bottomLine: false,
 	title: undefined,
 	shouldDisplayTitle: false,
 	itemHeaderKey: undefined,
@@ -69,6 +67,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformIsIndividualOptions(),
 	showSavedSearch: (loanSearchState) => loanSearchState.isIndividual !== null,

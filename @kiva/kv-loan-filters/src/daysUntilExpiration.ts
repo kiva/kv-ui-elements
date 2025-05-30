@@ -17,8 +17,6 @@ export const stateKey = 'daysUntilExpiration';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: undefined,
-	topLine: false,
-	bottomLine: false,
 	title: undefined,
 	shouldDisplayTitle: false,
 	itemHeaderKey: undefined,
@@ -34,6 +32,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ({ min: MIN, max: MAX, step: 1 }),
 	showSavedSearch: () => (false),

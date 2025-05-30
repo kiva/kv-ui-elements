@@ -46,8 +46,6 @@ export const stateKey = 'distributionModel';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: false,
 	title: 'Loan distribution',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -63,6 +61,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		return transformDistributionModelOptions(allFacets.distributionModelFacets);
