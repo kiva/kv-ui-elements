@@ -243,16 +243,17 @@ export default {
 				xl: 1280,
 				'2xl': 1536,
 			};
+			const currentWidth = windowWidth.value || window.innerWidth;
 			// Sort breakpoints from largest to smallest
-			const sortedBreakpoints = Object.keys(widthDimensions.value)
+			// Sort breakpoints from largest to smallest and find the first match
+			const matchingBreakpoint = Object.keys(widthDimensions.value)
 				.filter((key) => key !== 'default')
-				.sort((a, b) => breakpoints[b] - breakpoints[a]);
-			// Find the first breakpoint that matches the current window width
-			const value = sortedBreakpoints.map((key) => {
-				if (windowWidth.value >= breakpoints[key]) return widthDimensions.value[key];
-				return false;
-			});
-			return value || '100%';
+				.sort((a, b) => breakpoints[b] - breakpoints[a])
+				.find((key) => currentWidth >= breakpoints[key]);
+			// Return the matching breakpoint width or fallback to default
+			return matchingBreakpoint
+				? widthDimensions.value[matchingBreakpoint]
+				: (widthDimensions.value.default || '100%');
 		});
 
 		// Debounce function to limit rapid ResizeObserver calls
