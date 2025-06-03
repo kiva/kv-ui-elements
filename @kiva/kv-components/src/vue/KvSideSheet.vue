@@ -72,7 +72,6 @@
 				</div>
 				<div
 					id="sidesheet-content"
-					ref="contentRef"
 					class="tw-overflow-y-auto tw-overscroll-y-contain"
 					:style="{ height: contentHeight + 'px' }"
 				>
@@ -220,7 +219,6 @@ export default {
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
-		const contentRef = ref(null);
 		const windowHeight = ref(window.innerHeight);
 		const windowWidth = ref(window.innerWidth);
 
@@ -503,7 +501,6 @@ export default {
 			contentHeight,
 			controlsRef,
 			headlineRef,
-			contentRef,
 			sideSheetRef,
 			sideSheetStyles,
 			goToLink,
