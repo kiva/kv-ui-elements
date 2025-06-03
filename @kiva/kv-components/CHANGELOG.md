@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.21.1...@kiva/kv-components@6.22.0) (2025-06-03)
+
+
+### Features
+
+* add id and ref to sidesheet content ([abcdbac](https://github.com/kiva/kv-ui-elements/commit/abcdbac5494ae212c5c4bd8ffede191cd0c61e22))
+
+
+
+
+
 ## [6.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.21.0...@kiva/kv-components@6.21.1) (2025-06-03)
 
 
