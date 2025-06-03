@@ -13,8 +13,8 @@
 			ref="sideSheetRef"
 			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
 			:class="{
-				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
-				'tw-opacity-full': open,
+				'tw-translate-x-full': !open,
+				'tw-translate-x-0': open,
 				'tw-h-full': $slots.controls,
 			}"
 			:style="sideSheetStyles"
@@ -121,6 +121,7 @@ import {
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
+	name: 'KvSideSheet',
 	components: {
 		KvMaterialIcon,
 	},
@@ -218,6 +219,7 @@ export default {
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
 		const windowHeight = ref(window.innerHeight);
+		const windowWidth = ref(window.innerWidth);
 
 		const heights = reactive({
 			headline: 0,
@@ -227,6 +229,31 @@ export default {
 		const contentHeight = computed(() => {
 			const height = windowHeight.value - heights.headline - heights.controls;
 			return Math.max(height, 0);
+		});
+
+		// Compute animation width based on current viewport and widthDimensions
+		const animationWidth = computed(() => {
+			if (typeof widthDimensions.value === 'string') {
+				return widthDimensions.value;
+			}
+			const breakpoints = {
+				sm: 640,
+				md: 768,
+				lg: 1024,
+				xl: 1280,
+				'2xl': 1536,
+			};
+			const currentWidth = windowWidth.value || window.innerWidth;
+			// Sort breakpoints from largest to smallest
+			// Sort breakpoints from largest to smallest and find the first match
+			const matchingBreakpoint = Object.keys(widthDimensions.value)
+				.filter((key) => key !== 'default')
+				.sort((a, b) => breakpoints[b] - breakpoints[a])
+				.find((key) => currentWidth >= breakpoints[key]);
+			// Return the matching breakpoint width or fallback to default
+			return matchingBreakpoint
+				? widthDimensions.value[matchingBreakpoint]
+				: (widthDimensions.value.default || '100%');
 		});
 
 		// Debounce function to limit rapid ResizeObserver calls
@@ -240,6 +267,7 @@ export default {
 
 		const updateHeights = () => {
 			windowHeight.value = window.innerHeight;
+			windowWidth.value = window.innerWidth;
 			setTimeout(() => {
 				nextTick(() => {
 					if (headlineRef.value) {
@@ -273,15 +301,9 @@ export default {
 			open.value = false;
 			avoidBodyScroll();
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
-			if (animationSourceElement.value) {
-				modalStyles.value = {
-					...initialStyles.value,
-					transition: 'all 0.5s ease-in-out',
-				};
-			}
 			setTimeout(() => {
 				emit('side-sheet-closed');
-			}, 700);
+			}, 300); // Match transition duration
 			// eslint-disable-next-line no-use-before-define
 			document.removeEventListener('keyup', onKeyUp);
 		};
@@ -322,29 +344,26 @@ export default {
 			}, 100);
 		}, { deep: true, immediate: true });
 
-		// Compute side sheet styles based on widthDimensions
+		// Use animationWidth for consistent width calculation
 		const sideSheetStyles = computed(() => {
-			if (!open.value) {
-				return {};
-			}
-			if (typeof widthDimensions.value === 'string') {
-				return { width: widthDimensions.value };
-			}
-			// Use the smallest breakpoint's width if no default is provided
-			const widthKeys = ['sm', 'md', 'lg', 'xl', '2xl'];
-			const smallestBreakpoint = widthKeys.find((key) => widthDimensions.value[key]);
-			return { width: widthDimensions.value[smallestBreakpoint] || widthDimensions.value.default || '100%' };
+			return {
+				width: animationWidth.value,
+			};
 		});
 
-		// Watch for visibility changes to re-measure
-		watch([visible, widthDimensions], ([newVisible]) => {
+		// Watch for visibility changes (opening/closing)
+		watch(visible, (newVisible) => {
 			if (newVisible) {
 				document.addEventListener('keyup', onKeyUp);
+
+				// Clear any previous modal styles to ensure clean state
+				modalStyles.value = {};
+
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
 					updateHeights();
-				}, 100);
+				}, 10); // Reduced delay for smoother animation
 
 				const rect = animationSourceElement.value?.getBoundingClientRect();
 				const top = rect?.top ?? 0;
@@ -352,12 +371,14 @@ export default {
 				const width = rect?.width ?? 0;
 				const height = rect?.height ?? 0;
 
-				if (top || left || width || height) {
+				// Only apply custom animation if source element is provided
+				if (rect && (top || left || width || height)) {
 					initialStyles.value = {
 						position: 'fixed',
 						top: `${top}px`,
 						width: `${width}px`,
 						height: `${height}px`,
+						transform: `translateX(${animationWidth.value})`,
 					};
 
 					modalStyles.value = {
@@ -368,23 +389,49 @@ export default {
 					setTimeout(() => {
 						modalStyles.value = {
 							top: '0',
+							width: animationWidth.value,
 							height: '100%',
-							transition: 'all 0.5s ease-in-out',
+							transform: 'translateX(0)',
+							transition: 'all 0.3s ease-in-out',
 						};
 					}, 10);
-				} else {
-					modalStyles.value = {
-						height: '100%',
-					};
 				}
 			} else {
 				open.value = false;
 				avoidBodyScroll();
 				document.removeEventListener('keyup', onKeyUp);
-				modalStyles.value = animationSourceElement.value ? {
-					...initialStyles.value,
-					transition: 'all 0.5s ease-in-out',
-				} : {};
+
+				// Reset modal styles when closing
+				if (animationSourceElement.value && Object.keys(initialStyles.value).length > 0) {
+					modalStyles.value = {
+						...initialStyles.value,
+						transition: 'all 0.3s ease-in-out',
+					};
+				} else {
+					modalStyles.value = {};
+				}
+			}
+		}, { immediate: true });
+
+		// Watch width changes when component is open (resize without animation)
+		watch(animationWidth, (newWidth) => {
+			if (open.value && visible.value) {
+				if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+					modalStyles.value = {
+						...modalStyles.value,
+						width: newWidth,
+						transition: 'none', // No animation for resize
+					};
+					// Re-enable transitions after a brief moment for future animations
+					setTimeout(() => {
+						if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+							modalStyles.value = {
+								...modalStyles.value,
+								transition: 'all 0.3s ease-in-out',
+							};
+						}
+					}, 50);
+				}
 			}
 		});
 
