@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.21.0...@kiva/kv-components@6.21.1) (2025-06-03)
+
+
+### Bug Fixes
+
+* fix incorrect import ([3bb3598](https://github.com/kiva/kv-ui-elements/commit/3bb3598308ad0468d1109967144f54d8703c9a23))
+* fix Storybook animation bug ([edcdeb1](https://github.com/kiva/kv-ui-elements/commit/edcdeb1e6971d9a2dcd6e348a6ecf4d3f0a9f7d7))
+* fix the KvSideSheet closing animation ([9033afc](https://github.com/kiva/kv-ui-elements/commit/9033afc99b1b88542b3cb7fcff9c830ae292e7f1))
+
+
+
+
+
 # [6.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.20.0...@kiva/kv-components@6.21.0) (2025-05-29)
 
 
