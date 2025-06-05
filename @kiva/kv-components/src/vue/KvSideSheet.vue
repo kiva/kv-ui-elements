@@ -170,13 +170,6 @@ export default {
 			default: '',
 		},
 		/**
-		 * Source element position for expand animation
-		 * */
-		animationSourceElement: {
-			type: Object,
-			default: () => ({}),
-		},
-		/**
 		 * The headline of the side sheet
 		 * */
 		headline: {
@@ -209,12 +202,10 @@ export default {
 			visible,
 			kvTrackFunction,
 			trackEventCategory,
-			animationSourceElement,
 			widthDimensions,
 		} = toRefs(props);
 
 		const open = ref(false);
-		const initialStyles = ref({});
 		const modalStyles = ref({});
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
@@ -365,52 +356,11 @@ export default {
 					avoidBodyScroll();
 					updateHeights();
 				}, 10); // Reduced delay for smoother animation
-
-				const rect = animationSourceElement.value?.getBoundingClientRect();
-				const top = rect?.top ?? 0;
-				const left = rect?.left ?? 0;
-				const width = rect?.width ?? 0;
-				const height = rect?.height ?? 0;
-
-				// Only apply custom animation if source element is provided
-				if (rect && (top || left || width || height)) {
-					initialStyles.value = {
-						position: 'fixed',
-						top: `${top}px`,
-						width: `${width}px`,
-						height: `${height}px`,
-						transform: `translateX(${animationWidth.value})`,
-					};
-
-					modalStyles.value = {
-						...initialStyles.value,
-						transition: 'none',
-					};
-
-					setTimeout(() => {
-						modalStyles.value = {
-							top: '0',
-							width: animationWidth.value,
-							height: '100%',
-							transform: 'translateX(0)',
-							transition: 'all 0.3s ease-in-out',
-						};
-					}, 10);
-				}
 			} else {
 				open.value = false;
 				avoidBodyScroll();
 				document.removeEventListener('keyup', onKeyUp);
-
-				// Reset modal styles when closing
-				if (animationSourceElement.value && Object.keys(initialStyles.value).length > 0) {
-					modalStyles.value = {
-						...initialStyles.value,
-						transition: 'all 0.3s ease-in-out',
-					};
-				} else {
-					modalStyles.value = {};
-				}
+				modalStyles.value = {};
 			}
 		}, { immediate: true });
 
