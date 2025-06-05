@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.1...@kiva/kv-components@6.22.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* smoothed out animation for side sheet usage and got design review ([6db3af6](https://github.com/kiva/kv-ui-elements/commit/6db3af650b87609f307ba688557e1de0ca71f3a6))
+
+
+
+
+
 ## [6.22.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.0...@kiva/kv-components@6.22.1) (2025-06-03)
 
 **Note:** Version bump only for package @kiva/kv-components
