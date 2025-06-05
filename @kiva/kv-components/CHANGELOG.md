@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.2...@kiva/kv-components@6.23.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* use new style for selected dropdown as well ([436acaf](https://github.com/kiva/kv-ui-elements/commit/436acaf45dadae663198e36a86582ef390add211))
+
+
+### Features
+
+* improve lend cta selected state for side sheet version and improve long borrower name support ([30f597d](https://github.com/kiva/kv-ui-elements/commit/30f597daaddf8a6462a9cbf7bf88a7b917946b84))
+
+
+
+
+
 ## [6.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.1...@kiva/kv-components@6.22.2) (2025-06-05)
 
 
