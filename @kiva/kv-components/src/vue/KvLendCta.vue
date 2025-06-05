@@ -98,7 +98,7 @@
 			<fieldset
 				class="tw-w-full tw-flex"
 				:class="{
-					'tw-flex-col md:tw-flex-row md:tw-justify-between': showPresetAmounts,
+					'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts,
 					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton
 				}"
 				:disabled="isAdding"
@@ -173,6 +173,7 @@
 				<!-- Lend button -->
 				<div
 					:class="{
+						'tw-min-w-0': showPresetAmounts,
 						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
 						'tw-hidden': hideLendButton,
 					}"
@@ -181,7 +182,7 @@
 						v-if="lendButtonVisibility && !isLessThan25"
 						key="lendButton"
 						class="tw-inline-flex tw-flex-1"
-						:class="{'tw-w-full': showPresetAmounts }"
+						:class="{ 'button-ellipsis tw-w-full': showPresetAmounts }"
 						data-testid="bp-lend-cta-lend-button"
 						type="submit"
 					>
@@ -681,15 +682,15 @@ export default {
 	@apply tw-border-gray-400;
 }
 
-.selected-dropdown :deep(select) {
-	@apply tw-border-eco-green-4;
-}
-
 .preset-option :deep(span.tw-w-full:first-child) {
 	@apply tw-border-2 tw-border-gray-400;
 }
 
-.selected-option :deep(span.tw-w-full:first-child) {
-	@apply tw-border-action;
+.selected-dropdown :deep(select), .selected-option :deep(span.tw-w-full:first-child) {
+	@apply tw-border-action tw-bg-secondary;
+}
+
+.button-ellipsis :deep(span > span) {
+	@apply tw-min-w-0 tw-text-ellipsis tw-overflow-hidden;
 }
 </style>
