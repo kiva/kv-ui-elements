@@ -682,15 +682,11 @@ export default {
 	@apply tw-border-gray-400;
 }
 
-.selected-dropdown :deep(select) {
-	@apply tw-border-eco-green-4;
-}
-
 .preset-option :deep(span.tw-w-full:first-child) {
 	@apply tw-border-2 tw-border-gray-400;
 }
 
-.selected-option :deep(span.tw-w-full:first-child) {
+.selected-dropdown :deep(select), .selected-option :deep(span.tw-w-full:first-child) {
 	@apply tw-border-action tw-bg-secondary;
 }
 
