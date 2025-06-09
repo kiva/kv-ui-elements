@@ -26,7 +26,7 @@
 				<div
 					ref="headlineRef"
 					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-200
-					tw-px-3 tw-py-2 tw-border-tertiary"
+					tw-px-3 tw-py-2 tw-border-tertiary tw-gap-1.5"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
