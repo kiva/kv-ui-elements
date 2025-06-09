@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.23.0...@kiva/kv-components@6.24.0) (2025-06-09)
+
+
+### Features
+
+* adding space between headline and top controls in sidesheet ([61b55f8](https://github.com/kiva/kv-ui-elements/commit/61b55f8a26fb12ce4fe12ebe873916e2479786a8))
+
+
+
+
+
 # [6.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.2...@kiva/kv-components@6.23.0) (2025-06-05)
 
 
