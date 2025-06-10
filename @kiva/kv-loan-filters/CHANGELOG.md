@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.3...@kiva/kv-loan-filters@1.15.4) (2025-06-10)
+
+
+### Bug Fixes
+
+* add config for filter by query for loan amount ([0758d51](https://github.com/kiva/kv-ui-elements/commit/0758d51eff6fc37d0e994fbb394875cd859182bf))
+
+
+
+
+
 ## [1.15.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.2...@kiva/kv-loan-filters@1.15.3) (2025-05-30)
 
 
