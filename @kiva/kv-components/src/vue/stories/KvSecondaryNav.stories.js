@@ -8,18 +8,21 @@ export default {
 		links: [
 			{
 				text: 'Overview',
-				href: '#',
-				isActive: true,
+				href: 'https://www.kiva.org',
+				isActive: false,
+				isExternal: true,
 			},
 			{
 				text: 'Documents',
 				href: '#',
 				isActive: false,
+				isExternal: false,
 			},
 			{
 				text: 'Team',
 				href: '#',
 				isActive: false,
+				isExternal: false,
 			},
 		],
 		linkAlignment: 'right',
@@ -53,4 +56,14 @@ Default.args = {
 export const Dark = Template.bind({});
 Dark.args = {
 	theme: 'dark',
+};
+
+export const Centered = Template.bind({});
+Centered.args = {
+	linkAlignment: 'center',
+};
+
+export const LeftAlignment = Template.bind({});
+LeftAlignment.args = {
+	linkAlignment: 'left',
 };

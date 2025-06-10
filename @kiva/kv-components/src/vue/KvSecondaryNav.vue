@@ -50,8 +50,10 @@
 								:key="index"
 								class="kv-secondary-nav__link-item tw-w-full md:tw-w-auto"
 							>
-								<router-link
-									:to="link.href"
+								<component
+									:is="link.isExternal ? 'a' : 'router-link'"
+									:to="link.isExternal ? undefined : link.href"
+									:href="link.isExternal ? link.href : undefined"
 									class="
 										kv-secondary-nav__link
 										tw-py-2 md:tw-py-n
@@ -64,7 +66,7 @@
 									}"
 								>
 									{{ link.text }}
-								</router-link>
+								</component>
 							</li>
 						</ul>
 					</div>
