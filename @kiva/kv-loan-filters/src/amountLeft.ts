@@ -1,18 +1,13 @@
 import { getMinMaxRangeFilter, createMinMaxRange } from './minMaxRangeUtils';
+import { getMinMaxRangeFromQueryParam } from './queryParseUtils';
 
-/**
- * The min loanAmount value
- */
-export const MIN = 25;
+export const MIN = 0;
 
-/**
- * The max loanAmount value
- */
 export const MAX = 1000000;
 
-export const facetsKey = 'loanAmount';
+export const facetsKey = 'amountLeft';
 
-export const stateKey = 'loanAmount';
+export const stateKey = 'amountLeft';
 
 export const getUiConfig = (options) => ({
 	type: undefined,
@@ -34,25 +29,27 @@ export const getUiConfig = (options) => ({
 export default {
 	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ({ min: MIN, max: MAX, step: 25 }),
+	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ([]),
 	showSavedSearch: () => (false),
 	getFilterChips: () => ([]),
 	getRemovedFacet: () => ({}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
-		...(loanSearchState?.loanAmount && {
-			loanAmount: { range: getMinMaxRangeFilter(loanSearchState.loanAmount) },
+		...(loanSearchState?.amountLeft && {
+			amountLeft: { range: getMinMaxRangeFilter(loanSearchState.amountLeft) },
 		}),
 	}),
 	getValidatedSearchState: (loanSearchState) => {
-		const min = loanSearchState?.loanAmount?.min ?? MIN;
-		const max = loanSearchState?.loanAmount?.max ?? MAX;
+		const min = loanSearchState?.amountLeft?.min ?? MIN;
+		const max = loanSearchState?.amountLeft?.max ?? MAX;
 		return {
-			loanAmount: loanSearchState?.loanAmount
+			amountLeft: loanSearchState?.amountLeft
 				? createMinMaxRange(min >= MIN ? min : MIN, max <= MAX ? max : MAX)
 				: null,
 		};
 	},
-	getFilterFromQuery: () => ({}),
+	getFilterFromQuery: (query) => ({
+		amountLeft: getMinMaxRangeFromQueryParam(query.amountLeft) ?? null,
+	}),
 	getQueryFromFilter: () => ({}),
 };

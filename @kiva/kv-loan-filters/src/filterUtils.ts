@@ -1,4 +1,5 @@
 import activities, { facetsKey as activitiesKey } from './activities';
+import amountLeft, { facetsKey as amountLeftKey } from './amountLeft';
 import categories, { facetsKey as categoriesKey } from './categories';
 import city, { facetsKey as cityKey } from './city';
 import dafEligible, { facetsKey as dafEligibleKey } from './dafEligible';
@@ -28,6 +29,7 @@ import trusteeId, { facetsKey as trusteeIdKey } from './trusteeId';
 
 const filters = {
 	[activitiesKey]: activities,
+	[amountLeftKey]: amountLeft,
 	[categoriesKey]: categories,
 	[cityKey]: city,
 	[dafEligibleKey]: dafEligible,
