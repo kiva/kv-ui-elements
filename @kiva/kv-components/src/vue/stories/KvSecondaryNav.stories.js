@@ -23,7 +23,7 @@ export default {
 			},
 		],
 		linkAlignment: 'right',
-		theme: 'mint',
+		theme: 'default',
 	},
 };
 
@@ -44,26 +44,13 @@ const Template = (args, { argTypes }) => ({
 		};
 	},
 });
+
 export const Default = Template.bind({});
 Default.args = {
-	heading: 'Due Diligence',
-	links: [
-		{
-			text: 'Overview',
-			href: '#',
-			isActive: true,
-		},
-		{
-			text: 'Documents',
-			href: '#',
-			isActive: false,
-		},
-		{
-			text: 'Team',
-			href: '#',
-			isActive: false,
-		},
-	],
-	linkAlignment: 'right',
-	theme: 'mint',
+	theme: 'default',
+};
+
+export const Dark = Template.bind({});
+Dark.args = {
+	theme: 'dark',
 };
