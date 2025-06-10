@@ -5,12 +5,12 @@
 	>
 		<div
 			class="tw-z-1 tw-w-full"
-			:class="{
-				'tw-fixed': isBelowElement,
-				'tw-absolute': !isBelowElement,
-			}"
+			:class="isBelowElement ? 'tw-fixed' : 'tw-absolute'"
 		>
-			<div class="tw-w-full tw-text-primary tw-bg-primary tw-overflow-x-auto kv-secondary-nav">
+			<div
+				class="tw-w-full tw-text-primary tw-overflow-x-auto kv-secondary-nav"
+				:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
+			>
 				<div
 					ref="navInner"
 					class="
@@ -22,6 +22,7 @@
 					<div
 						v-if="heading && heading.length > 0"
 						class="kv-secondary-nav__heading-container"
+						:class="linkAlignment === 'left' || linkAlignment === 'center' ? 'tw-block md:tw-hidden' : ''"
 					>
 						<div class="kv-secondary-nav__heading tw-text-h3">
 							{{ heading }}
@@ -41,7 +42,7 @@
 					<div
 						ref="subNavigation"
 						class="kv-secondary-nav__links-container tw-pt-1 md:tw-pt-0 md:tw-block tw-w-full md:tw-w-auto"
-						:class="subNavigationOpen ? '' : 'tw-hidden' "
+						:class="!subNavigationOpen ? 'tw-hidden' : '' "
 					>
 						<ul class="kv-secondary-nav__links tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3">
 							<li
@@ -145,13 +146,13 @@ export default {
 			if (linkAlignment.value === 'right') {
 				return (heading.value && heading.value.length > 0)
 					? 'tw-justify-between'
-					: 'tw-justify-end';
+					: 'tw-justify-between md:tw-justify-end';
 			}
 			if (linkAlignment.value === 'left') {
-				return 'tw-justify-start';
+				return 'tw-justify-between md:tw-justify-start';
 			}
 			if (linkAlignment.value === 'center') {
-				return 'tw-justify-center';
+				return 'tw-justify-between md:tw-justify-center';
 			}
 			return '';
 		});
