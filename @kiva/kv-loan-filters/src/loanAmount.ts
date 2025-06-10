@@ -1,4 +1,5 @@
 import { getMinMaxRangeFilter, createMinMaxRange } from './minMaxRangeUtils';
+import { getMinMaxRangeFromQueryParam } from './queryParseUtils';
 
 /**
  * The min loanAmount value
@@ -53,6 +54,8 @@ export default {
 				: null,
 		};
 	},
-	getFilterFromQuery: () => ({}),
+	getFilterFromQuery: (query) => ({
+		loanAmount: getMinMaxRangeFromQueryParam(query.loanAmount) ?? null,
+	}),
 	getQueryFromFilter: () => ({}),
 };
