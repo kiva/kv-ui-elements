@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.4...@kiva/kv-loan-filters@1.16.0) (2025-06-10)
+
+
+### Features
+
+* add amount left filter ([8f82f33](https://github.com/kiva/kv-ui-elements/commit/8f82f3306a2b2f823c2b4ecc56feb564f0c2195b))
+
+
+
+
+
 ## [1.15.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.3...@kiva/kv-loan-filters@1.15.4) (2025-06-10)
 
 
