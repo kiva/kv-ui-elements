@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.24.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.0...@kiva/kv-components@6.24.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* prevent word wrap in lend CTA button ([fe6487c](https://github.com/kiva/kv-ui-elements/commit/fe6487ca66e9e1fbe1dc19d1e7e63361f0127310))
+
+
+
+
+
 # [6.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.23.0...@kiva/kv-components@6.24.0) (2025-06-09)
 
 
