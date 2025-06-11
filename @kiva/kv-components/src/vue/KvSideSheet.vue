@@ -44,9 +44,9 @@
 								:icon="mdiArrowLeft"
 							/>
 						</button>
-						<h2 v-if="headline">
+						<h3 v-if="headline">
 							{{ headline }}
-						</h2>
+						</h3>
 					</div>
 					<div class="tw-flex tw-gap-1.5">
 						<button
@@ -76,7 +76,7 @@
 					:style="{ height: contentHeight + 'px' }"
 				>
 					<div
-						class="tw-p-2 tw-transition-opacity tw-duration-200"
+						class="tw-px-2 tw-transition-opacity tw-duration-200"
 						:class="{
 							'tw-opacity-0': !open,
 							'tw-opacity-full': open,
