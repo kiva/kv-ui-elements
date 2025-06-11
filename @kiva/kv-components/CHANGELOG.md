@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.1...@kiva/kv-components@6.25.0) (2025-06-11)
+
+
+### Features
+
+* headline to h3 and content padding ([bec54b5](https://github.com/kiva/kv-ui-elements/commit/bec54b5352e0b76ec74aea94bd351de5b278f03e))
+
+
+
+
+
 ## [6.24.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.0...@kiva/kv-components@6.24.1) (2025-06-11)
 
 
