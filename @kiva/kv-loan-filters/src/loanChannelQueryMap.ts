@@ -1446,10 +1446,10 @@ export default {
 				{
 					id: 174,
 					url: 'loans-almost-funded',
-					queryParams: 'status=fundRaising&distributionModel=both&sortBy=amountLeft&amountLeft=0,1000000',
+					queryParams: 'status=fundRaising&distributionModel=both&sortBy=amountLeft&amountLeft=100,1000000',
 					flssLoanSearch: {
 						sortBy: 'amountLeft',
-						amountLeft: createMinMaxRange(0, 1000000),
+						amountLeft: createMinMaxRange(100, 1000000),
 					},
 				},
 			],
