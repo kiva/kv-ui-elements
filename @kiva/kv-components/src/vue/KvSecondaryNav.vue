@@ -3,71 +3,87 @@
 		:theme="themeStyle"
 		class="kv-tailwind"
 	>
-		<div class="tw-z-1 tw-w-full kv-secondary-nav-holder relative">
+		<div
+			class="
+				tw-z-1 tw-w-full kv-secondary-nav-holder relative
+				tw-text-primary"
+			:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
+		>
 			<div
 				class="
-				tw-w-full tw-text-primary tw-overflow-x-auto kv-secondary-nav
+				tw-w-full tw-overflow-x-auto kv-secondary-nav
 				tw-absolute tw-top-0 tw-left-0 tw-right-0"
 				:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
 			>
-				<div
-					ref="navInner"
-					class="
+				<kv-page-container>
+					<div
+						ref="navInner"
+						class="
 							kv-secondary-nav__inner
 							tw-flex tw-gap-2 md:tw-gap-4 tw-items-center tw-flex-wrap
-							tw-px-2 md:tw-px-8 tw-py-2"
-					:class="navAlignmentClass"
-				>
-					<div
-						v-if="heading && heading.length > 0"
-						class="kv-secondary-nav__heading-container"
-						:class="linkAlignment === 'left' || linkAlignment === 'center' ? 'tw-block md:tw-hidden' : ''"
+							tw-py-2"
+						:class="navAlignmentClass"
 					>
-						<div class="kv-secondary-nav__heading tw-text-h3">
-							{{ heading }}
+						<div
+							v-if="heading && heading.length > 0"
+							class="kv-secondary-nav__heading-container"
+							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
+						>
+							<div class="kv-secondary-nav__heading tw-text-h3">
+								{{ heading }}
+							</div>
 						</div>
-					</div>
-					<button
-						class="
+						<button
+							class="
 								kv-secondary-nav__toggle
 								tw-flex md:tw-hidden
 								tw-text-primary tw-bg-transparent tw-border-none tw-cursor-pointer"
-						@click="toggleSubNavigation"
-					>
-						<kv-material-icon :icon="subNavigationOpen ? mdiChevronUp : mdiChevronDown" />
-					</button>
-					<div
-						ref="subNavigation"
-						class="kv-secondary-nav__links-container tw-pt-1 md:tw-pt-0 md:tw-block tw-w-full md:tw-w-auto"
-						:class="{ 'tw-hidden': !subNavigationOpen }"
-					>
-						<ul class="kv-secondary-nav__links tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3">
-							<li
-								v-for="(link, index) in links"
-								:key="index"
-								class="kv-secondary-nav__link-item tw-w-full md:tw-w-auto"
+							@click="toggleSubNavigation"
+						>
+							<kv-material-icon :icon="subNavigationOpen ? mdiChevronUp : mdiChevronDown" />
+						</button>
+						<div
+							ref="subNavigation"
+							class="
+							kv-secondary-nav__links-container
+							tw-pt-1 md:tw-pt-0 md:tw-block
+							tw-w-full md:tw-w-auto
+						"
+							:class="{ 'tw-hidden': !subNavigationOpen }"
+						>
+							<ul
+								class="
+							kv-secondary-nav__links
+							tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3
+						"
 							>
-								<component
-									:is="link.isExternal ? 'a' : 'router-link'"
-									:to="link.isExternal ? undefined : link.href"
-									:href="link.isExternal ? link.href : undefined"
-									class="
+								<li
+									v-for="(link, index) in links"
+									:key="index"
+									class="kv-secondary-nav__link-item tw-w-full md:tw-w-auto"
+								>
+									<component
+										:is="link.isExternal ? 'a' : 'router-link'"
+										:to="link.isExternal ? undefined : link.href"
+										:href="link.isExternal ? link.href : undefined"
+										class="
 											kv-secondary-nav__link
 											tw-py-2 md:tw-py-n
 											tw-text-primary tw-font-medium
 											hover:tw-underline hover:tw-text-primary
 										"
-									:class="{
-										'tw-underline': link.isActive,
-										'tw-no-underline': !link.isActive,
-									}"
-								>
-									{{ link.text }}
-								</component>
-							</li>
-						</ul>
+										:class="{
+											'tw-underline': link.isActive,
+											'tw-no-underline': !link.isActive,
+										}"
+									>
+										{{ link.text }}
+									</component>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
+				</kv-page-container>
 			</div>
 		</div>
 	</kv-theme-provider>
@@ -85,12 +101,14 @@ import { defaultTheme, greenDarkTheme } from '@kiva/kv-tokens';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
+import KvPageContainer from './KvPageContainer.vue';
 
 export default {
 	name: 'KvSecondaryNav',
 	components: {
-		KvMaterialIcon,
 		KvThemeProvider,
+		KvMaterialIcon,
+		KvPageContainer,
 	},
 	props: {
 		heading: {
