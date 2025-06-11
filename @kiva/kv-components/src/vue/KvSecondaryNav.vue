@@ -3,20 +3,19 @@
 		:theme="themeStyle"
 		class="kv-tailwind"
 	>
-		<div
-			class="tw-z-1 tw-w-full"
-			:class="isBelowElement ? 'tw-fixed' : 'tw-absolute'"
-		>
+		<div class="tw-z-1 tw-w-full kv-secondary-nav-holder relative">
 			<div
-				class="tw-w-full tw-text-primary tw-overflow-x-auto kv-secondary-nav"
+				class="
+				tw-w-full tw-text-primary tw-overflow-x-auto kv-secondary-nav
+				tw-absolute tw-top-0 tw-left-0 tw-right-0"
 				:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
 			>
 				<div
 					ref="navInner"
 					class="
-						kv-secondary-nav__inner
-						tw-flex tw-gap-2 md:tw-gap-4 tw-items-center tw-flex-wrap
-						tw-px-2 md:tw-px-8 tw-py-2"
+							kv-secondary-nav__inner
+							tw-flex tw-gap-2 md:tw-gap-4 tw-items-center tw-flex-wrap
+							tw-px-2 md:tw-px-8 tw-py-2"
 					:class="navAlignmentClass"
 				>
 					<div
@@ -30,19 +29,17 @@
 					</div>
 					<button
 						class="
-							kv-secondary-nav__toggle
-							tw-flex md:tw-hidden
-							tw-text-primary tw-bg-transparent tw-border-none tw-cursor-pointer"
+								kv-secondary-nav__toggle
+								tw-flex md:tw-hidden
+								tw-text-primary tw-bg-transparent tw-border-none tw-cursor-pointer"
 						@click="toggleSubNavigation"
 					>
-						<kv-material-icon
-							:icon="subNavigationOpen ? mdiChevronUp : mdiChevronDown"
-						/>
+						<kv-material-icon :icon="subNavigationOpen ? mdiChevronUp : mdiChevronDown" />
 					</button>
 					<div
 						ref="subNavigation"
 						class="kv-secondary-nav__links-container tw-pt-1 md:tw-pt-0 md:tw-block tw-w-full md:tw-w-auto"
-						:class="!subNavigationOpen ? 'tw-hidden' : '' "
+						:class="{ 'tw-hidden': !subNavigationOpen }"
 					>
 						<ul class="kv-secondary-nav__links tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3">
 							<li
@@ -55,13 +52,13 @@
 									:to="link.isExternal ? undefined : link.href"
 									:href="link.isExternal ? link.href : undefined"
 									class="
-										kv-secondary-nav__link
-										tw-py-2 md:tw-py-n
-										tw-text-primary tw-font-medium
-										hover:tw-underline hover:tw-text-primary
-									"
+											kv-secondary-nav__link
+											tw-py-2 md:tw-py-n
+											tw-text-primary tw-font-medium
+											hover:tw-underline hover:tw-text-primary
+										"
 									:class="{
-										'tw-underline': link.isActive ,
+										'tw-underline': link.isActive,
 										'tw-no-underline': !link.isActive,
 									}"
 								>
@@ -73,16 +70,12 @@
 				</div>
 			</div>
 		</div>
-		<div
-			id="threshold"
-			ref="thresholdRef"
-		></div>
 	</kv-theme-provider>
 </template>
 <script>
 // Vue core
 import {
-	ref, computed, toRefs, onMounted, onUnmounted,
+	ref, computed, toRefs,
 } from 'vue';
 
 // Theme
@@ -92,8 +85,6 @@ import { defaultTheme, greenDarkTheme } from '@kiva/kv-tokens';
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
-
-// Icons
 
 export default {
 	name: 'KvSecondaryNav',
@@ -136,11 +127,6 @@ export default {
 			heading, linkAlignment, theme,
 		} = toRefs(props);
 
-		const thresholdRef = ref(null);
-		const isBelowElement = ref(false);
-		const navInner = ref(null);
-		const navPlaceholder = ref(null);
-		const headerOffset = ref(0);
 		const subNavigation = ref(null);
 		const subNavigationOpen = ref(false);
 
@@ -167,25 +153,9 @@ export default {
 			return themeMapper[theme.value];
 		});
 
-		const updateHeaderPosition = () => {
-			const thresholdClientRectTop = thresholdRef.value?.getBoundingClientRect()?.top;
-			isBelowElement.value = thresholdClientRectTop ? thresholdClientRectTop < 0 : false;
-		};
-
 		const toggleSubNavigation = () => {
 			subNavigationOpen.value = !subNavigationOpen.value;
 		};
-
-		onMounted(() => {
-			updateHeaderPosition();
-			window.addEventListener('scroll', updateHeaderPosition);
-			window.addEventListener('resize', updateHeaderPosition);
-		});
-
-		onUnmounted(() => {
-			window.removeEventListener('scroll', updateHeaderPosition);
-			window.removeEventListener('resize', updateHeaderPosition);
-		});
 
 		return {
 			navAlignmentClass,
@@ -193,20 +163,17 @@ export default {
 			subNavigationOpen,
 			mdiChevronUp,
 			mdiChevronDown,
-			isBelowElement,
-			navInner,
 			subNavigation,
-			thresholdRef,
-			navPlaceholder,
-			headerOffset,
 			themeStyle,
 		};
 	},
 };
 </script>
 <style scoped>
-#threshold, .kv-secondary-nav {
+.kv-secondary-nav-holder {
+	height: 62px;
+}
+.kv-secondary-nav {
 	min-height: 62px;
-	width: 100%;
 }
 </style>

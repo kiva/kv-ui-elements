@@ -37,8 +37,9 @@ const Template = (args, { argTypes }) => ({
 		return args;
 	},
 	template: `
-		<div style="height: 300vh; overflow: auto;position:relative;">
+		<div style="height: 80vh; overflow: auto;position:relative;">
 			<KvSecondaryNav :heading="heading" :links="links" :linkAlignment="linkAlignment" :theme="theme" />
+			Testing content
 		</div>
 	`,
 	data() {
