@@ -210,8 +210,8 @@ export default {
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
-		const windowHeight = ref(window.innerHeight);
-		const windowWidth = ref(window.innerWidth);
+		const windowHeight = ref(null);
+		const windowWidth = ref(null);
 
 		const heights = reactive({
 			headline: 0,
@@ -334,7 +334,7 @@ export default {
 			setTimeout(() => {
 				updateHeights();
 			}, 100);
-		}, { deep: true, immediate: true });
+		}, { deep: true });
 
 		// Use animationWidth for consistent width calculation
 		const sideSheetStyles = computed(() => {
@@ -362,7 +362,7 @@ export default {
 				document.removeEventListener('keyup', onKeyUp);
 				modalStyles.value = {};
 			}
-		}, { immediate: true });
+		});
 
 		// Watch width changes when component is open (resize without animation)
 		watch(animationWidth, (newWidth) => {
