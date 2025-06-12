@@ -119,6 +119,7 @@ import {
 import {
 	mdiArrowLeft, mdiClose, mdiExportVariant,
 } from '@mdi/js';
+import kvTokensPrimitives from '@kiva/kv-tokens';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
@@ -219,7 +220,9 @@ export default {
 		});
 
 		const contentHeight = computed(() => {
-			const height = windowHeight.value - heights.headline - heights.controls;
+			const height = windowHeight.value
+				- (windowWidth.value >= kvTokensPrimitives.breakpoints.lg ? heights.headline : 0)
+				- heights.controls;
 			return Math.max(height, 0);
 		});
 
