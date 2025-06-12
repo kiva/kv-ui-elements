@@ -119,7 +119,6 @@ import {
 import {
 	mdiArrowLeft, mdiClose, mdiExportVariant,
 } from '@mdi/js';
-import kvTokensPrimitives from '@kiva/kv-tokens';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
@@ -196,6 +195,10 @@ export default {
 				return false;
 			},
 		},
+		hideHeadlineBg: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
 	setup(props, { emit, slots }) {
@@ -204,6 +207,7 @@ export default {
 			kvTrackFunction,
 			trackEventCategory,
 			widthDimensions,
+			hideHeadlineBg,
 		} = toRefs(props);
 
 		const open = ref(false);
@@ -221,7 +225,7 @@ export default {
 
 		const contentHeight = computed(() => {
 			const height = windowHeight.value
-				- (windowWidth.value >= kvTokensPrimitives.breakpoints.lg ? heights.headline : 0)
+				- (hideHeadlineBg.value ? 0 : heights.headline)
 				- heights.controls;
 			return Math.max(height, 0);
 		});
