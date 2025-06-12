@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.25.0...@kiva/kv-components@6.26.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* always show heading on mobile, tweak some conditional classes to be more shorthand ([8cfe4b7](https://github.com/kiva/kv-ui-elements/commit/8cfe4b7cfbf9f4f06de6dcfb4cb4628866b5799a))
+* external link flag to detect if should be router-link or a tag ([7c30152](https://github.com/kiva/kv-ui-elements/commit/7c301525b4fc5e5dfa10731f9ccbfa8f089c4cd2))
+* sidesheet does not work with SSR ([6875b76](https://github.com/kiva/kv-ui-elements/commit/6875b76b55f84f9748f1b7019637d254c80752a8))
+* tweaks for QA notes on SecondaryNav ([6d4d3e6](https://github.com/kiva/kv-ui-elements/commit/6d4d3e61d853f37c57c3986e0ac848cbeb1f4540))
+* update storybook to be a bit simpler ([82db14c](https://github.com/kiva/kv-ui-elements/commit/82db14c078b3297e835d74a8c7a7ffecc896da06))
+* use kv-page-container for inner nav ([e3c8de5](https://github.com/kiva/kv-ui-elements/commit/e3c8de5697e8599bbd426902e3bd08d73e561704))
+
+
+### Features
+
+* new secondary nav component ([7a2fc06](https://github.com/kiva/kv-ui-elements/commit/7a2fc064b65ca833594b14f72b198717c5e7fc42))
+* subnavLinkClicked emitter ([4e5b4bb](https://github.com/kiva/kv-ui-elements/commit/4e5b4bb8ca8760e92592258e3e3f74790e71e9b3))
+
+
+
+
+
 # [6.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.1...@kiva/kv-components@6.25.0) (2025-06-11)
 
 
