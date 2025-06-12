@@ -45,17 +45,16 @@
 						<div
 							ref="subNavigation"
 							class="
-							kv-secondary-nav__links-container
-							tw-pt-1 md:tw-pt-0 md:tw-block
-							tw-w-full md:tw-w-auto
-						"
+								kv-secondary-nav__links-container
+								tw-pt-1 md:tw-pt-0 md:tw-block
+								tw-w-full md:tw-w-auto"
 							:class="{ 'tw-hidden': !subNavigationOpen }"
 						>
 							<ul
 								class="
-							kv-secondary-nav__links
-							tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3
-						"
+									kv-secondary-nav__links
+									tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-gap-3
+								"
 							>
 								<li
 									v-for="(link, index) in links"
@@ -76,6 +75,7 @@
 											'tw-underline': link.isActive,
 											'tw-no-underline': !link.isActive,
 										}"
+										@click="handleLinkClick(link)"
 									>
 										{{ link.text }}
 									</component>
@@ -140,7 +140,10 @@ export default {
 			},
 		},
 	},
-	setup(props) {
+	emits: [
+		'subnavLinkClicked',
+	],
+	setup(props, { emit }) {
 		const {
 			heading, linkAlignment, theme,
 		} = toRefs(props);
@@ -175,6 +178,10 @@ export default {
 			subNavigationOpen.value = !subNavigationOpen.value;
 		};
 
+		const handleLinkClick = (link) => {
+			emit('subnavLinkClicked', link);
+		};
+
 		return {
 			navAlignmentClass,
 			toggleSubNavigation,
@@ -183,6 +190,7 @@ export default {
 			mdiChevronDown,
 			subNavigation,
 			themeStyle,
+			handleLinkClick,
 		};
 	},
 };
