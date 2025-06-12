@@ -195,7 +195,10 @@ export default {
 				return false;
 			},
 		},
-		hideHeadlineBg: {
+		/**
+		 * Whether to hide the background of the headline section on mobile (e.g., in Borrower Profile Sidesheet)
+		 * */
+		hideHeadlineBgOnMobile: {
 			type: Boolean,
 			default: false,
 		},
@@ -207,7 +210,7 @@ export default {
 			kvTrackFunction,
 			trackEventCategory,
 			widthDimensions,
-			hideHeadlineBg,
+			hideHeadlineBgOnMobile,
 		} = toRefs(props);
 
 		const open = ref(false);
@@ -225,7 +228,7 @@ export default {
 
 		const contentHeight = computed(() => {
 			const height = windowHeight.value
-				- (hideHeadlineBg.value ? 0 : heights.headline)
+				- (hideHeadlineBgOnMobile.value ? 0 : heights.headline)
 				- heights.controls;
 			return Math.max(height, 0);
 		});
