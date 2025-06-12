@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.26.0...@kiva/kv-components@6.27.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* sidesheet content height in mobile ([b1e4b6f](https://github.com/kiva/kv-ui-elements/commit/b1e4b6f196da00a183f9b975a087e68369002e30))
+
+
+### Features
+
+* add flag to hide headline background on mobile ([8b58dc2](https://github.com/kiva/kv-ui-elements/commit/8b58dc26fc10d8ce25a941eba42d6aa7af985ecc))
+* hide headline bg flag for bp sidesheet ([af7c5da](https://github.com/kiva/kv-ui-elements/commit/af7c5da48e8b13e09586cda74caefcff01df64d5))
+
+
+
+
+
 # [6.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.25.0...@kiva/kv-components@6.26.0) (2025-06-12)
 
 
