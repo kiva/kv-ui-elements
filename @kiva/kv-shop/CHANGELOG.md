@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.54](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.53...@kiva/kv-shop@3.0.54) (2025-06-12)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.53](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.52...@kiva/kv-shop@3.0.53) (2025-06-12)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.52](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.51...@kiva/kv-shop@3.0.52) (2025-06-11)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.51](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.50...@kiva/kv-shop@3.0.51) (2025-06-11)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.50](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.49...@kiva/kv-shop@3.0.50) (2025-06-09)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.49](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.48...@kiva/kv-shop@3.0.49) (2025-06-05)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.48](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.47...@kiva/kv-shop@3.0.48) (2025-06-05)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.47](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.46...@kiva/kv-shop@3.0.47) (2025-06-03)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.46](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.45...@kiva/kv-shop@3.0.46) (2025-06-03)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.0.45](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.44...@kiva/kv-shop@3.0.45) (2025-06-03)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.0.44](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.43...@kiva/kv-shop@3.0.44) (2025-05-29)
 
 **Note:** Version bump only for package @kiva/kv-shop

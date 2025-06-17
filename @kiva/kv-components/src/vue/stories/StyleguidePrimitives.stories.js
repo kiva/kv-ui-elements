@@ -7,6 +7,7 @@ import KvTab from '../KvTab.vue';
 import KvTabs from '../KvTabs.vue';
 import KvTabPanel from '../KvTabPanel.vue';
 import KvToast from '../KvToast.vue';
+import KvSecondaryNav from '../KvSecondaryNav.vue';
 
 const config = resolveConfig(tailwindConfig);
 const { theme } = config;
@@ -39,6 +40,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 		KvTabs,
 		KvTabPanel,
 		KvToast,
+		KvSecondaryNav,
 	},
 	setup() { return { theme, args: { ...templateArgs } }; },
 	template: `

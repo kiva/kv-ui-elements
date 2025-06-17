@@ -13,8 +13,8 @@
 			ref="sideSheetRef"
 			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
 			:class="{
-				'tw-w-0 tw-delay-200 tw-opacity-0': !open,
-				'tw-opacity-full': open,
+				'tw-translate-x-full': !open,
+				'tw-translate-x-0': open,
 				'tw-h-full': $slots.controls,
 			}"
 			:style="sideSheetStyles"
@@ -26,7 +26,7 @@
 				<div
 					ref="headlineRef"
 					class="tw-flex tw-justify-between tw-transition-opacity tw-duration-200
-					tw-px-3 tw-py-2 tw-border-tertiary"
+					tw-px-3 tw-py-2 tw-border-tertiary tw-gap-1.5"
 					:class="{
 						'tw-opacity-0': !open,
 						'tw-opacity-full': open,
@@ -44,9 +44,9 @@
 								:icon="mdiArrowLeft"
 							/>
 						</button>
-						<h2 v-if="headline">
+						<h3 v-if="headline">
 							{{ headline }}
-						</h2>
+						</h3>
 					</div>
 					<div class="tw-flex tw-gap-1.5">
 						<button
@@ -71,11 +71,12 @@
 					</div>
 				</div>
 				<div
+					id="sidesheet-content"
 					class="tw-overflow-y-auto tw-overscroll-y-contain"
 					:style="{ height: contentHeight + 'px' }"
 				>
 					<div
-						class="tw-p-2 tw-transition-opacity tw-duration-200"
+						class="tw-px-2 tw-transition-opacity tw-duration-200"
 						:class="{
 							'tw-opacity-0': !open,
 							'tw-opacity-full': open,
@@ -121,6 +122,7 @@ import {
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
+	name: 'KvSideSheet',
 	components: {
 		KvMaterialIcon,
 	},
@@ -168,13 +170,6 @@ export default {
 			default: '',
 		},
 		/**
-		 * Source element position for expand animation
-		 * */
-		animationSourceElement: {
-			type: Object,
-			default: () => ({}),
-		},
-		/**
 		 * The headline of the side sheet
 		 * */
 		headline: {
@@ -200,6 +195,13 @@ export default {
 				return false;
 			},
 		},
+		/**
+		 * Whether to hide the background of the headline section on mobile (e.g., in Borrower Profile Sidesheet)
+		 * */
+		hideHeadlineBgOnMobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
 	setup(props, { emit, slots }) {
@@ -207,17 +209,17 @@ export default {
 			visible,
 			kvTrackFunction,
 			trackEventCategory,
-			animationSourceElement,
 			widthDimensions,
+			hideHeadlineBgOnMobile,
 		} = toRefs(props);
 
 		const open = ref(false);
-		const initialStyles = ref({});
 		const modalStyles = ref({});
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
-		const windowHeight = ref(window.innerHeight);
+		const windowHeight = ref(null);
+		const windowWidth = ref(null);
 
 		const heights = reactive({
 			headline: 0,
@@ -225,8 +227,35 @@ export default {
 		});
 
 		const contentHeight = computed(() => {
-			const height = windowHeight.value - heights.headline - heights.controls;
+			const height = windowHeight.value
+				- (hideHeadlineBgOnMobile.value ? 0 : heights.headline)
+				- heights.controls;
 			return Math.max(height, 0);
+		});
+
+		// Compute animation width based on current viewport and widthDimensions
+		const animationWidth = computed(() => {
+			if (typeof widthDimensions.value === 'string') {
+				return widthDimensions.value;
+			}
+			const breakpoints = {
+				sm: 640,
+				md: 768,
+				lg: 1024,
+				xl: 1280,
+				'2xl': 1536,
+			};
+			const currentWidth = windowWidth.value || window.innerWidth;
+			// Sort breakpoints from largest to smallest
+			// Sort breakpoints from largest to smallest and find the first match
+			const matchingBreakpoint = Object.keys(widthDimensions.value)
+				.filter((key) => key !== 'default')
+				.sort((a, b) => breakpoints[b] - breakpoints[a])
+				.find((key) => currentWidth >= breakpoints[key]);
+			// Return the matching breakpoint width or fallback to default
+			return matchingBreakpoint
+				? widthDimensions.value[matchingBreakpoint]
+				: (widthDimensions.value.default || '100%');
 		});
 
 		// Debounce function to limit rapid ResizeObserver calls
@@ -240,6 +269,7 @@ export default {
 
 		const updateHeights = () => {
 			windowHeight.value = window.innerHeight;
+			windowWidth.value = window.innerWidth;
 			setTimeout(() => {
 				nextTick(() => {
 					if (headlineRef.value) {
@@ -273,15 +303,9 @@ export default {
 			open.value = false;
 			avoidBodyScroll();
 			kvTrackFunction.value(trackEventCategory.value, 'click', 'side-sheet-closed');
-			if (animationSourceElement.value) {
-				modalStyles.value = {
-					...initialStyles.value,
-					transition: 'all 0.5s ease-in-out',
-				};
-			}
 			setTimeout(() => {
 				emit('side-sheet-closed');
-			}, 700);
+			}, 300); // Match transition duration
 			// eslint-disable-next-line no-use-before-define
 			document.removeEventListener('keyup', onKeyUp);
 		};
@@ -320,71 +344,55 @@ export default {
 			setTimeout(() => {
 				updateHeights();
 			}, 100);
-		}, { deep: true, immediate: true });
+		}, { deep: true });
 
-		// Compute side sheet styles based on widthDimensions
+		// Use animationWidth for consistent width calculation
 		const sideSheetStyles = computed(() => {
-			if (!open.value) {
-				return {};
-			}
-			if (typeof widthDimensions.value === 'string') {
-				return { width: widthDimensions.value };
-			}
-			// Use the smallest breakpoint's width if no default is provided
-			const widthKeys = ['sm', 'md', 'lg', 'xl', '2xl'];
-			const smallestBreakpoint = widthKeys.find((key) => widthDimensions.value[key]);
-			return { width: widthDimensions.value[smallestBreakpoint] || widthDimensions.value.default || '100%' };
+			return {
+				width: animationWidth.value,
+			};
 		});
 
-		// Watch for visibility changes to re-measure
-		watch([visible, widthDimensions], ([newVisible]) => {
+		// Watch for visibility changes (opening/closing)
+		watch(visible, (newVisible) => {
 			if (newVisible) {
 				document.addEventListener('keyup', onKeyUp);
+
+				// Clear any previous modal styles to ensure clean state
+				modalStyles.value = {};
+
 				setTimeout(() => {
 					open.value = true;
 					avoidBodyScroll();
 					updateHeights();
-				}, 100);
-
-				const rect = animationSourceElement.value?.getBoundingClientRect();
-				const top = rect?.top ?? 0;
-				const left = rect?.left ?? 0;
-				const width = rect?.width ?? 0;
-				const height = rect?.height ?? 0;
-
-				if (top || left || width || height) {
-					initialStyles.value = {
-						position: 'fixed',
-						top: `${top}px`,
-						width: `${width}px`,
-						height: `${height}px`,
-					};
-
-					modalStyles.value = {
-						...initialStyles.value,
-						transition: 'none',
-					};
-
-					setTimeout(() => {
-						modalStyles.value = {
-							top: '0',
-							height: '100%',
-							transition: 'all 0.5s ease-in-out',
-						};
-					}, 10);
-				} else {
-					modalStyles.value = {
-						height: '100%',
-					};
-				}
+				}, 10); // Reduced delay for smoother animation
 			} else {
 				open.value = false;
 				avoidBodyScroll();
 				document.removeEventListener('keyup', onKeyUp);
-				modalStyles.value = animationSourceElement.value ? {
-					...initialStyles.value,
-					transition: 'all 0.5s ease-in-out',
-				} : {};
+				modalStyles.value = {};
+			}
+		});
+
+		// Watch width changes when component is open (resize without animation)
+		watch(animationWidth, (newWidth) => {
+			if (open.value && visible.value) {
+				if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+					modalStyles.value = {
+						...modalStyles.value,
+						width: newWidth,
+						transition: 'none', // No animation for resize
+					};
+					// Re-enable transitions after a brief moment for future animations
+					setTimeout(() => {
+						if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+							modalStyles.value = {
+								...modalStyles.value,
+								transition: 'all 0.3s ease-in-out',
+							};
+						}
+					}, 50);
+				}
 			}
 		});
 

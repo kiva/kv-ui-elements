@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.26.0...@kiva/kv-components@6.27.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* sidesheet content height in mobile ([b1e4b6f](https://github.com/kiva/kv-ui-elements/commit/b1e4b6f196da00a183f9b975a087e68369002e30))
+
+
+### Features
+
+* add flag to hide headline background on mobile ([8b58dc2](https://github.com/kiva/kv-ui-elements/commit/8b58dc26fc10d8ce25a941eba42d6aa7af985ecc))
+* hide headline bg flag for bp sidesheet ([af7c5da](https://github.com/kiva/kv-ui-elements/commit/af7c5da48e8b13e09586cda74caefcff01df64d5))
+
+
+
+
+
+# [6.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.25.0...@kiva/kv-components@6.26.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* always show heading on mobile, tweak some conditional classes to be more shorthand ([8cfe4b7](https://github.com/kiva/kv-ui-elements/commit/8cfe4b7cfbf9f4f06de6dcfb4cb4628866b5799a))
+* external link flag to detect if should be router-link or a tag ([7c30152](https://github.com/kiva/kv-ui-elements/commit/7c301525b4fc5e5dfa10731f9ccbfa8f089c4cd2))
+* sidesheet does not work with SSR ([6875b76](https://github.com/kiva/kv-ui-elements/commit/6875b76b55f84f9748f1b7019637d254c80752a8))
+* tweaks for QA notes on SecondaryNav ([6d4d3e6](https://github.com/kiva/kv-ui-elements/commit/6d4d3e61d853f37c57c3986e0ac848cbeb1f4540))
+* update storybook to be a bit simpler ([82db14c](https://github.com/kiva/kv-ui-elements/commit/82db14c078b3297e835d74a8c7a7ffecc896da06))
+* use kv-page-container for inner nav ([e3c8de5](https://github.com/kiva/kv-ui-elements/commit/e3c8de5697e8599bbd426902e3bd08d73e561704))
+
+
+### Features
+
+* new secondary nav component ([7a2fc06](https://github.com/kiva/kv-ui-elements/commit/7a2fc064b65ca833594b14f72b198717c5e7fc42))
+* subnavLinkClicked emitter ([4e5b4bb](https://github.com/kiva/kv-ui-elements/commit/4e5b4bb8ca8760e92592258e3e3f74790e71e9b3))
+
+
+
+
+
+# [6.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.1...@kiva/kv-components@6.25.0) (2025-06-11)
+
+
+### Features
+
+* headline to h3 and content padding ([bec54b5](https://github.com/kiva/kv-ui-elements/commit/bec54b5352e0b76ec74aea94bd351de5b278f03e))
+
+
+
+
+
+## [6.24.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.24.0...@kiva/kv-components@6.24.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* prevent word wrap in lend CTA button ([fe6487c](https://github.com/kiva/kv-ui-elements/commit/fe6487ca66e9e1fbe1dc19d1e7e63361f0127310))
+
+
+
+
+
+# [6.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.23.0...@kiva/kv-components@6.24.0) (2025-06-09)
+
+
+### Features
+
+* adding space between headline and top controls in sidesheet ([61b55f8](https://github.com/kiva/kv-ui-elements/commit/61b55f8a26fb12ce4fe12ebe873916e2479786a8))
+
+
+
+
+
+# [6.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.2...@kiva/kv-components@6.23.0) (2025-06-05)
+
+
+### Bug Fixes
+
+* use new style for selected dropdown as well ([436acaf](https://github.com/kiva/kv-ui-elements/commit/436acaf45dadae663198e36a86582ef390add211))
+
+
+### Features
+
+* improve lend cta selected state for side sheet version and improve long borrower name support ([30f597d](https://github.com/kiva/kv-ui-elements/commit/30f597daaddf8a6462a9cbf7bf88a7b917946b84))
+
+
+
+
+
+## [6.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.1...@kiva/kv-components@6.22.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* smoothed out animation for side sheet usage and got design review ([6db3af6](https://github.com/kiva/kv-ui-elements/commit/6db3af650b87609f307ba688557e1de0ca71f3a6))
+
+
+
+
+
+## [6.22.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.22.0...@kiva/kv-components@6.22.1) (2025-06-03)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [6.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.21.1...@kiva/kv-components@6.22.0) (2025-06-03)
+
+
+### Features
+
+* add id and ref to sidesheet content ([abcdbac](https://github.com/kiva/kv-ui-elements/commit/abcdbac5494ae212c5c4bd8ffede191cd0c61e22))
+
+
+
+
+
+## [6.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.21.0...@kiva/kv-components@6.21.1) (2025-06-03)
+
+
+### Bug Fixes
+
+* fix incorrect import ([3bb3598](https://github.com/kiva/kv-ui-elements/commit/3bb3598308ad0468d1109967144f54d8703c9a23))
+* fix Storybook animation bug ([edcdeb1](https://github.com/kiva/kv-ui-elements/commit/edcdeb1e6971d9a2dcd6e348a6ecf4d3f0a9f7d7))
+* fix the KvSideSheet closing animation ([9033afc](https://github.com/kiva/kv-ui-elements/commit/9033afc99b1b88542b3cb7fcff9c830ae292e7f1))
+
+
+
+
+
 # [6.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.20.0...@kiva/kv-components@6.21.0) (2025-05-29)
 
 

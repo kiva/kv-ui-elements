@@ -23,7 +23,6 @@ const Template = (args, { argTypes }) => ({
 				:kv-track-function="kvTrackMock"
 				track-event-category="new-loan-card"
 				@side-sheet-closed="isVisible = false"
-				:animation-source-element="animationSourceElement"
 				v-bind="args"
 			>
 				<div>
@@ -35,7 +34,6 @@ const Template = (args, { argTypes }) => ({
 	data() {
 		return {
 			isVisible: args.visible,
-			animationSourceElement: null,
 		};
 	},
 	methods: {
@@ -48,24 +46,13 @@ const Template = (args, { argTypes }) => ({
 		) {
 			console.log(category, action, label, property, value);
 		},
-		openModal(event) {
-			if (this.expandEffect) {
-				this.animationSourceElement = event.currentTarget;
-			}
+		openModal() {
 			this.isVisible = true;
 		},
 	},
 });
 
 export const Default = Template.bind({});
-
-export const ExpandEffect = Template.bind({});
-ExpandEffect.args = {
-	expandEffect: true,
-	headline: 'Headline',
-	showGoToLink: true,
-	showBackButton: true,
-};
 
 const TemplateWithControls = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -84,7 +71,6 @@ const TemplateWithControls = (args, { argTypes }) => ({
 				:kv-track-function="kvTrackMock"
 				track-event-category="new-loan-card"
 				@side-sheet-closed="isVisible = false"
-				:animation-source-element="animationSourceElement"
 				v-bind="args"
 			>
 				<div>
@@ -110,8 +96,6 @@ const TemplateWithControls = (args, { argTypes }) => ({
 	data() {
 		return {
 			isVisible: args.visible,
-			expandEffect: args.expandEffect,
-			animationSourceElement: null,
 		};
 	},
 	methods: {
@@ -124,10 +108,7 @@ const TemplateWithControls = (args, { argTypes }) => ({
 		) {
 			console.log(category, action, label, property, value);
 		},
-		openModal(event) {
-			if (this.expandEffect) {
-				this.animationSourceElement = event.currentTarget;
-			}
+		openModal() {
 			this.isVisible = true;
 		},
 	},
@@ -145,7 +126,6 @@ FixedWidth.args = {
 	headline: 'Fixed Width',
 	showGoToLink: true,
 	showBackButton: true,
-	expandEffect: true,
 	widthDimensions: '33.33%',
 };
 
@@ -154,7 +134,6 @@ ResponsiveWidths.args = {
 	headline: 'Responsive Widths',
 	showGoToLink: true,
 	showBackButton: true,
-	expandEffect: true,
 	widthDimensions: { lg: '480px', md: '460px', sm: '100%' },
 };
 
@@ -163,7 +142,6 @@ ResponsiveWidthsWithControls.args = {
 	headline: 'Responsive Widths with Controls',
 	showGoToLink: true,
 	showBackButton: true,
-	expandEffect: true,
 	widthDimensions: { lg: '480px', md: '460px', sm: '100%' },
 };
 
@@ -172,7 +150,6 @@ CustomResponsiveWidths.args = {
 	headline: 'Custom Responsive Widths',
 	showGoToLink: true,
 	showBackButton: true,
-	expandEffect: true,
 	widthDimensions: {
 		default: '100%', sm: '80%', md: '500px', lg: '600px',
 	},

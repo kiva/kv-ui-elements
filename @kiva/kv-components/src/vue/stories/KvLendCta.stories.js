@@ -177,6 +177,18 @@ export const WithPresetOptions = story({
 	showPresetAmounts: true,
 });
 
+export const WithPresetOptionsLongName = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		name: 'John Has Really Long Name That Should Be Truncated',
+		borrowerCount: 1,
+	},
+	unreservedAmount: '150.00',
+	kvTrackFunction,
+	showPresetAmounts: true,
+});
+
 export const WithPresetOptionsGroup = story({
 	isLoading: false,
 	loan: {
