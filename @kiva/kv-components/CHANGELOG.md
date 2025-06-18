@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.27.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.0...@kiva/kv-components@6.27.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* modal position fix ([#589](https://github.com/kiva/kv-ui-elements/issues/589)) ([01eef0f](https://github.com/kiva/kv-ui-elements/commit/01eef0fe4b7ca7621626859b1131a5f59381e258))
+
+
+
+
+
 # [6.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.26.0...@kiva/kv-components@6.27.0) (2025-06-12)
 
 
