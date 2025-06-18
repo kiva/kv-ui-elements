@@ -235,6 +235,7 @@ import {
 	computed,
 	onMounted,
 	onUnmounted,
+	watch,
 } from 'vue';
 import { throttle } from '../utils/throttle';
 import KvCartModal from './KvCartModal.vue';
@@ -337,6 +338,7 @@ export default {
 	],
 	setup(props, { emit }) {
 		const {
+			modalVisible,
 			addedLoan,
 			userData,
 			hasEverLoggedIn,
@@ -441,7 +443,13 @@ export default {
 			}
 		};
 
-		const updateHeaderPositionThrottled = throttle(updateHeaderPosition, 100);
+		const updateHeaderPositionThrottled = throttle(updateHeaderPosition, 50);
+
+		watch(modalVisible, () => {
+			if (modalVisible.value) {
+				updateHeaderPosition();
+			}
+		}, { immediate: true });
 
 		onMounted(() => {
 			updateHeaderPosition();
