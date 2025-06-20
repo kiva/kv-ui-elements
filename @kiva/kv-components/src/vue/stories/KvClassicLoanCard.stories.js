@@ -387,7 +387,6 @@ export const HugeLentAmount = story({
 	kvTrackFunction,
 	photoPath,
 	isVisitor: false,
-	enableHugeAmount: true,
 });
 
 export const SupportButton = story({
