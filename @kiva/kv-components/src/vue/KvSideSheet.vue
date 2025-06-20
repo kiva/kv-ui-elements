@@ -11,7 +11,7 @@
 	>
 		<div
 			ref="sideSheetRef"
-			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
+			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white"
 			:class="{
 				'tw-translate-x-full': !open,
 				'tw-translate-x-0': open,
