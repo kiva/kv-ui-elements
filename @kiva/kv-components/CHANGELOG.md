@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.2...@kiva/kv-components@6.28.0) (2025-06-20)
+
+
+### Features
+
+* remove huge amount flags ([#591](https://github.com/kiva/kv-ui-elements/issues/591)) ([b2d1765](https://github.com/kiva/kv-ui-elements/commit/b2d1765f9b98ae136570683a27b4d922df6d82f5))
+
+
+
+
+
 ## [6.27.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.1...@kiva/kv-components@6.27.2) (2025-06-20)
 
 
