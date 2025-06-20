@@ -177,7 +177,6 @@ function buildPriceArray(amountLeft, minAmount) {
  * @param {boolean} isCompleteLoanActive Whether to include option that would complete loan
  * @param {number} minAmount The min amount to show in the dropdown
  * @param {boolean} enableFiveDollarsNotes Whether five dollar notes are enabled
- * @param {boolean} enableHugeAmount Whether huge loan amounts are enabled
  * @param {boolean} isVisitor Whether the current user is a visitor
  * @param {boolean} inPfp Whether the loan is in PFP
  * @returns {string[]} Price value array for the CTA dropdown
@@ -187,7 +186,6 @@ export function getDropdownPriceArray(
 	isCompleteLoanActive = false,
 	minAmount = 25,
 	enableFiveDollarsNotes = false,
-	enableHugeAmount = false,
 	isVisitor = true,
 	inPfp = false,
 ) {
@@ -196,7 +194,7 @@ export function getDropdownPriceArray(
 		? build5DollarsPriceArray(parsedAmountLeft).slice(0, 28)
 		: buildPriceArray(parsedAmountLeft, minAmount).slice(0, 20);
 
-	if (enableHugeAmount && parsedAmountLeft > 500 && !isVisitor) {
+	if (parsedAmountLeft > 500 && !isVisitor) {
 		const hugePriceArray = buildHugePriceArray(parsedAmountLeft);
 		priceArray = priceArray.concat(hugePriceArray);
 	}

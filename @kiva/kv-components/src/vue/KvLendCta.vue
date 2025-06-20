@@ -106,8 +106,7 @@
 			>
 				<div
 					v-if="showPresetAmounts && !isAdding"
-					class="tw-flex tw-gap-1 lg:tw-gap-2"
-					:class="{'tw-flex-wrap md:tw-flex-nowrap': enableHugeAmount}"
+					class="tw-flex tw-gap-1 lg:tw-gap-2 tw-flex-wrap md:tw-flex-nowrap"
 				>
 					<template v-if="!isLendAmountButton">
 						<kv-ui-button
@@ -126,11 +125,10 @@
 						v-if="showFilteredDropdown"
 						:id="`LoanAmountDropdown_${loanId}`"
 						v-model="selectedDropdownOption"
-						class="tw-min-w-12 tw-rounded filtered-dropdown"
+						class="tw-min-w-12 tw-rounded filtered-dropdown tw-w-full"
 						:class="{
 							'unselected-dropdown': !selectedDropdown,
 							'selected-dropdown': selectedDropdown,
-							'tw-w-full': enableHugeAmount
 						}"
 						aria-label="Lend amount"
 						@update:modelValue="trackLendAmountSelection"
@@ -327,10 +325,6 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		enableHugeAmount: {
-			type: Boolean,
-			default: false,
-		},
 		isVisitor: {
 			type: Boolean,
 			default: true,
@@ -416,7 +410,6 @@ export default {
 				this.isCompleteLoanActive,
 				minAmount,
 				this.enableFiveDollarsNotes,
-				this.enableHugeAmount,
 				this.isVisitor,
 			);
 			// Limit price options based on the maxAmount
