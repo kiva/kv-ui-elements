@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.27.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.1...@kiva/kv-components@6.27.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove problematic tailwind class from sidesheet ([463dc9e](https://github.com/kiva/kv-ui-elements/commit/463dc9ea38272bd001bb4860109e3143cd49ff42))
+
+
+
+
+
 ## [6.27.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.0...@kiva/kv-components@6.27.1) (2025-06-18)
 
 
