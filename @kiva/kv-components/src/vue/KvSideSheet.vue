@@ -355,24 +355,26 @@ export default {
 
 		// Watch for visibility changes (opening/closing)
 		watch(visible, (newVisible) => {
-			if (newVisible) {
-				document.addEventListener('keyup', onKeyUp);
+			if (typeof window !== 'undefined') {
+				if (newVisible) {
+					document.addEventListener('keyup', onKeyUp);
 
-				// Clear any previous modal styles to ensure clean state
-				modalStyles.value = {};
+					// Clear any previous modal styles to ensure clean state
+					modalStyles.value = {};
 
-				setTimeout(() => {
-					open.value = true;
+					setTimeout(() => {
+						open.value = true;
+						avoidBodyScroll();
+						updateHeights();
+					}, 10); // Reduced delay for smoother animation
+				} else {
+					open.value = false;
 					avoidBodyScroll();
-					updateHeights();
-				}, 10); // Reduced delay for smoother animation
-			} else {
-				open.value = false;
-				avoidBodyScroll();
-				document.removeEventListener('keyup', onKeyUp);
-				modalStyles.value = {};
+					document.removeEventListener('keyup', onKeyUp);
+					modalStyles.value = {};
+				}
 			}
-		});
+		}, { immediate: true });
 
 		// Watch width changes when component is open (resize without animation)
 		watch(animationWidth, (newWidth) => {
