@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.28.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.28.0...@kiva/kv-components@6.28.1) (2025-06-23)
+
+
+### Bug Fixes
+
+* resolve issue with side sheet initial rendering in ui app ([fa5df2c](https://github.com/kiva/kv-ui-elements/commit/fa5df2cdeff9590f2fdc3fe710a7e492c0e4e71a))
+
+
+
+
+
 # [6.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.27.2...@kiva/kv-components@6.28.0) (2025-06-20)
 
 
