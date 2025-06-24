@@ -68,10 +68,17 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		loan,
 		categoryPageName,
 		customCallouts,
+		customHref,
 	} = toRefs(props);
 
 	const tag = computed(() => (externalLinks.value ? 'a' : 'router-link'));
-	const readMorePath = computed(() => (customLoanDetails.value ? '' : `/lend/${loanId.value}`));
+	const readMorePath = computed(() => {
+		if (externalLinks.value && customHref.value) {
+			return customHref.value;
+		}
+
+		return customLoanDetails.value ? '' : `/lend/${loanId.value}`;
+	});
 	const isLoading = computed(() => !loanId.value || !loan.value);
 	const borrowerName = computed(() => loan.value?.name || '');
 	const countryName = computed(() => loan.value?.geocode?.country?.name || '');

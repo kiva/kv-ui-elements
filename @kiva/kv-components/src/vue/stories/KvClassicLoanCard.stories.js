@@ -463,3 +463,12 @@ export const USLoan = story({
 	kvTrackFunction,
 	photoPath,
 });
+
+export const CustomHref = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customHref: 'https://www.kiva.org',
+});

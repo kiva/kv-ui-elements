@@ -374,6 +374,10 @@ export default {
 			type: Array,
 			default: () => ([]),
 		},
+		customHref: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const {

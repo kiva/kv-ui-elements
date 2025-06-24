@@ -467,6 +467,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		customHref: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props, { emit }) {
 		const {
