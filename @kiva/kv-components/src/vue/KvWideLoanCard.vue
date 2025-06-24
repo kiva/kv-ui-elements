@@ -374,6 +374,10 @@ export default {
 			type: Array,
 			default: () => ([]),
 		},
+		customHref: {
+			type: String,
+			default: 'Checkout now',
+		},
 	},
 	setup(props, { emit }) {
 		const {
