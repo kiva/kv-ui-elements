@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.29.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.29.0...@kiva/kv-components@6.29.1) (2025-06-24)
+
+
+### Bug Fixes
+
+* loan card computed properties bug ([#594](https://github.com/kiva/kv-ui-elements/issues/594)) ([cd1ca4e](https://github.com/kiva/kv-ui-elements/commit/cd1ca4ecf957aab5691bb800a8b746f9b885c503))
+
+
+
+
+
 # [6.29.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.28.1...@kiva/kv-components@6.29.0) (2025-06-24)
 
 
