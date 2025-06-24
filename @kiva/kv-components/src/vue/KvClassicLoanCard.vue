@@ -469,7 +469,7 @@ export default {
 		},
 		customHref: {
 			type: String,
-			default: 'Checkout now',
+			default: '',
 		},
 	},
 	setup(props, { emit }) {
