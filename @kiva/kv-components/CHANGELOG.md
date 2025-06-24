@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.29.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.28.1...@kiva/kv-components@6.29.0) (2025-06-24)
+
+
+### Features
+
+* custom href added to loan card ([#593](https://github.com/kiva/kv-ui-elements/issues/593)) ([f8a3500](https://github.com/kiva/kv-ui-elements/commit/f8a3500e27408a517c71f39c7e76eb26c9e75ac9))
+
+
+
+
+
 ## [6.28.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.28.0...@kiva/kv-components@6.28.1) (2025-06-23)
 
 
