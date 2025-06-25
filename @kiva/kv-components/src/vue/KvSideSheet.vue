@@ -220,6 +220,8 @@ export default {
 		const headlineRef = ref(null);
 		const windowHeight = ref(null);
 		const windowWidth = ref(null);
+		const controlsObserver = ref(null);
+		const headlineObserver = ref(null);
 
 		const heights = reactive({
 			headline: 0,
@@ -326,17 +328,22 @@ export default {
 				updateHeights();
 			}, 100);
 			if (controlsRef.value) {
-				const controlsObserver = new ResizeObserver(debouncedUpdateHeights);
-				controlsObserver.observe(controlsRef.value);
-				onUnmounted(() => controlsObserver.disconnect());
+				controlsObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				controlsObserver.value.observe(controlsRef.value);
 			}
 			if (headlineRef.value) {
-				const headlineObserver = new ResizeObserver(debouncedUpdateHeights);
-				headlineObserver.observe(headlineRef.value);
-				onUnmounted(() => headlineObserver.disconnect());
+				headlineObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				headlineObserver.value.observe(headlineRef.value);
 			}
 			window.addEventListener('resize', debouncedUpdateHeights);
-			onUnmounted(() => window.removeEventListener('resize', debouncedUpdateHeights));
+		});
+
+		onUnmounted(() => {
+			if (controlsObserver.value) controlsObserver.value.disconnect();
+			if (headlineObserver.value) headlineObserver.value.disconnect();
+			window.removeEventListener('resize', debouncedUpdateHeights);
+			const styleElement = document.getElementById('side-sheet-styles');
+			if (styleElement) styleElement.remove();
 		});
 
 		// Watch for slot content changes deeply
@@ -437,12 +444,6 @@ export default {
 
 				styleElement.textContent = cssRules;
 				sideSheetRef.value.id = `side-sheet-${props.trackEventCategory || 'default'}`;
-
-				onUnmounted(() => {
-					if (styleElement) {
-						styleElement.remove();
-					}
-				});
 			}
 		};
 
