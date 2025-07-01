@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.1...@kiva/kv-loan-filters@1.16.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* update basic needs definition for combo page ([7051459](https://github.com/kiva/kv-ui-elements/commit/7051459c03ffdf4974de3c24fd4cc37c8a292d9b))
+
+
+
+
+
 ## [1.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.0...@kiva/kv-loan-filters@1.16.1) (2025-06-11)
 
 
