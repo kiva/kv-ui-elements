@@ -397,5 +397,4 @@ export const WithPresetOptionsAndPill = story({
 	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
-	showPill: true,
 });

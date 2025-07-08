@@ -1,7 +1,7 @@
 <template>
 	<div class="tw-whitespace-nowrap">
 		<kv-cart-pill
-			v-if="showPill && showPresetAmounts"
+			v-if="showPresetAmounts"
 			:borrower-name="loanName"
 			class="!tw-w-full tw-justify-center tw-pb-2"
 		>
@@ -356,10 +356,6 @@ export default {
 		kvTrackCategory: {
 			type: String,
 			default: 'Lending',
-		},
-		showPill: {
-			type: Boolean,
-			default: false,
 		},
 	},
 	data() {
