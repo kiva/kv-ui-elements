@@ -118,7 +118,7 @@ export default {
 	@apply tw-relative tw-w-full;
 
 	@screen md {
-		width: 192px
+		max-width: 192px
 	}
 }
 </style>
