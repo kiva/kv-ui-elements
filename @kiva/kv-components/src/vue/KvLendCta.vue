@@ -691,6 +691,6 @@ export default {
 }
 
 .button-ellipsis :deep(span > span) {
-	@apply tw-min-w-0 tw-text-ellipsis tw-overflow-hidden;
+	@apply tw-min-w-0 tw-text-ellipsis tw-overflow-hidden tw-whitespace-nowrap;
 }
 </style>
