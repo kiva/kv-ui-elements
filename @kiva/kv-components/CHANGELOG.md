@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.30.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.30.0...@kiva/kv-components@6.30.1) (2025-07-09)
+
+
+### Bug Fixes
+
+* checkout now cta to full width ([d99b911](https://github.com/kiva/kv-ui-elements/commit/d99b911bcfa8befa2dbab227a598ddfcdb39dc13))
+
+
+
+
+
 # [6.30.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.29.2...@kiva/kv-components@6.30.0) (2025-07-09)
 
 
