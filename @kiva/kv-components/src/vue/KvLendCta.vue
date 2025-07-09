@@ -4,8 +4,7 @@
 		<kv-ui-button
 			v-if="isInBasket"
 			variant="secondary"
-			class="tw-inline-flex tw-flex-1"
-			:class="{ 'tw-w-full': showPresetAmounts }"
+			class="tw-inline-flex tw-flex-1 tw-w-full"
 			data-testid="bp-lend-cta-checkout-button"
 			:to="!externalLinks ? '/basket' : undefined"
 			:href="externalLinks ? '/basket' : undefined"
