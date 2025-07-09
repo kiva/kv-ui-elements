@@ -70,6 +70,7 @@
 											tw-py-2 md:tw-py-n
 											tw-text-primary tw-font-medium
 											hover:tw-underline hover:tw-text-primary
+											tw-cursor-pointer
 										"
 										:class="{
 											'tw-underline': link.isActive,
