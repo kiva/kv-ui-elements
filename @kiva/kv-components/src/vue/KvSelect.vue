@@ -11,7 +11,7 @@
 				v-bind="inputAttrs"
 				v-model="inputValue"
 				:disabled="disabled"
-				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent tw-text-ellipsis"
+				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent tw-text-ellipsis"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
 			>
@@ -116,9 +116,9 @@ export default {
 <style lang="postcss" scoped>
 .container {
 	@apply tw-relative tw-w-full;
+}
 
-	@screen md {
-		max-width: 192px
-	}
+.container > select {
+	border-radius: 8px;
 }
 </style>
