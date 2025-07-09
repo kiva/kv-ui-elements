@@ -386,16 +386,3 @@ export const WithPresetOptionsNonActionable = story({
 	kvTrackFunction,
 	showPresetAmounts: true,
 });
-
-export const WithPresetOptionsAndPill = story({
-	isLoading: false,
-	loan: {
-		id: 1,
-		name: 'John',
-		borrowerCount: 1,
-	},
-	unreservedAmount: '150.00',
-	kvTrackFunction,
-	showPresetAmounts: true,
-	showPill: true,
-});
