@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.30.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.29.2...@kiva/kv-components@6.30.0) (2025-07-09)
+
+
+### Features
+
+* deleted storybook story related to showPill ([aaa89b4](https://github.com/kiva/kv-ui-elements/commit/aaa89b42ba8dc9f8baa5ebf94bc4db101d45cdc1))
+* kv-cart-pill removal ([565b36a](https://github.com/kiva/kv-ui-elements/commit/565b36a1d6fe09e723c2f0fd0550992cfa19024c))
+* showPill code removal ([50eb56b](https://github.com/kiva/kv-ui-elements/commit/50eb56b40f12520abdf74c765e7624be041653fc))
+
+
+
+
+
 ## [6.29.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.29.1...@kiva/kv-components@6.29.2) (2025-06-25)
 
 
