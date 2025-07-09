@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.31.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.30.1...@kiva/kv-components@6.31.0) (2025-07-09)
+
+
+### Bug Fixes
+
+* setting max-width ([be7361a](https://github.com/kiva/kv-ui-elements/commit/be7361a7770bebae0019f9e455068edcc0ad7558))
+
+
+### Features
+
+* set max-width to kv-select ([dabde9b](https://github.com/kiva/kv-ui-elements/commit/dabde9bbc6ba47319521bb4d5b107a20d5c70828))
+* setting radius to select ([1a12c4d](https://github.com/kiva/kv-ui-elements/commit/1a12c4d58fa1803c32046f10c945992efd2ea163))
+
+
+
+
+
 ## [6.30.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.30.0...@kiva/kv-components@6.30.1) (2025-07-09)
 
 
