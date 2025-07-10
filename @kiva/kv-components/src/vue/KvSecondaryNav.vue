@@ -29,9 +29,16 @@
 							class="kv-secondary-nav__heading-container"
 							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
 						>
-							<div class="kv-secondary-nav__heading tw-text-h3">
+							<component
+								:is="headingLink ? (headingLink.isExternal ? 'a' : 'router-link') : 'div'"
+								:to="headingLink ? (headingLink.isExternal ? undefined : headingLink.href) : undefined"
+								:href="headingLink ? (headingLink.isExternal ? headingLink.href : undefined) :
+									undefined"
+								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
+									tw-bg-transparent tw-border-none tw-cursor-pointer tw-no-underline"
+							>
 								{{ heading }}
-							</div>
+							</component>
 						</div>
 						<button
 							class="
@@ -115,6 +122,14 @@ export default {
 		heading: {
 			type: String,
 			default: '',
+		},
+		headingLink: {
+			type: Object,
+			default: () => ({}),
+			validator(value) {
+				return Object.prototype.hasOwnProperty.call(value, 'text')
+					&& Object.prototype.hasOwnProperty.call(value, 'href');
+			},
 		},
 		links: {
 			type: Array,
