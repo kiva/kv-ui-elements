@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.2...@kiva/kv-loan-filters@1.17.0) (2025-07-10)
+
+
+### Features
+
+* getfilterchips method added to sort options ([#600](https://github.com/kiva/kv-ui-elements/issues/600)) ([8941a6f](https://github.com/kiva/kv-ui-elements/commit/8941a6f5cbfaaf5597014ff0261d1fea8a984350))
+
+
+
+
+
 ## [1.16.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.1...@kiva/kv-loan-filters@1.16.2) (2025-07-01)
 
 
