@@ -3,16 +3,36 @@ import KvTooltip from '../KvTooltip.vue';
 export default {
 	title: 'KvTooltip',
 	component: KvTooltip,
+	args: {
+		theme: 'default',
+	},
+	argTypes: {
+		theme: {
+			options: [
+				'default',
+				'ecoGreenLight',
+				'ecoGreenDark',
+				'ecoLightMarigold',
+				'ecoStoneLight',
+				'ecoStoneDark',
+				'mint',
+				'dark',
+			],
+			control: { type: 'select' },
+		},
+	},
 };
 
-export const Default = () => ({
+export const Default = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
 	components: {
 		KvTooltip,
 	},
+	setup() { return { args }; },
 	template: `
 		<div>
 			<button id="my-cool-btn">Hover of Focus Me!</button>
-			<kv-tooltip controller="my-cool-btn">
+			<kv-tooltip v-bind="args" controller="my-cool-btn">
 				<template #title>
 					What is an Experimental Field Partner?
 				</template>
