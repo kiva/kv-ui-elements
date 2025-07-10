@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.31.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.31.0...@kiva/kv-components@6.31.1) (2025-07-10)
+
+
+### Bug Fixes
+
+* ensure we import and map default theme on KvToolTip, add new themes ([4cfd822](https://github.com/kiva/kv-ui-elements/commit/4cfd82254dcb3af5314a3856259c4e0da2d80ee9))
+
+
+
+
+
 # [6.31.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.30.1...@kiva/kv-components@6.31.0) (2025-07-09)
 
 
