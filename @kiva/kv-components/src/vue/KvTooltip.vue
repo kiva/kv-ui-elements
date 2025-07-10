@@ -36,6 +36,12 @@
 import { ref, toRefs, computed } from 'vue';
 import {
 	darkTheme,
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
 	mintTheme,
 } from '@kiva/kv-tokens';
 import KvPopper from './KvPopper.vue';
@@ -64,7 +70,16 @@ export default {
 			default: 'default',
 			validator(value) {
 				// The value must match one of these strings
-				return ['default', 'mint', 'dark'].indexOf(value) !== -1;
+				return [
+					'default',
+					'ecoGreenLight',
+					'ecoGreenDark',
+					'ecoLightMarigold',
+					'ecoStoneLight',
+					'ecoStoneDark',
+					'mint',
+					'dark',
+				].indexOf(value) !== -1;
 			},
 		},
 	},
@@ -81,6 +96,12 @@ export default {
 
 		const themeStyle = computed(() => {
 			const themeMapper = {
+				default: defaultTheme,
+				ecoGreenLight: greenLightTheme,
+				ecoGreenDark: greenDarkTheme,
+				ecoLightMarigold: marigoldLightTheme,
+				ecoStoneLight: stoneLightTheme,
+				ecoStoneDark: stoneDarkTheme,
 				mint: mintTheme,
 				dark: darkTheme,
 			};
@@ -88,8 +109,14 @@ export default {
 		});
 
 		return {
-			darkTheme,
+			defaultTheme,
+			greenLightTheme,
+			greenDarkTheme,
+			marigoldLightTheme,
+			stoneLightTheme,
+			stoneDarkTheme,
 			mintTheme,
+			darkTheme,
 			popperModifiers,
 			themeStyle,
 		};
@@ -105,7 +132,7 @@ export default {
 
 .tooltip-arrow {
 	@apply tw-m-1;
-	@apply tw-border-white;
+	border-color: rgba(var(--bg-primary), var(--tw-bg-opacity, 1));
 }
 
 /* Top Tooltip Arrow appears on Bottom */
