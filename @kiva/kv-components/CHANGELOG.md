@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.32.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.31.1...@kiva/kv-components@6.32.0) (2025-07-11)
+
+
+### Bug Fixes
+
+* reverting component height ([b2196da](https://github.com/kiva/kv-ui-elements/commit/b2196dacbdc8e12d9bf199b7e7fb0f13703e6fe0))
+
+
+### Features
+
+* update KvSelect height and weight ([ed79266](https://github.com/kiva/kv-ui-elements/commit/ed79266b229a4a84589762d5e3b1d6ee957b7609))
+
+
+
+
+
 ## [6.31.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.31.0...@kiva/kv-components@6.31.1) (2025-07-10)
 
 
