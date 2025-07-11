@@ -11,7 +11,7 @@
 				v-bind="inputAttrs"
 				v-model="inputValue"
 				:disabled="disabled"
-				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent tw-text-ellipsis"
+				class="tw-text-base !tw-font-medium tw-bg-primary tw-h-5 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent tw-text-ellipsis"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
 			>
@@ -20,7 +20,7 @@
 			</select>
 			<kv-material-icon
 				:icon="mdiChevronDown"
-				class="tw-w-4 tw-absolute tw-top-0 tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
+				class="tw-w-4 tw-absolute tw-top-0 tw-right-0 tw-pt-1 tw-pr-1 tw-pointer-events-none"
 				:class="{ 'tw-opacity-low': disabled }"
 			/>
 		</div>
