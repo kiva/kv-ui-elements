@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.34.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.33.0...@kiva/kv-components@6.34.0) (2025-07-18)
+
+
+### Features
+
+* include new receipt component in build ([1a920b3](https://github.com/kiva/kv-ui-elements/commit/1a920b345285555be42734e3cfb80cb2e7eaafeb))
+
+
+
+
+
 # [6.33.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.32.0...@kiva/kv-components@6.33.0) (2025-07-17)
 
 
