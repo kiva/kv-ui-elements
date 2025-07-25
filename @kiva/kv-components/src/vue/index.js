@@ -2,6 +2,7 @@ export { default as KvAccordionItem } from './KvAccordionItem.vue';
 export { default as KvActivityRow } from './KvActivityRow.vue';
 export { default as KvBorrowerImage } from './KvBorrowerImage.vue';
 export { default as KvButton } from './KvButton.vue';
+export { default as KvCardFrame } from './KvCardFrame.vue';
 export { default as KvCarousel } from './KvCarousel.vue';
 export { default as KvCartModal } from './KvCartModal.vue';
 export { default as KvCartPill } from './KvCartPill.vue';
