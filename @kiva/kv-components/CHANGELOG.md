@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.36.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.35.1...@kiva/kv-components@6.36.0) (2025-07-28)
+
+
+### Features
+
+* ensure icon in kvselect in centered ([d258fbf](https://github.com/kiva/kv-ui-elements/commit/d258fbfee642f14078da2d86e4339c6b187902a1))
+
+
+
+
+
 ## [6.35.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.35.0...@kiva/kv-components@6.35.1) (2025-07-28)
 
 **Note:** Version bump only for package @kiva/kv-components
