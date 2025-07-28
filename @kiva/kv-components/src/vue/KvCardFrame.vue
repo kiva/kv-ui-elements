@@ -1,7 +1,7 @@
 <template>
 	<kv-theme-provider
 		:theme="themeStyle"
-		class="kv-tailwind"
+		class="kv-card-frame-theme-provider"
 	>
 		<div :class="['kv-card-frame tw-overflow-hidden', bgColorClass, radiusClass, shadowClass, borderClass]">
 			<slot></slot>
