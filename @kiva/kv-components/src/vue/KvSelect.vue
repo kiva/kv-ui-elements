@@ -20,7 +20,7 @@
 			</select>
 			<kv-material-icon
 				:icon="mdiChevronDown"
-				class="tw-w-4 tw-absolute tw-top-0 tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
+				class="tw-w-4 tw-absolute tw-right-0 tw-pr-1 tw-pointer-events-none"
 				:class="{ 'tw-opacity-low': disabled }"
 			/>
 		</div>
@@ -115,7 +115,7 @@ export default {
 
 <style lang="postcss" scoped>
 .container {
-	@apply tw-relative tw-w-full;
+	@apply tw-relative tw-w-full tw-flex tw-items-center;
 }
 
 .container > select {
