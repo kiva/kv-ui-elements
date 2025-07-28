@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.35.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.34.0...@kiva/kv-components@6.35.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* export KvCardFrame component ([e3f7660](https://github.com/kiva/kv-ui-elements/commit/e3f76604f11ec379261f547045841203b8d2c865))
+
+
+### Features
+
+* new content card frame component, theme enabled, configurable borders, backgrounds and shadows ([0d33b8b](https://github.com/kiva/kv-ui-elements/commit/0d33b8b41156046d0091185c58b0cfabc8a28b12))
+
+
+
+
+
 # [6.34.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.33.0...@kiva/kv-components@6.34.0) (2025-07-18)
 
 
