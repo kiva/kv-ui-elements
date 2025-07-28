@@ -56,7 +56,7 @@
 						>
 							<kv-material-icon
 								class="tw-w-3 tw-h-3"
-								:icon="mdiExportVariant"
+								:icon="mdiOpenInNew"
 							/>
 						</button>
 						<button
@@ -117,7 +117,7 @@ import {
 	nextTick,
 } from 'vue';
 import {
-	mdiArrowLeft, mdiClose, mdiExportVariant,
+	mdiArrowLeft, mdiClose, mdiOpenInNew,
 } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -469,7 +469,7 @@ export default {
 			goToLink,
 			mdiArrowLeft,
 			mdiClose,
-			mdiExportVariant,
+			mdiOpenInNew,
 			modalStyles,
 			open,
 		};
