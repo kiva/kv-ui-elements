@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.38.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.37.0...@kiva/kv-components@6.38.0) (2025-07-29)
+
+
+### Features
+
+* add round variant to kvcheckbox ([8b52251](https://github.com/kiva/kv-ui-elements/commit/8b52251a529988c7582cf6f5affce351f8a836d2))
+* add round variant to kvcheckbox ([3821276](https://github.com/kiva/kv-ui-elements/commit/3821276f4e38c95aaed7a67f5dfc361acd4629e1))
+* add round variant to kvcheckbox ([88769ca](https://github.com/kiva/kv-ui-elements/commit/88769ca4d5d9f7c02a51b4c9fbd6391dd8a99d5c))
+* add round variant to kvcheckbox ([05e36b6](https://github.com/kiva/kv-ui-elements/commit/05e36b6e6aab0d0b3b6f1e32065247c3c00ae742))
+
+
+
+
+
 # [6.37.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.36.0...@kiva/kv-components@6.37.0) (2025-07-29)
 
 
