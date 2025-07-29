@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.37.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.36.0...@kiva/kv-components@6.37.0) (2025-07-29)
+
+
+### Features
+
+* [MP-1847] - changing GoToLink icon for ([3a91f38](https://github.com/kiva/kv-ui-elements/commit/3a91f38f83be0e98e96d84bdebf86dde99382ae5))
+
+
+
+
+
 # [6.36.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.35.1...@kiva/kv-components@6.36.0) (2025-07-28)
 
 
