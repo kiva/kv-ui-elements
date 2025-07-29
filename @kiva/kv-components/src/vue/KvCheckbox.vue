@@ -98,7 +98,6 @@ import {
 	ref,
 	toRefs,
 	watch,
-	computed,
 } from 'vue';
 import { mdiCheckCircle } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -187,8 +186,6 @@ export default {
 			inputListeners,
 		} = useAttrs(context, emits);
 
-		const iconCheckCircle = computed(() => mdiCheckCircle);
-
 		const onChange = (event) => {
 			const inputChecked = event.target.checked;
 			let checkboxValue;
@@ -198,6 +195,7 @@ export default {
 				if (inputChecked) {
 					checkboxValue = [...modelValue.value, event.target.value];
 				} else {
+					// else it's a boolean like <kv-checkbox v-model="true">
 					checkboxValue = modelValue.value.filter((item) => item !== value.value);
 				}
 			} else {
@@ -211,6 +209,7 @@ export default {
 
 		const setChecked = () => {
 			if (Array.isArray(modelValue.value)) {
+			// if the model is array like <kv-checkbox v-model=[...] value="...">
 				isChecked.value = modelValue.value.includes(value.value);
 			} else {
 				isChecked.value = modelValue.value;
@@ -243,7 +242,7 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
-			iconCheckCircle,
+			iconCheckCircle: mdiCheckCircle, // <-- just return the value
 		};
 	},
 };
