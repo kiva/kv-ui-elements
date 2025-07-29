@@ -212,6 +212,7 @@ export default {
 			// if the model is array like <kv-checkbox v-model=[...] value="...">
 				isChecked.value = modelValue.value.includes(value.value);
 			} else {
+				// else it's a boolean like <kv-checkbox v-model="true">
 				isChecked.value = modelValue.value;
 			}
 		};
