@@ -10,6 +10,8 @@ import { wait } from './util/poll';
 import { getVisitorID } from './util/visitorId';
 import { redirectTo } from './util/redirect';
 import { getCheckoutTrackingData } from './receipt';
+import { addGivingFund } from './givingFunds';
+import { setTipDonation } from './basketItems';
 
 interface CreditAmountNeededData {
 	shop: {
@@ -245,4 +247,93 @@ export async function executeOneTimeCheckout({
 		redirectUrl += `&valet_inviter=${valetInviter.inviterId}`;
 	}
 	await redirectTo(redirectUrl);
+}
+
+export interface OneTimeCheckoutForGivingFundOptions {
+	apollo: ApolloClient<any>,
+	braintree?: DropInWrapper,
+	emailAddress?: string,
+	emailOptIn?: boolean,
+	userId?: string,
+	fundTarget: string,
+	amount: string,
+	visitorId?: string,
+}
+
+// Execute a one-time checkout for a giving fund
+// This function handles the creation of a giving fund, pre-checkout validation, and the checkout process for a donation to that fund.
+// It returns the result of the checkout process, which includes transaction details.
+// pre-checkout validation must be performed before creating the giving fund to create a user record for visitors.
+export async function executeOneTimeCheckoutForGivingFund({
+	amount,
+	apollo,
+	braintree,
+	emailAddress,
+	emailOptIn,
+	fundTarget,
+	userId,
+}: OneTimeCheckoutForGivingFundOptions) {
+	// do pre-checkout validation
+	await validatePreCheckout({
+		apollo,
+		emailAddress,
+		emailOptIn,
+	});
+
+	// Create giving fund
+	const givingFundResult = await addGivingFund({
+		apollo,
+		fundTarget,
+		userId: userId ? `${userId}` : undefined,
+	});
+
+	const metadata = `campaignId: ${givingFundResult.id}`;
+
+	await setTipDonation({
+		amount,
+		metadata,
+		apollo,
+	});
+
+	const creditNeeded = await creditAmountNeeded(apollo);
+	const creditRequired = numeral(creditNeeded).value() > 0;
+
+	if (creditRequired && !braintree) {
+		throw new ShopError({ code: 'shop.dropinRequired' }, 'Braintree dropin required for credit deposit checkout');
+	}
+
+	// initiate async checkout
+	let data: CheckoutData;
+	let paymentType = '';
+	if (creditRequired) {
+		const checkoutResult = await depositCheckout({
+			apollo,
+			braintree,
+			amount: creditNeeded,
+		});
+		paymentType = checkoutResult.paymentType;
+		data = await checkoutResult.mutation;
+	} else {
+		data = await creditCheckout(apollo);
+	}
+	const transactionId = data?.shop?.transactionId;
+
+	// wait on checkout to complete
+	const result = await pollForFinishedCheckout({
+		apollo,
+		transactionSagaId: transactionId,
+		timeout: 300000, // five minutes
+	});
+
+	// handle errors
+	if (result.errors?.length) {
+		throw parseShopError(result.errors[0]);
+	}
+
+	// track success
+	const checkoutId = result.data?.checkoutStatus?.receipt?.checkoutId;
+	await trackSuccess(apollo, checkoutId, paymentType);
+
+	// return transaction result
+	return result;
 }
