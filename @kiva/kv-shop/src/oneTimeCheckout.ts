@@ -274,19 +274,11 @@ export async function executeOneTimeCheckoutForGivingFund({
 	userId,
 }: OneTimeCheckoutForGivingFundOptions) {
 	// do pre-checkout validation
-	// TODO: promo guest checkout validation
 	await validatePreCheckout({
 		apollo,
 		emailAddress,
 		emailOptIn,
 	});
-
-	const creditNeeded = await creditAmountNeeded(apollo);
-	const creditRequired = numeral(creditNeeded).value() > 0;
-
-	if (creditRequired && !braintree) {
-		throw new ShopError({ code: 'shop.dropinRequired' }, 'Braintree dropin required for credit deposit checkout');
-	}
 
 	// Create giving fund
 	const givingFundResult = await addGivingFund({
@@ -302,6 +294,13 @@ export async function executeOneTimeCheckoutForGivingFund({
 		metadata,
 		apollo,
 	});
+
+	const creditNeeded = await creditAmountNeeded(apollo);
+	const creditRequired = numeral(creditNeeded).value() > 0;
+
+	if (creditRequired && !braintree) {
+		throw new ShopError({ code: 'shop.dropinRequired' }, 'Braintree dropin required for credit deposit checkout');
+	}
 
 	// initiate async checkout
 	let data: CheckoutData;
