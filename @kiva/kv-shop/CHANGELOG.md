@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.74...@kiva/kv-shop@3.1.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* order of operations for creating giving fund ([011554c](https://github.com/kiva/kv-ui-elements/commit/011554c1b6888293e6cba13709660eadf2992465))
+
+
+### Features
+
+* onetime checkout and create giving fund function ([8902a4f](https://github.com/kiva/kv-ui-elements/commit/8902a4f62ea4b7bafe1e8b14c501e1af323972ee))
+
+
+
+
+
 ## [3.0.74](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.0.73...@kiva/kv-shop@3.0.74) (2025-07-29)
 
 **Note:** Version bump only for package @kiva/kv-shop
