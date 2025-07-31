@@ -159,6 +159,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		userId: {
+			type: Number,
+			default: null,
+		},
 	},
 	emits: [
 		'load-lend-menu-data',
@@ -171,7 +175,6 @@ export default {
 		const menuOpen = ref(false);
 		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
-		const userId = ref(props.userId);
 
 		let menuCloseTimeout;
 
@@ -229,7 +232,6 @@ export default {
 
 		return {
 			ecoForestTheme,
-			userId,
 
 			afterLinksNotVisible,
 			afterSearchClosed,
