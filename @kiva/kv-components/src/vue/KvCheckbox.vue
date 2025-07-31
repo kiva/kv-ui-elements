@@ -4,10 +4,10 @@
 		:style="styles"
 	>
 		<label
-			class="tw-inline-flex tw-items-center tw-align-middle"
+			class="tw-inline-flex tw-items-center"
 			:class="[
 				{ 'tw-opacity-low': disabled && blurOnDisabled },
-				variant === 'square' ? 'tw-mt-1' : ''
+				variant === 'round' ? 'tw-align-middle' : ''
 			]"
 			:for="uuid"
 		>
@@ -64,7 +64,7 @@
 			<div
 				v-else
 				:class="[
-					'tw-w-2.5 tw-h-2.5 tw-mr-1',
+					'tw-w-3 tw-h-3 tw-mr-1',
 					'tw-flex-shrink-0',
 					'tw-rounded-full',
 					'tw-flex tw-justify-center tw-items-center',
