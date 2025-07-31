@@ -32,8 +32,6 @@ export const stateKey = 'gender';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: true,
 	title: 'gender',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -49,6 +47,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => transformGenderOptions(allFacets?.genderFacets),
 	showSavedSearch: (loanSearchState) => !!loanSearchState.gender,

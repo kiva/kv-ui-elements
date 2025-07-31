@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+	  "module": "es2020",
+	  "target": "es2020",
+	  "moduleResolution": "node",
+	  "declaration": true,
+	  "noImplicitAny": false,
+	  "removeComments": true,
+	  "noLib": false,
+	  "experimentalDecorators": true,
+	  "allowSyntheticDefaultImports": true,
+	  "esModuleInterop": true,
+	  "sourceMap": true,
+	  "lib": [
+		"es6",
+		"dom"
+	  ],
+	},
+	"include": [
+		"./src/**/*.ts"
+	],
+	"exclude": [
+	  "**/*/node_modules",
+	  "**/*/tests"
+	]
+}

@@ -1,10 +1,18 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { gql } from '@apollo/client/core';
 import numeral from 'numeral';
-import { ref } from 'vue-demi';
+import { ref, type Ref } from 'vue';
 import type { ApplePayPaymentRequest } from 'braintree-web';
-import type { Dropin } from 'braintree-web-drop-in';
+import type { Dropin, PaymentMethodPayload } from 'braintree-web-drop-in';
 import { ShopError, parseShopError } from './shopError';
+
+declare global {
+	interface Window {
+		braintree?: {
+			dropin: typeof import('braintree-web-drop-in');
+		};
+	}
+}
 
 export type PaymentType = 'card' | 'paypal' | 'paypalCredit' | 'venmo' | 'applePay' | 'googlePay';
 export type PayPalFlowType = 'checkout' | 'vault';
@@ -44,7 +52,14 @@ export interface DropInInitOptions {
 	paypalFlow?: PayPalFlowType,
 }
 
-export default function useBraintreeDropIn() {
+export interface DropInWrapper {
+	initDropIn: (options: DropInInitOptions) => Promise<Dropin>,
+	paymentMethodRequestable: Ref<boolean>,
+	requestPaymentMethod: () => Promise<PaymentMethodPayload | void>,
+	updateAmount: (amount: string|number) => void,
+}
+
+function initBraintreeDropin(): DropInWrapper {
 	let instance: Dropin;
 	let formattedAmount = '';
 	const paymentMethodRequestable = ref(false);
@@ -83,7 +98,7 @@ export default function useBraintreeDropIn() {
 		}
 
 		// listen for "requestable" payment method (ex. completing PayPal signin)
-		// eslint-disable-next-line no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		instance.on('paymentMethodRequestable', (event) => {
 			// Returns event object { paymentMethodIsSelected, type}
 			// TODO: add additional check for Postal Code validation during during new card input
@@ -120,8 +135,9 @@ export default function useBraintreeDropIn() {
 		formattedAmount = numeral(amount).format('0.00');
 		const { default: DropIn } = await import('braintree-web-drop-in');
 
+		const dropinInstance = window?.braintree?.dropin || DropIn;
 		try {
-			instance = await (DropIn.create({
+			instance = await (dropinInstance.create({
 				authorization: authToken,
 				container,
 				dataCollector: {
@@ -206,4 +222,13 @@ export default function useBraintreeDropIn() {
 		requestPaymentMethod,
 		updateAmount,
 	};
+}
+
+const instances = {};
+export default function useBraintreeDropIn(key = 'default'): DropInWrapper {
+	if (!instances[key]) {
+		instances[key] = initBraintreeDropin();
+	}
+
+	return instances[key];
 }
