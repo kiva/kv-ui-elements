@@ -36,6 +36,7 @@
 		</div>
 		<!-- cancel search -->
 		<button
+			v-kv-track-event="['TopNav', 'click-cancel-search']"
 			class="tw-px-2.5 tw-transition-opacity"
 			:class="{
 				'tw-opacity-full tw-duration-300': searchExitVisible,

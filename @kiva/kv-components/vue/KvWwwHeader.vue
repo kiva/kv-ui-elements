@@ -30,6 +30,7 @@
 			</transition>
 			<!-- logo -->
 			<a
+				v-kv-track-event="['TopNav', 'click-Logo']"
 				href="/"
 				class="
 					tw-px-1 tw-py-2
@@ -82,7 +83,7 @@
 				v-show="menuOpen || searchOpen"
 				class="
 					tw-absolute tw-z-modal
-					tw-top-7.5 tw-inset-x-0 tw-bottom-0
+					tw-top-7.5 tw-inset-x-0
 					tw-bg-eco-green-4
 					tw-bg-opacity-[50%]
 				"
@@ -96,8 +97,14 @@
 					<div class="header-margins tw-px-2.5">
 						<component
 							:is="menuComponent"
+							ref="menuComponentInstance"
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
+							:user-id="userId"
+							:balance="balance"
+							:is-borrower="isBorrower"
+							:is-trustee="isTrustee"
+							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
 				</div>
@@ -108,14 +115,13 @@
 
 <script>
 import {
-	ref,
+	ref, shallowRef,
 } from 'vue-demi';
 import {
 	ecoForestTheme,
 } from '@kiva/kv-tokens/configs/kivaColors.cjs';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
-import KvHeaderMobileMenu from './KvWwwHeader/KvHeaderMobileMenu.vue';
 import KvHeaderSearchBar from './KvWwwHeader/KvHeaderSearchBar.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvHeaderSearchSuggestions from './KvWwwHeader/KvHeaderSearchSuggestions.vue';
@@ -124,7 +130,6 @@ export default {
 	components: {
 		KvHeaderLinkBar,
 		KvHeaderLogo,
-		KvHeaderMobileMenu,
 		KvHeaderSearchBar,
 		KvThemeProvider,
 		KvHeaderSearchSuggestions,
@@ -142,14 +147,34 @@ export default {
 			type: String,
 			default: '/ui-login',
 		},
+		balance: {
+			type: Number,
+			default: 0,
+		},
+		isBorrower: {
+			type: Boolean,
+			default: false,
+		},
+		isTrustee: {
+			type: Boolean,
+			default: false,
+		},
+		userId: {
+			type: Number,
+			default: null,
+		},
 	},
-	setup() {
+	emits: [
+		'load-lend-menu-data',
+	],
+	setup(props, { emit }) {
 		const linksVisible = ref(true);
 		const searchBar = ref(null);
 		const searchOpen = ref(false);
 		const activeHeaderItem = ref(null);
 		const menuOpen = ref(false);
-		const menuComponent = ref(null);
+		const menuComponent = shallowRef(null);
+		const menuComponentInstance = ref(null);
 
 		let menuCloseTimeout;
 
@@ -196,12 +221,22 @@ export default {
 			searchBar.value?.getSuggestions(apollo);
 		};
 
+		const loadMenuData = (apollo) => {
+			menuComponentInstance.value?.onLoad(apollo);
+		};
+
+		// This event will be used as a signal to call loadMenuData
+		const emitLendMenuEvent = () => {
+			emit('load-lend-menu-data');
+		};
+
 		return {
 			ecoForestTheme,
 
 			afterLinksNotVisible,
 			afterSearchClosed,
 			afterSearchOpen,
+			emitLendMenuEvent,
 
 			linksVisible,
 			searchOpen,
@@ -211,10 +246,12 @@ export default {
 			openSearch,
 			closeSearch,
 			getSuggestions,
+			loadMenuData,
 
 			activeHeaderItem,
 			searchBar,
 			menuComponent,
+			menuComponentInstance,
 		};
 	},
 };
