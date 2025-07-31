@@ -4,8 +4,11 @@
 		:style="styles"
 	>
 		<label
-			class="tw-inline-flex tw-items-center"
-			:class="{ 'tw-opacity-low': disabled && blurOnDisabled }"
+			class="tw-inline-flex tw-items-center tw-align-middle"
+			:class="[
+				{ 'tw-opacity-low': disabled && blurOnDisabled },
+				variant === 'square' ? 'tw-mt-1' : ''
+			]"
 			:for="uuid"
 		>
 			<input
@@ -24,7 +27,8 @@
 			<div
 				v-if="variant === 'square'"
 				class="
-					tw-w-3 tw-h-3 tw-mr-2
+					tw-w-3 tw-h-3
+					tw-mr-2
 					tw-flex-shrink-0
 					tw-rounded-sm
 					tw-border
@@ -60,7 +64,7 @@
 			<div
 				v-else
 				:class="[
-					'tw-w-3 tw-h-3 tw-mr-2',
+					'tw-w-2.5 tw-h-2.5 tw-mr-1',
 					'tw-flex-shrink-0',
 					'tw-rounded-full',
 					'tw-flex tw-justify-center tw-items-center',
@@ -243,14 +247,14 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
-			iconCheckCircle: mdiCheckCircle, // <-- just return the value
+			iconCheckCircle: mdiCheckCircle,
 		};
 	},
 };
 
 </script>
 <style scoped>
-	::v-deep .check-icon svg {
-	transform: scale(1.2);
+::v-deep .check-icon svg {
+    transform: scale(1.2);
 }
 </style>
