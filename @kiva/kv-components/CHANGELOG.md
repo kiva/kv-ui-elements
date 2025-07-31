@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.39.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.38.1...@kiva/kv-components@6.39.0) (2025-07-31)
+
+
+### Features
+
+* add animation support to round variant of kvcheckbox ([5ac8df6](https://github.com/kiva/kv-ui-elements/commit/5ac8df6899325288395012ba9209b0a9fea91626))
+* add format support to round variant of kvcheckbox ([0ce501a](https://github.com/kiva/kv-ui-elements/commit/0ce501aa78dba300a98940c8f00df2f6a06f1d87))
+
+
+
+
+
 ## [6.38.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.38.0...@kiva/kv-components@6.38.1) (2025-07-29)
 
 **Note:** Version bump only for package @kiva/kv-components
