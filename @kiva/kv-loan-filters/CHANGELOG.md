@@ -3,6 +3,217 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.2...@kiva/kv-loan-filters@1.17.0) (2025-07-10)
+
+
+### Features
+
+* getfilterchips method added to sort options ([#600](https://github.com/kiva/kv-ui-elements/issues/600)) ([8941a6f](https://github.com/kiva/kv-ui-elements/commit/8941a6f5cbfaaf5597014ff0261d1fea8a984350))
+
+
+
+
+
+## [1.16.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.1...@kiva/kv-loan-filters@1.16.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* update basic needs definition for combo page ([7051459](https://github.com/kiva/kv-ui-elements/commit/7051459c03ffdf4974de3c24fd4cc37c8a292d9b))
+
+
+
+
+
+## [1.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.0...@kiva/kv-loan-filters@1.16.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* add new loan channel ([5499bc0](https://github.com/kiva/kv-ui-elements/commit/5499bc0081c7b5d5a8550b4a25045531e27a4d73))
+* correct min amount ([223376c](https://github.com/kiva/kv-ui-elements/commit/223376c5c368f21009ac0711a4576ba0eade9365))
+
+
+
+
+
+# [1.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.4...@kiva/kv-loan-filters@1.16.0) (2025-06-10)
+
+
+### Features
+
+* add amount left filter ([8f82f33](https://github.com/kiva/kv-ui-elements/commit/8f82f3306a2b2f823c2b4ecc56feb564f0c2195b))
+
+
+
+
+
+## [1.15.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.3...@kiva/kv-loan-filters@1.15.4) (2025-06-10)
+
+
+### Bug Fixes
+
+* add config for filter by query for loan amount ([0758d51](https://github.com/kiva/kv-ui-elements/commit/0758d51eff6fc37d0e994fbb394875cd859182bf))
+
+
+
+
+
+## [1.15.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.2...@kiva/kv-loan-filters@1.15.3) (2025-05-30)
+
+
+### Bug Fixes
+
+* adjustments to filter modules for ui implementation ([6b76217](https://github.com/kiva/kv-ui-elements/commit/6b76217e216212ad1a302127f05f6e8eb009bfaf))
+
+
+
+
+
+## [1.15.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.1...@kiva/kv-loan-filters@1.15.2) (2025-05-22)
+
+
+### Bug Fixes
+
+* adjust new urls for channel map ([600b5c9](https://github.com/kiva/kv-ui-elements/commit/600b5c9ae34f95d82c2cfffd48454026c7885bad))
+
+
+
+
+
+## [1.15.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.15.0...@kiva/kv-loan-filters@1.15.1) (2025-05-22)
+
+
+### Bug Fixes
+
+* update channel map ([3c11832](https://github.com/kiva/kv-ui-elements/commit/3c1183237e6428576028daccc0616b41497568df))
+
+
+
+
+
+# [1.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.14.0...@kiva/kv-loan-filters@1.15.0) (2025-05-07)
+
+
+### Features
+
+* loan channel map file updated ([#563](https://github.com/kiva/kv-ui-elements/issues/563)) ([f69c1ae](https://github.com/kiva/kv-ui-elements/commit/f69c1ae12e7cc4b4cff8b1603f47d137ac3a4581))
+
+
+
+
+
+# [1.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.13.1...@kiva/kv-loan-filters@1.14.0) (2025-05-01)
+
+
+### Features
+
+* categories added to loan channel map file ([#558](https://github.com/kiva/kv-ui-elements/issues/558)) ([3d23cef](https://github.com/kiva/kv-ui-elements/commit/3d23cefa08eecf62427ab32d661ea7e665e025ed))
+
+
+
+
+
+## [1.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.13.0...@kiva/kv-loan-filters@1.13.1) (2025-04-25)
+
+
+### Bug Fixes
+
+* add new filters to filterUtils and fix facet key on trusteeId ([c6d5e74](https://github.com/kiva/kv-ui-elements/commit/c6d5e743e21244b3eace59b733b3197c775e9126))
+
+
+
+
+
+# [1.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.3...@kiva/kv-loan-filters@1.13.0) (2025-04-25)
+
+
+### Bug Fixes
+
+* additional tests for remaining filter options ([1ec6438](https://github.com/kiva/kv-ui-elements/commit/1ec643865299b23edd6714982d0c1b30ac211910))
+* cleanup copied comments ([9e4f1e3](https://github.com/kiva/kv-ui-elements/commit/9e4f1e321ecef791b36b14faad58ac38f48f64c0))
+
+
+### Features
+
+* initial work to add additional possible filters coming through campaign saved searches ([6c7a734](https://github.com/kiva/kv-ui-elements/commit/6c7a73486458b671c50a5b51103768a08e1df45a))
+
+
+
+
+
+## [1.12.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.2...@kiva/kv-loan-filters@1.12.3) (2024-11-27)
+
+
+### Bug Fixes
+
+* add ts-jest types dependency ([d5fecd2](https://github.com/kiva/kv-ui-elements/commit/d5fecd255a194fdc390e2a7c8eb4e299935dc365))
+
+
+
+
+
+## [1.12.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.1...@kiva/kv-loan-filters@1.12.2) (2024-06-06)
+
+
+### Bug Fixes
+
+* add dafEligible to ui configs ([9bcbbce](https://github.com/kiva/kv-ui-elements/commit/9bcbbcee85eaf620ac81fac7a827c5a4947eb607))
+* make dafEligible available to filterUtils ([78e8355](https://github.com/kiva/kv-ui-elements/commit/78e8355524c3c6de83a0e356de3b7d0c0cda45ea))
+
+
+
+
+
+## [1.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.12.0...@kiva/kv-loan-filters@1.12.1) (2024-06-06)
+
+
+### Bug Fixes
+
+* ensure pass distributionModel value is capitalized when lowercase, converted from legacy ([55572ac](https://github.com/kiva/kv-ui-elements/commit/55572ac0a1b69f3ed864a63e78aeb2e2c3ad02ae))
+
+
+
+
+
+# [1.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.11.0...@kiva/kv-loan-filters@1.12.0) (2024-06-06)
+
+
+### Features
+
+* add dafEligible as a valid loan filter for flss ([5d09f20](https://github.com/kiva/kv-ui-elements/commit/5d09f207288df270c337eec1667fcb41828d9427))
+
+
+
+
+
+# [1.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.10.0...@kiva/kv-loan-filters@1.11.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* update tests ([9101a56](https://github.com/kiva/kv-ui-elements/commit/9101a5650eef17c18e3529e51dd06d4c82b7ea43))
+
+
+### Features
+
+* legacy doesn't support this new filter, so we can't use in saved search ([27acab5](https://github.com/kiva/kv-ui-elements/commit/27acab56324dd923645c4a8028967378c7b0265c))
+
+
+
+
+
+# [1.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.9.0...@kiva/kv-loan-filters@1.10.0) (2024-01-24)
+
+
+### Features
+
+* add new flexibleFundraisingEnabled filter ([f8a3c4c](https://github.com/kiva/kv-ui-elements/commit/f8a3c4cf180bea91b2cb4fdb64645e7ed7e52801))
+
+
+
+
+
 # [1.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.8.0...@kiva/kv-loan-filters@1.9.0) (2023-09-07)
 
 

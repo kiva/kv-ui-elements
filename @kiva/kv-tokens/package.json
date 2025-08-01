@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-tokens",
-    "version": "2.10.0",
+    "version": "3.2.1",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -9,11 +9,10 @@
     "scripts": {
         "test": "echo No tests specified for @kiva/kv-tokens.",
         "lint": "eslint --ext .js ./",
-        "build": "echo No build needed for @kiva/kv-tokens."
+        "build": "node ./build/build"
     },
     "dependencies": {
-        "@tailwindcss/line-clamp": "^0.4.0",
         "@tailwindcss/typography": "^0.5.1",
-        "tailwindcss": "^3.0.18"
+        "tailwindcss": "^3.4.3"
     }
 }

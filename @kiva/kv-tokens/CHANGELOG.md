@@ -3,6 +3,178 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.2.0...@kiva/kv-tokens@3.2.1) (2025-07-28)
+
+**Note:** Version bump only for package @kiva/kv-tokens
+
+
+
+
+
+# [3.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.1.0...@kiva/kv-tokens@3.2.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* lineHeight for large screens ([4d12094](https://github.com/kiva/kv-ui-elements/commit/4d12094ae75f496fd7dbec6bcb40bcd687d6c9e5))
+
+
+### Features
+
+* changing lineHeight to tight in h2 text ([b5ffeda](https://github.com/kiva/kv-ui-elements/commit/b5ffedac46e0495db649cb27627639f929f38590))
+
+
+
+
+
+# [3.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.0.0...@kiva/kv-tokens@3.1.0) (2025-01-21)
+
+
+### Features
+
+* **kv-tokens:** export configs from main ([f405e6d](https://github.com/kiva/kv-ui-elements/commit/f405e6def81d504d7558068f8aba52b1388b073b))
+
+
+
+
+
+# [3.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.1...@kiva/kv-tokens@3.0.0) (2025-01-17)
+
+
+* refactor(kv-tokens)!: convert all modules to esm ([f09dd82](https://github.com/kiva/kv-ui-elements/commit/f09dd821e4060570767abb490db45836ecd9b80a))
+
+
+### BREAKING CHANGES
+
+* modules now use import/export and .js extensions
+
+
+
+
+
+## [2.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.16.0...@kiva/kv-tokens@2.16.1) (2025-01-04)
+
+
+### Bug Fixes
+
+* update font cdn url ([b0e3d37](https://github.com/kiva/kv-ui-elements/commit/b0e3d37694064aa372b5776e311d1109f552ff5a))
+
+
+
+
+
+# [2.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.15.0...@kiva/kv-tokens@2.16.0) (2024-11-20)
+
+
+### Features
+
+* **kv-tokens:** generate scss variables from primitives.json during build ([1567bbf](https://github.com/kiva/kv-ui-elements/commit/1567bbfe3411f003963b439e63628326822e57ac))
+
+
+
+
+
+# [2.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.14.0...@kiva/kv-tokens@2.15.0) (2024-11-18)
+
+
+### Features
+
+* serve static assets from kvui directory MP-544 ([840f6de](https://github.com/kiva/kv-ui-elements/commit/840f6de89f213143218d28e82a7ef0be1de319b6))
+
+
+
+
+
+# [2.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.13.0...@kiva/kv-tokens@2.14.0) (2024-11-15)
+
+
+### Bug Fixes
+
+* color updates for default theme and KvButton ([e27b124](https://github.com/kiva/kv-ui-elements/commit/e27b1243e797322c95cf52f505787e6c9b5eceac))
+* ecosystem theme color updates ([facf24f](https://github.com/kiva/kv-ui-elements/commit/facf24f15453e8255db967cd6f878a30b443650a))
+* more wip for ecosystem themes ([3fd83ab](https://github.com/kiva/kv-ui-elements/commit/3fd83ab38e0e9463c375a94fc84012fa38948cdb))
+* more wip work for new ecosystem themes ([90447d4](https://github.com/kiva/kv-ui-elements/commit/90447d471178b410637d8ba50d535180c8b03718))
+
+
+### Features
+
+* add old default colors to kiva classic themes ([f75ea58](https://github.com/kiva/kv-ui-elements/commit/f75ea586c9d232abf987ba3ae8efd97b1be93324))
+* use external file for heading underline svg MP-544 MP-545 ([fad8f16](https://github.com/kiva/kv-ui-elements/commit/fad8f16b5555916624c26a24828ff39dcbc5edbf))
+* use green-3 and stone-3 for bg-secondary in dark themes ([d13d63e](https://github.com/kiva/kv-ui-elements/commit/d13d63e08346b936a1bb2bc61c4d3fc6c5a4e8d0))
+* wip initial pass at ecosystem themes ([680dbbc](https://github.com/kiva/kv-ui-elements/commit/680dbbc7aab575f9db43d7b10bdcba9003fd589e))
+
+
+
+
+
+# [2.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.12.0...@kiva/kv-tokens@2.13.0) (2024-07-19)
+
+
+### Bug Fixes
+
+* adjust underline after review ([979d47c](https://github.com/kiva/kv-ui-elements/commit/979d47c6a96c22f4e49b799e57dba412e39e15db))
+* correct heading-underline theme property name and remove extra hash in ID ([9f6f85b](https://github.com/kiva/kv-ui-elements/commit/9f6f85b94e85533bcc51253ba4456ad78ff31880))
+
+
+### Features
+
+* brush-stroke underline for headings mvp MP-348 ([6211527](https://github.com/kiva/kv-ui-elements/commit/621152741bd537da6026984569a7775767a2c3ec))
+
+
+
+
+
+# [2.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.2...@kiva/kv-tokens@2.12.0) (2024-07-12)
+
+
+### Features
+
+* brown theme added to tokens ([#422](https://github.com/kiva/kv-ui-elements/issues/422)) ([c638ec4](https://github.com/kiva/kv-ui-elements/commit/c638ec4b214b61fbd686371abede2ec1100664f1))
+
+
+
+
+
+## [2.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.1...@kiva/kv-tokens@2.11.2) (2024-05-20)
+
+**Note:** Version bump only for package @kiva/kv-tokens
+
+
+
+
+
+## [2.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.11.0...@kiva/kv-tokens@2.11.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* increate h2 line height ([d30382d](https://github.com/kiva/kv-ui-elements/commit/d30382d99294e3769812f4f3aece645d3fdebf03))
+
+
+
+
+
+# [2.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.10.0...@kiva/kv-tokens@2.11.0) (2024-04-23)
+
+
+### Bug Fixes
+
+* adjust type styles for dovetail-mvb 500, adjust font weights to match tailwind naming ([75e32d1](https://github.com/kiva/kv-ui-elements/commit/75e32d110b0c0c99fce77366b6bef621bbcd2401))
+* import serif from primitives ([dd96190](https://github.com/kiva/kv-ui-elements/commit/dd961906c359c9d67943ea05762224fd5500ed0a))
+* refine letter spacing to match figma to our dynamic em calculations ([6567f6c](https://github.com/kiva/kv-ui-elements/commit/6567f6c9b147bdab812c006ea9f7c403d5937a8e))
+* remove h6, re-apply letter spacing, remove bold dovetail styles ([163b657](https://github.com/kiva/kv-ui-elements/commit/163b65793cd1490210368f5fac9325a881e11354))
+* set h3 bold, remove unused italic/em element style ([9835f05](https://github.com/kiva/kv-ui-elements/commit/9835f05358f03cc8903db835b95dd7dd03399aba))
+* testing baseline configs for including new dovetail webfont ([7079590](https://github.com/kiva/kv-ui-elements/commit/7079590f9b3ab0bbfb91b81ab6aa98fd4ae2f113))
+
+
+### Features
+
+* implement kiva ecosystem default type styles ([c87d6fc](https://github.com/kiva/kv-ui-elements/commit/c87d6fc700cb130a4c55b0723438a89202c985ee))
+
+
+
+
+
 # [2.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@2.9.0...@kiva/kv-tokens@2.10.0) (2023-09-07)
 
 

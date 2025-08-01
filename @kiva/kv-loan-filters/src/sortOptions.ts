@@ -61,8 +61,6 @@ export const stateKey = 'sortBy';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: true,
-	topLine: true,
-	bottomLine: false,
 	title: 'Sort order',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -78,6 +76,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		const options = formatSortOptions(allFacets.standardSorts ?? [], allFacets.flssSorts ?? []);
@@ -92,7 +91,19 @@ export default {
 		}) ?? [];
 	},
 	showSavedSearch: () => false,
-	getFilterChips: () => ([]),
+	getFilterChips: (loanSearchState, facets) => {
+		if (loanSearchState.sortBy) {
+			const sortByFacet = facets.sortOptions?.find((f) => f.name === loanSearchState.sortBy);
+			if (!sortByFacet) {
+				return [];
+			}
+			return [{
+				name: sortByFacet?.label,
+				__typename: 'SortBy',
+			}];
+		}
+		return [];
+	},
 	getRemovedFacet: () => ({}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: () => ({}),

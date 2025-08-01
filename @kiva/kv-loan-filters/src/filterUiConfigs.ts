@@ -15,8 +15,10 @@ import { getUiConfig as partnerRiskRating } from './partnerRiskRating';
 import { getUiConfig as partnerDefaultRate } from './partnerDefaultRate';
 import { getUiConfig as partnerAvgProfitability } from './partnerAvgProfitability';
 import { getUiConfig as activities } from './activities';
+import { getUiConfig as dafEligible } from './dafEligible';
 import { getUiConfig as isMatchable } from './isMatchable';
 import { getUiConfig as categories } from './categories';
+import { getUiConfig as flexibleFundraisingEnabled } from './flexibleFundraisingEnabled';
 
 export default {
 	pageOffset,
@@ -36,6 +38,8 @@ export default {
 	partnerDefaultRate,
 	partnerAvgProfitability,
 	activities,
+	dafEligible,
 	isMatchable,
 	categories,
+	flexibleFundraisingEnabled,
 };

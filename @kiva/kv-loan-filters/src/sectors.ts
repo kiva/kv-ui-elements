@@ -28,8 +28,6 @@ export const stateKey = 'sectorId';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: true,
-	topLine: false,
-	bottomLine: false,
 	title: 'Sectors',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -45,6 +43,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		return transformSectors(filteredFacets.sectors, allFacets.sectorFacets);

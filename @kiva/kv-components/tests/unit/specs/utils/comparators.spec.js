@@ -1,4 +1,4 @@
-import { abc, startsWith, indexIn } from '../../../../utils/comparators';
+import { abc, startsWith, indexIn } from '#utils/comparators';
 
 describe('abc', () => {
 	it('sorts strings alphabetically', () => {

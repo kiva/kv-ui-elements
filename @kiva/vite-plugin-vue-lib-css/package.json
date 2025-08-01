@@ -1,0 +1,24 @@
+{
+  "name": "@kiva/vite-plugin-vue-lib-css",
+  "version": "2.0.0",
+  "description": "vite plugin to inject css import statements in compiled vue components",
+  "license": "UNLICENSED",
+  "type": "module",
+  "module": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "exports": {
+    ".": "./index.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiva/kv-ui-elements.git"
+  },
+  "scripts": {
+    "build": "echo \"No build specified\"",
+    "lint": "eslint --ext .ts,.js,.vue .",
+    "test": "echo \"No test specified\""
+  }
+}

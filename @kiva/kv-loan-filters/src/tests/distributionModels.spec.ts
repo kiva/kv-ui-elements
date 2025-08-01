@@ -115,6 +115,11 @@ describe('distributionModels.ts', () => {
 				expect(distributionModels.getFlssFilter({ distributionModel: 'DIRECT' }))
 					.toEqual({ distributionModel: { eq: 'DIRECT' } });
 			});
+
+			it('should capitalize filters', () => {
+				expect(distributionModels.getFlssFilter({ distributionModel: 'direct' }))
+					.toEqual({ distributionModel: { eq: 'DIRECT' } });
+			});
 		});
 	});
 

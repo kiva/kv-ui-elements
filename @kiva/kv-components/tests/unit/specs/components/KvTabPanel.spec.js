@@ -1,9 +1,9 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
 import '../../../../__mocks__/ResizeObserver';
-import KvTab from '../../../../vue/KvTab.vue';
-import KvTabPanel from '../../../../vue/KvTabPanel.vue';
-import KvTabs from '../../../../vue/KvTabs.vue';
+import KvTab from '#components/KvTab.vue';
+import KvTabPanel from '#components/KvTabPanel.vue';
+import KvTabs from '#components/KvTabs.vue';
 
 describe('KvTabPanel', () => {
 	it('has no automated accessibility violations', async () => {

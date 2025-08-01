@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
+import KvTextLink from '#components/KvTextLink.vue';
 import addVueRouter from '../../utils/addVueRouter';
-import KvTextLink from '../../../../vue/KvTextLink.vue';
 
 describe('Default Button', () => {
 	const renderTestTextLink = (options) => render(KvTextLink, addVueRouter({
@@ -27,7 +27,7 @@ describe('Default Button', () => {
 			props: { to: '/home' },
 		});
 		const anchorEl = getByRole('link', { name: 'Test Text Link' });
-		expect(anchorEl.href).toEqual('http://localhost/#/home');
+		expect(anchorEl.href).toEqual('http://localhost/home');
 	});
 
 	it('renders as an anchor tag when passed a route object', () => {
@@ -42,7 +42,7 @@ describe('Default Button', () => {
 			},
 		});
 		const anchorEl = getByRole('link', { name: 'Test Text Link' });
-		expect(anchorEl.href).toEqual('http://localhost/#/test-route-with-query?param1=a');
+		expect(anchorEl.href).toEqual('http://localhost/test-route-with-query?param1=a');
 	});
 
 	it('has no automated accessibility violations', async () => {

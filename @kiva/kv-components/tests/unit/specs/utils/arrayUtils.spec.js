@@ -1,4 +1,4 @@
-import { groupBy, sortBy } from '../../../../utils/arrayUtils';
+import { groupBy, sortBy } from '#utils/arrayUtils';
 
 describe('groupBy', () => {
 	it('groups objects by the specified key', () => {

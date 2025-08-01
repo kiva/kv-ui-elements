@@ -7,8 +7,6 @@ export const stateKey = 'category';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	topLine: true,
-	bottomLine: true,
 	title: 'category',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -24,6 +22,7 @@ export const getUiConfig = (options) => ({
 });
 
 export default {
+	stateKey,
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => {
 		const sortedCategories = [...allFacets?.categoryFacets ?? []].sort(

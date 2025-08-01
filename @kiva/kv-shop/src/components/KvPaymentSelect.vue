@@ -9,24 +9,24 @@
 			v-if="updatingPaymentWrapper"
 			class="tw-mb-2"
 		/>
-		<kv-toast :ref="errorToast" />
 	</div>
 </template>
 
 <script lang="ts">
 import {
-	defineComponent, onMounted, ref, toRefs, watch,
-} from 'vue-demi';
-import KvLoadingSpinner from '@kiva/kv-components/vue/KvLoadingSpinner.vue';
-import KvToast from '@kiva/kv-components/vue/KvToast.vue';
-import type { PropType } from 'vue-demi';
+	onMounted,
+	ref,
+	toRefs,
+	watch,
+} from 'vue';
+import type { PropType, Component } from 'vue';
+import { KvLoadingSpinner } from '@kiva/kv-components';
 import useBraintreeDropIn, { defaultPaymentTypes } from '../useBraintreeDropIn';
 import type { PayPalFlowType, PaymentType } from '../useBraintreeDropIn';
 
-export default defineComponent({
+export default {
 	components: {
 		KvLoadingSpinner,
-		KvToast,
 	},
 	props: {
 		amount: {
@@ -39,6 +39,13 @@ export default defineComponent({
 		authToken: {
 			type: String,
 			required: true,
+		},
+		/**
+		 * Braintree Drop In instance name.
+		 */
+		dropInName: {
+			type: String,
+			default: 'default',
 		},
 		/**
 		 * Paypal flow options.
@@ -75,7 +82,7 @@ export default defineComponent({
 			default: true,
 		},
 	},
-	emits: ['transactions-enabled'],
+	emits: ['transactions-enabled', 'error'],
 	setup(props, { emit }) {
 		const {
 			amount,
@@ -85,19 +92,14 @@ export default defineComponent({
 			paymentTypes,
 			preselectVaultedPaymentMethod,
 		} = toRefs(props);
-		const container = ref<HTMLInputElement | null>(null);
+		const container = ref<any>(null);
 		const updatingPaymentWrapper = ref(false);
 		const {
 			initDropIn,
 			paymentMethodRequestable,
 			requestPaymentMethod,
 			updateAmount,
-		} = useBraintreeDropIn();
-
-		const errorToast = ref();
-		const showError = (message: string) => {
-			errorToast.value?.show(message, 'error', true);
-		};
+		} = useBraintreeDropIn(props.dropInName);
 
 		watch(amount, (newValue) => {
 			updateAmount(newValue);
@@ -123,9 +125,9 @@ export default defineComponent({
 					});
 				} catch (e) {
 					if (e instanceof Error) {
-						showError(e?.message);
+						emit('error', e?.message);
 					} else {
-						showError('An Error has occured. Please refresh the page and try again.');
+						emit('error', 'An error has occured. Please refresh the page and try again.');
 					}
 				} finally {
 					updatingPaymentWrapper.value = false;
@@ -139,7 +141,7 @@ export default defineComponent({
 			requestPaymentMethod,
 		};
 	},
-});
+} as Component;
 </script>
 
 <style lang="postcss">
@@ -370,5 +372,12 @@ Form field labels */
 .kv-payment-select [data-braintree-id="card"] .braintree-sheet__content .braintree-form__label {
 	@apply tw-text-base;
 	@apply tw-font-medium;
+}
+
+/* Helper text for non-card Braintree payments */
+.braintree-sheet__container > .braintree-sheet:not(.braintree-card)::before {
+  @apply tw-absolute tw-w-full tw-left-0 tw-top-3 tw-font-medium;
+
+  content: 'Click payment method again to continue';
 }
 </style>
