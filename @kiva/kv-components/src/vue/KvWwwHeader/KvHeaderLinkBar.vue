@@ -27,7 +27,7 @@
 				tw-px-1.5 tw-py-1 tw-mx-1
 				tw-border-2
 				tw-text-eco-green-3 tw-border-current
-				hover:tw-no-underline
+				tw-no-underline hover:tw-no-underline
 				tw-inline-flex tw-items-baseline
 			"
 			:class="{
@@ -230,6 +230,7 @@ export default {
 
 <style lang="postcss" scoped>
 .header-link {
-	@apply tw-px-1 lg:tw-px-2.5 tw-py-2 tw-cursor-pointer hover:tw-no-underline hover:tw-text-action-highlight;
+	@apply tw-px-1 lg:tw-px-2.5 tw-py-2 tw-cursor-pointer tw-no-underline
+		hover:tw-no-underline hover:tw-text-action-highlight;
 }
 </style>

@@ -52,7 +52,7 @@
 									<a
 										v-kv-track-event="['TopNav','click-Lend-Recommended-by-lenders']"
 										href="/lend-by-category/recommended-by-lenders"
-										class="tw-text-action hover:tw-text-action-highlight tw-inline-block tw-py-1"
+										class="mega-menu-link"
 									>
 										Recommended by lenders
 									</a>
@@ -61,7 +61,7 @@
 									<a
 										v-kv-track-event="['TopNav','click-Lend-All_Categories']"
 										href="/categories"
-										class="tw-text-primary hover:tw-text-action-highlight tw-inline-block tw-py-1"
+										class="mega-menu-link"
 									>
 										All categories
 									</a>
@@ -71,7 +71,7 @@
 								>
 									<a
 										v-kv-track-event="['TopNav','click-Lend-All_Loans']"
-										class="tw-text-primary hover:tw-text-action-highlight tw-inline-block tw-py-1"
+										class="mega-menu-link"
 										href="/lend"
 									>
 										All loans
@@ -333,5 +333,9 @@ export default {
 .search-list {
 	column-fill: auto; /* Tailwind doesnt have a column-fill option currently */
 	@apply tw-columns-3 tw-gap-4;
+}
+
+.mega-menu-link {
+	@apply tw-text-action hover:tw-text-action-highlight tw-inline-block tw-py-1 tw-no-underline;
 }
 </style>
