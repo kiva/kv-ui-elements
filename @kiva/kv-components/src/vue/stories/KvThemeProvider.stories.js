@@ -10,6 +10,7 @@ import primitives, {
 	mintTheme,
 	darkMintTheme,
 	darkStoneTheme,
+	ecoForestTheme,
 } from '@kiva/kv-tokens';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
@@ -174,6 +175,11 @@ StoneDark.args = {
 export const Dark = Template.bind({});
 Dark.args = {
 	theme: darkTheme,
+};
+
+export const EcoForest = Template.bind({});
+EcoForest.args = {
+	theme: ecoForestTheme,
 };
 
 export const Mint = Template.bind({});

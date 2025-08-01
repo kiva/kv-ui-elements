@@ -15,6 +15,7 @@
     "./vue/*.js": "./dist/vue/*.js"
   },
   "devDependencies": {
+    "@apollo/client": "^3.13.1",
     "@babel/core": "^7.14.8",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.24.8",
@@ -62,6 +63,7 @@
     "eslint-plugin-vue": "^7.9.0",
     "flag-icons": "^7.3.0",
     "focus-trap": "^6.9.4",
+    "fuse.js": "^7.1.0",
     "graphql-tag": "^2.12.6",
     "import-meta-loader": "^1.1.0",
     "jest": "^27.4.3",
@@ -93,6 +95,7 @@
     "postbuild": "mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
   },
   "peerDependencies": {
+    "@apollo/client": "3.x",
     "@kiva/kv-tokens": "3.x",
     "@mdi/js": "7.x",
     "@vueuse/integrations": "9.x",
