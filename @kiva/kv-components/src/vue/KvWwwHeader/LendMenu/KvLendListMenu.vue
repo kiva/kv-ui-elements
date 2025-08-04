@@ -24,11 +24,12 @@
 							<li
 								v-for="i in 14"
 								:key="i"
-								class="tw-w-[11rem] tw-py-1 tw-flex"
+								style="width: 11rem;"
+								class="tw-py-1 tw-flex"
 							>
 								<kv-loading-placeholder
 									class="tw-inline-block tw-align-middle"
-									style="height: 1rem; display: inline-block;"
+									style="height: 1rem"
 								/>
 								<span class="tw-inline-block">&nbsp;</span>
 							</li>
@@ -88,7 +89,7 @@
 								<div class="tw-flex">
 									<kv-loading-placeholder
 										class="tw-inline-block tw-align-middle"
-										style="height: 1rem; display: inline-block;"
+										style="height: 1rem;"
 									/>
 									<span class="tw-inline-block tw-text-h4">&nbsp;</span>
 								</div>
@@ -251,6 +252,6 @@ export default {
 
 <style lang="postcss" scoped>
 .lend-link {
-	@apply tw-text-primary hover:tw-text-action-highlight tw-block tw-w-full tw-py-1 tw-no-underline;
+	@apply tw-text-primary hover:tw-text-action tw-block tw-w-full tw-py-1 tw-no-underline;
 }
 </style>

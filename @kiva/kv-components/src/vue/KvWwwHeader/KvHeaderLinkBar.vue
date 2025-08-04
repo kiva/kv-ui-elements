@@ -28,7 +28,7 @@
 				tw-border-2
 				tw-text-eco-green-3 tw-border-current
 				tw-no-underline hover:tw-no-underline
-				tw-inline-flex tw-items-baseline
+				tw-inline-flex tw-items-center
 			"
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvLendMenu,
@@ -39,9 +39,10 @@
 		>
 			Lend
 			<span class="tw-hidden lg:tw-inline tw-ml-0.5">now</span>
-			<kv-icon-chevron
-				class="tw-hidden md:tw-inline tw-w-1.5 tw-ml-1.5 tw-transition-transform tw-duration-300"
+			<kv-material-icon
+				class="tw-hidden md:tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
 				:class="{'tw-rotate-180' : openMenuItem === KvLendMenu}"
+				:icon="mdiChevronDown"
 			/>
 		</a>
 		<!-- about us (lg) -->
@@ -103,13 +104,16 @@
 		<button
 			ref="searchButton"
 			v-kv-track-event="['TopNav', 'click-Search-toggle']"
-			class="header-link"
+			class="header-link tw-flex"
 			:class="{
 				'tw-text-tertiary': !!openMenuItem
 			}"
 			@click="openSearch"
 		>
-			<kv-icon-search class="tw-w-3 tw-h-3" />
+			<kv-material-icon
+				class="tw-w-3 tw-h-3"
+				:icon="mdiMagnify"
+			/>
 		</button>
 		<!-- sign in (lg, no-auth) -->
 		<a
@@ -142,10 +146,9 @@
 
 <script>
 import { defineAsyncComponent, ref } from 'vue';
-import { mdiAccountCircle, mdiMenu } from '@mdi/js';
-import KvIconBag from '../KvIconBag.vue';
-import KvIconChevron from '../KvIconChevron.vue';
-import KvIconSearch from '../KvIconSearch.vue';
+import {
+	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
+} from '@mdi/js';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
@@ -154,9 +157,6 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 
 export default {
 	components: {
-		KvIconBag,
-		KvIconChevron,
-		KvIconSearch,
 		KvMaterialIcon,
 	},
 	props: {
@@ -204,6 +204,8 @@ export default {
 
 		return {
 			mdiAccountCircle,
+			mdiChevronDown,
+			mdiMagnify,
 			mdiMenu,
 
 			onHover,
@@ -231,6 +233,6 @@ export default {
 <style lang="postcss" scoped>
 .header-link {
 	@apply tw-px-1 lg:tw-px-2.5 tw-py-2 tw-cursor-pointer tw-no-underline
-		hover:tw-no-underline hover:tw-text-action-highlight;
+		hover:tw-no-underline tw-text-primary hover:tw-text-action;
 }
 </style>

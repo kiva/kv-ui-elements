@@ -32,7 +32,10 @@
 					tw-transition-colors tw-duration-100
 				"
 		>
-			<kv-icon-search class="tw-w-3 tw-h-3" />
+			<kv-material-icon
+				class="tw-w-3 tw-h-3"
+				:icon="mdiMagnify"
+			/>
 		</div>
 		<!-- cancel search -->
 		<button
@@ -51,12 +54,13 @@
 
 <script>
 import { ref } from 'vue';
-import { useSiteSearch } from '../../utils/siteSearch';
-import KvIconSearch from '../KvIconSearch.vue';
+import { useSiteSearch } from '#utils/siteSearch';
+import { mdiMagnify } from '@mdi/js';
+import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
 	components: {
-		KvIconSearch,
+		KvMaterialIcon,
 	},
 	emits: [
 		'close-search',
@@ -82,6 +86,8 @@ export default {
 		};
 
 		return {
+			mdiMagnify,
+
 			closeSearch,
 			displayTerm,
 			onOpen,

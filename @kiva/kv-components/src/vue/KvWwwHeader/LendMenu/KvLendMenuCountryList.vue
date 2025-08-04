@@ -3,7 +3,7 @@
 		<li
 			v-for="country in countries"
 			:key="country.isoCode"
-			class="lg:tw-w-[11rem]"
+			class="country-list-item"
 		>
 			<a
 				v-if="country.count > 0"
@@ -34,3 +34,11 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+
+.country-list-item {
+	width: 11rem;
+}
+
+</style>

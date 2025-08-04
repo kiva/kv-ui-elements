@@ -1,8 +1,7 @@
 <template>
 	<kv-theme-provider
 		tag="header"
-		:theme="ecoForestTheme"
-		class="tw-bg-primary"
+		class="tw-bg-secondary"
 	>
 		<nav
 			class="
@@ -10,8 +9,8 @@
 				tw-relative
 				tw-py-1 tw-px-1.5
 				tw-font-medium
-				tw-h-7.5
 			"
+			style="height: 3.75rem;"
 		>
 			<!-- link bar -->
 			<transition
@@ -83,14 +82,15 @@
 				v-show="menuOpen || searchOpen"
 				class="
 					tw-absolute tw-z-modal
-					tw-top-7.5 tw-inset-x-0
+					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
 					tw-bg-opacity-[50%]
 				"
+				style="top: 3.75rem;"
 				@click="closeSearch"
 			>
 				<div
-					class="tw-bg-primary tw-w-full"
+					class="tw-bg-secondary tw-w-full"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
@@ -115,9 +115,6 @@
 
 <script>
 import { ref, shallowRef } from 'vue';
-import {
-	ecoForestTheme,
-} from '@kiva/kv-tokens/configs/kivaColors';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvHeaderSearchBar from './KvWwwHeader/KvHeaderSearchBar.vue';
@@ -229,8 +226,6 @@ export default {
 		};
 
 		return {
-			ecoForestTheme,
-
 			afterLinksNotVisible,
 			afterSearchClosed,
 			afterSearchOpen,

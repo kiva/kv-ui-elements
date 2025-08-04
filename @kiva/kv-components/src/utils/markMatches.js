@@ -10,7 +10,8 @@ export default function markMatches(text, marks) {
 	// have a '<mark>' tag inserted.
 	// 'ends' is the indices of the label where a match ends, and thus should
 	// have a '</mark>' tag inserted.
-	const [starts, ends] = marks[0].map((value, index) => [value, ...marks.slice(1).map((mark) => mark[index])]);
+	const starts = marks.map((mark) => mark[0]).flat();
+	const ends = marks.map((mark) => mark[1]).flat();
 
 	// Build an array of strings, inserting the <mark> tags at the appropriate indices
 	const charArray = Array.from(text).map((character, index) => {

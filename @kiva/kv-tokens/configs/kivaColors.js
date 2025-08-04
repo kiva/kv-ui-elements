@@ -10,7 +10,6 @@ const {
 	'stone-dark': stoneDarkThemeTokens,
 	dark: darkThemeTokens,
 	'dark-green': darkGreenThemeTokens,
-	'eco-forest': ecoForestThemeTokens,
 	mint: mintThemeTokens,
 	'dark-mint': darkMintThemeTokens,
 	'dark-stone': darkStoneThemeTokens,
@@ -54,7 +53,6 @@ export const mintTheme = buildCSSVarsFromTokens(mintThemeTokens);
 export const darkGreenTheme = buildCSSVarsFromTokens(darkGreenThemeTokens);
 export const darkMintTheme = buildCSSVarsFromTokens(darkMintThemeTokens);
 export const darkStoneTheme = buildCSSVarsFromTokens(darkStoneThemeTokens);
-export const ecoForestTheme = buildCSSVarsFromTokens(ecoForestThemeTokens);
 
 // function to allow background opacity and text opacity with tailwind colors
 // https://www.youtube.com/watch?v=MAtaT8BZEAo

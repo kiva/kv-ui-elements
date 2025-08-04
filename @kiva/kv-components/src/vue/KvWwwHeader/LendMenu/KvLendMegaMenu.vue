@@ -20,7 +20,7 @@
 								<li
 									v-for="i in 14"
 									:key="i"
-									class="tw-w-[11rem]"
+									class="link-item"
 								>
 									<kv-loading-placeholder
 										class="tw-inline-block tw-align-middle"
@@ -33,7 +33,7 @@
 								<li
 									v-for="(category, index) in categories"
 									:key="index"
-									class="tw-w-[11rem]"
+									class="link-item"
 								>
 									<a
 										v-kv-track-event="['TopNav', 'click-Lend-Category', category.name, index + 1]"
@@ -48,7 +48,7 @@
 						</ul>
 						<div>
 							<ul class="tw-font-book">
-								<li class="tw-w-[11rem]">
+								<li class="link-item">
 									<a
 										v-kv-track-event="['TopNav','click-Lend-Recommended-by-lenders']"
 										href="/lend-by-category/recommended-by-lenders"
@@ -57,7 +57,7 @@
 										Recommended by lenders
 									</a>
 								</li>
-								<li class="tw-w-[11rem]">
+								<li class="link-item">
 									<a
 										v-kv-track-event="['TopNav','click-Lend-All_Categories']"
 										href="/categories"
@@ -67,7 +67,7 @@
 									</a>
 								</li>
 								<li
-									class="tw-w-[11rem]"
+									class="link-item"
 								>
 									<a
 										v-kv-track-event="['TopNav','click-Lend-All_Loans']"
@@ -174,7 +174,7 @@
 									<li
 										v-for="i in 8"
 										:key="i"
-										class="tw-w-[11rem]"
+										class="link-item"
 									>
 										<kv-loading-placeholder
 											class="tw-inline-block tw-align-middle"
@@ -187,7 +187,7 @@
 									<li
 										v-for="region in regions"
 										:key="region.name"
-										class="tw-w-[11rem] tw-mr-4"
+										class="link-item tw-mr-4"
 									>
 										<button
 											v-kv-track-event="['TopNav','click-Lend-Region', region.name]"
@@ -336,6 +336,10 @@ export default {
 }
 
 .mega-menu-link {
-	@apply tw-text-action hover:tw-text-action-highlight tw-inline-block tw-py-1 tw-no-underline;
+	@apply tw-text-primary hover:tw-text-action tw-inline-block tw-py-1 tw-no-underline;
+}
+
+.link-item {
+	width: 11rem;
 }
 </style>
