@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.40.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.39.0...@kiva/kv-components@6.40.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* extra space in variable declaration ([22e3490](https://github.com/kiva/kv-ui-elements/commit/22e34904564bd112307fe46ae1e074d9ffae2c36))
+* highlighted bg ([a14a88d](https://github.com/kiva/kv-ui-elements/commit/a14a88dd03bbfcb025dbc051028309a4cfd91faa))
+* mega menu link underline ([79705d3](https://github.com/kiva/kv-ui-elements/commit/79705d352922b7645843d0720b2d3022b351722d))
+* menu drawer was not visible ([17b3f90](https://github.com/kiva/kv-ui-elements/commit/17b3f90b966772426e89b9e738076709dd3d33b6))
+* removing ecoForest theme, svg for material icons and custom tw classes ([a01e26a](https://github.com/kiva/kv-ui-elements/commit/a01e26a19d2dd9ae4f50790640a07db9df957ea6))
+* removing jit class for menu opacity ([a6ab331](https://github.com/kiva/kv-ui-elements/commit/a6ab33147494356941a83f353654a98eff051646))
+* removing userId as ref ([cb6b789](https://github.com/kiva/kv-ui-elements/commit/cb6b7894210efd7c11b9949d5eeab3ca3f808ad6))
+* using numeral to format balance ([53b2230](https://github.com/kiva/kv-ui-elements/commit/53b2230d616307babfaa239a446c9120364abf37))
+* visual QA changes WIP ([49f99c1](https://github.com/kiva/kv-ui-elements/commit/49f99c1f48c5bdd1bede0692496a09fedaee6b23))
+
+
+### Features
+
+* add borrower/trustee state and small fix in balance ([c7bb125](https://github.com/kiva/kv-ui-elements/commit/c7bb1256956ad1f26acfd30b61933126ce68fcad))
+* add test to comparators and arrayUtils ([d3b74c6](https://github.com/kiva/kv-ui-elements/commit/d3b74c6575695ee55694e3755f76bc47fb03d1bc))
+* add tracking events ([03f71c5](https://github.com/kiva/kv-ui-elements/commit/03f71c559ef074d0cdc80c41d329e3c0e8366c2c))
+* eco forest theme ([4fadf40](https://github.com/kiva/kv-ui-elements/commit/4fadf40c84a9a7a329f5941a1c39d105295dcbd8))
+* implement search engine and display its results ([d6dd3a3](https://github.com/kiva/kv-ui-elements/commit/d6dd3a3daee0d842ea78f2ba902ad3fc6a9cbbd3))
+* initial www header MARS-528 ([ca31433](https://github.com/kiva/kv-ui-elements/commit/ca3143391439aa21ff93d04f2f81a7769ae6b609))
+* **KvThemeProvider:** allow custom root tag ([25d61bc](https://github.com/kiva/kv-ui-elements/commit/25d61bcc917b011a87b6ac2c164528de6babb7cc))
+* load and format lend menu data ([754a84d](https://github.com/kiva/kv-ui-elements/commit/754a84d76eb349e83d1cec0859e362f53640fa0e))
+* run suggestion query within component ([57351e9](https://github.com/kiva/kv-ui-elements/commit/57351e9f9c015398d2e129032ed1dd9e5c6cf1bd))
+* set links ([e68841f](https://github.com/kiva/kv-ui-elements/commit/e68841ffb675f1034cea89a2a56b0699383681b1))
+* use site search composable in search bar and suggestions ([996c28d](https://github.com/kiva/kv-ui-elements/commit/996c28d54285ebd8c820e9912c2862b1d9158226))
+* utils for site search ([fee4db4](https://github.com/kiva/kv-ui-elements/commit/fee4db4e88625cbd4e25edbaddbcb8341324ecb1))
+
+
+
+
+
 # [6.39.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.38.1...@kiva/kv-components@6.39.0) (2025-07-31)
 
 
