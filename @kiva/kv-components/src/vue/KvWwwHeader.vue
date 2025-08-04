@@ -84,7 +84,7 @@
 					tw-absolute tw-z-modal
 					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
-					tw-bg-opacity-[50%]
+					bg-opacity-50
 				"
 				style="top: 3.75rem;"
 				@click="closeSearch"
@@ -269,5 +269,9 @@ export default {
 .header-fade-leave,
 .header-fade-enter-to {
 	@apply tw-opacity-full;
+}
+
+.bg-opacity-50 {
+	background-color: rgba(var(--bg-action-highlight), 0.5);
 }
 </style>
