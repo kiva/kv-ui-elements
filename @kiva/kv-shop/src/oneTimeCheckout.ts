@@ -12,6 +12,7 @@ import { redirectTo } from './util/redirect';
 import { getCheckoutTrackingData } from './receipt';
 import { addGivingFund } from './givingFunds';
 import { setTipDonation } from './basketItems';
+import { removeKivaCredit } from './basketCredits';
 
 interface CreditAmountNeededData {
 	shop: {
@@ -250,14 +251,14 @@ export async function executeOneTimeCheckout({
 }
 
 export interface OneTimeCheckoutForGivingFundOptions {
+	amount: string,
 	apollo: ApolloClient<any>,
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
-	userId?: string,
 	fundTarget: string,
-	amount: string,
-	visitorId?: string,
+	userId?: string,
+	useKivaCredit?: boolean,
 }
 
 // Execute a one-time checkout for a giving fund
@@ -272,6 +273,7 @@ export async function executeOneTimeCheckoutForGivingFund({
 	emailOptIn,
 	fundTarget,
 	userId,
+	useKivaCredit = true,
 }: OneTimeCheckoutForGivingFundOptions) {
 	// do pre-checkout validation
 	await validatePreCheckout({
@@ -294,6 +296,11 @@ export async function executeOneTimeCheckoutForGivingFund({
 		metadata,
 		apollo,
 	});
+
+	// Default is to use Kiva credit for checkout so no need to add it, only remove it.
+	if (!useKivaCredit) {
+		await removeKivaCredit(apollo);
+	}
 
 	const creditNeeded = await creditAmountNeeded(apollo);
 	const creditRequired = numeral(creditNeeded).value() > 0;
