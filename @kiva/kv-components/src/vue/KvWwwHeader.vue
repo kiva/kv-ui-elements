@@ -70,7 +70,6 @@
 		<transition
 			name="header-fade"
 			@after-enter="afterSearchOpen"
-			@after-leave="afterSearchClosed"
 		>
 			<kv-header-search-suggestions v-if="searchOpen" />
 		</transition>
