@@ -184,7 +184,7 @@ export default {
 		* */
 		fit: {
 			type: String,
-			default: 'scale',
+			default: 'fill',
 			validator(value) {
 				// The value must match one of these strings
 				return ['pad', 'fill', 'scale', 'crop', 'thumb'].indexOf(value) !== -1;
