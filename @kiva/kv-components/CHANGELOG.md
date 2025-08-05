@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.2...@kiva/kv-components@6.40.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* missing no underline class in lend menu ([7492033](https://github.com/kiva/kv-ui-elements/commit/74920333e0cec3347f64683af8df8654eb85153e))
+* search bar transition and category link spacing ([0d725b8](https://github.com/kiva/kv-ui-elements/commit/0d725b866a7d9afb6b97f1171606d9754f98621b))
+
+
+
+
+
 ## [6.40.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.1...@kiva/kv-components@6.40.2) (2025-08-05)
 
 
