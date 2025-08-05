@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.1...@kiva/kv-components@6.40.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* import kvWwwHeader related components ([7be704e](https://github.com/kiva/kv-ui-elements/commit/7be704ef71656661e15ca4c142d8ae38b59579e1))
+* not exporting iconBag component ([56a312f](https://github.com/kiva/kv-ui-elements/commit/56a312fcec63c77f0b8cd2ee4d907c60f8c8c1bd))
+* not necessary internal components being exported ([8bf51d1](https://github.com/kiva/kv-ui-elements/commit/8bf51d10d0ee50771beb0321ddf4ce61e1266f00))
+
+
+
+
+
 ## [6.40.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.0...@kiva/kv-components@6.40.1) (2025-08-05)
 
 
