@@ -150,6 +150,7 @@ import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
+import KvIconBag from '../KvIconBag.vue';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
@@ -158,6 +159,7 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 export default {
 	components: {
 		KvMaterialIcon,
+		KvIconBag,
 	},
 	props: {
 		loggedIn: {
