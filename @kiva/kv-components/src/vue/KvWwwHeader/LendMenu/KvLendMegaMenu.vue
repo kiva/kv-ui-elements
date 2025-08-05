@@ -39,7 +39,7 @@
 										v-kv-track-event="['TopNav', 'click-Lend-Category', category.name, index + 1]"
 										:href="category.url"
 										class="tw-text-primary tw-text-left hover:tw-text-action-highlight
-											tw-my-1 tw-inline-block"
+											tw-no-underline tw-my-1 tw-inline-block"
 									>
 										{{ category.name }}
 									</a>
