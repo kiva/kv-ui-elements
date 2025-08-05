@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.0...@kiva/kv-components@6.40.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* **KvContentfulImg:** using scale fit changes aspect ratio ([cbf5b86](https://github.com/kiva/kv-ui-elements/commit/cbf5b86b7b303ed298cff850d48c4fc4cd337eb6))
+
+
+
+
+
 # [6.40.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.39.0...@kiva/kv-components@6.40.0) (2025-08-04)
 
 
