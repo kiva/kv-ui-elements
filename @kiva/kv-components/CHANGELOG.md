@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.4...@kiva/kv-components@6.40.5) (2025-08-06)
+
+
+### Bug Fixes
+
+* private menu query error and style issues ([63ffd62](https://github.com/kiva/kv-ui-elements/commit/63ffd62ffae909265f63b33e927f3f15ce84ba2d))
+
+
+
+
+
 ## [6.40.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.3...@kiva/kv-components@6.40.4) (2025-08-06)
 
 
