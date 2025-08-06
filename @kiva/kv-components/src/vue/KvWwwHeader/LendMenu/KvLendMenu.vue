@@ -38,6 +38,12 @@ export default {
 		KvLendListMenu,
 		KvLendMegaMenu,
 	},
+	props: {
+		userId: {
+			type: Number,
+			default: null,
+		},
+	},
 	emits: ['load-lend-menu-data'],
 	setup(props, { emit }) {
 		const {
@@ -60,10 +66,6 @@ export default {
 		];
 		const isRegionsLoading = ref(true);
 		const isChannelsLoading = ref(true);
-
-		const hasUserId = computed(() => {
-			return !!userId;
-		});
 
 		const onLoad = async (apollo) => {
 			apollo.watchQuery({
@@ -108,7 +110,7 @@ export default {
 				},
 			});
 
-			if (hasUserId.value) {
+			if (userId.value) {
 				const { data } = await apollo.query({
 					query: gql`
 						query lendMenuPrivateData($userId: Int!) {
@@ -129,7 +131,7 @@ export default {
 						}
 					`,
 					variables: {
-						userId,
+						userId: userId.value,
 					},
 					fetchPolicy: 'network-only',
 				});
@@ -182,7 +184,6 @@ export default {
 
 			regions,
 			computedCategories,
-			userId,
 			isChannelsLoading,
 			isRegionsLoading,
 			savedSearches,
