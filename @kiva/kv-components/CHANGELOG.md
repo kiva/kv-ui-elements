@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.5...@kiva/kv-components@6.40.6) (2025-08-06)
+
+
+### Bug Fixes
+
+* min height class and hover color ([39dc682](https://github.com/kiva/kv-ui-elements/commit/39dc682a721843781bf197888dbdd91d9611e1dd))
+
+
+
+
+
 ## [6.40.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.4...@kiva/kv-components@6.40.5) (2025-08-06)
 
 
