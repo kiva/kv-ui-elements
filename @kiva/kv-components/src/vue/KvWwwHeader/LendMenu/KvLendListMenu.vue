@@ -252,6 +252,6 @@ export default {
 
 <style lang="postcss" scoped>
 .lend-link {
-	@apply tw-text-primary hover:tw-text-action tw-block tw-w-full tw-py-1 tw-no-underline;
+	@apply tw-text-primary hover:tw-text-action tw-block tw-w-full tw-py-1 tw-no-underline hover:tw-underline;
 }
 </style>

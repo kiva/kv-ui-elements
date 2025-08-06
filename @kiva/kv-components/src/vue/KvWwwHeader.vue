@@ -1,7 +1,7 @@
 <template>
 	<kv-theme-provider
-		tag="header"
-		class="tw-bg-secondary"
+		tag="div"
+		class="tw-bg-secondary tw-border-b tw-border-tertiary"
 	>
 		<nav
 			class="
@@ -58,7 +58,7 @@
 						tw-absolute
 						tw-left-1/2 tw--translate-x-1/2
 						tw-top-1/2 tw--translate-y-1/2
-						tw-h-full tw-w-full
+						tw-h-full tw-w-full tw-min-h-screen
 					"
 					:style="{
 						'max-width': '600px',

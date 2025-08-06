@@ -93,13 +93,14 @@
 											v-kv-track-event="['TopNav','click-Lend-Favorites']"
 											:href="`/lend?lenderFavorite=${userId}`"
 											class="tw-text-primary tw-text-left hover:tw-text-action
-												tw-py-1 tw-inline-block"
+												tw-py-1 tw-inline-block tw-no-underline hover:tw-underline"
 										>
 											Saved loans
 										</a>
 										<span
 											v-else
-											class="tw-text-secondary tw-py-1 tw-inline-block"
+											class="tw-text-secondary tw-py-1 tw-inline-block
+												tw-no-underline hover:tw-underline"
 										>
 											Saved loans
 										</span>
@@ -126,7 +127,7 @@
 											v-kv-track-event="['TopNav','click-Lend-Countries_Not_Lent']"
 											href="/lend/countries-not-lent"
 											class="tw-text-primary tw-text-left hover:tw-text-action
-												tw-py-1 tw-inline-block"
+												tw-py-1 tw-inline-block tw-no-underline hover:tw-underline"
 										>
 											Countries I haven't lent to
 										</a>
@@ -336,10 +337,11 @@ export default {
 }
 
 .mega-menu-link {
-	@apply tw-text-primary hover:tw-text-action tw-inline-block tw-py-1 tw-no-underline;
+	@apply tw-text-primary hover:tw-text-action tw-inline-block tw-py-1 tw-no-underline hover:tw-underline;
 }
 
 .link-item {
 	width: 11rem;
+	@apply hover:tw-text-action tw-no-underline hover:tw-underline;
 }
 </style>

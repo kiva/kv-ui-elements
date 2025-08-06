@@ -115,7 +115,9 @@ export default {
 					query: gql`
 						query lendMenuPrivateData($userId: Int!) {
 							lend {
-								loans(userId: $userId, limit: 0) {
+								loans(limit: 1, filters: {
+									lenderFavorite: $userId
+								}) {
 									totalCount
 								}
 							}
