@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.3...@kiva/kv-components@6.40.4) (2025-08-06)
+
+
+### Bug Fixes
+
+* not defined props in lend menu component ([3a6ec3d](https://github.com/kiva/kv-ui-elements/commit/3a6ec3d24a976c41427b78dd5fae1d802cc1b2b9))
+* removing extra space ([34adcfe](https://github.com/kiva/kv-ui-elements/commit/34adcfedfa394178116f3e879c08baf2ecac3983))
+* style tweaks and error in computed property ([48125e5](https://github.com/kiva/kv-ui-elements/commit/48125e59d49af6d3f58f75ec079c7341d0d2638c))
+
+
+
+
+
 ## [6.40.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.2...@kiva/kv-components@6.40.3) (2025-08-05)
 
 
