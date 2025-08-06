@@ -194,7 +194,7 @@
 											v-kv-track-event="['TopNav','click-Lend-Region', region.name]"
 											:aria-pressed="isOpenSection(region.name) ? 'true' : 'false'"
 											class="tw-text-primary tw-text-left tw-py-1
-											hover:tw-text-action-highlight hover:tw-underline "
+											hover:tw-text-action hover:tw-underline"
 											:class="{ 'tw-text-action' : isOpenSection(region.name)}"
 											@click="openSection(region.name)"
 										>

@@ -5,13 +5,13 @@
 			:key="search.id"
 		>
 			<a
-				class="tw-text-primary hover:tw-text-action-highlight tw-block tw-w-full tw-py-1"
+				class="tw-text-primary hover:tw-text-action tw-block tw-w-full tw-py-1"
 				:href="search.url"
 			>{{ search.name }}</a>
 		</li>
 		<li>
 			<a
-				class="tw-text-primary hover:tw-text-action-highlight tw-block tw-w-full tw-py-1"
+				class="tw-text-primary hover:tw-text-action tw-block tw-w-full tw-py-1"
 				href="/lend/saved-search"
 			>
 				Manage saved searches
