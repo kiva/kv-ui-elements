@@ -15,7 +15,7 @@
 					</h2>
 
 					<div class="tw-flex tw-gap-4 tw-whitespace-nowrap">
-						<ul class="tw-columns-2 tw-gap-4 tw-font-book">
+						<ul class="tw-columns-2 tw-gap-4 tw-font-medium">
 							<template v-if="isChannelsLoading">
 								<li
 									v-for="i in 14"
@@ -38,7 +38,7 @@
 									<a
 										v-kv-track-event="['TopNav', 'click-Lend-Category', category.name, index + 1]"
 										:href="category.url"
-										class="tw-text-primary tw-text-left hover:tw-text-action-highlight
+										class="tw-text-primary tw-text-left hover:tw-text-action
 											tw-no-underline tw-my-1 tw-inline-block"
 									>
 										{{ category.name }}
@@ -47,7 +47,7 @@
 							</template>
 						</ul>
 						<div>
-							<ul class="tw-font-book">
+							<ul class="tw-font-medium">
 								<li class="link-item">
 									<a
 										v-kv-track-event="['TopNav','click-Lend-Recommended-by-lenders']"
@@ -86,13 +86,13 @@
 								<h2 class="menu-heading tw-my-1">
 									My Kiva
 								</h2>
-								<ul class="tw-font-book">
+								<ul class="tw-font-medium">
 									<li>
 										<a
 											v-if="favorites > 0"
 											v-kv-track-event="['TopNav','click-Lend-Favorites']"
 											:href="`/lend?lenderFavorite=${userId}`"
-											class="tw-text-primary tw-text-left hover:tw-text-action-highlight
+											class="tw-text-primary tw-text-left hover:tw-text-action
 												tw-py-1 tw-inline-block"
 										>
 											Saved loans
@@ -109,7 +109,7 @@
 											v-if="hasSearches"
 											:aria-pressed="isOpenSection(savedSearchesTitle) ? 'true' : 'false'"
 											class="tw-text-primary tw-text-left tw-py-1 tw-inline-block
-											hover:tw-text-action-highlight hover:tw-underline"
+											hover:tw-text-action hover:tw-underline"
 											@click="openSection(savedSearchesTitle)"
 										>
 											{{ savedSearchesTitle }}
@@ -125,7 +125,7 @@
 										<a
 											v-kv-track-event="['TopNav','click-Lend-Countries_Not_Lent']"
 											href="/lend/countries-not-lent"
-											class="tw-text-primary tw-text-left hover:tw-text-action-highlight
+											class="tw-text-primary tw-text-left hover:tw-text-action
 												tw-py-1 tw-inline-block"
 										>
 											Countries I haven't lent to
@@ -169,7 +169,7 @@
 							Regions
 						</h2>
 						<div class="tw-flex tw-whitespace-nowrap tw-h-full">
-							<ul class="tw-font-book">
+							<ul class="tw-font-medium">
 								<template v-if="isRegionsLoading">
 									<li
 										v-for="i in 8"

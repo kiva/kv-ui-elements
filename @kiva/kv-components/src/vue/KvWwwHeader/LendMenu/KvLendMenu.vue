@@ -62,7 +62,7 @@ export default {
 		const isChannelsLoading = ref(true);
 
 		const hasUserId = computed(() => {
-			return !!userId.value;
+			return !!userId;
 		});
 
 		const onLoad = async (apollo) => {

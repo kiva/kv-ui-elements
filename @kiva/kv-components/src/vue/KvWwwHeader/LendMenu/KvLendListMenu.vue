@@ -18,7 +18,7 @@
 			<template #tabPanels>
 				<kv-tab-panel id="nav-lend-categories">
 					<ul
-						class="tw-font-book"
+						class="tw-font-medium"
 					>
 						<template v-if="isChannelsLoading">
 							<li
@@ -118,7 +118,7 @@
 					v-if="userId"
 					id="nav-my-kiva"
 				>
-					<ul class="tw-font-book">
+					<ul class="tw-font-medium">
 						<li>
 							<a
 								v-if="favorites > 0"
