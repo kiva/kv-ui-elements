@@ -181,7 +181,6 @@ export default {
 
 		return {
 			onLoad,
-
 			regions,
 			computedCategories,
 			isChannelsLoading,
