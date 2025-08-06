@@ -58,7 +58,7 @@
 						tw-absolute
 						tw-left-1/2 tw--translate-x-1/2
 						tw-top-1/2 tw--translate-y-1/2
-						tw-h-full tw-w-full tw-min-h-screen
+						tw-h-full tw-w-full
 					"
 					:style="{
 						'max-width': '600px',
@@ -83,7 +83,7 @@
 					tw-absolute tw-z-modal
 					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
-					bg-opacity-50
+					bg-opacity-50 tw-min-h-screen
 				"
 				style="top: 3.75rem;"
 				@click="closeSearch"
