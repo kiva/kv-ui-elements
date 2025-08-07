@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.17.0...@kiva/kv-loan-filters@1.18.0) (2025-08-07)
+
+
+### Features
+
+* hasAccordion flag inverse ([b29fd20](https://github.com/kiva/kv-ui-elements/commit/b29fd209d64979a2c0687631565d8deeab02cadb))
+
+
+
+
+
 # [1.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.2...@kiva/kv-loan-filters@1.17.0) (2025-07-10)
 
 
