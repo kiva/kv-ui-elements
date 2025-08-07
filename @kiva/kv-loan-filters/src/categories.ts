@@ -6,7 +6,7 @@ export const stateKey = 'category';
 
 export const getUiConfig = (options) => ({
 	type: undefined,
-	hasAccordion: true,
+	hasAccordion: false,
 	title: 'category',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
