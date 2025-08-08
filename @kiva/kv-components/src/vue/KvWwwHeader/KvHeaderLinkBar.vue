@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
@@ -203,6 +203,12 @@ export default {
 		const openSearch = () => {
 			emit('open-search', searchButton.value?.offsetLeft);
 		};
+
+		onMounted(() => {
+			import('./KvHeaderMobileMenu.vue');
+			import('./KvHeaderMyKivaMenu.vue');
+			import('./LendMenu/KvLendMenu.vue');
+		});
 
 		return {
 			mdiAccountCircle,
