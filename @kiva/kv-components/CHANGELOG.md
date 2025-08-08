@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.41.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.6...@kiva/kv-components@6.41.0) (2025-08-08)
+
+
+### Features
+
+* preload menu headers to avoid delay in showing menu ([4f20926](https://github.com/kiva/kv-ui-elements/commit/4f209269022557084dabfca3ef0671af263de446))
+
+
+
+
+
 ## [6.40.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.5...@kiva/kv-components@6.40.6) (2025-08-06)
 
 
