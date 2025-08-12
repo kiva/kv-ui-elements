@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.18.0...@kiva/kv-loan-filters@1.19.0) (2025-08-12)
+
+
+### Features
+
+* applying radio group filter to categories filters ([552c439](https://github.com/kiva/kv-ui-elements/commit/552c439ee97c0579a0c04e075f9c7991b4f1653b))
+
+
+
+
+
 # [1.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.17.0...@kiva/kv-loan-filters@1.18.0) (2025-08-07)
 
 
