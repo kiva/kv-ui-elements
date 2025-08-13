@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.42.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.41.0...@kiva/kv-components@6.42.0) (2025-08-13)
+
+
+### Features
+
+* new global component for pulsing dot ([334e9ff](https://github.com/kiva/kv-ui-elements/commit/334e9ff963011763d192a452dfd2e03fd79d64a6))
+
+
+
+
+
 # [6.41.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.6...@kiva/kv-components@6.41.0) (2025-08-08)
 
 
