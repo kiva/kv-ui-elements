@@ -86,6 +86,16 @@
 		>
 			Support Kiva
 		</a>
+		<!-- My dashboard -->
+		<a
+			ref="dashboardLink"
+			v-kv-track-event="['TopNav', 'click-Dashboard']"
+			href="/mykiva"
+			class="header-link tw-hidden lg:tw-block"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
+		>
+			My dashboard
+		</a>
 		<!-- basket (items) -->
 		<a
 			v-if="basketCount > 0"

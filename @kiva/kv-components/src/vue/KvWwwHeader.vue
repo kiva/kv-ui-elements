@@ -1,7 +1,7 @@
 <template>
 	<kv-theme-provider
 		tag="div"
-		class="tw-bg-secondary tw-border-b tw-border-tertiary"
+		class="tw-border-b tw-border-tertiary"
 	>
 		<nav
 			class="
