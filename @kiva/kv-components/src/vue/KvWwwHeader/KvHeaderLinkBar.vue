@@ -88,9 +88,10 @@
 		</a>
 		<!-- My dashboard -->
 		<a
+			v-if="loggedIn"
 			ref="dashboardLink"
 			v-kv-track-event="['TopNav', 'click-Dashboard']"
-			href="/mykiva"
+			:href="myDashboardUrl"
 			class="header-link tw-hidden lg:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
@@ -187,6 +188,10 @@ export default {
 		loginUrl: {
 			type: String,
 			default: '/ui-login',
+		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
 		},
 	},
 	emits: [

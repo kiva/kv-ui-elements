@@ -38,6 +38,11 @@ export default {
 				type: 'boolean',
 			},
 		},
+		myDashboardUrl: {
+			control: {
+				type: 'text',
+			},
+		},
 	},
 };
 
@@ -76,4 +81,5 @@ export const LoggedIn = story({
 	loginUrl: 'https://www.kiva.org/login',
 	balance: 100,
 	isTrustee: false,
+	myDashboardUrl: '/kiva-circles',
 });

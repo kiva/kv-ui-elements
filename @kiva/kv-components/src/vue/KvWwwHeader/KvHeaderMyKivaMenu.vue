@@ -1,7 +1,7 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start lg:tw-items-end tw-font-medium">
 		<kv-header-menu-link
-			href="/mykiva"
+			:href="myDashboardUrl"
 			class="lg:tw-hidden"
 		>
 			My Dashboard
@@ -69,6 +69,10 @@ export default {
 		isTrustee: {
 			type: Boolean,
 			default: false,
+		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
 		},
 	},
 	setup() {
