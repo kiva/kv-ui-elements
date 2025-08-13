@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.42.0...@kiva/kv-components@6.43.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* add width to button, improve auto-closing after menu click ([3ee2d44](https://github.com/kiva/kv-ui-elements/commit/3ee2d44d33ec0b0d10e5d1e603df10f829fa5018))
+* allow content outside of KvCardFrame by default to support embedded menus that may overflow ([df7ce98](https://github.com/kiva/kv-ui-elements/commit/df7ce989f83671ccc78415a8a0dc009bbf0fbd79))
+
+
+### Features
+
+* initial setup for utility component with required customizations ([ea07f12](https://github.com/kiva/kv-ui-elements/commit/ea07f120a2d53f5dd8b7770c9f1caf6b20416fef))
+
+
+
+
+
 # [6.42.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.41.0...@kiva/kv-components@6.42.0) (2025-08-13)
 
 
