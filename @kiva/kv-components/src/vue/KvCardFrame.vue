@@ -3,7 +3,12 @@
 		:theme="themeStyle"
 		class="kv-card-frame-theme-provider"
 	>
-		<div :class="['kv-card-frame tw-overflow-hidden', bgColorClass, radiusClass, shadowClass, borderClass]">
+		<div
+			:class="[
+				'kv-card-frame', bgColorClass, radiusClass, shadowClass, borderClass,
+				{ 'tw-overflow-hidden': !allowOverflow },
+			]"
+		>
 			<slot></slot>
 		</div>
 	</kv-theme-provider>
@@ -28,6 +33,10 @@ export default {
 		KvThemeProvider,
 	},
 	props: {
+		allowOverflow: {
+			type: Boolean,
+			default: true,
+		},
 		bgColorClass: {
 			type: String,
 			default: 'tw-bg-primary',
