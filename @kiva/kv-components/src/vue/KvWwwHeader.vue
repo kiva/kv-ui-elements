@@ -1,7 +1,7 @@
 <template>
 	<kv-theme-provider
 		tag="div"
-		class="tw-bg-secondary tw-border-b tw-border-tertiary"
+		class="tw-border-b tw-border-tertiary"
 	>
 		<nav
 			class="
@@ -23,6 +23,7 @@
 					:basket-count="basketCount"
 					:login-url="loginUrl"
 					:open-menu-item="menuComponent"
+					:my-dashboard-url="myDashboardUrl"
 					@item-hover="onHover"
 					@open-search="openSearch"
 				/>
@@ -103,6 +104,7 @@
 							:balance="balance"
 							:is-borrower="isBorrower"
 							:is-trustee="isTrustee"
+							:my-dashboard-url="myDashboardUrl"
 							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
@@ -156,6 +158,10 @@ export default {
 		userId: {
 			type: Number,
 			default: null,
+		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
 		},
 	},
 	emits: [

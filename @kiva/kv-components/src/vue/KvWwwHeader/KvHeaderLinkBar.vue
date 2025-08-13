@@ -86,6 +86,17 @@
 		>
 			Support Kiva
 		</a>
+		<!-- My dashboard -->
+		<a
+			v-if="loggedIn"
+			ref="dashboardLink"
+			v-kv-track-event="['TopNav', 'click-Dashboard']"
+			:href="myDashboardUrl"
+			class="header-link tw-hidden lg:tw-block"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
+		>
+			My dashboard
+		</a>
 		<!-- basket (items) -->
 		<a
 			v-if="basketCount > 0"
@@ -177,6 +188,10 @@ export default {
 		loginUrl: {
 			type: String,
 			default: '/ui-login',
+		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
 		},
 	},
 	emits: [

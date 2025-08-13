@@ -1,6 +1,12 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start lg:tw-items-end tw-font-medium">
 		<kv-header-menu-link
+			:href="myDashboardUrl"
+			class="lg:tw-hidden"
+		>
+			My Dashboard
+		</kv-header-menu-link>
+		<kv-header-menu-link
 			href="/portfolio"
 			class="tw-inline-flex tw-gap-0.5"
 		>
@@ -63,6 +69,10 @@ export default {
 		isTrustee: {
 			type: Boolean,
 			default: false,
+		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
 		},
 	},
 	setup() {
