@@ -1,5 +1,10 @@
 <template>
-	<div class="tw-relative">
+	<div
+		class="tw-relative utitlity-menu-wrapper"
+		:class="[
+			buttonSize === 'small' ? 'tw-w-4 tw-h-4' : 'tw-w-6 tw-h-6',
+		]"
+	>
 		<button
 			ref="menuAnchor"
 			v-kv-track-event="['`${analyticsCategory}`', 'click', 'utility-menu']"
@@ -13,14 +18,14 @@
 				buttonRadiusClass,
 				buttonSize === 'small' ? 'tw-w-4 tw-h-4' : 'tw-w-6 tw-h-6',
 			]"
-			@click="handleMenuAnchorClick"
+			@click.stop="handleMenuAnchorClick"
 		>
 			<KvMaterialIcon
 				:icon="icon"
 			/>
 		</button>
 		<div
-			v-if="menuOpen"
+			v-show="menuOpen"
 			ref="optionsMenu"
 			class="
 				tw-absolute
@@ -76,15 +81,6 @@ export default {
 				].includes(value);
 			},
 		},
-		iconType: {
-			type: String,
-			default: 'options',
-			validator(value) {
-				return [
-					'options', 'edit',
-				].includes(value);
-			},
-		},
 		icon: {
 			type: String,
 			default: mdiDotsVertical,
@@ -109,18 +105,14 @@ export default {
 		const optionsMenu = ref(null);
 
 		const handleMenuClickOutside = (event) => {
-			console.log('clicked outside', event.target, menuAnchor.value);
-			const menuTrigger = document.querySelector('.menu-trigger');
-			if (menuTrigger && !menuTrigger.contains(event.target)) {
+			if (menuAnchor.value && !menuAnchor.value.contains(event.target)) {
 				menuOpen.value = false;
 			}
 		};
 
-		// eslint-disable-next-line no-unused-vars
-		const handleMenuAnchorClick = (event) => {
+		const handleMenuAnchorClick = () => {
 			menuOpen.value = !menuOpen.value;
 			emit('kv-utility-menu-clicked', { open: menuOpen.value });
-			handleMenuClickOutside(event);
 		};
 
 		onMounted(() => {
@@ -142,12 +134,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="postcss" scoped>
-.small-menu-position {
-	@apply tw-top-5;
-}
-.medium-menu-position {
-	@apply tw-top-6.5;
-}
-</style>
