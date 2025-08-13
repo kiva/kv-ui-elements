@@ -62,8 +62,9 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-	menuPosition: 'left-aligned',
-	buttonRadiusClass: 'tw-rounded',
+	menuPosition: 'right-aligned',
+	buttonRadiusClass: 'tw-rounded-full',
+	buttonSize: 'small',
 };
 
 export const WithEditIcon = Template.bind({
