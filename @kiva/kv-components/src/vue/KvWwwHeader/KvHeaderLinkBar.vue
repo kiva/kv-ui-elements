@@ -37,7 +37,6 @@
 			v-kv-track-event="['TopNav', 'click-TakeAction']"
 			ref-name="takeActionButton"
 			base-class="tw-hidden lg:tw-inline-flex"
-			:href="'/take-action'"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"

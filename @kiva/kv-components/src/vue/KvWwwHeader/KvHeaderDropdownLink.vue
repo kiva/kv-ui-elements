@@ -2,11 +2,11 @@
 	<a
 		:ref="refName"
 		class="
-      tw-px-1.5 tw-py-1 tw-mx-1
-      tw-no-underline hover:tw-no-underline
-      tw-text-primary hover:tw-text-action
-      tw-items-center tw-rounded
-    "
+			tw-px-1.5 tw-py-1 tw-mx-1
+			tw-no-underline hover:tw-no-underline
+			tw-text-primary hover:tw-text-action
+			tw-items-center tw-rounded tw-cursor-pointer
+		"
 		:href="href"
 		:class="computedClass"
 		:style="style"
@@ -35,7 +35,7 @@ export default {
 		},
 		href: {
 			type: String,
-			default: '',
+			default: undefined,
 		},
 		menuComponent: {
 			type: Object,
