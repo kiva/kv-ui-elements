@@ -19,32 +19,32 @@
 			/>
 		</button>
 		<!-- lend -->
-		<a
-			ref="lendButton"
+		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
-			href="/lend-by-category"
-			class="
-				tw-px-1.5 tw-py-1 tw-mx-1
-				tw-border-2
-				tw-text-eco-green-3 tw-border-current
-				tw-no-underline hover:tw-no-underline
-				tw-inline-flex tw-items-center
-			"
-			:class="{
-				'tw-text-tertiary': openMenuItem && openMenuItem !== KvLendMenu,
-			}"
-			style="border-radius: 1rem;"
-			@mouseover="onHover(lendButton, KvLendMenu)"
-			@mouseout="onHover()"
+			ref-name="lendButton"
+			:href="'/lend-by-category'"
+			:menu-component="KvLendMenu"
+			:open-menu-item="openMenuItem"
+			:on-hover="onHover"
+			:dropdown-icon="mdiChevronDown"
+			base-class="tw-border-2 tw-border-current tw-inline-flex"
 		>
 			Lend
 			<span class="tw-hidden lg:tw-inline tw-ml-0.5">now</span>
-			<kv-material-icon
-				class="tw-hidden md:tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
-				:class="{'tw-rotate-180' : openMenuItem === KvLendMenu}"
-				:icon="mdiChevronDown"
-			/>
-		</a>
+		</KvHeaderDropdownLink>
+		<!-- Take Action -->
+		<KvHeaderDropdownLink
+			v-kv-track-event="['TopNav', 'click-TakeAction']"
+			ref-name="takeActionButton"
+			base-class="tw-hidden lg:tw-inline-flex"
+			:href="'/take-action'"
+			:menu-component="KvHeaderTakeActionMenu"
+			:open-menu-item="openMenuItem"
+			:on-hover="onHover"
+			:dropdown-icon="mdiChevronDown"
+		>
+			Take action
+		</KvHeaderDropdownLink>
 		<!-- about us (lg) -->
 		<a
 			ref="aboutUsLink"
@@ -162,15 +162,18 @@ import {
 } from '@mdi/js';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
+import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
 const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
+const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 
 export default {
 	components: {
 		KvMaterialIcon,
 		KvIconBag,
+		KvHeaderDropdownLink,
 	},
 	props: {
 		loggedIn: {
@@ -223,6 +226,7 @@ export default {
 			import('./KvHeaderMobileMenu.vue');
 			import('./KvHeaderMyKivaMenu.vue');
 			import('./LendMenu/KvLendMenu.vue');
+			import('./KvHeaderTakeActionMenu.vue');
 		});
 
 		return {
@@ -248,6 +252,7 @@ export default {
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
 			KvLendMenu,
+			KvHeaderTakeActionMenu,
 		};
 	},
 };
