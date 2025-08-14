@@ -110,13 +110,12 @@ export default {
 		},
 		borderRadius: {
 			none: '0px',
+			xs: rem(radii.xs),
 			sm: rem(radii.sm),
+			md: rem(radii.md),
 			DEFAULT: rem(radii.default),
-			// md: '0.375rem',
 			lg: rem(radii.lg),
-			// xl: '0.75rem',
-			// '2xl': '1rem',
-			// '3xl': '1.5rem',
+			xl: rem(radii.xl),
 			full: '500rem',
 		},
 		opacity: {
