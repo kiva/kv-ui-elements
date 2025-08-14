@@ -110,7 +110,7 @@ export default {
 		},
 		borderRadius: {
 			none: '0px',
-			xs: rem(radii.sm),
+			xs: rem(radii.xs),
 			sm: rem(radii.sm),
 			md: rem(radii.md),
 			DEFAULT: rem(radii.default),
