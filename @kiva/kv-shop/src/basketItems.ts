@@ -33,9 +33,14 @@ export async function setTipDonation({ amount, apollo, metadata }: SetTipDonatio
 					metadata: $metadata,
 				})
 				{
+					basketItemType
 					id
-					price
 					isTip
+					isUserEdited
+					metadata {
+						campaignId
+					}
+					price
 				}
 			}
 		}`,
