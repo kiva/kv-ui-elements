@@ -30,7 +30,6 @@
 			base-class="tw-border-2 tw-border-current tw-inline-flex"
 		>
 			Lend
-			<span class="tw-hidden lg:tw-inline tw-ml-0.5">now</span>
 		</KvHeaderDropdownLink>
 		<!-- Take Action -->
 		<KvHeaderDropdownLink
