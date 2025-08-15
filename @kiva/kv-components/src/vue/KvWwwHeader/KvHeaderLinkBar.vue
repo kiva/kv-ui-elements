@@ -44,47 +44,22 @@
 		>
 			Take action
 		</KvHeaderDropdownLink>
-		<!-- about us (lg) -->
-		<a
-			ref="aboutUsLink"
-			href="/about"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem }"
+		<!-- about (lg) -->
+		<KvHeaderDropdownLink
+			v-kv-track-event="['TopNav', 'click-About']"
+			ref-name="aboutUsLink"
+			base-class="tw-hidden lg:tw-inline-flex"
+			:menu-component="KvHeaderAboutMenu"
+			:open-menu-item="openMenuItem"
+			:on-hover="onHover"
+			:dropdown-icon="mdiChevronDown"
 		>
-			About us
-		</a>
-		<!-- partner with us (lg) -->
-		<a
-			ref="partnerWithUsLink"
-			href="/about/partner-with-us"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Partner with us
-		</a>
+			About
+		</KvHeaderDropdownLink>
 		<!-- logo spacer -->
 		<div
 			class="tw-flex-1 tw-h-full"
 		></div>
-		<!-- borrow (lg, no-auth) -->
-		<a
-			v-if="!loggedIn"
-			ref="borrowLink"
-			href="/borrow"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Borrow
-		</a>
-		<!-- support kiva (lg) -->
-		<a
-			ref="supportKivaLink"
-			href="/donate/supportus"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Support Kiva
-		</a>
 		<!-- My dashboard -->
 		<a
 			v-if="loggedIn"
@@ -167,6 +142,7 @@ const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMe
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
 const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
+const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
 export default {
 	components: {
@@ -226,6 +202,7 @@ export default {
 			import('./KvHeaderMyKivaMenu.vue');
 			import('./LendMenu/KvLendMenu.vue');
 			import('./KvHeaderTakeActionMenu.vue');
+			import('./KvHeaderAboutMenu.vue');
 		});
 
 		return {
@@ -252,6 +229,7 @@ export default {
 			KvHeaderMyKivaMenu,
 			KvLendMenu,
 			KvHeaderTakeActionMenu,
+			KvHeaderAboutMenu,
 		};
 	},
 };
