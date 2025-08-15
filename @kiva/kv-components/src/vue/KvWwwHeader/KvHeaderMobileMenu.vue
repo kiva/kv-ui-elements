@@ -21,10 +21,10 @@
 			Borrow
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-About-us']"
+			v-kv-track-event="['TopNav', 'click-menu-About']"
 			href="/about"
 		>
-			About us
+			About
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			v-kv-track-event="['TopNav', 'click-menu-Partner-with-us']"
