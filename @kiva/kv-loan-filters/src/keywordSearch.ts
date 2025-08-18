@@ -5,10 +5,10 @@ export const stateKey = 'keywordSearch';
 export const getUiConfig = (options) => ({
 	type: undefined,
 	hasAccordion: false,
-	title: 'Keywords',
+	title: 'Search',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
-	placeholder: 'Search borrower story',
+	placeholder: 'Search all loans for keywords',
 	facetsKey,
 	stateKey,
 	eventAction: undefined,
