@@ -8,12 +8,6 @@
 			Sign in
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Support-kiva']"
-			href="/donate/supportus"
-		>
-			Support Kiva
-		</kv-header-menu-link>
-		<kv-header-menu-link
 			v-if="!loggedIn"
 			v-kv-track-event="['TopNav', 'click-menu-Borrow']"
 			href="/borrow"

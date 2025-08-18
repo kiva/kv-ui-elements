@@ -17,7 +17,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
 			ref-name="lendButton"
-			:href="'/lend-by-category'"
+			:href="lendUrl"
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
@@ -124,7 +124,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import {
+	defineAsyncComponent, onMounted, ref, computed,
+} from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
@@ -175,6 +177,10 @@ export default {
 			type: String,
 			default: '',
 		},
+		isMobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'item-hover',
@@ -200,6 +206,10 @@ export default {
 		const openSearch = () => {
 			emit('open-search', searchButton.value?.offsetLeft);
 		};
+
+		const lendUrl = computed(() => {
+			return !props.isMobile ? '/lend-by-category' : undefined;
+		});
 
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');
@@ -228,6 +238,7 @@ export default {
 			searchButton,
 			signInLink,
 			menuButton,
+			lendUrl,
 
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,

@@ -26,6 +26,7 @@
 					:my-dashboard-url="myDashboardUrl"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
+					:is-mobile="isMobile"
 					@item-hover="onHover"
 					@open-search="openSearch"
 				/>
@@ -172,6 +173,10 @@ export default {
 		lenderImageUrl: {
 			type: String,
 			default: '',
+		},
+		isMobile: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
