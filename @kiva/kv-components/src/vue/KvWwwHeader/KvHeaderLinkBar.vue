@@ -3,26 +3,21 @@
 		class="tw-h-full tw-flex tw-items-center"
 	>
 		<!-- avatar (sm, auth) -->
-		<button
+		<KvUserAvatar
 			v-if="loggedIn"
 			ref="avatar"
-			class="header-link lg:tw-order-last tw-inline-flex"
-			:class="{
-				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMyKivaMenu
-			}"
+			class="tw-cursor-pointer lg:tw-order-last tw-inline-flex"
+			:lender-name="lenderName"
+			:lender-image-url="lenderImageUrl"
+			is-small
 			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
 			@mouseout="onHover()"
-		>
-			<kv-material-icon
-				:icon="mdiAccountCircle"
-				class="tw-w-3"
-			/>
-		</button>
+		/>
 		<!-- lend -->
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
 			ref-name="lendButton"
-			:href="'/lend-by-category'"
+			:href="lendUrl"
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
@@ -129,13 +124,16 @@
 </template>
 
 <script>
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import {
+	defineAsyncComponent, onMounted, ref, computed,
+} from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
+import KvUserAvatar from '../KvUserAvatar.vue';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
@@ -148,6 +146,7 @@ export default {
 		KvMaterialIcon,
 		KvIconBag,
 		KvHeaderDropdownLink,
+		KvUserAvatar,
 	},
 	props: {
 		loggedIn: {
@@ -169,6 +168,18 @@ export default {
 		myDashboardUrl: {
 			type: String,
 			default: '/mykiva',
+		},
+		lenderName: {
+			type: String,
+			default: '',
+		},
+		lenderImageUrl: {
+			type: String,
+			default: '',
+		},
+		isMobile: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
@@ -195,6 +206,10 @@ export default {
 		const openSearch = () => {
 			emit('open-search', searchButton.value?.offsetLeft);
 		};
+
+		const lendUrl = computed(() => {
+			return !props.isMobile ? '/lend-by-category' : undefined;
+		});
 
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');
@@ -223,6 +238,7 @@ export default {
 			searchButton,
 			signInLink,
 			menuButton,
+			lendUrl,
 
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
