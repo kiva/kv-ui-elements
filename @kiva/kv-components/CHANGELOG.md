@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.43.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.0...@kiva/kv-components@6.43.1) (2025-08-18)
+
+
+### Bug Fixes
+
+* add ability to blur backgorund behind kvlightbox ([7b04368](https://github.com/kiva/kv-ui-elements/commit/7b043683b5c31ecbc9c277f823941841c5c42ad2))
+
+
+
+
+
 # [6.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.42.0...@kiva/kv-components@6.43.0) (2025-08-13)
 
 
