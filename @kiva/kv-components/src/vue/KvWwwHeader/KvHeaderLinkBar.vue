@@ -79,21 +79,6 @@
 				:count="basketCount"
 			/>
 		</a>
-		<!-- search icon -->
-		<button
-			ref="searchButton"
-			v-kv-track-event="['TopNav', 'click-Search-toggle']"
-			class="header-link tw-flex"
-			:class="{
-				'tw-text-tertiary': !!openMenuItem
-			}"
-			@click="openSearch"
-		>
-			<kv-material-icon
-				class="tw-w-3 tw-h-3"
-				:icon="mdiMagnify"
-			/>
-		</button>
 		<!-- sign in (lg, no-auth) -->
 		<a
 			v-if="!loggedIn"
@@ -184,7 +169,6 @@ export default {
 	},
 	emits: [
 		'item-hover',
-		'open-search',
 	],
 	setup(props, { emit }) {
 		// element references
@@ -195,16 +179,11 @@ export default {
 		const borrowLink = ref(null);
 		const supportKivaLink = ref(null);
 		const basketLink = ref(null);
-		const searchButton = ref(null);
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 
 		const onHover = (item, menu) => {
 			emit('item-hover', item, menu);
-		};
-
-		const openSearch = () => {
-			emit('open-search', searchButton.value?.offsetLeft);
 		};
 
 		const lendUrl = computed(() => {
@@ -226,7 +205,6 @@ export default {
 			mdiMenu,
 
 			onHover,
-			openSearch,
 
 			avatar,
 			lendButton,
@@ -235,7 +213,6 @@ export default {
 			borrowLink,
 			supportKivaLink,
 			basketLink,
-			searchButton,
 			signInLink,
 			menuButton,
 			lendUrl,
