@@ -43,6 +43,16 @@ export default {
 				type: 'text',
 			},
 		},
+		lenderName: {
+			control: {
+				type: 'text',
+			},
+		},
+		lenderImageUrl: {
+			control: {
+				type: 'text',
+			},
+		},
 	},
 };
 
@@ -82,4 +92,6 @@ export const LoggedIn = story({
 	balance: 100,
 	isTrustee: false,
 	myDashboardUrl: '/kiva-circles',
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 });

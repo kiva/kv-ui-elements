@@ -24,6 +24,8 @@
 					:login-url="loginUrl"
 					:open-menu-item="menuComponent"
 					:my-dashboard-url="myDashboardUrl"
+					:lender-name="lenderName"
+					:lender-image-url="lenderImageUrl"
 					@item-hover="onHover"
 					@open-search="openSearch"
 				/>
@@ -162,6 +164,14 @@ export default {
 		myDashboardUrl: {
 			type: String,
 			default: '/mykiva',
+		},
+		lenderName: {
+			type: String,
+			default: '',
+		},
+		lenderImageUrl: {
+			type: String,
+			default: '',
 		},
 	},
 	emits: [
