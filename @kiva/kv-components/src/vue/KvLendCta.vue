@@ -53,7 +53,7 @@
 			class="tw-w-full tw-flex"
 			@submit.prevent="addToBasket"
 		>
-			<!-- ===== MOBILE-ONLY (shown <640px) ===== -->
+			<!-- ===== MOBILE-ONLY  ===== -->
 			<div class="md:tw-hidden tw-w-full">
 				<fieldset
 					class="tw-w-full tw-min-w-0"
