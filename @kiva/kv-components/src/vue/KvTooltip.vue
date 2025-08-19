@@ -12,7 +12,7 @@
 		>
 			<div
 				class="tw-p-2.5"
-				style="max-width: 250px;"
+				:style="{ maxWidth }"
 			>
 				<div
 					v-if="$slots.title"
@@ -64,6 +64,10 @@ export default {
 				return false;
 			},
 			required: true,
+		},
+		maxWidth: {
+			type: String,
+			default: '250px',
 		},
 		theme: {
 			type: String,
