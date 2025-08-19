@@ -311,7 +311,7 @@
 <script>
 import gql from 'graphql-tag';
 import { mdiChevronRight } from '@mdi/js';
-import { throttle } from '../utils/throttle'; // Import throttle utility
+import { throttle } from '../utils/throttle';
 import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
