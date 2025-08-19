@@ -661,19 +661,24 @@ export default {
 			}
 		},
 	},
-	created() {
-		this.handleResizeThrottled = throttle(() => {
-			this.viewportWidth = window.innerWidth;
-		}, 50);
-	},
 	mounted() {
 		this.viewportWidth = window.innerWidth;
-		window.addEventListener('resize', this.handleResizeThrottled);
+
+		this.resizeHandler = throttle(() => {
+			this.viewportWidth = window.innerWidth;
+		}, 50);
+
+		window.addEventListener('resize', this.resizeHandler);
 	},
 	beforeDestroy() {
-		window.removeEventListener('resize', this.handleResizeThrottled);
+		if (this.resizeHandler) {
+			window.removeEventListener('resize', this.resizeHandler);
+		}
 	},
 	methods: {
+		handleResizeThrottled: throttle(function handleResizeThrottled() {
+			this.viewportWidth = window.innerWidth;
+		}, 50),
 		async addToBasket() {
 			this.kvTrackFunction(
 				this.kvTrackCategory,
