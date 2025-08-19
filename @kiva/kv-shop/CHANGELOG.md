@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.3.0...@kiva/kv-shop@3.3.1) (2025-08-18)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+# [3.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.2.9...@kiva/kv-shop@3.3.0) (2025-08-14)
+
+
+### Features
+
+* when calling one time checkout and create gf, return all the data ([b82d6f4](https://github.com/kiva/kv-ui-elements/commit/b82d6f49a83b26cd164df47b7abf4b982134db66))
+
+
+
+
+
+## [3.2.9](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.2.8...@kiva/kv-shop@3.2.9) (2025-08-13)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.2.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.2.7...@kiva/kv-shop@3.2.8) (2025-08-13)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.2.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.2.6...@kiva/kv-shop@3.2.7) (2025-08-08)
 
 **Note:** Version bump only for package @kiva/kv-shop

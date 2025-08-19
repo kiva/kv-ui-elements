@@ -15,12 +15,16 @@ export default {
 			control: 'select',
 			options: ['lightbox', 'alert'],
 		},
+		blurBackground: {
+			control: 'boolean',
+		},
 	},
 	args: {
 		visible: true,
 		title: '',
 		variant: 'lightbox',
 		preventClose: false,
+		blurBackground: false,
 	},
 };
 
@@ -38,6 +42,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				:title="args.title"
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p class="tw-mb-2">Lorem ipsum aliquip labore commodo anim elit amet cupidatat do ex ipsum. Consectetur excepteur ea anim velit reprehenderit qui aliquip ullamco aliquip irure dolor ex. Occaecat excepteur enim eu incididunt ut consectetur aliqua magna et. Reprehenderit duis ex excepteur sit et cupidatat cillum cillum adipisicing ut adipisicing minim ad.</p>
@@ -70,6 +75,7 @@ const VeryShortTemplate = (args, { argTypes }) => ({
 				:title="args.title"
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p class="tw-mb-2">The lightbox content is very short.</p>
@@ -101,6 +107,7 @@ const VeryLongTemplate = (args, { argTypes }) => ({
 				:title="args.title"
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p class="tw-mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptatum quod illum minima alias quae non architecto ipsum sunt repudiandae eius ipsa commodi adipisci nam, magni praesentium error, deleniti impedit!
@@ -141,6 +148,7 @@ const AlertTemplate = (args, { argTypes }) => ({
 				:title="args.title"
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p>The credit card will be removed from our data base and will no longer be used for subscriptions or auto-deposit.</p>
@@ -185,6 +193,12 @@ PreventClose.args = {
 	preventClose: true,
 };
 
+export const BlurBackground = DefaultTemplate.bind({});
+BlurBackground.args = {
+	title: 'Blur Background Example',
+	blurBackground: true,
+};
+
 export const CustomHeader = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvLightbox, KvButton, KvMaterialIcon },
@@ -197,6 +211,7 @@ export const CustomHeader = (args, { argTypes }) => ({
 			<kv-lightbox
 				:visible="isLightboxVisible"
 				title="Make sure you put a title here for screenreaders"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<template #header>
@@ -240,6 +255,7 @@ const InformationalTemplate = (args, { argTypes }) => ({
 				:title="args.title"
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p>Lorem ipsum aliquip labore commodo anim elit amet cupidatat do ex ipsum. Consectetur excepteur ea anim velit reprehenderit qui aliquip ullamco aliquip irure dolor ex. Occaecat excepteur enim eu incididunt ut consectetur aliqua magna et. Reprehenderit duis ex excepteur sit et cupidatat cillum cillum adipisicing ut adipisicing minim ad.</p>
@@ -263,6 +279,7 @@ const ToastInLightboxTemplate = (args, {
 	argTypes,
 }) => ({
 	props: Object.keys(argTypes),
+	setup() { return { args }; },
 	components: {
 		KvToast,
 		KvButton,
@@ -275,6 +292,7 @@ const ToastInLightboxTemplate = (args, {
 			<kv-lightbox
 				:visible="isLightboxVisible"
 				title="Toast in Lightbox"
+				:blur-background="args.blurBackground"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p>Click the button below to show a toast.</p>

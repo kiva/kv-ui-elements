@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "6.41.0",
+  "version": "6.43.1",
   "type": "module",
   "publishConfig": {
     "access": "public"

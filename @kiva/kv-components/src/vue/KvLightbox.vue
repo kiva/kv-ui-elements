@@ -20,6 +20,18 @@
 			@click.stop.prevent="onScreenClick"
 		>
 			<div>
+				<!-- optional blurred layer -->
+				<div
+					v-if="blurBackground"
+					class="
+						tw-fixed
+						tw-inset-0
+						tw-w-full
+						tw-h-full
+						tw-backdrop-blur-sm
+					"
+					@click.stop.prevent="onScreenClick"
+				></div>
 				<div
 					class="
 						tw-flex
@@ -40,7 +52,6 @@
 							tw-bg-primary
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
-
 						"
 						:class="{
 							'tw-w-full md:tw-w-auto' : variant === 'lightbox',
@@ -169,6 +180,13 @@ export default {
 		KvMaterialIcon,
 	},
 	props: {
+		/**
+		 * Whether to apply a blur to the background behind the lightbox
+		 */
+		blurBackground: {
+			type: Boolean,
+			default: false,
+		},
 		/**
 		 * Whether the dialog is open or not
 		 * */

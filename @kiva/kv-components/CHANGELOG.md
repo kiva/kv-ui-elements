@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.43.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.0...@kiva/kv-components@6.43.1) (2025-08-18)
+
+
+### Bug Fixes
+
+* add ability to blur backgorund behind kvlightbox ([7b04368](https://github.com/kiva/kv-ui-elements/commit/7b043683b5c31ecbc9c277f823941841c5c42ad2))
+
+
+
+
+
+# [6.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.42.0...@kiva/kv-components@6.43.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* add width to button, improve auto-closing after menu click ([3ee2d44](https://github.com/kiva/kv-ui-elements/commit/3ee2d44d33ec0b0d10e5d1e603df10f829fa5018))
+* allow content outside of KvCardFrame by default to support embedded menus that may overflow ([df7ce98](https://github.com/kiva/kv-ui-elements/commit/df7ce989f83671ccc78415a8a0dc009bbf0fbd79))
+
+
+### Features
+
+* initial setup for utility component with required customizations ([ea07f12](https://github.com/kiva/kv-ui-elements/commit/ea07f120a2d53f5dd8b7770c9f1caf6b20416fef))
+
+
+
+
+
+# [6.42.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.41.0...@kiva/kv-components@6.42.0) (2025-08-13)
+
+
+### Features
+
+* new global component for pulsing dot ([334e9ff](https://github.com/kiva/kv-ui-elements/commit/334e9ff963011763d192a452dfd2e03fd79d64a6))
+
+
+
+
+
 # [6.41.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.40.6...@kiva/kv-components@6.41.0) (2025-08-08)
 
 

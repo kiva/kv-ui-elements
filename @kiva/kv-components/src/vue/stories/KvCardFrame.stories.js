@@ -106,7 +106,7 @@ export const FullImageCard = (args, { argTypes }) => ({
 	setup() { return { args }; },
 	template: `
 		<div>
-			<kv-card-frame class="tw-w-16 tw-h-16">
+			<kv-card-frame :allow-overflow="false" class="tw-w-16 tw-h-16">
 				<a href="https://www.kiva.org/team/impact" target="_blank" rel="noopener noreferrer">
 					<img src="https://www.kiva.org/img/team_impact_fb_share2.png" alt="Kiva Team Impact" />
 				</a>
@@ -114,8 +114,6 @@ export const FullImageCard = (args, { argTypes }) => ({
 		</div>
 	`,
 	data() {
-		return {
-
-		};
+		return {};
 	},
 });
