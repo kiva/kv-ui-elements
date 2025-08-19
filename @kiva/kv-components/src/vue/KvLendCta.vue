@@ -82,13 +82,12 @@
 								v-if="showFilteredDropdown && viewportWidth > 325"
 								:id="`LoanAmountDropdownMobile_${loanId}`"
 								v-model="selectedDropdownOption"
-								class="filtered-dropdown tw-rounded tw-w-auto tw-flex-none mobile-other-dd"
+								class="filtered-dropdown tw-rounded tw-w-auto tw-flex-none mobile-other-dd tw-min-w-max"
 								:class="{
 									'unselected-dropdown': !selectedDropdown,
 									'selected-dropdown': selectedDropdown,
 								}"
 								aria-label="Lend amount"
-								style="min-width: max-content;"
 								@update:modelValue="trackLendAmountSelection"
 								@click.native.stop="clickDropdown"
 							>
@@ -312,6 +311,7 @@
 <script>
 import gql from 'graphql-tag';
 import { mdiChevronRight } from '@mdi/js';
+import { throttle } from '../utils/throttle'; // Import throttle utility
 import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
@@ -322,22 +322,22 @@ const OTHER_OPTION = 'Other';
 
 // Use this fragment to get the necessary public data for this component
 export const KV_LEND_CTA_FRAGMENT = gql`
-	fragment KvLendCta on LoanBasic {
-		id
-		name
-		status
-		minNoteSize
-	}
+    fragment KvLendCta on LoanBasic {
+        id
+        name
+        status
+        minNoteSize
+    }
 `;
 
 // Use this fragment to get the necessary private/user data for this component
 export const KV_LEND_CTA_USER_FRAGMENT = gql`
-	fragment KvLendCtaUser on LoanBasic {
-		id
-		userProperties {
-			lentTo
-		}
-	}
+    fragment KvLendCtaUser on LoanBasic {
+        id
+        userProperties {
+            lentTo
+        }
+    }
 `;
 
 export default {
@@ -426,9 +426,9 @@ export default {
 			default: undefined,
 		},
 		/**
-		 * Hide preset buttons under this amount when
-		 * showPresetAmounts is true
-		 * */
+         * Hide preset buttons under this amount when
+         * showPresetAmounts is true
+         * */
 		maxAmount: {
 			type: String,
 			default: '',
@@ -478,7 +478,7 @@ export default {
 		},
 		isInBasket() {
 			return this.basketItems
-				// eslint-disable-next-line no-underscore-dangle
+			// eslint-disable-next-line no-underscore-dangle
 				?.some((item) => item.__typename === 'LoanReservation' && item.id === this.loanId) ?? false;
 		},
 		prices() {
@@ -549,10 +549,10 @@ export default {
 		},
 		useFormSubmit() {
 			if (this.hideShowLendDropdown
-				|| this.lendButtonVisibility
-				|| this.showLendAgain
-				|| this.state === 'lent-to'
-				|| this.isAdding) {
+                || this.lendButtonVisibility
+                || this.showLendAgain
+                || this.state === 'lent-to'
+                || this.isAdding) {
 				return true;
 			}
 			return false;
@@ -583,7 +583,7 @@ export default {
 		},
 		showNonActionableLoanButton() {
 			return this.state === 'refunded'
-				|| this.state === 'expired';
+                || this.state === 'expired';
 		},
 		hideShowLendDropdown() {
 			return this.state === 'lend' || this.state === 'lent-to';
@@ -604,13 +604,13 @@ export default {
 		},
 		isCompleteLoanActive() {
 			return (this.isAmountLessThan25(this.unreservedAmount)
-				|| this.isAmountBetween25And500(this.unreservedAmount));
+                || this.isAmountBetween25And500(this.unreservedAmount));
 		},
 		isLendAmountButton() {
 			const amountToUse = this.maxAmount ? this.maxAmount : this.unreservedAmount;
 			return ((this.lendButtonVisibility || this.state === 'lent-to')
-				&& this.isAmountLessThan25(amountToUse))
-				|| (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
+                && this.isAmountLessThan25(amountToUse))
+                || (this.showPresetAmounts && this.presetButtonsPrices.length === 1 && !this.isAdding);
 		},
 		isFunded() {
 			return this.state === 'funded' || this.state === 'fully-reserved';
@@ -661,11 +661,17 @@ export default {
 			}
 		},
 	},
+	created() {
+		this.handleResizeThrottled = throttle(() => {
+			this.viewportWidth = window.innerWidth;
+		}, 50);
+	},
 	mounted() {
-		window.addEventListener('resize', this.handleResize);
+		this.viewportWidth = window.innerWidth;
+		window.addEventListener('resize', this.handleResizeThrottled);
 	},
 	beforeDestroy() {
-		window.removeEventListener('resize', this.handleResize);
+		window.removeEventListener('resize', this.handleResizeThrottled);
 	},
 	methods: {
 		async addToBasket() {
@@ -732,9 +738,6 @@ export default {
 				this.loanId,
 			);
 		},
-		handleResize() {
-			this.viewportWidth = window.innerWidth;
-		},
 	},
 };
 </script>
@@ -778,12 +781,10 @@ export default {
 }
 
 @media (max-width: 325px) {
-    /* Target the mobile preset row */
     [data-testid="bp-lend-cta-select-and-button-mobile"] > div.tw-flex {
-        flex-wrap: wrap;
+        @apply tw-flex-wrap;
     }
 
-    /* "Other" dropdown: give it more space and prevent trimming */
     .mobile-other-dd {
         flex: 0 0 100px !important;
         min-width: 100px !important;
@@ -791,7 +792,6 @@ export default {
         width: 100px !important;
     }
 
-    /* CTA: takes the remaining space, truncates properly */
     .button-ellipsis {
         flex: 1 1 0%;
         min-width: 0;
