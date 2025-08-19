@@ -15,7 +15,6 @@
 			<!-- link bar -->
 			<transition
 				name="header-fade"
-				@after-leave="afterLinksNotVisible"
 			>
 				<kv-header-link-bar
 					v-show="linksVisible"
@@ -28,7 +27,6 @@
 					:lender-image-url="lenderImageUrl"
 					:is-mobile="isMobile"
 					@item-hover="onHover"
-					@open-search="openSearch"
 				/>
 			</transition>
 			<!-- logo -->
@@ -43,46 +41,16 @@
 					tw--translate-y-1/2 tw--translate-x-1/2
 					tw-transition-all tw-duration-300
 				"
-				:class="{
-					'tw-opacity-0 md:tw-opacity-full md:tw-left-2.5 md:tw-translate-x-0': searchOpen,
-				}"
 			>
 				<kv-header-logo />
 			</a>
-			<!-- search bar -->
-			<transition
-				name="header-fade"
-				@after-enter="afterSearchOpen"
-				@after-leave="afterSearchClosed"
-			>
-				<kv-header-search-bar
-					v-show="searchOpen"
-					ref="searchBar"
-					class="
-						tw-absolute
-						tw-left-1/2 tw--translate-x-1/2
-						tw-top-1/2 tw--translate-y-1/2
-						tw-h-full tw-w-full
-					"
-					:style="{
-						'max-width': '600px',
-					}"
-					@close-search="closeSearch"
-				/>
-			</transition>
 		</nav>
-		<transition
-			name="header-fade"
-			@after-enter="afterSearchOpen"
-		>
-			<kv-header-search-suggestions v-if="searchOpen" />
-		</transition>
 		<!-- menu drawer -->
 		<transition
 			name="header-fade"
 		>
 			<div
-				v-show="menuOpen || searchOpen"
+				v-show="menuOpen"
 				class="
 					tw-absolute tw-z-modal
 					tw-h-full tw-inset-x-0
@@ -90,10 +58,9 @@
 					bg-opacity-50 tw-min-h-screen
 				"
 				style="top: 3.75rem;"
-				@click="closeSearch"
 			>
 				<div
-					class="tw-bg-secondary tw-w-full"
+					class="tw-bg-primary tw-w-full"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
@@ -121,17 +88,13 @@
 import { ref, shallowRef } from 'vue';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
-import KvHeaderSearchBar from './KvWwwHeader/KvHeaderSearchBar.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
-import KvHeaderSearchSuggestions from './KvWwwHeader/KvHeaderSearchSuggestions.vue';
 
 export default {
 	components: {
 		KvHeaderLinkBar,
 		KvHeaderLogo,
-		KvHeaderSearchBar,
 		KvThemeProvider,
-		KvHeaderSearchSuggestions,
 	},
 	props: {
 		loggedIn: {
@@ -184,8 +147,6 @@ export default {
 	],
 	setup(props, { emit }) {
 		const linksVisible = ref(true);
-		const searchBar = ref(null);
-		const searchOpen = ref(false);
 		const activeHeaderItem = ref(null);
 		const menuOpen = ref(false);
 		const menuComponent = shallowRef(null);
@@ -208,34 +169,6 @@ export default {
 			}
 		};
 
-		// Search bar opening animation sequence
-		// 1. Fade out other header links
-		const openSearch = () => {
-			linksVisible.value = false;
-		};
-		// 2. Reveal search bar, expanding from origin point
-		const afterLinksNotVisible = () => {
-			searchOpen.value = true;
-		};
-		// 3. Focus search input
-		const afterSearchOpen = () => {
-			searchBar.value?.onOpen();
-		};
-
-		// Search bar closing animation sequence
-		// 1. Hide search bar, collapsing to origin point
-		const closeSearch = () => {
-			searchOpen.value = false;
-		};
-		// 2. Fade in other header links
-		const afterSearchClosed = () => {
-			linksVisible.value = true;
-		};
-
-		const getSuggestions = (apollo) => {
-			searchBar.value?.getSuggestions(apollo);
-		};
-
 		const loadMenuData = (apollo) => {
 			menuComponentInstance.value?.onLoad(apollo);
 		};
@@ -246,23 +179,15 @@ export default {
 		};
 
 		return {
-			afterLinksNotVisible,
-			afterSearchClosed,
-			afterSearchOpen,
 			emitLendMenuEvent,
 
 			linksVisible,
-			searchOpen,
 			menuOpen,
 
 			onHover,
-			openSearch,
-			closeSearch,
-			getSuggestions,
 			loadMenuData,
 
 			activeHeaderItem,
-			searchBar,
 			menuComponent,
 			menuComponentInstance,
 		};
