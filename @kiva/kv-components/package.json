@@ -105,7 +105,9 @@
     "graphql-tag": "2.x",
     "nanoid": "3.x",
     "numeral": "2.x",
-    "vue": "3.x"
+    "vue": "3.x",
+    "@vuepic/vue-datepicker": "^11.0.2"
+
   },
   "bundleDependencies": [
     "aria-hidden",
