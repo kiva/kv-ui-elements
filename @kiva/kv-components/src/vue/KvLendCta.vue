@@ -663,7 +663,6 @@ export default {
 	},
 	mounted() {
 		this.viewportWidth = window.innerWidth;
-
 		this.resizeHandler = throttle(() => {
 			this.viewportWidth = window.innerWidth;
 		}, 50);
@@ -676,9 +675,6 @@ export default {
 		}
 	},
 	methods: {
-		handleResizeThrottled: throttle(function handleResizeThrottled() {
-			this.viewportWidth = window.innerWidth;
-		}, 50),
 		async addToBasket() {
 			this.kvTrackFunction(
 				this.kvTrackCategory,
