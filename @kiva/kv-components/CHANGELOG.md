@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.45.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.44.0...@kiva/kv-components@6.45.0) (2025-08-20)
+
+
+### Features
+
+* export kvpill component ([a9899a2](https://github.com/kiva/kv-ui-elements/commit/a9899a283202be7c2a0e5227d4424bf8ce7db6a9))
+
+
+
+
+
 # [6.44.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.1...@kiva/kv-components@6.44.0) (2025-08-20)
 
 
