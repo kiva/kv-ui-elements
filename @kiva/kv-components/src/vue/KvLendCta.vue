@@ -458,6 +458,7 @@ export default {
 			selectedDropdownOption: OTHER_OPTION,
 			OTHER_OPTION,
 			viewportWidth: window.innerWidth,
+			resizeHandler: undefined,
 		};
 	},
 	computed: {
