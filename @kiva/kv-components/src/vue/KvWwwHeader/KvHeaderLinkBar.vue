@@ -39,6 +39,7 @@
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
+			enable-position
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -51,6 +52,7 @@
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
+			enable-position
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -91,7 +93,7 @@
 			:lender-name="lenderName"
 			:lender-image-url="lenderImageUrl"
 			is-small
-			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
+			@mouseover="handleAvatarMenuPosition"
 			@mouseout="onHover()"
 		/>
 		<!-- sign in (lg, no-auth) -->
@@ -110,7 +112,7 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
@@ -119,6 +121,7 @@ import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 import KvUserAvatar from '../KvUserAvatar.vue';
+import { throttle } from '../../utils/throttle';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
@@ -182,9 +185,31 @@ export default {
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 
-		const onHover = (item, menu) => {
-			emit('item-hover', item, menu);
+		const onHover = (item, menu, targetPosition = null) => {
+			emit('item-hover', item, menu, targetPosition);
 		};
+
+		const handleAvatarMenuPosition = () => {
+			const avatarMenuWidth = 159;
+			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
+			const left = linkRect?.left + linkRect?.width / 2;
+
+			// Calculate the left edge of the menu
+			let menuLeft = left - avatarMenuWidth / 2;
+
+			// Prevent overflow on the right
+			if (menuLeft + avatarMenuWidth > window.outerWidth) {
+				menuLeft = window.outerWidth - avatarMenuWidth;
+			}
+
+			onHover(avatar.value, KvHeaderMyKivaMenu, {
+				left: props.isMobile ? 0 : menuLeft,
+				borderRadius: '0px 0px 8px 8px',
+				width: `${props.isMobile ? '100%' : 'auto'}`,
+			});
+		};
+
+		const handleAvatarMenuPositionThrottled = throttle(handleAvatarMenuPosition, 50);
 
 		const lendUrl = computed(() => {
 			return !props.isMobile ? '/lend-by-category' : undefined;
@@ -196,6 +221,12 @@ export default {
 			import('./LendMenu/KvLendMenu.vue');
 			import('./KvHeaderTakeActionMenu.vue');
 			import('./KvHeaderAboutMenu.vue');
+
+			window.addEventListener('resize', handleAvatarMenuPositionThrottled);
+		});
+
+		onUnmounted(() => {
+			window.removeEventListener('resize', handleAvatarMenuPositionThrottled);
 		});
 
 		return {
@@ -216,6 +247,7 @@ export default {
 			signInLink,
 			menuButton,
 			lendUrl,
+			handleAvatarMenuPosition,
 
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,

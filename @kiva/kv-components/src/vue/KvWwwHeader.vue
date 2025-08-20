@@ -60,7 +60,8 @@
 				style="top: 3.75rem;"
 			>
 				<div
-					class="tw-bg-primary tw-w-full"
+					class="tw-bg-primary"
+					:style="menuPosition"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
@@ -151,16 +152,29 @@ export default {
 		const menuOpen = ref(false);
 		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
+		const menuPosition = ref({ left: 0, position: 'relative' });
 
 		let menuCloseTimeout;
 
-		const onHover = (item, menu) => {
+		const onHover = (item, menu, targetPosition) => {
 			// if menu, open menu, and clear timeout
 			// if no menu and menu open, start close menu timeout
 			if (menu) {
 				clearTimeout(menuCloseTimeout);
+				// Avoid calculate menuPosition when hovering over the menu
+				if (menuComponent.value !== menu) {
+					menuPosition.value = { left: 0, position: 'relative' };
+				}
 				menuComponent.value = menu;
 				menuOpen.value = true;
+
+				if (targetPosition) {
+					menuPosition.value = {
+						...targetPosition,
+						left: `${targetPosition?.left}px`,
+						position: 'absolute',
+					};
+				}
 			} else if (menuOpen.value) {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
@@ -190,6 +204,7 @@ export default {
 			activeHeaderItem,
 			menuComponent,
 			menuComponentInstance,
+			menuPosition,
 		};
 	},
 };

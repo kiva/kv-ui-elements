@@ -10,7 +10,7 @@
 		:href="href"
 		:class="computedClass"
 		:style="style"
-		@mouseover="onHover(refName, menuComponent)"
+		@mouseover="handleMouseOver"
 		@mouseout="onHover()"
 	>
 		<slot></slot>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, getCurrentInstance } from 'vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
@@ -57,8 +57,14 @@ export default {
 			type: String,
 			default: '',
 		},
+		enablePosition: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	setup(props) {
+		const { proxy } = getCurrentInstance();
+
 		const computedClass = computed(() => {
 			return [
 				props.baseClass,
@@ -66,8 +72,26 @@ export default {
 			];
 		});
 
+		const handleMouseOver = () => {
+			let linkPos = null;
+			if (props.enablePosition) {
+				const linkEl = proxy.$refs[props.refName];
+				if (linkEl) {
+					const linkRect = linkEl.getBoundingClientRect();
+					const centerX = linkRect?.left + linkRect?.width / 2;
+					linkPos = {
+						left: centerX,
+						transform: 'translateX(-50%)',
+						borderRadius: '0px 0px 8px 8px',
+					};
+				}
+			}
+
+			props.onHover(props.refName, props.menuComponent, linkPos);
+		};
 		return {
 			computedClass,
+			handleMouseOver,
 		};
 	},
 };
