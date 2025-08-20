@@ -4,9 +4,9 @@
 		:class="[bgClass, roundedClass]"
 	>
 		<slot name="icon"></slot>
-		<h5 class="tw-text-wrap">
+		<span class="tw-text-wrap tw-text-h5">
 			<slot></slot>
-		</h5>
+		</span>
 	</div>
 </template>
 
