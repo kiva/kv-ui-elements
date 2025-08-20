@@ -8,11 +8,8 @@
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/portfolio"
-			class="tw-inline-flex tw-gap-0.5"
 		>
-			<span>Portfolio</span>
-			<span class="tw-text-secondary">|</span>
-			<span class="tw-text-eco-green-3">{{ numeral(balance).format('$0') }}</span>
+			Portfolio
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/teams/my-teams"
@@ -50,7 +47,6 @@
 </template>
 
 <script>
-import numeral from 'numeral';
 import KvHeaderMenuLink from './KvHeaderMenuLink.vue';
 
 export default {
@@ -74,11 +70,6 @@ export default {
 			type: String,
 			default: '/mykiva',
 		},
-	},
-	setup() {
-		return {
-			numeral,
-		};
 	},
 };
 </script>

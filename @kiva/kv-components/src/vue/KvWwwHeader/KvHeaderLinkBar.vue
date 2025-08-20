@@ -39,7 +39,7 @@
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
-			enable-position
+			send-link-position
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -52,7 +52,7 @@
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
-			enable-position
+			send-link-position
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -85,17 +85,26 @@
 				:count="basketCount"
 			/>
 		</a>
-		<!-- avatar (sm, auth) -->
-		<KvUserAvatar
-			v-if="loggedIn"
-			ref="avatar"
-			class="tw-cursor-pointer tw-order-last tw-inline-flex"
-			:lender-name="lenderName"
-			:lender-image-url="lenderImageUrl"
-			is-small
+		<div
+			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
 			@mouseover="handleAvatarMenuPosition"
 			@mouseout="onHover()"
-		/>
+		>
+			<span
+				v-if="loggedIn"
+				class="tw-bg-eco-green-1 tw-py-0.5 tw-px-1 tw-text-eco-green-4"
+			>
+				{{ numeral(balance).format('$0') }}
+			</span>
+			<!-- avatar (sm, auth) -->
+			<KvUserAvatar
+				v-if="loggedIn"
+				ref="avatar"
+				:lender-name="lenderName"
+				:lender-image-url="lenderImageUrl"
+				is-small
+			/>
+		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
 			v-if="!loggedIn"
@@ -117,6 +126,7 @@ import {
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
+import numeral from 'numeral';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
@@ -190,7 +200,7 @@ export default {
 		};
 
 		const handleAvatarMenuPosition = () => {
-			const avatarMenuWidth = 159;
+			const avatarMenuWidth = 118;
 			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
 			const left = linkRect?.left + linkRect?.width / 2;
 
@@ -230,13 +240,12 @@ export default {
 		});
 
 		return {
+			numeral,
 			mdiAccountCircle,
 			mdiChevronDown,
 			mdiMagnify,
 			mdiMenu,
-
 			onHover,
-
 			avatar,
 			lendButton,
 			aboutUsLink,
@@ -248,7 +257,6 @@ export default {
 			menuButton,
 			lendUrl,
 			handleAvatarMenuPosition,
-
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
 			KvLendMenu,

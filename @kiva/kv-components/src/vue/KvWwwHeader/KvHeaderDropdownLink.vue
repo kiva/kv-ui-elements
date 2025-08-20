@@ -57,7 +57,7 @@ export default {
 			type: String,
 			default: '',
 		},
-		enablePosition: {
+		sendLinkPosition: {
 			type: Boolean,
 			default: false,
 		},
@@ -74,7 +74,7 @@ export default {
 
 		const handleMouseOver = () => {
 			let linkPos = null;
-			if (props.enablePosition) {
+			if (props.sendLinkPosition) {
 				const linkEl = proxy.$refs[props.refName];
 				if (linkEl) {
 					const linkRect = linkEl.getBoundingClientRect();
