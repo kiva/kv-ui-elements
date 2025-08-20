@@ -4,7 +4,10 @@
 		:class="[bgClass, roundedClass]"
 	>
 		<slot name="icon"></slot>
-		<span class="tw-text-wrap tw-text-h5">
+		<span
+			class="tw-text-wrap tw-text-h5"
+			style="padding-top: 0.15rem;"
+		>
 			<slot></slot>
 		</span>
 	</div>
