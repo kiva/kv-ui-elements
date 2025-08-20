@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.45.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.0...@kiva/kv-components@6.45.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* a little less padding ([ff9b3ae](https://github.com/kiva/kv-ui-elements/commit/ff9b3ae9a64c0c510fe51346b6e2606095c5912f))
+* add top padding to kvpill ([6640462](https://github.com/kiva/kv-ui-elements/commit/6640462bf76ad27275b6a3186e821e4175eb936f))
+
+
+
+
+
 # [6.45.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.44.0...@kiva/kv-components@6.45.0) (2025-08-20)
 
 
