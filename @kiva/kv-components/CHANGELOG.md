@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.44.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.1...@kiva/kv-components@6.44.0) (2025-08-20)
+
+
+### Features
+
+* add icon story, change h5 to span ([0d862b1](https://github.com/kiva/kv-ui-elements/commit/0d862b1ece213301378f93b98ed5d0e84aadaa06))
+* generic pill component ([6e5dcc4](https://github.com/kiva/kv-ui-elements/commit/6e5dcc4f318fab6e4c1fe9a8c56b95210aa03d39))
+
+
+
+
+
 ## [6.43.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.0...@kiva/kv-components@6.43.1) (2025-08-18)
 
 
