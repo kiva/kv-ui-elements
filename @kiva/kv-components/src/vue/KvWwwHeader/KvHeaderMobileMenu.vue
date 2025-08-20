@@ -1,40 +1,83 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
-		<kv-header-menu-link
-			v-if="!loggedIn"
-			v-kv-track-event="['TopNav', 'click-menu-Sign-in']"
-			:href="loginUrl"
-		>
-			Sign in
-		</kv-header-menu-link>
-		<kv-header-menu-link
-			v-if="!loggedIn"
-			v-kv-track-event="['TopNav', 'click-menu-Borrow']"
-			href="/borrow"
-		>
-			Borrow
-		</kv-header-menu-link>
-		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-About']"
-			href="/about"
-		>
-			About
-		</kv-header-menu-link>
-		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Partner-with-us']"
-			href="/about/partner-with-us"
-		>
-			Partner with us
-		</kv-header-menu-link>
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-4 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
+		<KvAccordionItem class="tw-w-full tw-border-b-0">
+			<template #header>
+				<h2>Take action</h2>
+			</template>
+			<div class="tw-flex tw-flex-col tw-gap-2">
+				<div
+					v-for="item in menuItems"
+					:key="item.title"
+					v-kv-track-event="['TopNav', `click-menu-${item.trackEvent}`]"
+				>
+					<a
+						:href="item.url"
+						class="mobile-link"
+					>
+						{{ item.title }}
+					</a>
+					<p class="tw-text-secondary tw-font-book">
+						{{ item.description }}
+					</p>
+				</div>
+			</div>
+		</KvAccordionItem>
+		<KvAccordionItem class="tw-w-full">
+			<template #header>
+				<h2>About</h2>
+			</template>
+			<div class="tw-flex tw-flex-col tw-gap-2 tw-pt-1 tw-pb-2">
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-about-us']"
+					href="/about"
+					class="mobile-link"
+				>About us</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-how-kiva-works']"
+					href="/about/how"
+					class="mobile-link"
+				>How Kiva works</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-where-kiva-works']"
+					href="/about/where-kiva-works"
+					class="mobile-link"
+				>Where Kiva works</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-impact']"
+					href="/impact"
+					class="mobile-link"
+				>Impact</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-leadership']"
+					href="/about/leadership"
+					class="mobile-link"
+				>Leadership</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-finances']"
+					href="/about/finances"
+					class="mobile-link"
+				>Finances</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-press']"
+					href="/about/press-center"
+					class="mobile-link"
+				>Press</a>
+				<a
+					v-kv-track-event="['TopNav', 'click-menu-due-diligence']"
+					href="/about/due-diligence"
+					class="mobile-link"
+				>Due diligence</a>
+			</div>
+		</KvAccordionItem>
 	</nav>
 </template>
 
 <script>
-import KvHeaderMenuLink from './KvHeaderMenuLink.vue';
+import KvAccordionItem from '../KvAccordionItem.vue';
 
 export default {
 	components: {
-		KvHeaderMenuLink,
+		KvAccordionItem,
 	},
 	props: {
 		loggedIn: {
@@ -46,5 +89,42 @@ export default {
 			default: '/ui-login',
 		},
 	},
+	data() {
+		return {
+			menuItems: [
+				{
+					title: 'Choose someone to help',
+					description: 'Make a direct impact for someone in need',
+					url: '/lend-by-category',
+					trackEvent: 'choose-someone-to-help',
+				},
+				{
+					title: 'Donate to Kiva',
+					description: 'Help us change lives and tackle inequality',
+					url: '/donate/supportus',
+					trackEvent: 'donate-to-kiva',
+				},
+				{
+					title: 'Partner with us',
+					description: 'Drive global impact aligned with your organization’s goals',
+					url: '/about/partner-with-us',
+					trackEvent: 'partner-with-us',
+				},
+				{
+					title: 'Buy a Kiva Card',
+					description: 'Share the joy of lending with others',
+					url: '/portfolio/kiva-card',
+					trackEvent: 'buy-a-kiva-card',
+				},
+			],
+		};
+	},
 };
 </script>
+
+<style lang="postcss" scoped>
+
+.mobile-link {
+	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-no-underline tw-text-h3;
+}
+</style>

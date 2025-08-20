@@ -15,7 +15,7 @@
 	>
 		<slot></slot>
 		<KvMaterialIcon
-			class="tw-hidden md:tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
+			class="tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
 			:class="{'tw-rotate-180' : openMenuItem === menuComponent}"
 			:icon="dropdownIcon"
 		/>

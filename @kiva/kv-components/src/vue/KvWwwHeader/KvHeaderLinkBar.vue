@@ -2,17 +2,21 @@
 	<div
 		class="tw-h-full tw-flex tw-items-center"
 	>
-		<!-- avatar (sm, auth) -->
-		<KvUserAvatar
-			v-if="loggedIn"
-			ref="avatar"
-			class="tw-cursor-pointer lg:tw-order-last tw-inline-flex"
-			:lender-name="lenderName"
-			:lender-image-url="lenderImageUrl"
-			is-small
-			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
+		<!-- 3-bar menu (sm) -->
+		<button
+			ref="menuButton"
+			v-kv-track-event="openMenuItem === KvHeaderMobileMenu
+				? ['TopNav', 'click-Hamburger-menu']
+				: null"
+			class="header-link tw-inline-flex lg:tw-hidden"
+			:class="{
+				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
+			}"
+			@mouseover="onHover(menuButton, KvHeaderMobileMenu)"
 			@mouseout="onHover()"
-		/>
+		>
+			<kv-material-icon :icon="mdiMenu" />
+		</button>
 		<!-- lend -->
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
@@ -22,7 +26,7 @@
 			:open-menu-item="openMenuItem"
 			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-border-2 tw-border-current tw-inline-flex"
+			base-class="tw-inline-flex"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -79,32 +83,28 @@
 				:count="basketCount"
 			/>
 		</a>
+		<!-- avatar (sm, auth) -->
+		<KvUserAvatar
+			v-if="loggedIn"
+			ref="avatar"
+			class="tw-cursor-pointer tw-order-last tw-inline-flex"
+			:lender-name="lenderName"
+			:lender-image-url="lenderImageUrl"
+			is-small
+			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
+			@mouseout="onHover()"
+		/>
 		<!-- sign in (lg, no-auth) -->
 		<a
 			v-if="!loggedIn"
 			ref="signInLink"
 			v-kv-track-event="['TopNav', 'click-Sign-in']"
 			:href="loginUrl"
-			class="header-link tw-hidden lg:tw-block"
+			class="header-link"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			Sign in
 		</a>
-		<!-- 3-bar menu (sm) -->
-		<button
-			ref="menuButton"
-			v-kv-track-event="openMenuItem === KvHeaderMobileMenu
-				? ['TopNav', 'click-Hamburger-menu']
-				: null"
-			class="header-link tw-inline-flex lg:tw-hidden"
-			:class="{
-				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
-			}"
-			@mouseover="onHover(menuButton, KvHeaderMobileMenu)"
-			@mouseout="onHover()"
-		>
-			<kv-material-icon :icon="mdiMenu" />
-		</button>
 	</div>
 </template>
 
