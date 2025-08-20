@@ -106,33 +106,34 @@ export default {
 }
 .kv-datepicker .dp__input:focus-within,
 .kv-datepicker .dp__input:focus-visible {
-	border-color: #19653e;
+	border-color: rgb(var(--bg-action));
 	border-width: 2px;
 	outline: none;
 }
 .kv-datepicker .dp__theme_light {
-	--dp-primary-color: #19653e;
-	--dp-secondary-color: #9E9E9E;
-	--dp-icon-color: #19653e;
-	--dp-hover-icon-color: #19653e;
+	--dp-primary-color: rgb(var(--bg-primary-inverse));
+	--dp-secondary-color: rgb(var(--bg-tertiary));
+	--dp-icon-color: rgb(var(--bg-action));
+	--dp-hover-icon-color: rgb(var(--bg-action));
 	--dp-border-radius: 0.25rem;
-	--dp-border-color-focus: #19653e;
+	--dp-border-color-focus: rgb(var(--bg-action-highlight));
 	--dp-font-family: inherit, 'Postgrotesk', sans-serif;
-	--dp-primary-text-color: #fff;
-	--dp-border-color: #c4c4c4;
-	--dp-hover-color: #fff;
-	--dp-background-color: #fff;
-	--dp-text-color: #273a43;
-	--dp-menu-border-color: #273a43;
-	--dp-disabled-color: #273a43;
-	--dp-disabled-color-text: #fff;
-	--dp-success-color: #19653e;
-	--dp-danger-color: #E0988D;
-	--dp-highlight-color: #19653e;
+	--dp-primary-text-color: rgb(var(--text-primary-inverse));
+	--dp-border-color: rgb(var(--bg-tertiary));
+	--dp-hover-color: rgb(var(--bg-primary));
+	--dp-background-color: rgb(var(--bg-primary));
+	--dp-text-color: rgb(var(--text-primary));
+	--dp-menu-border-color: rgb(var(--bg-primary-inverse));
+	--dp-disabled-color: rgb(var(--bg-primary));
+	--dp-disabled-color-text: rgb(var(--text-secondary));
+	--dp-success-color: rgb(var(--bg-action));
+	--dp-danger-color: rgb(var(--bg-danger));
+	--dp-highlight-color: rgb(var(--bg-action));
 	--dp-cell-border-radius: 0.25rem;
-	--dp-loader: #19653e;
-	--dp-range-between-dates-background-color: #1d7748;
-	--dp-range-between-dates-text-color: #fff;
-	--dp-range-between-border-color: #1d7748;
+	--dp-loader: rgb(var(--bg-action));
+	--dp-range-between-dates-background-color: rgb(var(--bg-action));
+	--dp-range-between-dates-text-color: rgb(var(--bg-primary));
+	--dp-range-between-border-color: rgb(var(--bg-action));
 }
+
 </style>
