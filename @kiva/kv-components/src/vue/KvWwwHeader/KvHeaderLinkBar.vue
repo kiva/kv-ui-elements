@@ -139,6 +139,8 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
+const AVATAR_MENU_WIDTH = 118;
+
 export default {
 	components: {
 		KvMaterialIcon,
@@ -200,23 +202,28 @@ export default {
 		};
 
 		const handleAvatarMenuPosition = () => {
-			const avatarMenuWidth = 118;
 			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
-			const left = linkRect?.left + linkRect?.width / 2;
+			let menuPosition = null;
 
-			// Calculate the left edge of the menu
-			let menuLeft = left - avatarMenuWidth / 2;
+			if (linkRect) {
+				const left = linkRect?.left + linkRect?.width / 2;
 
-			// Prevent overflow on the right
-			if (menuLeft + avatarMenuWidth > window.outerWidth) {
-				menuLeft = window.outerWidth - avatarMenuWidth;
+				// Calculate the left edge of the menu
+				let menuLeft = left - AVATAR_MENU_WIDTH / 2;
+
+				// Prevent overflow on the right
+				if (menuLeft + AVATAR_MENU_WIDTH > window.innerWidth) {
+					menuLeft = window.innerWidth - AVATAR_MENU_WIDTH;
+				}
+
+				menuPosition = {
+					left: props.isMobile ? 0 : menuLeft,
+					borderRadius: '0px 0px 8px 8px',
+					width: `${props.isMobile ? '100%' : 'auto'}`,
+				};
 			}
 
-			onHover(avatar.value, KvHeaderMyKivaMenu, {
-				left: props.isMobile ? 0 : menuLeft,
-				borderRadius: '0px 0px 8px 8px',
-				width: `${props.isMobile ? '100%' : 'auto'}`,
-			});
+			onHover(avatar.value, KvHeaderMyKivaMenu, menuPosition);
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(handleAvatarMenuPosition, 50);
