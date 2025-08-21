@@ -1,53 +1,89 @@
 <template>
-	<div class="kv-datepicker">
+	<kv-theme-provider :theme="themeStyle">
 		<div
-			v-if="datepickerComponent"
-			class="kv-datepicker__content"
+			class="kv-datepicker"
+			:class="theme"
 		>
-			<component
-				:is="datepickerComponent"
-				:key="componentKey"
-				v-model="selectedDate"
-				:placeholder="placeholder"
-				:disabled="disabled"
-				:readonly="readonly"
-				v-bind="$attrs"
-				:auto-apply="true"
-				@update:model-value="handleDateChange"
-			/>
+			<div
+				v-if="datepickerComponent"
+				class="kv-datepicker__content"
+			>
+				<component
+					:is="datepickerComponent"
+					:key="componentKey"
+					v-model="selectedDate"
+					:placeholder="placeholder"
+					v-bind="$attrs"
+					:auto-apply="true"
+					@update:model-value="handleDateChange"
+				/>
+			</div>
+			<div
+				v-else
+				class="kv-datepicker__loading"
+			>
+				Loading...
+			</div>
 		</div>
-		<div
-			v-else
-			class="kv-datepicker__loading"
-		>
-			Loading...
-		</div>
-	</div>
+	</kv-theme-provider>
 </template>
 
 <script>
-import { markRaw } from 'vue';
+import { markRaw, computed } from 'vue';
+
+import {
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
+} from '@kiva/kv-tokens';
+import KvThemeProvider from './KvThemeProvider.vue';
 
 export default {
 	name: 'KvDatePicker',
+	components: {
+		KvThemeProvider,
+	},
 	inheritAttrs: false,
 	props: {
 		modelValue: {
 			type: [Date, String, Number, Array],
 			default: null,
 		},
-		placeholder: {
+
+		theme: {
 			type: String,
-			default: 'Select date...',
+			default: 'default',
+			validator(value) {
+				return [
+					'default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark',
+				].includes(value);
+			},
 		},
-		disabled: {
-			type: Boolean,
-			default: false,
-		},
-		readonly: {
-			type: Boolean,
-			default: false,
-		},
+	},
+	setup(props) {
+		const themeStyle = computed(() => {
+			switch (props.theme) {
+				case 'default':
+					return defaultTheme;
+				case 'greenDark':
+					return greenDarkTheme;
+				case 'greenLight':
+					return greenLightTheme;
+				case 'marigoldLight':
+					return marigoldLightTheme;
+				case 'stoneLight':
+					return stoneLightTheme;
+				case 'stoneDark':
+					return stoneDarkTheme;
+				default:
+					return defaultTheme;
+			}
+		});
+
+		return { themeStyle };
 	},
 	data() {
 		return {
@@ -103,6 +139,7 @@ export default {
 	font-family: inherit;
 	font-weight: inherit;
 	height: 3rem;
+	background-color: #FFF; /* Mimic kvTextInput */
 }
 .kv-datepicker .dp__input:focus-within,
 .kv-datepicker .dp__input:focus-visible {
@@ -110,6 +147,8 @@ export default {
 	border-width: 2px;
 	outline: none;
 }
+
+/* Default theme */
 .kv-datepicker .dp__theme_light {
 	--dp-primary-color: rgb(var(--bg-primary-inverse));
 	--dp-secondary-color: rgb(var(--bg-tertiary));
@@ -120,7 +159,7 @@ export default {
 	--dp-font-family: inherit, 'Postgrotesk', sans-serif;
 	--dp-primary-text-color: rgb(var(--text-primary-inverse));
 	--dp-border-color: rgb(var(--bg-tertiary));
-	--dp-hover-color: rgb(var(--bg-primary));
+	--dp-hover-color: rgb(var(--bg-tertiary));
 	--dp-background-color: rgb(var(--bg-primary));
 	--dp-text-color: rgb(var(--text-primary));
 	--dp-menu-border-color: rgb(var(--bg-primary-inverse));

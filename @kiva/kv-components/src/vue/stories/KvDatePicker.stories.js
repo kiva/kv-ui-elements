@@ -102,9 +102,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				:is24="args.is24"
 				:disabled="args.disabled"
 				:readonly="args.readonly"
-				:transition-type="args.transitionType"
 				:popup-class="args.popupClass"
 				:range="args.range"
+				:theme="args.theme"
+				:hide-input-icon="args.hideInputIcon"
 				@change="onDateChange"
 				@show="onShow"
 				@hide="onHide"
@@ -156,6 +157,78 @@ TwentyFourHour.args = {
 	modelType: 'timestamp',
 	enableTimePicker: true,
 	is24: true,
+};
+
+/**
+ * Date picker with hidden input icon.
+ *
+ * This example shows how to hide the calendar icon in the input field
+ * using the hide-input-icon prop.
+ */
+export const HiddenIcon = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvDatePicker },
+	data() {
+		return {
+			selectedDate: null,
+		};
+	},
+	setup() { return { args }; },
+	template: `	
+			<div class="tw-space-y-4">
+				<div>
+					<label class="tw-text-h4 tw-block tw-pb-1">
+						With Icon (Default)
+					</label>
+					<kv-date-picker
+						v-model="selectedDate"
+						:placeholder="args.placeholder"
+						:format="args.format"
+						:model-type="args.modelType"
+						:locale="args.locale"
+						:enable-time-picker="args.enableTimePicker"
+						:is24="args.is24"
+						:disabled="args.disabled"
+						:readonly="args.readonly"
+						:transition-type="args.transitionType"
+						:hide-input-icon="false"
+						style="width: 25rem;"
+					/>
+				</div>
+				
+				<div>
+					<label class="tw-text-h4 tw-block tw-pb-1">
+						Without Icon (Hidden)
+					</label>
+					<kv-date-picker
+						v-model="selectedDate"
+						:placeholder="args.placeholder"
+						:format="args.format"
+						:model-type="args.modelType"
+						:locale="args.locale"
+						:enable-time-picker="args.enableTimePicker"
+						:is24="args.is24"
+						:disabled="args.disabled"
+						:readonly="args.readonly"
+						:transition-type="args.transitionType"
+						:hide-input-icon="true"
+						style="width: 25rem;"
+					/>
+				</div>
+			</div>
+			
+			<div class="tw-mt-4 tw-text-sm tw-text-gray-600">
+				Selected: {{ selectedDate ? new Date(selectedDate).toLocaleString() : 'None' }}
+			</div>
+		</div>`,
+});
+
+HiddenIcon.args = {
+	placeholder: 'Select a date...',
+	format: 'MM/dd/yyyy',
+	modelType: 'timestamp',
+	locale: 'en',
+	enableTimePicker: false,
 };
 
 /**
@@ -398,126 +471,62 @@ export const ModelTypes = (args, { argTypes }) => ({
 });
 
 /**
- * Example of custom theming using CSS variables.
+ * Showcase of all available themes for the date picker.
  *
- * The datepicker can be fully customized by overriding CSS custom properties.
- * This example shows how to apply a custom color scheme.
- *
- *
+ * This example demonstrates how the datepicker looks across all supported themes:
+ * default, greenLight, greenDark, marigoldLight, stoneLight, and stoneDark.
  */
-export const WithCustomTheme = (args, { argTypes }) => ({
+export const AllThemes = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: { KvDatePicker },
 	data() {
 		return {
-			selectedDate: null,
+			themes: [
+				{ name: 'Default', theme: 'default', value: null },
+				{ name: 'Green Light', theme: 'greenLight', value: null },
+				{ name: 'Green Dark', theme: 'greenDark', value: null },
+				{ name: 'Marigold Light', theme: 'marigoldLight', value: null },
+				{ name: 'Stone Light', theme: 'stoneLight', value: null },
+				{ name: 'Stone Dark', theme: 'stoneDark', value: null },
+			],
 		};
 	},
 	setup() { return { args }; },
-	mounted() {
-		this.applyCustomTheme();
-	},
-	beforeUnmount() {
-		this.removeCustomTheme();
-	},
-	methods: {
-		applyCustomTheme() {
-			// Create a style element with custom theme
-			const style = document.createElement('style');
-			style.id = 'kv-datepicker-custom-theme';
-			style.textContent = `
-				.kv-datepicker .dp__theme_light {
-					--dp-primary-color: #78C79F;
-					--dp-primary-text-color: #FFF;
-					--dp-border-color: #000;
-					--dp-border-color-focus: #78C79F;
-					--dp-hover-color: #FFF;
-					--dp-background-color: #FFF;
-					--dp-text-color: #273A43;
-					--dp-menu-border-color: #273A43;
-					--dp-disabled-color: #273A43;
-					--dp-disabled-color-text: #FFF;
-					--dp-success-color: #223829;
-					--dp-danger-color: #A24536;
-					--dp-icon-color: #78C79F;
-					--dp-highlight-color: #223829;
-					--dp-font-family: inherit;
-					--dp-border-radius: 8px;
-					--dp-cell-border-radius: 6px;
-					--dp-font-family: system-ui, sans-serif;
-				}
-			`;
-			document.head.appendChild(style);
-		},
-		removeCustomTheme() {
-			const style = document.getElementById('kv-datepicker-custom-theme');
-			if (style) {
-				style.remove();
-			}
-		},
-	},
 	template: `
-		<div>
-			<div class="tw-mb-4 tw-p-4 tw-bg-red-50 tw-border tw-border-red-200 tw-rounded-lg">
-				<h3 class="tw-text-lg tw-font-semibold tw-text-red-800 tw-mb-2">
-					Custom Theme Example
+		<div class="tw-space-y-6">
+			<div
+				v-for="theme in themes"
+				:key="theme.name"
+				class="tw-border tw-border-gray-200 tw-p-6 tw-rounded-lg"
+			>
+				<h3 class="tw-text-lg tw-font-semibold tw-mb-4 tw-text-gray-800">
+					{{ theme.name }} Theme
 				</h3>
-				<p class="tw-text-sm tw-text-red-700 tw-mb-3">
-					This example shows the datepicker with a custom theme applied using CSS variables.
-				</p>
-				<div class="tw-bg-white tw-p-3 tw-rounded tw-text-xs tw-overflow-x-auto tw-border">
-					<code class="tw-text-red-600">
-						.kv-datepicker .dp__theme_light {<br>
-						&nbsp;&nbsp;--dp-primary-color: #78C79F;<br>
-						&nbsp;&nbsp;--dp-primary-text-color: #FFF;<br>
-						&nbsp;&nbsp;--dp-border-color: #000;<br>
-						&nbsp;&nbsp;--dp-border-color-focus: #78C79F;<br>
-						&nbsp;&nbsp;--dp-hover-color: #FFF;<br>
-						&nbsp;&nbsp;--dp-background-color: #FFF;<br>
-						&nbsp;&nbsp;--dp-text-color: #273A43;<br>
-						&nbsp;&nbsp;--dp-menu-border-color: #273A43;<br>
-						&nbsp;&nbsp;--dp-disabled-color: #273A43;<br>
-						&nbsp;&nbsp;--dp-disabled-color-text: #FFF;<br>
-						&nbsp;&nbsp;--dp-success-color: #223829;<br>
-						&nbsp;&nbsp;--dp-danger-color: #A24536;<br>
-						&nbsp;&nbsp;--dp-icon-color: #78C79F;<br>
-						&nbsp;&nbsp;--dp-highlight-color: #223829;<br>
-						&nbsp;&nbsp;--dp-border-radius: 8px;<br>
-						&nbsp;&nbsp;--dp-cell-border-radius: 6px;<br>
-						&nbsp;&nbsp;--dp-font-family: system-ui, sans-serif;<br>
-						}
-					</code>
+				<kv-date-picker
+					v-model="theme.value"
+					:theme="theme.theme"
+					:placeholder="args.placeholder"
+					:format="args.format"
+					:model-type="args.modelType"
+					:locale="args.locale"
+					:enable-time-picker="args.enableTimePicker"
+					:is24="args.is24"
+					:disabled="args.disabled"
+					:readonly="args.readonly"
+					:transition-type="args.transitionType"
+					style="width: 25rem;"
+				/>
+				<div class="tw-mt-3 tw-text-sm tw-text-gray-600">
+					Selected: {{ theme.value ? new Date(theme.value).toLocaleString() : 'None' }}
 				</div>
-			</div>
-			
-			<label class="tw-text-h4 tw-block tw-pb-1">
-				Select Date (Custom Theme)
-			</label>
-			<kv-date-picker
-				v-model="selectedDate"
-				:placeholder="args.placeholder"
-				:format="args.format"
-				:model-type="args.modelType"
-				:locale="args.locale"
-				:enable-time-picker="args.enableTimePicker"
-				:is24="args.is24"
-				:disabled="args.disabled"
-				:readonly="args.readonly"
-				:transition-type="args.transitionType"
-				:popup-class="args.popupClass"
-				style="width: 25rem;"
-			/>
-			<div class="tw-mt-4 tw-text-sm tw-text-gray-600">
-				Selected: {{ selectedDate ? new Date(selectedDate).toLocaleString() : 'None' }}
 			</div>
 		</div>`,
 });
 
-WithCustomTheme.args = {
-	placeholder: 'Select a date with a custom theme...',
+AllThemes.args = {
+	placeholder: 'Select a date...',
 	format: 'MM/dd/yyyy',
 	modelType: 'timestamp',
 	locale: 'en',
 	enableTimePicker: false,
-	transitionType: 'slide',
 };
