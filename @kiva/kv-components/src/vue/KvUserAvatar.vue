@@ -1,5 +1,6 @@
 <template>
 	<div
+		ref="userAvatar"
 		class="data-hj-suppress tw-flex"
 		:class="{ 'tw-w-3': isSmall, 'tw-w-6': !isSmall }"
 	>
@@ -122,6 +123,7 @@ export default {
 
 		const isLoading = ref(true);
 		const imageRef = ref(null);
+		const userAvatar = ref(null);
 
 		const isAnonymousUser = computed(() => {
 			return (lenderName.value === '' && lenderImageUrl.value === '') || lenderName.value === 'Anonymous';
@@ -180,6 +182,7 @@ export default {
 			isLoading,
 			onImgLoad,
 			imageRef,
+			userAvatar,
 		};
 	},
 };

@@ -9,7 +9,6 @@
 		"
 		:href="href"
 		:class="computedClass"
-		:style="style"
 		@mouseover="handleMouseOver"
 		@mouseout="handleMouseOver"
 	>

@@ -181,6 +181,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		balance: {
+			type: Number,
+			default: 0,
+		},
 	},
 	emits: [
 		'item-hover',
@@ -202,7 +206,8 @@ export default {
 		};
 
 		const handleAvatarMenuPosition = () => {
-			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
+			const linkRect = avatar.value?.userAvatar?.getBoundingClientRect();
+
 			let menuPosition = null;
 			let rightOverflow = false;
 
