@@ -457,7 +457,8 @@ export default {
 			),
 			selectedDropdownOption: OTHER_OPTION,
 			OTHER_OPTION,
-			viewportWidth: window.innerWidth,
+			// SSR-safe viewport width initialization
+			viewportWidth: typeof window !== 'undefined' ? window.innerWidth : 1024,
 			resizeHandler: undefined,
 		};
 	},
@@ -663,15 +664,17 @@ export default {
 		},
 	},
 	mounted() {
-		this.viewportWidth = window.innerWidth;
-		this.resizeHandler = throttle(() => {
+		if (typeof window !== 'undefined') {
 			this.viewportWidth = window.innerWidth;
-		}, 50);
+			this.resizeHandler = throttle(() => {
+				this.viewportWidth = window.innerWidth;
+			}, 50);
 
-		window.addEventListener('resize', this.resizeHandler);
+			window.addEventListener('resize', this.resizeHandler);
+		}
 	},
 	beforeDestroy() {
-		if (this.resizeHandler) {
+		if (this.resizeHandler && typeof window !== 'undefined') {
 			window.removeEventListener('resize', this.resizeHandler);
 		}
 	},
