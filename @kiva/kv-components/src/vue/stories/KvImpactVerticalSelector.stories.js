@@ -14,13 +14,44 @@ export default {
 		preSelectedCategory: {
 			control: 'text',
 		},
+		imageWidth: {
+			control: 'number',
+		},
 	},
 	args: {
 		categoryList: impactVerticalDataMock,
 		hiddenCategories: [],
 		preSelectedCategory: null,
+		imageWidth: 64,
 	},
 };
+
+const customCategoryImageSample = [
+	[
+		{
+			id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
+			name: 'Climate-threatened people',
+			description: 'Fund those on the front lines of the climate crisis.',
+			customImage: 'https://www.kiva.org/img/s100/baa07b4416e1ff92ce68574598f866e7.jpg',
+			contentfulImage: null,
+		},
+		{
+			id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
+			name: 'Refugees',
+			description: 'Transform the future for refugees',
+			customImage: 'https://www.kiva.org/img/s100/3beeea89cdfb331fa86dfdcbd042fdcf.jpg',
+			contentfulImage: null,
+		},
+		{
+			id: '87ec8472-5cd7-49a7-a565-3f0b03e42a32',
+			name: 'Marginalized U.S. entrepreneurs',
+			description:
+				'Let\'s build a thriving, fair economy, one entrepreneur at a time.',
+			customImage: 'https://www.kiva.org/img/s100/a4fca24ac900a01bb8f81eb8d01af215.jpg',
+			contentfulImage: null,
+		},
+	],
+];
 
 const Template = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -34,6 +65,7 @@ const Template = (args, { argTypes }) => ({
 				:category-list="categoryList"
 				:hidden-categories="hiddenCategories"
 				:pre-selected-category="preSelectedCategory"
+				:image-width="imageWidth"
 				@category-selected="onCategorySelected"
 			/>
 		</div>
@@ -43,6 +75,7 @@ const Template = (args, { argTypes }) => ({
 			categoryList: args.categoryList,
 			hiddenCategories: args.hiddenCategories,
 			preSelectedCategory: args.preSelectedCategory,
+			imageWidth: args.imageWidth,
 			selectedCategoryId: null,
 		};
 	},
@@ -64,4 +97,11 @@ WithHiddenCategories.args = {
 export const WithPreSelectedCategory = Template.bind({});
 WithPreSelectedCategory.args = {
 	preSelectedCategory: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
+	imageWidth: 100,
+};
+
+export const CustomCategoryImage = Template.bind({});
+CustomCategoryImage.args = {
+	categoryList: customCategoryImageSample[0],
+	imageWidth: 100,
 };

@@ -1,9 +1,7 @@
 /* eslint-disable max-len */
 export default [
 	{
-		id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
-		name: 'Climate-threatened people',
-		description: 'Fund those on the front lines of the climate crisis.',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -21,7 +19,7 @@ export default [
 					id: '5haebb8t89KDhjVZc922jV',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:20:23.662Z',
-					updatedAt: '2025-07-21T20:14:25.807Z',
+					updatedAt: '2025-08-21T16:21:13.703Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -29,8 +27,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 7,
-					revision: 2,
+					publishedVersion: 9,
+					revision: 3,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -275,19 +273,105 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: '2Nu0QdTbZVkDDjC8DWQH5G',
+								type: 'Entry',
+								createdAt: '2025-08-21T16:21:08.407Z',
+								updatedAt: '2025-08-21T16:21:08.407Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 3,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'climate-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '35eIBAeZcZ3LsIPnRbHp9q',
+											type: 'Asset',
+											createdAt: '2025-08-21T16:20:59.342Z',
+											updatedAt: '2025-08-21T16:20:59.342Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'climate-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/35eIBAeZcZ3LsIPnRbHp9q/c947dba41cc3c580acf1ebbedd25fdef/climate-giving-fund-category-icon.png',
+												details: {
+													size: 7889,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'climate-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Fund those on the front lines of the climate crisis.',
+		name: 'Climate-threatened people',
+		id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
 		savedSearch: {
 			id: 'c11703da-7d11-368a-9298-7289b9bb7ca6',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 	{
-		id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
-		name: 'Refugees',
-		description: 'Transform the future for refugees',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -305,7 +389,7 @@ export default [
 					id: '2WZiUYPOLVASeRFHIEb7LG',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:16:56.134Z',
-					updatedAt: '2025-08-14T17:28:38.543Z',
+					updatedAt: '2025-08-21T16:18:42.105Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -313,8 +397,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 10,
-					revision: 4,
+					publishedVersion: 12,
+					revision: 5,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -559,19 +643,105 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: 'V91gFZEO1A5gwRKDGdV6W',
+								type: 'Entry',
+								createdAt: '2025-08-20T22:20:38.571Z',
+								updatedAt: '2025-08-20T22:20:38.571Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 5,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'refugee-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '31blWJocMnVOhE5PbUa6WC',
+											type: 'Asset',
+											createdAt: '2025-08-20T22:20:26.303Z',
+											updatedAt: '2025-08-20T22:20:26.303Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'refugees-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/31blWJocMnVOhE5PbUa6WC/5569411b262abe927968820fe4f2db9f/refugees-giving-fund-category-icon.png',
+												details: {
+													size: 7013,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'refugees-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Transform the future for refugees',
+		name: 'Refugees',
+		id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
 		savedSearch: {
 			id: '7f81c1c4-e57a-33c6-ba64-e2c4b310ff3e',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 	{
-		id: '87ec8472-5cd7-49a7-a565-3f0b03e42a32',
-		name: 'Marginalized U.S. entrepreneurs',
-		description: 'Let’s build a thriving, fair economy, one entrepreneur at a time.',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -589,7 +759,7 @@ export default [
 					id: '5crlN2VTfYPoihFghT2e4v',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:21:37.289Z',
-					updatedAt: '2025-07-21T20:17:22.750Z',
+					updatedAt: '2025-08-21T16:21:49.975Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -597,8 +767,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 7,
-					revision: 2,
+					publishedVersion: 9,
+					revision: 3,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -843,19 +1013,105 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: '3uz1CKGuw9IkMFF6NLxx6B',
+								type: 'Entry',
+								createdAt: '2025-08-21T16:21:46.084Z',
+								updatedAt: '2025-08-21T16:21:46.084Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 2,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'us-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '4DQJMtfzm5ha6tgfdeL9dm',
+											type: 'Asset',
+											createdAt: '2025-08-21T16:21:40.379Z',
+											updatedAt: '2025-08-21T16:21:40.379Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'kiva-us-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/4DQJMtfzm5ha6tgfdeL9dm/ee5ebccb794d796320c035338b264e5d/kiva-us-giving-fund-category-icon.png',
+												details: {
+													size: 7056,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'kiva-us-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Let’s build a thriving, fair economy, one entrepreneur at a time.',
+		name: 'Marginalized U.S. entrepreneurs',
+		id: '87ec8472-5cd7-49a7-a565-3f0b03e42a32',
 		savedSearch: {
 			id: '8ceb078e-e852-3d65-9562-e2caf76ac476',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 	{
-		id: '8ace83f1-e02d-404d-a3c4-83fa0be69403',
-		name: 'Women',
-		description: 'Support opportunities for women around the world',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -873,7 +1129,7 @@ export default [
 					id: '6a9sArAfhWUUvugB2t0zWO',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:17:32.364Z',
-					updatedAt: '2025-07-21T20:03:42.745Z',
+					updatedAt: '2025-08-21T16:20:30.178Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -881,8 +1137,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 7,
-					revision: 3,
+					publishedVersion: 9,
+					revision: 4,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -1127,19 +1383,105 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: '2qZb1F380T5imCUVT06IJM',
+								type: 'Entry',
+								createdAt: '2025-08-21T16:20:26.033Z',
+								updatedAt: '2025-08-21T16:20:26.033Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 3,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'women-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '4hMfHAY9mvm73ciQFX8Iql',
+											type: 'Asset',
+											createdAt: '2025-08-21T16:20:19.359Z',
+											updatedAt: '2025-08-21T16:20:19.359Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'women-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/4hMfHAY9mvm73ciQFX8Iql/41218290c214c65638c5302c0a2aac4d/women-giving-fund-category-icon.png',
+												details: {
+													size: 9324,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'women-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Support opportunities for women around the world',
+		name: 'Women',
+		id: '8ace83f1-e02d-404d-a3c4-83fa0be69403',
 		savedSearch: {
 			id: '80fbdc0d-08ef-3492-a819-db05d0f3b960',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 	{
-		id: '914823b9-b4e3-4980-8811-09dbe0f19860',
-		name: 'Education',
-		description: 'Fund the next generation of leaders',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -1157,7 +1499,7 @@ export default [
 					id: '5W2X9C0xHHVr6tniAeqTvf',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:22:38.780Z',
-					updatedAt: '2025-07-21T20:19:44.328Z',
+					updatedAt: '2025-08-21T16:23:26.672Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -1165,8 +1507,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 8,
-					revision: 3,
+					publishedVersion: 10,
+					revision: 4,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -1411,19 +1753,105 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: '51VeUEebw39lngviT2jGLx',
+								type: 'Entry',
+								createdAt: '2025-08-21T16:23:20.649Z',
+								updatedAt: '2025-08-21T16:23:20.649Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 3,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'education-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '2FD6ToCsuXjyY3NEpKKVxs',
+											type: 'Asset',
+											createdAt: '2025-08-21T16:23:13.373Z',
+											updatedAt: '2025-08-21T16:23:13.373Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'education-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/2FD6ToCsuXjyY3NEpKKVxs/b4a2e3ec39b77ea92b9a86c6a55ad3ab/education-giving-fund-category-icon.png',
+												details: {
+													size: 6513,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'education-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Fund the next generation of leaders',
+		name: 'Education',
+		id: '914823b9-b4e3-4980-8811-09dbe0f19860',
 		savedSearch: {
 			id: '001b1e89-8a69-35a7-8650-ab9098a91211',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 	{
-		id: 'f36abd3e-a304-4948-9378-b697b775ec2b',
-		name: 'Financial inclusion',
-		description: 'Let’s build a world where financial access is a right, not a privilege.',
+		categoryType: 'GIVING_FUND',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -1441,7 +1869,7 @@ export default [
 					id: '3eJbwP4XASmoOmURbGd6gU',
 					type: 'Entry',
 					createdAt: '2025-07-15T00:23:44.376Z',
-					updatedAt: '2025-07-21T21:17:50.261Z',
+					updatedAt: '2025-08-21T16:24:08.262Z',
 					environment: {
 						sys: {
 							id: 'development',
@@ -1449,8 +1877,8 @@ export default [
 							linkType: 'Environment',
 						},
 					},
-					publishedVersion: 7,
-					revision: 2,
+					publishedVersion: 9,
+					revision: 3,
 					contentType: {
 						sys: {
 							type: 'Link',
@@ -1695,13 +2123,101 @@ export default [
 								],
 							},
 						},
+						{
+							metadata: {
+								tags: [],
+								concepts: [],
+							},
+							sys: {
+								space: {
+									sys: {
+										type: 'Link',
+										linkType: 'Space',
+										id: 'j0p9a6ql0rn7',
+									},
+								},
+								id: '4Hgl3ilyAHTqEBJigfvwPQ',
+								type: 'Entry',
+								createdAt: '2025-08-21T16:24:04.393Z',
+								updatedAt: '2025-08-21T16:24:04.393Z',
+								environment: {
+									sys: {
+										id: 'development',
+										type: 'Link',
+										linkType: 'Environment',
+									},
+								},
+								publishedVersion: 3,
+								revision: 1,
+								contentType: {
+									sys: {
+										type: 'Link',
+										linkType: 'ContentType',
+										id: 'media',
+									},
+								},
+								locale: 'en-US',
+							},
+							fields: {
+								key: 'financial-exclusion-giving-fund-category-icon-image',
+								contentLight: [
+									{
+										metadata: {
+											tags: [],
+											concepts: [],
+										},
+										sys: {
+											space: {
+												sys: {
+													type: 'Link',
+													linkType: 'Space',
+													id: 'j0p9a6ql0rn7',
+												},
+											},
+											id: '26tM2cr3BJYyHBWKwhgV0t',
+											type: 'Asset',
+											createdAt: '2025-08-21T16:23:59.534Z',
+											updatedAt: '2025-08-21T16:23:59.534Z',
+											environment: {
+												sys: {
+													id: 'development',
+													type: 'Link',
+													linkType: 'Environment',
+												},
+											},
+											publishedVersion: 3,
+											revision: 1,
+											locale: 'en-US',
+										},
+										fields: {
+											title: 'support-all-giving-fund-category-icon',
+											description: '',
+											file: {
+												url: '//images.ctfassets.net/j0p9a6ql0rn7/26tM2cr3BJYyHBWKwhgV0t/efc44e70ff96e7bc4ef81b1145eca299/support-all-giving-fund-category-icon.png',
+												details: {
+													size: 3544,
+													image: {
+														width: 100,
+														height: 100,
+													},
+												},
+												fileName: 'support-all-giving-fund-category-icon.png',
+												contentType: 'image/png',
+											},
+										},
+									},
+								],
+							},
+						},
 					],
 				},
 			},
 		},
+		description: 'Let’s build a world where financial access is a right, not a privilege.',
+		name: 'Financial inclusion',
+		id: 'f36abd3e-a304-4948-9378-b697b775ec2b',
 		savedSearch: {
 			id: 'd7517139-8898-3e93-b198-0363e24189ce',
 		},
-		categoryType: 'GIVING_FUND',
 	},
 ];
