@@ -26,6 +26,7 @@
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
 					:is-mobile="isMobile"
+					:balance="balance"
 					@item-hover="onHover"
 				/>
 			</transition>
@@ -72,7 +73,6 @@
 							:logged-in="loggedIn"
 							:login-url="loginUrl"
 							:user-id="userId"
-							:balance="balance"
 							:is-borrower="isBorrower"
 							:is-trustee="isTrustee"
 							:my-dashboard-url="myDashboardUrl"
