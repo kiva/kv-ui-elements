@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.47.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.47.0...@kiva/kv-components@6.47.1) (2025-08-21)
+
+
+### Bug Fixes
+
+* balance prop ([c53c63a](https://github.com/kiva/kv-ui-elements/commit/c53c63a1ce8ac4323209b9b7bfac23948e97bdb2))
+* user avatar reference and warnings ([a4f04d1](https://github.com/kiva/kv-ui-elements/commit/a4f04d16c220c35ca98f3349c37bb1f5aa8b917e))
+
+
+
+
+
 # [6.47.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.46.0...@kiva/kv-components@6.47.0) (2025-08-21)
 
 
