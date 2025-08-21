@@ -24,6 +24,7 @@ export { default as KvExpandableQuestion } from './KvExpandableQuestion.vue';
 export { default as KvFlag } from './KvFlag.vue';
 export { default as KvGrid } from './KvGrid.vue';
 export { default as KvImpactDashboardHeader } from './KvImpactDashboardHeader.vue';
+export { default as KvImpactVerticalSelector } from './KvImpactVerticalSelector.vue';
 export { default as KvInlineActivityCard } from './KvInlineActivityCard.vue';
 export { default as KvInlineActivityFeed } from './KvInlineActivityFeed.vue';
 export { default as KvIntroductionLoanCard } from './KvIntroductionLoanCard.vue';
