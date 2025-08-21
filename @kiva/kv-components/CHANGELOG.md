@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.46.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.2...@kiva/kv-components@6.46.0) (2025-08-21)
+
+
+### Bug Fixes
+
+* implement category image from contentful or custom image, update mock data and stories ([2aa2474](https://github.com/kiva/kv-ui-elements/commit/2aa247415763458aab23e2048c44f102602005a9))
+
+
+### Features
+
+* new impact vertical selection interface, tweaks to card frame to prevent odd heights ([d8246f9](https://github.com/kiva/kv-ui-elements/commit/d8246f9bc697141aeea5231a55eeb4d80607ba2a))
+
+
+
+
+
 ## [6.45.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.1...@kiva/kv-components@6.45.2) (2025-08-21)
 
 **Note:** Version bump only for package @kiva/kv-components
