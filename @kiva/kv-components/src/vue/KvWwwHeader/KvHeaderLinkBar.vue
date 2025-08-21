@@ -24,9 +24,9 @@
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex"
+			@on-hover="onHover"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -37,8 +37,9 @@
 			base-class="tw-hidden lg:tw-inline-flex"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
+			send-link-position
+			@on-hover="onHover"
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -49,8 +50,9 @@
 			base-class="tw-hidden lg:tw-inline-flex"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
+			send-link-position
+			@on-hover="onHover"
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -83,17 +85,26 @@
 				:count="basketCount"
 			/>
 		</a>
-		<!-- avatar (sm, auth) -->
-		<KvUserAvatar
-			v-if="loggedIn"
-			ref="avatar"
-			class="tw-cursor-pointer tw-order-last tw-inline-flex"
-			:lender-name="lenderName"
-			:lender-image-url="lenderImageUrl"
-			is-small
-			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
+		<div
+			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
+			@mouseover="handleAvatarMenuPosition"
 			@mouseout="onHover()"
-		/>
+		>
+			<span
+				v-if="loggedIn"
+				class="tw-bg-eco-green-1 tw-py-0.5 tw-px-1 tw-text-eco-green-4"
+			>
+				{{ numeral(balance).format('$0') }}
+			</span>
+			<!-- avatar (sm, auth) -->
+			<KvUserAvatar
+				v-if="loggedIn"
+				ref="avatar"
+				:lender-name="lenderName"
+				:lender-image-url="lenderImageUrl"
+				is-small
+			/>
+		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
 			v-if="!loggedIn"
@@ -110,21 +121,25 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
+import numeral from 'numeral';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 import KvUserAvatar from '../KvUserAvatar.vue';
+import { throttle } from '../../utils/throttle';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
 const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
+
+const AVATAR_MENU_WIDTH = 118;
 
 export default {
 	components: {
@@ -182,9 +197,43 @@ export default {
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 
-		const onHover = (item, menu) => {
-			emit('item-hover', item, menu);
+		const onHover = (item, menu, targetPosition = null) => {
+			emit('item-hover', item, menu, targetPosition);
 		};
+
+		const handleAvatarMenuPosition = () => {
+			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
+			let menuPosition = null;
+			let rightOverflow = false;
+
+			if (linkRect) {
+				const left = linkRect?.left + linkRect?.width / 2;
+
+				// Calculate the left edge of the menu
+				const menuLeft = left - AVATAR_MENU_WIDTH / 2;
+
+				// Prevent overflow on the right
+				if (menuLeft + AVATAR_MENU_WIDTH > window.outerWidth) {
+					rightOverflow = true;
+				}
+
+				const position = rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` };
+
+				menuPosition = {
+					...position,
+					borderRadius: '0px 0px 8px 8px',
+					width: `${props.isMobile ? '100%' : 'auto'}`,
+				};
+			}
+
+			onHover(avatar.value, KvHeaderMyKivaMenu, menuPosition);
+		};
+
+		const handleAvatarMenuPositionThrottled = throttle(() => {
+			if (props.openMenuItem) {
+				handleAvatarMenuPosition();
+			}
+		}, 50);
 
 		const lendUrl = computed(() => {
 			return !props.isMobile ? '/lend-by-category' : undefined;
@@ -196,16 +245,21 @@ export default {
 			import('./LendMenu/KvLendMenu.vue');
 			import('./KvHeaderTakeActionMenu.vue');
 			import('./KvHeaderAboutMenu.vue');
+
+			window.addEventListener('resize', handleAvatarMenuPositionThrottled);
+		});
+
+		onUnmounted(() => {
+			window.removeEventListener('resize', handleAvatarMenuPositionThrottled);
 		});
 
 		return {
+			numeral,
 			mdiAccountCircle,
 			mdiChevronDown,
 			mdiMagnify,
 			mdiMenu,
-
 			onHover,
-
 			avatar,
 			lendButton,
 			aboutUsLink,
@@ -216,7 +270,7 @@ export default {
 			signInLink,
 			menuButton,
 			lendUrl,
-
+			handleAvatarMenuPosition,
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
 			KvLendMenu,

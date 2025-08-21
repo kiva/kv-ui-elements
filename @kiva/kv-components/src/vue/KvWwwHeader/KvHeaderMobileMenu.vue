@@ -1,8 +1,8 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-4 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
 		<KvAccordionItem class="tw-w-full tw-border-b-0">
 			<template #header>
-				<h2>Take action</h2>
+				<h3>Take action</h3>
 			</template>
 			<div class="tw-flex tw-flex-col tw-gap-2">
 				<div
@@ -24,7 +24,7 @@
 		</KvAccordionItem>
 		<KvAccordionItem class="tw-w-full">
 			<template #header>
-				<h2>About</h2>
+				<h3>About</h3>
 			</template>
 			<div class="tw-flex tw-flex-col tw-gap-2 tw-pt-1 tw-pb-2">
 				<a
@@ -125,6 +125,6 @@ export default {
 <style lang="postcss" scoped>
 
 .mobile-link {
-	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-no-underline tw-text-h3;
+	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-no-underline;
 }
 </style>
