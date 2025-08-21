@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.46.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.2...@kiva/kv-components@6.46.0) (2025-08-21)
+
+
+### Bug Fixes
+
+* implement category image from contentful or custom image, update mock data and stories ([2aa2474](https://github.com/kiva/kv-ui-elements/commit/2aa247415763458aab23e2048c44f102602005a9))
+
+
+### Features
+
+* new impact vertical selection interface, tweaks to card frame to prevent odd heights ([d8246f9](https://github.com/kiva/kv-ui-elements/commit/d8246f9bc697141aeea5231a55eeb4d80607ba2a))
+
+
+
+
+
+## [6.45.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.1...@kiva/kv-components@6.45.2) (2025-08-21)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [6.45.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.0...@kiva/kv-components@6.45.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* a little less padding ([ff9b3ae](https://github.com/kiva/kv-ui-elements/commit/ff9b3ae9a64c0c510fe51346b6e2606095c5912f))
+* add top padding to kvpill ([6640462](https://github.com/kiva/kv-ui-elements/commit/6640462bf76ad27275b6a3186e821e4175eb936f))
+
+
+
+
+
+# [6.45.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.44.0...@kiva/kv-components@6.45.0) (2025-08-20)
+
+
+### Features
+
+* export kvpill component ([a9899a2](https://github.com/kiva/kv-ui-elements/commit/a9899a283202be7c2a0e5227d4424bf8ce7db6a9))
+
+
+
+
+
+# [6.44.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.1...@kiva/kv-components@6.44.0) (2025-08-20)
+
+
+### Features
+
+* add icon story, change h5 to span ([0d862b1](https://github.com/kiva/kv-ui-elements/commit/0d862b1ece213301378f93b98ed5d0e84aadaa06))
+* generic pill component ([6e5dcc4](https://github.com/kiva/kv-ui-elements/commit/6e5dcc4f318fab6e4c1fe9a8c56b95210aa03d39))
+
+
+
+
+
+## [6.43.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.43.0...@kiva/kv-components@6.43.1) (2025-08-18)
+
+
+### Bug Fixes
+
+* add ability to blur backgorund behind kvlightbox ([7b04368](https://github.com/kiva/kv-ui-elements/commit/7b043683b5c31ecbc9c277f823941841c5c42ad2))
+
+
+
+
+
 # [6.43.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.42.0...@kiva/kv-components@6.43.0) (2025-08-13)
 
 

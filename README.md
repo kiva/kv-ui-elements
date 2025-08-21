@@ -20,16 +20,16 @@ Note: The Node.js versions used while linking must match!!!
 
 1. In this repo's root, link the specific workspace you're working with
 ```bash
-npm run link -w @kiva/kv-components
+npm link -w @kiva/kv-components
 -or-
-npm run link -w @kiva/kv-shop
+npm link -w @kiva/kv-shop
 ```
 
 2. In your web application repo's root, pull in the link
 ```bash
-npm run link @kiva/kv-components
+npm link @kiva/kv-components
 -or-
-npm run link @kiva/kv-shop
+npm link @kiva/kv-shop
 ```
 
 3. Make changes to your active workspace/package locally, run npm build and changes should be reflected in your application
@@ -37,9 +37,9 @@ npm run link @kiva/kv-shop
 ### Unlinking from your application
 To bring your web application back to it's normal state, we need to unlink the package so it continues to install from npm instead of your local machine. The `--no-save` flag will ensure you don't remove this package completely.
 ```bash
-run npm unlink --no-save @kiva/kv-components
+npm unlink --no-save @kiva/kv-components
 -or-
-run npm unlink --no-save @kiva/kv-shop
+npm unlink --no-save @kiva/kv-shop
 ```
 
 ## Contribution Guidelines

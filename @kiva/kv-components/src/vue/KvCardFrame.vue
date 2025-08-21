@@ -2,10 +2,11 @@
 	<kv-theme-provider
 		:theme="themeStyle"
 		class="kv-card-frame-theme-provider"
+		:class="radiusClass"
 	>
 		<div
 			:class="[
-				'kv-card-frame', bgColorClass, radiusClass, shadowClass, borderClass,
+				'kv-card-frame tw-h-full', bgColorClass, radiusClass, shadowClass, borderClass,
 				{ 'tw-overflow-hidden': !allowOverflow },
 			]"
 		>

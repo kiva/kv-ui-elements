@@ -250,6 +250,17 @@ export async function executeOneTimeCheckout({
 	await redirectTo(redirectUrl);
 }
 
+export interface OneTimeCheckoutForGivingFundResult {
+	data: {
+		checkoutStatus: any
+		donation: any
+		givingFund: {
+			id: string,
+		}
+	} | null,
+	errors?: any,
+}
+
 export interface OneTimeCheckoutForGivingFundOptions {
 	amount: string,
 	apollo: ApolloClient<any>,
@@ -274,7 +285,7 @@ export async function executeOneTimeCheckoutForGivingFund({
 	fundTarget,
 	userId,
 	useKivaCredit = true,
-}: OneTimeCheckoutForGivingFundOptions) {
+}: OneTimeCheckoutForGivingFundOptions): Promise<OneTimeCheckoutForGivingFundResult> {
 	// do pre-checkout validation
 	await validatePreCheckout({
 		apollo,
@@ -291,7 +302,7 @@ export async function executeOneTimeCheckoutForGivingFund({
 
 	const metadata = `campaignId: ${givingFundResult.id}`;
 
-	await setTipDonation({
+	const donationResult = await setTipDonation({
 		amount,
 		metadata,
 		apollo,
@@ -342,5 +353,21 @@ export async function executeOneTimeCheckoutForGivingFund({
 	await trackSuccess(apollo, checkoutId, paymentType);
 
 	// return transaction result
-	return result;
+	// combining checkout status and donation result and giving fund result
+	const combinedResults = {
+		data: {
+			...result.data,
+			checkoutStatus: {
+				...result.data.checkoutStatus,
+			},
+			donation: {
+				...donationResult,
+			},
+			givingFund: {
+				id: givingFundResult.id,
+			},
+		},
+		errors: result.errors ?? [],
+	};
+	return combinedResults as OneTimeCheckoutForGivingFundResult;
 }
