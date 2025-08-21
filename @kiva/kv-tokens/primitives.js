@@ -516,7 +516,7 @@ export default {
 		sm: 8,
 		md: 12,
 		default: 16,
-		lg: 16,
+		lg: 20,
 		xl: 24,
 	},
 	opacity: {
