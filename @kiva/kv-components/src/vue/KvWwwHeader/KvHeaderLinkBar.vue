@@ -2,130 +2,6 @@
 	<div
 		class="tw-h-full tw-flex tw-items-center"
 	>
-		<!-- avatar (sm, auth) -->
-		<button
-			v-if="loggedIn"
-			ref="avatar"
-			class="header-link lg:tw-order-last tw-inline-flex"
-			:class="{
-				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMyKivaMenu
-			}"
-			@mouseover="onHover(avatar, KvHeaderMyKivaMenu)"
-			@mouseout="onHover()"
-		>
-			<kv-material-icon
-				:icon="mdiAccountCircle"
-				class="tw-w-3"
-			/>
-		</button>
-		<!-- lend -->
-		<a
-			ref="lendButton"
-			v-kv-track-event="['TopNav', 'click-Lend']"
-			href="/lend-by-category"
-			class="
-				tw-px-1.5 tw-py-1 tw-mx-1
-				tw-border-2
-				tw-text-eco-green-3 tw-border-current
-				tw-no-underline hover:tw-no-underline
-				tw-inline-flex tw-items-center
-			"
-			:class="{
-				'tw-text-tertiary': openMenuItem && openMenuItem !== KvLendMenu,
-			}"
-			style="border-radius: 1rem;"
-			@mouseover="onHover(lendButton, KvLendMenu)"
-			@mouseout="onHover()"
-		>
-			Lend
-			<span class="tw-hidden lg:tw-inline tw-ml-0.5">now</span>
-			<kv-material-icon
-				class="tw-hidden md:tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
-				:class="{'tw-rotate-180' : openMenuItem === KvLendMenu}"
-				:icon="mdiChevronDown"
-			/>
-		</a>
-		<!-- about us (lg) -->
-		<a
-			ref="aboutUsLink"
-			href="/about"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem }"
-		>
-			About us
-		</a>
-		<!-- partner with us (lg) -->
-		<a
-			ref="partnerWithUsLink"
-			href="/about/partner-with-us"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Partner with us
-		</a>
-		<!-- logo spacer -->
-		<div
-			class="tw-flex-1 tw-h-full"
-		></div>
-		<!-- borrow (lg, no-auth) -->
-		<a
-			v-if="!loggedIn"
-			ref="borrowLink"
-			href="/borrow"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Borrow
-		</a>
-		<!-- support kiva (lg) -->
-		<a
-			ref="supportKivaLink"
-			href="/donate/supportus"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Support Kiva
-		</a>
-		<!-- basket (items) -->
-		<a
-			v-if="basketCount > 0"
-			ref="basketLink"
-			v-kv-track-event="['TopNav', 'click-Basket']"
-			href="/basket"
-			class="header-link tw-relative"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			<kv-icon-bag
-				class="tw-w-3 tw-h-3 tw-pointer-events-none"
-				:count="basketCount"
-			/>
-		</a>
-		<!-- search icon -->
-		<button
-			ref="searchButton"
-			v-kv-track-event="['TopNav', 'click-Search-toggle']"
-			class="header-link tw-flex"
-			:class="{
-				'tw-text-tertiary': !!openMenuItem
-			}"
-			@click="openSearch"
-		>
-			<kv-material-icon
-				class="tw-w-3 tw-h-3"
-				:icon="mdiMagnify"
-			/>
-		</button>
-		<!-- sign in (lg, no-auth) -->
-		<a
-			v-if="!loggedIn"
-			ref="signInLink"
-			v-kv-track-event="['TopNav', 'click-Sign-in']"
-			:href="loginUrl"
-			class="header-link tw-hidden lg:tw-block"
-			:class="{'tw-text-tertiary': !!openMenuItem}"
-		>
-			Sign in
-		</a>
 		<!-- 3-bar menu (sm) -->
 		<button
 			ref="menuButton"
@@ -141,25 +17,136 @@
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
+		<!-- lend -->
+		<KvHeaderDropdownLink
+			v-kv-track-event="['TopNav', 'click-Lend']"
+			ref-name="lendButton"
+			:href="lendUrl"
+			:menu-component="KvLendMenu"
+			:open-menu-item="openMenuItem"
+			:dropdown-icon="mdiChevronDown"
+			base-class="tw-inline-flex"
+			@on-hover="onHover"
+		>
+			Lend
+		</KvHeaderDropdownLink>
+		<!-- Take Action -->
+		<KvHeaderDropdownLink
+			v-kv-track-event="['TopNav', 'click-TakeAction']"
+			ref-name="takeActionButton"
+			base-class="tw-hidden lg:tw-inline-flex"
+			:menu-component="KvHeaderTakeActionMenu"
+			:open-menu-item="openMenuItem"
+			:dropdown-icon="mdiChevronDown"
+			send-link-position
+			@on-hover="onHover"
+		>
+			Take action
+		</KvHeaderDropdownLink>
+		<!-- about (lg) -->
+		<KvHeaderDropdownLink
+			v-kv-track-event="['TopNav', 'click-About']"
+			ref-name="aboutUsLink"
+			base-class="tw-hidden lg:tw-inline-flex"
+			:menu-component="KvHeaderAboutMenu"
+			:open-menu-item="openMenuItem"
+			:dropdown-icon="mdiChevronDown"
+			send-link-position
+			@on-hover="onHover"
+		>
+			About
+		</KvHeaderDropdownLink>
+		<!-- logo spacer -->
+		<div
+			class="tw-flex-1 tw-h-full"
+		></div>
+		<!-- My dashboard -->
+		<a
+			v-if="loggedIn"
+			ref="dashboardLink"
+			v-kv-track-event="['TopNav', 'click-Dashboard']"
+			:href="myDashboardUrl"
+			class="header-link tw-hidden lg:tw-block"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
+		>
+			My dashboard
+		</a>
+		<!-- basket (items) -->
+		<a
+			v-if="basketCount > 0"
+			ref="basketLink"
+			v-kv-track-event="['TopNav', 'click-Basket']"
+			href="/basket"
+			class="header-link tw-relative"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
+		>
+			<kv-icon-bag
+				class="tw-w-3 tw-h-3 tw-pointer-events-none"
+				:count="basketCount"
+			/>
+		</a>
+		<div
+			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
+			@mouseover="handleAvatarMenuPosition"
+			@mouseout="onHover()"
+		>
+			<span
+				v-if="loggedIn"
+				class="tw-bg-eco-green-1 tw-py-0.5 tw-px-1 tw-text-eco-green-4"
+			>
+				{{ numeral(balance).format('$0') }}
+			</span>
+			<!-- avatar (sm, auth) -->
+			<KvUserAvatar
+				v-if="loggedIn"
+				ref="avatar"
+				:lender-name="lenderName"
+				:lender-image-url="lenderImageUrl"
+				is-small
+			/>
+		</div>
+		<!-- sign in (lg, no-auth) -->
+		<a
+			v-if="!loggedIn"
+			ref="signInLink"
+			v-kv-track-event="['TopNav', 'click-Sign-in']"
+			:href="loginUrl"
+			class="header-link"
+			:class="{'tw-text-tertiary': !!openMenuItem}"
+		>
+			Sign in
+		</a>
 	</div>
 </template>
 
 <script>
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import {
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted,
+} from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
+import numeral from 'numeral';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
+import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
+import KvUserAvatar from '../KvUserAvatar.vue';
+import { throttle } from '../../utils/throttle';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
 const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'));
+const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
+const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
+
+const AVATAR_MENU_WIDTH = 118;
 
 export default {
 	components: {
 		KvMaterialIcon,
 		KvIconBag,
+		KvHeaderDropdownLink,
+		KvUserAvatar,
 	},
 	props: {
 		loggedIn: {
@@ -178,10 +165,25 @@ export default {
 			type: String,
 			default: '/ui-login',
 		},
+		myDashboardUrl: {
+			type: String,
+			default: '/mykiva',
+		},
+		lenderName: {
+			type: String,
+			default: '',
+		},
+		lenderImageUrl: {
+			type: String,
+			default: '',
+		},
+		isMobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'item-hover',
-		'open-search',
 	],
 	setup(props, { emit }) {
 		// element references
@@ -192,33 +194,72 @@ export default {
 		const borrowLink = ref(null);
 		const supportKivaLink = ref(null);
 		const basketLink = ref(null);
-		const searchButton = ref(null);
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 
-		const onHover = (item, menu) => {
-			emit('item-hover', item, menu);
+		const onHover = (item, menu, targetPosition = null) => {
+			emit('item-hover', item, menu, targetPosition);
 		};
 
-		const openSearch = () => {
-			emit('open-search', searchButton.value?.offsetLeft);
+		const handleAvatarMenuPosition = () => {
+			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
+			let menuPosition = null;
+			let rightOverflow = false;
+
+			if (linkRect) {
+				const left = linkRect?.left + linkRect?.width / 2;
+
+				// Calculate the left edge of the menu
+				const menuLeft = left - AVATAR_MENU_WIDTH / 2;
+
+				// Prevent overflow on the right
+				if (menuLeft + AVATAR_MENU_WIDTH > window.outerWidth) {
+					rightOverflow = true;
+				}
+
+				const position = rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` };
+
+				menuPosition = {
+					...position,
+					borderRadius: '0px 0px 8px 8px',
+					width: `${props.isMobile ? '100%' : 'auto'}`,
+				};
+			}
+
+			onHover(avatar.value, KvHeaderMyKivaMenu, menuPosition);
 		};
+
+		const handleAvatarMenuPositionThrottled = throttle(() => {
+			if (props.openMenuItem) {
+				handleAvatarMenuPosition();
+			}
+		}, 50);
+
+		const lendUrl = computed(() => {
+			return !props.isMobile ? '/lend-by-category' : undefined;
+		});
 
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');
 			import('./KvHeaderMyKivaMenu.vue');
 			import('./LendMenu/KvLendMenu.vue');
+			import('./KvHeaderTakeActionMenu.vue');
+			import('./KvHeaderAboutMenu.vue');
+
+			window.addEventListener('resize', handleAvatarMenuPositionThrottled);
+		});
+
+		onUnmounted(() => {
+			window.removeEventListener('resize', handleAvatarMenuPositionThrottled);
 		});
 
 		return {
+			numeral,
 			mdiAccountCircle,
 			mdiChevronDown,
 			mdiMagnify,
 			mdiMenu,
-
 			onHover,
-			openSearch,
-
 			avatar,
 			lendButton,
 			aboutUsLink,
@@ -226,13 +267,15 @@ export default {
 			borrowLink,
 			supportKivaLink,
 			basketLink,
-			searchButton,
 			signInLink,
 			menuButton,
-
+			lendUrl,
+			handleAvatarMenuPosition,
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
 			KvLendMenu,
+			KvHeaderTakeActionMenu,
+			KvHeaderAboutMenu,
 		};
 	},
 };
