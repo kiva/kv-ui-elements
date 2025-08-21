@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.47.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.46.0...@kiva/kv-components@6.47.0) (2025-08-21)
+
+
+### Bug Fixes
+
+* indentation and no redirect link ([8b6e863](https://github.com/kiva/kv-ui-elements/commit/8b6e863606e0a8c2ccb4eac778dbbb08415176cb))
+* moving balance to header instead of menu ([3487e88](https://github.com/kiva/kv-ui-elements/commit/3487e88fbb44c1d284854407e23b2a4805f5997d))
+* only show if logged in and make url as prop ([567dffc](https://github.com/kiva/kv-ui-elements/commit/567dffc20e1cd0f43cee6b72c603ca133d5cb2a2))
+* opening avatar menu on resize and other code changes ([ba691b0](https://github.com/kiva/kv-ui-elements/commit/ba691b0aa401b55411ed6599e3db01e995557805))
+* resolve copilot comments ([a78198d](https://github.com/kiva/kv-ui-elements/commit/a78198db926205e84e11a5ce0fadea60dc7c7233))
+* uninstall unused fuse.js package ([ba4aab8](https://github.com/kiva/kv-ui-elements/commit/ba4aab884ebaf3194aba5ddb6b6bacfd2836fd3c))
+
+
+### Features
+
+* adding My Dashboard link to header ([5a85f10](https://github.com/kiva/kv-ui-elements/commit/5a85f104990ab70d6943de5f9b9fdf0387f3ab22))
+* avoid full width on some links and send their position to show menu bellow them ([03e8b6e](https://github.com/kiva/kv-ui-elements/commit/03e8b6e8772f044a7c3b427bf684e108ce8e6bbc))
+* change menu bg color and remove search code ([6cb0042](https://github.com/kiva/kv-ui-elements/commit/6cb004241c8ffd6f4da537ef6b6e632837b06e51))
+* create about dropdown link ([a1424f9](https://github.com/kiva/kv-ui-elements/commit/a1424f90aadf6af6345167ee6292e3175763e290))
+* modifying currentt mobile menu ([c5c2aee](https://github.com/kiva/kv-ui-elements/commit/c5c2aee47c83138d5299cfe0be642ffb6de4e101))
+* remove 'now' from Lend button ([0daac8c](https://github.com/kiva/kv-ui-elements/commit/0daac8ca85e6b597912d979909a01fa7a35ffebc))
+* removing support kiva button and do not redirect to lend by category page on mobile ([5a49ab9](https://github.com/kiva/kv-ui-elements/commit/5a49ab9db4fca9083aea619cbb7b20999139c0cb))
+* reusable dropdown link component ([4d7e98f](https://github.com/kiva/kv-ui-elements/commit/4d7e98fd2aa896fb68e63da593fdac6744dac28f))
+* using user avatar instead of user icon ([870080e](https://github.com/kiva/kv-ui-elements/commit/870080e3daa83d2232414f851608b3ec1a125e5b))
+
+
+
+
+
 # [6.46.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.45.2...@kiva/kv-components@6.46.0) (2025-08-21)
 
 
