@@ -24,9 +24,9 @@
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex"
+			@on-hover="onHover"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -37,9 +37,9 @@
 			base-class="tw-hidden lg:tw-inline-flex"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
+			@on-hover="onHover"
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -50,9 +50,9 @@
 			base-class="tw-hidden lg:tw-inline-flex"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
-			:on-hover="onHover"
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
+			@on-hover="onHover"
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -204,20 +204,23 @@ export default {
 		const handleAvatarMenuPosition = () => {
 			const linkRect = avatar.value?.imageRef?.getBoundingClientRect();
 			let menuPosition = null;
+			let rightOverflow = false;
 
 			if (linkRect) {
 				const left = linkRect?.left + linkRect?.width / 2;
 
 				// Calculate the left edge of the menu
-				let menuLeft = left - AVATAR_MENU_WIDTH / 2;
+				const menuLeft = left - AVATAR_MENU_WIDTH / 2;
 
 				// Prevent overflow on the right
-				if (menuLeft + AVATAR_MENU_WIDTH > window.innerWidth) {
-					menuLeft = window.innerWidth - AVATAR_MENU_WIDTH;
+				if (menuLeft + AVATAR_MENU_WIDTH > window.outerWidth) {
+					rightOverflow = true;
 				}
 
+				const position = rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` };
+
 				menuPosition = {
-					left: props.isMobile ? 0 : menuLeft,
+					...position,
 					borderRadius: '0px 0px 8px 8px',
 					width: `${props.isMobile ? '100%' : 'auto'}`,
 				};
@@ -226,7 +229,11 @@ export default {
 			onHover(avatar.value, KvHeaderMyKivaMenu, menuPosition);
 		};
 
-		const handleAvatarMenuPositionThrottled = throttle(handleAvatarMenuPosition, 50);
+		const handleAvatarMenuPositionThrottled = throttle(() => {
+			if (props.openMenuItem) {
+				handleAvatarMenuPosition();
+			}
+		}, 50);
 
 		const lendUrl = computed(() => {
 			return !props.isMobile ? '/lend-by-category' : undefined;

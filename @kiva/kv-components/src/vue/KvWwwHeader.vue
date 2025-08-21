@@ -171,7 +171,6 @@ export default {
 				if (targetPosition) {
 					menuPosition.value = {
 						...targetPosition,
-						left: `${targetPosition?.left}px`,
 						position: 'absolute',
 					};
 				}

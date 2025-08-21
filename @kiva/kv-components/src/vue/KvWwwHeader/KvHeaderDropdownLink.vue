@@ -11,7 +11,7 @@
 		:class="computedClass"
 		:style="style"
 		@mouseover="handleMouseOver"
-		@mouseout="onHover()"
+		@mouseout="handleMouseOver"
 	>
 		<slot></slot>
 		<KvMaterialIcon
@@ -45,10 +45,6 @@ export default {
 			type: Object,
 			default: () => ({}),
 		},
-		onHover: {
-			type: Function,
-			default: () => ({}),
-		},
 		dropdownIcon: {
 			type: String,
 			default: '',
@@ -62,7 +58,10 @@ export default {
 			default: false,
 		},
 	},
-	setup(props) {
+	emits: [
+		'on-hover',
+	],
+	setup(props, { emit }) {
 		const { proxy } = getCurrentInstance();
 
 		const computedClass = computed(() => {
@@ -80,14 +79,14 @@ export default {
 					const linkRect = linkEl.getBoundingClientRect();
 					const centerX = linkRect?.left + linkRect?.width / 2;
 					linkPos = {
-						left: centerX,
+						left: `${centerX}px`,
 						transform: 'translateX(-50%)',
 						borderRadius: '0px 0px 8px 8px',
 					};
 				}
 			}
 
-			props.onHover(props.refName, props.menuComponent, linkPos);
+			emit('on-hover', props.refName, props.menuComponent, linkPos);
 		};
 		return {
 			computedClass,
