@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 export default [
 	{
-		categoryType: 'GIVING_FUND',
+		id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
+		name: 'Climate-threatened people',
+		description: 'Fund those on the front lines of the climate crisis.',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -277,15 +279,15 @@ export default [
 				},
 			},
 		},
-		description: 'Fund those on the front lines of the climate crisis.',
-		name: 'Climate-threatened people',
-		id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
 		savedSearch: {
 			id: 'c11703da-7d11-368a-9298-7289b9bb7ca6',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 	{
-		categoryType: 'GIVING_FUND',
+		id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
+		name: 'Refugees',
+		description: 'Transform the future for refugees',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -561,15 +563,15 @@ export default [
 				},
 			},
 		},
-		description: 'Transform the future for refugees',
-		name: 'Refugees',
-		id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
 		savedSearch: {
 			id: '7f81c1c4-e57a-33c6-ba64-e2c4b310ff3e',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 	{
-		categoryType: 'GIVING_FUND',
+		id: '87ec8472-5cd7-49a7-a565-3f0b03e42a32',
+		name: 'Marginalized U.S. entrepreneurs',
+		description: 'Let’s build a thriving, fair economy, one entrepreneur at a time.',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -845,15 +847,15 @@ export default [
 				},
 			},
 		},
-		description: 'Let’s build a thriving, fair economy, one entrepreneur at a time.',
-		name: 'Marginalized U.S. entrepreneurs',
-		id: '87ec8472-5cd7-49a7-a565-3f0b03e42a32',
 		savedSearch: {
 			id: '8ceb078e-e852-3d65-9562-e2caf76ac476',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 	{
-		categoryType: 'GIVING_FUND',
+		id: '8ace83f1-e02d-404d-a3c4-83fa0be69403',
+		name: 'Women',
+		description: 'Support opportunities for women around the world',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -1129,15 +1131,15 @@ export default [
 				},
 			},
 		},
-		description: 'Support opportunities for women around the world',
-		name: 'Women',
-		id: '8ace83f1-e02d-404d-a3c4-83fa0be69403',
 		savedSearch: {
 			id: '80fbdc0d-08ef-3492-a819-db05d0f3b960',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 	{
-		categoryType: 'GIVING_FUND',
+		id: '914823b9-b4e3-4980-8811-09dbe0f19860',
+		name: 'Education',
+		description: 'Fund the next generation of leaders',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -1413,15 +1415,15 @@ export default [
 				},
 			},
 		},
-		description: 'Fund the next generation of leaders',
-		name: 'Education',
-		id: '914823b9-b4e3-4980-8811-09dbe0f19860',
 		savedSearch: {
 			id: '001b1e89-8a69-35a7-8650-ab9098a91211',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 	{
-		categoryType: 'GIVING_FUND',
+		id: 'f36abd3e-a304-4948-9378-b697b775ec2b',
+		name: 'Financial inclusion',
+		description: 'Let’s build a world where financial access is a right, not a privilege.',
 		contentfulEntry: {
 			entry: {
 				metadata: {
@@ -1697,11 +1699,9 @@ export default [
 				},
 			},
 		},
-		description: 'Let’s build a world where financial access is a right, not a privilege.',
-		name: 'Financial inclusion',
-		id: 'f36abd3e-a304-4948-9378-b697b775ec2b',
 		savedSearch: {
 			id: 'd7517139-8898-3e93-b198-0363e24189ce',
 		},
+		categoryType: 'GIVING_FUND',
 	},
 ];
