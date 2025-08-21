@@ -139,7 +139,7 @@ export default {
 	font-family: inherit;
 	font-weight: inherit;
 	height: 3rem;
-	background-color: rgb(var(--bg-primary)); /* Mimic kvTextInput */
+	background-color: rgb(var(--bg-primary));
 }
 .kv-datepicker .dp__input:focus-within,
 .kv-datepicker .dp__input:focus-visible {
