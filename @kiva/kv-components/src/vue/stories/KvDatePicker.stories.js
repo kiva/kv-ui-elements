@@ -175,6 +175,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 	},
 	setup() { return { args }; },
 	template: `	
+	<div>
 			<div class="tw-space-y-4">
 				<div>
 					<label class="tw-text-h4 tw-block tw-pb-1">
