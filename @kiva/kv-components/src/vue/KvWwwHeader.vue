@@ -73,6 +73,7 @@
 							:is-borrower="isBorrower"
 							:is-trustee="isTrustee"
 							:my-dashboard-url="myDashboardUrl"
+							:show-m-g-upsell-link="showMGUpsellLink"
 							@load-lend-menu-data="emitLendMenuEvent"
 						/>
 					</div>
@@ -136,6 +137,10 @@ export default {
 			default: '',
 		},
 		isMobile: {
+			type: Boolean,
+			default: false,
+		},
+		showMGUpsellLink: {
 			type: Boolean,
 			default: false,
 		},

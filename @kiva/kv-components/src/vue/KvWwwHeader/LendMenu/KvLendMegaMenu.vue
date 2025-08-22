@@ -4,6 +4,19 @@
 			:style="computedStyle"
 			class="tw-transition tw-duration-1000 tw-ease-in-out"
 		>
+			<a
+				v-if="showMGUpsellLink"
+				v-kv-track-event="['TopNav', 'click-Lend-Menu-Monthly-Good', 'Lend-monthly']"
+				href="/monthlygood"
+			>
+				<span class="tw-inline-flex tw-items-center tw-py-1 tw-mb-2 tw-gap-0.5 tw-font-medium tw-text-action">
+					Lend monthly
+					<kv-material-icon
+						:icon="mdiArrowRight"
+						class="tw-w-3 tw-h-3"
+					/>
+				</span>
+			</a>
 			<kv-grid style="grid-template-columns: repeat(18, minmax(0, 1fr));">
 				<!-- categories -->
 				<div
@@ -266,6 +279,10 @@ export default {
 		searches: {
 			type: Array,
 			default: () => [],
+		},
+		showMGUpsellLink: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {

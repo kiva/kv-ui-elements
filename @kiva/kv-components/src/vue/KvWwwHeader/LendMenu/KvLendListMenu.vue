@@ -1,5 +1,24 @@
 <template>
 	<div class="tw-pb-2">
+		<a
+			v-if="showMGUpsellLink"
+			v-kv-track-event="['TopNav', 'click-Lend-Menu-Monthly-Good', 'Lend-monthly']"
+			href="/monthlygood"
+		>
+			<span
+				class="
+					tw-inline-flex tw-items-center
+					tw-py-2 tw-mb-2 tw-gap-0.5
+					tw-border-b tw-border-tertiary
+					tw-font-medium"
+			>
+				Lend monthly
+				<kv-material-icon
+					:icon="mdiArrowRight"
+					class="tw-w-3 tw-h-3"
+				/>
+			</span>
+		</a>
 		<kv-tabs ref="navLendCategories">
 			<template #tabNav>
 				<kv-tab for-panel="nav-lend-categories">
@@ -178,6 +197,7 @@ import KvTab from '../../KvTab.vue';
 import KvTabPanel from '../../KvTabPanel.vue';
 import KvTabs from '../../KvTabs.vue';
 import paramCase from '../../../utils/paramCase';
+import KvMaterialIcon from '../../KvMaterialIcon.vue';
 
 export default {
 	components: {
@@ -188,6 +208,7 @@ export default {
 		KvLendMenuCountryList,
 		KvLendMenuSearchList,
 		KvLoadingPlaceholder,
+		KvMaterialIcon,
 	},
 	props: {
 		categories: {
@@ -217,6 +238,10 @@ export default {
 		isChannelsLoading: {
 			type: Boolean,
 			default: true,
+		},
+		showMGUpsellLink: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props) {

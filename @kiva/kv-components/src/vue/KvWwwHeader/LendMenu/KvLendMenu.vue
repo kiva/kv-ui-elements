@@ -9,6 +9,7 @@
 			:searches="savedSearches"
 			:is-regions-loading="isRegionsLoading"
 			:is-channels-loading="isChannelsLoading"
+			:show-m-g-upsell-link="showMGUpsellLink"
 		/>
 		<kv-lend-mega-menu
 			class="tw-hidden lg:tw-block"
@@ -19,6 +20,7 @@
 			:searches="savedSearches"
 			:is-regions-loading="isRegionsLoading"
 			:is-channels-loading="isChannelsLoading"
+			:show-m-g-upsell-link="showMGUpsellLink"
 		/>
 	</div>
 </template>
@@ -42,6 +44,10 @@ export default {
 		userId: {
 			type: Number,
 			default: null,
+		},
+		showMGUpsellLink: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: ['load-lend-menu-data'],
