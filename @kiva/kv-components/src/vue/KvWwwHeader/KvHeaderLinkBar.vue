@@ -93,8 +93,8 @@
 		<div
 			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
 			@mouseover="handleAvatarMenuPosition"
-			@mouseout="handleMouseOut('avatar')"
-			@touchstart="handleTouchStart('avatar')"
+			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
+			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
 		>
 			<span
 				v-if="loggedIn"
@@ -146,6 +146,7 @@ const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTake
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
 const AVATAR_MENU_WIDTH = 118;
+const AVATAR_MENU_ID = 'avatar-menu';
 
 export default {
 	components: {
@@ -217,9 +218,6 @@ export default {
 		};
 
 		const handleMouseOut = (item) => {
-			if (!props.isMobile) {
-				return onHover();
-			}
 			if (openMenuId.value === item) {
 				openMenuId.value = null;
 				onHover();
@@ -241,14 +239,14 @@ export default {
 		};
 
 		const handleAvatarMenuPosition = () => {
-			openMenuId.value = 'avatar';
+			openMenuId.value = AVATAR_MENU_ID;
 			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
 		};
 
 		const handleTouchStart = (item, menu) => {
 			if (!openMenuId.value || openMenuId.value !== item) {
 				openMenuId.value = item;
-				if (item === 'avatar') {
+				if (item === AVATAR_MENU_ID) {
 					handleAvatarMenuPosition();
 				} else {
 					onHover(item, menu);
@@ -284,6 +282,7 @@ export default {
 		});
 
 		return {
+			AVATAR_MENU_ID,
 			openMenuId,
 			numeral,
 			mdiAccountCircle,
