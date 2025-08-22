@@ -53,6 +53,11 @@ export default {
 				type: 'text',
 			},
 		},
+		showMGUpsellLink: {
+			control: {
+				type: 'boolean',
+			},
+		},
 	},
 };
 
@@ -94,4 +99,5 @@ export const LoggedIn = story({
 	myDashboardUrl: '/kiva-circles',
 	lenderName: 'John Doe',
 	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	showMGUpsellLink: true,
 });

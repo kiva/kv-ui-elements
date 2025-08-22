@@ -10,7 +10,6 @@
 		:href="href"
 		:class="computedClass"
 		@mouseover="handleMouseOver"
-		@mouseout="handleMouseOver"
 	>
 		<slot></slot>
 		<KvMaterialIcon
