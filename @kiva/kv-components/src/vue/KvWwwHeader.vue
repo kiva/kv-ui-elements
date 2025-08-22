@@ -1,8 +1,5 @@
 <template>
-	<kv-theme-provider
-		tag="div"
-		class="tw-border-b tw-border-tertiary"
-	>
+	<kv-theme-provider tag="div">
 		<nav
 			class="
 				header-margins

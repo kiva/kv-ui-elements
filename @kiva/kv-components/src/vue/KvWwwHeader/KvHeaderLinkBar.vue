@@ -27,6 +27,7 @@
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex"
 			@on-hover="onHover"
+			@mouseout="onHover()"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -40,6 +41,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="onHover"
+			@mouseout="onHover()"
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -53,6 +55,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="onHover"
+			@mouseout="onHover()"
 		>
 			About
 		</KvHeaderDropdownLink>
