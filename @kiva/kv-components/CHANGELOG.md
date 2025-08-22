@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.48.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.47.1...@kiva/kv-components@6.48.0) (2025-08-22)
+
+
+### Features
+
+* add lend monthly link too Lend menus ([6f7a9e0](https://github.com/kiva/kv-ui-elements/commit/6f7a9e0c7c1fefca79ec765fa4fb0a5e7e6dfe2d))
+* menus still open when mouse leave and bottom border issue ([d074c82](https://github.com/kiva/kv-ui-elements/commit/d074c82ebc833c4685e2e8b148f7cd80680edf13))
+
+
+
+
+
 ## [6.47.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.47.0...@kiva/kv-components@6.47.1) (2025-08-21)
 
 
