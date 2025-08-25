@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<kv-page-container>
 		<kv-lend-list-menu
 			class="lg:tw-hidden"
 			:categories="computedCategories"
@@ -22,7 +22,7 @@
 			:is-channels-loading="isChannelsLoading"
 			:show-m-g-upsell-link="showMGUpsellLink"
 		/>
-	</div>
+	</kv-page-container>
 </template>
 
 <script>
@@ -34,11 +34,13 @@ import KvLendListMenu from './KvLendListMenu.vue';
 import KvLendMegaMenu from './KvLendMegaMenu.vue';
 import { indexIn } from '../../../utils/comparators';
 import { groupBy, sortBy } from '../../../utils/arrayUtils';
+import KvPageContainer from '../../KvPageContainer.vue';
 
 export default {
 	components: {
 		KvLendListMenu,
 		KvLendMegaMenu,
+		KvPageContainer,
 	},
 	props: {
 		userId: {

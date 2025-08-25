@@ -1,47 +1,47 @@
 <template>
-	<kv-theme-provider tag="div">
+	<kv-theme-provider
+		tag="div"
+		class="tw-bg-primary tw-relative"
+	>
 		<nav
-			class="
-				header-margins
-				tw-relative
-				tw-py-1 tw-px-1.5
-				tw-font-medium
-			"
+			class="tw-font-medium"
 			style="height: 3.75rem;"
 		>
-			<!-- link bar -->
-			<transition
-				name="header-fade"
-			>
-				<kv-header-link-bar
-					v-show="linksVisible"
-					:logged-in="loggedIn"
-					:basket-count="basketCount"
-					:login-url="loginUrl"
-					:open-menu-item="menuComponent"
-					:my-dashboard-url="myDashboardUrl"
-					:lender-name="lenderName"
-					:lender-image-url="lenderImageUrl"
-					:is-mobile="isMobile"
-					:balance="balance"
-					@item-hover="onHover"
-				/>
-			</transition>
-			<!-- logo -->
-			<a
-				v-kv-track-event="['TopNav', 'click-Logo']"
-				href="/"
-				class="
-					tw-px-1 tw-py-2
-					tw-cursor-pointer
-					tw-absolute
-					tw-top-1/2 tw-left-1/2
-					tw--translate-y-1/2 tw--translate-x-1/2
-					tw-transition-all tw-duration-300
-				"
-			>
-				<kv-header-logo />
-			</a>
+			<kv-page-container>
+				<!-- link bar -->
+				<transition
+					name="header-fade"
+				>
+					<kv-header-link-bar
+						v-show="linksVisible"
+						:logged-in="loggedIn"
+						:basket-count="basketCount"
+						:login-url="loginUrl"
+						:open-menu-item="menuComponent"
+						:my-dashboard-url="myDashboardUrl"
+						:lender-name="lenderName"
+						:lender-image-url="lenderImageUrl"
+						:is-mobile="isMobile"
+						:balance="balance"
+						@item-hover="onHover"
+					/>
+				</transition>
+				<!-- logo -->
+				<a
+					v-kv-track-event="['TopNav', 'click-Logo']"
+					href="/"
+					class="
+							tw-px-1 tw-py-2
+							tw-cursor-pointer
+							tw-absolute
+							tw-top-1/2 tw-left-1/2
+							tw--translate-y-1/2 tw--translate-x-1/2
+							tw-transition-all tw-duration-300
+						"
+				>
+					<kv-header-logo />
+				</a>
+			</kv-page-container>
 		</nav>
 		<!-- menu drawer -->
 		<transition
@@ -63,20 +63,18 @@
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
-					<div class="header-margins tw-px-2.5">
-						<component
-							:is="menuComponent"
-							ref="menuComponentInstance"
-							:logged-in="loggedIn"
-							:login-url="loginUrl"
-							:user-id="userId"
-							:is-borrower="isBorrower"
-							:is-trustee="isTrustee"
-							:my-dashboard-url="myDashboardUrl"
-							:show-m-g-upsell-link="showMGUpsellLink"
-							@load-lend-menu-data="emitLendMenuEvent"
-						/>
-					</div>
+					<component
+						:is="menuComponent"
+						ref="menuComponentInstance"
+						:logged-in="loggedIn"
+						:login-url="loginUrl"
+						:user-id="userId"
+						:is-borrower="isBorrower"
+						:is-trustee="isTrustee"
+						:my-dashboard-url="myDashboardUrl"
+						:show-m-g-upsell-link="showMGUpsellLink"
+						@load-lend-menu-data="emitLendMenuEvent"
+					/>
 				</div>
 			</div>
 		</transition>
@@ -88,12 +86,14 @@ import { ref, shallowRef } from 'vue';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
+import KvPageContainer from './KvPageContainer.vue';
 
 export default {
 	components: {
 		KvHeaderLinkBar,
 		KvHeaderLogo,
 		KvThemeProvider,
+		KvPageContainer,
 	},
 	props: {
 		loggedIn: {
@@ -212,11 +212,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.header-margins {
-	margin: 0 auto;
-	max-width: 1400px;
-}
-
 .header-fade-enter-active {
 	@apply tw-transition-opacity tw-duration-300;
 }

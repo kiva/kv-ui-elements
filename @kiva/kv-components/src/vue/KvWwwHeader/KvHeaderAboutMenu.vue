@@ -1,5 +1,5 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start tw-font-medium">
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start tw-font-medium tw-px-2.5">
 		<kv-header-menu-link
 			v-kv-track-event="['TopNav', 'click-menu-about-us']"
 			href="/about"
