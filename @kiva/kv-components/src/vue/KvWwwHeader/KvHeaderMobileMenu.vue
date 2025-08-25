@@ -1,5 +1,5 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium tw-px-2.5">
 		<KvAccordionItem
 			open
 			class="tw-w-full tw-border-b-0"
@@ -128,6 +128,6 @@ export default {
 <style lang="postcss" scoped>
 
 .mobile-link {
-	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-no-underline;
+	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-underline;
 }
 </style>

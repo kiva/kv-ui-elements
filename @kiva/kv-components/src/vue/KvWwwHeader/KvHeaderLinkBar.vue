@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-h-full tw-flex tw-items-center"
+		class="tw-h-full tw-flex tw-items-center tw-gap-2.5"
 	>
 		<!-- 3-bar menu (sm) -->
 		<button
@@ -21,6 +21,7 @@
 		<!-- lend -->
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
+			class="tw-border tw-rounded-md tw-px-1.5 tw-py-1"
 			ref-name="lendButton"
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
@@ -316,7 +317,7 @@ export default {
 
 <style lang="postcss" scoped>
 .header-link {
-	@apply tw-px-1 lg:tw-px-2.5 tw-py-2 tw-cursor-pointer tw-no-underline
+	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
 }
 </style>
