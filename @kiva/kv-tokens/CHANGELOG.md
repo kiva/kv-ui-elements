@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.4.0...@kiva/kv-tokens@3.4.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* update with latest scale from design ([ddc0864](https://github.com/kiva/kv-ui-elements/commit/ddc086430028a60d933ede8b91e6c4beb257e197))
+
+
+
+
+
 # [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.3.0...@kiva/kv-tokens@3.4.0) (2025-08-21)
 
 
