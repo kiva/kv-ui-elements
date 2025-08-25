@@ -512,9 +512,12 @@ export default {
 	},
 	shadows: {},
 	radii: {
-		sm: 4,
+		xs: 4,
+		sm: 8,
+		md: 12,
 		default: 16,
-		lg: 40,
+		lg: 20,
+		xl: 24,
 	},
 	opacity: {
 		default: 1,
