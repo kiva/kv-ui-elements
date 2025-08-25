@@ -6,7 +6,7 @@
 			tw-relative
 			tw-overflow-hidden
 			tw-bg-tertiary
-			tw-rounded-sm
+			tw-rounded-xs
 		"
 	>
 	</div>

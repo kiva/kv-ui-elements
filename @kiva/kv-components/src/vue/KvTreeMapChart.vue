@@ -13,7 +13,7 @@
 			/>
 			<p
 				v-if="!loading"
-				class="tw-rounded-sm tw-box-border tw-overflow-hidden tw-text-small"
+				class="tw-rounded-xs tw-box-border tw-overflow-hidden tw-text-small"
 				:class="colorClasses(index)"
 				style="width: calc(100% - 0.25rem); height: calc(100% - 0.25rem);"
 				@mouseenter="setHoverBlock(block)"

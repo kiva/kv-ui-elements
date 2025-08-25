@@ -30,7 +30,7 @@
 					tw-w-3 tw-h-3
 					tw-mr-2
 					tw-flex-shrink-0
-					tw-rounded-sm
+					tw-rounded-xs
 					tw-border
 					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
