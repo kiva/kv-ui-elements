@@ -180,7 +180,7 @@ export default {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
 					menuComponent.value = null;
-				}, 200);
+				}, 50);
 			}
 		};
 

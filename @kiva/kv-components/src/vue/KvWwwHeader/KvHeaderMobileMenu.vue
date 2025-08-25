@@ -1,6 +1,9 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium">
-		<KvAccordionItem class="tw-w-full tw-border-b-0">
+		<KvAccordionItem
+			open
+			class="tw-w-full tw-border-b-0"
+		>
 			<template #header>
 				<h3>Take action</h3>
 			</template>

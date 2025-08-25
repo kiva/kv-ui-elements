@@ -12,8 +12,9 @@
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
 			}"
-			@mouseover="onHover(menuButton, KvHeaderMobileMenu)"
-			@mouseout="onHover()"
+			@mouseover="handleOnHover(menuButton, KvHeaderMobileMenu)"
+			@mouseout="handleMouseOut('menuButton')"
+			@touchstart="handleTouchStart('menuButton', KvHeaderMobileMenu)"
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
@@ -26,8 +27,9 @@
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex"
-			@on-hover="onHover"
-			@mouseout="onHover()"
+			@on-hover="handleOnHover"
+			@mouseout="handleMouseOut('lendButton')"
+			@touchstart="handleTouchStart('lendButton', KvLendMenu)"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -91,7 +93,8 @@
 		<div
 			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
 			@mouseover="handleAvatarMenuPosition"
-			@mouseout="onHover()"
+			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
+			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
 		>
 			<span
 				v-if="loggedIn"
@@ -143,6 +146,7 @@ const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTake
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
 const AVATAR_MENU_WIDTH = 118;
+const AVATAR_MENU_ID = 'avatar-menu';
 
 export default {
 	components: {
@@ -203,38 +207,54 @@ export default {
 		const basketLink = ref(null);
 		const signInLink = ref(null);
 		const menuButton = ref(null);
+		const openMenuId = ref(null);
 
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
 
-		const handleAvatarMenuPosition = () => {
-			const linkRect = avatar.value?.userAvatar?.getBoundingClientRect();
+		const handleOnHover = (item, menu, targetPosition = null) => {
+			if (!props.isMobile) onHover(item, menu, targetPosition);
+		};
 
-			let menuPosition = null;
-			let rightOverflow = false;
-
-			if (linkRect) {
-				const left = linkRect?.left + linkRect?.width / 2;
-
-				// Calculate the left edge of the menu
-				const menuLeft = left - AVATAR_MENU_WIDTH / 2;
-
-				// Prevent overflow on the right
-				if (menuLeft + AVATAR_MENU_WIDTH > window.outerWidth) {
-					rightOverflow = true;
-				}
-
-				const position = rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` };
-
-				menuPosition = {
-					...position,
-					borderRadius: '0px 0px 8px 8px',
-					width: `${props.isMobile ? '100%' : 'auto'}`,
-				};
+		const handleMouseOut = (item) => {
+			if (openMenuId.value === item) {
+				openMenuId.value = null;
+				onHover();
 			}
+		};
 
-			onHover(avatar.value, KvHeaderMyKivaMenu, menuPosition);
+		const getAvatarMenuPosition = () => {
+			const linkRect = avatar.value?.userAvatar?.getBoundingClientRect();
+			if (!linkRect) return null;
+
+			const left = linkRect.left + linkRect.width / 2;
+			const menuLeft = left - AVATAR_MENU_WIDTH / 2;
+			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.outerWidth;
+			return {
+				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
+				borderRadius: '0px 0px 8px 8px',
+				width: props.isMobile ? '100%' : 'auto',
+			};
+		};
+
+		const handleAvatarMenuPosition = () => {
+			openMenuId.value = AVATAR_MENU_ID;
+			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
+		};
+
+		const handleTouchStart = (item, menu) => {
+			if (!openMenuId.value || openMenuId.value !== item) {
+				openMenuId.value = item;
+				if (item === AVATAR_MENU_ID) {
+					handleAvatarMenuPosition();
+				} else {
+					onHover(item, menu);
+				}
+			} else {
+				openMenuId.value = null;
+				onHover();
+			}
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
@@ -262,6 +282,8 @@ export default {
 		});
 
 		return {
+			AVATAR_MENU_ID,
+			openMenuId,
 			numeral,
 			mdiAccountCircle,
 			mdiChevronDown,
@@ -278,6 +300,9 @@ export default {
 			signInLink,
 			menuButton,
 			lendUrl,
+			handleOnHover,
+			handleTouchStart,
+			handleMouseOut,
 			handleAvatarMenuPosition,
 			KvHeaderMobileMenu,
 			KvHeaderMyKivaMenu,
