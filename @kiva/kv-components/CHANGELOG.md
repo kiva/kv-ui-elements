@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.49.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.0...@kiva/kv-components@6.49.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* mp-1832 fixing layout ([6bcc9ee](https://github.com/kiva/kv-ui-elements/commit/6bcc9eefb1cba9bf443433dfdf5f662556cbfd69))
+* mp-1832 fixing layout ([3f86ef0](https://github.com/kiva/kv-ui-elements/commit/3f86ef061b7868fb5d60d457c2adcc35c72833c9))
+* mp-1832 fixing layout ([4c7a077](https://github.com/kiva/kv-ui-elements/commit/4c7a077cec5d79052d992591b4dabb20fb1683d8))
+* mp-1832 fixing layout ([edb2861](https://github.com/kiva/kv-ui-elements/commit/edb28618dabeaaf63108d1dbc73aa8427f95e663))
+* mp-1832 fixing layout ([0c4676f](https://github.com/kiva/kv-ui-elements/commit/0c4676f570a6b93132971ce75be986b32773a4b6))
+* mp-1832 fixing layout ([66ce364](https://github.com/kiva/kv-ui-elements/commit/66ce364459ddd80de46f99c918070a9b345e555a))
+* mp-1832 fixing layout ([dd890d3](https://github.com/kiva/kv-ui-elements/commit/dd890d39cdca31e010929483e72d87319c942f75))
+* mp-1832 fixing nuxt compatibility ([ac13e47](https://github.com/kiva/kv-ui-elements/commit/ac13e4795927e8e3183e1d62157fbb8ec52fab9b))
+
+
+
+
+
 # [6.49.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.48.1...@kiva/kv-components@6.49.0) (2025-08-25)
 
 
