@@ -1,11 +1,11 @@
 <template>
 	<kv-theme-provider
 		tag="div"
-		class="tw-bg-primary tw-relative"
+		class="tw-bg-primary"
 	>
 		<nav
-			class="tw-font-medium"
-			style="height: 3.75rem;"
+			class="tw-font-medium tw-relative"
+			:style="{ height: HEADER_HEIGHT }"
 		>
 			<kv-page-container>
 				<!-- link bar -->
@@ -55,11 +55,11 @@
 					tw-bg-eco-green-4
 					bg-opacity-50 tw-min-h-screen
 				"
-				style="top: 3.75rem;"
+				:style="{ top: HEADER_HEIGHT }"
 			>
 				<div
-					class="tw-bg-primary"
-					:style="menuPosition"
+					class="tw-bg-primary tw-overflow-y-auto"
+					:style="{ ...menuPosition, maxHeight: `calc(100vh - ${HEADER_HEIGHT})` }"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
@@ -87,6 +87,8 @@ import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvPageContainer from './KvPageContainer.vue';
+
+const HEADER_HEIGHT = '3.75rem';
 
 export default {
 	components: {
@@ -194,6 +196,7 @@ export default {
 		};
 
 		return {
+			HEADER_HEIGHT,
 			emitLendMenuEvent,
 
 			linksVisible,
