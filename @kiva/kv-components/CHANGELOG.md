@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.49.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.3...@kiva/kv-components@6.49.4) (2025-08-26)
+
+
+### Bug Fixes
+
+* menu scroll, avatar menu opening on resize and menu shadow height ([cf1e6cf](https://github.com/kiva/kv-ui-elements/commit/cf1e6cff215411371e47e3d9fd47eccde222cf2a))
+
+
+
+
+
 ## [6.49.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.2...@kiva/kv-components@6.49.3) (2025-08-26)
 
 
