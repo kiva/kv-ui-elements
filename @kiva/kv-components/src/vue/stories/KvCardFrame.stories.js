@@ -18,7 +18,7 @@ export default {
 	argTypes: {
 		bgColorClass: { control: 'select', options: ['tw-bg-primary', 'tw-bg-secondary', 'tw-bg-tertiary', 'tw-bg-action', 'tw-bg-caution', 'tw-bg-danger'] },
 		borderClass: { control: 'select', options: ['tw-border-none', 'tw-border', 'tw-border tw-border-secondary', 'tw-border tw-border-tertiary', 'tw-border tw-border-action', 'tw-border-2 tw-border-caution', 'tw-border-2 tw-border-danger', 'tw-border tw-border-2'] },
-		radiusClass: { control: 'select', options: ['tw-rounded-sm', 'tw-rounded', 'tw-rounded-lg', 'tw-rounded-full'] },
+		radiusClass: { control: 'select', options: ['tw-rounded-xs', 'tw-rounded-sm', 'tw-rounded-md', 'tw-rounded', 'tw-rounded-lg', 'tw-rounded-xl', 'tw-rounded-full'] },
 		shadowClass: { control: 'select', options: ['tw-shadow', 'tw-shadow-lg', 'tw-shadow-none'] },
 		theme: { control: 'select', options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark'] },
 		headline: { control: 'text' },
