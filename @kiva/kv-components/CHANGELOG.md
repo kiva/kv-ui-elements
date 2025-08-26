@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.49.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.2...@kiva/kv-components@6.49.3) (2025-08-26)
+
+
+### Bug Fixes
+
+* migrate prior sm radii usages to be xs to restore the 4px radius ([b611499](https://github.com/kiva/kv-ui-elements/commit/b611499f37cd5ab4263400a7c87a9ec31afa6b62))
+
+
+
+
+
 ## [6.49.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.1...@kiva/kv-components@6.49.2) (2025-08-25)
 
 
