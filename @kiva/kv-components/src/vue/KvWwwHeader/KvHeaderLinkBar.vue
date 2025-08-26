@@ -38,7 +38,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-TakeAction']"
 			ref-name="takeActionButton"
-			base-class="tw-hidden lg:tw-inline-flex"
+			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -52,7 +52,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
-			base-class="tw-hidden lg:tw-inline-flex"
+			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -92,7 +92,7 @@
 			/>
 		</a>
 		<div
-			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1"
+			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-py-1.5"
 			@mouseover="handleAvatarMenuPosition"
 			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
@@ -234,7 +234,7 @@ export default {
 			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.outerWidth;
 			return {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
-				borderRadius: '0px 0px 8px 8px',
+				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
 				width: props.isMobile ? '100%' : 'auto',
 			};
 		};
@@ -259,7 +259,7 @@ export default {
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
-			if (props.openMenuItem) {
+			if (openMenuId.value === AVATAR_MENU_ID) {
 				handleAvatarMenuPosition();
 			}
 		}, 50);
