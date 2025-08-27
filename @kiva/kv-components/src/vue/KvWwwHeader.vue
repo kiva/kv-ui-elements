@@ -59,7 +59,7 @@
 			>
 				<div
 					class="tw-bg-primary tw-overflow-y-auto"
-					:style="{ ...menuPosition, maxHeight: `calc(100vh - ${HEADER_HEIGHT})` }"
+					:style="{ ...menuPosition, maxHeight: `calc(100dvh - ${HEADER_HEIGHT})` }"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
