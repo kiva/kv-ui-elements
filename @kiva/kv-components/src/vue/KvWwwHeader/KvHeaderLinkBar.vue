@@ -51,7 +51,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
-			test-id="header-about"
+			data-testid="header-about"
 			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
@@ -79,13 +79,13 @@
 		</a>
 		<!-- basket (items) -->
 		<a
-			v-if="basketCount > 0"
+			v-show="basketCount > 0"
 			ref="basketLink"
 			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
-			test-id="header-basket"
+			data-testid="header-basket"
 		>
 			<kv-icon-bag
 				class="tw-w-3 tw-h-3 tw-pointer-events-none"
