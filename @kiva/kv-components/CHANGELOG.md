@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.50.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.3...@kiva/kv-components@6.50.4) (2025-08-27)
+
+
+### Bug Fixes
+
+* test id syntax and using show for basket for kvAtbModal query ([4073a82](https://github.com/kiva/kv-ui-elements/commit/4073a8223219679b7eae9881cdb08dde7b3b6f1b))
+
+
+
+
+
 ## [6.50.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.2...@kiva/kv-components@6.50.3) (2025-08-27)
 
 
