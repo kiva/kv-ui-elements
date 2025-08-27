@@ -6,13 +6,13 @@
 		<kv-popper
 			:controller="controller"
 			:popper-modifiers="popperModifiers"
-			popper-placement="top"
+			:popper-placement="placement"
 			transition-type="kvfastfade"
 			class="tooltip-pane tw-absolute tw-bg-primary tw-rounded tw-z-popover"
 		>
 			<div
 				class="tw-p-2.5"
-				style="max-width: 250px;"
+				:style="{ maxWidth }"
 			>
 				<div
 					v-if="$slots.title"
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { ref, toRefs, computed } from 'vue';
+import { toRefs, computed } from 'vue';
 import {
 	darkTheme,
 	defaultTheme,
@@ -65,6 +65,18 @@ export default {
 			},
 			required: true,
 		},
+		maxWidth: {
+			type: String,
+			default: '250px',
+		},
+		modifiers: {
+			type: Object,
+			default: () => ({}),
+		},
+		placement: {
+			type: String,
+			default: 'top',
+		},
 		theme: {
 			type: String,
 			default: 'default',
@@ -85,14 +97,17 @@ export default {
 	},
 	setup(props) {
 		const {
+			modifiers,
 			theme,
 		} = toRefs(props);
 
-		const popperModifiers = ref({
+		const popperModifiers = computed(() => ({
+			...modifiers.value,
 			preventOverflow: {
+				...modifiers.value.preventOverflow,
 				padding: 10,
 			},
-		});
+		}));
 
 		const themeStyle = computed(() => {
 			const themeMapper = {
