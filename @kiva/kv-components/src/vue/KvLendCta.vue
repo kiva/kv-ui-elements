@@ -53,257 +53,227 @@
 			class="tw-w-full tw-flex"
 			@submit.prevent="addToBasket"
 		>
-			<!-- ===== MOBILE-ONLY  ===== -->
-			<div class="md:tw-hidden tw-w-full">
-				<fieldset
-					class="tw-w-full tw-min-w-0"
-					:disabled="isAdding"
-					data-testid="bp-lend-cta-select-and-button-mobile"
+			<fieldset
+				class="tw-w-full tw-flex"
+				:class="{
+					'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts,
+					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton && !isAdding
+				}"
+				:disabled="isAdding"
+				data-testid="bp-lend-cta-select-and-button"
+			>
+				<!-- MOBILE-ONLY: Content for multiple preset buttons -->
+				<div
+					v-if="showPresetAmounts && !isAdding && !isLendAmountButton && presetButtonsPrices.length > 1"
+					class="md:tw-hidden tw-w-full"
 				>
-					<!-- Show preset buttons and dropdown only when not adding -->
-					<template v-if="!isAdding">
-						<!-- Row 1: Preset buttons -->
-						<div class="tw-flex tw-gap-1 lg:tw-gap-2">
-							<template v-if="!isLendAmountButton">
-								<kv-ui-button
-									v-for="option in presetButtonsPrices"
-									:key="'m-'+option"
-									variant="secondary"
-									class="preset-option tw-basis-0 tw-flex-1 tw-min-w-0"
-									:class="{ 'selected-option': selectedOption == option }"
-									data-testid="bp-lend-cta-lend-button-mobile"
-									@click="clickPresetButton(option)"
-								>
-									${{ option }}
-								</kv-ui-button>
-							</template>
-							<!-- Only show the dropdown inline if viewport > 325px -->
-							<kv-ui-select
-								v-if="showFilteredDropdown && viewportWidth > 325"
-								:id="`LoanAmountDropdownMobile_${loanId}`"
-								v-model="selectedDropdownOption"
-								class="filtered-dropdown tw-rounded tw-w-auto tw-flex-none mobile-other-dd tw-min-w-max"
-								:class="{
-									'unselected-dropdown': !selectedDropdown,
-									'selected-dropdown': selectedDropdown,
-								}"
-								aria-label="Lend amount"
-								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
-							>
-								<option
-									v-for="priceOption in presetDropdownPrices"
-									:key="'m-'+priceOption"
-									:value="priceOption"
-								>
-									{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
-								</option>
-							</kv-ui-select>
-						</div>
-						<!-- Row 2: For ≤325px, show dropdown + CTA inline here -->
-						<div
-							v-if="viewportWidth <= 325"
-							class="tw-flex tw-gap-1 tw-mt-1"
-						>
-							<kv-ui-select
-								v-if="showFilteredDropdown"
-								:id="`LoanAmountDropdownMobile_${loanId}`"
-								v-model="selectedDropdownOption"
-								class="filtered-dropdown tw-rounded tw-w-auto tw-flex-none mobile-other-dd"
-								:class="{
-									'unselected-dropdown': !selectedDropdown,
-									'selected-dropdown': selectedDropdown,
-								}"
-								aria-label="Lend amount"
-								style="min-width: 90px; max-width: 110px;"
-								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
-							>
-								<option
-									v-for="priceOption in presetDropdownPrices"
-									:key="'m-'+priceOption"
-									:value="priceOption"
-								>
-									{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
-								</option>
-							</kv-ui-select>
-							<kv-ui-button
-								v-if="lendButtonVisibility && !isLessThan25 && !hideLendButton"
-								key="lendButtonMobile"
-								class="button-ellipsis tw-flex-1"
-								data-testid="bp-lend-cta-lend-button-mobile"
-								type="submit"
-							>
-								{{ ctaButtonText }}
-							</kv-ui-button>
-						</div>
-						<!-- Row 2: CTA button (full width) for >325px -->
-						<div
-							v-else
-							class="tw-mt-1 mobile-cta-row"
-						>
-							<kv-ui-button
-								v-if="lendButtonVisibility && !isLessThan25 && !hideLendButton"
-								key="lendButtonMobile"
-								class="button-ellipsis tw-w-full"
-								data-testid="bp-lend-cta-lend-button-mobile"
-								type="submit"
-							>
-								{{ ctaButtonText }}
-							</kv-ui-button>
-						</div>
-					</template>
-
-					<!-- Adding to basket state (mobile) -->
-					<kv-ui-button
-						v-if="!isLoading && isAdding"
-						class="tw-inline-flex tw-flex-1 tw-w-full"
-					>
-						Adding to basket
-					</kv-ui-button>
-
-					<!-- Stranded loans (mobile) -->
-					<kv-lend-amount-button
-						v-if="isLendAmountButton && !enableFiveDollarsNotes"
-						class="tw-w-full"
-						:loan-id="loanId"
-						:show-now="false"
-						:amount-left="amountForLendAmountButton"
-						:is-adding="isAdding"
-						@add-to-basket="addToBasket"
-					/>
-				</fieldset>
-			</div>
-			<!-- ===== END MOBILE-ONLY ===== -->
-
-			<!-- ===== DESKTOP/TABLET (original) ===== -->
-			<div class="tw-hidden md:tw-block tw-w-full">
-				<fieldset
-					class="tw-w-full tw-flex"
-					:class="{
-						'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts,
-						'tw-gap-1.5': showPresetAmounts && !isLendAmountButton
-					}"
-					:disabled="isAdding"
-					data-testid="bp-lend-cta-select-and-button"
-				>
-					<div
-						v-if="showPresetAmounts && !isAdding"
-						class="tw-flex tw-gap-1 lg:tw-gap-2 tw-flex-wrap md:tw-flex-nowrap"
-					>
-						<template v-if="!isLendAmountButton">
+					<div class="tw-flex tw-flex-col tw-gap-1 tw-w-full">
+						<!-- Row 1: Preset buttons and dropdown for >= 410px -->
+						<div class="tw-flex tw-gap-1 tw-w-full">
+							<!-- Preset amount buttons -->
 							<kv-ui-button
 								v-for="option in presetButtonsPrices"
 								:key="option"
 								variant="secondary"
-								class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
+								class="preset-option tw-flex-1 tw-min-w-0"
 								:class="{'selected-option': selectedOption == option }"
-								data-testid="bp-lend-cta-lend-button"
+								data-testid="bp-lend-cta-lend-button-mobile"
 								@click="clickPresetButton(option)"
 							>
-								${{ option }}
+								$ {{ option }}
 							</kv-ui-button>
-						</template>
-						<kv-ui-select
-							v-if="showFilteredDropdown"
-							:id="`LoanAmountDropdown_${loanId}`"
-							v-model="selectedDropdownOption"
-							class="tw-min-w-12 tw-rounded filtered-dropdown tw-w-full"
-							:class="{
-								'unselected-dropdown': !selectedDropdown,
-								'selected-dropdown': selectedDropdown,
-							}"
-							aria-label="Lend amount"
-							@update:modelValue="trackLendAmountSelection"
-							@click.native.stop="clickDropdown"
-						>
-							<option
-								v-for="priceOption in presetDropdownPrices"
-								:key="priceOption"
-								:value="priceOption"
-							>
-								{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
-							</option>
-						</kv-ui-select>
-					</div>
 
-					<div
-						v-else-if="!showPresetAmounts"
-						class="amountDropdownWrapper"
-					>
-						<kv-ui-select
-							v-if="hideShowLendDropdown && !isLessThan25"
-							:id="`LoanAmountDropdown_${loanId}`"
-							v-model="selectedOption"
-							class="tw-min-w-12"
-							style="border-radius: 14px 0 0 14px;"
-							aria-label="Lend amount"
-							@update:modelValue="trackLendAmountSelection"
-							@click.native.stop="clickDropdown"
-						>
-							<option
-								v-for="priceOption in prices"
-								:key="priceOption"
-								:value="priceOption"
+							<!-- Dropdown for screens >= 430px to avoid unecessary truncation (first row only) -->
+							<kv-ui-select
+								v-if="showFilteredDropdown && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT"
+								:id="`LoanAmountDropdownMobile_${loanId}`"
+								v-model="selectedDropdownOption"
+								class="filtered-dropdown mobile-dropdown tw-flex-1 tw-rounded"
+								:class="{
+									'unselected-dropdown': !selectedDropdown,
+									'selected-dropdown': selectedDropdown,
+								}"
+								aria-label="Lend amount"
+								@update:modelValue="trackLendAmountSelection"
+								@click.native.stop="clickDropdown"
 							>
-								${{ priceOption }}
-							</option>
-						</kv-ui-select>
-					</div>
+								<option
+									v-for="priceOption in presetDropdownPrices"
+									:key="priceOption"
+									:value="priceOption"
+								>
+									{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
+								</option>
+							</kv-ui-select>
+						</div>
 
-					<!-- Lend button -->
-					<div
-						:class="{
-							'tw-min-w-0': showPresetAmounts,
-							'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
-							'tw-hidden': hideLendButton,
-						}"
-					>
+						<!-- Row 2: For <430px, show dropdown + CTA side by side; for >=430px, only CTA full width -->
+						<div class="tw-flex tw-gap-1">
+							<!-- Dropdown for screens < 430px (second row only) -->
+							<kv-ui-select
+								v-if="showFilteredDropdown && viewportWidth < MOBILE_DROPDOWN_BREAKPOINT"
+								:id="`LoanAmountDropdownMobile_Small_${loanId}`"
+								v-model="selectedDropdownOption"
+								class="filtered-dropdown mobile-dropdown-small tw-rounded tw-w-2/5"
+								:class="{
+									'unselected-dropdown': !selectedDropdown,
+									'selected-dropdown': selectedDropdown,
+								}"
+								aria-label="Lend amount"
+								@update:modelValue="trackLendAmountSelection"
+								@click.native.stop="clickDropdown"
+							>
+								<option
+									v-for="priceOption in presetDropdownPrices"
+									:key="'small-'+priceOption"
+									:value="priceOption"
+								>
+									{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
+								</option>
+							</kv-ui-select>
+
+							<!-- CTA button always present in second row -->
+							<kv-ui-button
+								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								:class="viewportWidth < MOBILE_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
+								data-testid="bp-lend-cta-mobile-lend-button"
+								type="submit"
+							>
+								<span class="tw-flex tw-items-center tw-h-full tw-w-full">
+									<span
+										class="tw-min-w-0 tw-flex-1 tw-overflow-hidden
+												tw-text-ellipsis tw-whitespace-nowrap"
+									>
+										{{ ctaButtonText }}
+									</span>
+								</span>
+							</kv-ui-button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Desktop-only preset buttons (hidden on mobile when showing special content) -->
+				<div
+					v-if="showPresetAmounts && !isAdding"
+					:class="{
+						'tw-flex tw-gap-0.5 md:tw-gap-1 lg:tw-gap-1 tw-flex-wrap md:tw-flex-nowrap': true,
+						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1
+					}"
+				>
+					<template v-if="!isLendAmountButton">
 						<kv-ui-button
-							v-if="lendButtonVisibility && !isLessThan25"
-							key="lendButton"
-							class="tw-inline-flex tw-flex-1"
-							:class="{ 'button-ellipsis tw-w-full': showPresetAmounts }"
+							v-for="option in presetButtonsPrices"
+							:key="option"
+							variant="secondary"
+							class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
+							:class="{'selected-option': selectedOption == option }"
 							data-testid="bp-lend-cta-lend-button"
-							type="submit"
+							@click="clickPresetButton(option)"
 						>
-							{{ ctaButtonText }}
+							${{ option }}
 						</kv-ui-button>
-
-						<!-- Lend again/lent previously button -->
-						<kv-ui-button
-							v-else-if="showLendAgain"
-							key="lendAgainButton"
-							class="lend-again"
-							:class="{'tw-w-full': showPresetAmounts }"
-							data-testid="bp-lend-cta-lend-again-button"
-							type="submit"
-						>
-							{{ primaryButtonText || 'Lend' }} again
-						</kv-ui-button>
-					</div>
-
-					<!-- Stranded loans -->
-					<kv-lend-amount-button
-						v-if="isLendAmountButton && !enableFiveDollarsNotes"
-						class="tw-w-full"
-						:loan-id="loanId"
-						:show-now="false"
-						:amount-left="amountForLendAmountButton"
-						:is-adding="isAdding"
-						@add-to-basket="addToBasket"
-					/>
-
-					<!-- Adding to basket -->
-					<kv-ui-button
-						v-if="!isLoading && isAdding"
-						class="tw-inline-flex tw-flex-1"
+					</template>
+					<kv-ui-select
+						v-if="showFilteredDropdown"
+						:id="`LoanAmountDropdown_${loanId}`"
+						v-model="selectedDropdownOption"
+						class="tw-min-w-12 tw-rounded filtered-dropdown tw-w-full"
+						:class="{
+							'unselected-dropdown': !selectedDropdown,
+							'selected-dropdown': selectedDropdown,
+						}"
+						aria-label="Lend amount"
+						@update:modelValue="trackLendAmountSelection"
+						@click.native.stop="clickDropdown"
 					>
-						Adding to basket
+						<option
+							v-for="priceOption in presetDropdownPrices"
+							:key="priceOption"
+							:value="priceOption"
+						>
+							{{ priceOption !== OTHER_OPTION ? `$${priceOption}` : priceOption }}
+						</option>
+					</kv-ui-select>
+				</div>
+
+				<div
+					v-else-if="!showPresetAmounts"
+					class="amountDropdownWrapper"
+				>
+					<kv-ui-select
+						v-if="hideShowLendDropdown && !isLessThan25"
+						:id="`LoanAmountDropdown_${loanId}`"
+						v-model="selectedOption"
+						class="tw-min-w-12"
+						style="border-radius: 14px 0 0 14px;"
+						aria-label="Lend amount"
+						@update:modelValue="trackLendAmountSelection"
+						@click.native.stop="clickDropdown"
+					>
+						<option
+							v-for="priceOption in prices"
+							:key="priceOption"
+							:value="priceOption"
+						>
+							${{ priceOption }}
+						</option>
+					</kv-ui-select>
+				</div>
+
+				<!-- Lend button - only shown for desktop when mobile special content is active -->
+				<div
+					:class="{
+						'tw-min-w-0': showPresetAmounts,
+						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
+						'tw-hidden': hideLendButton ||
+							(!isLendAmountButton && presetButtonsPrices.length > 1 && showPresetAmounts),
+						'md:tw-block tw-hidden': !isLendAmountButton &&
+							presetButtonsPrices.length > 1 && showPresetAmounts
+					}"
+				>
+					<kv-ui-button
+						v-if="lendButtonVisibility && !isLessThan25"
+						key="lendButton"
+						class="tw-inline-flex tw-flex-1"
+						:class="{ 'button-ellipsis tw-w-full': showPresetAmounts }"
+						data-testid="bp-lend-cta-lend-button"
+						type="submit"
+					>
+						{{ ctaButtonText }}
 					</kv-ui-button>
-				</fieldset>
-			</div>
-			<!-- ===== END DESKTOP/TABLET ===== -->
+
+					<!-- Lend again/lent previously button -->
+					<kv-ui-button
+						v-else-if="showLendAgain"
+						key="lendAgainButton"
+						class="lend-again"
+						:class="{'tw-w-full': showPresetAmounts }"
+						data-testid="bp-lend-cta-lend-again-button"
+						type="submit"
+					>
+						{{ primaryButtonText || 'Lend' }} again
+					</kv-ui-button>
+				</div>
+
+				<!-- Stranded loans -->
+				<kv-lend-amount-button
+					v-if="isLendAmountButton && !enableFiveDollarsNotes"
+					class="tw-w-full"
+					:loan-id="loanId"
+					:show-now="false"
+					:amount-left="amountForLendAmountButton"
+					:is-adding="isAdding"
+					@add-to-basket="addToBasket"
+				/>
+
+				<!-- Adding to basket button -->
+				<kv-ui-button
+					v-if="!isLoading && isAdding"
+					class="tw-inline-flex tw-flex-1"
+				>
+					Adding to basket
+				</kv-ui-button>
+			</fieldset>
 		</form>
 	</div>
 </template>
@@ -319,6 +289,7 @@ import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 const OTHER_OPTION = 'Other';
+const MOBILE_DROPDOWN_BREAKPOINT = 430;
 
 // Use this fragment to get the necessary public data for this component
 export const KV_LEND_CTA_FRAGMENT = gql`
@@ -460,6 +431,7 @@ export default {
 			// SSR-safe viewport width initialization
 			viewportWidth: typeof window !== 'undefined' ? window.innerWidth : 1024,
 			resizeHandler: undefined,
+			MOBILE_DROPDOWN_BREAKPOINT,
 		};
 	},
 	computed: {
@@ -765,7 +737,7 @@ export default {
 }
 
 .filtered-dropdown :deep(select) {
-    @apply tw-rounded tw-border-2 tw-font-medium tw-cursor-pointer tw-whitespace-nowrap;
+    @apply tw-rounded tw-border-2 tw-font-medium tw-cursor-pointer;
 }
 
 .unselected-dropdown :deep(select) {
@@ -780,26 +752,14 @@ export default {
     @apply tw-border-action tw-bg-secondary;
 }
 
-/* CTA label truncates; allows sharing row if needed elsewhere */
 .button-ellipsis :deep(span > span) {
     @apply tw-min-w-0 tw-text-ellipsis tw-overflow-hidden tw-whitespace-nowrap;
 }
 
-@media (max-width: 325px) {
-    [data-testid="bp-lend-cta-select-and-button-mobile"] > div.tw-flex {
-        @apply tw-flex-wrap;
-    }
-
-    .mobile-other-dd {
-        flex: 0 0 100px !important;
-        min-width: 100px !important;
-        max-width: 100px !important;
-        width: 100px !important;
-    }
-
-    .button-ellipsis {
-        flex: 1 1 0%;
-        min-width: 0;
+/* Only keep the 410px breakpoint for the mobile dropdown split */
+@media (max-width: 410px) {
+    .mobile-dropdown-small {
+        flex: 0 0 40%;
     }
 }
 </style>
