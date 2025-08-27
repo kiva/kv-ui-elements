@@ -57,7 +57,7 @@
 				class="tw-w-full tw-flex"
 				:class="{
 					'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts,
-					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton
+					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton && !isAdding
 				}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
