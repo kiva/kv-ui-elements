@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.50.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.1...@kiva/kv-components@6.50.2) (2025-08-27)
+
+
+### Bug Fixes
+
+* menu getting closed when hover on header edge and adding test ids to header elements ([76f14d8](https://github.com/kiva/kv-ui-elements/commit/76f14d841cf0e52a85e47f7f2659c12941f87c8f))
+
+
+
+
+
 ## [6.50.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.0...@kiva/kv-components@6.50.1) (2025-08-27)
 
 
