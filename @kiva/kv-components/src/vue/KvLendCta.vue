@@ -156,7 +156,7 @@
 				<div
 					v-if="showPresetAmounts && !isAdding"
 					:class="{
-						'tw-flex tw-gap-1 lg:tw-gap-2 tw-flex-wrap md:tw-flex-nowrap': true,
+						'tw-flex tw-gap-0.5 md:tw-gap-1 lg:tw-gap-1 tw-flex-wrap md:tw-flex-nowrap': true,
 						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1
 					}"
 				>
