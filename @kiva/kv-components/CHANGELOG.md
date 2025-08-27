@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.50.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.2...@kiva/kv-components@6.50.3) (2025-08-27)
+
+
+### Bug Fixes
+
+* lend cta issue with mobile viewport ([62afc39](https://github.com/kiva/kv-ui-elements/commit/62afc392e2f5dd68cb449443d21f18afc7ef9645))
+* lend cta issue with mobile viewport ([2a3fad4](https://github.com/kiva/kv-ui-elements/commit/2a3fad42f525b24c5ee8aecc0bd972b8236e31b6))
+* lend cta issue with mobile viewport ([b6440a9](https://github.com/kiva/kv-ui-elements/commit/b6440a9044825322e152322ffcadc5719e485ce4))
+* lend cta issue with mobile viewport ([a87af40](https://github.com/kiva/kv-ui-elements/commit/a87af40d33f118a790721ba9b3cb3eb95d99ca99))
+* lend cta issue with mobile viewport ([01b7ba6](https://github.com/kiva/kv-ui-elements/commit/01b7ba6f1f9c0711c38c6e7c0108243d34a0b952))
+
+
+
+
+
 ## [6.50.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.1...@kiva/kv-components@6.50.2) (2025-08-27)
 
 
