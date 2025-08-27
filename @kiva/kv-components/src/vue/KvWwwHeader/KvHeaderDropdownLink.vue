@@ -2,9 +2,9 @@
 	<a
 		:ref="refName"
 		class="
-			tw-no-underline hover:tw-no-underline
+			tw-py-1 tw-no-underline hover:tw-no-underline
 			tw-text-primary hover:tw-text-action
-			tw-items-center tw-rounded tw-cursor-pointer
+			tw-items-center tw-cursor-pointer
 		"
 		:href="href"
 		:class="computedClass"
