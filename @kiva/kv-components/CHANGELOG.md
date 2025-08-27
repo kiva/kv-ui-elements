@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.50.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.0...@kiva/kv-components@6.50.1) (2025-08-27)
+
+
+### Bug Fixes
+
+* lend menu botom hidden in mobile devices ([7806f0d](https://github.com/kiva/kv-ui-elements/commit/7806f0d89264bc18d35bc43501fa3e7d66cb85cd))
+
+
+
+
+
 # [6.50.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.4...@kiva/kv-components@6.50.0) (2025-08-27)
 
 
