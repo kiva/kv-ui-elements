@@ -431,7 +431,7 @@ export default {
 			// SSR-safe viewport width initialization
 			viewportWidth: typeof window !== 'undefined' ? window.innerWidth : 1024,
 			resizeHandler: undefined,
-			MOBILE_DROPDOWN_BREAKPOINT, // <-- Add this line
+			MOBILE_DROPDOWN_BREAKPOINT,
 		};
 	},
 	computed: {
