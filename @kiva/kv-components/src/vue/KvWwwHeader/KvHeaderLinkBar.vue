@@ -21,13 +21,12 @@
 		<!-- lend -->
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
-			class="tw-border tw-rounded-md tw-px-1.5 tw-py-1"
 			ref-name="lendButton"
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex"
+			base-class="tw-inline-flex tw-border tw-rounded-md tw-px-1.5 tw-py-1"
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('lendButton')"
 			@touchstart="handleTouchStart('lendButton', KvLendMenu)"
@@ -43,8 +42,8 @@
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
-			@on-hover="onHover"
-			@mouseout="onHover()"
+			@on-hover="handleOnHover"
+			@mouseout="handleMouseOut('takeActionButton')"
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -52,13 +51,14 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
+			test-id="header-about"
 			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
-			@on-hover="onHover"
-			@mouseout="onHover()"
+			@on-hover="handleOnHover"
+			@mouseout="handleMouseOut('aboutUsLink')"
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -85,6 +85,7 @@
 			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
+			test-id="header-basket"
 		>
 			<kv-icon-bag
 				class="tw-w-3 tw-h-3 tw-pointer-events-none"
@@ -234,6 +235,7 @@ export default {
 			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.outerWidth;
 			return {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
+				marginTop: '-2px', // Avoid closing avatar menu on header edge
 				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
 				width: props.isMobile ? '100%' : 'auto',
 			};
