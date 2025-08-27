@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.50.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.4...@kiva/kv-components@6.50.0) (2025-08-27)
+
+
+### Features
+
+* **KvTooltip:** configurable max-width and popper options ([bb8efd1](https://github.com/kiva/kv-ui-elements/commit/bb8efd1ab814a023bf1e78ddda1212cdf3ac3692))
+
+
+
+
+
 ## [6.49.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.49.3...@kiva/kv-components@6.49.4) (2025-08-26)
 
 
