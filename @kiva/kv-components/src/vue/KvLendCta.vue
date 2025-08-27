@@ -83,7 +83,7 @@
 								$ {{ option }}
 							</kv-ui-button>
 
-							<!-- Dropdown for screens >= 410px (first row only) -->
+							<!-- Dropdown for screens >= 430px to avoid unecessary truncation (first row only) -->
 							<kv-ui-select
 								v-if="showFilteredDropdown && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT"
 								:id="`LoanAmountDropdownMobile_${loanId}`"
@@ -107,9 +107,9 @@
 							</kv-ui-select>
 						</div>
 
-						<!-- Row 2: For <410px, show dropdown + CTA side by side; for >=410px, only CTA full width -->
+						<!-- Row 2: For <430px, show dropdown + CTA side by side; for >=430px, only CTA full width -->
 						<div class="tw-flex tw-gap-1">
-							<!-- Dropdown for screens < 410px (second row only) -->
+							<!-- Dropdown for screens < 430px (second row only) -->
 							<kv-ui-select
 								v-if="showFilteredDropdown && viewportWidth < MOBILE_DROPDOWN_BREAKPOINT"
 								:id="`LoanAmountDropdownMobile_Small_${loanId}`"
