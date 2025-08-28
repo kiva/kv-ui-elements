@@ -4,11 +4,14 @@
 		class="kv-tailwind"
 	>
 		<kv-popper
+			ref="popperRef"
 			:controller="controller"
 			:popper-modifiers="popperModifiers"
 			:popper-placement="placement"
 			transition-type="kvfastfade"
 			class="tooltip-pane tw-absolute tw-bg-primary tw-rounded tw-z-popover"
+			@hide="handleKvPopperVisibility(false)"
+			@show="handleKvPopperVisibility(true)"
 		>
 			<div
 				class="tw-p-2.5"
@@ -33,7 +36,12 @@
 </template>
 
 <script>
-import { toRefs, computed } from 'vue';
+import {
+	ref,
+	toRefs,
+	computed,
+	watch,
+} from 'vue';
 import {
 	darkTheme,
 	defaultTheme,
@@ -53,7 +61,6 @@ export default {
 		KvPopper,
 		KvThemeProvider,
 	},
-	// TODO: Add prop for tooltip placement, Currently defaults to 'top' but will flip to bottom when constrained
 	props: {
 		controller: {
 			validator(value) {
@@ -77,6 +84,10 @@ export default {
 			type: String,
 			default: 'top',
 		},
+		showTooltip: {
+			type: Boolean,
+			default: false,
+		},
 		theme: {
 			type: String,
 			default: 'default',
@@ -95,9 +106,11 @@ export default {
 			},
 		},
 	},
-	setup(props) {
+	defineEmits: ['tool-tip-visible'],
+	setup(props, { emit }) {
 		const {
 			modifiers,
+			showTooltip,
 			theme,
 		} = toRefs(props);
 
@@ -108,6 +121,27 @@ export default {
 				padding: 10,
 			},
 		}));
+
+		const popperRef = ref(null);
+
+		const getControllerElement = () => {
+			if (typeof props.controller === 'string') {
+				return document.getElementById(props.controller);
+			}
+			return props.controller;
+		};
+
+		const handleKvPopperVisibility = (isShowing) => {
+			emit('tool-tip-visible', isShowing);
+		};
+
+		const triggerHover = (enter = true) => {
+			const element = getControllerElement();
+			if (element) {
+				const eventType = enter ? 'mouseover' : 'mouseout';
+				element.dispatchEvent(new MouseEvent(eventType, { bubbles: true }));
+			}
+		};
 
 		const themeStyle = computed(() => {
 			const themeMapper = {
@@ -123,6 +157,14 @@ export default {
 			return themeMapper[theme.value];
 		});
 
+		watch(showTooltip, (show) => {
+			if (show) {
+				triggerHover(true);
+			} else {
+				triggerHover(false);
+			}
+		});
+
 		return {
 			defaultTheme,
 			greenLightTheme,
@@ -132,8 +174,11 @@ export default {
 			stoneDarkTheme,
 			mintTheme,
 			darkTheme,
+			handleKvPopperVisibility,
 			popperModifiers,
+			popperRef,
 			themeStyle,
+			triggerHover,
 		};
 	},
 };
