@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.50.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.4...@kiva/kv-components@6.50.5) (2025-08-28)
+
+
+### Bug Fixes
+
+* make KvTooltip controllable via programatic events, add stories for placement and modifiers ([243b896](https://github.com/kiva/kv-ui-elements/commit/243b8968835aa0c87d593133bd67e1073525e538))
+
+
+
+
+
 ## [6.50.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.3...@kiva/kv-components@6.50.4) (2025-08-27)
 
 
