@@ -2,6 +2,7 @@ import activities, { facetsKey as activitiesKey } from './activities';
 import amountLeft, { facetsKey as amountLeftKey } from './amountLeft';
 import categories, { facetsKey as categoriesKey } from './categories';
 import city, { facetsKey as cityKey } from './city';
+import countriesNotLentTo, { facetsKey as countriesNotLentToKey } from './countriesNotLentTo';
 import dafEligible, { facetsKey as dafEligibleKey } from './dafEligible';
 import daysUntilExpiration, { facetsKey as daysUntilExpirationKey } from './daysUntilExpiration';
 import distributionModels, { facetsKey as distributionModelsKey } from './distributionModels';
@@ -31,6 +32,7 @@ const filters = {
 	[activitiesKey]: activities,
 	[amountLeftKey]: amountLeft,
 	[categoriesKey]: categories,
+	[countriesNotLentToKey]: countriesNotLentTo,
 	[cityKey]: city,
 	[dafEligibleKey]: dafEligible,
 	[daysUntilExpirationKey]: daysUntilExpiration,
