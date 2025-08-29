@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "6.50.5",
+  "version": "6.51.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -97,6 +97,7 @@
     "@apollo/client": "3.x",
     "@kiva/kv-tokens": "3.x",
     "@mdi/js": "7.x",
+    "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/integrations": "9.x",
     "change-case": "^5.4.4",
     "date-fns": "2.x",
@@ -104,9 +105,7 @@
     "graphql-tag": "2.x",
     "nanoid": "3.x",
     "numeral": "2.x",
-    "vue": "3.x",
-    "@vuepic/vue-datepicker": "^11.0.2"
-
+    "vue": "3.x"
   },
   "bundleDependencies": [
     "aria-hidden",

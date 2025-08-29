@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.51.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.5...@kiva/kv-components@6.51.0) (2025-08-29)
+
+
+### Bug Fixes
+
+* add theme support to datepicker ([07c983a](https://github.com/kiva/kv-ui-elements/commit/07c983acc7f33ecebce177476cdf04463af093f1))
+* datepicker story not compiling properly ([00c094f](https://github.com/kiva/kv-ui-elements/commit/00c094f65eebc1c822dbfe28c08a97b967f17b7f))
+* datepicker theme works on the input element ([91edf79](https://github.com/kiva/kv-ui-elements/commit/91edf7904c34fd70b37fffb771fccdefcf9aa7c6))
+* use theme color variables con datepicker ([b83c51e](https://github.com/kiva/kv-ui-elements/commit/b83c51e7b68c201c3b40e5af4bc5c2b645747bdd))
+
+
+### Features
+
+* add kvDatePicker using vue-datepicker, stories ([b9bed63](https://github.com/kiva/kv-ui-elements/commit/b9bed6320a5f4500f6f413a3e794c135781d9736))
+
+
+
+
+
 ## [6.50.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.4...@kiva/kv-components@6.50.5) (2025-08-28)
 
 
