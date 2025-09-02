@@ -40,6 +40,7 @@
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			href="/ui-logout"
+			class="tw-border-t tw-border-secondary tw-w-full"
 		>
 			Sign out
 		</kv-header-menu-link>

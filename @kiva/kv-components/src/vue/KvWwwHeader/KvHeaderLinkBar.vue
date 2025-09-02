@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-h-full tw-flex tw-items-center tw-gap-2.5"
+		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 lg:tw-gap-2.5"
 	>
 		<!-- 3-bar menu (sm) -->
 		<button
@@ -12,7 +12,7 @@
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
 			}"
-			@mouseover="handleOnHover(menuButton, KvHeaderMobileMenu)"
+			@mouseover="handleOnHover('menuButton', KvHeaderMobileMenu)"
 			@mouseout="handleMouseOut('menuButton')"
 			@touchstart="handleTouchStart('menuButton', KvHeaderMobileMenu)"
 		>
@@ -26,7 +26,7 @@
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex tw-border tw-rounded-md tw-px-1.5 tw-py-1"
+			base-class="tw-inline-flex lg:tw-border lg:tw-rounded-md tw-px-1.5 tw-py-1"
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('lendButton')"
 			@touchstart="handleTouchStart('lendButton', KvLendMenu)"
@@ -147,7 +147,7 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
-const AVATAR_MENU_WIDTH = 118;
+const AVATAR_MENU_WIDTH = 146;
 const AVATAR_MENU_ID = 'avatar-menu';
 
 export default {
@@ -216,7 +216,11 @@ export default {
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			if (!props.isMobile) onHover(item, menu, targetPosition);
+			let customPosition = null;
+			if (item === 'menuButton' && props.isMobile) {
+				customPosition = { top: '-3.75rem', width: '100%' };
+			}
+			onHover(item, menu, targetPosition || customPosition);
 		};
 
 		const handleMouseOut = (item) => {
@@ -247,10 +251,17 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu) => {
+			// Handles the scenario when mobile menu is closed from main component
+			if (openMenuId.value === 'menuButton') {
+				openMenuId.value = null;
+			}
+
 			if (!openMenuId.value || openMenuId.value !== item) {
 				openMenuId.value = item;
 				if (item === AVATAR_MENU_ID) {
 					handleAvatarMenuPosition();
+				} else if (item === 'menuButton' && props.isMobile) {
+					onHover(item, menu, { top: '-3.75rem', width: '100%' });
 				} else {
 					onHover(item, menu);
 				}

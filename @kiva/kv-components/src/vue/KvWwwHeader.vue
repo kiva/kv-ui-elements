@@ -4,7 +4,7 @@
 		class="tw-bg-primary"
 	>
 		<nav
-			class="tw-font-medium tw-relative"
+			class="tw-font-medium tw-relative header-container"
 			:style="{ height: HEADER_HEIGHT }"
 		>
 			<kv-page-container>
@@ -73,7 +73,9 @@
 						:is-trustee="isTrustee"
 						:my-dashboard-url="myDashboardUrl"
 						:show-m-g-upsell-link="showMGUpsellLink"
+						:is-mobile="isMobile"
 						@load-lend-menu-data="emitLendMenuEvent"
+						@closing-menu="onHover()"
 					/>
 				</div>
 			</div>
@@ -82,11 +84,14 @@
 </template>
 
 <script>
-import { ref, shallowRef } from 'vue';
+import {
+	ref, shallowRef, onBeforeMount, onBeforeUnmount,
+} from 'vue';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvPageContainer from './KvPageContainer.vue';
+import { throttle } from '../utils/throttle';
 
 const HEADER_HEIGHT = '3.75rem';
 
@@ -137,10 +142,6 @@ export default {
 		lenderImageUrl: {
 			type: String,
 			default: '',
-		},
-		isMobile: {
-			type: Boolean,
-			default: false,
 		},
 		showMGUpsellLink: {
 			type: Boolean,
@@ -195,10 +196,28 @@ export default {
 			emit('load-lend-menu-data');
 		};
 
+		const isMobile = ref(false);
+
+		const checkIsMobile = () => {
+			isMobile.value = window?.innerWidth < 769;
+		};
+
+		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
+
+		onBeforeMount(() => {
+			checkIsMobile();
+			window.addEventListener('resize', checkIsMobileThrottled);
+		});
+
+		onBeforeUnmount(() => {
+			window.removeEventListener('resize', checkIsMobileThrottled);
+		});
+
 		return {
 			HEADER_HEIGHT,
 			emitLendMenuEvent,
 
+			isMobile,
 			linksVisible,
 			menuOpen,
 
@@ -232,5 +251,17 @@ export default {
 
 .bg-opacity-50 {
 	background-color: rgba(var(--bg-action-highlight), 0.5);
+}
+
+.header-container {
+	max-width: 67rem;
+	@apply tw-mx-auto;
+}
+
+.header-container > div {
+	@media screen and (width >= 67rem) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 </style>
