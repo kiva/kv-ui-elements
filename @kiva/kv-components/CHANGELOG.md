@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.1...@kiva/kv-components@6.52.2) (2025-09-03)
+
+
+### Bug Fixes
+
+* lend menu closing when mouse leave, maxTouchPoints to handle mobile and desktop events ([ccea5d2](https://github.com/kiva/kv-ui-elements/commit/ccea5d2b2621461c710d862557a3c3999dbf6954))
+
+
+
+
+
 ## [6.52.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.0...@kiva/kv-components@6.52.1) (2025-09-03)
 
 
