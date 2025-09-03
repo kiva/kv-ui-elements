@@ -7,6 +7,7 @@
 			@click="$emit('closing-menu')"
 		/>
 		<KvAccordionItem
+			id="accordion-take-action-menu"
 			open
 			class="tw-w-full tw-border-b-0"
 		>
@@ -31,7 +32,10 @@
 				</div>
 			</div>
 		</KvAccordionItem>
-		<KvAccordionItem class="tw-w-full">
+		<KvAccordionItem
+			id="accordion-about-menu"
+			class="tw-w-full"
+		>
 			<template #header>
 				<h3>About</h3>
 			</template>

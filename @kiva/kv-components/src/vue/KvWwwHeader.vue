@@ -185,7 +185,7 @@ export default {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
 					menuComponent.value = null;
-				}, 50);
+				}, 100);
 			}
 		};
 

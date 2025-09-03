@@ -21,6 +21,7 @@
 		<!-- lend -->
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-Lend']"
+			class="tw-py-1"
 			ref-name="lendButton"
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
@@ -37,7 +38,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-TakeAction']"
 			ref-name="takeActionButton"
-			base-class="tw-hidden md:tw-inline-flex tw-py-2"
+			base-class="tw-hidden md:tw-inline-flex tw-py-1"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -52,7 +53,7 @@
 			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
 			data-testid="header-about"
-			base-class="tw-hidden md:tw-inline-flex tw-py-2"
+			base-class="tw-hidden md:tw-inline-flex tw-py-1"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -219,7 +220,8 @@ export default {
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			if (!props.isMobile) {
+			// Detect input method (mouse vs touch) instead of relying only on screen size
+			if (!navigator.maxTouchPoints) {
 				openMenuId.value = item;
 
 				onHover(
@@ -286,14 +288,14 @@ export default {
 			}
 			tappingTimeout = setTimeout(() => {
 				userIsTapping.value = false;
-			});
+			}, 100);
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
 			if (openMenuId.value === AVATAR_MENU_ID) {
 				handleAvatarMenuPosition();
 			}
-		}, 50);
+		}, 100);
 
 		const lendUrl = computed(() => {
 			return !props.isMobile ? '/lend-by-category' : undefined;
