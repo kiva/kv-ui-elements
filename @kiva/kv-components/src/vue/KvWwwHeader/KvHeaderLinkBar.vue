@@ -220,6 +220,8 @@ export default {
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
 			if (!props.isMobile) {
+				openMenuId.value = item;
+
 				onHover(
 					item,
 					menu,
