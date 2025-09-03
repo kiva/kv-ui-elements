@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.0...@kiva/kv-components@6.52.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* menus stuck when mouse leaves in desktop ([e88364d](https://github.com/kiva/kv-ui-elements/commit/e88364ddc69762d5913be8b7a70454e8d43a957e))
+
+
+
+
+
 # [6.52.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.51.0...@kiva/kv-components@6.52.0) (2025-09-03)
 
 
