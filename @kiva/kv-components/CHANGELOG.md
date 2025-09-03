@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.2...@kiva/kv-components@6.52.3) (2025-09-03)
+
+
+### Bug Fixes
+
+* resolve padding issue in medium desktop viewports ([58c4d90](https://github.com/kiva/kv-ui-elements/commit/58c4d905389da4171e52060ab125c06fef46acfc))
+* update take action copy ([0f565b3](https://github.com/kiva/kv-ui-elements/commit/0f565b3b8aace59a1f7807ae5214da780003ed1c))
+
+
+
+
+
 ## [6.52.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.1...@kiva/kv-components@6.52.2) (2025-09-03)
 
 
