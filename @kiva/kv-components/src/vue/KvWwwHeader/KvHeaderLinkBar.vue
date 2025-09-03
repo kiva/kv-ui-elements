@@ -149,6 +149,8 @@ const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu
 
 const AVATAR_MENU_WIDTH = 146;
 const AVATAR_MENU_ID = 'avatar-menu';
+const MOBILE_MENU_ITEM = 'menuButton';
+const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
 
 export default {
 	components: {
@@ -216,11 +218,7 @@ export default {
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			let customPosition = null;
-			if (item === 'menuButton' && props.isMobile) {
-				customPosition = { top: '-3.75rem', width: '100%' };
-			}
-			onHover(item, menu, targetPosition || customPosition);
+			onHover(item, menu, item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition);
 		};
 
 		const handleMouseOut = (item) => {
@@ -252,7 +250,7 @@ export default {
 
 		const handleTouchStart = (item, menu) => {
 			// Handles the scenario when mobile menu is closed from main component
-			if (openMenuId.value === 'menuButton') {
+			if (openMenuId.value === MOBILE_MENU_ITEM) {
 				openMenuId.value = null;
 			}
 
@@ -260,8 +258,8 @@ export default {
 				openMenuId.value = item;
 				if (item === AVATAR_MENU_ID) {
 					handleAvatarMenuPosition();
-				} else if (item === 'menuButton' && props.isMobile) {
-					onHover(item, menu, { top: '-3.75rem', width: '100%' });
+				} else if (item === MOBILE_MENU_ITEM && props.isMobile) {
+					onHover(item, menu, MOBILE_MENU_BASE_POS);
 				} else {
 					onHover(item, menu);
 				}
