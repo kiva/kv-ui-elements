@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.3...@kiva/kv-components@6.52.4) (2025-09-03)
+
+
+### Bug Fixes
+
+* avoid sending mouseover event on mobile in DropdownLink component ([4aea5d0](https://github.com/kiva/kv-ui-elements/commit/4aea5d0cfbb6bfc56fdca87cc29d60d59e51062a))
+
+
+
+
+
 ## [6.52.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.2...@kiva/kv-components@6.52.3) (2025-09-03)
 
 
