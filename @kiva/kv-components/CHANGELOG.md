@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.52.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.51.0...@kiva/kv-components@6.52.0) (2025-09-03)
+
+
+### Bug Fixes
+
+* avoid sending double events to open and closing menus with a flag ([f599073](https://github.com/kiva/kv-ui-elements/commit/f599073e2e7be56a51640be5d0bdbff8c702eeba))
+* nav narrow than page container, menus dont open in tablet size and small design fixes ([53a4776](https://github.com/kiva/kv-ui-elements/commit/53a477650232d3a0e278eb609ba4c451073d57cf))
+* solve comments ([30d5495](https://github.com/kiva/kv-ui-elements/commit/30d549510d6db4d77e04caea071bc0320322a3d3))
+
+
+### Features
+
+* change lg to md breakpoint ([2f65522](https://github.com/kiva/kv-ui-elements/commit/2f655227207c29d124a870cf33188a22e8e523fb))
+
+
+
+
+
 # [6.51.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.50.5...@kiva/kv-components@6.51.0) (2025-08-29)
 
 
