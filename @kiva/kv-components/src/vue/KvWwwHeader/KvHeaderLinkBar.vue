@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 lg:tw-gap-2.5"
+		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 md:tw-gap-1.5 lg:tw-gap-2.5"
 	>
 		<!-- 3-bar menu (sm) -->
 		<button
@@ -8,7 +8,7 @@
 			v-kv-track-event="openMenuItem === KvHeaderMobileMenu
 				? ['TopNav', 'click-Hamburger-menu']
 				: null"
-			class="header-link tw-inline-flex lg:tw-hidden"
+			class="header-link tw-inline-flex md:tw-hidden"
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
 			}"
@@ -26,7 +26,7 @@
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex lg:tw-border lg:tw-rounded-md tw-px-1.5 tw-py-1"
+			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-1"
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('lendButton')"
 			@touchstart="handleTouchStart('lendButton', KvLendMenu)"
@@ -37,7 +37,7 @@
 		<KvHeaderDropdownLink
 			v-kv-track-event="['TopNav', 'click-TakeAction']"
 			ref-name="takeActionButton"
-			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
+			base-class="tw-hidden md:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderTakeActionMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -52,7 +52,7 @@
 			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
 			data-testid="header-about"
-			base-class="tw-hidden lg:tw-inline-flex tw-py-2"
+			base-class="tw-hidden md:tw-inline-flex tw-py-2"
 			:menu-component="KvHeaderAboutMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -72,7 +72,7 @@
 			ref="dashboardLink"
 			v-kv-track-event="['TopNav', 'click-Dashboard']"
 			:href="myDashboardUrl"
-			class="header-link tw-hidden lg:tw-block"
+			class="header-link tw-hidden md:tw-block"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 		>
 			My dashboard
@@ -234,7 +234,8 @@ export default {
 
 			const left = linkRect.left + linkRect.width / 2;
 			const menuLeft = left - AVATAR_MENU_WIDTH / 2;
-			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.outerWidth;
+			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.innerWidth;
+
 			return {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
 				marginTop: '-2px', // Avoid closing avatar menu on header edge

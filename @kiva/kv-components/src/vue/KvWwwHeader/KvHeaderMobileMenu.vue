@@ -1,5 +1,5 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium tw-p-2.5">
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end md:tw-hidden tw-font-medium tw-p-2.5">
 		<KvMaterialIcon
 			v-if="isMobile"
 			:icon="mdiClose"

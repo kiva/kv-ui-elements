@@ -87,6 +87,7 @@
 import {
 	ref, shallowRef, onBeforeMount, onBeforeUnmount,
 } from 'vue';
+import tokens from '@kiva/kv-tokens';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
@@ -158,6 +159,7 @@ export default {
 		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
 		const menuPosition = ref({ left: 0, position: 'relative' });
+		const isMobile = ref(false);
 
 		let menuCloseTimeout;
 
@@ -196,10 +198,8 @@ export default {
 			emit('load-lend-menu-data');
 		};
 
-		const isMobile = ref(false);
-
 		const checkIsMobile = () => {
-			isMobile.value = window?.innerWidth < 769;
+			isMobile.value = window?.innerWidth < tokens.breakpoints.md;
 		};
 
 		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
