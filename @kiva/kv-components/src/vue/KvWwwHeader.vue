@@ -4,7 +4,7 @@
 		class="tw-bg-primary"
 	>
 		<nav
-			class="tw-font-medium tw-relative header-container"
+			class="tw-font-medium tw-relative"
 			:style="{ height: HEADER_HEIGHT }"
 		>
 			<kv-page-container>
@@ -251,17 +251,5 @@ export default {
 
 .bg-opacity-50 {
 	background-color: rgba(var(--bg-action-highlight), 0.5);
-}
-
-.header-container {
-	max-width: 67rem;
-	@apply tw-mx-auto;
-}
-
-.header-container > div {
-	@media screen and (width >= 67rem) {
-		padding-left: 0;
-		padding-right: 0;
-	}
 }
 </style>
