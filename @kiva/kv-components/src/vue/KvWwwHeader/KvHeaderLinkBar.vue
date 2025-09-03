@@ -212,17 +212,24 @@ export default {
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
+		const userIsTapping = ref(false);
 
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			onHover(item, menu, item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition);
+			if (!props.isMobile) {
+				onHover(
+					item,
+					menu,
+					item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition,
+				);
+			}
 		};
 
 		const handleMouseOut = (item) => {
-			if (openMenuId.value === item) {
+			if (!userIsTapping.value && openMenuId.value === item) {
 				openMenuId.value = null;
 				onHover();
 			}
@@ -250,6 +257,13 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu) => {
+			let tappingTimeout = null;
+			userIsTapping.value = true;
+
+			if (tappingTimeout) {
+				clearTimeout(tappingTimeout);
+			}
+
 			// Handles the scenario when mobile menu is closed from main component
 			if (openMenuId.value === MOBILE_MENU_ITEM) {
 				openMenuId.value = null;
@@ -268,6 +282,9 @@ export default {
 				openMenuId.value = null;
 				onHover();
 			}
+			tappingTimeout = setTimeout(() => {
+				userIsTapping.value = false;
+			});
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
