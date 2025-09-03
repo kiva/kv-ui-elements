@@ -134,7 +134,7 @@ export default {
 				},
 				{
 					title: 'Buy a Kiva Card',
-					description: 'Share the joy of lending with others',
+					description: 'Give the gift of lending to others',
 					url: '/portfolio/kiva-card',
 					trackEvent: 'buy-a-kiva-card',
 				},

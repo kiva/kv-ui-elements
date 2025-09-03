@@ -29,7 +29,7 @@
 			<div>
 				<p>Partner with us</p>
 				<p class="tw-text-small tw-text-secondary">
-					Drive global impact aligned to your business goals
+					Drive global impact aligned with your organization’s goals
 				</p>
 			</div>
 		</kv-header-menu-link>
@@ -40,7 +40,7 @@
 			<div>
 				<p>Buy a Kiva Card</p>
 				<p class="tw-text-small tw-text-secondary">
-					Share the joy of lending with others
+					Give the gift of lending to others
 				</p>
 			</div>
 		</kv-header-menu-link>
