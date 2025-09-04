@@ -84,7 +84,7 @@
 			ref="basketLink"
 			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
-			class="header-link tw-relative"
+			class="header-link tw-relative md:!tw-mr-0"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 			style="margin-right: 2px;"
 			data-testid="header-basket"
