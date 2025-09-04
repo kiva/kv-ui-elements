@@ -19,6 +19,7 @@ export { default as KvCommentsListItem } from './KvCommentsListItem.vue';
 export { default as KvCommentsReplyButton } from './KvCommentsReplyButton.vue';
 export { default as KvContentfulImg } from './KvContentfulImg.vue';
 export { default as KvCountdownTimer } from './KvCountdownTimer.vue';
+export { default as KvDatePicker } from './KvDatePicker.vue';
 export { default as KvExpandable } from './KvExpandable.vue';
 export { default as KvExpandableQuestion } from './KvExpandableQuestion.vue';
 export { default as KvFlag } from './KvFlag.vue';
