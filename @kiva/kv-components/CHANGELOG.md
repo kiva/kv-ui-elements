@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.6...@kiva/kv-components@6.52.7) (2025-09-04)
+
+
+### Bug Fixes
+
+* is if the issue with isMobile is when it's checked ([c0b6cb8](https://github.com/kiva/kv-ui-elements/commit/c0b6cb8e3dd7b43ba967f3b39d17e5a0501b0809))
+* remove some extra padding from desktop ([a5a3d9a](https://github.com/kiva/kv-ui-elements/commit/a5a3d9a729452fe6103503d8ee35d38fd8dd484b))
+
+
+
+
+
 ## [6.52.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.5...@kiva/kv-components@6.52.6) (2025-09-04)
 
 
