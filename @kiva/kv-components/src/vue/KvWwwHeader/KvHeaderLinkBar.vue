@@ -215,6 +215,7 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 		const userIsTapping = ref(false);
+		const tappingTimeout = ref();
 
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
@@ -261,11 +262,11 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu) => {
-			let tappingTimeout = null;
+			tappingTimeout.value = null;
 			userIsTapping.value = true;
 
-			if (tappingTimeout) {
-				clearTimeout(tappingTimeout);
+			if (tappingTimeout.value) {
+				clearTimeout(tappingTimeout.value);
 			}
 
 			// Handles the scenario when mobile menu is closed from main component
@@ -286,9 +287,9 @@ export default {
 				openMenuId.value = null;
 				onHover();
 			}
-			tappingTimeout = setTimeout(() => {
+			tappingTimeout.value = setTimeout(() => {
 				userIsTapping.value = false;
-			}, 100);
+			}, 500);
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
