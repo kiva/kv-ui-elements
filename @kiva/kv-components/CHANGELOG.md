@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.4...@kiva/kv-components@6.52.5) (2025-09-04)
+
+
+### Bug Fixes
+
+* add KvDatePicker to index.js ([2db6d2b](https://github.com/kiva/kv-ui-elements/commit/2db6d2bb37c8c38f5a305afd45d819b4089c3e68))
+
+
+
+
+
 ## [6.52.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.3...@kiva/kv-components@6.52.4) (2025-09-03)
 
 
