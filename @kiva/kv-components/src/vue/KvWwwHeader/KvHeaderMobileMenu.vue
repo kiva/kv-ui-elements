@@ -12,9 +12,11 @@
 			class="tw-w-full tw-border-b-0"
 		>
 			<template #header>
-				<h3>Take action</h3>
+				<h3 class="tw-pb-0.5">
+					Take action
+				</h3>
 			</template>
-			<div class="tw-flex tw-flex-col tw-gap-2">
+			<div class="tw-flex tw-flex-col tw-gap-2 tw-pl-1">
 				<div
 					v-for="item in menuItems"
 					:key="item.title"
@@ -34,12 +36,14 @@
 		</KvAccordionItem>
 		<KvAccordionItem
 			id="accordion-about-menu"
-			class="tw-w-full"
+			class="tw-w-full tw-pb-1"
 		>
 			<template #header>
-				<h3>About</h3>
+				<h3 class="tw-pb-0.5">
+					About
+				</h3>
 			</template>
-			<div class="tw-flex tw-flex-col tw-gap-2 tw-pt-1 tw-pb-2">
+			<div class="tw-flex tw-flex-col tw-gap-2 tw-pb-2 tw-pl-1">
 				<a
 					v-kv-track-event="['TopNav', 'click-menu-about-us']"
 					href="/about"

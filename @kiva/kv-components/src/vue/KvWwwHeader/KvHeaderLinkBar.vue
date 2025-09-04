@@ -86,6 +86,7 @@
 			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
+			style="margin-right: 2px;"
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
@@ -214,6 +215,7 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 		const userIsTapping = ref(false);
+		const tappingTimeout = ref();
 
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
@@ -251,7 +253,6 @@ export default {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
 				marginTop: '-2px', // Avoid closing avatar menu on header edge
 				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
-				width: props.isMobile ? '100%' : 'auto',
 			};
 		};
 
@@ -261,11 +262,11 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu) => {
-			let tappingTimeout = null;
+			tappingTimeout.value = null;
 			userIsTapping.value = true;
 
-			if (tappingTimeout) {
-				clearTimeout(tappingTimeout);
+			if (tappingTimeout.value) {
+				clearTimeout(tappingTimeout.value);
 			}
 
 			// Handles the scenario when mobile menu is closed from main component
@@ -286,9 +287,9 @@ export default {
 				openMenuId.value = null;
 				onHover();
 			}
-			tappingTimeout = setTimeout(() => {
+			tappingTimeout.value = setTimeout(() => {
 				userIsTapping.value = false;
-			}, 100);
+			}, 500);
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
