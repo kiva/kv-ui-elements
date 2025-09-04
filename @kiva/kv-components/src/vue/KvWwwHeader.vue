@@ -85,7 +85,7 @@
 
 <script>
 import {
-	ref, shallowRef, onBeforeMount, onBeforeUnmount,
+	ref, shallowRef, onMounted, onBeforeUnmount,
 } from 'vue';
 import tokens from '@kiva/kv-tokens';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
@@ -204,7 +204,7 @@ export default {
 
 		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
 
-		onBeforeMount(() => {
+		onMounted(() => {
 			checkIsMobile();
 			window.addEventListener('resize', checkIsMobileThrottled);
 		});
