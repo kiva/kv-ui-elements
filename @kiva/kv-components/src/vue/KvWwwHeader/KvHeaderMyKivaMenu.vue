@@ -1,18 +1,5 @@
 <template>
-	<nav
-		class="
-			tw--mt-0.5
-			tw-pb-0.5
-			tw-flex
-			tw-flex-col
-			tw-items-end
-			md:tw-items-start
-			tw-text-right
-			md:tw-text-left
-			tw-font-medium
-			tw-px-2.5
-		"
-	>
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start tw-font-medium tw-px-2.5">
 		<kv-header-menu-link
 			:href="myDashboardUrl"
 			class="md:tw-hidden"

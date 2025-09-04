@@ -252,7 +252,6 @@ export default {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
 				marginTop: '-2px', // Avoid closing avatar menu on header edge
 				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
-				width: props.isMobile ? '100%' : 'auto',
 			};
 		};
 
