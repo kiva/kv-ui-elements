@@ -7,15 +7,19 @@
 			tw-items-center tw-cursor-pointer
 		"
 		:href="href"
-		:class="computedClass"
 		@mouseover="handleMouseOver"
 	>
-		<slot></slot>
-		<KvMaterialIcon
-			class="tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
-			:class="{'tw-rotate-180' : openMenuItem === menuComponent}"
-			:icon="dropdownIcon"
-		/>
+		<div
+			class="tw-flex tw-items-center"
+			:class="computedClass"
+		>
+			<slot></slot>
+			<KvMaterialIcon
+				class="tw-inline tw-w-3 tw-ml-0.5 tw-transition-transform tw-duration-300"
+				:class="{'tw-rotate-180' : openMenuItem === menuComponent}"
+				:icon="dropdownIcon"
+			/>
+		</div>
 	</a>
 </template>
 
@@ -69,21 +73,23 @@ export default {
 		});
 
 		const handleMouseOver = () => {
-			let linkPos = null;
-			if (props.sendLinkPosition) {
-				const linkEl = proxy.$refs[props.refName];
-				if (linkEl) {
-					const linkRect = linkEl.getBoundingClientRect();
-					const centerX = linkRect?.left + linkRect?.width / 2;
-					linkPos = {
-						left: `${centerX}px`,
-						transform: 'translateX(-50%)',
-						borderRadius: '0px 0px 8px 8px',
-					};
+			if (!navigator.maxTouchPoints) {
+				let linkPos = null;
+				if (props.sendLinkPosition) {
+					const linkEl = proxy.$refs[props.refName];
+					if (linkEl) {
+						const linkRect = linkEl.getBoundingClientRect();
+						const centerX = linkRect?.left + linkRect?.width / 2;
+						linkPos = {
+							left: `${centerX}px`,
+							transform: 'translateX(-50%)',
+							borderRadius: '0px 0px 8px 8px',
+						};
+					}
 				}
-			}
 
-			emit('on-hover', props.refName, props.menuComponent, linkPos);
+				emit('on-hover', props.refName, props.menuComponent, linkPos);
+			}
 		};
 		return {
 			computedClass,

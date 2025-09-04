@@ -1,6 +1,13 @@
 <template>
-	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end lg:tw-hidden tw-font-medium tw-px-2.5">
+	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end md:tw-hidden tw-font-medium tw-p-2.5">
+		<KvMaterialIcon
+			v-if="isMobile"
+			:icon="mdiClose"
+			class="tw-cursor-pointer"
+			@click="$emit('closing-menu')"
+		/>
 		<KvAccordionItem
+			id="accordion-take-action-menu"
 			open
 			class="tw-w-full tw-border-b-0"
 		>
@@ -25,7 +32,10 @@
 				</div>
 			</div>
 		</KvAccordionItem>
-		<KvAccordionItem class="tw-w-full">
+		<KvAccordionItem
+			id="accordion-about-menu"
+			class="tw-w-full"
+		>
 			<template #header>
 				<h3>About</h3>
 			</template>
@@ -76,11 +86,14 @@
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js';
 import KvAccordionItem from '../KvAccordionItem.vue';
+import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
 	components: {
 		KvAccordionItem,
+		KvMaterialIcon,
 	},
 	props: {
 		loggedIn: {
@@ -91,9 +104,15 @@ export default {
 			type: String,
 			default: '/ui-login',
 		},
+		isMobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
+	emits: ['closing-menu'],
 	data() {
 		return {
+			mdiClose,
 			menuItems: [
 				{
 					title: 'Choose someone to help',
@@ -115,7 +134,7 @@ export default {
 				},
 				{
 					title: 'Buy a Kiva Card',
-					description: 'Share the joy of lending with others',
+					description: 'Give the gift of lending to others',
 					url: '/portfolio/kiva-card',
 					trackEvent: 'buy-a-kiva-card',
 				},

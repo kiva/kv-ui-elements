@@ -73,7 +73,9 @@
 						:is-trustee="isTrustee"
 						:my-dashboard-url="myDashboardUrl"
 						:show-m-g-upsell-link="showMGUpsellLink"
+						:is-mobile="isMobile"
 						@load-lend-menu-data="emitLendMenuEvent"
+						@closing-menu="onHover()"
 					/>
 				</div>
 			</div>
@@ -82,11 +84,15 @@
 </template>
 
 <script>
-import { ref, shallowRef } from 'vue';
+import {
+	ref, shallowRef, onBeforeMount, onBeforeUnmount,
+} from 'vue';
+import tokens from '@kiva/kv-tokens';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvPageContainer from './KvPageContainer.vue';
+import { throttle } from '../utils/throttle';
 
 const HEADER_HEIGHT = '3.75rem';
 
@@ -138,10 +144,6 @@ export default {
 			type: String,
 			default: '',
 		},
-		isMobile: {
-			type: Boolean,
-			default: false,
-		},
 		showMGUpsellLink: {
 			type: Boolean,
 			default: false,
@@ -157,6 +159,7 @@ export default {
 		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
 		const menuPosition = ref({ left: 0, position: 'relative' });
+		const isMobile = ref(false);
 
 		let menuCloseTimeout;
 
@@ -182,7 +185,7 @@ export default {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
 					menuComponent.value = null;
-				}, 50);
+				}, 100);
 			}
 		};
 
@@ -195,10 +198,26 @@ export default {
 			emit('load-lend-menu-data');
 		};
 
+		const checkIsMobile = () => {
+			isMobile.value = window?.innerWidth < tokens.breakpoints.md;
+		};
+
+		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
+
+		onBeforeMount(() => {
+			checkIsMobile();
+			window.addEventListener('resize', checkIsMobileThrottled);
+		});
+
+		onBeforeUnmount(() => {
+			window.removeEventListener('resize', checkIsMobileThrottled);
+		});
+
 		return {
 			HEADER_HEIGHT,
 			emitLendMenuEvent,
 
+			isMobile,
 			linksVisible,
 			menuOpen,
 

@@ -1,5 +1,5 @@
 <template>
-	<kv-page-container>
+	<kv-page-container class="tw-pt-2 lg:tw-pt-0">
 		<kv-lend-list-menu
 			class="lg:tw-hidden"
 			:categories="computedCategories"
