@@ -86,6 +86,7 @@
 			href="/basket"
 			class="header-link tw-relative"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
+			style="margin-right: 2px;"
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
