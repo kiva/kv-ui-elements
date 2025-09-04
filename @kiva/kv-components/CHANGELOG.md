@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.5...@kiva/kv-components@6.52.6) (2025-09-04)
+
+
+### Bug Fixes
+
+* actually prevent avatar menu from being full width in mobile ([5516cb4](https://github.com/kiva/kv-ui-elements/commit/5516cb478cf208532e189fdad1e92635b472e9aa))
+* add more space between basket and balance ([50b4919](https://github.com/kiva/kv-ui-elements/commit/50b4919183859f3eda1f204c1805589ed963ca2b))
+* adjust hamburger menu padding ([e962fbf](https://github.com/kiva/kv-ui-elements/commit/e962fbfb32ececa440328151f82ec4176b9db0d0))
+* adjust tapping timeout to prevent mobile menu auto closing ([6b1bba8](https://github.com/kiva/kv-ui-elements/commit/6b1bba8402d0cf86f26ee6de789c7e4d9c7d79f8))
+* right align portfolio menu items in mobile ([35204d4](https://github.com/kiva/kv-ui-elements/commit/35204d4980158438f896fcdf6d81442afc2aa670))
+
+
+
+
+
 ## [6.52.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.4...@kiva/kv-components@6.52.5) (2025-09-04)
 
 
