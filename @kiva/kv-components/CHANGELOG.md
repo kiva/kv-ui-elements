@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.7...@kiva/kv-components@6.52.8) (2025-09-05)
+
+
+### Bug Fixes
+
+* full height in hamburger menu ([55ee934](https://github.com/kiva/kv-ui-elements/commit/55ee934555cf8464c1b0d8a789145e6cadd265d9))
+
+
+
+
+
 ## [6.52.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.6...@kiva/kv-components@6.52.7) (2025-09-04)
 
 
