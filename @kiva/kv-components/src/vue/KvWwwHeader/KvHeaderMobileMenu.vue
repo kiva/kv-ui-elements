@@ -95,6 +95,7 @@ import KvAccordionItem from '../KvAccordionItem.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
+	name: 'KvHeaderMobileMenu',
 	components: {
 		KvAccordionItem,
 		KvMaterialIcon,
