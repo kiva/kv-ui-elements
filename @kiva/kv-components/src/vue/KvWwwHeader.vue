@@ -59,7 +59,11 @@
 			>
 				<div
 					class="tw-bg-primary tw-overflow-y-auto"
-					:style="{ ...menuPosition, maxHeight: `calc(100dvh - ${HEADER_HEIGHT})` }"
+					:class="{ 'tw-min-h-dvh' : isMobileMenuActive }"
+					:style="{
+						...menuPosition,
+						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${HEADER_HEIGHT})` : 'auto',
+					}"
 					@mouseover="onHover(activeHeaderItem, menuComponent)"
 					@mouseout="onHover()"
 				>
@@ -85,7 +89,7 @@
 
 <script>
 import {
-	ref, shallowRef, onMounted, onBeforeUnmount,
+	ref, shallowRef, onMounted, onBeforeUnmount, computed,
 } from 'vue';
 import tokens from '@kiva/kv-tokens';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
@@ -163,6 +167,10 @@ export default {
 
 		let menuCloseTimeout;
 
+		const isMobileMenuActive = computed(() => {
+			return menuComponentInstance.value?.$options?.name === 'KvHeaderMobileMenu';
+		});
+
 		const onHover = (item, menu, targetPosition) => {
 			// if menu, open menu, and clear timeout
 			// if no menu and menu open, start close menu timeout
@@ -220,6 +228,7 @@ export default {
 			isMobile,
 			linksVisible,
 			menuOpen,
+			isMobileMenuActive,
 
 			onHover,
 			loadMenuData,
