@@ -148,7 +148,7 @@
 								<span class="tw-flex tw-items-center tw-h-full tw-w-full">
 									<span
 										class="tw-min-w-0 tw-flex-1 tw-overflow-hidden
-												tw-text-ellipsis tw-whitespace-nowrap"
+                                                tw-text-ellipsis tw-whitespace-nowrap"
 									>
 										{{ ctaButtonText }}
 									</span>
@@ -239,7 +239,7 @@
 								<span class="tw-flex tw-items-center tw-h-full tw-w-full">
 									<span
 										class="tw-min-w-0 tw-flex-1 tw-overflow-hidden
-												tw-text-ellipsis tw-whitespace-nowrap"
+                                                tw-text-ellipsis tw-whitespace-nowrap"
 									>
 										{{ ctaButtonText }}
 									</span>
@@ -250,7 +250,7 @@
 				</div>
 
 				<!-- Desktop-only preset buttons (hidden on mobile when showing special content
-					AND hidden on narrow desktop) -->
+                    AND hidden on narrow desktop) -->
 				<div
 					v-if="showPresetAmounts && !isAdding && !isNarrowDesktop"
 					:class="{
@@ -323,13 +323,17 @@
 					:class="{
 						'tw-min-w-0': showPresetAmounts && !isNarrowDesktop,
 						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
-						'tw-hidden': hideLendButton ||
-							(!isLendAmountButton && presetButtonsPrices.length > 1 && showPresetAmounts &&
-								!isNarrowDesktop),
+						'tw-hidden':
+							hideLendButton ||
+							(
+								showPresetAmounts &&
+								!isAdding &&
+								!isLendAmountButton &&
+								presetButtonsPrices.length > 1 &&
+								(isNarrowComponent() || isNarrowDesktop)
+							),
 						'md:tw-block tw-hidden': !isLendAmountButton &&
-							presetButtonsPrices.length > 1 && showPresetAmounts && !isNarrowDesktop,
-						'tw-hidden': isNarrowDesktop && showPresetAmounts && presetButtonsPrices.length > 1 &&
-							!isLendAmountButton
+							presetButtonsPrices.length > 1 && showPresetAmounts && !isNarrowDesktop
 					}"
 				>
 					<kv-ui-button
@@ -871,10 +875,6 @@ export default {
 <style lang="postcss" scoped>
 .amountDropdownWrapper :deep(select) {
     border-radius: 14px 0 0 14px;
-}
-
-.lend-again :deep(span) {
-    @apply tw-px-0;
 }
 
 .lend-again :deep(span) {
