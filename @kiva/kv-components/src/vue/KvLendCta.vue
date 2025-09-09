@@ -1,5 +1,8 @@
 <template>
-	<div class="tw-whitespace-nowrap">
+	<div
+		ref="root"
+		class="tw-whitespace-nowrap"
+	>
 		<!-- Basket button -->
 		<kv-ui-button
 			v-if="isInBasket"
@@ -56,15 +59,18 @@
 			<fieldset
 				class="tw-w-full tw-flex"
 				:class="{
-					'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts,
-					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton && !isAdding
+					'tw-flex-col md:tw-flex-row md:tw-justify-between tw-min-w-0': showPresetAmounts &&
+						!isNarrowDesktop,
+					'tw-flex-col tw-min-w-0': showPresetAmounts && isNarrowDesktop,
+					'tw-gap-1.5': showPresetAmounts && !isLendAmountButton && !isAdding && !isNarrowDesktop
 				}"
 				:disabled="isAdding"
 				data-testid="bp-lend-cta-select-and-button"
 			>
 				<!-- MOBILE-ONLY: Content for multiple preset buttons -->
 				<div
-					v-if="showPresetAmounts && !isAdding && !isLendAmountButton && presetButtonsPrices.length > 1"
+					v-if="showPresetAmounts && !isAdding && !isLendAmountButton &&
+						presetButtonsPrices.length > 1 && !isNarrowDesktop"
 					class="md:tw-hidden tw-w-full"
 				>
 					<div class="tw-flex tw-flex-col tw-gap-1 tw-w-full">
@@ -142,7 +148,7 @@
 								<span class="tw-flex tw-items-center tw-h-full tw-w-full">
 									<span
 										class="tw-min-w-0 tw-flex-1 tw-overflow-hidden
-												tw-text-ellipsis tw-whitespace-nowrap"
+                                                tw-text-ellipsis tw-whitespace-nowrap"
 									>
 										{{ ctaButtonText }}
 									</span>
@@ -152,9 +158,101 @@
 					</div>
 				</div>
 
-				<!-- Desktop-only preset buttons (hidden on mobile when showing special content) -->
+				<!-- NARROW DESKTOP: Content similar to mobile but for narrow desktop containers -->
 				<div
-					v-if="showPresetAmounts && !isAdding"
+					v-if="showPresetAmounts && !isAdding && !isLendAmountButton && presetButtonsPrices.length > 1
+						&& isNarrowDesktop"
+					class="tw-w-full"
+				>
+					<div class="tw-flex tw-flex-col tw-gap-1 tw-w-full">
+						<!-- Row 1: Preset buttons and dropdown for >= 380px -->
+						<div class="tw-flex tw-gap-1 tw-w-full">
+							<!-- Preset amount buttons -->
+							<kv-ui-button
+								v-for="option in presetButtonsPrices"
+								:key="option"
+								variant="secondary"
+								class="preset-option tw-flex-1 tw-min-w-0"
+								:class="{'selected-option': selectedOption == option }"
+								data-testid="bp-lend-cta-lend-button-narrow-desktop"
+								@click="clickPresetButton(option)"
+							>
+								$ {{ option }}
+							</kv-ui-button>
+
+							<!-- Dropdown for components >= 380px to avoid unnecessary truncation (first row only) -->
+							<kv-ui-select
+								v-if="showFilteredDropdown && componentWidth >= NARROW_SIDEBAR_DROPDOWN_BREAKPOINT"
+								:id="`LoanAmountDropdownNarrowDesktop_${loanId}`"
+								v-model="selectedDropdownOption"
+								class="filtered-dropdown mobile-dropdown tw-flex-1 tw-rounded"
+								:class="{
+									'unselected-dropdown': !selectedDropdown,
+									'selected-dropdown': selectedDropdown,
+								}"
+								aria-label="Lend amount"
+								@update:modelValue="trackLendAmountSelection"
+								@click.native.stop="clickDropdown"
+							>
+								<option
+									v-for="priceOption in presetDropdownPrices"
+									:key="priceOption"
+									:value="priceOption"
+								>
+									{{ priceOption !== OTHER_OPTION ? `${priceOption}` : priceOption }}
+								</option>
+							</kv-ui-select>
+						</div>
+
+						<!-- Row 2: For <380px, show dropdown + CTA side by side; for >=380px, only CTA full width -->
+						<div class="tw-flex tw-gap-1">
+							<!-- Dropdown for components < 380px (second row only) -->
+							<kv-ui-select
+								v-if="showFilteredDropdown && componentWidth < NARROW_SIDEBAR_DROPDOWN_BREAKPOINT"
+								:id="`LoanAmountDropdownNarrowDesktop_Small_${loanId}`"
+								v-model="selectedDropdownOption"
+								class="filtered-dropdown mobile-dropdown-small tw-rounded tw-w-2/5"
+								:class="{
+									'unselected-dropdown': !selectedDropdown,
+									'selected-dropdown': selectedDropdown,
+								}"
+								aria-label="Lend amount"
+								@update:modelValue="trackLendAmountSelection"
+								@click.native.stop="clickDropdown"
+							>
+								<option
+									v-for="priceOption in presetDropdownPrices"
+									:key="'narrow-small-'+priceOption"
+									:value="priceOption"
+								>
+									{{ priceOption !== OTHER_OPTION ? `${priceOption}` : priceOption }}
+								</option>
+							</kv-ui-select>
+
+							<!-- CTA button always present in second row -->
+							<kv-ui-button
+								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								:class="componentWidth < NARROW_SIDEBAR_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
+								data-testid="bp-lend-cta-narrow-desktop-lend-button"
+								type="submit"
+							>
+								<span class="tw-flex tw-items-center tw-h-full tw-w-full">
+									<span
+										class="tw-min-w-0 tw-flex-1 tw-overflow-hidden
+                                                tw-text-ellipsis tw-whitespace-nowrap"
+									>
+										{{ ctaButtonText }}
+									</span>
+								</span>
+							</kv-ui-button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Desktop-only preset buttons (hidden on mobile when showing special content
+                    AND hidden on narrow desktop) -->
+				<div
+					v-if="showPresetAmounts && !isAdding && !isNarrowDesktop"
 					:class="{
 						'tw-flex tw-gap-0.5 md:tw-gap-1 lg:tw-gap-1 tw-flex-wrap md:tw-flex-nowrap': true,
 						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1
@@ -220,15 +318,22 @@
 					</kv-ui-select>
 				</div>
 
-				<!-- Lend button - only shown for desktop when mobile special content is active -->
+				<!-- Lend button - updated visibility logic to handle narrow desktop -->
 				<div
 					:class="{
-						'tw-min-w-0': showPresetAmounts,
+						'tw-min-w-0': showPresetAmounts && !isNarrowDesktop,
 						'lendButtonWrapper': hideShowLendDropdown && !showPresetAmounts,
-						'tw-hidden': hideLendButton ||
-							(!isLendAmountButton && presetButtonsPrices.length > 1 && showPresetAmounts),
+						'tw-hidden':
+							hideLendButton ||
+							(
+								showPresetAmounts &&
+								!isAdding &&
+								!isLendAmountButton &&
+								presetButtonsPrices.length > 1 &&
+								(isNarrowComponent() || isNarrowDesktop)
+							),
 						'md:tw-block tw-hidden': !isLendAmountButton &&
-							presetButtonsPrices.length > 1 && showPresetAmounts
+							presetButtonsPrices.length > 1 && showPresetAmounts && !isNarrowDesktop
 					}"
 				>
 					<kv-ui-button
@@ -290,6 +395,8 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 
 const OTHER_OPTION = 'Other';
 const MOBILE_DROPDOWN_BREAKPOINT = 430;
+const NARROW_SIDEBAR_BREAKPOINT = 480; // breakpoint for desktop when sidebar is narrow
+const NARROW_SIDEBAR_DROPDOWN_BREAKPOINT = 380; // Breakpoint for smaller narrow sidebar
 
 // Use this fragment to get the necessary public data for this component
 export const KV_LEND_CTA_FRAGMENT = gql`
@@ -412,6 +519,22 @@ export default {
 			type: String,
 			default: 'Lending',
 		},
+		/**
+		 * Breakpoint for narrow desktop layout (default: 480px)
+		 * When component width is below this, it will use stacked layout even on desktop
+		 */
+		narrowSidebarBreakpoint: {
+			type: Number,
+			default: NARROW_SIDEBAR_BREAKPOINT,
+		},
+		/**
+		 * Breakpoint for narrow desktop dropdown layout (default: 380px)
+		 * When component width is below this in narrow desktop mode, dropdown moves to second row
+		 */
+		narrowSidebarDropdownBreakpoint: {
+			type: Number,
+			default: NARROW_SIDEBAR_DROPDOWN_BREAKPOINT,
+		},
 	},
 	data() {
 		return {
@@ -430,8 +553,11 @@ export default {
 			OTHER_OPTION,
 			// SSR-safe viewport width initialization
 			viewportWidth: typeof window !== 'undefined' ? window.innerWidth : 1024,
-			resizeHandler: undefined,
+			componentWidth: 1024,
+			resizeObserver: null,
 			MOBILE_DROPDOWN_BREAKPOINT,
+			NARROW_SIDEBAR_BREAKPOINT,
+			NARROW_SIDEBAR_DROPDOWN_BREAKPOINT,
 		};
 	},
 	computed: {
@@ -614,6 +740,15 @@ export default {
 		hideLendButton() {
 			return this.showPresetAmounts && (this.isAdding || this.presetButtonsPrices.length === 1);
 		},
+		/**
+		 * Determines if component should use narrow desktop layout
+		 * This is true when we're in desktop viewport but component width is narrow
+		 */
+		isNarrowDesktop() {
+			// Only apply narrow desktop logic if we're in desktop viewport (>= 768px)
+			// and component width is below the narrow desktop breakpoint
+			return this.viewportWidth >= 768 && this.componentWidth < this.narrowSidebarBreakpoint;
+		},
 	},
 	watch: {
 		unreservedAmount(newValue, previousValue) {
@@ -636,18 +771,32 @@ export default {
 		},
 	},
 	mounted() {
-		if (typeof window !== 'undefined') {
+		const updateWidth = () => {
 			this.viewportWidth = window.innerWidth;
-			this.resizeHandler = throttle(() => {
-				this.viewportWidth = window.innerWidth;
-			}, 50);
+			this.componentWidth = this.$refs.root?.offsetWidth || 1024;
+		};
 
-			window.addEventListener('resize', this.resizeHandler);
+		if (typeof window !== 'undefined') {
+			// Set initial viewport width
+			this.viewportWidth = window.innerWidth;
+
+			if (window.ResizeObserver) {
+				this.$nextTick(() => {
+					this.resizeObserver = new window.ResizeObserver(throttle(updateWidth, 50));
+					if (this.$refs.root) {
+						this.resizeObserver.observe(this.$refs.root);
+						updateWidth();
+					}
+				});
+			}
 		}
 	},
 	beforeDestroy() {
 		if (this.resizeHandler && typeof window !== 'undefined') {
 			window.removeEventListener('resize', this.resizeHandler);
+		}
+		if (this.resizeObserver && this.$refs.root) {
+			this.resizeObserver.disconnect();
 		}
 	},
 	methods: {
@@ -715,6 +864,10 @@ export default {
 				this.loanId,
 			);
 		},
+		isNarrowComponent() {
+			// Returns true if the component width is less than 430px
+			return this.componentWidth < 430;
+		},
 	},
 };
 </script>
@@ -722,10 +875,6 @@ export default {
 <style lang="postcss" scoped>
 .amountDropdownWrapper :deep(select) {
     border-radius: 14px 0 0 14px;
-}
-
-.lend-again :deep(span) {
-    @apply tw-px-0;
 }
 
 .lend-again :deep(span) {
