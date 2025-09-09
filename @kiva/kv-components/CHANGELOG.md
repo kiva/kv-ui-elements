@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.10](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.9...@kiva/kv-components@6.52.10) (2025-09-09)
+
+
+### Bug Fixes
+
+* prop for changing countries not lent to url ([aa3f6de](https://github.com/kiva/kv-ui-elements/commit/aa3f6de34c899ebfacca691303a705f175a070af))
+
+
+
+
+
 ## [6.52.9](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.8...@kiva/kv-components@6.52.9) (2025-09-09)
 
 
