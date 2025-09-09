@@ -78,6 +78,7 @@
 						:my-dashboard-url="myDashboardUrl"
 						:show-m-g-upsell-link="showMGUpsellLink"
 						:is-mobile="isMobile"
+						:countries-not-lent-to-url="countriesNotLentToUrl"
 						@load-lend-menu-data="emitLendMenuEvent"
 						@closing-menu="onHover()"
 					/>
@@ -151,6 +152,10 @@ export default {
 		showMGUpsellLink: {
 			type: Boolean,
 			default: false,
+		},
+		countriesNotLentToUrl: {
+			type: String,
+			default: '/lend/countries-not-lent',
 		},
 	},
 	emits: [
