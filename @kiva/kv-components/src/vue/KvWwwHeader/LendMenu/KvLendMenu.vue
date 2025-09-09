@@ -10,6 +10,7 @@
 			:is-regions-loading="isRegionsLoading"
 			:is-channels-loading="isChannelsLoading"
 			:show-m-g-upsell-link="showMGUpsellLink"
+			:countries-not-lent-to-url="countriesNotLentToUrl"
 		/>
 		<kv-lend-mega-menu
 			class="tw-hidden lg:tw-block"
@@ -21,6 +22,7 @@
 			:is-regions-loading="isRegionsLoading"
 			:is-channels-loading="isChannelsLoading"
 			:show-m-g-upsell-link="showMGUpsellLink"
+			:countries-not-lent-to-url="countriesNotLentToUrl"
 		/>
 	</kv-page-container>
 </template>
@@ -50,6 +52,10 @@ export default {
 		showMGUpsellLink: {
 			type: Boolean,
 			default: false,
+		},
+		countriesNotLentToUrl: {
+			type: String,
+			default: '/lend/countries-not-lent',
 		},
 	},
 	emits: ['load-lend-menu-data'],

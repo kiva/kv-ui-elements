@@ -173,7 +173,7 @@
 						<li>
 							<a
 								v-kv-track-event="['TopNav','click-Lend-Countries_Not_Lent']"
-								href="/lend/countries-not-lent"
+								:href="countriesNotLentToUrl"
 								class="lend-link"
 							>
 								Countries I haven't lent to
@@ -242,6 +242,10 @@ export default {
 		showMGUpsellLink: {
 			type: Boolean,
 			default: false,
+		},
+		countriesNotLentToUrl: {
+			type: String,
+			default: '/lend/countries-not-lent',
 		},
 	},
 	setup(props) {
