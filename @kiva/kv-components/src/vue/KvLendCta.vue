@@ -393,7 +393,7 @@ import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
-const OTHER_OPTION = 'other';
+const OTHER_OPTION = 'Other';
 const MOBILE_DROPDOWN_BREAKPOINT = 430;
 const NARROW_SIDEBAR_BREAKPOINT = 480; // breakpoint for desktop when sidebar is narrow
 const NARROW_SIDEBAR_DROPDOWN_BREAKPOINT = 380; // Breakpoint for smaller narrow sidebar
