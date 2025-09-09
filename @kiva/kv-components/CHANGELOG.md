@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.52.9](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.8...@kiva/kv-components@6.52.9) (2025-09-09)
+
+
+### Bug Fixes
+
+* mp-1988 narrow lend CTA ([71552c4](https://github.com/kiva/kv-ui-elements/commit/71552c407baca4b7007f0517d729ea9828a2def5))
+* mp-1988 narrow lend CTA ([441ddd0](https://github.com/kiva/kv-ui-elements/commit/441ddd0de41e4577f3b63b37a954435e4fbc6867))
+* mp-1988 narrow lend CTA ([8b84086](https://github.com/kiva/kv-ui-elements/commit/8b840862ad7a35be19e2ce6013acb3898b95a495))
+
+
+
+
+
 ## [6.52.8](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.7...@kiva/kv-components@6.52.8) (2025-09-05)
 
 
