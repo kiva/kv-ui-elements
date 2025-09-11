@@ -108,17 +108,17 @@
 			</span>
 			<!-- avatar (sm, auth) -->
 			<template v-if="loggedIn">
+				<kv-material-icon
+					v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
+					:icon="mdiAccountCircle"
+					class="tw-w-3"
+				/>
 				<KvUserAvatar
-					v-if="lenderImageUrl"
+					v-else
 					ref="avatar"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
 					is-small
-				/>
-				<kv-material-icon
-					v-else
-					:icon="mdiAccountCircle"
-					class="tw-w-3"
 				/>
 			</template>
 		</div>
@@ -149,6 +149,7 @@ import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 import KvUserAvatar from '../KvUserAvatar.vue';
 import { throttle } from '../../utils/throttle';
+import { isLegacyPlaceholderAvatar } from '../../utils/imageUtils';
 
 const KvHeaderMobileMenu = defineAsyncComponent(() => import('./KvHeaderMobileMenu.vue'));
 const KvHeaderMyKivaMenu = defineAsyncComponent(() => import('./KvHeaderMyKivaMenu.vue'));
@@ -309,6 +310,10 @@ export default {
 			return !props.isMobile ? '/lend-by-category' : undefined;
 		});
 
+		const avatarFilename = computed(() => {
+			return props.lenderImageUrl?.split('/').pop() ?? '';
+		});
+
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');
 			import('./KvHeaderMyKivaMenu.vue');
@@ -342,6 +347,7 @@ export default {
 			signInLink,
 			menuButton,
 			lendUrl,
+			avatarFilename,
 			handleOnHover,
 			handleTouchStart,
 			handleMouseOut,
@@ -351,6 +357,7 @@ export default {
 			KvLendMenu,
 			KvHeaderTakeActionMenu,
 			KvHeaderAboutMenu,
+			isLegacyPlaceholderAvatar,
 		};
 	},
 };
