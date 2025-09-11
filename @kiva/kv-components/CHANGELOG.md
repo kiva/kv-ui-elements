@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.53.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.10...@kiva/kv-components@6.53.0) (2025-09-11)
+
+
+### Features
+
+* using fallback icon when user has no profile photo ([dfc8004](https://github.com/kiva/kv-ui-elements/commit/dfc80049117da6d148e60d1d4a12c3d1e2cfb2b2))
+
+
+
+
+
 ## [6.52.10](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.9...@kiva/kv-components@6.52.10) (2025-09-09)
 
 
