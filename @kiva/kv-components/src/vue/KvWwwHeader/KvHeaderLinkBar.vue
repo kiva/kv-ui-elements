@@ -107,13 +107,20 @@
 				{{ numeral(balance).format('$0') }}
 			</span>
 			<!-- avatar (sm, auth) -->
-			<KvUserAvatar
-				v-if="loggedIn"
-				ref="avatar"
-				:lender-name="lenderName"
-				:lender-image-url="lenderImageUrl"
-				is-small
-			/>
+			<template v-if="loggedIn">
+				<KvUserAvatar
+					v-if="lenderImageUrl"
+					ref="avatar"
+					:lender-name="lenderName"
+					:lender-image-url="lenderImageUrl"
+					is-small
+				/>
+				<kv-material-icon
+					v-else
+					:icon="mdiAccountCircle"
+					class="tw-w-3"
+				/>
+			</template>
 		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
