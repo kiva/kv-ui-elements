@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.53.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.53.0...@kiva/kv-components@6.53.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* check legacy placeholder for avatar in header ([b9c0ccc](https://github.com/kiva/kv-ui-elements/commit/b9c0ccc0e87f4c961d9d26429972e7e75e3aa7e8))
+
+
+
+
+
 # [6.53.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.52.10...@kiva/kv-components@6.53.0) (2025-09-11)
 
 
