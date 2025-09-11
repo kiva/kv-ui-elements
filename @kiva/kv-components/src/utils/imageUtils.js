@@ -44,3 +44,31 @@ export function randomizedUserAvatarClass(displayName = '') {
 	const randomStyle = userCardStyleOptions[Math.floor(rng() * userCardStyleOptions.length)];
 	return `${randomStyle.color} ${randomStyle.bg}`;
 }
+
+/**
+ * Gets the url for a Kiva image hash
+ *
+ * @param {string} param0.base The base URL of the image
+ * @param {number} param0.width The width of the image
+ * @param {number} param0.height The height of the image
+ * @param {string} param0.hash The hash of the image
+ * @param {string} param0.type The file type of the image (default: jpg)
+ * @returns The full url for the image
+ */
+export function getKivaImageUrl({
+	base = '/',
+	width,
+	height,
+	hash,
+	type = 'jpg',
+}) {
+	if (!hash) {
+		return '';
+	}
+	if (!width && !height) {
+		return '';
+	}
+	const w = width ? `w${Math.ceil(width)}` : '';
+	const h = height ? `h${Math.ceil(height)}` : '';
+	return `${base}${w}${h}/${hash}.${type}`;
+}
