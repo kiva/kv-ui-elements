@@ -1,6 +1,32 @@
-import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '#utils/imageUtils';
+import {
+	getKivaImageUrl,
+	isLegacyPlaceholderAvatar,
+	randomizedUserAvatarClass,
+} from '#utils/imageUtils';
 
 describe('imageUtils.ts', () => {
+	describe('getKivaImageUrl', () => {
+		it('should return empty if no hash', () => {
+			expect(getKivaImageUrl({ width: 5, height: 6 })).toBe('');
+		});
+
+		it('should return empty if both dimensions are 0', () => {
+			expect(getKivaImageUrl({ width: 0, height: 0 })).toBe('');
+		});
+
+		it('should return webp URL when requested', () => {
+			expect(getKivaImageUrl({
+				base: 'www.kiva.org/', width: 5, height: 6, hash: 'asd', type: 'webp',
+			})).toBe('www.kiva.org/w5h6/asd.webp');
+		});
+
+		it('should return jpg URL by default', () => {
+			expect(getKivaImageUrl({
+				base: 'www.kiva.org/', width: 5, height: 6, hash: 'asd',
+			})).toBe('www.kiva.org/w5h6/asd.jpg');
+		});
+	});
+
 	describe('isLegacyPlaceholderAvatar', () => {
 		it('should return true when filename is default kiva user avatar.', () => {
 			expect(isLegacyPlaceholderAvatar('726677.jpg')).toBe(true);
