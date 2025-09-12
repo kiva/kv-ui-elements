@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.54.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.53.1...@kiva/kv-components@6.54.0) (2025-09-12)
+
+
+### Features
+
+* **kv-components:** getKivaImageUrl method in imageUtils ([607f7b7](https://github.com/kiva/kv-ui-elements/commit/607f7b7baaeb1b90c295c68c1a30d3c4f61ba9bc))
+
+
+
+
+
 ## [6.53.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.53.0...@kiva/kv-components@6.53.1) (2025-09-11)
 
 
