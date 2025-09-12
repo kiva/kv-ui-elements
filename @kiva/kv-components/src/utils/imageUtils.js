@@ -51,8 +51,10 @@ export function randomizedUserAvatarClass(displayName = '') {
  * @param {string} param0.base The base URL of the image
  * @param {number} param0.width The width of the image
  * @param {number} param0.height The height of the image
+ * @param {number} param0.square The square size of the image (i.e. width and height are the same)
+ * @param {number} param0.faceZoom The face zoom level of the image, 1-100. Requires width, height or square to be set.
  * @param {string} param0.hash The hash of the image
- * @param {string} param0.type The file type of the image (default: jpg)
+ * @param {string} param0.format The file type of the image (default: jpg)
  * @returns The full url for the image
  */
 export function getKivaImageUrl({
