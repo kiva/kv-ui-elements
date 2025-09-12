@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.55.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.54.0...@kiva/kv-components@6.55.0) (2025-09-12)
+
+
+### Bug Fixes
+
+* center avatar img ([f8410c9](https://github.com/kiva/kv-ui-elements/commit/f8410c969891d31ebf6d73534a485c61ca18c0d7))
+
+
+### Features
+
+* basket, balance and avatar design tweaks ([68e0e10](https://github.com/kiva/kv-ui-elements/commit/68e0e107129c0a594ce5d20502b5a6529f864325))
+
+
+
+
+
 # [6.54.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.53.1...@kiva/kv-components@6.54.0) (2025-09-12)
 
 
