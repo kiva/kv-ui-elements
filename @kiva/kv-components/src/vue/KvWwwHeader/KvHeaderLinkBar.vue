@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 md:tw-gap-1.5 lg:tw-gap-2.5"
+		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 md:tw-gap-2 lg:tw-gap-2.5"
 	>
 		<!-- 3-bar menu (sm) -->
 		<button
@@ -84,43 +84,42 @@
 			ref="basketLink"
 			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
-			class="header-link tw-relative md:!tw-mr-0"
+			class="header-link tw-relative md:!tw-mr-0 tw-flex tw-items-center tw-gap-0.5"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
 			style="margin-right: 2px;"
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
-				class="tw-w-3 tw-h-3 tw-pointer-events-none"
+				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none"
 				:count="basketCount"
 			/>
+			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
 		<div
-			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-py-1.5"
+			v-if="loggedIn"
+			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
+				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
 			@mouseover="handleAvatarMenuPosition"
 			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
 		>
-			<span
-				v-if="loggedIn"
-				class="tw-bg-eco-green-1 tw-py-0.5 tw-px-1 tw-text-eco-green-4"
-			>
+			<!-- avatar (sm, auth) -->
+			<kv-material-icon
+				v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
+				:icon="mdiAccountCircle"
+				class="tw-w-3"
+			/>
+			<KvUserAvatar
+				v-else
+				ref="avatar"
+				:lender-name="lenderName"
+				:lender-image-url="lenderImageUrl"
+				is-small
+			/>
+			<!-- balance (auth) -->
+			<span class="tw-text-eco-green-4">
 				{{ numeral(balance).format('$0') }}
 			</span>
-			<!-- avatar (sm, auth) -->
-			<template v-if="loggedIn">
-				<kv-material-icon
-					v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
-					:icon="mdiAccountCircle"
-					class="tw-w-3"
-				/>
-				<KvUserAvatar
-					v-else
-					ref="avatar"
-					:lender-name="lenderName"
-					:lender-image-url="lenderImageUrl"
-					is-small
-				/>
-			</template>
 		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
