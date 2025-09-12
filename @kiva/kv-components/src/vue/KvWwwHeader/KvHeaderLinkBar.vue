@@ -112,6 +112,7 @@
 			<KvUserAvatar
 				v-else
 				ref="avatar"
+				class="avatar"
 				:lender-name="lenderName"
 				:lender-image-url="lenderImageUrl"
 				is-small
@@ -366,5 +367,9 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
+}
+
+:deep(.avatar div:first-child) {
+	@apply tw-flex;
 }
 </style>
