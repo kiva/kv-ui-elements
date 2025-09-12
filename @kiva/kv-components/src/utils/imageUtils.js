@@ -56,19 +56,35 @@ export function randomizedUserAvatarClass(displayName = '') {
  * @returns The full url for the image
  */
 export function getKivaImageUrl({
-	base = '/',
+	base = '/img/',
 	width,
 	height,
+	square,
+	faceZoom,
 	hash,
-	type = 'jpg',
+	format = 'jpg',
 }) {
 	if (!hash) {
 		return '';
 	}
-	if (!width && !height) {
+	if (!width && !height && !square && !faceZoom) {
 		return '';
 	}
-	const w = width ? `w${Math.ceil(width)}` : '';
-	const h = height ? `h${Math.ceil(height)}` : '';
-	return `${base}${w}${h}/${hash}.${type}`;
+
+	let w = '';
+	let h = '';
+	if (width && height && width === height) {
+		// if height and width are the same, use square param
+		// eslint-disable-next-line no-param-reassign
+		square = width;
+	} else {
+		// If width and height are different, use w and h
+		w = width ? `w${Math.ceil(width)}` : '';
+		h = height ? `h${Math.ceil(height)}` : '';
+	}
+
+	const s = square ? `s${Math.ceil(square)}` : '';
+	const fz = faceZoom && (width || height || square) ? `fz${Math.ceil(faceZoom)}` : '';
+
+	return `${base}${w}${h}${s}${fz}/${hash}.${format}`;
 }
