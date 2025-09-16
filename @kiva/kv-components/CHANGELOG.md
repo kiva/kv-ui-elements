@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.55.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.55.0...@kiva/kv-components@6.55.1) (2025-09-16)
+
+
+### Performance Improvements
+
+* **kv-components:** use www origin and webp format for kiva images ([dd2b318](https://github.com/kiva/kv-ui-elements/commit/dd2b318e66c0254e77fd54948bc53c520f7abaaf))
+
+
+
+
+
 # [6.55.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.54.0...@kiva/kv-components@6.55.0) (2025-09-12)
 
 
