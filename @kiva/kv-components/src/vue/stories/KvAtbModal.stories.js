@@ -54,11 +54,11 @@ const Template = (args, { argTypes }) => ({
 				<div data-testid="header-basket">
 					<KvAtbModal
 						:modalVisible="isVisible"
-						:userData="userData" 
+						:userData="userData"
 						:addedLoan="addedLoan"
 						:myKivaExperimentEnabled="myKivaExperimentEnabled"
 						:showModalContent="showModalContent"
-						photoPath='https://www-kiva-org.freetls.fastly.net/img/'
+						photoPath='https://www.kiva.org/img/'
 						:oneLoanAwayCategory="oneLoanAwayCategory"
 						:oneLoanAwayFilteredUrl="oneLoanAwayFilteredUrl"
 						:oneAwayText="oneAwayText"

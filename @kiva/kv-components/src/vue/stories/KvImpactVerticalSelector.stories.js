@@ -32,14 +32,14 @@ const customCategoryImageSample = [
 			id: '28fe587c-f6f4-4329-b4ed-ac094b2c14b3',
 			name: 'Climate-threatened people',
 			description: 'Fund those on the front lines of the climate crisis.',
-			customImage: 'https://www.kiva.org/img/s100/baa07b4416e1ff92ce68574598f866e7.jpg',
+			customImage: 'https://www.kiva.org/img/s100/baa07b4416e1ff92ce68574598f866e7.webp',
 			contentfulImage: null,
 		},
 		{
 			id: '486bca95-7425-42ee-baf7-960eef7b3d0c',
 			name: 'Refugees',
 			description: 'Transform the future for refugees',
-			customImage: 'https://www.kiva.org/img/s100/3beeea89cdfb331fa86dfdcbd042fdcf.jpg',
+			customImage: 'https://www.kiva.org/img/s100/3beeea89cdfb331fa86dfdcbd042fdcf.webp',
 			contentfulImage: null,
 		},
 		{
@@ -47,7 +47,7 @@ const customCategoryImageSample = [
 			name: 'Marginalized U.S. entrepreneurs',
 			description:
 				'Let\'s build a thriving, fair economy, one entrepreneur at a time.',
-			customImage: 'https://www.kiva.org/img/s100/a4fca24ac900a01bb8f81eb8d01af215.jpg',
+			customImage: 'https://www.kiva.org/img/s100/a4fca24ac900a01bb8f81eb8d01af215.webp',
 			contentfulImage: null,
 		},
 	],
