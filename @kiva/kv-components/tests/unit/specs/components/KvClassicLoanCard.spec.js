@@ -6,7 +6,7 @@ const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
 const kvTrackFunction = () => { };
 
-const photoPath = 'https://www-kiva-org.freetls.fastly.net/img/';
+const photoPath = 'https://www.kiva.org/img/';
 const loan = {
 	id: 1,
 	name: 'Alan',

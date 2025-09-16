@@ -50,7 +50,7 @@ const props = {
 			width: 300,
 		},
 	],
-	photoPath: 'https://www-kiva-org.freetls.fastly.net/img/',
+	photoPath: 'https://www.kiva.org/img/',
 };
 
 export const Default = story(props);

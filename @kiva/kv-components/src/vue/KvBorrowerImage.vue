@@ -97,6 +97,7 @@ export default {
 			return this.getImgUrl({
 				...this.defaultImage,
 				height: this.defaultImage.width * this.aspectRatio,
+				format: 'jpg',
 			});
 		},
 		// Get the 'sizes' string for the source element
@@ -134,11 +135,12 @@ export default {
 	},
 	methods: {
 		// Get the url for the loan image sized width by height
-		getImgUrl(size) {
+		getImgUrl(options) {
 			return getKivaImageUrl({
-				...size,
 				base: this.photoPath,
+				format: 'webp',
 				hash: this.hash,
+				...options,
 			});
 		},
 		// Get a string to use in the srcset attribute as the definition for a single image size

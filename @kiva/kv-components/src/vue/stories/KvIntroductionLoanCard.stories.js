@@ -80,7 +80,7 @@ const loan = {
 
 const kvTrackFunction = () => { };
 
-const photoPath = 'https://www-kiva-org.freetls.fastly.net/img/';
+const photoPath = 'https://www.kiva.org/img/';
 
 export const Default = story({
 	loanId: loan.id,
