@@ -59,14 +59,14 @@ export default {
 			description: {
 				component: `
 					KvDatePicker provides a date selection interface with support for:
-					
+
 					- Single date selection
 					- Date ranges
 					- Time picker
 					- Multiple formats: Timestamp, formatted string, or ISO string
 					- Localization: Support for multiple languages
 					- Custom theming: Fully customizable via CSS variables
-					
+
 					The component automatically loads the @vuepic/vue-datepicker library
 					and its styles when first used.
 				`,
@@ -84,6 +84,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
 		};
 	},
 	setup() { return { args }; },
+	methods: {
+		onDateChange(date) {
+			console.log('Date changed:', date);
+		},
+		onOpen() {
+			console.log('Date picker open');
+		},
+		onClose() {
+			console.log('Date picker closed');
+		},
+	},
 	template: `
 		<div>
 			<label class="tw-text-h4 tw-block tw-pb-1">
@@ -107,8 +118,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				:theme="args.theme"
 				:hide-input-icon="args.hideInputIcon"
 				@change="onDateChange"
-				@show="onShow"
-				@hide="onHide"
+				@open="onOpen"
+				@closed="onClose"
 				style="width: 25rem;"
 			/>
 			<div class="tw-mt-4 tw-text-sm tw-text-gray-600">
@@ -174,7 +185,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 		};
 	},
 	setup() { return { args }; },
-	template: `	
+	template: `
 	<div>
 			<div class="tw-space-y-4">
 				<div>
@@ -196,7 +207,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 						style="width: 25rem;"
 					/>
 				</div>
-				
+
 				<div>
 					<label class="tw-text-h4 tw-block tw-pb-1">
 						Without Icon (Hidden)
@@ -217,7 +228,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 					/>
 				</div>
 			</div>
-			
+
 			<div class="tw-mt-4 tw-text-sm tw-text-gray-600">
 				Selected: {{ selectedDate ? new Date(selectedDate).toLocaleString() : 'None' }}
 			</div>
@@ -376,7 +387,7 @@ export const States = (args, { argTypes }) => ({
 					style="width: 25rem;"
 				/>
 			</div>
-			
+
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
 				<label class="tw-text-h4 tw-block tw-pb-1">
 					Disabled
@@ -389,7 +400,7 @@ export const States = (args, { argTypes }) => ({
 					style="width: 25rem;"
 				/>
 			</div>
-			
+
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
 				<label class="tw-text-h4 tw-block tw-pb-1">
 					Readonly
@@ -437,7 +448,7 @@ export const ModelTypes = (args, { argTypes }) => ({
 					Value: {{ timestampDate }}
 				</div>
 			</div>
-			
+
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
 				<label class="tw-text-h4 tw-block tw-pb-1">
 					Format
@@ -453,7 +464,7 @@ export const ModelTypes = (args, { argTypes }) => ({
 					Value: {{ formatDate }}
 				</div>
 			</div>
-			
+
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
 				<label class="tw-text-h4 tw-block tw-pb-1">
 					ISO
