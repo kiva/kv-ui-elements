@@ -44,3 +44,22 @@ export const Default = () => ({
 		},
 	},
 });
+
+export const NoLender = () => ({
+	components: {
+		KvCheckoutReceipt,
+	},
+	template: `
+		<kv-checkout-receipt
+			:receipt="receipt"
+		/>
+	`,
+	props: {
+		receipt: {
+			type: Object,
+			default() {
+				return mockedReceiptData;
+			},
+		},
+	},
+});
