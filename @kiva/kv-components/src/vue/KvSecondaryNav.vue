@@ -30,12 +30,20 @@
 							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
 						>
 							<component
-								:is="headingLink ? (headingLink.isExternal ? 'a' : 'router-link') : 'div'"
-								:to="headingLink ? (headingLink.isExternal ? undefined : headingLink.href) : undefined"
-								:href="headingLink ? (headingLink.isExternal ? headingLink.href : undefined) :
-									undefined"
+								:is="hasHeadingLink
+									? (headingLink.isExternal ? 'a' : 'router-link')
+									: 'div'"
+								:to="hasHeadingLink
+									? (headingLink.isExternal ? undefined : headingLink.href)
+									: undefined"
+								:href="hasHeadingLink
+									? (headingLink.isExternal ? headingLink.href : undefined)
+									: undefined"
 								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
-									tw-bg-transparent tw-border-none tw-cursor-pointer tw-no-underline"
+									tw-bg-transparent tw-border-none tw-no-underline"
+								:class="{
+									'tw-cursor-pointer' : hasHeadingLink
+								}"
 							>
 								{{ heading }}
 							</component>
@@ -125,6 +133,7 @@ export default {
 		},
 		headingLink: {
 			type: Object,
+			required: false,
 			default: () => ({}),
 			validator(value) {
 				return Object.prototype.hasOwnProperty.call(value, 'text')
@@ -167,6 +176,10 @@ export default {
 		const subNavigation = ref(null);
 		const subNavigationOpen = ref(false);
 
+		const hasHeadingLink = computed(() => {
+			return props.headingLink && props.headingLink.href;
+		});
+
 		const navAlignmentClass = computed(() => {
 			if (linkAlignment.value === 'right') {
 				return (heading.value && heading.value.length > 0)
@@ -199,6 +212,7 @@ export default {
 		};
 
 		return {
+			hasHeadingLink,
 			navAlignmentClass,
 			toggleSubNavigation,
 			subNavigationOpen,
