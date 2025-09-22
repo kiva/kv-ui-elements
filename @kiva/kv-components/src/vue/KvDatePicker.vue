@@ -53,6 +53,11 @@ export default {
 			default: null,
 		},
 
+		placeholder: {
+			type: String,
+			default: '',
+		},
+
 		theme: {
 			type: String,
 			default: 'default',
