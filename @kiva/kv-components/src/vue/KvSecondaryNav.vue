@@ -72,6 +72,10 @@
 										:is="link.isExternal ? 'a' : 'router-link'"
 										:to="link.isExternal ? undefined : link.href"
 										:href="link.isExternal ? link.href : undefined"
+										:class="{
+											'tw-underline': link.isActive,
+											'tw-no-underline': !link.isActive,
+										}"
 										class="
 											kv-secondary-nav__link
 											tw-py-2 md:tw-py-n
@@ -79,10 +83,6 @@
 											hover:tw-underline hover:tw-text-primary
 											tw-cursor-pointer
 										"
-										:class="{
-											'tw-underline': link.isActive,
-											'tw-no-underline': !link.isActive,
-										}"
 										@click="handleLinkClick(link)"
 									>
 										{{ link.text }}
