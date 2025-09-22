@@ -17,7 +17,7 @@
 					tw-h-6 tw-w-full
 					tw-px-2
 					tw-border
-					tw-rounded-sm
+					tw-rounded-xs
 					tw-appearance-none
 					tw-text-base
 					tw-ring-inset

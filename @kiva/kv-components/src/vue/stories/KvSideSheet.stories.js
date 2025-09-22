@@ -27,7 +27,7 @@ const Template = (args, { argTypes }) => ({
 			>
 				<div>
 					Some content
-					<img src="https://www-kiva-org.freetls.fastly.net/img/w600h450/9673d0722a7675b9b8d11f90849d9b44.jpg" />
+					<img src="https://www.kiva.org/img/w600h450/9673d0722a7675b9b8d11f90849d9b44.webp" />
 				</div>
 			</kv-side-sheet>
 		</div>`,
@@ -75,7 +75,7 @@ const TemplateWithControls = (args, { argTypes }) => ({
 			>
 				<div>
 					Some content
-					<img src="https://www-kiva-org.freetls.fastly.net/img/w600h450/9673d0722a7675b9b8d11f90849d9b44.jpg" />
+					<img src="https://www.kiva.org/img/w600h450/9673d0722a7675b9b8d11f90849d9b44.webp" />
 				</div>
 				<template #controls>
 					<div

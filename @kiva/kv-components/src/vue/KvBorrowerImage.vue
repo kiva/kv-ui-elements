@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { getKivaImageUrl } from '../utils/imageUtils';
+
 export default {
 	name: 'KvBorrowerImage',
 	props: {
@@ -95,6 +97,7 @@ export default {
 			return this.getImgUrl({
 				...this.defaultImage,
 				height: this.defaultImage.width * this.aspectRatio,
+				format: 'jpg',
 			});
 		},
 		// Get the 'sizes' string for the source element
@@ -131,43 +134,13 @@ export default {
 		},
 	},
 	methods: {
-		getKivaImageUrl({
-			base = '/',
-			width,
-			height,
-			square,
-			faceZoom,
-			hash,
-			format = 'jpg',
-		} = {}) {
-			if (!hash) {
-				return '';
-			}
-			if (!width && !height && !square && !faceZoom) {
-				return '';
-			}
-			let w = '';
-			let h = '';
-			// If width and height are different, use w and h
-			if (width === height) {
-				// if height and width are the same, use square param
-				// eslint-disable-next-line no-param-reassign
-				square = width;
-			} else {
-				w = width ? `w${Math.ceil(width)}` : '';
-				h = height ? `h${Math.ceil(height)}` : '';
-			}
-			const s = square ? `s${Math.ceil(square)}` : '';
-			const fz = faceZoom ? `fz${Math.ceil(faceZoom)}` : '';
-
-			return `${base}${w}${h}${s}${fz}/${hash}.${format}`;
-		},
 		// Get the url for the loan image sized width by height
-		getImgUrl(size) {
-			return this.getKivaImageUrl({
-				...size,
+		getImgUrl(options) {
+			return getKivaImageUrl({
 				base: this.photoPath,
+				format: 'webp',
 				hash: this.hash,
+				...options,
 			});
 		},
 		// Get a string to use in the srcset attribute as the definition for a single image size

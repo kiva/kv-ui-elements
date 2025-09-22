@@ -116,6 +116,48 @@ export const mockAllFacets = {
 	postalCode: ['30301', '90210'],
 	trusteeId: [1, 2],
 	categoryIds: [28],
+	sortOptions: [
+		{
+			name: 'amountHighToLow',
+			sortSrc: 'flss',
+			label: 'Amount: High to Low',
+		},
+		{
+			name: 'amountLeft',
+			sortSrc: 'flss',
+			label: 'Amount left',
+		},
+		{
+			name: 'amountLowToHigh',
+			sortSrc: 'flss',
+			label: 'Amount: Low to High',
+		},
+		{
+			name: 'expiringSoon',
+			sortSrc: 'flss',
+			label: 'Ending soon',
+		},
+		{
+			name: 'mostRecent',
+			sortSrc: 'flss',
+			label: 'Most recent',
+		},
+		{
+			name: 'popularityScore',
+			sortSrc: 'flss',
+			label: 'Trending now',
+		},
+		{
+			name: 'repaymentTerm',
+			sortSrc: 'flss',
+			label: 'Loan length',
+		},
+		{
+			name: 'personalized',
+			sortSrc: 'flss',
+			label: 'Recommended',
+		},
+	],
 };
 
 export const mockTransformedMiddleEast = (numLoansFundraising = 44) => ({

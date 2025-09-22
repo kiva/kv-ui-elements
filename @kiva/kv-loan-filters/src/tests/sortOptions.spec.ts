@@ -79,6 +79,20 @@ describe('sortOptions.ts', () => {
 				expect(result).toEqual({ sortBy: 'personalized' });
 			});
 		});
+
+		describe('getFilterChips', () => {
+			it('should handle undefined', () => {
+				expect(sortOptions.getFilterChips({}, mockAllFacets)).toEqual([]);
+			});
+
+			it('should return chips', () => {
+				const result = sortOptions.getFilterChips({ sortBy: 'expiringSoon' }, mockAllFacets);
+
+				const expected = [{ name: 'Ending soon', __typename: 'SortBy' }];
+
+				expect(result).toEqual(expected);
+			});
+		});
 	});
 
 	describe('formatSortOptions', () => {

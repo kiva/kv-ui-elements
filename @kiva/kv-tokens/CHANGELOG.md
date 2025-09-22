@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.4.0...@kiva/kv-tokens@3.4.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* update with latest scale from design ([ddc0864](https://github.com/kiva/kv-ui-elements/commit/ddc086430028a60d933ede8b91e6c4beb257e197))
+
+
+
+
+
+# [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.3.0...@kiva/kv-tokens@3.4.0) (2025-08-21)
+
+
+### Features
+
+* letter spacing updated for h3 ([#646](https://github.com/kiva/kv-ui-elements/issues/646)) ([98004ff](https://github.com/kiva/kv-ui-elements/commit/98004ffb70a07b2e767e8f7be1a906be59b4ae43))
+
+
+
+
+
+# [3.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.2.1...@kiva/kv-tokens@3.3.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* removing ecoForest theme, svg for material icons and custom tw classes ([a01e26a](https://github.com/kiva/kv-ui-elements/commit/a01e26a19d2dd9ae4f50790640a07db9df957ea6))
+* visual QA changes WIP ([49f99c1](https://github.com/kiva/kv-ui-elements/commit/49f99c1f48c5bdd1bede0692496a09fedaee6b23))
+
+
+### Features
+
+* eco forest theme ([4fadf40](https://github.com/kiva/kv-ui-elements/commit/4fadf40c84a9a7a329f5941a1c39d105295dcbd8))
+
+
+
+
+
+## [3.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.2.0...@kiva/kv-tokens@3.2.1) (2025-07-28)
+
+**Note:** Version bump only for package @kiva/kv-tokens
+
+
+
+
+
 # [3.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.1.0...@kiva/kv-tokens@3.2.0) (2025-04-15)
 
 

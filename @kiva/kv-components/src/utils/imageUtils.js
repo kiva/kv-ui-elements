@@ -44,3 +44,49 @@ export function randomizedUserAvatarClass(displayName = '') {
 	const randomStyle = userCardStyleOptions[Math.floor(rng() * userCardStyleOptions.length)];
 	return `${randomStyle.color} ${randomStyle.bg}`;
 }
+
+/**
+ * Gets the url for a Kiva image hash
+ *
+ * @param {string} param0.base The base URL of the image
+ * @param {number} param0.width The width of the image
+ * @param {number} param0.height The height of the image
+ * @param {number} param0.square The square size of the image (i.e. width and height are the same)
+ * @param {number} param0.faceZoom The face zoom level of the image, 1-100. Requires width, height or square to be set.
+ * @param {string} param0.hash The hash of the image
+ * @param {string} param0.format The file type of the image (default: jpg)
+ * @returns The full url for the image
+ */
+export function getKivaImageUrl({
+	base = '/img/',
+	width,
+	height,
+	square,
+	faceZoom,
+	hash,
+	format = 'jpg',
+}) {
+	if (!hash) {
+		return '';
+	}
+	if (!width && !height && !square && !faceZoom) {
+		return '';
+	}
+
+	let w = '';
+	let h = '';
+	if (width && height && width === height) {
+		// if height and width are the same, use square param
+		// eslint-disable-next-line no-param-reassign
+		square = width;
+	} else {
+		// If width and height are different, use w and h
+		w = width ? `w${Math.ceil(width)}` : '';
+		h = height ? `h${Math.ceil(height)}` : '';
+	}
+
+	const s = square ? `s${Math.ceil(square)}` : '';
+	const fz = faceZoom && (width || height || square) ? `fz${Math.ceil(faceZoom)}` : '';
+
+	return `${base}${w}${h}${s}${fz}/${hash}.${format}`;
+}

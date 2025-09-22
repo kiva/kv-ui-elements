@@ -64,7 +64,7 @@ const loan = {
 
 const kvTrackFunction = () => { };
 
-const photoPath = 'https://www-kiva-org.freetls.fastly.net/img/';
+const photoPath = 'https://www.kiva.org/img/';
 
 export const Loading = story({
 	loanId: loan.id,
@@ -292,5 +292,4 @@ export const HugeLentAmount = story({
 	kvTrackFunction,
 	photoPath,
 	isVisitor: false,
-	enableHugeAmount: true,
 });

@@ -4,14 +4,14 @@
 		:class="classes"
 		:style="styles"
 	>
-		<div class="tw-relative tw-w-full">
+		<div class="container">
 			<!-- eslint-disable max-len -->
 			<select
 				:id="id"
 				v-bind="inputAttrs"
 				v-model="inputValue"
 				:disabled="disabled"
-				class="tw-text-base tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-rounded-sm tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent"
+				class="tw-text-base !tw-font-medium tw-bg-primary tw-h-6 tw-pr-4 tw-pl-2 tw-border tw-border-tertiary tw-appearance-none tw-w-full tw-ring-inset focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-action focus:tw-border-transparent tw-text-ellipsis"
 				:class="{ 'tw-opacity-low': disabled }"
 				@change="onChange"
 			>
@@ -20,7 +20,7 @@
 			</select>
 			<kv-material-icon
 				:icon="mdiChevronDown"
-				class="tw-w-4 tw-absolute tw-top-0 tw-right-0 tw-pt-1.5 tw-pr-1 tw-pointer-events-none"
+				class="tw-w-4 tw-absolute tw-right-0 tw-pr-1 tw-pointer-events-none"
 				:class="{ 'tw-opacity-low': disabled }"
 			/>
 		</div>
@@ -112,3 +112,13 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+.container {
+	@apply tw-relative tw-w-full tw-flex tw-items-center;
+}
+
+.container > select {
+	border-radius: 8px;
+}
+</style>

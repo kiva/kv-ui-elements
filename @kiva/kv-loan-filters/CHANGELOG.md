@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.19.0...@kiva/kv-loan-filters@1.20.0) (2025-08-18)
+
+
+### Features
+
+* update keyword search filter data ([#633](https://github.com/kiva/kv-ui-elements/issues/633)) ([5fade69](https://github.com/kiva/kv-ui-elements/commit/5fade692e2b44fc88badba9f30b52ee31da3c279))
+
+
+
+
+
+# [1.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.18.0...@kiva/kv-loan-filters@1.19.0) (2025-08-12)
+
+
+### Features
+
+* applying radio group filter to categories filters ([552c439](https://github.com/kiva/kv-ui-elements/commit/552c439ee97c0579a0c04e075f9c7991b4f1653b))
+
+
+
+
+
+# [1.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.17.0...@kiva/kv-loan-filters@1.18.0) (2025-08-07)
+
+
+### Features
+
+* hasAccordion flag inverse ([b29fd20](https://github.com/kiva/kv-ui-elements/commit/b29fd209d64979a2c0687631565d8deeab02cadb))
+
+
+
+
+
+# [1.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.2...@kiva/kv-loan-filters@1.17.0) (2025-07-10)
+
+
+### Features
+
+* getfilterchips method added to sort options ([#600](https://github.com/kiva/kv-ui-elements/issues/600)) ([8941a6f](https://github.com/kiva/kv-ui-elements/commit/8941a6f5cbfaaf5597014ff0261d1fea8a984350))
+
+
+
+
+
+## [1.16.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.1...@kiva/kv-loan-filters@1.16.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* update basic needs definition for combo page ([7051459](https://github.com/kiva/kv-ui-elements/commit/7051459c03ffdf4974de3c24fd4cc37c8a292d9b))
+
+
+
+
+
 ## [1.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.16.0...@kiva/kv-loan-filters@1.16.1) (2025-06-11)
 
 

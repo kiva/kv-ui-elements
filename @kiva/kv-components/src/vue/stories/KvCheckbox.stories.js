@@ -160,4 +160,157 @@ const ArrayModelTemplate = (args, {
 		},
 	},
 });
+
+export const SquareDisabledBlur = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvCheckbox },
+	data: () => ({
+		checkedBlur: true,
+		uncheckedBlur: false,
+		checkedNoBlur: true,
+		uncheckedNoBlur: false,
+	}),
+	template: `
+	<div>
+	  <h3>Square Variant - Disabled with Blur</h3>
+	  <kv-checkbox
+		variant="square"
+		:valid="valid"
+		v-model="checkedBlur"
+		:disabled="true"
+		:blurOnDisabled="true"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Checked (blur): {{checkedBlur}}
+	  </kv-checkbox>
+	  <kv-checkbox
+		variant="square"
+		:valid="valid"
+		v-model="uncheckedBlur"
+		:disabled="true"
+		:blurOnDisabled="true"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Unchecked (blur): {{uncheckedBlur}}
+	  </kv-checkbox>
+	  <h3>Square Variant - Disabled without Blur</h3>
+	  <kv-checkbox
+		variant="square"
+		:valid="valid"
+		v-model="checkedNoBlur"
+		:disabled="true"
+		:blurOnDisabled="false"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Checked (no blur): {{checkedNoBlur}}
+	  </kv-checkbox>
+	  <kv-checkbox
+		variant="square"
+		:valid="valid"
+		v-model="uncheckedNoBlur"
+		:disabled="true"
+		:blurOnDisabled="false"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Unchecked (no blur): {{uncheckedNoBlur}}
+	  </kv-checkbox>
+	</div>
+  `,
+});
+
+export const RoundVariant = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvCheckbox },
+	data: () => ({
+		checkboxChecked: true,
+		checkboxUnchecked: false,
+	}),
+	template: `
+			<div>
+				<kv-checkbox
+					variant="round"
+					:valid="valid"
+					v-model="checkboxChecked"
+					@change="onChange"
+					@focus="onFocus"
+				>
+					Round Checkbox (checked): {{checkboxChecked}}
+				</kv-checkbox>
+				<kv-checkbox
+					variant="round"
+					:valid="valid"
+					v-model="checkboxUnchecked"
+					@change="onChange"
+					@focus="onFocus"
+				>
+					Round Checkbox (unchecked): {{checkboxUnchecked}}
+				</kv-checkbox>
+			</div>
+		`,
+});
+
+export const RoundDisabledBlur = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvCheckbox },
+	data: () => ({
+		checkedBlur: true,
+		uncheckedBlur: false,
+		checkedNoBlur: true,
+		uncheckedNoBlur: false,
+	}),
+	template: `
+	<div>
+	  <h3>Round Variant - Disabled with Blur</h3>
+	  <kv-checkbox
+		variant="round"
+		:valid="valid"
+		v-model="checkedBlur"
+		:disabled="true"
+		:blurOnDisabled="true"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Checked (blur): {{checkedBlur}}
+	  </kv-checkbox>
+	  <kv-checkbox
+		variant="round"
+		:valid="valid"
+		v-model="uncheckedBlur"
+		:disabled="true"
+		:blurOnDisabled="true"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Unchecked (blur): {{uncheckedBlur}}
+	  </kv-checkbox>
+	  <h3>Round Variant - Disabled without Blur</h3>
+	  <kv-checkbox
+		variant="round"
+		:valid="valid"
+		v-model="checkedNoBlur"
+		:disabled="true"
+		:blurOnDisabled="false"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Checked (no blur): {{checkedNoBlur}}
+	  </kv-checkbox>
+	  <kv-checkbox
+		variant="round"
+		:valid="valid"
+		v-model="uncheckedNoBlur"
+		:disabled="true"
+		:blurOnDisabled="false"
+		@change="onChange"
+		@focus="onFocus"
+	  >
+		Unchecked (no blur): {{uncheckedNoBlur}}
+	  </kv-checkbox>
+	</div>
+  `,
+});
 export const ArrayModel = ArrayModelTemplate.bind({});

@@ -47,5 +47,5 @@ export const Default = Template.bind({});
 Default.args = {
 	bubbleTargetQuery: '[data-testid="header-basket"]',
 	borrowerName: 'Default Profile',
-	borrowerImageUrl: 'https://www-kiva-org.freetls.fastly.net/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	borrowerImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.webp',
 };

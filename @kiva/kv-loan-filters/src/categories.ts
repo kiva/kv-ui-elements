@@ -1,4 +1,5 @@
 import loanChannelQueryMap from './loanChannelQueryMap';
+import { transformRadioGroupOptions } from './filterOptionUtils';
 
 export const facetsKey = 'categories';
 
@@ -6,7 +7,7 @@ export const stateKey = 'category';
 
 export const getUiConfig = (options) => ({
 	type: undefined,
-	hasAccordion: false,
+	hasAccordion: true,
 	title: 'category',
 	shouldDisplayTitle: true,
 	itemHeaderKey: undefined,
@@ -60,4 +61,62 @@ export default {
 	getQueryFromFilter: (loanSearchState) => ({
 		...(loanSearchState.category && { category: loanSearchState.category }),
 	}),
+};
+
+// Radio group options for categories
+const CATEGORY_ORDER = [
+	'AGRICULTURE',
+	'EDUCATION',
+	'RETAIL',
+	'HEALTH',
+	'ARTS',
+	'REFUGEES_AND_IDPS',
+	'ECO_FRIENDLY',
+	'KIVA_US',
+	'LIVESTOCK',
+	'WOMEN',
+	'ENDING_SOON',
+	'SINGLE_PARENTS',
+	'FOOD',
+	'WATER_AND_SANITATION',
+	'CONFLICT_ZONES',
+	'LGBTQ',
+	'SOCIAL_ENTERPRISES',
+	'SHORT_TERM_LOANS',
+	'MATCHED_LOANS',
+	'CRISIS_SUPPORT_LOANS',
+];
+const categoryDisplayMap = {
+	AGRICULTURE: 'Agriculture',
+	EDUCATION: 'Education',
+	RETAIL: 'Retail',
+	HEALTH: 'Health',
+	ARTS: 'Arts',
+	REFUGEES_AND_IDPS: 'Refugees and IDPs',
+	ECO_FRIENDLY: 'Eco-friendly',
+	KIVA_US: 'Kiva U.S.',
+	LIVESTOCK: 'Livestock',
+	WOMEN: 'Women',
+	ENDING_SOON: 'Ending soon',
+	SINGLE_PARENTS: 'Single parents',
+	FOOD: 'Food',
+	WATER_AND_SANITATION: 'Water and sanitation',
+	CONFLICT_ZONES: 'Conflict zones',
+	LGBTQ: 'LGBTQ',
+	SOCIAL_ENTERPRISES: 'Social Enterprises',
+	SHORT_TERM_LOANS: 'Short-term loans',
+	MATCHED_LOANS: 'Matched loans',
+	CRISIS_SUPPORT_LOANS: 'Crisis Support Loans',
+};
+
+export const transformCategoryOptions = (categories: Array<{ name: string }>) => {
+	return transformRadioGroupOptions(categories, CATEGORY_ORDER, categoryDisplayMap);
+};
+
+export const getRadioGroupOptions = (allFacets: { categoryFacets?: Array<{ name: string }> }) => {
+	return transformRadioGroupOptions(
+		allFacets?.categoryFacets,
+		CATEGORY_ORDER,
+		categoryDisplayMap,
+	);
 };

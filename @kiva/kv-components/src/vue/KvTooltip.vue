@@ -4,15 +4,18 @@
 		class="kv-tailwind"
 	>
 		<kv-popper
+			ref="popperRef"
 			:controller="controller"
 			:popper-modifiers="popperModifiers"
-			popper-placement="top"
+			:popper-placement="placement"
 			transition-type="kvfastfade"
 			class="tooltip-pane tw-absolute tw-bg-primary tw-rounded tw-z-popover"
+			@hide="handleKvPopperVisibility(false)"
+			@show="handleKvPopperVisibility(true)"
 		>
 			<div
 				class="tw-p-2.5"
-				style="max-width: 250px;"
+				:style="{ maxWidth }"
 			>
 				<div
 					v-if="$slots.title"
@@ -33,9 +36,20 @@
 </template>
 
 <script>
-import { ref, toRefs, computed } from 'vue';
+import {
+	ref,
+	toRefs,
+	computed,
+	watch,
+} from 'vue';
 import {
 	darkTheme,
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
 	mintTheme,
 } from '@kiva/kv-tokens';
 import KvPopper from './KvPopper.vue';
@@ -47,7 +61,6 @@ export default {
 		KvPopper,
 		KvThemeProvider,
 	},
-	// TODO: Add prop for tooltip placement, Currently defaults to 'top' but will flip to bottom when constrained
 	props: {
 		controller: {
 			validator(value) {
@@ -59,39 +72,113 @@ export default {
 			},
 			required: true,
 		},
+		maxWidth: {
+			type: String,
+			default: '250px',
+		},
+		modifiers: {
+			type: Object,
+			default: () => ({}),
+		},
+		placement: {
+			type: String,
+			default: 'top',
+		},
+		showTooltip: {
+			type: Boolean,
+			default: false,
+		},
 		theme: {
 			type: String,
 			default: 'default',
 			validator(value) {
 				// The value must match one of these strings
-				return ['default', 'mint', 'dark'].indexOf(value) !== -1;
+				return [
+					'default',
+					'ecoGreenLight',
+					'ecoGreenDark',
+					'ecoLightMarigold',
+					'ecoStoneLight',
+					'ecoStoneDark',
+					'mint',
+					'dark',
+				].indexOf(value) !== -1;
 			},
 		},
 	},
-	setup(props) {
+	defineEmits: ['tool-tip-visible'],
+	setup(props, { emit }) {
 		const {
+			modifiers,
+			showTooltip,
 			theme,
 		} = toRefs(props);
 
-		const popperModifiers = ref({
+		const popperModifiers = computed(() => ({
+			...modifiers.value,
 			preventOverflow: {
+				...modifiers.value.preventOverflow,
 				padding: 10,
 			},
-		});
+		}));
+
+		const popperRef = ref(null);
+
+		const getControllerElement = () => {
+			if (typeof props.controller === 'string') {
+				return document.getElementById(props.controller);
+			}
+			return props.controller;
+		};
+
+		const handleKvPopperVisibility = (isShowing) => {
+			emit('tool-tip-visible', isShowing);
+		};
+
+		const triggerHover = (enter = true) => {
+			const element = getControllerElement();
+			if (element) {
+				const eventType = enter ? 'mouseover' : 'mouseout';
+				element.dispatchEvent(new MouseEvent(eventType, { bubbles: true }));
+			}
+		};
 
 		const themeStyle = computed(() => {
 			const themeMapper = {
+				default: defaultTheme,
+				ecoGreenLight: greenLightTheme,
+				ecoGreenDark: greenDarkTheme,
+				ecoLightMarigold: marigoldLightTheme,
+				ecoStoneLight: stoneLightTheme,
+				ecoStoneDark: stoneDarkTheme,
 				mint: mintTheme,
 				dark: darkTheme,
 			};
 			return themeMapper[theme.value];
 		});
 
+		watch(showTooltip, (show) => {
+			if (show) {
+				triggerHover(true);
+			} else {
+				triggerHover(false);
+			}
+		});
+
 		return {
-			darkTheme,
+			defaultTheme,
+			greenLightTheme,
+			greenDarkTheme,
+			marigoldLightTheme,
+			stoneLightTheme,
+			stoneDarkTheme,
 			mintTheme,
+			darkTheme,
+			handleKvPopperVisibility,
 			popperModifiers,
+			popperRef,
 			themeStyle,
+			triggerHover,
 		};
 	},
 };
@@ -105,7 +192,7 @@ export default {
 
 .tooltip-arrow {
 	@apply tw-m-1;
-	@apply tw-border-white;
+	border-color: rgba(var(--bg-primary), var(--tw-bg-opacity, 1));
 }
 
 /* Top Tooltip Arrow appears on Bottom */

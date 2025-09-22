@@ -11,7 +11,7 @@
 	>
 		<div
 			ref="sideSheetRef"
-			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white tw-overflow-y-auto"
+			class="tw-fixed tw-right-0 tw-transition-all tw-duration-300 tw-bg-white"
 			:class="{
 				'tw-translate-x-full': !open,
 				'tw-translate-x-0': open,
@@ -56,7 +56,7 @@
 						>
 							<kv-material-icon
 								class="tw-w-3 tw-h-3"
-								:icon="mdiExportVariant"
+								:icon="mdiOpenInNew"
 							/>
 						</button>
 						<button
@@ -117,7 +117,7 @@ import {
 	nextTick,
 } from 'vue';
 import {
-	mdiArrowLeft, mdiClose, mdiExportVariant,
+	mdiArrowLeft, mdiClose, mdiOpenInNew,
 } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -195,6 +195,13 @@ export default {
 				return false;
 			},
 		},
+		/**
+		 * Whether to hide the background of the headline section on mobile (e.g., in Borrower Profile Sidesheet)
+		 * */
+		hideHeadlineBgOnMobile: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
 	setup(props, { emit, slots }) {
@@ -203,6 +210,7 @@ export default {
 			kvTrackFunction,
 			trackEventCategory,
 			widthDimensions,
+			hideHeadlineBgOnMobile,
 		} = toRefs(props);
 
 		const open = ref(false);
@@ -210,8 +218,10 @@ export default {
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
 		const headlineRef = ref(null);
-		const windowHeight = ref(window.innerHeight);
-		const windowWidth = ref(window.innerWidth);
+		const windowHeight = ref(null);
+		const windowWidth = ref(null);
+		const controlsObserver = ref(null);
+		const headlineObserver = ref(null);
 
 		const heights = reactive({
 			headline: 0,
@@ -219,7 +229,9 @@ export default {
 		});
 
 		const contentHeight = computed(() => {
-			const height = windowHeight.value - heights.headline - heights.controls;
+			const height = windowHeight.value
+				- (hideHeadlineBgOnMobile.value ? 0 : heights.headline)
+				- heights.controls;
 			return Math.max(height, 0);
 		});
 
@@ -316,17 +328,22 @@ export default {
 				updateHeights();
 			}, 100);
 			if (controlsRef.value) {
-				const controlsObserver = new ResizeObserver(debouncedUpdateHeights);
-				controlsObserver.observe(controlsRef.value);
-				onUnmounted(() => controlsObserver.disconnect());
+				controlsObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				controlsObserver.value.observe(controlsRef.value);
 			}
 			if (headlineRef.value) {
-				const headlineObserver = new ResizeObserver(debouncedUpdateHeights);
-				headlineObserver.observe(headlineRef.value);
-				onUnmounted(() => headlineObserver.disconnect());
+				headlineObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				headlineObserver.value.observe(headlineRef.value);
 			}
 			window.addEventListener('resize', debouncedUpdateHeights);
-			onUnmounted(() => window.removeEventListener('resize', debouncedUpdateHeights));
+		});
+
+		onUnmounted(() => {
+			if (controlsObserver.value) controlsObserver.value.disconnect();
+			if (headlineObserver.value) headlineObserver.value.disconnect();
+			window.removeEventListener('resize', debouncedUpdateHeights);
+			const styleElement = document.getElementById('side-sheet-styles');
+			if (styleElement) styleElement.remove();
 		});
 
 		// Watch for slot content changes deeply
@@ -334,7 +351,7 @@ export default {
 			setTimeout(() => {
 				updateHeights();
 			}, 100);
-		}, { deep: true, immediate: true });
+		}, { deep: true });
 
 		// Use animationWidth for consistent width calculation
 		const sideSheetStyles = computed(() => {
@@ -345,22 +362,24 @@ export default {
 
 		// Watch for visibility changes (opening/closing)
 		watch(visible, (newVisible) => {
-			if (newVisible) {
-				document.addEventListener('keyup', onKeyUp);
+			if (typeof window !== 'undefined') {
+				if (newVisible) {
+					document.addEventListener('keyup', onKeyUp);
 
-				// Clear any previous modal styles to ensure clean state
-				modalStyles.value = {};
+					// Clear any previous modal styles to ensure clean state
+					modalStyles.value = {};
 
-				setTimeout(() => {
-					open.value = true;
+					setTimeout(() => {
+						open.value = true;
+						avoidBodyScroll();
+						updateHeights();
+					}, 10); // Reduced delay for smoother animation
+				} else {
+					open.value = false;
 					avoidBodyScroll();
-					updateHeights();
-				}, 10); // Reduced delay for smoother animation
-			} else {
-				open.value = false;
-				avoidBodyScroll();
-				document.removeEventListener('keyup', onKeyUp);
-				modalStyles.value = {};
+					document.removeEventListener('keyup', onKeyUp);
+					modalStyles.value = {};
+				}
 			}
 		}, { immediate: true });
 
@@ -425,12 +444,6 @@ export default {
 
 				styleElement.textContent = cssRules;
 				sideSheetRef.value.id = `side-sheet-${props.trackEventCategory || 'default'}`;
-
-				onUnmounted(() => {
-					if (styleElement) {
-						styleElement.remove();
-					}
-				});
 			}
 		};
 
@@ -456,7 +469,7 @@ export default {
 			goToLink,
 			mdiArrowLeft,
 			mdiClose,
-			mdiExportVariant,
+			mdiOpenInNew,
 			modalStyles,
 			open,
 		};

@@ -401,6 +401,7 @@ export default {
 		4.5: 36,
 		5: 40,
 		6: 48,
+		6.5: 52,
 		7: 56,
 		8: 64,
 		9: 72,
@@ -511,9 +512,12 @@ export default {
 	},
 	shadows: {},
 	radii: {
-		sm: 4,
-		default: 14,
-		lg: 40,
+		xs: 4,
+		sm: 8,
+		md: 12,
+		default: 16,
+		lg: 20,
+		xl: 24,
 	},
 	opacity: {
 		default: 1,

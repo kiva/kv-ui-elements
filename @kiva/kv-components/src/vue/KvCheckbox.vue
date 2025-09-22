@@ -5,7 +5,10 @@
 	>
 		<label
 			class="tw-inline-flex tw-items-center"
-			:class="{ 'tw-opacity-low': disabled }"
+			:class="[
+				{ 'tw-opacity-low': disabled && blurOnDisabled },
+				variant === 'round' ? 'tw-align-middle' : ''
+			]"
 			:for="uuid"
 		>
 			<input
@@ -22,23 +25,27 @@
 			>
 			<!-- checkbox square background -->
 			<div
+				v-if="variant === 'square'"
 				class="
-					tw-w-3 tw-h-3 tw-mr-2
+					tw-w-3 tw-h-3
+					tw-mr-2
 					tw-flex-shrink-0
-					tw-rounded-sm
+					tw-rounded-xs
 					tw-border
 					tw-flex tw-justify-center tw-items-center tw-overflow-hidden
 					tw-transition-all tw-duration-100
-					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action"
+					peer-focus-visible:tw-ring-2
+					peer-focus-visible:tw-ring-action
+				"
 				:class="{
-					'tw-bg-white' : !isChecked,
-					'tw-bg-action' : isChecked,
-					'tw-border-secondary' : !isChecked && valid,
-					'tw-border-action' : isChecked && valid,
-					'tw-border-danger' : !valid,
+					'tw-bg-white': !isChecked,
+					'tw-bg-action': isChecked,
+					'tw-border-secondary': !isChecked && valid,
+					'tw-border-action': isChecked && valid,
+					'tw-border-danger': !valid,
 				}"
 			>
-				<!-- checkbox icon  -->
+				<!-- checkbox icon for square -->
 				<svg
 					v-if="isChecked"
 					class="tw-w-1.5 tw-h-auto"
@@ -54,7 +61,33 @@
 					<!-- eslint-enable max-len -->
 				</svg>
 			</div>
-			<!-- label -->
+			<div
+				v-else
+				:class="[
+					'tw-w-3 tw-h-3 tw-mr-1',
+					'tw-flex-shrink-0',
+					'tw-rounded-full',
+					'tw-flex tw-justify-center tw-items-center',
+					'tw-overflow-hidden',
+					'tw-transition-all tw-duration-100',
+					'peer-focus-visible:tw-ring-2',
+					'peer-focus-visible:tw-ring-action',
+					isChecked
+						? 'tw-text-brand-550 tw-bg-white'
+						: 'tw-bg-gray-200',
+					// Only show border if checked or invalid
+					!isChecked && !valid ? 'tw-border-danger' : '',
+					isChecked && valid ? 'tw-border-action' : '',
+					!isChecked && valid ? '' : '',
+				]"
+			>
+				<!-- checkbox icon for round -->
+				<KvMaterialIcon
+					v-if="isChecked"
+					:icon="iconCheckCircle"
+					class="check-icon"
+				/>
+			</div>
 			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
 				<slot></slot>
 			</div>
@@ -70,6 +103,8 @@ import {
 	toRefs,
 	watch,
 } from 'vue';
+import { mdiCheckCircle } from '@mdi/js';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 import { useAttrs } from '../utils/attrs';
 
 const emits = [
@@ -83,6 +118,9 @@ const emits = [
 */
 
 export default {
+	components: {
+		KvMaterialIcon,
+	},
 	inheritAttrs: false,
 
 	model: {
@@ -120,6 +158,18 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		/**
+		 * Variant of the checkbox: 'square' (default) or 'round'
+		 */
+		variant: {
+			type: String,
+			default: 'square',
+			validator: (val) => ['square', 'round'].includes(val),
+		},
+		blurOnDisabled: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	emits,
 	setup(props, context) {
@@ -145,10 +195,11 @@ export default {
 			let checkboxValue;
 
 			if (Array.isArray(modelValue.value)) {
-				// if the model is an array, add or remove our value from it
+			// if the model is an array, add or remove our value from it
 				if (inputChecked) {
 					checkboxValue = [...modelValue.value, event.target.value];
 				} else {
+					// else it's a boolean like <kv-checkbox v-model="true">
 					checkboxValue = modelValue.value.filter((item) => item !== value.value);
 				}
 			} else {
@@ -162,7 +213,7 @@ export default {
 
 		const setChecked = () => {
 			if (Array.isArray(modelValue.value)) {
-				// if the model is array like <kv-checkbox v-model="['item1', 'item2']" value="item1">
+			// if the model is array like <kv-checkbox v-model=[...] value="...">
 				isChecked.value = modelValue.value.includes(value.value);
 			} else {
 				// else it's a boolean like <kv-checkbox v-model="true">
@@ -196,8 +247,14 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
+			iconCheckCircle: mdiCheckCircle,
 		};
 	},
 };
 
 </script>
+<style scoped>
+::v-deep .check-icon svg {
+    transform: scale(1.2);
+}
+</style>

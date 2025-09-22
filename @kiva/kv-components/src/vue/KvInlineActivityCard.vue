@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="tw-flex tw-items-center tw-gap-1 tw-py-0.5 tw-px-1 tw-shadow-lg tw-rounded-sm tw-bg-white"
+		class="tw-flex tw-items-center tw-gap-1 tw-py-0.5 tw-px-1 tw-shadow-lg tw-rounded-xs tw-bg-white"
 	>
 		<KvUserAvatar
 			:lender-image-url="lenderImageUrl"

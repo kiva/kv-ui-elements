@@ -91,7 +91,19 @@ export default {
 		}) ?? [];
 	},
 	showSavedSearch: () => false,
-	getFilterChips: () => ([]),
+	getFilterChips: (loanSearchState, facets) => {
+		if (loanSearchState.sortBy) {
+			const sortByFacet = facets.sortOptions?.find((f) => f.name === loanSearchState.sortBy);
+			if (!sortByFacet) {
+				return [];
+			}
+			return [{
+				name: sortByFacet?.label,
+				__typename: 'SortBy',
+			}];
+		}
+		return [];
+	},
 	getRemovedFacet: () => ({}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: () => ({}),

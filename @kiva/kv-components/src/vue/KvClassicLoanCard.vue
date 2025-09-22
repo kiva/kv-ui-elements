@@ -220,7 +220,6 @@
 				:user-balance="userBalance"
 				:get-cookie="getCookie"
 				:set-cookie="setCookie"
-				:enable-huge-amount="enableHugeAmount"
 				:is-visitor="isVisitor"
 				:primary-button-text="primaryButtonText"
 				:secondary-button-text="secondaryButtonText"
@@ -263,7 +262,6 @@
 				:get-cookie="getCookie"
 				:set-cookie="setCookie"
 				:error-msg="errorMsg"
-				:enable-huge-amount="enableHugeAmount"
 				:is-visitor="isVisitor"
 				@add-to-basket="$emit('add-to-basket', $event)"
 			/>
@@ -453,10 +451,6 @@ export default {
 			type: String,
 			default: '',
 		},
-		enableHugeAmount: {
-			type: Boolean,
-			default: false,
-		},
 		primaryButtonText: {
 			type: String,
 			default: 'Lend',
@@ -472,6 +466,10 @@ export default {
 		showContributors: {
 			type: Boolean,
 			default: false,
+		},
+		customHref: {
+			type: String,
+			default: '',
 		},
 	},
 	setup(props, { emit }) {

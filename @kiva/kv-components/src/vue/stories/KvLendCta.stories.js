@@ -84,7 +84,6 @@ export const HugeAmount = story({
 	},
 	unreservedAmount: '12850.00',
 	kvTrackFunction,
-	enableHugeAmount: true,
 	isVisitor: false,
 });
 
@@ -95,7 +94,6 @@ export const HugeAmountUnder1000 = story({
 	},
 	unreservedAmount: '850.00',
 	kvTrackFunction,
-	enableHugeAmount: true,
 	isVisitor: false,
 });
 
@@ -320,7 +318,6 @@ export const WithPresetOptionsHugeAmount = story({
 	},
 	unreservedAmount: '12850.00',
 	kvTrackFunction,
-	enableHugeAmount: true,
 	isVisitor: false,
 	showPresetAmounts: true,
 });
@@ -388,17 +385,4 @@ export const WithPresetOptionsNonActionable = story({
 	loan: { status: 'refunded' },
 	kvTrackFunction,
 	showPresetAmounts: true,
-});
-
-export const WithPresetOptionsAndPill = story({
-	isLoading: false,
-	loan: {
-		id: 1,
-		name: 'John',
-		borrowerCount: 1,
-	},
-	unreservedAmount: '150.00',
-	kvTrackFunction,
-	showPresetAmounts: true,
-	showPill: true,
 });

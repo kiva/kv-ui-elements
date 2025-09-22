@@ -4,6 +4,7 @@ export * from './basketItems';
 export * from './basketTotals';
 export * from './basketVerification';
 export * from './checkoutStatus';
+export * from './givingFunds';
 export * from './managedAccount';
 export * from './oneTimeCheckout';
 export * from './receipt';

@@ -332,7 +332,7 @@ describe('loanUtils', () => {
 		});
 
 		it('should return huge dropdown values between 500 and 1000', () => {
-			const result = getDropdownPriceArray('650.00', false, 25, false, true, false);
+			const result = getDropdownPriceArray('650.00', false, 25, false, false);
 
 			expect(result).toEqual([
 				'25',
@@ -361,7 +361,7 @@ describe('loanUtils', () => {
 		});
 
 		it('should return huge dropdown values up to 10,000', () => {
-			const result = getDropdownPriceArray('11000.00', false, 25, false, true, false);
+			const result = getDropdownPriceArray('11000.00', false, 25, false, false);
 
 			expect(result).toEqual([
 				'25',
@@ -402,7 +402,7 @@ describe('loanUtils', () => {
 		});
 
 		it('should return not huge dropdown values for visitor', () => {
-			const result = getDropdownPriceArray('650.00', false, 25, false, true, true);
+			const result = getDropdownPriceArray('650.00', false, 25, false, true);
 
 			expect(result).toEqual([
 				'25',

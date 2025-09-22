@@ -104,7 +104,7 @@ const combinedActivities = [
 
 const kvTrackFunction = () => { };
 
-const photoPath = 'https://www-kiva-org.freetls.fastly.net/img/';
+const photoPath = 'https://www.kiva.org/img/';
 
 export const Loading = story({
 	loanId: loan.id,
@@ -387,7 +387,6 @@ export const HugeLentAmount = story({
 	kvTrackFunction,
 	photoPath,
 	isVisitor: false,
-	enableHugeAmount: true,
 });
 
 export const SupportButton = story({
@@ -463,4 +462,13 @@ export const USLoan = story({
 	},
 	kvTrackFunction,
 	photoPath,
+});
+
+export const CustomHref = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customHref: 'https://www.kiva.org',
 });
