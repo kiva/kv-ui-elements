@@ -66,6 +66,8 @@ export interface KivaCardRecipientInput {
 	state?: string;
 	postalCode?: string;
 	country?: string;
+	lenderId?: string | number;
+	scheduledDeliveryDate?: string;
 }
 
 export interface KivaCardInput {
@@ -75,6 +77,7 @@ export interface KivaCardInput {
 	recipient: KivaCardRecipientInput;
 	senderEmail?: string | null;
 	senderName?: string | null;
+	giftsPerRecipient?: number | null;
 }
 
 export interface AddKivaCardToBasketOptions {
@@ -85,11 +88,7 @@ export interface AddKivaCardToBasketOptions {
 export interface AddKivaCardToBasketData {
 	shop: {
 		id: string,
-		addKivaCardToBasket: {
-			id: string,
-			basketItemType: string,
-			price: string,
-		} | null,
+		addKivaCardToBasket: boolean | null,
 	} | null,
 }
 
@@ -100,11 +99,7 @@ export async function addKivaCardToBasket({ kivaCard, apollo }: AddKivaCardToBas
 		mutation: gql`mutation AddKivaCardToBasket($kivaCard: KivaCardInput!, $basketId: String) {
 			shop (basketId: $basketId) {
 				id
-				addKivaCardToBasket(kivaCard: $kivaCard) {
-					id
-					basketItemType
-					price
-				}
+				addKivaCardToBasket(kivaCard: $kivaCard)
 			}
 		}`,
 		variables: {
@@ -115,5 +110,5 @@ export async function addKivaCardToBasket({ kivaCard, apollo }: AddKivaCardToBas
 		},
 	});
 
-	return data?.shop?.addKivaCardToBasket;
+	return data?.shop?.addKivaCardToBasket ?? false;
 }
