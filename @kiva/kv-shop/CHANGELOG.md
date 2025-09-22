@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.3.39...@kiva/kv-shop@3.4.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* return data type ([9524987](https://github.com/kiva/kv-ui-elements/commit/95249872d5c458ecb35e30d9fbf6a8da5297d6f4))
+
+
+### Features
+
+* add addKivaCardToBasket wrapper to basketItems ([2730acd](https://github.com/kiva/kv-ui-elements/commit/2730acdcc55fc33949a850c508163e4e15f94c29))
+* add tests for addKivaCardToBasket ([8807f69](https://github.com/kiva/kv-ui-elements/commit/8807f69674bb7bbdf87a7059c34616be4a841b8a))
+
+
+
+
+
+## [3.3.39](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.3.38...@kiva/kv-shop@3.3.39) (2025-09-19)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.3.38](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.3.37...@kiva/kv-shop@3.3.38) (2025-09-16)
 
 **Note:** Version bump only for package @kiva/kv-shop

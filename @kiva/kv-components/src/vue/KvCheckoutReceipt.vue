@@ -9,10 +9,16 @@
 				class="section section--lender-info"
 			>
 				<div>{{ formattedTransactionTime }}</div>
-				<div class="data-hj-suppress">
+				<div
+					v-if="lender"
+					class="data-hj-suppress"
+				>
 					{{ lender.firstName }} {{ lender.lastName }}
 				</div>
-				<div class="data-hj-suppress">
+				<div
+					v-if="lender"
+					class="data-hj-suppress"
+				>
 					{{ lender.email }}
 				</div>
 			</section>
@@ -380,7 +386,8 @@ export default {
 	props: {
 		lender: {
 			type: Object,
-			required: true,
+			required: false,
+			default: () => null,
 		},
 		receipt: {
 			type: Object,

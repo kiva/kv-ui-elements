@@ -12,7 +12,6 @@
 					:is="datepickerComponent"
 					:key="componentKey"
 					v-model="selectedDate"
-					:placeholder="placeholder"
 					v-bind="$attrs"
 					:auto-apply="true"
 					@update:model-value="handleDateChange"

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.55.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.55.1...@kiva/kv-components@6.55.2) (2025-09-19)
+
+
+### Bug Fixes
+
+* don't require lender for receipt, fix datepicker ([af57234](https://github.com/kiva/kv-ui-elements/commit/af57234cfade0b4c7a334ed3d04d6eee7e4ee240))
+
+
+
+
+
 ## [6.55.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.55.0...@kiva/kv-components@6.55.1) (2025-09-16)
 
 
