@@ -29,9 +29,24 @@
 							class="kv-secondary-nav__heading-container"
 							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
 						>
-							<div class="kv-secondary-nav__heading tw-text-h3">
+							<component
+								:is="hasHeadingLink
+									? (headingLink.isExternal ? 'a' : 'router-link')
+									: 'div'"
+								:to="hasHeadingLink
+									? (headingLink.isExternal ? undefined : headingLink.href)
+									: undefined"
+								:href="hasHeadingLink
+									? (headingLink.isExternal ? headingLink.href : undefined)
+									: undefined"
+								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
+									tw-bg-transparent tw-border-none tw-no-underline"
+								:class="{
+									'tw-cursor-pointer' : hasHeadingLink
+								}"
+							>
 								{{ heading }}
-							</div>
+							</component>
 						</div>
 						<button
 							class="
@@ -65,16 +80,17 @@
 										:is="link.isExternal ? 'a' : 'router-link'"
 										:to="link.isExternal ? undefined : link.href"
 										:href="link.isExternal ? link.href : undefined"
+										:class="{
+											'tw-underline': link.isActive,
+											'tw-no-underline': !link.isActive,
+										}"
 										class="
 											kv-secondary-nav__link
 											tw-py-2 md:tw-py-n
 											tw-text-primary tw-font-medium
 											hover:tw-underline hover:tw-text-primary
+											tw-cursor-pointer
 										"
-										:class="{
-											'tw-underline': link.isActive,
-											'tw-no-underline': !link.isActive,
-										}"
 										@click="handleLinkClick(link)"
 									>
 										{{ link.text }}
@@ -115,6 +131,15 @@ export default {
 			type: String,
 			default: '',
 		},
+		headingLink: {
+			type: Object,
+			required: false,
+			default: () => ({}),
+			validator(value) {
+				return Object.prototype.hasOwnProperty.call(value, 'text')
+					&& Object.prototype.hasOwnProperty.call(value, 'href');
+			},
+		},
 		links: {
 			type: Array,
 			default: () => [],
@@ -151,6 +176,10 @@ export default {
 		const subNavigation = ref(null);
 		const subNavigationOpen = ref(false);
 
+		const hasHeadingLink = computed(() => {
+			return props.headingLink && props.headingLink.href;
+		});
+
 		const navAlignmentClass = computed(() => {
 			if (linkAlignment.value === 'right') {
 				return (heading.value && heading.value.length > 0)
@@ -183,6 +212,7 @@ export default {
 		};
 
 		return {
+			hasHeadingLink,
 			navAlignmentClass,
 			toggleSubNavigation,
 			subNavigationOpen,

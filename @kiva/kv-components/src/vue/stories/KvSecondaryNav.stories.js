@@ -5,6 +5,10 @@ export default {
 	component: KvSecondaryNav,
 	args: {
 		heading: 'Due Diligence',
+		headingLink: {
+			href: 'https://www.kiva.org',
+			isExternal: true,
+		},
 		links: [
 			{
 				text: 'Overview',
@@ -38,7 +42,7 @@ const Template = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 80vh; overflow: auto;position:relative;">
-			<KvSecondaryNav :heading="heading" :links="links" :linkAlignment="linkAlignment" :theme="theme" />
+			<KvSecondaryNav :headingLink="headingLink" :heading="heading" :links="links" :linkAlignment="linkAlignment" :theme="theme" />
 			Testing content
 		</div>
 	`,
