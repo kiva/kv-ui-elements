@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.56.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.1...@kiva/kv-components@6.56.2) (2025-09-23)
+
+
+### Bug Fixes
+
+* avatar menu width and tablet size not opening take action and about menus ([b566a05](https://github.com/kiva/kv-ui-elements/commit/b566a055596afd77692443ab7d0c9470a8170a06))
+* remove unnecessary if condition with linkPos ([4f4e6fc](https://github.com/kiva/kv-ui-elements/commit/4f4e6fc786cb54c076eb148ab8e86818dc7173c9))
+
+
+
+
+
 ## [6.56.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.0...@kiva/kv-components@6.56.1) (2025-09-23)
 
 
