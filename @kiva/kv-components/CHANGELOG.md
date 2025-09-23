@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.56.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.55.2...@kiva/kv-components@6.56.0) (2025-09-23)
+
+
+### Bug Fixes
+
+* cursor pointer for router links ([e763da2](https://github.com/kiva/kv-ui-elements/commit/e763da2bbb9f08ce45f8b7229aabbdd0add059b6))
+* headingLink conditional params are now set properly ([c364b58](https://github.com/kiva/kv-ui-elements/commit/c364b58b82ebf99e220d94c69bc165d623eb73c6))
+* move reactive underline classes to before style classes ([0822fd8](https://github.com/kiva/kv-ui-elements/commit/0822fd8cfd76b36f6c7e17046cf210fc4f2ee6c8))
+
+
+### Features
+
+* heading link option ([d932381](https://github.com/kiva/kv-ui-elements/commit/d9323816b1e02a5a6a88860413c64243f173a836))
+
+
+
+
+
 ## [6.55.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.55.1...@kiva/kv-components@6.55.2) (2025-09-19)
 
 
