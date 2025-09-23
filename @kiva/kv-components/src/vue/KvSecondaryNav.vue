@@ -136,6 +136,11 @@ export default {
 			required: false,
 			default: () => ({}),
 			validator(value) {
+				// Allow empty object or undefined for optional prop
+				if (!value || Object.keys(value).length === 0) {
+					return true;
+				}
+				// If object has properties, validate required fields
 				return Object.prototype.hasOwnProperty.call(value, 'text')
 					&& Object.prototype.hasOwnProperty.call(value, 'href');
 			},
