@@ -8,6 +8,7 @@
 		"
 		:href="href"
 		@mouseover="handleMouseOver"
+		@touchstart="handleTouchStart"
 	>
 		<div
 			class="tw-flex tw-items-center"
@@ -61,6 +62,7 @@ export default {
 	},
 	emits: [
 		'on-hover',
+		'user-tap',
 	],
 	setup(props, { emit }) {
 		const { proxy } = getCurrentInstance();
@@ -72,28 +74,35 @@ export default {
 			];
 		});
 
-		const handleMouseOver = () => {
-			if (!navigator.maxTouchPoints) {
-				let linkPos = null;
-				if (props.sendLinkPosition) {
-					const linkEl = proxy.$refs[props.refName];
-					if (linkEl) {
-						const linkRect = linkEl.getBoundingClientRect();
-						const centerX = linkRect?.left + linkRect?.width / 2;
-						linkPos = {
-							left: `${centerX}px`,
-							transform: 'translateX(-50%)',
-							borderRadius: '0px 0px 8px 8px',
-						};
-					}
-				}
+		const getLinkPosition = () => {
+			if (!props.sendLinkPosition) return null;
+			const linkEl = proxy.$refs[props.refName];
+			if (!linkEl) return null;
+			const linkRect = linkEl.getBoundingClientRect();
+			const centerX = linkRect.left + linkRect.width / 2;
+			return {
+				left: `${centerX}px`,
+				transform: 'translateX(-50%)',
+				borderRadius: '0px 0px 8px 8px',
+			};
+		};
 
+		const handleTouchStart = () => {
+			const linkPos = getLinkPosition();
+			emit('user-tap', props.refName, props.menuComponent, linkPos);
+		};
+
+		const handleMouseOver = () => {
+			const linkPos = getLinkPosition();
+			if (linkPos) {
 				emit('on-hover', props.refName, props.menuComponent, linkPos);
 			}
 		};
+
 		return {
 			computedClass,
 			handleMouseOver,
+			handleTouchStart,
 		};
 	},
 };

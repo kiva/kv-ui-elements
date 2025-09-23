@@ -45,6 +45,7 @@
 			send-link-position
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('takeActionButton')"
+			@user-tap="handleTouchStart"
 		>
 			Take action
 		</KvHeaderDropdownLink>
@@ -60,6 +61,7 @@
 			send-link-position
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('aboutUsLink')"
+			@user-tap="handleTouchStart"
 		>
 			About
 		</KvHeaderDropdownLink>
@@ -96,7 +98,8 @@
 			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
 		<div
-			v-if="loggedIn"
+			v-show="loggedIn"
+			ref="avatar"
 			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
 				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
 			@mouseover="handleAvatarMenuPosition"
@@ -111,7 +114,6 @@
 			/>
 			<KvUserAvatar
 				v-else
-				ref="avatar"
 				class="avatar"
 				:lender-name="lenderName"
 				:lender-image-url="lenderImageUrl"
@@ -138,7 +140,7 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed, onUnmounted,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
@@ -157,7 +159,7 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
-const AVATAR_MENU_WIDTH = 146;
+const AVATAR_MENU_WIDTH = 120;
 const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
@@ -243,14 +245,14 @@ export default {
 		};
 
 		const handleMouseOut = (item) => {
-			if (!userIsTapping.value && openMenuId.value === item) {
+			if (!navigator.maxTouchPoints && openMenuId.value === item) {
 				openMenuId.value = null;
 				onHover();
 			}
 		};
 
 		const getAvatarMenuPosition = () => {
-			const linkRect = avatar.value?.userAvatar?.getBoundingClientRect();
+			const linkRect = avatar.value?.getBoundingClientRect();
 			if (!linkRect) return null;
 
 			const left = linkRect.left + linkRect.width / 2;
@@ -261,6 +263,7 @@ export default {
 				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
 				marginTop: '-2px', // Avoid closing avatar menu on header edge
 				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
+				width: props.isMobile ? '100%' : `${AVATAR_MENU_WIDTH}px`,
 			};
 		};
 
@@ -269,7 +272,7 @@ export default {
 			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
 		};
 
-		const handleTouchStart = (item, menu) => {
+		const handleTouchStart = (item, menu, targetPosition) => {
 			tappingTimeout.value = null;
 			userIsTapping.value = true;
 
@@ -289,7 +292,7 @@ export default {
 				} else if (item === MOBILE_MENU_ITEM && props.isMobile) {
 					onHover(item, menu, MOBILE_MENU_BASE_POS);
 				} else {
-					onHover(item, menu);
+					onHover(item, menu, targetPosition);
 				}
 			} else {
 				openMenuId.value = null;
@@ -313,6 +316,15 @@ export default {
 		const avatarFilename = computed(() => {
 			return props.lenderImageUrl?.split('/').pop() ?? '';
 		});
+
+		watch(
+			() => props.isMobile,
+			() => {
+				if (openMenuId.value === AVATAR_MENU_ID) {
+					handleAvatarMenuPosition();
+				}
+			},
+		);
 
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');

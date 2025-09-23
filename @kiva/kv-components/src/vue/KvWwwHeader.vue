@@ -100,6 +100,7 @@ import KvPageContainer from './KvPageContainer.vue';
 import { throttle } from '../utils/throttle';
 
 const HEADER_HEIGHT = '3.75rem';
+const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink'];
 
 export default {
 	components: {
@@ -169,6 +170,7 @@ export default {
 		const menuComponentInstance = ref(null);
 		const menuPosition = ref({ left: 0, position: 'relative' });
 		const isMobile = ref(false);
+		const menuitem = ref(null);
 
 		let menuCloseTimeout;
 
@@ -180,6 +182,7 @@ export default {
 			// if menu, open menu, and clear timeout
 			// if no menu and menu open, start close menu timeout
 			if (menu) {
+				menuitem.value = item;
 				clearTimeout(menuCloseTimeout);
 				// Avoid calculate menuPosition when hovering over the menu
 				if (menuComponent.value !== menu) {
@@ -213,6 +216,12 @@ export default {
 
 		const checkIsMobile = () => {
 			isMobile.value = window?.innerWidth < tokens.breakpoints.md;
+
+			// Close menus that are desktop only when switching to mobile
+			if (isMobile.value && (ONLY_DESKTOP_MENUS.includes(menuitem.value))) {
+				menuComponent.value = null;
+				menuOpen.value = false;
+			}
 		};
 
 		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
