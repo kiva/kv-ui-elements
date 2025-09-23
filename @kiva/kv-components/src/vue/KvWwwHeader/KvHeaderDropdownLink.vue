@@ -94,9 +94,7 @@ export default {
 
 		const handleMouseOver = () => {
 			const linkPos = getLinkPosition();
-			if (linkPos) {
-				emit('on-hover', props.refName, props.menuComponent, linkPos);
-			}
+			emit('on-hover', props.refName, props.menuComponent, linkPos);
 		};
 
 		return {
