@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.56.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.2...@kiva/kv-components@6.56.3) (2025-09-24)
+
+
+### Bug Fixes
+
+* kvsidesheet guard added as route leaves ([#684](https://github.com/kiva/kv-ui-elements/issues/684)) ([78c51dd](https://github.com/kiva/kv-ui-elements/commit/78c51dd0ef02a7bec0c0afbab830dd475e6512a7))
+
+
+
+
+
 ## [6.56.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.1...@kiva/kv-components@6.56.2) (2025-09-23)
 
 
