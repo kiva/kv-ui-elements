@@ -115,7 +115,7 @@ import {
 	watch,
 	computed,
 	nextTick,
-	onBeforeRouteLeave,
+	onBeforeUnmount,
 } from 'vue';
 import {
 	mdiArrowLeft, mdiClose, mdiOpenInNew,
@@ -339,7 +339,7 @@ export default {
 			window.addEventListener('resize', debouncedUpdateHeights);
 		});
 
-		onBeforeRouteLeave(() => {
+		onBeforeUnmount(() => {
 			// Ensure body scroll is restored if component is unmounted while open
 			if (open.value) {
 				document.body.classList.remove('tw-overflow-hidden');
