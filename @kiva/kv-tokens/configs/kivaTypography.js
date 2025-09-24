@@ -12,9 +12,106 @@ const {
 } = designTokens;
 
 /**
+ * Calculates the necessary font adjustments for a fallback font to match
+ * the appearance of a web font as closely as possible.
+ * For more info, see https://developer.chrome.com/blog/font-fallbacks
+ *
+ * @param {Object} params - The parameters for the calculation.
+ * @param {number} params.ascent - The ascent value of the web font.
+ * @param {number} params.descent - The descent value of the web font.
+ * @param {number} params.lineGap - The line gap value of the web font.
+ * @param {number} params.unitsPerEm - The units per em value of the web font.
+ * @param {number} params.avgCharWidth - The average character width of the web font.
+ * @param {number} params.fallbackUnitsPerEm - The units per em value of the fallback font.
+ * @param {number} params.fallbackAvgCharWidth - The average character width of the fallback font.
+ * @returns {Object} CSS properties for font adjustments to be spread into a @font-face rule.
+ */
+export const adjustFallbackFont = ({
+	ascent,
+	descent,
+	lineGap,
+	unitsPerEm,
+	avgCharWidth = 1,
+	fallbackUnitsPerEm = unitsPerEm,
+	fallbackAvgCharWidth = avgCharWidth,
+} = {}) => {
+	const asPercent = (value) => `${value * 100}%`;
+	// avgCharacterWidth of web font / avgCharacterWidth of fallback font
+	const sizeAdjust = ((avgCharWidth / unitsPerEm) / (fallbackAvgCharWidth / fallbackUnitsPerEm));
+	return {
+		sizeAdjust: asPercent(sizeAdjust),
+		// web font ascent / (web font UPM * size-adjust)
+		ascentOverride: asPercent(ascent / (unitsPerEm * sizeAdjust)),
+		// web font descent / (web font UPM * size-adjust)
+		descentOverride: asPercent(descent / (unitsPerEm * sizeAdjust)),
+		// web font lineGap / (web font UPM * size-adjust)
+		lineGapOverride: asPercent(lineGap / (unitsPerEm * sizeAdjust)),
+	};
+};
+
+/**
  WEB FONT DEFINITIONS
 */
 export const webFonts = [
+	/**
+	 * Fallback for Dovetail MVB Medium
+	 *
+	 * Dovetail MVB Medium metrics:
+	 * - ascent: 1081
+	 * - descent: -253
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 453
+	 *
+	 * Georgia metrics:
+	 * - unitPerEm: 2048
+	 * - xWidthAvg: 913
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'dovetail-mvb-fallback',
+			src: 'local("Georgia")',
+			...adjustFallbackFont({
+				ascent: 1081,
+				descent: 253,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 453,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 913,
+			}),
+		},
+	},
+	/**
+	 * Fallback for Dovetail MVB Medium Italic
+	 *
+	 * Dovetail MVB Medium Italic metrics:
+	 * - ascent: 1081
+	 * - descent: -253
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 430
+	 *
+	 * Georgia Italic metrics:
+	 * - unitPerEm: 2048
+	 * - xWidthAvg: 931
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'dovetail-mvb-fallback',
+			src: 'local("Georgia Italic")',
+			fontStyle: 'italic',
+			...adjustFallbackFont({
+				ascent: 1081,
+				descent: 253,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 430,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 931,
+			}),
+		},
+	},
 	// Note corresponding font weight in Tailwind is "normal"
 	{
 		'@font-face': {
@@ -24,6 +121,36 @@ export const webFonts = [
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
 			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
+		},
+	},
+	/**
+	 * Fallback for Post Grotesk Medium
+	 *
+	 * Post Grotesk Medium metrics:
+	 * - ascent:948
+	 * - descent: -262
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 451
+	 *
+	 * Arial Bold metrics:
+	 * - unitsPerEm: 2048
+	 * - xWidthAvg: 983
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk-fallback',
+			src: 'local("Arial Bold")',
+			fontWeight: '400',
+			...adjustFallbackFont({
+				ascent: 948,
+				descent: 262,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 451,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 983,
+			}),
 		},
 	},
 	// Note corresponding font weight in Tailwind is "normal"
@@ -37,6 +164,37 @@ export const webFonts = [
 			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-MediumItalic.133f41d.woff2) format(\'woff2\')',
 		},
 	},
+	/**
+	 * Fallback for Post Grotesk Medium Italic
+	 *
+	 * Post Grotesk Medium Italic metrics:
+	 * - ascent: 949
+	 * - descent: -259
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 451
+	 *
+	 * Arial Bold Italic metrics:
+	 * - unitsPerEm: 2048
+	 * - xWidthAvg: 983
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk-fallback',
+			src: 'local("Arial Bold Italic")',
+			fontWeight: '400',
+			fontStyle: 'italic',
+			...adjustFallbackFont({
+				ascent: 949,
+				descent: 259,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 451,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 983,
+			}),
+		},
+	},
 	// Note corresponding font weight in Tailwind is "light"
 	{
 		'@font-face': {
@@ -45,6 +203,36 @@ export const webFonts = [
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
 			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
+		},
+	},
+	/**
+	 * Fallback for Post Grotesk Book
+	 *
+	 * Post Grotesk Book metrics:
+	 * - ascent: 927
+	 * - descent: -252
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 440
+	 *
+	 * Arial metrics:
+	 * - unitsPerEm: 2048
+	 * - xWidthAvg: 913
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk-fallback',
+			src: 'local("Arial")',
+			fontWeight: '300',
+			...adjustFallbackFont({
+				ascent: 927,
+				descent: 252,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 440,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 913,
+			}),
 		},
 	},
 	// Note corresponding font weight in Tailwind is "light"
@@ -56,6 +244,37 @@ export const webFonts = [
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
 			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
+		},
+	},
+	/**
+	 * Fallback for Post Grotesk Book Italic
+	 *
+	 * Post Grotesk Book Italic metrics:
+	 * - ascent: 927
+	 * - descent: -251
+	 * - lineGap: 0
+	 * - unitsPerEm: 1000
+	 * - xWidthAvg: 439
+	 *
+	 * Arial Italic metrics:
+	 * - unitsPerEm: 2048
+	 * - xWidthAvg: 913
+	 */
+	{
+		'@font-face': {
+			fontFamily: 'PostGrotesk-fallback',
+			src: 'local("Arial Italic")',
+			fontWeight: '300',
+			fontStyle: 'italic',
+			...adjustFallbackFont({
+				ascent: 927,
+				descent: 251,
+				lineGap: 0,
+				unitsPerEm: 1000,
+				avgCharWidth: 439,
+				fallbackUnitsPerEm: 2048,
+				fallbackAvgCharWidth: 913,
+			}),
 		},
 	},
 ];
