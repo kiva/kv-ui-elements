@@ -115,6 +115,7 @@ import {
 	watch,
 	computed,
 	nextTick,
+	onBeforeRouteLeave,
 } from 'vue';
 import {
 	mdiArrowLeft, mdiClose, mdiOpenInNew,
@@ -336,6 +337,13 @@ export default {
 				headlineObserver.value.observe(headlineRef.value);
 			}
 			window.addEventListener('resize', debouncedUpdateHeights);
+		});
+
+		onBeforeRouteLeave(() => {
+			// Ensure body scroll is restored if component is unmounted while open
+			if (open.value) {
+				document.body.classList.remove('tw-overflow-hidden');
+			}
 		});
 
 		onUnmounted(() => {
