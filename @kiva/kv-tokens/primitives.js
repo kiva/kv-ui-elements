@@ -414,8 +414,10 @@ export default {
 		16: 128,
 	},
 	fonts: {
-		sans: 'PostGrotesk',
-		serif: 'dovetail-mvb',
+		// eslint-disable-next-line max-len
+		sans: "PostGrotesk, PostGrotesk-fallback, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
+		// eslint-disable-next-line max-len
+		serif: "dovetail-mvb, dovetail-mvb-fallback, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif",
 	},
 	fontSizes: {
 		base: {

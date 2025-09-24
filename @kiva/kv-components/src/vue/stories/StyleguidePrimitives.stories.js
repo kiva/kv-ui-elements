@@ -1,6 +1,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'; // eslint-disable-line import/no-extraneous-dependencies
 import { tailwindConfig, textStyles } from '@kiva/kv-tokens';
 import { headerNumberCase, kebabCase, removeObjectProperty } from '#utils/themeUtils';
+import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 import KvTab from '../KvTab.vue';
@@ -34,6 +35,7 @@ export default {
 export const Primitives = (templateArgs, { argTypes }) => ({
 	props: Object.keys(argTypes),
 	components: {
+		KvButton,
 		KvGrid,
 		KvPageContainer,
 		KvTab,
@@ -228,55 +230,105 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 		<hr>
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Text Styles</h2>
+			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
+				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
+			</div>
+			<br><br>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="typeStyle in kivaTypography"
-					:key="buildClassName('text', typeStyle)"
+					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
 					class="tw-overflow-x-auto tw-w-full"
 				>
 					<button
 						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-text', typeStyle))"
+						@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
 					>
 						<p
 							class="tw-mb-1"
-							:class="buildClassName('tw-text', typeStyle)"
+							:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
 							style="width: 12em;"
 						>
-							The quick brown fox jumps over the lazy dog
+							{{ pangram }}
 						</p>
-						<span>.{{buildClassName('tw-text', typeStyle)}}</span>
+						<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
 					</button>
 				</li>
 			</ul>
 		</section>
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Text Styles <i>(Italics)</i></h2>
+			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
+				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
+			</div>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="typeStyle in kivaTypography"
-					:key="buildClassName('text', typeStyle)"
+					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
 					class="tw-overflow-x-auto tw-w-full"
 				>
 					<button
 						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-text', typeStyle))"
+						@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
 					>
 						<p
 							class="tw-mb-1 tw-italic"
-							:class="buildClassName('tw-text', typeStyle)"
+							:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
 							style="width: 12em;"
 						>
-							The quick brown fox jumps over the lazy dog
+							{{ pangram }}
 						</p>
-						<span>.{{buildClassName('tw-text', typeStyle)}} .tw-italic</span>
+						<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} .tw-italic</span>
 					</button>
+				</li>
+			</ul>
+		</section>
+		<section class="tw-py-8">
+			<h2 class="tw-mb-4">Fallback Text Styles</h2>
+			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
+				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
+			</div>
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+				<li
+					v-for="typeStyle in kivaTypography"
+					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
+					class="tw-overflow-x-auto tw-w-full"
+				>
+					<p
+						class="tw-mb-1"
+						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+						style="width: 12em;"
+					>
+						{{ pangram }}
+					</p>
+					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
+					<p
+						class="tw-mb-1 tw-mt-1.5"
+						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+						style="width: 12em;"
+						:style="fallbackStyle(typeStyle, true)"
+					>
+						{{ pangram }}
+					</p>
+					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with adjusted fallback font-family</span>
+					<p
+						class="tw-mb-1 tw-mt-1.5"
+						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+						style="width: 12em;"
+						:style="fallbackStyle(typeStyle, false)"
+					>
+						{{ pangram }}
+					</p>
+					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with non-adjusted fallback font-family</span>
 				</li>
 			</ul>
 		</section>
 		<hr>
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Font Weights</h2>
+			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
+				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
+			</div>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="fontWeight in fontWeights"
@@ -287,7 +339,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
 						<p :class="buildClassName('tw-font', fontWeight[0])">
-							The quick brown fox jumps over the lazy dog
+							{{ pangram }}
 						</p>
 						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
 					</button>
@@ -297,6 +349,9 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 		<hr>
 		<section class="tw-py-8">
 			<h2 class="tw-mb-4">Font Weights (Serif)</h2>
+			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
+				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
+			</div>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
 					v-for="fontWeight in fontWeights"
@@ -307,7 +362,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 						@click="copy(buildClassName('tw-font', fontWeight[0]))"
 					>
 						<p :class="[buildClassName('tw-font', fontWeight[0]), 'tw-font-serif']">
-							The quick brown fox jumps over the lazy dog
+							{{ pangram }}
 						</p>
 						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
 					</button>
@@ -451,12 +506,13 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			textColor: buildValuesFromThemeObj(theme.textColor),
 			borderColor: buildValuesFromThemeObj(theme.borderColor),
 			space: buildValuesFromThemeObj(theme.spacing).sort((a, b) => a[0] - b[0]),
-			kivaTypography: Object.keys(textStyles).map((key) => headerNumberCase(kebabCase(key)).replace('text-', '')),
+			kivaTypography: Object.keys(textStyles),
 			fontWeights: buildValuesFromThemeObj(theme.fontWeight),
 			breakpoints: buildValuesFromThemeObj(removeObjectProperty(theme.screens, 'print')),
 			radii: buildValuesFromThemeObj(theme.borderRadius),
 			opacity: buildValuesFromThemeObj(theme.opacity),
 			zIndices: buildValuesFromThemeObj(theme.zIndex).sort((a, b) => a[1] - b[1]),
+			pangram: 'The quick brown fox jumps over the lazy dog',
 			isToastVisible: false,
 			toastMessage: '',
 		};
@@ -493,6 +549,37 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			];
 			const isStatic = staticColors.some((staticColor) => colorName[0].includes(staticColor));
 			return isStatic;
+		},
+		newPangram() {
+			const pangrams = [
+				'The quick brown fox jumps over the lazy dog',
+				'Sphinx of black quartz, judge my vow',
+				'How vexingly quick daft zebras jump',
+				'The five boxing wizards jump quickly',
+				'Jackdaws love my big sphinx of quartz',
+				'Fix problem quickly with galvanized jets',
+				'Heavy boxes perform quick waltzes and jigs',
+				'Sixty zippers were quickly picked from the woven jute bag',
+				'Jinxed wizards pluck ivy from the big quilt',
+				'Adjusting quiver and bow, Zombyx fought the ghouls',
+				'All questions asked by five watched experts amaze the judge',
+				'The public was amazed to view the quickness and dexterity of the juggler',
+				'William said that everything about his jacket was in quite good condition except for the zipper',
+			];
+			const randomIndex = Math.floor(Math.random() * pangrams.length);
+			this.pangram = pangrams[randomIndex];
+		},
+		typeStyleKeyToClassName(key) {
+			return headerNumberCase(kebabCase(key)).replace('text-', '');
+		},
+		fallbackStyle(key, adjusted = false) {
+			const style = {};
+			if (!textStyles[key].fontFamily || textStyles[key].fontFamily?.startsWith('Post')) {
+				style.fontFamily = adjusted ? 'PostGrotesk-fallback' : "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif";
+			} else if (textStyles[key].fontFamily?.startsWith('dove')) {
+				style.fontFamily = adjusted ? 'dovetail-mvb-fallback' : "ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif";
+			}
+			return style;
 		},
 	},
 });

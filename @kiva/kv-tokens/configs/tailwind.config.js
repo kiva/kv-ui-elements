@@ -89,10 +89,8 @@ export default {
 			16: rem(space['16']),
 		},
 		fontFamily: {
-			// eslint-disable-next-line max-len
-			sans: [`${fonts.sans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`],
-			// eslint-disable-next-line max-len
-			serif: [`${fonts.serif}, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif`],
+			sans: [fonts.sans],
+			serif: [fonts.serif],
 		},
 		fontWeight: {
 			// Keeping "book" defined here for backwards compatibility
