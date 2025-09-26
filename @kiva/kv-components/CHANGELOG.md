@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.57.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.3...@kiva/kv-components@6.57.0) (2025-09-26)
+
+
+### Features
+
+* fallback font styles adjusted to match primary styles ([c57ddc1](https://github.com/kiva/kv-ui-elements/commit/c57ddc1190153dc4d5db264df52f2f0b45738c5b))
+
+
+
+
+
 ## [6.56.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.2...@kiva/kv-components@6.56.3) (2025-09-24)
 
 
