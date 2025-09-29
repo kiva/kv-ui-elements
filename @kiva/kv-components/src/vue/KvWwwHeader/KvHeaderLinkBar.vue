@@ -121,7 +121,7 @@
 			/>
 			<!-- balance (auth) -->
 			<span class="tw-text-eco-green-4">
-				{{ numeral(balance).format('$0') }}
+				{{ numeral(roundedBalance).format('$0') }}
 			</span>
 		</div>
 		<!-- sign in (lg, no-auth) -->
@@ -317,6 +317,8 @@ export default {
 			return props.lenderImageUrl?.split('/').pop() ?? '';
 		});
 
+		const roundedBalance = computed(() => Math.floor(props.balance));
+
 		watch(
 			() => props.isMobile,
 			() => {
@@ -370,6 +372,7 @@ export default {
 			KvHeaderTakeActionMenu,
 			KvHeaderAboutMenu,
 			isLegacyPlaceholderAvatar,
+			roundedBalance,
 		};
 	},
 };
