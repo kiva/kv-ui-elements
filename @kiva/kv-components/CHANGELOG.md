@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.0...@kiva/kv-components@6.57.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* balance rounded down in header ([#686](https://github.com/kiva/kv-ui-elements/issues/686)) ([e39be9c](https://github.com/kiva/kv-ui-elements/commit/e39be9c623e4fe16e4e8b03fc77dca20b2a4e936))
+
+
+
+
+
 # [6.57.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.56.3...@kiva/kv-components@6.57.0) (2025-09-26)
 
 
