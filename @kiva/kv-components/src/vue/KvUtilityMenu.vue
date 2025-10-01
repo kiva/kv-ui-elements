@@ -1,13 +1,13 @@
 <template>
 	<div
-		class="tw-relative utitlity-menu-wrapper"
+		class="tw-relative utility-menu-wrapper"
 		:class="[
 			buttonSize === 'small' ? 'tw-w-4 tw-h-4' : 'tw-w-6 tw-h-6',
 		]"
 	>
 		<button
 			ref="menuAnchor"
-			v-kv-track-event="['`${analyticsCategory}`', 'click', 'utility-menu']"
+			v-kv-track-event="[analyticsCategory, 'click', 'utility-menu']"
 			class="
 				tw-absolute
 				tw-bg-white
