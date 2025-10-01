@@ -316,6 +316,15 @@ export default {
 			},
 		);
 
+		watch(
+			() => props.openMenuItem,
+			(menuItem) => {
+				if (!menuItem) {
+					openMenuId.value = null;
+				}
+			},
+		);
+
 		onMounted(() => {
 			import('./KvHeaderMobileMenu.vue');
 			import('./KvHeaderMyKivaMenu.vue');
