@@ -56,6 +56,7 @@
 					bg-opacity-50 tw-min-h-screen
 				"
 				:style="{ top: HEADER_HEIGHT }"
+				@touchstart="onHover()"
 			>
 				<div
 					class="tw-bg-primary tw-overflow-y-auto"

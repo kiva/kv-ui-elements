@@ -102,7 +102,7 @@
 			ref="avatar"
 			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
 				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
-			@mouseover="handleAvatarMenuPosition"
+			@mouseover="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
 			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
 		>
@@ -224,8 +224,6 @@ export default {
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
-		const userIsTapping = ref(false);
-		const tappingTimeout = ref();
 
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
@@ -273,13 +271,6 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu, targetPosition) => {
-			tappingTimeout.value = null;
-			userIsTapping.value = true;
-
-			if (tappingTimeout.value) {
-				clearTimeout(tappingTimeout.value);
-			}
-
 			// Handles the scenario when mobile menu is closed from main component
 			if (openMenuId.value === MOBILE_MENU_ITEM) {
 				openMenuId.value = null;
@@ -298,9 +289,6 @@ export default {
 				openMenuId.value = null;
 				onHover();
 			}
-			tappingTimeout.value = setTimeout(() => {
-				userIsTapping.value = false;
-			}, 500);
 		};
 
 		const handleAvatarMenuPositionThrottled = throttle(() => {
@@ -372,6 +360,7 @@ export default {
 			KvHeaderTakeActionMenu,
 			KvHeaderAboutMenu,
 			isLegacyPlaceholderAvatar,
+			getAvatarMenuPosition,
 			roundedBalance,
 		};
 	},
