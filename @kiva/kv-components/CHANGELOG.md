@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.3...@kiva/kv-components@6.57.4) (2025-10-01)
+
+
+### Bug Fixes
+
+* when closing outside menu, watch openMenuItem to reset active menu value ([252baa7](https://github.com/kiva/kv-ui-elements/commit/252baa71f9f07ac7fc97c7b0920ec1dcef3856ef))
+
+
+
+
+
 ## [6.57.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.2...@kiva/kv-components@6.57.3) (2025-10-01)
 
 
