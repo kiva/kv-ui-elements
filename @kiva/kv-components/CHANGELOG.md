@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.2...@kiva/kv-components@6.57.3) (2025-10-01)
+
+
+### Bug Fixes
+
+* utility menu analytics ([bd4742b](https://github.com/kiva/kv-ui-elements/commit/bd4742b0c29200b8336e10ede4388f18b029a248))
+
+
+
+
+
 ## [6.57.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.1...@kiva/kv-components@6.57.2) (2025-10-01)
 
 
