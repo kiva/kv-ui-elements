@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.1...@kiva/kv-components@6.57.2) (2025-10-01)
+
+
+### Bug Fixes
+
+* close on click outside menu and toggling of avatar menu ([b897cd2](https://github.com/kiva/kv-ui-elements/commit/b897cd26871cb562a8713a948c0e7d9ff381b52d))
+
+
+
+
+
 ## [6.57.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.0...@kiva/kv-components@6.57.1) (2025-09-29)
 
 
