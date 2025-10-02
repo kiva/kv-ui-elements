@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="tw-h-full tw-flex tw-items-center tw-gap-0.5 md:tw-gap-2 lg:tw-gap-2.5"
+		@touchstart="handleEmptySpaceClick"
 	>
 		<!-- 3-bar menu (sm) -->
 		<button
@@ -14,7 +15,7 @@
 			}"
 			@mouseover="handleOnHover('menuButton', KvHeaderMobileMenu)"
 			@mouseout="handleMouseOut('menuButton')"
-			@touchstart="handleTouchStart('menuButton', KvHeaderMobileMenu)"
+			@touchstart.stop="handleTouchStart('menuButton', KvHeaderMobileMenu)"
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
@@ -30,7 +31,7 @@
 			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-1"
 			@on-hover="handleOnHover"
 			@mouseout="handleMouseOut('lendButton')"
-			@touchstart="handleTouchStart('lendButton', KvLendMenu)"
+			@touchstart.stop="handleTouchStart('lendButton', KvLendMenu)"
 		>
 			Lend
 		</KvHeaderDropdownLink>
@@ -104,7 +105,7 @@
 				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
 			@mouseover="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
 			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
-			@touchstart="handleTouchStart(AVATAR_MENU_ID)"
+			@touchstart.stop="handleTouchStart(AVATAR_MENU_ID)"
 		>
 			<!-- avatar (sm, auth) -->
 			<kv-material-icon
@@ -307,6 +308,13 @@ export default {
 
 		const roundedBalance = computed(() => Math.floor(props.balance));
 
+		const handleEmptySpaceClick = (event) => {
+			// Only close if the click target is the container itself (not a child)
+			if (event.target === event.currentTarget) {
+				onHover();
+			}
+		};
+
 		watch(
 			() => props.isMobile,
 			() => {
@@ -370,6 +378,7 @@ export default {
 			KvHeaderAboutMenu,
 			isLegacyPlaceholderAvatar,
 			getAvatarMenuPosition,
+			handleEmptySpaceClick,
 			roundedBalance,
 		};
 	},
