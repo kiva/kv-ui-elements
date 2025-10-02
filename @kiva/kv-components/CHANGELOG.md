@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.4...@kiva/kv-components@6.57.5) (2025-10-02)
+
+
+### Bug Fixes
+
+* mobile menu being closed when click it anywhere and close menus on nav empty spaces click ([568b9b5](https://github.com/kiva/kv-ui-elements/commit/568b9b57890e5879bc68360a5672d9ff7539e8f9))
+
+
+
+
+
 ## [6.57.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.3...@kiva/kv-components@6.57.4) (2025-10-01)
 
 
