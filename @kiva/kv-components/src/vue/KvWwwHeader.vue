@@ -56,7 +56,7 @@
 					bg-opacity-50 tw-min-h-screen
 				"
 				:style="{ top: HEADER_HEIGHT }"
-				@touchstart="onHover()"
+				@touchstart="handleOverlayClick"
 			>
 				<div
 					class="tw-bg-primary tw-overflow-y-auto"
@@ -210,6 +210,10 @@ export default {
 			menuComponentInstance.value?.onLoad(apollo);
 		};
 
+		const handleOverlayClick = () => {
+			if (!isMobileMenuActive.value) return onHover();
+		};
+
 		// This event will be used as a signal to call loadMenuData
 		const emitLendMenuEvent = () => {
 			emit('load-lend-menu-data');
@@ -247,6 +251,7 @@ export default {
 
 			onHover,
 			loadMenuData,
+			handleOverlayClick,
 
 			activeHeaderItem,
 			menuComponent,
