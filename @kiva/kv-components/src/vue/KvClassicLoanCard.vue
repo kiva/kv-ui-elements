@@ -295,6 +295,7 @@ import KvLoanActivities, { KV_LOAN_ACTIVITIES_FRAGMENT } from './KvLoanActivitie
 export const KV_CLASSIC_LOAN_CARD_FRAGMENT = gql`
 	fragment KvClassicLoanCard on LoanBasic {
 		id
+		gender
 		image {
 			id
 			hash # for imageHash
