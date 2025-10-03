@@ -356,7 +356,8 @@ export default {
 		});
 
 		const modalPosition = computed(() => {
-			const right = `${window.innerWidth - headerLeftPosition.value - 200}`; // 200 to be in the middle of the basket
+			const rightPos = window.innerWidth - headerLeftPosition.value - 200; // 200 to be in the middle of the basket
+			const right = `${rightPos > 0 ? rightPos : 0}`;
 			const top = `${headerBottomPosition.value}`;
 			return { right, top };
 		});
