@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.6...@kiva/kv-components@6.57.7) (2025-10-03)
+
+
+### Bug Fixes
+
+* set atb modal right position to 0 if value is negative ([29151e9](https://github.com/kiva/kv-ui-elements/commit/29151e9498f4f296dd7f391ba192de1e353836de))
+
+
+
+
+
 ## [6.57.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.5...@kiva/kv-components@6.57.6) (2025-10-03)
 
 
