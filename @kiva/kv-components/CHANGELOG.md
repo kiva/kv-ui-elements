@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.57.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.5...@kiva/kv-components@6.57.6) (2025-10-03)
+
+
+### Bug Fixes
+
+* add gender to loan card data to simplify where the fragment is used ([9d8dda9](https://github.com/kiva/kv-ui-elements/commit/9d8dda9c5cb886afa378feb51bf78264d60a77db))
+
+
+
+
+
 ## [6.57.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.4...@kiva/kv-components@6.57.5) (2025-10-02)
 
 
