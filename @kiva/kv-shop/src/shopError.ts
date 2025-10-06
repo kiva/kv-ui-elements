@@ -69,6 +69,17 @@ export function parseShopError(error: any) {
 			original: error,
 		}, 'There is not enough money to complete the checkout. Please double-check the details and try again.');
 	}
+
+	// Giving Fund Errors
+	// Handle errors (`${code}: ${message}`) similar to:
+	// Exception while fetching data (/addGivingFund) : \"User 3480555 already has a Giving Fund with category WOMEN\""
+	if (errorMessage.includes('already has a Giving Fund with category')) {
+		return new ShopError({
+			code: 'shop.givingfunds.duplicateFundCreation',
+			original: error,
+		}, 'You already have a giving fund supporting this group of people.');
+	}
+
 	// Handle errors with shop.invalidBasketId or shop.basketRequired codes
 	if (
 		errorCode === 'shop.invalidBasketId'
