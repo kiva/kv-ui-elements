@@ -40,9 +40,8 @@ export async function addGivingFund({
 	});
 	if (result.errors) {
 		const errors = result.errors.map((error) => parseShopError(error));
-		const aggregate = new ShopError({ code: 'shop.failedAddGivingFund' });
-		aggregate.aggregateErrors(errors);
-		throw aggregate;
+		// return the first error
+		throw errors[0];
 	}
 
 	return result.data?.addGivingFund;
