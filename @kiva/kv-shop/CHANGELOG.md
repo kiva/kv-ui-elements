@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.5.0...@kiva/kv-shop@3.6.0) (2025-10-07)
+
+
+### Features
+
+* remove aggregate errors for add giving fund ([0378f3f](https://github.com/kiva/kv-ui-elements/commit/0378f3f650c3f768db6c64a92fcc502c0c29f58f))
+
+
+
+
+
 # [3.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.4.12...@kiva/kv-shop@3.5.0) (2025-10-07)
 
 
