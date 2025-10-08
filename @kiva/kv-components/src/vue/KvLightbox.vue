@@ -77,7 +77,7 @@
 							<div class="tw-flex-grow">
 								<!-- @slot header -->
 								<slot name="header">
-									<h2	class="tw-text-h3 tw-flex-1">
+									<h2	class="tw-flex-1">
 										{{ title }}
 									</h2>
 								</slot>
