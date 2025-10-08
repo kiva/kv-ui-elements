@@ -20,7 +20,7 @@
 				<div
 					v-for="item in menuItems"
 					:key="item.title"
-					v-kv-track-event="['TopNav', `click-menu-${item.trackEvent}`]"
+					v-kv-track-event="['TopNav', `click-${item.trackEvent}`]"
 				>
 					<a
 						:href="item.url"
@@ -45,42 +45,42 @@
 			</template>
 			<div class="tw-flex tw-flex-col tw-gap-2 tw-pb-2 tw-pl-1">
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-about-us']"
+					v-kv-track-event="['TopNav', 'click-About-About us']"
 					href="/about"
 					class="mobile-link"
 				>About us</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-how-kiva-works']"
+					v-kv-track-event="['TopNav', 'click-About-How Kiva works']"
 					href="/about/how"
 					class="mobile-link"
 				>How Kiva works</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-where-kiva-works']"
+					v-kv-track-event="['TopNav', 'click-About-Where Kiva works']"
 					href="/about/where-kiva-works"
 					class="mobile-link"
 				>Where Kiva works</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-impact']"
+					v-kv-track-event="['TopNav', 'click-About-Impact']"
 					href="/impact"
 					class="mobile-link"
 				>Impact</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-leadership']"
+					v-kv-track-event="['TopNav', 'click-About-Leadership']"
 					href="/about/leadership"
 					class="mobile-link"
 				>Leadership</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-finances']"
+					v-kv-track-event="['TopNav', 'click-About-Finances']"
 					href="/about/finances"
 					class="mobile-link"
 				>Finances</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-press']"
+					v-kv-track-event="['TopNav', 'click-About-Press']"
 					href="/about/press-center"
 					class="mobile-link"
 				>Press</a>
 				<a
-					v-kv-track-event="['TopNav', 'click-menu-due-diligence']"
+					v-kv-track-event="['TopNav', 'click-About-Due diligence']"
 					href="/about/due-diligence"
 					class="mobile-link"
 				>Due diligence</a>
@@ -123,25 +123,25 @@ export default {
 					title: 'Choose someone to help',
 					description: 'Make a direct impact for someone in need',
 					url: '/lend-by-category',
-					trackEvent: 'choose-someone-to-help',
+					trackEvent: 'menu-choose-someone-to-help',
 				},
 				{
 					title: 'Donate to Kiva',
 					description: 'Help us change lives and tackle inequality',
 					url: '/donate/supportus',
-					trackEvent: 'donate-to-kiva',
+					trackEvent: 'Support-Kiva',
 				},
 				{
 					title: 'Partner with us',
 					description: 'Drive global impact aligned with your organization’s goals',
 					url: '/about/partner-with-us',
-					trackEvent: 'partner-with-us',
+					trackEvent: 'About-Partner with us',
 				},
 				{
 					title: 'Buy a Kiva Card',
 					description: 'Give the gift of lending to others',
 					url: '/portfolio/kiva-card',
-					trackEvent: 'buy-a-kiva-card',
+					trackEvent: 'menu-buy-kiva-card',
 				},
 			],
 		};

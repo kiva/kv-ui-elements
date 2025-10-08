@@ -37,7 +37,7 @@
 		</KvHeaderDropdownLink>
 		<!-- Take Action -->
 		<KvHeaderDropdownLink
-			v-kv-track-event="['TopNav', 'click-TakeAction']"
+			v-kv-track-event="['TopNav', 'click-take-action']"
 			ref-name="takeActionButton"
 			base-class="tw-hidden md:tw-inline-flex tw-py-1"
 			:menu-component="KvHeaderTakeActionMenu"
@@ -52,7 +52,6 @@
 		</KvHeaderDropdownLink>
 		<!-- about (lg) -->
 		<KvHeaderDropdownLink
-			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
 			data-testid="header-about"
 			base-class="tw-hidden md:tw-inline-flex tw-py-1"
