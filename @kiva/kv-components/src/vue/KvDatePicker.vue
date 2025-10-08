@@ -133,7 +133,6 @@ export default {
 	text-align: center;
 	color: var(--text-secondary);
 }
-
 .kv-datepicker .dp__input {
 	font-family: inherit;
 	font-weight: inherit;
@@ -147,6 +146,9 @@ export default {
 	outline: none;
 }
 
+.kv-datepicker .dp__disabled {
+	background-color: rgb(var(--bg-tertiary), 25%);
+}
 /* Default theme */
 .kv-datepicker .dp__theme_light {
 	--dp-primary-color: rgb(var(--bg-primary-inverse));
