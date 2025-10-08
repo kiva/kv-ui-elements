@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.7...@kiva/kv-components@6.58.0) (2025-10-08)
+
+
+### Bug Fixes
+
+* disabled text color ([c9c13ca](https://github.com/kiva/kv-ui-elements/commit/c9c13ca5950e327eb916aeb96a7aa46bb9e31426))
+* spacing ([485d422](https://github.com/kiva/kv-ui-elements/commit/485d422d37175a4ad934ea171e202de0d6ebe5c6))
+
+
+### Features
+
+* change modal title styling to be h2 ([1ad959a](https://github.com/kiva/kv-ui-elements/commit/1ad959af01d35052637af0bd97cbdb77b56c17bf))
+* disabled fields for datepicker ([032355e](https://github.com/kiva/kv-ui-elements/commit/032355e4a3c4e7f6e012be676a7bb22cab852138))
+
+
+
+
+
 ## [6.57.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.6...@kiva/kv-components@6.57.7) (2025-10-03)
 
 
