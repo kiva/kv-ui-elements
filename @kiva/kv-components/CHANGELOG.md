@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.59.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.58.0...@kiva/kv-components@6.59.0) (2025-10-08)
+
+
+### Features
+
+* update new nav tracking events ([9d7d9d1](https://github.com/kiva/kv-ui-elements/commit/9d7d9d13820427e3ada0e0885e5c97ac4b1e547a))
+
+
+
+
+
 # [6.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.7...@kiva/kv-components@6.58.0) (2025-10-08)
 
 
