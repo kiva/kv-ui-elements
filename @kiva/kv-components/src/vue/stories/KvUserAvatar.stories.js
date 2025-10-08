@@ -33,7 +33,7 @@ export const Anonymous = story({
 	lenderName: 'Anonymous',
 });
 
-export const DefaultProfile = story({
+export const LegacyDefaultImage = story({
 	lenderImageUrl: 'https://www.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 	lenderName: 'Default Profile',
 });
@@ -41,6 +41,18 @@ export const DefaultProfile = story({
 export const IsSmall = story({
 	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	lenderName: 'Roger',
+	isSmall: true,
+});
+
+export const IsSmallNoImage = story({
+	lenderImageUrl: '',
+	lenderName: 'Roger',
+	isSmall: true,
+});
+
+export const IsSmallAnonymous = story({
+	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	lenderName: 'Anonymous',
 	isSmall: true,
 });
 
