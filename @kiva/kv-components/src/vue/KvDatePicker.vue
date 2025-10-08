@@ -138,7 +138,6 @@ export default {
 	font-family: inherit;
 	font-weight: inherit;
 	height: 3rem;
-	background-color: rgb(var(--bg-primary));
 }
 
 .kv-datepicker .dp__input:focus-within,
@@ -149,7 +148,7 @@ export default {
 }
 
 .kv-datepicker .dp__disabled {
-	background-color: rgb(var(--bg-tertiary), 25%);
+	color: rgb(var(--text-tertiary));
 }
 
 /* Default theme */
@@ -167,8 +166,8 @@ export default {
 	--dp-background-color: rgb(var(--bg-primary));
 	--dp-text-color: rgb(var(--text-primary));
 	--dp-menu-border-color: rgb(var(--bg-primary-inverse));
-	--dp-disabled-color: rgb(var(--bg-primary));
-	--dp-disabled-color-text: rgb(var(--text-secondary));
+	--dp-disabled-color: rgb(var(--bg-tertiary), 25%);
+	--dp-disabled-color-text: rgb(var(--bg-tertiary));
 	--dp-success-color: rgb(var(--bg-action));
 	--dp-danger-color: rgb(var(--bg-danger));
 	--dp-highlight-color: rgb(var(--bg-action));
