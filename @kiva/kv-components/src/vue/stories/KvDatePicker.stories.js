@@ -132,7 +132,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
 /**
  * Default date picker with basic functionality.
  *
-
  */
 export const Default = DefaultTemplate.bind({});
 Default.args = {
@@ -146,7 +145,6 @@ Default.args = {
 /**
  * Date picker with time selection enabled.
  *
-
  */
 export const WithTimePicker = DefaultTemplate.bind({});
 WithTimePicker.args = {
@@ -246,7 +244,6 @@ HiddenIcon.args = {
 /**
  * Date range picker for selecting start and end dates.
  *
-
  */
 export const DateRange = DefaultTemplate.bind({});
 DateRange.args = {
@@ -259,7 +256,6 @@ DateRange.args = {
 /**
  * Date picker with min/max date constraints.
  *
-
  */
 export const WithMinMaxDates = DefaultTemplate.bind({});
 WithMinMaxDates.args = {
@@ -273,7 +269,6 @@ WithMinMaxDates.args = {
 /**
  * Date picker with disabled field.
  *
-
  */
 
 export const WithDisabledField = (args, { argTypes }) => ({
@@ -341,7 +336,6 @@ WithDisabledField.args = {
 /**
  * Examples of different date formats supported by the component.
  *
-
  */
 export const DifferentFormats = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -385,7 +379,6 @@ export const DifferentFormats = (args, { argTypes }) => ({
 /**
  * Examples of different locales supported by the component.
  *
-
  */
 export const DifferentLocales = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),

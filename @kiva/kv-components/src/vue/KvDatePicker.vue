@@ -133,12 +133,14 @@ export default {
 	text-align: center;
 	color: var(--text-secondary);
 }
+
 .kv-datepicker .dp__input {
 	font-family: inherit;
 	font-weight: inherit;
 	height: 3rem;
 	background-color: rgb(var(--bg-primary));
 }
+
 .kv-datepicker .dp__input:focus-within,
 .kv-datepicker .dp__input:focus-visible {
 	border-color: rgb(var(--bg-action));
@@ -149,6 +151,7 @@ export default {
 .kv-datepicker .dp__disabled {
 	background-color: rgb(var(--bg-tertiary), 25%);
 }
+
 /* Default theme */
 .kv-datepicker .dp__theme_light {
 	--dp-primary-color: rgb(var(--bg-primary-inverse));
@@ -175,5 +178,4 @@ export default {
 	--dp-range-between-dates-text-color: rgb(var(--bg-primary));
 	--dp-range-between-border-color: rgb(var(--bg-action));
 }
-
 </style>
