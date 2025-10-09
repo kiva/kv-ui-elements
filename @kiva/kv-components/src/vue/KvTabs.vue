@@ -18,17 +18,20 @@
 			<!-- indicator bar -->
 			<div
 				class="
-					tw-absolute tw-bottom-0 tw-h-0.5 tw-left-0
-					tw-bg-primary-inverse tw-rounded-full
-					tw-origin-left tw-transition-all tw-duration-300
-				"
-				:class="{ 'tw-hidden md:tw-block tw-top-0 md:tw-bg-action' : vertical}"
+                    tw-absolute tw-bottom-0 tw-h-0.5 tw-left-0
+                    tw-bg-primary-inverse tw-rounded-full
+                    tw-origin-left
+                "
+				:class="{
+					'tw-hidden md:tw-block tw-top-0 md:tw-bg-action' : vertical,
+					'tw-transition-all tw-duration-300' : shouldAnimate
+				}"
 				:style="`
-					width: ${selectedTabEl && !vertical ? selectedTabEl.clientWidth : 3}px;
-					height: ${selectedTabEl && vertical ? `${selectedTabEl.clientHeight}px` : '0.25rem'};
-					transform: ${selectedTabEl && !vertical ? `translateX(${selectedTabEl.offsetLeft}px)`
+                    width: ${selectedTabEl && !vertical ? selectedTabEl.clientWidth : 3}px;
+                    height: ${selectedTabEl && vertical ? `${selectedTabEl.clientHeight}px` : '0.25rem'};
+                    transform: ${selectedTabEl && !vertical ? `translateX(${selectedTabEl.offsetLeft}px)`
 				: selectedTabEl ? `translateY(${selectedTabEl.offsetTop}px)` : null};
-				`"
+                `"
 			></div>
 		</div>
 		<div class="tw-relative">
@@ -84,6 +87,8 @@ export default {
 			navItems: [],
 		});
 		const selectedTabResizeObserver = ref(null);
+		const isInitialized = ref(false);
+		const shouldAnimate = ref(false);
 
 		const selectedTabEl = computed(() => {
 			const { navItems, selectedIndex } = tabContext;
@@ -98,6 +103,9 @@ export default {
 		};
 
 		const setTab = (index) => {
+			// Only animate if user clicks on a tab
+			shouldAnimate.value = isInitialized.value;
+
 			tabContext.selectedIndex = index;
 			selectedTabEl.value.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -107,6 +115,10 @@ export default {
 			 * @property {number} index Index of the newly selected tab
 			 */
 			emit('tab-changed', index);
+			// Reset animation flag after a short delay
+			setTimeout(() => {
+				shouldAnimate.value = false;
+			}, 300);
 		};
 
 		tabContext.setTab = setTab; // setTab definition in tab context
@@ -176,6 +188,7 @@ export default {
 			handleKeyDown,
 			selectedTabEl,
 			tabContext,
+			shouldAnimate,
 		};
 	},
 };
