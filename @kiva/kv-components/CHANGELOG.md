@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.59.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.0...@kiva/kv-components@6.59.1) (2025-10-10)
+
+
+### Bug Fixes
+
+* prevent event from menu component parent in mobile ([c37a538](https://github.com/kiva/kv-ui-elements/commit/c37a5385646a248e73b771aab78c9a5ec5960722))
+
+
+
+
+
 # [6.59.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.58.0...@kiva/kv-components@6.59.0) (2025-10-08)
 
 
