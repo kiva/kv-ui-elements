@@ -1,6 +1,5 @@
 <template>
 	<div class="tw-flex tw-flex-col tw-items-start tw-gap-3 tw-w-full">
-		<!-- Cards Grid -->
 		<div class="tw-flex tw-items-start tw-gap-3 tw-w-full">
 			<div
 				class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
@@ -8,11 +7,11 @@
 			>
 				<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
 					<!-- Image and Content -->
-					<div class="tw-flex tw-items-center tw-gap-2 tw-w-full">
+					<div class="tw-flex tw-items-start tw-gap-2 tw-w-full">
 						<div class="tw-flex-shrink-0 tw-overflow-hidden">
 							<kv-borrower-image
-								class="tw-bg-black tw-rounded-md"
-								style="width: 100px; height: 100px; object-fit: cover;"
+								class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
+								style="width: 100px; height: 100px;"
 								:alt="`Photo of ${borrowerName}`"
 								:aspect-ratio="1"
 								:default-image="{ width: 200, faceZoom: 50 }"
@@ -21,12 +20,15 @@
 								:photo-path="photoPath"
 							/>
 						</div>
-						<div class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1">
+						<div
+							class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1"
+							style="height: 7.25rem;"
+						>
 							<component
 								:is="tag"
 								:to="readMorePath"
 								:href="readMorePath"
-								class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline"
+								class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
 								aria-label="Loan tag"
 								@click.native="clickReadMore('Tag', $event)"
 							>
@@ -37,8 +39,8 @@
 							</component>
 							<div
 								v-if="isLoading"
-								class="tw-w-full"
-								style="height: 5.5rem; width: 13rem;;"
+								class="loan-card-use-text tw-w-full tw-overflow-hidden"
+								style="width: 13rem;"
 							>
 								<div
 									v-for="(_n, i) in [...Array(4)]"
@@ -50,7 +52,7 @@
 							</div>
 							<div
 								v-else
-								class="loan-card-use-text tw-w-full"
+								class="loan-card-use-text tw-w-full tw-overflow-hidden"
 							>
 								<kv-loan-use
 									:use="loanUse"
@@ -68,8 +70,8 @@
 					<!-- Pills -->
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
-						class="tw-mt-1.5 tw-mb-1"
-						:style="{ width: '60%', height: '1.5rem', 'border-radius': '500rem' }"
+						class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
+						:style="{ width: '60%', height: '1.5rem' }"
 					/>
 
 					<kv-loan-callouts
@@ -399,10 +401,6 @@ export default {
 		};
 	},
 	computed: {
-		displayPills() {
-			// Show first 2 callouts as pills
-			return this.loanCallouts.slice(0, 2);
-		},
 		lendersNumber() {
 			return this.loan?.lenders?.totalCount ?? 0;
 		},
@@ -427,12 +425,11 @@ export default {
     @apply tw-no-underline;
 }
 
-/* Limit loan use to 3 lines */
 .loan-card-use-text :deep(p) {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
     overflow: hidden;
     text-overflow: ellipsis;
 }
