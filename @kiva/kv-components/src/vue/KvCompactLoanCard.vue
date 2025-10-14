@@ -451,9 +451,4 @@ export default {
     max-height: 40px !important;
     min-height: 40px !important;
 }
-
-.loan-card-cta :deep(button span) {
-    line-height: normal !important;
-    padding: 6px !important;
-}
 </style>
