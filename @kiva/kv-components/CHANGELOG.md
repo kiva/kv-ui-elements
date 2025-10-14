@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.59.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.1...@kiva/kv-components@6.59.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* missing tracking events ([397f83a](https://github.com/kiva/kv-ui-elements/commit/397f83a8de7853d27476e01188537ed896719d71))
+* user tapping should not redirect to lend by category page ([fda004c](https://github.com/kiva/kv-ui-elements/commit/fda004cf46962cd8dac4332a02b19241013dd8b5))
+
+
+
+
+
 ## [6.59.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.0...@kiva/kv-components@6.59.1) (2025-10-10)
 
 
