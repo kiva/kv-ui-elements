@@ -38,7 +38,7 @@
 							<div
 								v-if="isLoading"
 								class="tw-w-full"
-								style="height: 5.5rem;"
+								style="height: 5.5rem; width: 13rem;;"
 							>
 								<div
 									v-for="(_n, i) in [...Array(4)]"
@@ -48,7 +48,10 @@
 									<kv-loading-placeholder />
 								</div>
 							</div>
-							<div v-else>
+							<div
+								v-else
+								class="loan-card-use-text tw-w-full"
+							>
 								<kv-loan-use
 									:use="loanUse"
 									:loan-amount="loanAmount"
@@ -66,7 +69,7 @@
 					<kv-loading-placeholder
 						v-if="isLoading || typeof loanCallouts === 'undefined'"
 						class="tw-mt-1.5 tw-mb-1"
-						:style="{ width: '60%', height: '1.75rem', 'border-radius': '500rem' }"
+						:style="{ width: '60%', height: '1.5rem', 'border-radius': '500rem' }"
 					/>
 
 					<kv-loan-callouts
@@ -84,7 +87,7 @@
 						<div class="tw-flex-1">
 							<kv-loading-placeholder
 								class="tw-mb-0.5"
-								:style="{ width: '11rem', height: '1.3rem' }"
+								:style="{ width: '11rem', height: '1rem' }"
 							/>
 							<kv-loading-placeholder
 								class="tw-rounded"
@@ -121,7 +124,10 @@
 						</div>
 
 						<!-- CTA Section: fixed width, aligned right -->
-						<div class="tw-flex-shrink-0">
+						<div
+							class="tw-flex-shrink-0 loan-card-cta"
+							style="height: 40px;"
+						>
 							<kv-lend-cta
 								:loan="loan"
 								:unreserved-amount="unreservedAmount"
@@ -409,16 +415,48 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-/** Shared with KvWideLoanCard */
 .loan-card-use:hover,
 .loan-card-use:focus {
-	@apply tw-text-primary;
+    @apply tw-text-primary;
 }
 .loan-card-active-hover:hover .loan-card-use {
-	@apply tw-underline;
+    @apply tw-underline;
 }
 .loan-card-progress:hover,
 .loan-card-progress:focus {
-	@apply tw-no-underline;
+    @apply tw-no-underline;
+}
+
+/* Limit loan use to 3 lines */
+.loan-card-use-text :deep(p) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Override CTA component height to match Figma */
+.loan-card-cta :deep(form),
+.loan-card-cta :deep(fieldset),
+.loan-card-cta :deep(.tw-w-full),
+.loan-card-cta :deep(button) {
+    height: 40px !important;
+    max-height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.loan-card-cta :deep(.tw-inline-flex) {
+    height: 40px !important;
+    max-height: 40px !important;
+    min-height: 40px !important;
+}
+
+.loan-card-cta :deep(button span) {
+    line-height: normal !important;
+    padding: 6px !important;
 }
 </style>
