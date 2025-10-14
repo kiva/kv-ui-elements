@@ -83,7 +83,8 @@
 					<template v-if="!hasProgressData">
 						<div class="tw-flex-1">
 							<kv-loading-placeholder
-								class="tw-mb-0.5 tw-w-44 tw-h-5"
+								class="tw-mb-0.5"
+								:style="{ width: '11rem', height: '1.3rem' }"
 							/>
 							<kv-loading-placeholder
 								class="tw-rounded"
