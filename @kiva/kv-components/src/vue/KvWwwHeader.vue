@@ -82,6 +82,7 @@
 						:countries-not-lent-to-url="countriesNotLentToUrl"
 						@load-lend-menu-data="emitLendMenuEvent"
 						@closing-menu="onHover()"
+						@touchstart.stop
 					/>
 				</div>
 			</div>

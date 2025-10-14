@@ -8,7 +8,7 @@
 		"
 		:href="href"
 		@mouseover="handleMouseOver"
-		@touchstart="handleTouchStart"
+		@touchstart.prevent="handleTouchStart"
 	>
 		<div
 			class="tw-flex tw-items-center"
