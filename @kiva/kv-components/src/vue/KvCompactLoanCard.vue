@@ -61,7 +61,7 @@
 									:borrower-count="loanBorrowerCount"
 									:name="borrowerName"
 									:distribution-model="distributionModel"
-									class="tw-leading-tight"
+									class="tw-text-small tw-leading-tight"
 								/>
 							</div>
 						</div>
