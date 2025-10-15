@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.59.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.3...@kiva/kv-components@6.59.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* inject kvTrackEvent in header component ([aaf4230](https://github.com/kiva/kv-ui-elements/commit/aaf4230602de2be99effaf2caffd4ab166f704ef))
+
+
+
+
+
 ## [6.59.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.2...@kiva/kv-components@6.59.3) (2025-10-15)
 
 
