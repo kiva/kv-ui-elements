@@ -14,7 +14,7 @@
 			Portfolio
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-Portfolio-My Teams']"
+			v-kv-track-event="['TopNav', 'click-Portfolio-My teams']"
 			href="/teams/my-teams"
 		>
 			My Teams
@@ -33,14 +33,14 @@
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			v-if="isBorrower"
-			v-kv-track-event="['TopNav', 'click-Portfolio-My borrower Dashboard']"
+			v-kv-track-event="['TopNav', 'click-Portfolio-My borrower dashboard']"
 			href="/my/borrower"
 		>
 			Borrower Dashboard
 		</kv-header-menu-link>
 		<kv-header-menu-link
 			v-if="isTrustee"
-			v-kv-track-event="['TopNav', 'click-Portfolio-My Trustee Dashboard']"
+			v-kv-track-event="['TopNav', 'click-Portfolio-My Trustee dashboard']"
 			href="/my/trustee"
 		>
 			Trustee Dashboard
