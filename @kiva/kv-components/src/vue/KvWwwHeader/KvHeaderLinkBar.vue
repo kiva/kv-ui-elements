@@ -140,7 +140,7 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch, inject,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
@@ -226,6 +226,8 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 
+		const $kvTrackEvent = inject('$kvTrackEvent');
+
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
@@ -273,7 +275,7 @@ export default {
 
 		const handleTouchStart = (item, menu, targetPosition) => {
 			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
-				this.$kvTrackEvent(
+				$kvTrackEvent(
 					'TopNav',
 					'hover-Lend-menu',
 					'Lend',
