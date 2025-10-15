@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.59.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.2...@kiva/kv-components@6.59.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* missmatch on avatar links and missing hover on lend event ([f1ceb81](https://github.com/kiva/kv-ui-elements/commit/f1ceb81e3c25adec582d62d93ef6f36b381f30b1))
+
+
+
+
+
 ## [6.59.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.1...@kiva/kv-components@6.59.2) (2025-10-14)
 
 
