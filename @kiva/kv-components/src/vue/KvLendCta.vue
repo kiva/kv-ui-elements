@@ -70,7 +70,7 @@
 				<!-- MOBILE-ONLY: Content for multiple preset buttons -->
 				<div
 					v-if="showPresetAmounts && !isAdding && !isLendAmountButton &&
-						presetButtonsPrices.length > 1 && !isNarrowDesktop"
+						presetButtonsPrices.length > 1 && !isNarrowDesktop && viewportWidth < 640"
 					class="md:tw-hidden tw-w-full"
 				>
 					<div class="tw-flex tw-flex-col tw-gap-1 tw-w-full">
@@ -255,7 +255,9 @@
 					v-if="showPresetAmounts && !isAdding && !isNarrowDesktop"
 					:class="{
 						'tw-flex tw-gap-0.5 md:tw-gap-1 lg:tw-gap-1 tw-flex-wrap md:tw-flex-nowrap': true,
-						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1
+						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1 &&
+							viewportWidth < 640,
+						'tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1 && viewportWidth >= 640
 					}"
 				>
 					<template v-if="!isLendAmountButton">
@@ -330,10 +332,12 @@
 								!isAdding &&
 								!isLendAmountButton &&
 								presetButtonsPrices.length > 1 &&
-								(isNarrowComponent() || isNarrowDesktop)
+								(isNarrowComponent() || isNarrowDesktop || viewportWidth < 640)
 							),
-						'md:tw-block tw-hidden': !isLendAmountButton &&
-							presetButtonsPrices.length > 1 && showPresetAmounts && !isNarrowDesktop
+						'md:tw-block tw-hidden': !isLendAmountButton && presetButtonsPrices.length > 1 &&
+							showPresetAmounts && !isNarrowDesktop && viewportWidth < 640,
+						'tw-block': !isLendAmountButton && presetButtonsPrices.length > 1 &&
+							showPresetAmounts && !isNarrowDesktop && viewportWidth >= 640
 					}"
 				>
 					<kv-ui-button
