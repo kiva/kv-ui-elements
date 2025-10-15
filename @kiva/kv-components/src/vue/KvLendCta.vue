@@ -70,7 +70,8 @@
 				<!-- MOBILE-ONLY: Content for multiple preset buttons -->
 				<div
 					v-if="showPresetAmounts && !isAdding && !isLendAmountButton &&
-						presetButtonsPrices.length > 1 && !isNarrowDesktop && viewportWidth < 640"
+						// eslint-disable-next-line max-len
+						presetButtonsPrices.length > 1 && !isNarrowDesktop && viewportWidth < MOBILE_DROPDOWN_BREAKPOINT"
 					class="md:tw-hidden tw-w-full"
 				>
 					<div class="tw-flex tw-flex-col tw-gap-1 tw-w-full">
@@ -256,8 +257,9 @@
 					:class="{
 						'tw-flex tw-gap-0.5 md:tw-gap-1 lg:tw-gap-1 tw-flex-wrap md:tw-flex-nowrap': true,
 						'tw-hidden md:tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1 &&
-							viewportWidth < 640,
-						'tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1 && viewportWidth >= 640
+							viewportWidth < MOBILE_DROPDOWN_BREAKPOINT,
+						// eslint-disable-next-line max-len
+						'tw-flex': !isLendAmountButton && presetButtonsPrices.length > 1 && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT
 					}"
 				>
 					<template v-if="!isLendAmountButton">
@@ -332,12 +334,12 @@
 								!isAdding &&
 								!isLendAmountButton &&
 								presetButtonsPrices.length > 1 &&
-								(isNarrowComponent() || isNarrowDesktop || viewportWidth < 640)
+								(isNarrowDesktop || viewportWidth < MOBILE_DROPDOWN_BREAKPOINT)
 							),
 						'md:tw-block tw-hidden': !isLendAmountButton && presetButtonsPrices.length > 1 &&
-							showPresetAmounts && !isNarrowDesktop && viewportWidth < 640,
+							showPresetAmounts && !isNarrowDesktop && viewportWidth < MOBILE_DROPDOWN_BREAKPOINT,
 						'tw-block': !isLendAmountButton && presetButtonsPrices.length > 1 &&
-							showPresetAmounts && !isNarrowDesktop && viewportWidth >= 640
+							showPresetAmounts && !isNarrowDesktop && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT
 					}"
 				>
 					<kv-ui-button
