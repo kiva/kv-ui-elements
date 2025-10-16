@@ -41,10 +41,10 @@
 			class="tw-mb-0"
 			@click="$emit('show-loan-details', $event)"
 		>
-			<span class="tw-flex">
+			<span class="tw-flex tw-items-center">
 				View loan
 				<kv-material-icon
-					class="tw-w-3 tw-h-3 tw-align-middle"
+					class="tw-w-3 tw-h-3"
 					:icon="mdiChevronRight"
 				/>
 			</span>

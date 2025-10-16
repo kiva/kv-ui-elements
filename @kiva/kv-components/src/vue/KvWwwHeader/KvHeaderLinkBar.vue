@@ -140,7 +140,7 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch, inject,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
@@ -163,6 +163,7 @@ const AVATAR_MENU_WIDTH = 120;
 const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
+const LEND_MENU_ITEM = 'lendButton';
 
 export default {
 	components: {
@@ -225,6 +226,8 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 
+		const $kvTrackEvent = inject('$kvTrackEvent');
+
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
@@ -271,6 +274,14 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu, targetPosition) => {
+			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
+				$kvTrackEvent(
+					'TopNav',
+					'hover-Lend-menu',
+					'Lend',
+				);
+			}
+
 			// Handles the scenario when mobile menu is closed from main component
 			if (openMenuId.value === MOBILE_MENU_ITEM) {
 				openMenuId.value = null;
