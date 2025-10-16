@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.60.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.4...@kiva/kv-components@6.60.0) (2025-10-16)
+
+
+### Features
+
+* recommended row lendcard (MP-2099) ([7669389](https://github.com/kiva/kv-ui-elements/commit/766938960cd1fb50cfacefdf47a0c4f19066f028))
+* recommended row lendcard (MP-2099) ([b8ec6a5](https://github.com/kiva/kv-ui-elements/commit/b8ec6a58e889989244a776f9e6e44c423b21bf9d))
+* recommended row lendcard (MP-2099) ([4235a66](https://github.com/kiva/kv-ui-elements/commit/4235a663d53a2b080a8ed326b2f7421c1ccebf2c))
+* recommended row lendcard (MP-2100) ([d8ac648](https://github.com/kiva/kv-ui-elements/commit/d8ac64899c740f6c34cbcaedbc574e0601d64b9e))
+* recommended row lendcard (MP-2100) ([711cc7b](https://github.com/kiva/kv-ui-elements/commit/711cc7bdec2a3df27b4b1f111cd58fb3b8dcd084))
+* recommended row lendcard (MP-2100) ([db5273c](https://github.com/kiva/kv-ui-elements/commit/db5273c15dc4d14435a80996fcdb728407592c56))
+* recommended row lendcard (MP-2100) ([82ebb0d](https://github.com/kiva/kv-ui-elements/commit/82ebb0dfc175569e63eda18f1d2f3f7d48e17338))
+* recommended row lendcard (MP-2100) ([b2015b2](https://github.com/kiva/kv-ui-elements/commit/b2015b286a601ee8c5353ab761a5074901fe54f9))
+* recommended row lendcard (MP-2100) ([ac321b9](https://github.com/kiva/kv-ui-elements/commit/ac321b915028f93ac1854b215716d8008d992675))
+* recommended row lendcard (MP-2100) ([c9c2d92](https://github.com/kiva/kv-ui-elements/commit/c9c2d92b5b5159aeb70b23cec732aeccbfe67bd6))
+
+
+
+
+
 ## [6.59.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.3...@kiva/kv-components@6.59.4) (2025-10-15)
 
 
