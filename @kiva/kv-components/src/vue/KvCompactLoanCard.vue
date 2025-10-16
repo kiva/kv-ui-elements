@@ -83,7 +83,10 @@
 				</div>
 
 				<!-- Progress and CTA Section -->
-				<div class="tw-flex tw-items-end tw-gap-2 tw-w-full tw-mt-1">
+				<div
+					class="tw-flex tw-items-end tw-w-full tw-mt-1"
+					:class="{ 'tw-gap-2': sharesAvailable }"
+				>
 					<!-- Loading State -->
 					<template v-if="!hasProgressData">
 						<div class="tw-flex-1">
@@ -128,6 +131,7 @@
 						<!-- CTA Section: fixed width, aligned right -->
 						<div
 							class="tw-flex-shrink-0 loan-card-cta"
+							:class="{ 'tw-w-full': !sharesAvailable }"
 							style="height: 40px;"
 						>
 							<kv-lend-cta
