@@ -96,7 +96,7 @@
 							/>
 							<kv-loading-placeholder
 								class="tw-rounded"
-								:style="{ width: '100%', height: '0.5rem' }"
+								:style="{ width: '11rem', height: '0.5rem' }"
 							/>
 						</div>
 						<kv-loading-placeholder
