@@ -9,7 +9,7 @@ const lendToFlssSort = new Map([
 	['personalized', 'personalized'],
 	['loanAmountDesc', 'amountHighToLow'],
 	['loanAmount', 'amountLowToHigh'],
-	['amountLeft', 'amountLeft'],
+	['amountFunded', 'amountFunded'],
 	['repaymentTerm', 'repaymentTerm'],
 	['newest', 'mostRecent'],
 ]);
@@ -18,7 +18,7 @@ export const visibleFLSSSortOptions = [
 	'expiringSoon',
 	'amountHighToLow',
 	'amountLowToHigh',
-	'amountLeft',
+	'amountFunded',
 	'popularityScore',
 	'repaymentTerm',
 	'mostRecent',
