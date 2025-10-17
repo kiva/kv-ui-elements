@@ -275,7 +275,7 @@
 						v-if="showFilteredDropdown"
 						:id="`LoanAmountDropdown_${loanId}`"
 						v-model="selectedDropdownOption"
-						class="tw-min-w-12 tw-rounded filtered-dropdown tw-w-full"
+						class="tw-min-w-12 tw-rounded filtered-dropdown"
 						:class="{
 							'unselected-dropdown': !selectedDropdown,
 							'selected-dropdown': selectedDropdown,
