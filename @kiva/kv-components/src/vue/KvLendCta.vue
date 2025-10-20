@@ -94,7 +94,7 @@
 								v-if="showFilteredDropdown && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT"
 								:id="`LoanAmountDropdownMobile_${loanId}`"
 								v-model="selectedDropdownOption"
-								class="filtered-dropdown mobile-dropdown tw-flex-1 tw-rounded"
+								class="filtered-dropdown mobile-dropdown tw-rounded"
 								:class="{
 									'unselected-dropdown': !selectedDropdown,
 									'selected-dropdown': selectedDropdown,
@@ -394,7 +394,7 @@ import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 const OTHER_OPTION = 'Other';
-const MOBILE_DROPDOWN_BREAKPOINT = 430;
+const MOBILE_DROPDOWN_BREAKPOINT = 400;
 const NARROW_SIDEBAR_BREAKPOINT = 480; // breakpoint for desktop when sidebar is narrow
 const NARROW_SIDEBAR_DROPDOWN_BREAKPOINT = 380; // Breakpoint for smaller narrow sidebar
 
