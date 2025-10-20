@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.61.0...@kiva/kv-components@6.62.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* revised mobile breakpoint ([c651c95](https://github.com/kiva/kv-ui-elements/commit/c651c953c20bac8f889c7435927e6509f2827e00))
+
+
+### Features
+
+* fixed truncation issue ([d428f54](https://github.com/kiva/kv-ui-elements/commit/d428f54b382a0f87b00d0384dd284daba6d57dd3))
+* other preset option wrapping fix ([708f13f](https://github.com/kiva/kv-ui-elements/commit/708f13f4327f66e313a75cff75d6db50c0137ea9))
+* reverted breakpoint value ([4ca075f](https://github.com/kiva/kv-ui-elements/commit/4ca075ff41fce31c56c86f4d283ca04c16ce9b6c))
+
+
+
+
+
 # [6.61.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.60.0...@kiva/kv-components@6.61.0) (2025-10-20)
 
 
