@@ -100,6 +100,7 @@ import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvPageContainer from './KvPageContainer.vue';
 import { throttle } from '../utils/throttle';
+import { debounce } from '../utils/debounce';
 
 const HEADER_HEIGHT = '3.75rem';
 const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink'];
@@ -173,6 +174,7 @@ export default {
 		const menuPosition = ref({ left: 0, position: 'relative' });
 		const isMobile = ref(false);
 		const menuitem = ref(null);
+		const isComponentMount = ref(false);
 
 		let menuCloseTimeout;
 
@@ -180,7 +182,10 @@ export default {
 			return menuComponentInstance.value?.$options?.name === 'KvHeaderMobileMenu';
 		});
 
-		const onHover = (item, menu, targetPosition) => {
+		const onHover = debounce((item, menu, targetPosition) => {
+			// If mounting is not complete, do nothing
+			if (!isComponentMount.value) return;
+
 			// if menu, open menu, and clear timeout
 			// if no menu and menu open, start close menu timeout
 			if (menu) {
@@ -205,7 +210,7 @@ export default {
 					menuComponent.value = null;
 				}, 100);
 			}
-		};
+		}, 50);
 
 		const loadMenuData = (apollo) => {
 			menuComponentInstance.value?.onLoad(apollo);
@@ -235,6 +240,7 @@ export default {
 		onMounted(() => {
 			checkIsMobile();
 			window.addEventListener('resize', checkIsMobileThrottled);
+			isComponentMount.value = true;
 		});
 
 		onBeforeUnmount(() => {

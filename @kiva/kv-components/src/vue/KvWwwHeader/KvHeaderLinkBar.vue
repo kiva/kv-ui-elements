@@ -30,7 +30,7 @@
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-1"
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('lendButton')"
+			@mouseleave="handleMouseOut('lendButton')"
 			@touchstart.stop="handleTouchStart('lendButton', KvLendMenu)"
 		>
 			Lend
@@ -45,7 +45,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('takeActionButton')"
+			@mouseleave="handleMouseOut('takeActionButton')"
 			@user-tap="handleTouchStart"
 		>
 			Take action
@@ -60,7 +60,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('aboutUsLink')"
+			@mouseleave="handleMouseOut('aboutUsLink')"
 			@user-tap="handleTouchStart"
 		>
 			About
@@ -235,6 +235,13 @@ export default {
 		const handleOnHover = (item, menu, targetPosition = null) => {
 			// Detect input method (mouse vs touch) instead of relying only on screen size
 			if (!navigator.maxTouchPoints) {
+				if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
+					$kvTrackEvent(
+						'TopNav',
+						'hover-Lend-menu',
+						'Lend',
+					);
+				}
 				openMenuId.value = item;
 
 				onHover(
