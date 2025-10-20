@@ -11,6 +11,8 @@ export { default as KvCheckoutReceipt } from './KvCheckoutReceipt.vue';
 export { default as KvChip } from './KvChip.vue';
 export { default as KvClassicLoanCard } from './KvClassicLoanCard.vue';
 export * from './KvClassicLoanCard.vue';
+export { default as KvCompactLoanCard } from './KvCompactLoanCard.vue';
+export * from './KvCompactLoanCard.vue';
 export { default as KvCommentsAdd } from './KvCommentsAdd.vue';
 export { default as KvCommentsContainer } from './KvCommentsContainer.vue';
 export { default as KvCommentsHeartButton } from './KvCommentsHeartButton.vue';
