@@ -98,31 +98,35 @@
 			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
 		<div
-			v-show="loggedIn"
-			ref="avatar"
-			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
-				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
-			@mouseover="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
-			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
+			class="md:tw-py-1"
+			@mouseenter="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
+			@mouseleave="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart.stop="handleTouchStart(AVATAR_MENU_ID)"
 		>
-			<!-- avatar (sm, auth) -->
-			<kv-material-icon
-				v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
-				:icon="mdiAccountCircle"
-				class="tw-w-3"
-			/>
-			<KvUserAvatar
-				v-else
-				class="avatar"
-				:lender-name="lenderName"
-				:lender-image-url="lenderImageUrl"
-				is-small
-			/>
-			<!-- balance (auth) -->
-			<span class="tw-text-eco-green-4">
-				{{ numeral(roundedBalance).format('$0') }}
-			</span>
+			<div
+				v-show="loggedIn"
+				ref="avatar"
+				class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
+					tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
+			>
+				<!-- avatar (sm, auth) -->
+				<kv-material-icon
+					v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
+					:icon="mdiAccountCircle"
+					class="tw-w-3"
+				/>
+				<KvUserAvatar
+					v-else
+					class="avatar"
+					:lender-name="lenderName"
+					:lender-image-url="lenderImageUrl"
+					is-small
+				/>
+				<!-- balance (auth) -->
+				<span class="tw-text-eco-green-4">
+					{{ numeral(roundedBalance).format('$0') }}
+				</span>
+			</div>
 		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
