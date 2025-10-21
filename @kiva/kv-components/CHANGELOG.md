@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.0...@kiva/kv-components@6.62.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* avoid loading menus when elements is not mounted and  missing on hover event tracking ([597296a](https://github.com/kiva/kv-ui-elements/commit/597296aa1958bc8dd68cdda252216fe231c76702))
+
+
+
+
+
 # [6.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.61.0...@kiva/kv-components@6.62.0) (2025-10-20)
 
 
