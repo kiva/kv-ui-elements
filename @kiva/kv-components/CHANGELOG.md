@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.1...@kiva/kv-components@6.62.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* improve on hover fire events and menus getting closed on navbar edge ([433f331](https://github.com/kiva/kv-ui-elements/commit/433f331d4ff69d6bd0726f7929846cad688c5f35))
+
+
+
+
+
 ## [6.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.0...@kiva/kv-components@6.62.1) (2025-10-21)
 
 
