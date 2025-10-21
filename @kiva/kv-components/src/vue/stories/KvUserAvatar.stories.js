@@ -18,14 +18,54 @@ const story = (args) => {
 	return template;
 };
 
+const cssPlaceholderStory = (args) => {
+	const template = (templateArgs, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { KvUserAvatar },
+		setup() {
+			const style = [];
+			if (args.lenderImageUrl) {
+				style.push(`--user-avatar: url(${args.lenderImageUrl}) / "Lender avatar via CSS"`);
+				style.push('--user-avatar-legacy-display: none');
+			} else {
+				style.push('--user-avatar-display: none');
+			}
+			return {
+				args: templateArgs,
+				style,
+			};
+		},
+		template: `
+			<div class="tw-relative" :style="style">
+				<KvUserAvatar
+					show-css-placeholder
+					:is-small="args.isSmall"
+				/>
+			</div>
+		`,
+	});
+	template.args = args;
+	return template;
+};
+
 export const Default = story({
 	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	lenderName: 'Roger',
 });
 
+export const CssPlaceholder = cssPlaceholderStory({
+	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	showCssPlaceholder: true,
+});
+
 export const NoImage = story({
 	lenderImageUrl: '',
 	lenderName: 'Roger',
+});
+
+export const NoImageCssPlaceholder = cssPlaceholderStory({
+	lenderImageUrl: '',
+	showCssPlaceholder: true,
 });
 
 export const Anonymous = story({
@@ -44,10 +84,22 @@ export const IsSmall = story({
 	isSmall: true,
 });
 
+export const IsSmallCssPlaceholder = cssPlaceholderStory({
+	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	isSmall: true,
+	showCssPlaceholder: true,
+});
+
 export const IsSmallNoImage = story({
 	lenderImageUrl: '',
 	lenderName: 'Roger',
 	isSmall: true,
+});
+
+export const IsSmallNoImageCssPlaceholder = cssPlaceholderStory({
+	lenderImageUrl: '',
+	isSmall: true,
+	showCssPlaceholder: true,
 });
 
 export const IsSmallAnonymous = story({

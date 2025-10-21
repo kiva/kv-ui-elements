@@ -41,13 +41,16 @@
 		<div
 			v-if="!isAnonymousUser && userHasImage"
 			class="tw-w-full tw-h-full"
+			:style="showCssPlaceholder ? { display: 'var(--user-avatar-display, block)'} : {
+				display: isImageLoading ? 'none' : 'block'
+			}"
 		>
 			<img
-				v-show="!isImageLoading"
 				ref="imageRef"
 				:src="lenderImageUrl"
 				alt="Image of lender"
-				class="tw-inline-block tw-w-full"
+				class="tw-w-full"
+				:style="showCssPlaceholder ? { content: 'var(--user-avatar)' } : {}"
 				@load="onImgLoad()"
 			>
 		</div>
@@ -87,9 +90,16 @@ export default {
 			default: '',
 		},
 		/**
-		 * The image of the lender
+		 * Whether to render a smaller avatar
 		 */
 		isSmall: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Whether to use a css variable for the avatar url before data is loaded
+		 */
+		showCssPlaceholder: {
 			type: Boolean,
 			default: false,
 		},
@@ -99,6 +109,7 @@ export default {
 			lenderName,
 			lenderImageUrl,
 			isSmall,
+			showCssPlaceholder,
 		} = toRefs(props);
 
 		const isImageLoading = ref(true);
@@ -106,7 +117,8 @@ export default {
 		const userAvatar = ref(null);
 
 		const isAnonymousUser = computed(() => {
-			return (lenderName.value === '' && lenderImageUrl.value === '') || lenderName.value === 'Anonymous';
+			return (!showCssPlaceholder.value && lenderName.value === '' && lenderImageUrl.value === '')
+				|| lenderName.value === 'Anonymous';
 		});
 
 		const avatarClass = computed(() => {
@@ -115,6 +127,10 @@ export default {
 		});
 
 		const userHasImage = computed(() => {
+			if (showCssPlaceholder.value) {
+				// when using css placeholder, assume user has image
+				return true;
+			}
 			const imageFilename = lenderImageUrl?.value?.split('/').pop() ?? '';
 			return imageFilename && !isLegacyPlaceholderAvatar(imageFilename);
 		});
