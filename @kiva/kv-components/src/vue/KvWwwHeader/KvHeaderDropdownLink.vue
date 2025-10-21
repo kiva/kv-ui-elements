@@ -7,7 +7,7 @@
 			tw-items-center tw-cursor-pointer
 		"
 		:href="href"
-		@mouseover="handleMouseOver"
+		@mouseenter="handleMouseOver"
 		@touchstart.prevent="handleTouchStart"
 	>
 		<div

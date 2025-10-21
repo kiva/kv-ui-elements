@@ -65,8 +65,8 @@
 						...menuPosition,
 						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${HEADER_HEIGHT})` : 'auto',
 					}"
-					@mouseover="onHover(activeHeaderItem, menuComponent)"
-					@mouseout="onHover()"
+					@mouseenter="onHover(activeHeaderItem, menuComponent)"
+					@mouseleave="onHover()"
 				>
 					<component
 						:is="menuComponent"
@@ -102,7 +102,7 @@ import KvPageContainer from './KvPageContainer.vue';
 import { throttle } from '../utils/throttle';
 import { debounce } from '../utils/debounce';
 
-const HEADER_HEIGHT = '3.75rem';
+const HEADER_HEIGHT = '3.7rem';
 const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink'];
 
 export default {
@@ -208,9 +208,9 @@ export default {
 				menuCloseTimeout = setTimeout(() => {
 					menuOpen.value = false;
 					menuComponent.value = null;
-				}, 100);
+				}, 50);
 			}
-		}, 50);
+		}, 100);
 
 		const loadMenuData = (apollo) => {
 			menuComponentInstance.value?.onLoad(apollo);
