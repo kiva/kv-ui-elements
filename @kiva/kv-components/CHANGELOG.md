@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.3...@kiva/kv-components@6.62.4) (2025-10-22)
+
+
+### Bug Fixes
+
+* hamburger menu header hidden behind the navbar ([a18589d](https://github.com/kiva/kv-ui-elements/commit/a18589dcaac9d577e2b02a9ab58da88d99cad08c))
+* take action menu should hide in mobile ([67b6169](https://github.com/kiva/kv-ui-elements/commit/67b6169a4255aceab91ecd39dbd81806f7d1f290))
+
+
+
+
+
 ## [6.62.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.2...@kiva/kv-components@6.62.3) (2025-10-22)
 
 
