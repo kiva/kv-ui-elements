@@ -239,9 +239,7 @@ export default {
 			}
 		};
 
-		const checkIsMobileThrottled = throttle(() => {
-			checkIsMobile();
-		}, 100);
+		const checkIsMobileThrottled = throttle(checkIsMobile, 100);
 
 		onMounted(() => {
 			checkIsMobile();
