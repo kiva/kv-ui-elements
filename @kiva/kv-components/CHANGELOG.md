@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.5...@kiva/kv-components@6.63.0) (2025-10-22)
+
+
+### Features
+
+* preset amount option fix ([46b3c51](https://github.com/kiva/kv-ui-elements/commit/46b3c51b6179dc9be728ddeb6bb45dd3ff008407))
+
+
+
+
+
 ## [6.62.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.4...@kiva/kv-components@6.62.5) (2025-10-22)
 
 
