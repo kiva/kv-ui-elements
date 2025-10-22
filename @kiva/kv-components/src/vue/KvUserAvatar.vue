@@ -72,7 +72,10 @@
 			:class="avatarClass()"
 		>
 			<!-- First Letter of lender name -->
-			<span class="tw-self-center">
+			<span
+				class="tw-self-center"
+				:class="{ 'adjust-vertical-spacing': !isSmall }"
+			>
 				{{ lenderNameFirstLetter }}
 			</span>
 		</div>
@@ -187,3 +190,10 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+.adjust-vertical-spacing {
+	top: -0.1rem;
+	position: relative;
+}
+</style>
