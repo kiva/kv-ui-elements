@@ -54,7 +54,6 @@
 					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
 					bg-opacity-50 tw-min-h-screen
-					tw-overflow-auto
 				"
 				:style="{ top: HEADER_HEIGHT }"
 				@touchstart="handleOverlayClick"
