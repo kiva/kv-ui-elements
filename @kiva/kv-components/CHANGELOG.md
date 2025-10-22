@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.4...@kiva/kv-components@6.62.5) (2025-10-22)
+
+
+### Bug Fixes
+
+* vertically center initial in user avatar ([39b1238](https://github.com/kiva/kv-ui-elements/commit/39b12380fe6b0f256adf94bec5b2d99026139b95))
+
+
+
+
+
 ## [6.62.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.3...@kiva/kv-components@6.62.4) (2025-10-22)
 
 
