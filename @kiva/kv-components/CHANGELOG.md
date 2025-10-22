@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.2...@kiva/kv-components@6.62.3) (2025-10-22)
+
+
+### Bug Fixes
+
+* avatar menu position on abrupt viewport changes and some clean up in header experiment ([20447c3](https://github.com/kiva/kv-ui-elements/commit/20447c33df809bf964e75c1ff5043ffd92d2cb93))
+* revert checkIsMobileThrottled method ([5937853](https://github.com/kiva/kv-ui-elements/commit/593785349487053baf959eff107ba0e6a4f6a3fe))
+
+
+
+
+
 ## [6.62.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.1...@kiva/kv-components@6.62.2) (2025-10-21)
 
 
