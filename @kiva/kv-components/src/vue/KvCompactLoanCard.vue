@@ -7,18 +7,27 @@
 			>
 				<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
 					<!-- Image and Content -->
-					<div class="tw-flex tw-items-start tw-gap-2 tw-w-full">
+					<div class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover">
 						<div class="tw-flex-shrink-0 tw-overflow-hidden">
-							<kv-borrower-image
-								class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
-								style="width: 100px; height: 100px;"
-								:alt="`Photo of ${borrowerName}`"
-								:aspect-ratio="1"
-								:default-image="{ width: 200, faceZoom: 50 }"
-								:hash="imageHash"
-								:images="[{ width: 200, faceZoom: 50 }]"
-								:photo-path="photoPath"
-							/>
+							<component
+								:is="tag"
+								:to="readMorePath"
+								:href="readMorePath"
+								class="tw-flex"
+								aria-label="Borrower image"
+								@click.native="clickReadMore('Photo', $event)"
+							>
+								<kv-borrower-image
+									class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
+									style="width: 100px; height: 100px;"
+									:alt="`Photo of ${borrowerName}`"
+									:aspect-ratio="1"
+									:default-image="{ width: 200, faceZoom: 50 }"
+									:hash="imageHash"
+									:images="[{ width: 200, faceZoom: 50 }]"
+									:photo-path="photoPath"
+								/>
+							</component>
 						</div>
 						<div
 							class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1"
@@ -37,33 +46,42 @@
 									:loan="loan"
 								/>
 							</component>
-							<div
-								v-if="isLoading"
-								class="loan-card-use-text tw-w-full tw-overflow-hidden"
-								style="width: 13rem;"
+							<component
+								:is="tag"
+								:to="readMorePath"
+								:href="readMorePath"
+								class="loan-card-use tw-no-underline tw-text-primary"
+								aria-label="Loan use"
+								@click.native="clickReadMore('Use', $event)"
 							>
 								<div
-									v-for="(_n, i) in [...Array(4)]"
-									:key="i"
-									class="tw-h-2 tw-mb-1"
+									v-if="isLoading"
+									class="loan-card-use-text tw-w-full tw-overflow-hidden"
+									style="width: 13rem;"
 								>
-									<kv-loading-placeholder />
+									<div
+										v-for="(_n, i) in [...Array(4)]"
+										:key="i"
+										class="tw-h-2 tw-mb-1"
+									>
+										<kv-loading-placeholder />
+									</div>
 								</div>
-							</div>
-							<div
-								v-else
-								class="loan-card-use-text tw-w-full tw-overflow-hidden"
-							>
-								<kv-loan-use
-									:use="loanUse"
-									:loan-amount="loanAmount"
-									:status="loanStatus"
-									:borrower-count="loanBorrowerCount"
-									:name="borrowerName"
-									:distribution-model="distributionModel"
-									class="tw-text-small tw-leading-tight"
-								/>
-							</div>
+								<div
+									v-else
+									class="loan-card-use-text tw-w-full tw-overflow-hidden"
+								>
+									<kv-loan-use
+										:use="loanUse"
+										:loan-amount="loanAmount"
+										:status="loanStatus"
+										:borrower-count="loanBorrowerCount"
+										:name="borrowerName"
+										:distribution-model="distributionModel"
+										class="tw-text-small tw-leading-tight"
+									/>
+								</div>
+							</component>
 						</div>
 					</div>
 
