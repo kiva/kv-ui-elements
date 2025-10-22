@@ -54,12 +54,14 @@
 					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
 					bg-opacity-50 tw-min-h-screen
+					tw-overflow-auto
 				"
 				:style="{ top: HEADER_HEIGHT }"
 				@touchstart="handleOverlayClick"
 			>
 				<div
-					class="tw-bg-primary tw-overflow-y-auto"
+					class="tw-bg-primary tw-overflow-y-auto tw-w-full
+						md:tw-w-auto tw-rounded-none md:tw-rounded-b-sm"
 					:class="{ 'tw-min-h-dvh' : isMobileMenuActive }"
 					:style="{
 						...menuPosition,
@@ -176,8 +178,6 @@ export default {
 		const menuitem = ref(null);
 		const isComponentMount = ref(false);
 
-		let menuCloseTimeout;
-
 		const isMobileMenuActive = computed(() => {
 			return menuComponentInstance.value?.$options?.name === 'KvHeaderMobileMenu';
 		});
@@ -190,7 +190,6 @@ export default {
 			// if no menu and menu open, start close menu timeout
 			if (menu) {
 				menuitem.value = item;
-				clearTimeout(menuCloseTimeout);
 				// Avoid calculate menuPosition when hovering over the menu
 				if (menuComponent.value !== menu) {
 					menuPosition.value = { left: 0, position: 'relative' };
@@ -205,10 +204,8 @@ export default {
 					};
 				}
 			} else if (menuOpen.value) {
-				menuCloseTimeout = setTimeout(() => {
-					menuOpen.value = false;
-					menuComponent.value = null;
-				}, 50);
+				menuOpen.value = false;
+				menuComponent.value = null;
 			}
 		}, 100);
 
@@ -225,11 +222,18 @@ export default {
 			emit('load-lend-menu-data');
 		};
 
+		// Close menus that are desktop or mobile only when switching viewports
+		const shouldCloseMenu = () => {
+			return (
+				(isMobile.value && ONLY_DESKTOP_MENUS.includes(menuitem.value))
+				|| (!isMobile.value && isMobileMenuActive.value)
+			);
+		};
+
 		const checkIsMobile = () => {
 			isMobile.value = window?.innerWidth < tokens.breakpoints.md;
 
-			// Close menus that are desktop only when switching to mobile
-			if (isMobile.value && (ONLY_DESKTOP_MENUS.includes(menuitem.value))) {
+			if (shouldCloseMenu()) {
 				menuComponent.value = null;
 				menuOpen.value = false;
 			}

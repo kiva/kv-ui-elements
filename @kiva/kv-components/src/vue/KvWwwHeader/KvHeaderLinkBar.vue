@@ -150,6 +150,7 @@ import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
 import numeral from 'numeral';
+import tokens from '@kiva/kv-tokens';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
@@ -269,13 +270,11 @@ export default {
 
 			const left = linkRect.left + linkRect.width / 2;
 			const menuLeft = left - AVATAR_MENU_WIDTH / 2;
-			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.innerWidth;
+			const rightPosition = `${window.innerWidth - menuLeft - AVATAR_MENU_WIDTH}px`;
+			const isMobile = window?.innerWidth < tokens.breakpoints.md;
 
 			return {
-				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
-				marginTop: '-2px', // Avoid closing avatar menu on header edge
-				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
-				width: props.isMobile ? '100%' : `${AVATAR_MENU_WIDTH}px`,
+				right: isMobile ? 0 : rightPosition,
 			};
 		};
 
