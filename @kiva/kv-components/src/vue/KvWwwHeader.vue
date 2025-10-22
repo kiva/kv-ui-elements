@@ -54,7 +54,6 @@
 					tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4
 					bg-opacity-50 tw-min-h-screen
-					tw-overflow-auto
 				"
 				:style="{ top: HEADER_HEIGHT }"
 				@touchstart="handleOverlayClick"
@@ -105,7 +104,7 @@ import { throttle } from '../utils/throttle';
 import { debounce } from '../utils/debounce';
 
 const HEADER_HEIGHT = '3.7rem';
-const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink'];
+const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink', 'takeActionButton'];
 
 export default {
 	components: {
