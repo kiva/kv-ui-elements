@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.64.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.0...@kiva/kv-components@6.64.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* avoid window errors in kvsidesheet ([#717](https://github.com/kiva/kv-ui-elements/issues/717)) ([debd50f](https://github.com/kiva/kv-ui-elements/commit/debd50ff1513e6c68357fb6943ae2078ae833005))
+
+
+
+
+
 # [6.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.63.0...@kiva/kv-components@6.64.0) (2025-10-23)
 
 
