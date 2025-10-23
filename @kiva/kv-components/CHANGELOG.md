@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.1...@kiva/kv-components@6.65.0) (2025-10-23)
+
+
+### Features
+
+* kvsidesheet no animated variant ([#718](https://github.com/kiva/kv-ui-elements/issues/718)) ([2b47670](https://github.com/kiva/kv-ui-elements/commit/2b47670af638c346c7785fa03cc47a5ab9f1b8f4))
+
+
+
+
+
 ## [6.64.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.0...@kiva/kv-components@6.64.1) (2025-10-23)
 
 
