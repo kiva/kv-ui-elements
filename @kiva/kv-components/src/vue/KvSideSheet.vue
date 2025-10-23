@@ -203,6 +203,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Whether to animate the opening of the side sheet
+		 * */
+		isAnimated: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	emits: ['side-sheet-closed', 'go-to-link'],
 	setup(props, { emit, slots }) {
@@ -212,9 +219,10 @@ export default {
 			trackEventCategory,
 			widthDimensions,
 			hideHeadlineBgOnMobile,
+			isAnimated,
 		} = toRefs(props);
 
-		const open = ref(false);
+		const open = ref(!isAnimated.value);
 		const modalStyles = ref({});
 		const sideSheetRef = ref(null);
 		const controlsRef = ref(null);
@@ -323,94 +331,11 @@ export default {
 			}
 		};
 
-		// Set up resize listeners
-		onMounted(() => {
-			setTimeout(() => {
-				updateHeights();
-			}, 100);
-			if (controlsRef.value) {
-				controlsObserver.value = new ResizeObserver(debouncedUpdateHeights);
-				controlsObserver.value.observe(controlsRef.value);
-			}
-			if (headlineRef.value) {
-				headlineObserver.value = new ResizeObserver(debouncedUpdateHeights);
-				headlineObserver.value.observe(headlineRef.value);
-			}
-			window.addEventListener('resize', debouncedUpdateHeights);
-		});
-
-		onBeforeUnmount(() => {
-			// Ensure body scroll is restored if component is unmounted while open
-			if (open.value) {
-				document.body.classList.remove('tw-overflow-hidden');
-			}
-		});
-
-		onUnmounted(() => {
-			if (controlsObserver.value) controlsObserver.value.disconnect();
-			if (headlineObserver.value) headlineObserver.value.disconnect();
-			window.removeEventListener('resize', debouncedUpdateHeights);
-			const styleElement = document.getElementById('side-sheet-styles');
-			if (styleElement) styleElement.remove();
-		});
-
-		// Watch for slot content changes deeply
-		watch(() => slots.controls?.(), () => {
-			setTimeout(() => {
-				updateHeights();
-			}, 100);
-		}, { deep: true });
-
 		// Use animationWidth for consistent width calculation
 		const sideSheetStyles = computed(() => {
 			return {
 				width: animationWidth.value,
 			};
-		});
-
-		// Watch for visibility changes (opening/closing)
-		watch(visible, (newVisible) => {
-			if (typeof window !== 'undefined') {
-				if (newVisible) {
-					document.addEventListener('keyup', onKeyUp);
-
-					// Clear any previous modal styles to ensure clean state
-					modalStyles.value = {};
-
-					setTimeout(() => {
-						open.value = true;
-						avoidBodyScroll();
-						updateHeights();
-					}, 10); // Reduced delay for smoother animation
-				} else {
-					open.value = false;
-					avoidBodyScroll();
-					document.removeEventListener('keyup', onKeyUp);
-					modalStyles.value = {};
-				}
-			}
-		}, { immediate: true });
-
-		// Watch width changes when component is open (resize without animation)
-		watch(animationWidth, (newWidth) => {
-			if (open.value && visible.value) {
-				if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
-					modalStyles.value = {
-						...modalStyles.value,
-						width: newWidth,
-						transition: 'none', // No animation for resize
-					};
-					// Re-enable transitions after a brief moment for future animations
-					setTimeout(() => {
-						if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
-							modalStyles.value = {
-								...modalStyles.value,
-								transition: 'all 0.3s ease-in-out',
-							};
-						}
-					}, 50);
-				}
-			}
 		});
 
 		// Apply responsive styles using <style> block
@@ -455,6 +380,58 @@ export default {
 			}
 		};
 
+		// Watch for visibility changes (opening/closing)
+		watch(visible, (newVisible) => {
+			if (typeof window !== 'undefined') {
+				if (newVisible) {
+					document.addEventListener('keyup', onKeyUp);
+
+					// Clear any previous modal styles to ensure clean state
+					modalStyles.value = {};
+
+					setTimeout(() => {
+						open.value = true;
+						avoidBodyScroll();
+						updateHeights();
+					}, 10); // Reduced delay for smoother animation
+				} else {
+					open.value = false;
+					avoidBodyScroll();
+					document.removeEventListener('keyup', onKeyUp);
+					modalStyles.value = {};
+				}
+			}
+		}, { immediate: true });
+
+		// Watch for slot content changes deeply
+		watch(() => slots.controls?.(), () => {
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+		}, { deep: true });
+
+		// Watch width changes when component is open (resize without animation)
+		watch(animationWidth, (newWidth) => {
+			if (open.value && visible.value) {
+				if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+					modalStyles.value = {
+						...modalStyles.value,
+						width: newWidth,
+						transition: 'none', // No animation for resize
+					};
+					// Re-enable transitions after a brief moment for future animations
+					setTimeout(() => {
+						if (modalStyles.value && Object.keys(modalStyles.value).length > 0) {
+							modalStyles.value = {
+								...modalStyles.value,
+								transition: 'all 0.3s ease-in-out',
+							};
+						}
+					}, 50);
+				}
+			}
+		});
+
 		watch(widthDimensions, () => {
 			if (open.value) {
 				applyResponsiveStyles();
@@ -465,6 +442,37 @@ export default {
 			if (newOpen) {
 				applyResponsiveStyles();
 			}
+		});
+
+		// Set up resize listeners
+		onMounted(() => {
+			setTimeout(() => {
+				updateHeights();
+			}, 100);
+			if (controlsRef.value) {
+				controlsObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				controlsObserver.value.observe(controlsRef.value);
+			}
+			if (headlineRef.value) {
+				headlineObserver.value = new ResizeObserver(debouncedUpdateHeights);
+				headlineObserver.value.observe(headlineRef.value);
+			}
+			window.addEventListener('resize', debouncedUpdateHeights);
+		});
+
+		onBeforeUnmount(() => {
+			// Ensure body scroll is restored if component is unmounted while open
+			if (open.value) {
+				document.body.classList.remove('tw-overflow-hidden');
+			}
+		});
+
+		onUnmounted(() => {
+			if (controlsObserver.value) controlsObserver.value.disconnect();
+			if (headlineObserver.value) headlineObserver.value.disconnect();
+			window.removeEventListener('resize', debouncedUpdateHeights);
+			const styleElement = document.getElementById('side-sheet-styles');
+			if (styleElement) styleElement.remove();
 		});
 
 		return {
