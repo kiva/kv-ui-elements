@@ -248,7 +248,7 @@ export default {
 				xl: 1280,
 				'2xl': 1536,
 			};
-			const currentWidth = windowWidth.value || window.innerWidth;
+			const currentWidth = windowWidth.value || (typeof window !== 'undefined' ? window.innerWidth : 0);
 			// Sort breakpoints from largest to smallest
 			// Sort breakpoints from largest to smallest and find the first match
 			const matchingBreakpoint = Object.keys(widthDimensions.value)
@@ -271,8 +271,8 @@ export default {
 		};
 
 		const updateHeights = () => {
-			windowHeight.value = window.innerHeight;
-			windowWidth.value = window.innerWidth;
+			windowHeight.value = typeof window !== 'undefined' ? window.innerHeight : 0;
+			windowWidth.value = typeof window !== 'undefined' ? window.innerWidth : 0;
 			setTimeout(() => {
 				nextTick(() => {
 					if (headlineRef.value) {
