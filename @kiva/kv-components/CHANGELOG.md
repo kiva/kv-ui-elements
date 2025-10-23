@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.0...@kiva/kv-components@6.65.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* increase avatar menu width to fix position ([7c56abb](https://github.com/kiva/kv-ui-elements/commit/7c56abb09679efc2000e9013206266aa8eb97dbb))
+
+
+
+
+
 # [6.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.1...@kiva/kv-components@6.65.0) (2025-10-23)
 
 
