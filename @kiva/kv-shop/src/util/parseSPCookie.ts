@@ -14,28 +14,37 @@ export const findSnowplowCookieName = (): string | null => {
 	return spCookieName || null;
 };
 
-export default function parseSPCookie() {
+export default function parseSPCookie(): { snowplowUserId: string | null; snowplowSessionId: string | null } {
 	// Find the cookie that has a name that starts with '_sp_id'
 	const spCookieName = findSnowplowCookieName();
 
+	// stub snowplow cookie data structure
+	const spCookieData: { snowplowUserId: string | null; snowplowSessionId: string | null } = {
+		snowplowUserId: null,
+		snowplowSessionId: null,
+	};
+
 	if (!spCookieName) {
 		// return an empty object if the cookie isn't present
-		return {};
+		return spCookieData;
 	}
 
 	const spCookieValue = getCookieValue(spCookieName);
 
 	if (!spCookieValue) {
 		// return an empty object if the cookie value is empty
-		return {};
+		return spCookieData;
 	}
 
 	// split the cookie to get the data
-	const data = spCookieValue.split('.');
+	const data = spCookieValue?.split('.') ?? [];
 
 	// return the user id and sessionid if they were fetched, otherwise return an empty object
-	return data.length ? {
-		snowplowUserId: data[0],
-		snowplowSessionId: data[data.length - 1],
-	} : {};
+	if (data.length > 0) {
+		// eslint-disable-next-line prefer-destructuring
+		spCookieData.snowplowUserId = data?.[0] ?? null;
+		spCookieData.snowplowSessionId = data?.[data.length - 1] ?? null;
+	}
+
+	return spCookieData;
 }

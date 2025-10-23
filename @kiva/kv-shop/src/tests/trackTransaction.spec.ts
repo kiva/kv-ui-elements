@@ -56,7 +56,7 @@ describe('trackTransaction.ts', () => {
 			it('should track transaction with all data when Snowplow and visitor ID are available', async () => {
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(true);
@@ -71,7 +71,7 @@ describe('trackTransaction.ts', () => {
 							snowplowSessionId: 'sp-session-789',
 							snowplowUserId: 'sp-user-456',
 							source: null,
-							transactionId: 'txn-123',
+							transactionId: 123,
 							visitorId: 'visitor-123',
 						},
 					},
@@ -84,7 +84,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-456',
+					transactionId: 456,
 				});
 
 				expect(result).toBe(true);
@@ -99,12 +99,15 @@ describe('trackTransaction.ts', () => {
 				);
 			});
 
-			it('should track transaction with undefined Snowplow data when cookie parsing fails', async () => {
-				mockParseSPCookie.mockReturnValue({});
+			it('should track transaction with null Snowplow data when cookie parsing fails', async () => {
+				mockParseSPCookie.mockReturnValue({
+					snowplowUserId: null,
+					snowplowSessionId: null,
+				});
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-789',
+					transactionId: 789,
 				});
 
 				expect(result).toBe(true);
@@ -112,8 +115,8 @@ describe('trackTransaction.ts', () => {
 					mockApollo,
 					expect.objectContaining({
 						variables: expect.objectContaining({
-							snowplowSessionId: undefined,
-							snowplowUserId: undefined,
+							snowplowSessionId: null,
+							snowplowUserId: null,
 						}),
 					}),
 					0,
@@ -123,7 +126,7 @@ describe('trackTransaction.ts', () => {
 			it('should call parseSPCookie and getVisitorID once per call', async () => {
 				await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-test',
+					transactionId: 999,
 				});
 
 				expect(mockParseSPCookie).toHaveBeenCalledTimes(1);
@@ -133,12 +136,12 @@ describe('trackTransaction.ts', () => {
 			it('should handle partial Snowplow data', async () => {
 				mockParseSPCookie.mockReturnValue({
 					snowplowUserId: 'sp-user-only',
-					snowplowSessionId: 'sp-session-only',
+					snowplowSessionId: null,
 				});
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-partial',
+					transactionId: 888,
 				});
 
 				expect(result).toBe(true);
@@ -147,7 +150,7 @@ describe('trackTransaction.ts', () => {
 					expect.objectContaining({
 						variables: expect.objectContaining({
 							snowplowUserId: 'sp-user-only',
-							snowplowSessionId: 'sp-session-only',
+							snowplowSessionId: null,
 						}),
 					}),
 					0,
@@ -156,10 +159,10 @@ describe('trackTransaction.ts', () => {
 		});
 
 		describe('error handling', () => {
-			it('should return false when transactionId is missing', async () => {
+			it('should return false when transactionId is zero', async () => {
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: '',
+					transactionId: 0,
 				});
 
 				expect(result).toBe(false);
@@ -191,7 +194,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(false);
@@ -204,7 +207,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(false);
@@ -220,7 +223,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(false);
@@ -232,7 +235,7 @@ describe('trackTransaction.ts', () => {
 
 				await expect(trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				})).rejects.toThrow('Network error');
 			});
 
@@ -243,7 +246,7 @@ describe('trackTransaction.ts', () => {
 
 				await expect(trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				})).rejects.toThrow('Cookie parsing error');
 			});
 
@@ -254,7 +257,7 @@ describe('trackTransaction.ts', () => {
 
 				await expect(trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				})).rejects.toThrow('Visitor ID error');
 			});
 		});
@@ -272,7 +275,7 @@ describe('trackTransaction.ts', () => {
 			it('should pass correct maxretries parameter', async () => {
 				await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(mockCallShopMutation).toHaveBeenCalledWith(
@@ -285,7 +288,7 @@ describe('trackTransaction.ts', () => {
 			it('should pass the correct mutation', async () => {
 				await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(mockCallShopMutation).toHaveBeenCalledWith(
@@ -300,7 +303,7 @@ describe('trackTransaction.ts', () => {
 			it('should set campaign-related fields to null (GA tracking removed)', async () => {
 				await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(mockCallShopMutation).toHaveBeenCalledWith(
@@ -317,17 +320,17 @@ describe('trackTransaction.ts', () => {
 				);
 			});
 
-			it('should pass transactionId as string to mutation', async () => {
+			it('should pass transactionId as number to mutation', async () => {
 				await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: '12345',
+					transactionId: 12345,
 				});
 
 				expect(mockCallShopMutation).toHaveBeenCalledWith(
 					mockApollo,
 					expect.objectContaining({
 						variables: expect.objectContaining({
-							transactionId: '12345',
+							transactionId: 12345,
 						}),
 					}),
 					0,
@@ -346,7 +349,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(true);
@@ -362,7 +365,7 @@ describe('trackTransaction.ts', () => {
 
 				const result = await trackTransactionEvent({
 					apollo: mockApollo,
-					transactionId: 'txn-123',
+					transactionId: 123,
 				});
 
 				expect(result).toBe(false);

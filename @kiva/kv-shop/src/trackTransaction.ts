@@ -40,7 +40,7 @@ export interface TrackTransactionData {
 
 export interface TrackTransactionOptions {
 	apollo: ApolloClient<any>,
-	transactionId: string,
+	transactionId: number,
 }
 
 export async function trackTransactionEvent({

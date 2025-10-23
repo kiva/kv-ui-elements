@@ -68,20 +68,26 @@ describe('parseSPCookie.ts', () => {
 			});
 		});
 
-		it('should return empty object when no Snowplow cookie exists', () => {
+		it('should return object with null values when no Snowplow cookie exists', () => {
 			mockDocumentCookie('other_cookie=value; _ga=GA1.2.123456');
 
 			const result = parseSPCookie();
 
-			expect(result).toEqual({});
+			expect(result).toEqual({
+				snowplowUserId: null,
+				snowplowSessionId: null,
+			});
 		});
 
-		it('should return empty object when Snowplow cookie has no value', () => {
+		it('should return object with null values when Snowplow cookie has no value', () => {
 			mockDocumentCookie('_sp_id.test=');
 
 			const result = parseSPCookie();
 
-			expect(result).toEqual({});
+			expect(result).toEqual({
+				snowplowUserId: null,
+				snowplowSessionId: null,
+			});
 		});
 
 		it('should handle single segment cookie', () => {
