@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.63.0...@kiva/kv-components@6.64.0) (2025-10-23)
+
+
+### Features
+
+* recommended row compact cart link fix ([adaf5d3](https://github.com/kiva/kv-ui-elements/commit/adaf5d340ed5acd67ddf563411d9d67becf1c82b))
+
+
+
+
+
 # [6.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.5...@kiva/kv-components@6.63.0) (2025-10-22)
 
 
