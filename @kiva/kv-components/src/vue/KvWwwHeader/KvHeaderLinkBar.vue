@@ -164,7 +164,7 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
-const AVATAR_MENU_WIDTH = 120;
+const AVATAR_MENU_WIDTH = 150;
 const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
