@@ -11,6 +11,7 @@ export * from './receipt';
 export * from './shopError';
 export * from './shopQueries';
 export * from './subscriptionCheckout';
+export * from './trackTransaction';
 export { default as useBraintreeDropIn } from './useBraintreeDropIn';
 export * from './useBraintreeDropIn';
 export * from './validatePreCheckout';
