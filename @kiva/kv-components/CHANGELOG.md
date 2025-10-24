@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.1...@kiva/kv-components@6.66.0) (2025-10-24)
+
+
+### Features
+
+* sidesheet content min height added ([#721](https://github.com/kiva/kv-ui-elements/issues/721)) ([9a476e1](https://github.com/kiva/kv-ui-elements/commit/9a476e1bc852dc55ea34110b1943d526a24bdf7a))
+
+
+
+
+
 ## [6.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.0...@kiva/kv-components@6.65.1) (2025-10-23)
 
 
