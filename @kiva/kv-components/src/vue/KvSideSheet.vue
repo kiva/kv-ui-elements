@@ -73,7 +73,10 @@
 				<div
 					id="sidesheet-content"
 					class="tw-overflow-y-auto tw-overscroll-y-contain"
-					:style="{ height: contentHeight + 'px' }"
+					:style="[
+						{ 'min-height': loadingContentMinHeight },
+						{height: contentHeight + 'px' }
+					]"
 				>
 					<div
 						class="tw-px-2 tw-transition-opacity tw-duration-200"
@@ -231,6 +234,7 @@ export default {
 		const windowWidth = ref(null);
 		const controlsObserver = ref(null);
 		const headlineObserver = ref(null);
+		const loadingContentMinHeight = ref('100vh');
 
 		const heights = reactive({
 			headline: 0,
@@ -446,6 +450,8 @@ export default {
 
 		// Set up resize listeners
 		onMounted(() => {
+			loadingContentMinHeight.value = 'auto';
+
 			setTimeout(() => {
 				updateHeights();
 			}, 100);
@@ -488,6 +494,7 @@ export default {
 			mdiOpenInNew,
 			modalStyles,
 			open,
+			loadingContentMinHeight,
 		};
 	},
 };
