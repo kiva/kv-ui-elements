@@ -1,33 +1,35 @@
 <template>
 	<section
-		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
 		:class="{ 'lg:tw-relative': asideControls }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
 		<div
-			class="tw-flex tw-gap-x-4"
-			:class="{
-				'tw-mx-auto aside-controls-content': asideControls,
-				'circle-carousel': inCircle
-			}"
+			ref="rootEl"
+			class="embla"
 		>
 			<div
-				v-for="(slotName, index) in componentSlotKeys"
-				:key="index"
-				class="tw-flex-none tw-relative"
-				role="group"
-				:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
-				:aria-current="currentIndex === index ? 'true' : 'false'"
-				:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
-				:tab-index="isAriaHidden(index) ? '-1' : false"
-				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'circle-slide': inCircle }"
-				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
+				class="embla__container tw-flex tw-gap-x-4"
+				:class="{
+					'tw-mx-auto aside-controls-content': asideControls,
+					'circle-carousel': inCircle
+				}"
 			>
-				<slot
-					:name="slotName"
-				></slot>
+				<div
+					v-for="(slotName, index) in componentSlotKeys"
+					:key="index"
+					class="embla__slide tw-flex-none tw-relative"
+					role="group"
+					:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
+					:aria-current="currentIndex === index ? 'true' : 'false'"
+					:aria-hidden="isAriaHidden(index) ? 'true' : 'false'"
+					:tab-index="isAriaHidden(index) ? '-1' : false"
+					:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'circle-slide': inCircle }"
+					:style="slideMaxWidth ? `max-width:${slideMaxWidth}` : ''"
+				>
+					<slot :name="slotName"></slot>
+				</div>
 			</div>
 		</div>
 		<!-- Carousel Controls -->
@@ -50,7 +52,7 @@
 			>
 				<kv-material-icon
 					class="tw-w-4"
-					:icon="asideControls? mdiArrowLeft : mdiChevronLeft"
+					:icon="asideControls ? mdiArrowLeft : mdiChevronLeft"
 				/>
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
@@ -151,11 +153,11 @@ import {
 	mdiArrowLeft,
 	mdiArrowRight,
 } from '@mdi/js';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 import { carouselUtil } from '../utils/carousels';
 
-import KvMaterialIcon from './KvMaterialIcon.vue';
-
 export default {
+	name: 'KvCarousel',
 	components: {
 		KvMaterialIcon,
 	},
@@ -287,6 +289,21 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.embla {
+	overflow: hidden;
+}
+
+.embla__container {
+	backface-visibility: hidden;
+	display: flex;
+	touch-action: pan-y pinch-zoom;
+}
+
+.embla__slide {
+	flex: 0 0 100%;
+	min-width: 0;
+}
+
 .aside-controls-content {
 	@screen lg {
 		width: 82%;
