@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.66.0...@kiva/kv-components@6.67.0) (2025-10-27)
+
+
+### Features
+
+* fix compact card ([42d98c2](https://github.com/kiva/kv-ui-elements/commit/42d98c2cdf04dd1e803174eaaf7d2c240fedcabc))
+* fix compact card ([22fcc33](https://github.com/kiva/kv-ui-elements/commit/22fcc33dbe72673eefcc8a0cabbbe54ce8739bcf))
+* fix recommended rows ([842168f](https://github.com/kiva/kv-ui-elements/commit/842168fc28714bde14f538499a947dfcaba1fdb6))
+
+
+
+
+
 # [6.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.1...@kiva/kv-components@6.66.0) (2025-10-24)
 
 
