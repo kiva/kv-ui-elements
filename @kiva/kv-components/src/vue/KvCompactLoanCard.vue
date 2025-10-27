@@ -30,7 +30,6 @@
 				</div>
 				<div
 					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
-					style="height: 7.25rem;"
 				>
 					<component
 						:is="tag"
@@ -101,7 +100,7 @@
 		<!-- Progress and CTA Section -->
 		<div
 			class="tw-flex tw-items-end tw-w-full tw-mt-1"
-			:class="{ 'tw-gap-2': sharesAvailable }"
+			:class="{ 'tw-gap-1': sharesAvailable }"
 		>
 			<!-- Loading State -->
 			<template v-if="!hasProgressData">
