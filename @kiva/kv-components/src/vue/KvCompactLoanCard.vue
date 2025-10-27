@@ -1,185 +1,180 @@
 <template>
-	<div class="tw-flex tw-flex-col tw-items-start tw-gap-3 tw-w-full">
-		<div class="tw-flex tw-items-start tw-gap-3 tw-w-full">
-			<div
-				class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
-				tw-bg-white tw-rounded-md tw-shadow-lg tw-w-80"
-			>
-				<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
-					<!-- Image and Content -->
-					<div class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover">
-						<div class="tw-flex-shrink-0 tw-overflow-hidden">
-							<component
-								:is="tag"
-								:to="readMorePath"
-								:href="readMorePath"
-								class="tw-flex"
-								aria-label="Borrower image"
-								@click.native="clickReadMore('Photo', $event)"
-							>
-								<kv-borrower-image
-									class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
-									style="width: 100px; height: 100px;"
-									:alt="`Photo of ${borrowerName}`"
-									:aspect-ratio="1"
-									:default-image="{ width: 200, faceZoom: 50 }"
-									:hash="imageHash"
-									:images="[{ width: 200, faceZoom: 50 }]"
-									:photo-path="photoPath"
-								/>
-							</component>
-						</div>
-						<div
-							class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1"
-							style="height: 7.25rem;"
-						>
-							<component
-								:is="tag"
-								:to="readMorePath"
-								:href="readMorePath"
-								class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
-								aria-label="Loan tag"
-								@click.native="clickReadMore('Tag', $event)"
-							>
-								<kv-loan-tag
-									v-if="showTags && !isLoading"
-									:loan="loan"
-								/>
-							</component>
-							<component
-								:is="tag"
-								:to="readMorePath"
-								:href="readMorePath"
-								class="loan-card-use tw-no-underline tw-text-primary"
-								aria-label="Loan use"
-								@click.native="clickReadMore('Use', $event)"
-							>
-								<div
-									v-if="isLoading"
-									class="loan-card-use-text tw-w-full tw-overflow-hidden"
-									style="width: 13rem;"
-								>
-									<div
-										v-for="(_n, i) in [...Array(4)]"
-										:key="i"
-										class="tw-h-2 tw-mb-1"
-									>
-										<kv-loading-placeholder />
-									</div>
-								</div>
-								<div
-									v-else
-									class="loan-card-use-text tw-w-full tw-overflow-hidden"
-								>
-									<kv-loan-use
-										:use="loanUse"
-										:loan-amount="loanAmount"
-										:status="loanStatus"
-										:borrower-count="loanBorrowerCount"
-										:name="borrowerName"
-										:distribution-model="distributionModel"
-										class="tw-text-small tw-leading-tight"
-									/>
-								</div>
-							</component>
-						</div>
-					</div>
-
-					<!-- Pills -->
-					<kv-loading-placeholder
-						v-if="isLoading || typeof loanCallouts === 'undefined'"
-						class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
-						:style="{ width: '60%', height: '1.5rem' }"
-					/>
-
-					<kv-loan-callouts
-						v-else
-						:callouts="loanCallouts"
-						class="tw-mt-1.5"
-						@click="$emit('jump-filter-page', $event)"
-					/>
-				</div>
-
-				<!-- Progress and CTA Section -->
-				<div
-					class="tw-flex tw-items-end tw-w-full tw-mt-1"
-					:class="{ 'tw-gap-2': sharesAvailable }"
-				>
-					<!-- Loading State -->
-					<template v-if="!hasProgressData">
-						<div class="tw-flex-1">
-							<kv-loading-placeholder
-								class="tw-mb-0.5"
-								:style="{ width: '11rem', height: '1rem' }"
-							/>
-							<kv-loading-placeholder
-								class="tw-rounded"
-								:style="{ width: '11rem', height: '0.5rem' }"
-							/>
-						</div>
-						<kv-loading-placeholder
-							v-if="!allDataLoaded"
-							class="tw-rounded tw-flex-shrink-0"
-							:style="{ width: '8rem', height: '2.5rem' }"
+	<div
+		class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
+        tw-bg-white tw-rounded-md tw-shadow-lg tw-w-full"
+		style="min-width: 322px;"
+	>
+		<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
+			<!-- Image and Content -->
+			<div class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover">
+				<div class="tw-flex-shrink-0 tw-overflow-hidden">
+					<component
+						:is="tag"
+						:to="readMorePath"
+						:href="readMorePath"
+						class="tw-flex"
+						aria-label="Borrower image"
+						@click.native="clickReadMore('Photo', $event)"
+					>
+						<kv-borrower-image
+							class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
+							style="width: 100px; height: 100px;"
+							:alt="`Photo of ${borrowerName}`"
+							:aspect-ratio="1"
+							:default-image="{ width: 200, faceZoom: 50 }"
+							:hash="imageHash"
+							:images="[{ width: 200, faceZoom: 50 }]"
+							:photo-path="photoPath"
 						/>
-					</template>
-
-					<!-- Loaded State -->
-					<template v-else>
-						<!-- Progress Section: takes remaining space -->
-						<div class="tw-flex-1 tw-min-w-0">
-							<component
-								:is="tag"
-								v-if="sharesAvailable"
-								:to="readMorePath"
-								:href="readMorePath"
-								class="loan-card-progress tw-no-underline tw-block"
-								aria-label="Loan progress"
-								@click.native="clickReadMore('Progress', $event)"
-							>
-								<kv-loan-progress-group
-									id="loanProgress"
-									:money-left="unreservedAmount"
-									:progress-percent="fundraisingPercent"
-									class="tw-text-black"
-								/>
-							</component>
-						</div>
-
-						<!-- CTA Section: fixed width, aligned right -->
+					</component>
+				</div>
+				<div
+					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
+				>
+					<component
+						:is="tag"
+						:to="readMorePath"
+						:href="readMorePath"
+						class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
+						aria-label="Loan tag"
+						@click.native="clickReadMore('Tag', $event)"
+					>
+						<kv-loan-tag
+							v-if="showTags && !isLoading"
+							:loan="loan"
+						/>
+					</component>
+					<component
+						:is="tag"
+						:to="readMorePath"
+						:href="readMorePath"
+						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
+						aria-label="Loan use"
+						@click.native="clickReadMore('Use', $event)"
+					>
 						<div
-							class="tw-flex-shrink-0 loan-card-cta"
-							:class="{ 'tw-w-full': !sharesAvailable }"
-							style="height: 40px;"
+							v-if="isLoading"
+							class="loan-card-use-text tw-w-full tw-overflow-hidden"
 						>
-							<kv-lend-cta
-								:loan="loan"
-								:unreserved-amount="unreservedAmount"
-								:basket-items="basketItems"
-								:is-loading="isLoading"
-								:is-adding="isAdding"
-								:enable-five-dollars-notes="enableFiveDollarsNotes"
-								:five-dollars-selected="fiveDollarsSelected"
-								:kv-track-function="kvTrackFunction"
-								:show-view-loan="showViewLoan"
-								:custom-loan-details="customLoanDetails"
-								:external-links="externalLinks"
-								:route="route"
-								:user-balance="userBalance"
-								:get-cookie="getCookie"
-								:set-cookie="setCookie"
-								:is-visitor="isVisitor"
-								:primary-button-text="primaryButtonText"
-								:secondary-button-text="secondaryButtonText"
-								:secondary-button-handler="secondaryButtonHandler"
-								@add-to-basket="$emit('add-to-basket', $event)"
-								@show-loan-details="clickReadMore('ViewLoan', $event)"
-								@remove-from-basket="$emit('remove-from-basket', $event)"
+							<div
+								v-for="(_n, i) in [...Array(4)]"
+								:key="i"
+								class="tw-h-2 tw-mb-1"
+							>
+								<kv-loading-placeholder />
+							</div>
+						</div>
+						<div
+							v-else
+							class="loan-card-use-text tw-w-full tw-overflow-hidden"
+						>
+							<kv-loan-use
+								:use="loanUse"
+								:loan-amount="loanAmount"
+								:status="loanStatus"
+								:borrower-count="loanBorrowerCount"
+								:name="borrowerName"
+								:distribution-model="distributionModel"
+								class="tw-text-small tw-leading-tight"
 							/>
 						</div>
-					</template>
+					</component>
 				</div>
 			</div>
+
+			<!-- Pills -->
+			<kv-loading-placeholder
+				v-if="isLoading || typeof loanCallouts === 'undefined'"
+				class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
+				:style="{ width: '60%', height: '1.5rem' }"
+			/>
+
+			<kv-loan-callouts
+				v-else
+				:callouts="loanCallouts"
+				class="tw-mt-1.5"
+				@click="$emit('jump-filter-page', $event)"
+			/>
+		</div>
+
+		<!-- Progress and CTA Section -->
+		<div
+			class="tw-flex tw-items-end tw-w-full tw-mt-1"
+			:class="{ 'tw-gap-1': sharesAvailable }"
+		>
+			<!-- Loading State -->
+			<template v-if="!hasProgressData">
+				<div class="tw-flex-1 tw-min-w-0">
+					<kv-loading-placeholder
+						class="tw-mb-0.5"
+						:style="{ width: '100%', maxWidth: '11rem', height: '1rem' }"
+					/>
+					<kv-loading-placeholder
+						class="tw-rounded"
+						:style="{ width: '100%', maxWidth: '11rem', height: '0.5rem' }"
+					/>
+				</div>
+				<kv-loading-placeholder
+					v-if="!allDataLoaded"
+					class="tw-rounded tw-flex-shrink-0"
+					:style="{ width: '8rem', height: '2.5rem' }"
+				/>
+			</template>
+
+			<!-- Loaded State -->
+			<template v-else>
+				<!-- Progress Section: takes remaining space -->
+				<div class="tw-flex-1 tw-min-w-0">
+					<component
+						:is="tag"
+						v-if="sharesAvailable"
+						:to="readMorePath"
+						:href="readMorePath"
+						class="loan-card-progress tw-no-underline tw-block"
+						aria-label="Loan progress"
+						@click.native="clickReadMore('Progress', $event)"
+					>
+						<kv-loan-progress-group
+							id="loanProgress"
+							:money-left="unreservedAmount"
+							:progress-percent="fundraisingPercent"
+							class="tw-text-black"
+						/>
+					</component>
+				</div>
+
+				<!-- CTA Section: fixed width, aligned right -->
+				<div
+					class="tw-flex-shrink-0 loan-card-cta"
+					:class="{ 'tw-w-full': !sharesAvailable }"
+					style="height: 40px;"
+				>
+					<kv-lend-cta
+						:loan="loan"
+						:unreserved-amount="unreservedAmount"
+						:basket-items="basketItems"
+						:is-loading="isLoading"
+						:is-adding="isAdding"
+						:enable-five-dollars-notes="enableFiveDollarsNotes"
+						:five-dollars-selected="fiveDollarsSelected"
+						:kv-track-function="kvTrackFunction"
+						:show-view-loan="showViewLoan"
+						:custom-loan-details="customLoanDetails"
+						:external-links="externalLinks"
+						:route="route"
+						:user-balance="userBalance"
+						:get-cookie="getCookie"
+						:set-cookie="setCookie"
+						:is-visitor="isVisitor"
+						:primary-button-text="primaryButtonText"
+						:secondary-button-text="secondaryButtonText"
+						:secondary-button-handler="secondaryButtonHandler"
+						@add-to-basket="$emit('add-to-basket', $event)"
+						@show-loan-details="clickReadMore('ViewLoan', $event)"
+						@remove-from-basket="$emit('remove-from-basket', $event)"
+					/>
+				</div>
+			</template>
 		</div>
 	</div>
 </template>
