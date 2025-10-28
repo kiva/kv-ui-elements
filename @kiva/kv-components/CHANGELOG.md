@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.67.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.1...@kiva/kv-components@6.67.2) (2025-10-28)
+
+
+### Bug Fixes
+
+* adjust new nav sizes ([e6c3d15](https://github.com/kiva/kv-ui-elements/commit/e6c3d155429d86d6c67ea79a6822fe2f94ee574a))
+
+
+
+
+
 ## [6.67.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.0...@kiva/kv-components@6.67.1) (2025-10-28)
 
 
