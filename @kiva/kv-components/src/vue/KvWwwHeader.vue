@@ -7,7 +7,7 @@
 			class="tw-font-medium tw-relative"
 			:style="{ height: HEADER_HEIGHT }"
 		>
-			<kv-page-container>
+			<kv-page-container class="tw-h-full">
 				<!-- link bar -->
 				<transition
 					name="header-fade"
@@ -103,7 +103,7 @@ import KvPageContainer from './KvPageContainer.vue';
 import { throttle } from '../utils/throttle';
 import { debounce } from '../utils/debounce';
 
-const HEADER_HEIGHT = '3.7rem';
+const HEADER_HEIGHT = '4rem';
 const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink', 'takeActionButton'];
 
 export default {

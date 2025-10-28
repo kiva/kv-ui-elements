@@ -28,7 +28,7 @@
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-1"
+			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-0.5"
 			@on-hover="handleOnHover"
 			@mouseleave="handleMouseOut('lendButton')"
 			@touchstart.stop="handleTouchStart('lendButton', KvLendMenu)"
