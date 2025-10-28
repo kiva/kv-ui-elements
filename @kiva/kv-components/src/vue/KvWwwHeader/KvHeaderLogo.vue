@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-h-2 lg:tw-h-3">
+	<div class="tw-h-2 lg:tw-h-2.5">
 		<kv-logo class="tw-text-brand tw-w-auto tw-h-full tw-mx-auto" />
 	</div>
 </template>
