@@ -2,7 +2,7 @@
 	<section
 		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
-		:class="{ 'lg:tw-relative': asideControls }"
+		:class="{ 'lg:tw-relative': asideControls, 'tw-relative': controlsTopRight }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
@@ -36,7 +36,11 @@
 			class="kv-carousel__controls tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
 			tw-mt-4 tw-w-full"
-			:class="{ 'lg:tw-hidden': asideControls }"
+			:class="{
+				'lg:tw-hidden': asideControls,
+				'tw-mt-4': !controlsTopRight,
+				'tw-absolute tw-top-[-70px] tw-right-4 tw-w-auto tw-gap-2': controlsTopRight
+			}"
 		>
 			<button
 				class="tw-text-primary
@@ -45,6 +49,7 @@
 					tw-h-4 tw-w-4
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
+				:class="{ 'tw-bg-white tw-shadow-md': controlsTopRight }"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
 			>
@@ -55,6 +60,7 @@
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
 			<div
+				v-if="!controlsTopRight"
 				:aria-label="`screen ${currentIndex + 1} of ${slideIndicatorCount}`"
 				class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible"
 			>
@@ -67,6 +73,7 @@
 					tw-h-4 tw-w-4
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
+				:class="{ 'tw-bg-white tw-shadow-md': controlsTopRight }"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
 			>
@@ -232,6 +239,13 @@ export default {
 		 * Enables carousel slides to have a circle effect
 		 * */
 		inCircle: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Position carousel controls in the top right corner
+		 * */
+		controlsTopRight: {
 			type: Boolean,
 			default: false,
 		},
