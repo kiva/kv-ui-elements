@@ -92,7 +92,7 @@
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
-				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none"
+				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none tw-text-action"
 				:count="basketCount"
 			/>
 			<span class="tw-hidden md:tw-block">Basket</span>
