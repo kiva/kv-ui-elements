@@ -140,7 +140,7 @@
 
 							<!-- CTA button always present in second row -->
 							<kv-ui-button
-								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								class="tw-inline-flex tw-flex-1 button-ellipsis tw-min-w-0"
 								:class="viewportWidth < MOBILE_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
 								data-testid="bp-lend-cta-mobile-lend-button"
 								type="submit"
@@ -231,7 +231,7 @@
 
 							<!-- CTA button always present in second row -->
 							<kv-ui-button
-								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								class="tw-inline-flex tw-flex-1 button-ellipsis tw-min-w-0"
 								:class="componentWidth < NARROW_SIDEBAR_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
 								data-testid="bp-lend-cta-narrow-desktop-lend-button"
 								type="submit"
@@ -394,7 +394,7 @@ import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 const OTHER_OPTION = 'Other';
-const MOBILE_DROPDOWN_BREAKPOINT = 400;
+const MOBILE_DROPDOWN_BREAKPOINT = 360; // breakpoint for mobile when dropdown moves to second row
 const NARROW_SIDEBAR_BREAKPOINT = 480; // breakpoint for desktop when sidebar is narrow
 const NARROW_SIDEBAR_DROPDOWN_BREAKPOINT = 380; // Breakpoint for smaller narrow sidebar
 
