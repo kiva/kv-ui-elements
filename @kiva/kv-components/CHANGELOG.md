@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.67.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.0...@kiva/kv-components@6.67.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* small adjustments to mobile side sheet cta ([67fdc16](https://github.com/kiva/kv-ui-elements/commit/67fdc16b6e92f5e2e70e167f643ca466d3771d1b))
+
+
+
+
+
 # [6.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.66.0...@kiva/kv-components@6.67.0) (2025-10-27)
 
 
