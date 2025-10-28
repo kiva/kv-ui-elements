@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.67.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.2...@kiva/kv-components@6.67.3) (2025-10-28)
+
+
+### Bug Fixes
+
+* make basket icon green ([dbec56a](https://github.com/kiva/kv-ui-elements/commit/dbec56aa9026ab00eb4f641ae9bd0c3688523ec7))
+
+
+
+
+
 ## [6.67.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.1...@kiva/kv-components@6.67.2) (2025-10-28)
 
 
