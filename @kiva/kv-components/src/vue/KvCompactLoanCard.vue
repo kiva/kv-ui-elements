@@ -2,7 +2,6 @@
 	<div
 		class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
         tw-bg-white tw-rounded-md tw-shadow-lg tw-w-full"
-		style="min-width: 322px;"
 	>
 		<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
 			<!-- Image and Content -->
