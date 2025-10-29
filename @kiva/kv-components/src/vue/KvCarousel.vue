@@ -2,7 +2,7 @@
 	<section
 		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
-		:class="{ 'lg:tw-relative': asideControls, 'tw-relative tw-pt-6': controlsTopRight }"
+		:class="{ 'lg:tw-relative': asideControls, 'tw-relative tw-pt-8': controlsTopRight }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
