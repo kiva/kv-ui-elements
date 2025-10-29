@@ -44,12 +44,15 @@
 		>
 			<button
 				class="tw-text-primary
-					tw-rounded-full
-					tw-border-2 tw-border-primary
 					tw-h-4 tw-w-4
+					tw-rounded-full
+					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:class="{ 'tw-bg-white tw-shadow-md': controlsTopRight }"
+				:class="{
+					'tw-border-2': !controlsTopRight,
+					'tw-bg-white tw-shadow-md': controlsTopRight
+				}"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
 			>
@@ -68,12 +71,15 @@
 			</div>
 			<button
 				class="tw-text-primary
-					tw-rounded-full
-					tw-border-2 tw-border-primary
 					tw-h-4 tw-w-4
+					tw-rounded-full
+					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
-				:class="{ 'tw-bg-white tw-shadow-md': controlsTopRight }"
+				:class="{
+					'tw-border-2': !controlsTopRight,
+					'tw-bg-white tw-shadow-md': controlsTopRight
+				}"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
 			>
