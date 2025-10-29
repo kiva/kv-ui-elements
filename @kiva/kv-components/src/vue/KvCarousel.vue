@@ -2,7 +2,7 @@
 	<section
 		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
-		:class="{ 'lg:tw-relative': asideControls, 'tw-relative': controlsTopRight }"
+		:class="{ 'lg:tw-relative': asideControls, 'tw-relative tw-pt-6': controlsTopRight }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
@@ -35,11 +35,11 @@
 			v-if="slideIndicatorCount > 1 && !isDotted"
 			class="kv-carousel__controls tw-flex
 			tw-justify-between md:tw-justify-center tw-items-center
-			tw-mt-4 tw-w-full"
+			tw-w-full"
 			:class="{
 				'lg:tw-hidden': asideControls,
-				'tw-mt-4': !controlsTopRight,
-				'tw-absolute tw-top-[-70px] tw-right-4 tw-w-auto tw-gap-2': controlsTopRight
+				'tw-mb-4 tw-mt-4': !controlsTopRight,
+				'tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2': controlsTopRight
 			}"
 		>
 			<button
@@ -159,10 +159,10 @@ import {
 	mdiArrowRight,
 } from '@mdi/js';
 import { carouselUtil } from '../utils/carousels';
-
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
+	name: 'KvCarousel',
 	components: {
 		KvMaterialIcon,
 	},
