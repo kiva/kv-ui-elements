@@ -38,7 +38,7 @@
 			tw-w-full"
 			:class="{
 				'lg:tw-hidden': asideControls,
-				'tw-mb-4 tw-mt-4': !controlsTopRight,
+				'tw-mt-4': !controlsTopRight,
 				'tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2': controlsTopRight
 			}"
 		>
