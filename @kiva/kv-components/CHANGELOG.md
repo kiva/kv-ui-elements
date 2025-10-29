@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.3...@kiva/kv-components@6.68.0) (2025-10-29)
+
+
+### Features
+
+* recommended row lendcard (MP-2100) ([61b8f4e](https://github.com/kiva/kv-ui-elements/commit/61b8f4ed77392e6050021f27e591dc8de39b9f65))
+
+
+
+
+
 ## [6.67.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.2...@kiva/kv-components@6.67.3) (2025-10-28)
 
 
