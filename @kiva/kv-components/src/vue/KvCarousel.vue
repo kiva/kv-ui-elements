@@ -34,12 +34,12 @@
 		<div
 			v-if="slideIndicatorCount > 1 && !isDotted"
 			class="kv-carousel__controls tw-flex
-			tw-justify-between md:tw-justify-center tw-items-center
+			tw-justify-between tw-items-center
 			tw-w-full"
 			:class="{
 				'lg:tw-hidden': asideControls,
-				'tw-mt-4': !controlsTopRight,
-				'tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2': controlsTopRight
+				'tw-mt-4 md:tw-justify-center': !controlsTopRight,
+				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2': controlsTopRight
 			}"
 		>
 			<button
