@@ -5,8 +5,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./assets/*": "./dist/assets/*.js",
     "./assets/*.js": "./dist/assets/*.js",
     "./utils/*": "./dist/utils/*.js",
@@ -94,7 +99,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006 -c src/vue/.storybook",
     "build-storybook": "storybook build -c src/vue/.storybook",
-    "lint": "eslint --ext .js,.vue ./",
+    "lint": "eslint --ext .ts,.vue ./",
     "test": "npm run lint && jest",
     "prebuild": "node build/copyFlags.js",
     "build": "vite build",
