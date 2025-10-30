@@ -121,12 +121,11 @@
 							:id="`lend-menu-${paramCase(region.name)}-panel`"
 							:key="region.name"
 							ref="regionAccordions"
+							v-kv-track-event="['TopNav','click-Lend-Region', region.name]"
 						>
 							<template #header>
 								<h3 class="tw-text-h4">
-									<span v-kv-track-event="['TopNav','click-Lend-Region', region.name]">
-										{{ region.name }}
-									</span>
+									{{ region.name }}
 								</h3>
 							</template>
 							<kv-lend-menu-country-list :countries="region.countries" />
