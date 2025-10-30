@@ -169,6 +169,8 @@ const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
 const LEND_MENU_ITEM = 'lendButton';
+const TAKE_ACTION_MENU_ITEM = 'takeActionButton';
+const ABOUT_MENU_ITEM = 'aboutUsLink';
 
 export default {
 	components: {
@@ -233,6 +235,14 @@ export default {
 
 		const $kvTrackEvent = inject('$kvTrackEvent');
 
+		const menuTrackingMap = {
+			[LEND_MENU_ITEM]: { action: 'hover-Lend-menu', label: 'Lend' },
+			[TAKE_ACTION_MENU_ITEM]: { action: 'hover-Take-action-menu', label: 'Take action' },
+			[ABOUT_MENU_ITEM]: { action: 'hover-About-menu', label: 'About' },
+			[MOBILE_MENU_ITEM]: { action: 'hover-Hamburger-menu', label: 'Hamburger' },
+			[AVATAR_MENU_ID]: { action: 'hover-Avatar-menu', label: 'Avatar' },
+		};
+
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
@@ -240,12 +250,16 @@ export default {
 		const handleOnHover = (item, menu, targetPosition = null) => {
 			// Detect input method (mouse vs touch) instead of relying only on screen size
 			if (!navigator.maxTouchPoints) {
-				if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
-					$kvTrackEvent(
-						'TopNav',
-						'hover-Lend-menu',
-						'Lend',
-					);
+				// Track hover for each menu type
+				if (item && openMenuId.value !== item) {
+					const tracking = menuTrackingMap[item];
+					if (tracking) {
+						$kvTrackEvent(
+							'TopNav',
+							tracking.action,
+							tracking.label,
+						);
+					}
 				}
 				openMenuId.value = item;
 
@@ -284,12 +298,16 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu, targetPosition) => {
-			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
-				$kvTrackEvent(
-					'TopNav',
-					'hover-Lend-menu',
-					'Lend',
-				);
+			// Track touch start for each menu type
+			if (item && openMenuId.value !== item) {
+				const tracking = menuTrackingMap[item];
+				if (tracking) {
+					$kvTrackEvent(
+						'TopNav',
+						tracking.action,
+						tracking.label,
+					);
+				}
 			}
 
 			// Handles the scenario when mobile menu is closed from main component

@@ -2,12 +2,14 @@
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end md:tw-hidden tw-font-medium tw-p-2.5">
 		<KvMaterialIcon
 			v-if="isMobile"
+			v-kv-track-event="['TopNav', 'click-Hamburger-close']"
 			:icon="mdiClose"
 			class="tw-cursor-pointer"
 			@click="$emit('closing-menu')"
 		/>
 		<KvAccordionItem
 			id="accordion-take-action-menu"
+			v-kv-track-event="['TopNav', 'click-Hamburger-Take-action-accordion']"
 			open
 			class="tw-w-full tw-border-b-0"
 		>
@@ -17,25 +19,25 @@
 				</h3>
 			</template>
 			<div class="tw-flex tw-flex-col tw-gap-2 tw-pl-1">
-				<div
+				<a
 					v-for="item in menuItems"
 					:key="item.title"
 					v-kv-track-event="['TopNav', `click-${item.trackEvent}`]"
+					:href="item.url"
+					class="mobile-link"
 				>
-					<a
-						:href="item.url"
-						class="mobile-link"
-					>
+					<div>
 						{{ item.title }}
-					</a>
+					</div>
 					<p class="tw-text-secondary tw-font-book">
 						{{ item.description }}
 					</p>
-				</div>
+				</a>
 			</div>
 		</KvAccordionItem>
 		<KvAccordionItem
 			id="accordion-about-menu"
+			v-kv-track-event="['TopNav', 'click-Hamburger-About-accordion']"
 			class="tw-w-full tw-pb-1"
 		>
 			<template #header>
