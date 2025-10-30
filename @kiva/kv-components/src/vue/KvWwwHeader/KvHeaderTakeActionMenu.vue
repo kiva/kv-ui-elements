@@ -1,7 +1,7 @@
 <template>
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-flex tw-flex-col tw-items-start tw-font-medium tw-px-2.5">
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Choose-someone-to-help']"
+			v-kv-track-event="['TopNav', 'click-menu-choose-someone-to-help']"
 			href="/lend-by-category"
 		>
 			<div>
@@ -12,7 +12,7 @@
 			</div>
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Donate-to-Kiva']"
+			v-kv-track-event="['TopNav', 'click-Support-Kiva']"
 			href="/donate/supportus"
 		>
 			<div>
@@ -23,7 +23,7 @@
 			</div>
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Partner-with-us']"
+			v-kv-track-event="['TopNav', 'click-About-Partner with us']"
 			href="/about/partner-with-us"
 		>
 			<div>
@@ -34,7 +34,7 @@
 			</div>
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-kv-track-event="['TopNav', 'click-menu-Buy-kiva-card']"
+			v-kv-track-event="['TopNav', 'click-menu-buy-kiva-card']"
 			href="/gifts/kiva-cards"
 		>
 			<div>

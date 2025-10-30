@@ -56,7 +56,10 @@
 		</div>
 		<!-- User is not anonymous and does not have an image -->
 		<!-- First Letter of lender name -->
-		<span v-if="!isAnonymousUser && !userHasImage">
+		<span
+			v-if="!isAnonymousUser && !userHasImage"
+			:class="{ 'adjust-vertical-spacing': !isSmall }"
+		>
 			{{ lenderNameFirstLetter }}
 		</span>
 	</div>
@@ -184,3 +187,10 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+.adjust-vertical-spacing {
+	top: -0.1rem;
+	position: relative;
+}
+</style>

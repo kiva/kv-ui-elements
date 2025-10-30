@@ -76,6 +76,12 @@ const story = (args) => {
 		props: Object.keys(argTypes),
 		components: { KvWwwHeader, KvPageContainer },
 		setup() { return { args: { ..._args } }; },
+		provide: {
+			$kvTrackEvent: (category, action, label) => {
+				// eslint-disable-next-line no-console
+				console.log(`${category}, ${action}, ${label}`);
+			},
+		},
 		template: `
 			<div class="tw-relative" :style="args.cssVars">
 				<kv-www-header v-bind="args" />

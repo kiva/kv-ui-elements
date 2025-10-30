@@ -132,7 +132,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
 /**
  * Default date picker with basic functionality.
  *
-
  */
 export const Default = DefaultTemplate.bind({});
 Default.args = {
@@ -146,7 +145,6 @@ Default.args = {
 /**
  * Date picker with time selection enabled.
  *
-
  */
 export const WithTimePicker = DefaultTemplate.bind({});
 WithTimePicker.args = {
@@ -246,7 +244,6 @@ HiddenIcon.args = {
 /**
  * Date range picker for selecting start and end dates.
  *
-
  */
 export const DateRange = DefaultTemplate.bind({});
 DateRange.args = {
@@ -259,7 +256,6 @@ DateRange.args = {
 /**
  * Date picker with min/max date constraints.
  *
-
  */
 export const WithMinMaxDates = DefaultTemplate.bind({});
 WithMinMaxDates.args = {
@@ -271,9 +267,75 @@ WithMinMaxDates.args = {
 };
 
 /**
+ * Date picker with disabled field.
+ *
+ */
+
+export const WithDisabledField = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvDatePicker },
+	data() {
+		return {
+			selectedDate: '10/15/2023',
+		};
+	},
+	setup() { return { args }; },
+	template: `
+	<div>
+			<div class="tw-space-y-4 tw-mb-4">
+				<label class="tw-text-h4 tw-block">
+					Disabled Field
+				</label>
+				<kv-date-picker
+					v-model="selectedDate"
+					:placeholder="args.placeholder"
+					:format="args.format"
+					:model-type="args.modelType"
+					:locale="args.locale"
+					:enable-time-picker="args.enableTimePicker"
+					:is24="args.is24"
+					:disabled="args.disabled"
+					:readonly="args.readonly"
+					:transition-type="args.transitionType"
+					:hide-input-icon="true"
+					style="width: 25rem;"
+				/>
+			</div>
+			<div class="tw-space-y-4">
+				<label class="tw-text-h4 tw-block">
+					Enabled Field
+				</label>
+				<kv-date-picker
+					v-model="selectedDate"
+					:placeholder="args.placeholder"
+					:format="args.format"
+					:model-type="args.modelType"
+					:locale="args.locale"
+					:enable-time-picker="args.enableTimePicker"
+					:is24="args.is24"
+					:readonly="args.readonly"
+					:transition-type="args.transitionType"
+					:hide-input-icon="true"
+					style="width: 25rem;"
+				/>
+			</div>
+
+			<div class="tw-mt-4 tw-text-sm tw-text-gray-600">
+				Selected: {{ selectedDate ? new Date(selectedDate).toLocaleString() : 'None' }}
+			</div>
+		</div>`,
+});
+
+WithDisabledField.args = {
+	placeholder: 'Select date...',
+	format: 'MM/dd/yyyy',
+	modelType: 'timestamp',
+	disabled: true,
+};
+
+/**
  * Examples of different date formats supported by the component.
  *
-
  */
 export const DifferentFormats = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -317,7 +379,6 @@ export const DifferentFormats = (args, { argTypes }) => ({
 /**
  * Examples of different locales supported by the component.
  *
-
  */
 export const DifferentLocales = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),

@@ -3,6 +3,309 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.3...@kiva/kv-components@6.68.0) (2025-10-29)
+
+
+### Features
+
+* recommended row lendcard (MP-2100) ([61b8f4e](https://github.com/kiva/kv-ui-elements/commit/61b8f4ed77392e6050021f27e591dc8de39b9f65))
+
+
+
+
+
+## [6.67.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.2...@kiva/kv-components@6.67.3) (2025-10-28)
+
+
+### Bug Fixes
+
+* make basket icon green ([dbec56a](https://github.com/kiva/kv-ui-elements/commit/dbec56aa9026ab00eb4f641ae9bd0c3688523ec7))
+
+
+
+
+
+## [6.67.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.1...@kiva/kv-components@6.67.2) (2025-10-28)
+
+
+### Bug Fixes
+
+* adjust new nav sizes ([e6c3d15](https://github.com/kiva/kv-ui-elements/commit/e6c3d155429d86d6c67ea79a6822fe2f94ee574a))
+
+
+
+
+
+## [6.67.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.0...@kiva/kv-components@6.67.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* small adjustments to mobile side sheet cta ([67fdc16](https://github.com/kiva/kv-ui-elements/commit/67fdc16b6e92f5e2e70e167f643ca466d3771d1b))
+
+
+
+
+
+# [6.67.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.66.0...@kiva/kv-components@6.67.0) (2025-10-27)
+
+
+### Features
+
+* fix compact card ([42d98c2](https://github.com/kiva/kv-ui-elements/commit/42d98c2cdf04dd1e803174eaaf7d2c240fedcabc))
+* fix compact card ([22fcc33](https://github.com/kiva/kv-ui-elements/commit/22fcc33dbe72673eefcc8a0cabbbe54ce8739bcf))
+* fix recommended rows ([842168f](https://github.com/kiva/kv-ui-elements/commit/842168fc28714bde14f538499a947dfcaba1fdb6))
+
+
+
+
+
+# [6.66.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.1...@kiva/kv-components@6.66.0) (2025-10-24)
+
+
+### Features
+
+* sidesheet content min height added ([#721](https://github.com/kiva/kv-ui-elements/issues/721)) ([9a476e1](https://github.com/kiva/kv-ui-elements/commit/9a476e1bc852dc55ea34110b1943d526a24bdf7a))
+
+
+
+
+
+## [6.65.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.65.0...@kiva/kv-components@6.65.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* increase avatar menu width to fix position ([7c56abb](https://github.com/kiva/kv-ui-elements/commit/7c56abb09679efc2000e9013206266aa8eb97dbb))
+
+
+
+
+
+# [6.65.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.1...@kiva/kv-components@6.65.0) (2025-10-23)
+
+
+### Features
+
+* kvsidesheet no animated variant ([#718](https://github.com/kiva/kv-ui-elements/issues/718)) ([2b47670](https://github.com/kiva/kv-ui-elements/commit/2b47670af638c346c7785fa03cc47a5ab9f1b8f4))
+
+
+
+
+
+## [6.64.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.64.0...@kiva/kv-components@6.64.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* avoid window errors in kvsidesheet ([#717](https://github.com/kiva/kv-ui-elements/issues/717)) ([debd50f](https://github.com/kiva/kv-ui-elements/commit/debd50ff1513e6c68357fb6943ae2078ae833005))
+
+
+
+
+
+# [6.64.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.63.0...@kiva/kv-components@6.64.0) (2025-10-23)
+
+
+### Features
+
+* recommended row compact cart link fix ([adaf5d3](https://github.com/kiva/kv-ui-elements/commit/adaf5d340ed5acd67ddf563411d9d67becf1c82b))
+
+
+
+
+
+# [6.63.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.5...@kiva/kv-components@6.63.0) (2025-10-22)
+
+
+### Features
+
+* preset amount option fix ([46b3c51](https://github.com/kiva/kv-ui-elements/commit/46b3c51b6179dc9be728ddeb6bb45dd3ff008407))
+
+
+
+
+
+## [6.62.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.4...@kiva/kv-components@6.62.5) (2025-10-22)
+
+
+### Bug Fixes
+
+* vertically center initial in user avatar ([39b1238](https://github.com/kiva/kv-ui-elements/commit/39b12380fe6b0f256adf94bec5b2d99026139b95))
+
+
+
+
+
+## [6.62.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.3...@kiva/kv-components@6.62.4) (2025-10-22)
+
+
+### Bug Fixes
+
+* hamburger menu header hidden behind the navbar ([a18589d](https://github.com/kiva/kv-ui-elements/commit/a18589dcaac9d577e2b02a9ab58da88d99cad08c))
+* take action menu should hide in mobile ([67b6169](https://github.com/kiva/kv-ui-elements/commit/67b6169a4255aceab91ecd39dbd81806f7d1f290))
+
+
+
+
+
+## [6.62.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.2...@kiva/kv-components@6.62.3) (2025-10-22)
+
+
+### Bug Fixes
+
+* avatar menu position on abrupt viewport changes and some clean up in header experiment ([20447c3](https://github.com/kiva/kv-ui-elements/commit/20447c33df809bf964e75c1ff5043ffd92d2cb93))
+* revert checkIsMobileThrottled method ([5937853](https://github.com/kiva/kv-ui-elements/commit/593785349487053baf959eff107ba0e6a4f6a3fe))
+
+
+
+
+
+## [6.62.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.1...@kiva/kv-components@6.62.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* improve on hover fire events and menus getting closed on navbar edge ([433f331](https://github.com/kiva/kv-ui-elements/commit/433f331d4ff69d6bd0726f7929846cad688c5f35))
+
+
+
+
+
+## [6.62.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.62.0...@kiva/kv-components@6.62.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* avoid loading menus when elements is not mounted and  missing on hover event tracking ([597296a](https://github.com/kiva/kv-ui-elements/commit/597296aa1958bc8dd68cdda252216fe231c76702))
+
+
+
+
+
+# [6.62.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.61.0...@kiva/kv-components@6.62.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* revised mobile breakpoint ([c651c95](https://github.com/kiva/kv-ui-elements/commit/c651c953c20bac8f889c7435927e6509f2827e00))
+
+
+### Features
+
+* fixed truncation issue ([d428f54](https://github.com/kiva/kv-ui-elements/commit/d428f54b382a0f87b00d0384dd284daba6d57dd3))
+* other preset option wrapping fix ([708f13f](https://github.com/kiva/kv-ui-elements/commit/708f13f4327f66e313a75cff75d6db50c0137ea9))
+* reverted breakpoint value ([4ca075f](https://github.com/kiva/kv-ui-elements/commit/4ca075ff41fce31c56c86f4d283ca04c16ce9b6c))
+
+
+
+
+
+# [6.61.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.60.0...@kiva/kv-components@6.61.0) (2025-10-20)
+
+
+### Features
+
+* recommended row lendcard (MP-2100) ([8c8a9e4](https://github.com/kiva/kv-ui-elements/commit/8c8a9e4c8761d9ebb7411f8daeaf150fb9841bd4))
+
+
+
+
+
+# [6.60.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.4...@kiva/kv-components@6.60.0) (2025-10-16)
+
+
+### Features
+
+* recommended row lendcard (MP-2099) ([7669389](https://github.com/kiva/kv-ui-elements/commit/766938960cd1fb50cfacefdf47a0c4f19066f028))
+* recommended row lendcard (MP-2099) ([b8ec6a5](https://github.com/kiva/kv-ui-elements/commit/b8ec6a58e889989244a776f9e6e44c423b21bf9d))
+* recommended row lendcard (MP-2099) ([4235a66](https://github.com/kiva/kv-ui-elements/commit/4235a663d53a2b080a8ed326b2f7421c1ccebf2c))
+* recommended row lendcard (MP-2100) ([d8ac648](https://github.com/kiva/kv-ui-elements/commit/d8ac64899c740f6c34cbcaedbc574e0601d64b9e))
+* recommended row lendcard (MP-2100) ([711cc7b](https://github.com/kiva/kv-ui-elements/commit/711cc7bdec2a3df27b4b1f111cd58fb3b8dcd084))
+* recommended row lendcard (MP-2100) ([db5273c](https://github.com/kiva/kv-ui-elements/commit/db5273c15dc4d14435a80996fcdb728407592c56))
+* recommended row lendcard (MP-2100) ([82ebb0d](https://github.com/kiva/kv-ui-elements/commit/82ebb0dfc175569e63eda18f1d2f3f7d48e17338))
+* recommended row lendcard (MP-2100) ([b2015b2](https://github.com/kiva/kv-ui-elements/commit/b2015b286a601ee8c5353ab761a5074901fe54f9))
+* recommended row lendcard (MP-2100) ([ac321b9](https://github.com/kiva/kv-ui-elements/commit/ac321b915028f93ac1854b215716d8008d992675))
+* recommended row lendcard (MP-2100) ([c9c2d92](https://github.com/kiva/kv-ui-elements/commit/c9c2d92b5b5159aeb70b23cec732aeccbfe67bd6))
+
+
+
+
+
+## [6.59.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.3...@kiva/kv-components@6.59.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* inject kvTrackEvent in header component ([aaf4230](https://github.com/kiva/kv-ui-elements/commit/aaf4230602de2be99effaf2caffd4ab166f704ef))
+
+
+
+
+
+## [6.59.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.2...@kiva/kv-components@6.59.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* missmatch on avatar links and missing hover on lend event ([f1ceb81](https://github.com/kiva/kv-ui-elements/commit/f1ceb81e3c25adec582d62d93ef6f36b381f30b1))
+
+
+
+
+
+## [6.59.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.1...@kiva/kv-components@6.59.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* missing tracking events ([397f83a](https://github.com/kiva/kv-ui-elements/commit/397f83a8de7853d27476e01188537ed896719d71))
+* user tapping should not redirect to lend by category page ([fda004c](https://github.com/kiva/kv-ui-elements/commit/fda004cf46962cd8dac4332a02b19241013dd8b5))
+
+
+
+
+
+## [6.59.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.59.0...@kiva/kv-components@6.59.1) (2025-10-10)
+
+
+### Bug Fixes
+
+* prevent event from menu component parent in mobile ([c37a538](https://github.com/kiva/kv-ui-elements/commit/c37a5385646a248e73b771aab78c9a5ec5960722))
+
+
+
+
+
+# [6.59.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.58.0...@kiva/kv-components@6.59.0) (2025-10-08)
+
+
+### Features
+
+* update new nav tracking events ([9d7d9d1](https://github.com/kiva/kv-ui-elements/commit/9d7d9d13820427e3ada0e0885e5c97ac4b1e547a))
+
+
+
+
+
+# [6.58.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.7...@kiva/kv-components@6.58.0) (2025-10-08)
+
+
+### Bug Fixes
+
+* disabled text color ([c9c13ca](https://github.com/kiva/kv-ui-elements/commit/c9c13ca5950e327eb916aeb96a7aa46bb9e31426))
+* spacing ([485d422](https://github.com/kiva/kv-ui-elements/commit/485d422d37175a4ad934ea171e202de0d6ebe5c6))
+
+
+### Features
+
+* change modal title styling to be h2 ([1ad959a](https://github.com/kiva/kv-ui-elements/commit/1ad959af01d35052637af0bd97cbdb77b56c17bf))
+* disabled fields for datepicker ([032355e](https://github.com/kiva/kv-ui-elements/commit/032355e4a3c4e7f6e012be676a7bb22cab852138))
+
+
+
+
+
 ## [6.57.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.57.6...@kiva/kv-components@6.57.7) (2025-10-03)
 
 

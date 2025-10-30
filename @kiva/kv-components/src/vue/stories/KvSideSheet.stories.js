@@ -154,3 +154,13 @@ CustomResponsiveWidths.args = {
 		default: '100%', sm: '80%', md: '500px', lg: '600px',
 	},
 };
+
+export const NoAnimation = Template.bind({});
+NoAnimation.args = {
+	headline: 'No Animation',
+	showGoToLink: true,
+	showBackButton: true,
+	widthDimensions: { lg: '480px', md: '460px', sm: '100%' },
+	visible: true,
+	isAnimated: false,
+};

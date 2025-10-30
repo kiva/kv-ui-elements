@@ -41,10 +41,10 @@
 			class="tw-mb-0"
 			@click="$emit('show-loan-details', $event)"
 		>
-			<span class="tw-flex">
+			<span class="tw-flex tw-items-center">
 				View loan
 				<kv-material-icon
-					class="tw-w-3 tw-h-3 tw-align-middle"
+					class="tw-w-3 tw-h-3"
 					:icon="mdiChevronRight"
 				/>
 			</span>
@@ -81,7 +81,7 @@
 								v-for="option in presetButtonsPrices"
 								:key="option"
 								variant="secondary"
-								class="preset-option tw-flex-1 tw-min-w-0"
+								class="preset-option tw-flex-1 tw-min-w-0 tw-whitespace-nowrap"
 								:class="{'selected-option': selectedOption == option }"
 								data-testid="bp-lend-cta-lend-button-mobile"
 								@click="clickPresetButton(option)"
@@ -94,7 +94,7 @@
 								v-if="showFilteredDropdown && viewportWidth >= MOBILE_DROPDOWN_BREAKPOINT"
 								:id="`LoanAmountDropdownMobile_${loanId}`"
 								v-model="selectedDropdownOption"
-								class="filtered-dropdown mobile-dropdown tw-flex-1 tw-rounded"
+								class="filtered-dropdown mobile-dropdown tw-rounded"
 								:class="{
 									'unselected-dropdown': !selectedDropdown,
 									'selected-dropdown': selectedDropdown,
@@ -140,7 +140,7 @@
 
 							<!-- CTA button always present in second row -->
 							<kv-ui-button
-								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								class="tw-inline-flex tw-flex-1 button-ellipsis tw-min-w-0"
 								:class="viewportWidth < MOBILE_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
 								data-testid="bp-lend-cta-mobile-lend-button"
 								type="submit"
@@ -172,7 +172,7 @@
 								v-for="option in presetButtonsPrices"
 								:key="option"
 								variant="secondary"
-								class="preset-option tw-flex-1 tw-min-w-0"
+								class="preset-option tw-flex-1 tw-min-w-0 tw-whitespace-nowrap"
 								:class="{'selected-option': selectedOption == option }"
 								data-testid="bp-lend-cta-lend-button-narrow-desktop"
 								@click="clickPresetButton(option)"
@@ -231,7 +231,7 @@
 
 							<!-- CTA button always present in second row -->
 							<kv-ui-button
-								class="tw-inline-flex tw-flex-1 button-ellipsis"
+								class="tw-inline-flex tw-flex-1 button-ellipsis tw-min-w-0"
 								:class="componentWidth < NARROW_SIDEBAR_DROPDOWN_BREAKPOINT ? 'tw-w-3/5' : 'tw-w-full'"
 								data-testid="bp-lend-cta-narrow-desktop-lend-button"
 								type="submit"
@@ -263,7 +263,7 @@
 							v-for="option in presetButtonsPrices"
 							:key="option"
 							variant="secondary"
-							class="tw-inline-flex tw-flex-1 preset-option tw-w-8"
+							class="tw-inline-flex tw-flex-1 preset-option tw-w-8 tw-whitespace-nowrap"
 							:class="{'selected-option': selectedOption == option }"
 							data-testid="bp-lend-cta-lend-button"
 							@click="clickPresetButton(option)"
@@ -275,7 +275,7 @@
 						v-if="showFilteredDropdown"
 						:id="`LoanAmountDropdown_${loanId}`"
 						v-model="selectedDropdownOption"
-						class="tw-min-w-12 tw-rounded filtered-dropdown tw-w-full"
+						class="tw-min-w-12 tw-rounded filtered-dropdown"
 						:class="{
 							'unselected-dropdown': !selectedDropdown,
 							'selected-dropdown': selectedDropdown,
@@ -394,7 +394,7 @@ import KvUiButton from './KvButton.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 const OTHER_OPTION = 'Other';
-const MOBILE_DROPDOWN_BREAKPOINT = 430;
+const MOBILE_DROPDOWN_BREAKPOINT = 360; // breakpoint for mobile when dropdown moves to second row
 const NARROW_SIDEBAR_BREAKPOINT = 480; // breakpoint for desktop when sidebar is narrow
 const NARROW_SIDEBAR_DROPDOWN_BREAKPOINT = 380; // Breakpoint for smaller narrow sidebar
 

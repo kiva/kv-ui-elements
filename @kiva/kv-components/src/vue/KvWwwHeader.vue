@@ -7,7 +7,7 @@
 			class="tw-font-medium tw-relative"
 			:style="{ height: HEADER_HEIGHT }"
 		>
-			<kv-page-container>
+			<kv-page-container class="tw-h-full">
 				<!-- link bar -->
 				<transition
 					name="header-fade"
@@ -61,14 +61,15 @@
 				@touchstart="handleOverlayClick"
 			>
 				<div
-					class="tw-bg-primary tw-overflow-y-auto"
+					class="tw-bg-primary tw-overflow-y-auto tw-w-full
+						md:tw-w-auto tw-rounded-none md:tw-rounded-b-sm"
 					:class="{ 'tw-min-h-dvh' : isMobileMenuActive }"
 					:style="{
 						...menuPosition,
 						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${HEADER_HEIGHT})` : 'auto',
 					}"
-					@mouseover="onHover(activeHeaderItem, menuComponent)"
-					@mouseout="onHover()"
+					@mouseenter="onHover(activeHeaderItem, menuComponent)"
+					@mouseleave="onHover()"
 				>
 					<component
 						:is="menuComponent"
@@ -84,6 +85,7 @@
 						:countries-not-lent-to-url="countriesNotLentToUrl"
 						@load-lend-menu-data="emitLendMenuEvent"
 						@closing-menu="onHover()"
+						@touchstart.stop
 					/>
 				</div>
 			</div>
@@ -101,9 +103,10 @@ import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvPageContainer from './KvPageContainer.vue';
 import { throttle } from '../utils/throttle';
+import { debounce } from '../utils/debounce';
 
-const HEADER_HEIGHT = '3.75rem';
-const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink'];
+const HEADER_HEIGHT = '4rem';
+const ONLY_DESKTOP_MENUS = ['lendMenu', 'aboutUsLink', 'takeActionButton'];
 
 export default {
 	components: {
@@ -182,19 +185,20 @@ export default {
 		const menuPosition = ref({ left: 0, position: 'relative' });
 		const isMobile = ref(false);
 		const menuitem = ref(null);
-
-		let menuCloseTimeout;
+		const isComponentMount = ref(false);
 
 		const isMobileMenuActive = computed(() => {
 			return menuComponentInstance.value?.$options?.name === 'KvHeaderMobileMenu';
 		});
 
-		const onHover = (item, menu, targetPosition) => {
+		const onHover = debounce((item, menu, targetPosition) => {
+			// If mounting is not complete, do nothing
+			if (!isComponentMount.value) return;
+
 			// if menu, open menu, and clear timeout
 			// if no menu and menu open, start close menu timeout
 			if (menu) {
 				menuitem.value = item;
-				clearTimeout(menuCloseTimeout);
 				// Avoid calculate menuPosition when hovering over the menu
 				if (menuComponent.value !== menu) {
 					menuPosition.value = { left: 0, position: 'relative' };
@@ -209,12 +213,10 @@ export default {
 					};
 				}
 			} else if (menuOpen.value) {
-				menuCloseTimeout = setTimeout(() => {
-					menuOpen.value = false;
-					menuComponent.value = null;
-				}, 100);
+				menuOpen.value = false;
+				menuComponent.value = null;
 			}
-		};
+		}, 100);
 
 		const loadMenuData = (apollo) => {
 			menuComponentInstance.value?.onLoad(apollo);
@@ -229,11 +231,18 @@ export default {
 			emit('load-lend-menu-data');
 		};
 
+		// Close menus that are desktop or mobile only when switching viewports
+		const shouldCloseMenu = () => {
+			return (
+				(isMobile.value && ONLY_DESKTOP_MENUS.includes(menuitem.value))
+				|| (!isMobile.value && isMobileMenuActive.value)
+			);
+		};
+
 		const checkIsMobile = () => {
 			isMobile.value = window?.innerWidth < tokens.breakpoints.md;
 
-			// Close menus that are desktop only when switching to mobile
-			if (isMobile.value && (ONLY_DESKTOP_MENUS.includes(menuitem.value))) {
+			if (shouldCloseMenu()) {
 				menuComponent.value = null;
 				menuOpen.value = false;
 			}
@@ -244,6 +253,7 @@ export default {
 		onMounted(() => {
 			checkIsMobile();
 			window.addEventListener('resize', checkIsMobileThrottled);
+			isComponentMount.value = true;
 		});
 
 		onBeforeUnmount(() => {

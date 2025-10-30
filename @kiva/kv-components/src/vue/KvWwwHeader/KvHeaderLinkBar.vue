@@ -28,16 +28,16 @@
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-1"
+			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-0.5"
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('lendButton')"
+			@mouseleave="handleMouseOut('lendButton')"
 			@touchstart.stop="handleTouchStart('lendButton', KvLendMenu)"
 		>
 			Lend
 		</KvHeaderDropdownLink>
 		<!-- Take Action -->
 		<KvHeaderDropdownLink
-			v-kv-track-event="['TopNav', 'click-TakeAction']"
+			v-kv-track-event="['TopNav', 'click-take-action']"
 			ref-name="takeActionButton"
 			base-class="tw-hidden md:tw-inline-flex tw-py-1"
 			:menu-component="KvHeaderTakeActionMenu"
@@ -45,14 +45,13 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('takeActionButton')"
+			@mouseleave="handleMouseOut('takeActionButton')"
 			@user-tap="handleTouchStart"
 		>
 			Take action
 		</KvHeaderDropdownLink>
 		<!-- about (lg) -->
 		<KvHeaderDropdownLink
-			v-kv-track-event="['TopNav', 'click-About']"
 			ref-name="aboutUsLink"
 			data-testid="header-about"
 			base-class="tw-hidden md:tw-inline-flex tw-py-1"
@@ -61,7 +60,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseout="handleMouseOut('aboutUsLink')"
+			@mouseleave="handleMouseOut('aboutUsLink')"
 			@user-tap="handleTouchStart"
 		>
 			About
@@ -96,58 +95,62 @@
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
-				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none"
+				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none tw-text-action"
 				:count="isBasketDataLoading ? 0 : basketCount"
 			/>
 			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
 		<div
-			v-show="loggedIn"
-			ref="avatar"
-			class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
-				tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
-			@mouseover="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
-			@mouseout="handleMouseOut(AVATAR_MENU_ID)"
+			class="md:tw-py-1"
+			@mouseenter="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
+			@mouseleave="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart.stop="handleTouchStart(AVATAR_MENU_ID)"
 		>
-			<!-- avatar (sm, auth) -->
-			<kv-material-icon
-				:icon="mdiAccountCircle"
-				class="tw-w-3"
-				:style="isUserDataLoading ? {
-					display: 'var(--user-avatar-legacy-display, inline-block)'
-				} : {
-					display: isDefaultProfilePic ? 'inline-block' : 'none'
-				}"
-			/>
-			<KvUserAvatar
-				class="avatar"
-				:lender-name="lenderName"
-				:lender-image-url="lenderImageUrl"
-				:style="isUserDataLoading ? {
-					display: 'var(--user-avatar-display, inline-block)'
-				} : {
-					display: isDefaultProfilePic ? 'none' : 'inline-block'
-				}"
-				:show-css-placeholder="isUserDataLoading"
-				is-small
-			/>
-			<!-- balance (auth) -->
 			<div
-				v-if="isUserDataLoading"
-				class="tw-w-4 tw-h-3"
-				:style="{
-					display: 'var(--user-balance-loading-display, inline-block)'
-				}"
+				v-show="loggedIn"
+				ref="avatar"
+				class="tw-cursor-pointer tw-flex tw-items-center tw-gap-1 tw-bg-eco-green-1
+					tw-rounded-md tw-py-0.5 md:tw-py-1 tw-px-1 md:tw-px-2"
 			>
-				<KvLoadingPlaceholder />
+				<!-- avatar (sm, auth) -->
+				<kv-material-icon
+					:icon="mdiAccountCircle"
+					class="tw-w-3"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-legacy-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'inline-block' : 'none'
+					}"
+				/>
+				<KvUserAvatar
+					class="avatar"
+					:lender-name="lenderName"
+					:lender-image-url="lenderImageUrl"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'none' : 'inline-block'
+					}"
+					:show-css-placeholder="isUserDataLoading"
+					is-small
+				/>
+				<!-- balance (auth) -->
+				<div
+					v-if="isUserDataLoading"
+					class="tw-w-4 tw-h-3"
+					:style="{
+						display: 'var(--user-balance-loading-display, inline-block)'
+					}"
+				>
+					<KvLoadingPlaceholder />
+				</div>
+				<span
+					v-else
+					class="tw-text-eco-green-4"
+				>
+					{{ numeral(roundedBalance).format('$0') }}
+				</span>
 			</div>
-			<span
-				v-else
-				class="tw-text-eco-green-4"
-			>
-				{{ numeral(roundedBalance).format('$0') }}
-			</span>
 		</div>
 		<!-- sign in (lg, no-auth) -->
 		<a
@@ -165,12 +168,13 @@
 
 <script>
 import {
-	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch,
+	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch, inject,
 } from 'vue';
 import {
 	mdiAccountCircle, mdiMenu, mdiChevronDown, mdiMagnify,
 } from '@mdi/js';
 import numeral from 'numeral';
+import tokens from '@kiva/kv-tokens';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
@@ -185,10 +189,11 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
-const AVATAR_MENU_WIDTH = 120;
+const AVATAR_MENU_WIDTH = 150;
 const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
+const LEND_MENU_ITEM = 'lendButton';
 
 export default {
 	components: {
@@ -260,6 +265,8 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 
+		const $kvTrackEvent = inject('$kvTrackEvent');
+
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
@@ -267,6 +274,13 @@ export default {
 		const handleOnHover = (item, menu, targetPosition = null) => {
 			// Detect input method (mouse vs touch) instead of relying only on screen size
 			if (!navigator.maxTouchPoints) {
+				if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
+					$kvTrackEvent(
+						'TopNav',
+						'hover-Lend-menu',
+						'Lend',
+					);
+				}
 				openMenuId.value = item;
 
 				onHover(
@@ -290,13 +304,11 @@ export default {
 
 			const left = linkRect.left + linkRect.width / 2;
 			const menuLeft = left - AVATAR_MENU_WIDTH / 2;
-			const rightOverflow = menuLeft + AVATAR_MENU_WIDTH > window.innerWidth;
+			const rightPosition = `${window.innerWidth - menuLeft - AVATAR_MENU_WIDTH}px`;
+			const isMobile = window?.innerWidth < tokens.breakpoints.md;
 
 			return {
-				...(rightOverflow ? { right: 0 } : { left: props.isMobile ? 0 : `${menuLeft}px` }),
-				marginTop: '-2px', // Avoid closing avatar menu on header edge
-				borderRadius: props.isMobile ? 'auto' : '0px 0px 8px 8px',
-				width: props.isMobile ? '100%' : `${AVATAR_MENU_WIDTH}px`,
+				right: isMobile ? 0 : rightPosition,
 			};
 		};
 
@@ -306,6 +318,14 @@ export default {
 		};
 
 		const handleTouchStart = (item, menu, targetPosition) => {
+			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
+				$kvTrackEvent(
+					'TopNav',
+					'hover-Lend-menu',
+					'Lend',
+				);
+			}
+
 			// Handles the scenario when mobile menu is closed from main component
 			if (openMenuId.value === MOBILE_MENU_ITEM) {
 				openMenuId.value = null;

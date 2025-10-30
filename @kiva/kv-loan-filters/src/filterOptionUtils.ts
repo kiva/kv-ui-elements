@@ -31,7 +31,7 @@ export const filterUiType = {
 export const sortByNameToDisplay = {
 	// Shared
 	expiringSoon: 'Ending soon',
-	amountLeft: 'Amount left',
+	amountLeft: 'Almost funded',
 	repaymentTerm: 'Loan length',
 	// Standard (lend)
 	loanAmount: 'Amount: Low to High',

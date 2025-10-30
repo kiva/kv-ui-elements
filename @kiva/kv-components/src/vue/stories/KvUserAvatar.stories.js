@@ -11,7 +11,9 @@ const story = (args) => {
 		components: { KvUserAvatar },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<KvUserAvatar v-bind="args" />
+			<KvUserAvatar v-bind="args" :is-small="false"/>
+			<br/>
+			<KvUserAvatar v-bind="args" :is-small="true" />
 		`,
 	});
 	template.args = args;
