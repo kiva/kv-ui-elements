@@ -38,6 +38,16 @@ export default {
 				type: 'boolean',
 			},
 		},
+		isBasketDataLoading: {
+			control: {
+				type: 'boolean',
+			},
+		},
+		isUserDataLoading: {
+			control: {
+				type: 'boolean',
+			},
+		},
 		myDashboardUrl: {
 			control: {
 				type: 'text',
@@ -67,7 +77,7 @@ const story = (args) => {
 		components: { KvWwwHeader, KvPageContainer },
 		setup() { return { args: { ..._args } }; },
 		template: `
-			<div class="tw-relative">
+			<div class="tw-relative" :style="args.cssVars">
 				<kv-www-header v-bind="args" />
 				<kv-page-container>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam molestie tellus quis auctor luctus. Fusce consequat sit amet tortor sit amet euismod. Proin finibus blandit tortor scelerisque facilisis. Duis in euismod justo. Nam efficitur eu metus quis cursus. Duis a ligula nisi. Duis ligula eros, pharetra interdum malesuada vitae, feugiat quis ligula. Fusce non vestibulum elit, sed vehicula augue. Sed tellus dui, vestibulum in gravida eget, gravida a arcu. Duis sed sapien cursus velit bibendum auctor non a eros. Donec libero odio, fermentum faucibus justo vel, efficitur malesuada velit. Morbi odio ligula, congue id odio in, ornare bibendum turpis. Nunc consectetur imperdiet rutrum. Ut posuere turpis ac lacinia finibus. Proin velit arcu, ultrices vitae lacinia quis, tincidunt at justo.</p>
@@ -98,6 +108,15 @@ export const LoggedIn = story({
 	isTrustee: false,
 	myDashboardUrl: '/kiva-circles',
 	lenderName: 'John Doe',
-	lenderImageUrl: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	showMGUpsellLink: true,
+});
+
+export const LoadingUserData = story({
+	loggedIn: true,
+	isBasketDataLoading: true,
+	isUserDataLoading: true,
+	cssVars: {
+		'--user-avatar-display': 'none',
+	},
 });

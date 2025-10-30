@@ -14,6 +14,8 @@
 				>
 					<kv-header-link-bar
 						v-show="linksVisible"
+						:is-basket-data-loading="isBasketDataLoading"
+						:is-user-data-loading="isUserDataLoading"
 						:logged-in="loggedIn"
 						:basket-count="basketCount"
 						:login-url="loginUrl"
@@ -127,11 +129,19 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		isBasketDataLoading: {
+			type: Boolean,
+			default: false,
+		},
 		isBorrower: {
 			type: Boolean,
 			default: false,
 		},
 		isTrustee: {
+			type: Boolean,
+			default: false,
+		},
+		isUserDataLoading: {
 			type: Boolean,
 			default: false,
 		},
