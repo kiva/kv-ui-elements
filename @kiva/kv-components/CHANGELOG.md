@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.68.0...@kiva/kv-components@6.69.0) (2025-10-30)
+
+
+### Features
+
+* atb updated for goals ([#730](https://github.com/kiva/kv-ui-elements/issues/730)) ([914534a](https://github.com/kiva/kv-ui-elements/commit/914534a57f134fcabf4c9a7e816d5b6de75f40a9))
+
+
+
+
+
 # [6.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.3...@kiva/kv-components@6.68.0) (2025-10-29)
 
 
