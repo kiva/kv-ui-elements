@@ -15,6 +15,8 @@ export default {
 		oneAwayText: '',
 		milestonesNumber: 0,
 		milestonesProgress: {},
+		isLoanGoal: false,
+		isCompletingGoal: false,
 	},
 };
 
@@ -64,6 +66,8 @@ const Template = (args, { argTypes }) => ({
 						:oneAwayText="oneAwayText"
 						:milestonesNumber="milestonesNumber"
 						:milestonesProgress="milestonesProgress"
+						:isLoanGoal="isLoanGoal"
+						:isCompletingGoal="isCompletingGoal"
 						@close-redirect="isVisible = false"
 						@reset-modal="isVisible = false"
 					/>
@@ -169,4 +173,23 @@ MyKivaOneLoanAway.args = {
 	oneLoanAwayCategory: 'entrepreneur',
 	oneLoanAwayFilteredUrl: '/lend-by-category/kiva-u-s',
 	oneAwayText: '4 of 5',
+};
+
+export const IsLoanGoal = Template.bind({});
+IsLoanGoal.args = {
+	userData,
+	addedLoan,
+	myKivaExperimentEnabled: true,
+	showModalContent: true,
+	isLoanGoal: true,
+};
+
+export const IsCompletingGoal = Template.bind({});
+IsCompletingGoal.args = {
+	userData,
+	addedLoan,
+	myKivaExperimentEnabled: true,
+	showModalContent: true,
+	isLoanGoal: true,
+	isCompletingGoal: true,
 };
