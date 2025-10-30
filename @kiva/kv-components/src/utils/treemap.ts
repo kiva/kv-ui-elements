@@ -1,14 +1,35 @@
 /* eslint-disable import/prefer-default-export, max-len, no-shadow */
 
-const getMaximum = (array) => Math.max(...array);
+interface TreemapDataPoint {
+	value: number;
+	[key: string]: any;
+}
 
-const getMinimum = (array) => Math.min(...array);
+interface TreemapRect {
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+	data: TreemapDataPoint;
+}
 
-const sumReducer = (acc, cur) => acc + cur;
+interface Rectangle {
+	data: TreemapRect[];
+	xBeginning: number;
+	yBeginning: number;
+	totalWidth: number;
+	totalHeight: number;
+}
 
-const roundValue = (number) => Math.max(Math.round(number * 100) / 100, 0);
+const getMaximum = (array: number[]): number => Math.max(...array);
 
-const validateArguments = ({ data, width, height }) => {
+const getMinimum = (array: number[]): number => Math.min(...array);
+
+const sumReducer = (acc: number, cur: number): number => acc + cur;
+
+const roundValue = (number: number): number => Math.max(Math.round(number * 100) / 100, 0);
+
+const validateArguments = ({ data, width, height }: { data: TreemapDataPoint[]; width: number; height: number }): void => {
 	if (!width || typeof width !== 'number' || width < 0) {
 		throw new Error('You need to specify the width of your treemap');
 	}
@@ -33,25 +54,25 @@ const validateArguments = ({ data, width, height }) => {
  * @param param0.height The height of the treemap
  * @returns The calculated coordinates
  */
-export function getTreemap({ data, width, height }) {
-	let Rectangle = {};
-	let initialData = [];
+export function getTreemap({ data, width, height }: { data: TreemapDataPoint[]; width: number; height: number }): TreemapRect[] {
+	let Rectangle: Rectangle;
+	let initialData: TreemapDataPoint[] = [];
 
-	function worstRatio(row, width) {
+	function worstRatio(row: number[], width: number): number {
 		const sum = row.reduce(sumReducer, 0);
 		const rowMax = getMaximum(row);
 		const rowMin = getMinimum(row);
 		return Math.max(((width ** 2) * rowMax) / (sum ** 2), (sum ** 2) / ((width ** 2) * rowMin));
 	}
 
-	const getMinWidth = () => {
+	const getMinWidth = (): { value: number; vertical: boolean } => {
 		if (Rectangle.totalHeight ** 2 > Rectangle.totalWidth ** 2) {
 			return { value: Rectangle.totalWidth, vertical: false };
 		}
 		return { value: Rectangle.totalHeight, vertical: true };
 	};
 
-	const layoutRow = (row, width, vertical) => {
+	const layoutRow = (row: number[], width: number, vertical: boolean): void => {
 		const rowHeight = row.reduce(sumReducer, 0) / width;
 
 		row.forEach((rowItem) => {
@@ -94,13 +115,13 @@ export function getTreemap({ data, width, height }) {
 		}
 	};
 
-	const layoutLastRow = (rows, children, width) => {
+	const layoutLastRow = (rows: number[], children: number[], width: number): void => {
 		const { vertical } = getMinWidth();
 		layoutRow(rows, width, vertical);
 		layoutRow(children, width, vertical);
 	};
 
-	const squarify = (children, row, width) => {
+	const squarify = (children: number[], row: number[], width: number): void => {
 		if (children.length === 1) {
 			return layoutLastRow(row, children, width);
 		}

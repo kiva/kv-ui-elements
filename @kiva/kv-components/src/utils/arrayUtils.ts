@@ -6,16 +6,16 @@
  * and values are arrays of objects that share the same key value.
  */
 
-const groupBy = (array, groupByKey) => {
+const groupBy = <T extends Record<string, any>>(array: T[], groupByKey: keyof T): Record<string, T[]> => {
 	return array.reduce((groups, currentItem) => {
-		const keyValue = currentItem[groupByKey];
+		const keyValue = String(currentItem[groupByKey]);
 		if (!groups[keyValue]) {
 			// eslint-disable-next-line no-param-reassign
 			groups[keyValue] = [];
 		}
 		groups[keyValue].push(currentItem);
 		return groups;
-	}, {});
+	}, {} as Record<string, T[]>);
 };
 
 /**
@@ -23,9 +23,9 @@ const groupBy = (array, groupByKey) => {
  * @param {string} key - The key based on which the sorting should be done.
  * @returns {Function} - A comparator function that can be used with the Array.sort() method.
  */
-const sortBy = (key) => {
+const sortBy = <T extends Record<string, any>>(key: keyof T) => {
 	// eslint-disable-next-line no-nested-ternary
-	return (a, b) => ((a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0));
+	return (a: T, b: T): number => ((a[key] > b[key]) ? 1 : ((b[key] > a[key]) ? -1 : 0));
 };
 
 export { groupBy, sortBy };

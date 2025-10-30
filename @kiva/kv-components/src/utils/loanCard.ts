@@ -131,7 +131,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 
 	const loanCallouts = computed(() => {
 		const callouts = [];
-		const rng = new Alea(loanId.value, fundraisingPercent.value);
+		const rng = Alea(loanId.value, fundraisingPercent.value);
 
 		const activityName = loan.value?.activity?.name ?? '';
 		const activityId = loan.value?.activity?.id ?? null;

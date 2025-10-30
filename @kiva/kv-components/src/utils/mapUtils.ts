@@ -79,7 +79,7 @@ export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOf
 */
 function animateLines(mapInstance, originPoints, endPoint) {
 	const speedFactor = 100; // number of frames per degree, controls animation speed
-	return new Promise((resolve) => {
+	return new Promise<void>((resolve) => {
 		// EndPoint
 		mapInstance.addSource('endpoint', {
 			type: 'geojson',
@@ -184,7 +184,10 @@ function animateLines(mapInstance, originPoints, endPoint) {
  * @returns {void}
  * */
 export function generateMapMarkers(mapInstance, borrowerPoints) {
-	const geojson = {
+	const geojson: {
+		type: string;
+		features?: any[];
+	} = {
 		type: 'FeatureCollection',
 	};
 
@@ -217,7 +220,8 @@ export function generateMapMarkers(mapInstance, borrowerPoints) {
 		// add marker to map
 		// maplibregl should be defined in the KvMap component
 		// eslint-disable-next-line no-undef
-		new maplibregl.Marker({ element: el })
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		new (globalThis as any).maplibregl.Marker({ element: el })
 			.setLngLat(marker.geometry.coordinates)
 			.addTo(mapInstance);
 	});
@@ -233,7 +237,7 @@ export function generateMapMarkers(mapInstance, borrowerPoints) {
  * @returns {Promise} - promise that resolves when the animation is complete
  * */
 export function animationCoordinator(mapInstance, borrowerPoints) {
-	return new Promise((resolve) => {
+	return new Promise<void>((resolve) => {
 		const destinationPoints = borrowerPoints.map((borrower) => borrower.location);
 		const totalNumberOfPoints = destinationPoints.length;
 		let currentPointIndex = 0;
@@ -338,7 +342,8 @@ export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives) 
 	const intervals = getLoansIntervals(1, maxNumLoansToOneCountry, 6);
 
 	if (intervals.length === 1) {
-		const [inf, sup] = intervals[0]; // eslint-disable-line no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const [_inf, sup] = intervals[0];
 
 		for (let i = 0; i < sup; i += 1) {
 			const loansNumber = i + 1;

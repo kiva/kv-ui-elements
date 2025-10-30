@@ -47,7 +47,7 @@
 	</svg>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * Animated SVG Loading Spinner with variable size and color.
  */
@@ -61,7 +61,7 @@ export default {
 		size: {
 			type: String,
 			default: 'medium',
-			validator(value) {
+			validator(value: string) {
 				return ['small', 'medium', 'large'].includes(value);
 			},
 		},
@@ -72,7 +72,7 @@ export default {
 		color: {
 			type: String,
 			default: 'brand',
-			validator(value) {
+			validator(value: string) {
 				return ['brand', 'white', 'black'].includes(value);
 			},
 		},

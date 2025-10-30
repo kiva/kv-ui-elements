@@ -177,9 +177,9 @@ export default {
 			emit('update:modelValue', event.target.value);
 		};
 
-		const focus = () => radioRef.focus();
+		const focus = () => radioRef.value.focus();
 
-		const blur = () => radioRef.blur();
+		const blur = () => radioRef.value.blur();
 
 		return {
 			uuid,

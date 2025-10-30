@@ -222,11 +222,11 @@ export default {
 		};
 
 		const focus = () => {
-			checkboxRef.focus();
+			checkboxRef.value.focus();
 		};
 
 		const blur = () => {
-			checkboxRef.blur();
+			checkboxRef.value.blur();
 		};
 
 		setChecked();

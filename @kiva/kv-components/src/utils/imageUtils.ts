@@ -31,7 +31,7 @@ export function isLegacyPlaceholderAvatar(filename) {
  * @returns Random user avatar class string
  */
 export function randomizedUserAvatarClass(displayName = '') {
-	const rng = new Alea(displayName);
+	const rng = Alea(displayName);
 	const userCardStyleOptions = [
 		{ color: 'tw-text-action', bg: 'tw-bg-brand-100' },
 		{ color: 'tw-text-black', bg: 'tw-bg-brand-100' },
