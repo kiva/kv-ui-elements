@@ -21,7 +21,7 @@
 	</figure>
 </template>
 
-<script>
+<script lang="ts">
 import numeral from 'numeral';
 import KvProgressBar from './KvProgressBar.vue';
 

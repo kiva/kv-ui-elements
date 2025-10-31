@@ -82,7 +82,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed, toRefs, ref, onMounted,
 } from 'vue';

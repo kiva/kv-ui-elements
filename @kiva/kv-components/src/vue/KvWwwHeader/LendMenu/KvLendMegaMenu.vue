@@ -234,7 +234,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiArrowRight, mdiChevronLeft } from '@mdi/js';
 import { computed, ref } from 'vue';
 import KvLoadingPlaceholder from '../../KvLoadingPlaceholder.vue';

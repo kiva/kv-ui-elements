@@ -89,7 +89,7 @@
 	</nav>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiClose } from '@mdi/js';
 import KvAccordionItem from '../KvAccordionItem.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';

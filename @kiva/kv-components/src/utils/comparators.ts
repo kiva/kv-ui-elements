@@ -49,11 +49,11 @@ export function startsWith<T extends Record<string, any>>(query: string, key?: k
  * const arrayToSort = ['d', 'a'];
  * arrayToSort.sort(indexIn(list)); // will return ['a','d']
  *
- * @param {array} list
- * @param {string} [key] - compare property 'key' of elements rather than the elements themselves
- * @returns {function}
+ * @param list
+ * @param [key] - compare property 'key' of elements rather than the elements themselves
+ * @returns
  */
-export function indexIn(list, key) {
+export function indexIn(list: any[], key?: string) {
 	if (!Array.isArray(list)) {
 		throw new TypeError('list must be an array');
 	}

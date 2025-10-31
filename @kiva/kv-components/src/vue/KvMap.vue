@@ -12,7 +12,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import kvTokensPrimitives from '@kiva/kv-tokens';
 import { animationCoordinator, generateMapMarkers, getCountryColor } from '../utils/mapUtils';
 
@@ -473,7 +473,7 @@ export default {
 				return observer;
 			}
 		},
-		testDelayedGlobalLibrary(library, timeout = 3000) {
+		testDelayedGlobalLibrary(library: string, timeout = 3000) {
 			// return a promise
 			return new Promise((resolve, reject) => {
 				if (typeof window === 'undefined') {

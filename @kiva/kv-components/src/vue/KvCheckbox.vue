@@ -95,7 +95,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { nanoid } from 'nanoid';
 import {
 	onMounted,
@@ -164,7 +164,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'square',
-			validator: (val) => ['square', 'round'].includes(val),
+			validator: (val: string) => ['square', 'round'].includes(val),
 		},
 		blurOnDisabled: {
 			type: Boolean,

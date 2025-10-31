@@ -11,7 +11,7 @@ import Alea from './Alea';
  * @param filename The filename of the avatar
  * @returns Whether the file is a legacy placeholder image
  */
-export function isLegacyPlaceholderAvatar(filename) {
+export function isLegacyPlaceholderAvatar(filename: any): boolean {
 	// if filename is empty or undefined, return false
 	if (!filename) {
 		return false;
@@ -48,13 +48,13 @@ export function randomizedUserAvatarClass(displayName = '') {
 /**
  * Gets the url for a Kiva image hash
  *
- * @param {string} param0.base The base URL of the image
- * @param {number} param0.width The width of the image
- * @param {number} param0.height The height of the image
- * @param {number} param0.square The square size of the image (i.e. width and height are the same)
- * @param {number} param0.faceZoom The face zoom level of the image, 1-100. Requires width, height or square to be set.
- * @param {string} param0.hash The hash of the image
- * @param {string} param0.format The file type of the image (default: jpg)
+ * @param param0.base The base URL of the image
+ * @param param0.width The width of the image
+ * @param param0.height The height of the image
+ * @param param0.square The square size of the image (i.e. width and height are the same)
+ * @param param0.faceZoom The face zoom level of the image, 1-100. Requires width, height or square to be set.
+ * @param param0.hash The hash of the image
+ * @param param0.format The file type of the image (default: jpg)
  * @returns The full url for the image
  */
 export function getKivaImageUrl({
@@ -65,7 +65,15 @@ export function getKivaImageUrl({
 	faceZoom,
 	hash,
 	format = 'jpg',
-}) {
+}: {
+	base?: string;
+	width?: number;
+	height?: number;
+	square?: number;
+	faceZoom?: number;
+	hash: string;
+	format?: string;
+}): string {
 	if (!hash) {
 		return '';
 	}

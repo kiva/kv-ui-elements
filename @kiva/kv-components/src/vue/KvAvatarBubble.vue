@@ -15,7 +15,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref, nextTick, toRefs,
 } from 'vue';

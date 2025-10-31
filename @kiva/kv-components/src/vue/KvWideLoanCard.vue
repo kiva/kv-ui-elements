@@ -116,7 +116,7 @@
 				:href="readMorePath"
 				class="loan-card-use tw-no-underline tw-text-primary"
 				aria-label="Loan use"
-				@click="clickReadMore('Use')"
+				@click="(event) => clickReadMore('Use', event)"
 			>
 				<!-- Loan use  -->
 				<div class="tw-pt-1">
@@ -226,8 +226,9 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import gql from 'graphql-tag';
+import { PropType } from 'vue';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
@@ -235,6 +236,7 @@ import {
 	LOAN_GEOCODE_FRAGMENT,
 	LOAN_PROGRESS_FRAGMENT,
 } from '../utils/loanCard';
+import { type GetCookieFn, type SetCookieFn } from '../utils/loanUtils';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
@@ -359,11 +361,11 @@ export default {
 			default: undefined,
 		},
 		getCookie: {
-			type: Function,
+			type: Function as PropType<GetCookieFn>,
 			default: undefined,
 		},
 		setCookie: {
-			type: Function,
+			type: Function as PropType<SetCookieFn>,
 			default: undefined,
 		},
 		fiveDollarsSelected: {

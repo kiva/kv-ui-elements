@@ -22,7 +22,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * Horizontal progress bar which communicates to the user the progress of a particular process
  */
@@ -73,7 +73,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'primary',
-			validator(value) {
+			validator(value: string) {
 				return ['primary', 'ghost', 'danger', 'caution'].includes(value);
 			},
 		},
@@ -84,7 +84,7 @@ export default {
 		bgVariant: {
 			type: String,
 			default: 'secondary',
-			validator(value) {
+			validator(value: string) {
 				return ['secondary', 'tertiary'].includes(value);
 			},
 		},

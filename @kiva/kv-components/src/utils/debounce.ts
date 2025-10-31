@@ -1,9 +1,9 @@
 /**
  * Debounce function to limit firing of a function
  *
- * @param {Function} fn - The function to debounce
- * @param {number} delay - The delay in milliseconds
- * @returns {Function} - The debounced function
+ * @param fn - The function to debounce
+ * @param delay - The delay in milliseconds
+ * @returns - The debounced function
  */
 
 export const debounce = <T extends (...args: any[]) => any>(

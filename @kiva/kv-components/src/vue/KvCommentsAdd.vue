@@ -39,7 +39,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, ref } from 'vue';
 import KvButton from './KvButton.vue';
 import KvTextInput from './KvTextInput.vue';

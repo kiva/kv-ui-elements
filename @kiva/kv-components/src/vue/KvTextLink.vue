@@ -24,7 +24,7 @@
 	</component>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed,
 	onMounted,
@@ -75,7 +75,7 @@ export default {
 		state: {
 			type: String,
 			default: '',
-			validator(value) {
+			validator(value: string) {
 				return ['', 'disabled'].includes(value);
 			},
 		},

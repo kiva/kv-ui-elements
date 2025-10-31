@@ -87,7 +87,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiInformation } from '@mdi/js';
 import { computed } from 'vue';
 import KvProgressBar from './KvProgressBar.vue';

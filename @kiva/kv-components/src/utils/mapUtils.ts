@@ -24,12 +24,16 @@ const mapColors = [
 
 /**
  * Given 2 coordinates and the number of steps return an array of coordinates in between
- * @param {Array} startCoordinates - starting coordinates in the format [latitude, longitude]
- * @param {Array} endCoordinates - ending coordinates in the format [latitude, longitude]
- * @param {Number} numberOfSteps - number of steps to take between the start and end coordinates
- * @returns {Array} - array of coordinates in the format [[latitude, longitude], [latitude, longitude]]
+ * @param startCoordinates - starting coordinates in the format [latitude, longitude]
+ * @param endCoordinates - ending coordinates in the format [latitude, longitude]
+ * @param numberOfSteps - number of steps to take between the start and end coordinates
+ * @returns - array of coordinates in the format [[latitude, longitude], [latitude, longitude]]
 */
-export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOfSteps) {
+export function getCoordinatesBetween(
+	startCoordinates: number[],
+	endCoordinates: number[],
+	numberOfSteps: number,
+): number[][] {
 	// All invalid inputs should return an empty array
 	if (!startCoordinates
 		|| !endCoordinates
@@ -49,7 +53,7 @@ export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOf
 	let i = 0;
 	let j = 0;
 
-	const lineCoordinates = [];
+	const lineCoordinates: number[][] = [];
 
 	while (Math.abs(i) < Math.abs(diffX) || Math.abs(j) < Math.abs(diffY)) {
 		lineCoordinates.push([startCoordinates[0] + i, startCoordinates[1] + j]);
@@ -72,12 +76,16 @@ export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOf
  * This function animates a series of lines from an array of starting coordinates to a single end point
  * then animates removing the line from the origin to the end point
  * returns a promise when the animation is complete
- * @param {Map Instance} mapInstance - the map instance
- * @param {Array} originPoints - array of starting coordinates in the format [[latitude, longitude], [latitude, longitude]]
- * @param {Array} endPoint - single end point in the format [latitude, longitude]
- * @returns {Promise} - promise that resolves when the animation is complete
+ * @param mapInstance - the map instance
+ * @param originPoints - array of starting coordinates in the format [[latitude, longitude], [latitude, longitude]]
+ * @param endPoint - single end point in the format [latitude, longitude]
+ * @returns - promise that resolves when the animation is complete
 */
-function animateLines(mapInstance, originPoints, endPoint) {
+function animateLines(
+	mapInstance: any,
+	originPoints: number[][],
+	endPoint: number[],
+): Promise<void> {
 	const speedFactor = 100; // number of frames per degree, controls animation speed
 	return new Promise<void>((resolve) => {
 		// EndPoint
@@ -91,7 +99,7 @@ function animateLines(mapInstance, originPoints, endPoint) {
 			},
 		});
 
-		const lineFlight = (startCoordinates, endCoordinates, index, lastLine = false) => {
+		const lineFlight = (startCoordinates: number[], endCoordinates: number[], index: number, lastLine = false) => {
 			const lineCoordinates = getCoordinatesBetween(startCoordinates, endCoordinates, speedFactor);
 			let animationCounter = 0;
 
@@ -294,9 +302,9 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
  * @param {Integer} nbIntervals - number of intervals
  * @returns {Array} - array with intervals
  * */
-export const getLoansIntervals = (min, max, nbIntervals) => {
+export const getLoansIntervals = (min: number, max: number, nbIntervals: number): number[][] => {
 	const size = Math.floor((max - min) / nbIntervals);
-	const result = [];
+	const result: number[][] = [];
 
 	if (size <= 0) return [[min, max]];
 
@@ -332,8 +340,8 @@ export const getLoansIntervals = (min, max, nbIntervals) => {
  * @param {Object} kvTokensPrimitives - kv tokens for colors
  * @returns {String} - color of the country
  * */
-export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives) => {
-	const loanCountsArray = [];
+export const getCountryColor = (lenderLoans: number, countriesData: any[], kvTokensPrimitives: any): string => {
+	const loanCountsArray: number[] = [];
 	countriesData.forEach((country) => {
 		loanCountsArray.push(country.value);
 	});

@@ -134,7 +134,7 @@
 	</transition>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref,
 	toRefs,
@@ -201,7 +201,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'lightbox',
-			validator(value) {
+			validator(value: string) {
 				return ['lightbox', 'alert'].includes(value);
 			},
 		},

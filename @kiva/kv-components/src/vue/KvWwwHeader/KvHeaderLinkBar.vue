@@ -142,7 +142,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	defineAsyncComponent, onMounted, ref, computed, onUnmounted, watch, inject,
 } from 'vue';
@@ -283,7 +283,7 @@ export default {
 			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
 		};
 
-		const handleTouchStart = (item, menu, targetPosition) => {
+		const handleTouchStart = (item?, menu?, targetPosition?) => {
 			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
 				$kvTrackEvent(
 					'TopNav',

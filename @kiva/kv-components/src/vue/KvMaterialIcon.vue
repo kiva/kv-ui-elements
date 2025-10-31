@@ -15,7 +15,7 @@
 	</span>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * This component takes path data as a prop from an imported @mdi/js module and
  * renders the icon as an SVG.

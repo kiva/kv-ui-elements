@@ -51,7 +51,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { nanoid } from 'nanoid';
 import {
 	computed,

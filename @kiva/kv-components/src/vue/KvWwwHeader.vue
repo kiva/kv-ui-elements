@@ -91,7 +91,7 @@
 	</kv-theme-provider>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref, shallowRef, onMounted, onBeforeUnmount, computed,
 } from 'vue';
@@ -181,7 +181,7 @@ export default {
 			return menuComponentInstance.value?.$options?.name === 'KvHeaderMobileMenu';
 		});
 
-		const onHover = debounce((item, menu, targetPosition) => {
+		const onHover = debounce((item?, menu?, targetPosition?) => {
 			// If mounting is not complete, do nothing
 			if (!isComponentMount.value) return;
 

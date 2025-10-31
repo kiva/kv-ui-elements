@@ -269,9 +269,10 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import gql from 'graphql-tag';
 import numeral from 'numeral';
+import { type PropType } from 'vue';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
@@ -279,6 +280,7 @@ import {
 	LOAN_GEOCODE_FRAGMENT,
 	LOAN_PROGRESS_FRAGMENT,
 } from '../utils/loanCard';
+import { type GetCookieFn, type SetCookieFn } from '../utils/loanUtils';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
@@ -289,7 +291,7 @@ import KvLoanTag, { KV_LOAN_TAG_FRAGMENT } from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 import KvLoanTeamPick from './KvLoanTeamPick.vue';
-import KvLoanActivities, { KV_LOAN_ACTIVITIES_FRAGMENT } from './KvLoanActivities.vue';
+import KvLoanActivities, { KV_LOAN_ACTIVITIES_FRAGMENT, CombinedActivity } from './KvLoanActivities.vue';
 
 // Use this fragment to get the necessary public data for this loan card
 export const KV_CLASSIC_LOAN_CARD_FRAGMENT = gql`
@@ -417,11 +419,11 @@ export default {
 			default: undefined,
 		},
 		getCookie: {
-			type: Function,
+			type: Function as PropType<GetCookieFn>,
 			default: undefined,
 		},
 		setCookie: {
-			type: Function,
+			type: Function as PropType<SetCookieFn>,
 			default: undefined,
 		},
 		fiveDollarsSelected: {
@@ -445,7 +447,7 @@ export default {
 			default: false,
 		},
 		combinedActivities: {
-			type: Array,
+			type: Array as PropType<CombinedActivity[]>,
 			default: () => ([]),
 		},
 		errorMsg: {

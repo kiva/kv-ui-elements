@@ -27,7 +27,7 @@
 	</kv-theme-provider>
 </template>
 
-<script>
+<script lang="ts">
 import { markRaw, computed } from 'vue';
 
 import {
@@ -55,7 +55,7 @@ export default {
 		theme: {
 			type: String,
 			default: 'default',
-			validator(value) {
+			validator(value: string) {
 				return [
 					'default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark',
 				].includes(value);
@@ -110,7 +110,7 @@ export default {
 
 			this.datepickerPromise = Promise.all([
 				import('@vuepic/vue-datepicker'),
-				import('@vuepic/vue-datepicker/dist/main.css')])
+				import('@vuepic/vue-datepicker/dist/main.css' as any)])
 				.then(async ([module]) => {
 					this.datepickerComponent = markRaw(module.default);
 					await this.$nextTick();

@@ -186,7 +186,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiArrowRight } from '@mdi/js';
 import { computed, ref } from 'vue';
 import KvAccordionItem from '../../KvAccordionItem.vue';

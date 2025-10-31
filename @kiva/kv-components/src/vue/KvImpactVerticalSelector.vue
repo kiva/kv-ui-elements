@@ -54,10 +54,19 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, ref, onMounted } from 'vue';
 import KvCardFrame from './KvCardFrame.vue';
 import KvContentfulImg from './KvContentfulImg.vue';
+
+interface Category {
+	id: string | number;
+	name: string;
+	description: string;
+	customImage?: string | null;
+	contentfulImage?: any;
+	[key: string]: any;
+}
 
 export default {
 	components: {
@@ -67,12 +76,12 @@ export default {
 	props: {
 		// Expects an array of categories from our API
 		categoryList: {
-			type: Array,
+			type: Array as () => Category[],
 			default: () => [],
 		},
 		// Expects a list of category ids to hide from the selector
 		hiddenCategories: {
-			type: Array,
+			type: Array as () => (string | number)[],
 			default: () => [],
 		},
 		imageWidth: {

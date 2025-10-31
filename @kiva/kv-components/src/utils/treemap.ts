@@ -1,16 +1,16 @@
 /* eslint-disable import/prefer-default-export, max-len, no-shadow */
 
-interface TreemapDataPoint {
+export interface TreemapDataPoint {
 	value: number;
 	[key: string]: any;
 }
 
-interface TreemapRect {
+export interface TreemapRect<T extends TreemapDataPoint = TreemapDataPoint> {
 	x: number;
 	y: number;
-	width: number;
-	height: number;
-	data: TreemapDataPoint;
+	width?: number;
+	height?: number;
+	data?: T;
 }
 
 interface Rectangle {

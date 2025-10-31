@@ -15,7 +15,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import KvUserAvatar from './KvUserAvatar.vue';
 
 export default {

@@ -7,6 +7,12 @@ import {
 import { mdiMapMarker } from '@mdi/js';
 import Alea from './Alea';
 
+export interface Callout {
+	id: number | null;
+	label: string;
+	type: 'tag' | 'attribute' | 'activity' | 'sector';
+}
+
 const LSE_LOAN_KEY = 'N/A';
 const ECO_FRIENDLY_KEY = 'ECO-FRIENDLY';
 const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
@@ -130,7 +136,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 	const loanBorrowerCount = computed(() => loan.value?.borrowerCount ?? 0);
 
 	const loanCallouts = computed(() => {
-		const callouts = [];
+		const callouts: Callout[] = [];
 		const rng = Alea(loanId.value, fundraisingPercent.value);
 
 		const activityName = loan.value?.activity?.name ?? '';
@@ -254,7 +260,7 @@ export function loanCardMethods(props, emit) {
 		kvTrackFunction,
 	} = toRefs(props);
 
-	function clickReadMore(target, event) {
+	function clickReadMore(target: string, event: Event) {
 		kvTrackFunction.value('Lending', 'click-Read more', target, loanId.value);
 		if (customLoanDetails.value) {
 			event.preventDefault();

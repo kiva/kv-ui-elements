@@ -144,7 +144,7 @@
 	</section>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	mdiChevronLeft,
 	mdiChevronRight,
@@ -203,7 +203,7 @@ export default {
 		slidesToScroll: {
 			type: String,
 			default: 'auto',
-			validator: (value) => ['visible', 'auto'].indexOf(value) !== -1,
+			validator: (value: string) => ['visible', 'auto'].indexOf(value) !== -1,
 		},
 		/**
 		 * CSS value and unit to set the max width on responsive slides.
@@ -258,7 +258,7 @@ export default {
 			slideIndicatorListLength,
 			slides,
 			toggleAutoPlay,
-		} = carouselUtil(props, { emit, slots });
+		} = carouselUtil(props, { emit, slots }, {});
 
 		return {
 			componentSlotKeys,

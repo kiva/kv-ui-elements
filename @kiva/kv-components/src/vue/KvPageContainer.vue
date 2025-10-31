@@ -7,7 +7,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * Wrapper component which contains content to the specified widths and margins set by design
  */

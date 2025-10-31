@@ -228,7 +228,7 @@
 	</KvCartModal>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref,
 	toRefs,

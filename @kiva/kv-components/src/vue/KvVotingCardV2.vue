@@ -58,7 +58,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed,
 	ref,
