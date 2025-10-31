@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.69.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.1...@kiva/kv-components@6.69.2) (2025-10-31)
+
+
+### Bug Fixes
+
+* add click event to mobile tabs in lend menu ([ab0c730](https://github.com/kiva/kv-ui-elements/commit/ab0c730d67efa96b1bcaffd9ffb877fcd170ee79))
+* prevent accordion items having double analytics ([12991f6](https://github.com/kiva/kv-ui-elements/commit/12991f654dad577dca51ba30baed8ff2be18497f))
+
+
+
+
+
 ## [6.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.0...@kiva/kv-components@6.69.1) (2025-10-30)
 
 
