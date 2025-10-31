@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.69.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.1...@kiva/kv-components@6.69.2) (2025-10-31)
+
+
+### Bug Fixes
+
+* add click event to mobile tabs in lend menu ([ab0c730](https://github.com/kiva/kv-ui-elements/commit/ab0c730d67efa96b1bcaffd9ffb877fcd170ee79))
+* prevent accordion items having double analytics ([12991f6](https://github.com/kiva/kv-ui-elements/commit/12991f654dad577dca51ba30baed8ff2be18497f))
+
+
+
+
+
+## [6.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.0...@kiva/kv-components@6.69.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* ensure all menu items have hover events ([8926d99](https://github.com/kiva/kv-ui-elements/commit/8926d99965ae447d5a6a7b715cb6d62364e94488))
+* extend analytics in mobile hamburger menu ([9bee4f6](https://github.com/kiva/kv-ui-elements/commit/9bee4f67456f34dd7b2847d3801d2d3d8a3be343))
+* move region click event to accordion item ([66e3121](https://github.com/kiva/kv-ui-elements/commit/66e31212ace02133c50ff84fec213fd775266972))
+
+
+
+
+
+# [6.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.68.0...@kiva/kv-components@6.69.0) (2025-10-30)
+
+
+### Features
+
+* atb updated for goals ([#730](https://github.com/kiva/kv-ui-elements/issues/730)) ([914534a](https://github.com/kiva/kv-ui-elements/commit/914534a57f134fcabf4c9a7e816d5b6de75f40a9))
+
+
+
+
+
 # [6.68.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.67.3...@kiva/kv-components@6.68.0) (2025-10-29)
 
 

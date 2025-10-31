@@ -331,6 +331,20 @@ export default {
 			type: Object,
 			default: () => ({}),
 		},
+		/**
+		 * is loan goal modal
+		 * */
+		isLoanGoal: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * is completing goal modal
+		 * */
+		isCompletingGoal: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'reset-modal', // reset modal values and close on parent component
@@ -381,6 +395,14 @@ export default {
 		});
 
 		const pillMsg = computed(() => {
+			if (props.isCompletingGoal) {
+				return `Supporting ${borrowerName.value} meets your annual goal!`;
+			}
+
+			if (props.isLoanGoal) {
+				return 'You’re closer to reaching your annual goal!';
+			}
+
 			if (isFirstLoan.value) {
 				const initialHeading = `Supporting ${borrowerName.value} helps`;
 				if (addedLoan.value?.borrowerCount > 1 || addedLoan.value?.themes.includes('Social Enterprise')) {
