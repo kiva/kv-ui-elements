@@ -25,6 +25,7 @@
 					v-kv-track-event="['TopNav', `click-${item.trackEvent}`]"
 					:href="item.url"
 					class="mobile-link"
+					@click.stop
 				>
 					<div>
 						{{ item.title }}
@@ -50,41 +51,49 @@
 					v-kv-track-event="['TopNav', 'click-About-About us']"
 					href="/about"
 					class="mobile-link"
+					@click.stop
 				>About us</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-How Kiva works']"
 					href="/about/how"
 					class="mobile-link"
+					@click.stop
 				>How Kiva works</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Where Kiva works']"
 					href="/about/where-kiva-works"
 					class="mobile-link"
+					@click.stop
 				>Where Kiva works</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Impact']"
 					href="/impact"
 					class="mobile-link"
+					@click.stop
 				>Impact</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Leadership']"
 					href="/about/leadership"
 					class="mobile-link"
+					@click.stop
 				>Leadership</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Finances']"
 					href="/about/finances"
 					class="mobile-link"
+					@click.stop
 				>Finances</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Press']"
 					href="/about/press-center"
 					class="mobile-link"
+					@click.stop
 				>Press</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Due diligence']"
 					href="/about/due-diligence"
 					class="mobile-link"
+					@click.stop
 				>Due diligence</a>
 			</div>
 		</KvAccordionItem>
