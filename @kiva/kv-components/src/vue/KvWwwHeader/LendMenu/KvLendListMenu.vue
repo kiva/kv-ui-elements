@@ -21,14 +21,21 @@
 		</a>
 		<kv-tabs ref="navLendCategories">
 			<template #tabNav>
-				<kv-tab for-panel="nav-lend-categories">
+				<kv-tab
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-Categories']"
+					for-panel="nav-lend-categories"
+				>
 					Categories
 				</kv-tab>
-				<kv-tab for-panel="nav-lend-regions">
+				<kv-tab
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-Regions']"
+					for-panel="nav-lend-regions"
+				>
 					Regions
 				</kv-tab>
 				<kv-tab
 					v-if="userId"
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-My-Kiva']"
 					for-panel="nav-my-kiva"
 				>
 					My Kiva
