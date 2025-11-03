@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.3...@kiva/kv-components@7.0.0) (2025-11-03)
+
+
+### Bug Fixes
+
+* **KvUserAvatar:** adjust cross-browser vertical alignment ([b9a77e6](https://github.com/kiva/kv-ui-elements/commit/b9a77e62225be40f9bc1235981fe6244d09a36a1))
+
+
+* feat(KvUserAvatar)!: responsive sizing relative to width and height ([d76c5f1](https://github.com/kiva/kv-ui-elements/commit/d76c5f1b4cac90994aea7b39617acc9b3a8848e5))
+
+
+### Features
+
+* **KvUserAvatar:** option to use css placeholder ([0a78f5a](https://github.com/kiva/kv-ui-elements/commit/0a78f5abb38d1d91b72bf09612b5dc7c5469c29f))
+* **KvWwwHeader:** loading states for basket, balance, and avatar ([0c31471](https://github.com/kiva/kv-ui-elements/commit/0c314713ea48d8eaeb22fa851755eab0821c14c3))
+
+
+### BREAKING CHANGES
+
+* The size of KvUserAvatar must be styled by consumers
+
+
+
+
+
 ## [6.69.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.2...@kiva/kv-components@6.69.3) (2025-11-03)
 
 
