@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-shop",
-    "version": "3.7.11",
+    "version": "3.7.12",
     "type": "module",
     "publishConfig": {
         "access": "public"
