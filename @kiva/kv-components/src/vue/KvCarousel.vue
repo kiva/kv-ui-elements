@@ -39,7 +39,7 @@
 			:class="{
 				'lg:tw-hidden': asideControls,
 				'tw-mt-4 md:tw-justify-center': !controlsTopRight,
-				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2': controlsTopRight
+				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2 tw-pr-1': controlsTopRight
 			}"
 		>
 			<button
