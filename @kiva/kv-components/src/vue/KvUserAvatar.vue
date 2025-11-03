@@ -62,8 +62,8 @@
 		>
 			<text
 				x="50%"
-				y="50%"
-				dominant-baseline="central"
+				y="55%"
+				dominant-baseline="middle"
 				text-anchor="middle"
 			>
 				{{ lenderNameFirstLetter }}
@@ -136,7 +136,7 @@ export default {
 			return `${randomizedUserAvatarClass(lenderName.value)} ${fontSize}`;
 		});
 		const letterViewBox = computed(() => {
-			return isSmall?.value ? '0 0 27 27' : '0 1 27.5 27.5';
+			return isSmall?.value ? '0 0 27 27' : '0 0 27.5 27.5';
 		});
 
 		const userHasImage = computed(() => {
