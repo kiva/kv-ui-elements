@@ -4,7 +4,8 @@
 			<KvUserAvatar
 				:lender-name="activity.lenderName"
 				:lender-image-url="activity.lenderImage"
-				:is-small="true"
+				class="tw-w-3 tw-h-3"
+				is-small
 			/>
 		</div>
 		<div>

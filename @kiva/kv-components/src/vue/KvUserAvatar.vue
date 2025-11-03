@@ -3,8 +3,6 @@
 		ref="userAvatar"
 		class="data-hj-suppress tw-flex tw-items-center tw-justify-center tw-rounded-full tw-overflow-hidden"
 		:class="{
-			'tw-w-3 tw-h-3': isSmall,
-			'tw-w-6 tw-h-6': !isSmall,
 			'tw-bg-brand': isAnonymousUser,
 			[avatarClass]: !isAnonymousUser,
 		}"
@@ -56,12 +54,21 @@
 		</div>
 		<!-- User is not anonymous and does not have an image -->
 		<!-- First Letter of lender name -->
-		<span
+		<svg
 			v-if="!isAnonymousUser && !userHasImage"
-			:class="{ 'adjust-vertical-spacing': !isSmall }"
+			class="tw-w-full tw-h-full"
+			fill="currentColor"
+			:viewBox="letterViewBox"
 		>
-			{{ lenderNameFirstLetter }}
-		</span>
+			<text
+				x="50%"
+				y="50%"
+				dominant-baseline="central"
+				text-anchor="middle"
+			>
+				{{ lenderNameFirstLetter }}
+			</text>
+		</svg>
 	</div>
 </template>
 
@@ -125,8 +132,11 @@ export default {
 		});
 
 		const avatarClass = computed(() => {
-			const fontSize = isSmall?.value ? 'tw-text-h4' : 'tw-text-h2';
+			const fontSize = isSmall?.value ? 'tw-font-sans tw-font-normal' : 'tw-font-serif';
 			return `${randomizedUserAvatarClass(lenderName.value)} ${fontSize}`;
+		});
+		const letterViewBox = computed(() => {
+			return isSmall?.value ? '0 0 27 27' : '0 1 27.5 27.5';
 		});
 
 		const userHasImage = computed(() => {
@@ -178,6 +188,7 @@ export default {
 			avatarClass,
 			userHasImage,
 			lenderNameFirstLetter,
+			letterViewBox,
 			isLegacyPlaceholderAvatar,
 			isImageLoading,
 			onImgLoad,
@@ -187,10 +198,3 @@ export default {
 	},
 };
 </script>
-
-<style lang="postcss" scoped>
-.adjust-vertical-spacing {
-	top: -0.1rem;
-	position: relative;
-}
-</style>

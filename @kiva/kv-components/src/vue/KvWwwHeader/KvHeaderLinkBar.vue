@@ -123,7 +123,7 @@
 					}"
 				/>
 				<KvUserAvatar
-					class="avatar"
+					class="tw-w-3 tw-h-3"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
 					:style="isUserDataLoading ? {
@@ -466,9 +466,5 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
-}
-
-:deep(.avatar div:first-child) {
-	@apply tw-flex;
 }
 </style>
