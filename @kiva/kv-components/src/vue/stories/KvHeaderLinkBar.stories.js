@@ -7,6 +7,12 @@ export default {
 
 const Template = (args) => ({
 	components: { KvHeaderLinkBar },
+	provide: {
+		$kvTrackEvent: (category, action, label) => {
+			// eslint-disable-next-line no-console
+			console.log(`${category}, ${action}, ${label}`);
+		},
+	},
 	setup() {
 		return { args };
 	},
