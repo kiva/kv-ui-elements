@@ -5,6 +5,7 @@
 				<kv-user-avatar
 					:lender-name="authorName"
 					:lender-image-url="authorImage"
+					class="tw-w-3 tw-h-3"
 					is-small
 				/>
 				<p

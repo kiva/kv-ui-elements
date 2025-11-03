@@ -5,6 +5,7 @@
 				<kv-user-avatar
 					:lender-name="userDisplayName"
 					:lender-image-url="userImageUrl"
+					class="tw-w-3 tw-h-3"
 					is-small
 				/>
 				<div class="data-hj-suppress tw-font-medium">

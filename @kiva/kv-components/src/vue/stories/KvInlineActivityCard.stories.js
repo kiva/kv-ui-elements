@@ -11,7 +11,7 @@ const story = (args) => {
 		components: { KvInlineActivityCard },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<div style="max-width: 200px;">
+			<div class="tw-flex">
 				<KvInlineActivityCard v-bind="args" />
 			</div>
 		`,

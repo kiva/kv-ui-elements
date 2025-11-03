@@ -82,18 +82,21 @@
 		</a>
 		<!-- basket (items) -->
 		<a
-			v-show="basketCount > 0"
+			v-show="isBasketDataLoading ? true : basketCount > 0"
 			ref="basketLink"
 			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
 			class="header-link tw-relative md:!tw-mr-0 tw-flex tw-items-center tw-gap-0.5"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
+			:style="isBasketDataLoading ? {
+				display: 'var(--basket-display, flex)'
+			} : undefined"
 			style="margin-right: 2px;"
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
 				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none tw-text-action"
-				:count="basketCount"
+				:count="isBasketDataLoading ? 0 : basketCount"
 			/>
 			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
@@ -111,19 +114,40 @@
 			>
 				<!-- avatar (sm, auth) -->
 				<kv-material-icon
-					v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
 					:icon="mdiAccountCircle"
 					class="tw-w-3"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-legacy-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'inline-block' : 'none'
+					}"
 				/>
 				<KvUserAvatar
-					v-else
-					class="avatar"
+					class="tw-w-3 tw-h-3"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'none' : 'inline-block'
+					}"
+					:show-css-placeholder="isUserDataLoading"
 					is-small
 				/>
 				<!-- balance (auth) -->
-				<span class="tw-text-eco-green-4">
+				<div
+					v-if="isUserDataLoading"
+					class="tw-w-4 tw-h-3"
+					:style="{
+						display: 'var(--user-balance-loading-display, inline-block)'
+					}"
+				>
+					<KvLoadingPlaceholder />
+				</div>
+				<span
+					v-else
+					class="tw-text-eco-green-4"
+				>
 					{{ numeral(roundedBalance).format('$0') }}
 				</span>
 			</div>
@@ -155,6 +179,7 @@ import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 import KvUserAvatar from '../KvUserAvatar.vue';
+import KvLoadingPlaceholder from '../KvLoadingPlaceholder.vue';
 import { throttle } from '../../utils/throttle';
 import { isLegacyPlaceholderAvatar } from '../../utils/imageUtils';
 
@@ -178,6 +203,7 @@ export default {
 		KvIconBag,
 		KvHeaderDropdownLink,
 		KvUserAvatar,
+		KvLoadingPlaceholder,
 	},
 	props: {
 		loggedIn: {
@@ -215,6 +241,14 @@ export default {
 		balance: {
 			type: Number,
 			default: 0,
+		},
+		isBasketDataLoading: {
+			type: Boolean,
+			default: false,
+		},
+		isUserDataLoading: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	emits: [
@@ -346,6 +380,10 @@ export default {
 
 		const roundedBalance = computed(() => Math.floor(props.balance));
 
+		const isDefaultProfilePic = computed(() => {
+			return isLegacyPlaceholderAvatar(avatarFilename.value) || !avatarFilename.value;
+		});
+
 		const handleEmptySpaceClick = (event) => {
 			// Only close if the click target is the container itself (not a child)
 			if (event.target === event.currentTarget) {
@@ -418,6 +456,7 @@ export default {
 			getAvatarMenuPosition,
 			handleEmptySpaceClick,
 			roundedBalance,
+			isDefaultProfilePic,
 		};
 	},
 };
@@ -427,9 +466,5 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
-}
-
-:deep(.avatar div:first-child) {
-	@apply tw-flex;
 }
 </style>
