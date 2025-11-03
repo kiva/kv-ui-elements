@@ -493,7 +493,10 @@ export const ControlsTopRight = () => ({
 		KvCarousel,
 	},
 	template: `
-		<KvCarousel controls-top-right style="max-width: 400px; flex: auto; !justify-content: flex-end;">
+		<KvCarousel
+			controls-top-right
+			style="max-width: 400px; flex: auto; !justify-content: flex-end;"
+		>
 			${defaultCarouselSlides}
 		</KvCarousel>
 	`,

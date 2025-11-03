@@ -51,7 +51,7 @@
 					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:class="{
 					'tw-border-2': !controlsTopRight,
-					'tw-bg-white tw-shadow-md': controlsTopRight
+					'tw-bg-white tw-shadow-lg': controlsTopRight
 				}"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
@@ -78,7 +78,7 @@
 					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:class="{
 					'tw-border-2': !controlsTopRight,
-					'tw-bg-white tw-shadow-md': controlsTopRight
+					'tw-bg-white tw-shadow-lg': controlsTopRight
 				}"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
