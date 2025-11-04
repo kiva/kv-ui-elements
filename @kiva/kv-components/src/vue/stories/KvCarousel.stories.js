@@ -487,3 +487,17 @@ export const Fade = () => ({
 		</div>
 	`,
 });
+
+export const ControlsTopRight = () => ({
+	components: {
+		KvCarousel,
+	},
+	template: `
+		<KvCarousel
+			controls-top-right
+			style="max-width: 400px; flex: auto; !justify-content: flex-end;"
+		>
+			${defaultCarouselSlides}
+		</KvCarousel>
+	`,
+});
