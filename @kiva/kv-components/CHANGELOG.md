@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.0.0...@kiva/kv-components@7.1.0) (2025-11-04)
+
+
+### Bug Fixes
+
+* add padding to control ([99e6074](https://github.com/kiva/kv-ui-elements/commit/99e607452a2d09d0d0bf4a2738c2a1d8ce46b8cd))
+* add storybook ([8b3c2a9](https://github.com/kiva/kv-ui-elements/commit/8b3c2a9e388de3d1d34c86fb5613fd874e2cf3a5))
+* apply style fixes ([a4b9ccb](https://github.com/kiva/kv-ui-elements/commit/a4b9ccb21585e6f6389294d29aebd428e465e51a))
+* change tw-shadow-md to tw-shadow-lg ([1967b6e](https://github.com/kiva/kv-ui-elements/commit/1967b6e767f5c3732774ed8009cc11523581c5f6))
+* improve controls positioning ([5dd487d](https://github.com/kiva/kv-ui-elements/commit/5dd487d8e4314dfa8058b33236e3dde5f77baf54))
+* minor style change ([8a02e67](https://github.com/kiva/kv-ui-elements/commit/8a02e679fa7728d385ec128df05e72e7f98e5131))
+* remove extraneous tw class ([f77aa72](https://github.com/kiva/kv-ui-elements/commit/f77aa72195d05aaecf515e800ee8aad19aad7d2d))
+
+
+### Features
+
+* add controlsTopRight prop ([fa2cfb4](https://github.com/kiva/kv-ui-elements/commit/fa2cfb4fbe74f519f85efa1134ebdf4a1d1a1c75))
+
+
+
+
+
 # [7.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.3...@kiva/kv-components@7.0.0) (2025-11-03)
 
 
