@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.1.1...@kiva/kv-components@7.2.0) (2025-11-06)
+
+
+### Features
+
+* mp-2206 compact card highlight ([8e3d5fa](https://github.com/kiva/kv-ui-elements/commit/8e3d5fa2893e65cb62d13cba0c7c41735e1cbe23))
+* mp-2206 compact card highlight ([1cdc560](https://github.com/kiva/kv-ui-elements/commit/1cdc560174f507adb9c59ed4280e3194b39a3764))
+
+
+
+
+
 ## [7.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.1.0...@kiva/kv-components@7.1.1) (2025-11-06)
 
 **Note:** Version bump only for package @kiva/kv-components
