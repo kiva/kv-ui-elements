@@ -120,7 +120,7 @@ export const webFonts = [
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Medium.8c8a585.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/kvui/PostGrotesk-Medium.woff2) format(\'woff2\')',
 		},
 	},
 	/**
@@ -161,7 +161,7 @@ export const webFonts = [
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-MediumItalic.133f41d.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/kvui/PostGrotesk-MediumItalic.woff2) format(\'woff2\')',
 		},
 	},
 	/**
@@ -202,7 +202,7 @@ export const webFonts = [
 			fontWeight: '300',
 			fontStyle: 'normal',
 			fontDisplay: 'swap',
-			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-Book.246fc8e.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/kvui/PostGrotesk-Book.woff2) format(\'woff2\')',
 		},
 	},
 	/**
@@ -243,7 +243,7 @@ export const webFonts = [
 			fontStyle: 'italic',
 			fontDisplay: 'swap',
 			// eslint-disable-next-line max-len
-			src: 'url(//www.kiva.org/static/fonts/PostGrotesk-BookItalic.4d06d39.woff2) format(\'woff2\')',
+			src: 'url(//www.kiva.org/kvui/PostGrotesk-BookItalic.woff2) format(\'woff2\')',
 		},
 	},
 	/**
