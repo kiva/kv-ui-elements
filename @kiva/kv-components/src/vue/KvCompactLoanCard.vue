@@ -5,7 +5,10 @@
 	>
 		<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
 			<!-- Image and Content -->
-			<div class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover">
+			<div
+				class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover"
+				style="height: 6.75rem; max-height: 6.75rem;"
+			>
 				<div class="tw-flex-shrink-0 tw-overflow-hidden">
 					<component
 						:is="tag"
@@ -74,6 +77,8 @@
 								:borrower-count="loanBorrowerCount"
 								:name="borrowerName"
 								:distribution-model="distributionModel"
+								:bold-name="true"
+								:country="formattedLocation"
 								class="tw-text-small tw-leading-tight"
 							/>
 						</div>
