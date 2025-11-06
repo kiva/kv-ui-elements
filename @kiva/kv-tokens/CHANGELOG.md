@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.5.0...@kiva/kv-tokens@3.5.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* add half sizes to remaining space primitives to ensure they render in storybook ([d94e24b](https://github.com/kiva/kv-ui-elements/commit/d94e24be12974b8f54b40fc4076c93cace9ad86e))
+
+
+
+
+
 # [3.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.4.1...@kiva/kv-tokens@3.5.0) (2025-09-26)
 
 
