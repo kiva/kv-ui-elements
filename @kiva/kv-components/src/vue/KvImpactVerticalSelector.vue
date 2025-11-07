@@ -15,31 +15,34 @@
 				@click="selectCategory(category.id)"
 			>
 				<div
-					class="
-						tw-p-2 tw-flex tw-flex-row md:tw-flex-col
-						tw-items-center tw-cursor-pointer
-					"
+					:class="cardContainerClasses"
 				>
 					<kv-contentful-img
 						v-if="category?.contentfulImage"
-						class="tw-shrink-0 tw-mr-2 md:tw-mr-0 md:tw-mb-2"
+						:class="imageClasses"
 						:alt="`${category.name} image`"
 						:contentful-src="category.contentfulImage"
 						:width="imageWidth"
 					/>
 					<img
 						v-else-if="category?.customImage"
-						class="tw-shrink-0 tw-mr-2 md:tw-mr-0 md:tw-mb-2"
+						:class="imageClasses"
 						:alt="`${category.name} image`"
 						:src="category.customImage"
 						:width="imageWidth"
 					>
-					<div class="md:tw-text-center">
+					<div :class="textContainerClasses">
 						<p class="tw-mb-0.5 tw-font-medium">
 							{{ category.name }}
 						</p>
 						<p class="tw-text-small">
 							{{ category.description }}
+						</p>
+						<p
+							v-if="isCategoryExisting(category.id)"
+							class="tw-text-small tw-py-1 tw-px-2 tw-mt-1 tw-bg-brand-200 tw-rounded tw-inline-block"
+						>
+							{{ existingCategoryMessage }}
 						</p>
 					</div>
 				</div>
@@ -84,6 +87,21 @@ export default {
 			type: String,
 			default: null,
 		},
+		// Use compact horizontal layout on tablet and up (keeps image to the left)
+		useCompactCard: {
+			type: Boolean,
+			default: false,
+		},
+		// Array of category ids that the user has already selected
+		existingCategories: {
+			type: Array,
+			default: () => [],
+		},
+		// Message to show for categories that are in the existingCategories list
+		existingCategoryMessage: {
+			type: String,
+			default: 'Already selected',
+		},
 	},
 	emits: ['category-selected'],
 	setup(props, { emit }) {
@@ -115,6 +133,33 @@ export default {
 			return null;
 		};
 
+		// Computed CSS classes based on useCompactCard prop
+		const cardContainerClasses = computed(() => {
+			if (props.useCompactCard) {
+				return 'tw-p-2 md:tw-p-3 tw-flex tw-flex-row tw-items-center tw-cursor-pointer';
+			}
+			return 'tw-p-2 tw-flex tw-flex-row md:tw-flex-col tw-items-center tw-cursor-pointer';
+		});
+
+		const imageClasses = computed(() => {
+			if (props.useCompactCard) {
+				return 'tw-shrink-0 tw-mr-2';
+			}
+			return 'tw-shrink-0 tw-mr-2 md:tw-mr-0 md:tw-mb-2';
+		});
+
+		const textContainerClasses = computed(() => {
+			if (props.useCompactCard) {
+				return '';
+			}
+			return 'md:tw-text-center';
+		});
+
+		// Function to check if a category is already selected
+		const isCategoryExisting = (categoryId) => {
+			return props.existingCategories.includes(categoryId);
+		};
+
 		// Filter out hidden categories and format the data
 		const formattedCategories = computed(() => {
 			if (!props.categoryList || props.categoryList.length === 0) {
@@ -136,6 +181,10 @@ export default {
 			selectedCategory,
 			formattedCategories,
 			selectCategory,
+			cardContainerClasses,
+			imageClasses,
+			textContainerClasses,
+			isCategoryExisting,
 		};
 	},
 };
