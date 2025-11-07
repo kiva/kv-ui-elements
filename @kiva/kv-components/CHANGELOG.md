@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.1...@kiva/kv-components@7.2.2) (2025-11-07)
+
+
+### Bug Fixes
+
+* update button size options, add optional menu border styles ([90e765e](https://github.com/kiva/kv-ui-elements/commit/90e765e763ff06bff688886a342773bbc5262a56))
+
+
+
+
+
 ## [7.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.0...@kiva/kv-components@7.2.1) (2025-11-06)
 
 
