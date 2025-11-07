@@ -1,4 +1,4 @@
-import { mdiPencil } from '@mdi/js';
+import { mdiPencil, mdiCogOutline } from '@mdi/js';
 import KvUtilityMenu from '../KvUtilityMenu.vue';
 
 export default {
@@ -103,14 +103,14 @@ export const MultipleInstances = (args, { argTypes }) => ({
 	components: { KvUtilityMenu },
 	props: Object.keys(argTypes),
 	setup() {
-		return { args, mdiPencil };
+		return { args, mdiPencil, mdiCogOutline };
 	},
 	template: `
 		<div class="tw-p-8 tw-bg-brand-100" style="height: 400px;">
 			<div class="tw-flex tw-justify-between tw-items-start tw-gap-8">
 				<!-- First Menu Instance -->
 				<div class="tw-flex tw-flex-col tw-items-center tw-gap-2">
-					<h3 class="tw-text-sm tw-font-medium tw-mb-2">Options Menu</h3>
+					<h3 class="tw-text-sm tw-font-medium tw-mb-2">Options Menu (small)</h3>
 					<KvUtilityMenu
 						buttonRadiusClass="tw-rounded-full"
 						buttonSize="small"
@@ -133,7 +133,7 @@ export const MultipleInstances = (args, { argTypes }) => ({
 
 				<!-- Second Menu Instance -->
 				<div class="tw-flex tw-flex-col tw-items-center tw-gap-2">
-					<h3 class="tw-text-sm tw-font-medium tw-mb-2">Edit Menu</h3>
+					<h3 class="tw-text-sm tw-font-medium tw-mb-2">Edit Menu (medium)</h3>
 					<KvUtilityMenu
 						:icon="mdiPencil"
 						menuPosition="right-aligned"
@@ -141,6 +141,36 @@ export const MultipleInstances = (args, { argTypes }) => ({
 						buttonSize="medium"
 						buttonBorderClass="tw-border-2 tw-border-primary"
 						analyticsCategory="second-menu"
+					>
+						<ul class="tw-m-0 tw-p-0">
+							<li class="tw-list-none tw-border-b tw-border-gray-100">
+								<a href="#" @click.prevent class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Edit Item</a>
+							</li>
+							<li class="tw-list-none tw-border-b tw-border-gray-100">
+								<a href="#" @click.prevent class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Duplicate</a>
+							</li>
+							<li class="tw-list-none tw-border-b tw-border-gray-100">
+								<a href="#" @click.prevent class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Move</a>
+							</li>
+							<li class="tw-list-none">
+								<a href="#" @click.prevent class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light tw-text-danger">Delete</a>
+							</li>
+						</ul>
+					</KvUtilityMenu>
+				</div>
+
+				<!-- Third Menu Instance -->
+				<div class="tw-flex tw-flex-col tw-items-center tw-gap-2">
+					<h3 class="tw-text-sm tw-font-medium tw-mb-2">Cog button w/ custom menu styles (large)</h3>
+					<KvUtilityMenu
+						:icon="mdiCogOutline"
+						menuPosition="right-aligned"
+						buttonRadiusClass="tw-rounded-sm"
+						buttonSize="large"
+						buttonBorderClass="tw-border tw-border-tertiary"
+						menuRadiusClass="tw-rounded-sm"
+						menuBorderClass="tw-border tw-border-tertiary"
+						analyticsCategory="third-menu"
 					>
 						<ul class="tw-m-0 tw-p-0">
 							<li class="tw-list-none tw-border-b tw-border-gray-100">
