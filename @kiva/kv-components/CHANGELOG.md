@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.2...@kiva/kv-components@7.2.3) (2025-11-07)
+
+
+### Bug Fixes
+
+* add new useCompactCard optn and ability to show message for existingCategories ([b4a6bf0](https://github.com/kiva/kv-ui-elements/commit/b4a6bf06d3c22b89dcdbd945f75a4604cbec3808))
+
+
+
+
+
 ## [7.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.1...@kiva/kv-components@7.2.2) (2025-11-07)
 
 
