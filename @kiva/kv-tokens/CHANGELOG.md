@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.5.1...@kiva/kv-tokens@3.6.0) (2025-11-10)
+
+
+### Features
+
+* provide fonts from kv-tokens ([bb82d28](https://github.com/kiva/kv-ui-elements/commit/bb82d28112507e4c66ef85dfbbd3340ff89211d4))
+
+
+
+
+
 ## [3.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.5.0...@kiva/kv-tokens@3.5.1) (2025-11-06)
 
 
