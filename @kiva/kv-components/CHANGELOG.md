@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.3...@kiva/kv-components@7.2.4) (2025-11-10)
+
+
+### Bug Fixes
+
+* kiva cards url in mobile ([aa05c93](https://github.com/kiva/kv-ui-elements/commit/aa05c93678c311068ea78ea4ef1a8a32d4794665))
+
+
+
+
+
 ## [7.2.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.2...@kiva/kv-components@7.2.3) (2025-11-07)
 
 
