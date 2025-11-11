@@ -69,3 +69,13 @@ export const BoldNameWithCountry = story({
 	boldName: true,
 	country: 'Kenya',
 });
+
+export const IndicativeHelpText = story({
+	use: 'buy supplies.',
+	loanAmount: '1000.00',
+	status: 'fundraising',
+	name: 'Bob Smith',
+	hideLoanAmount: true,
+	useIndicativeHelpText: true,
+	whySpecial: 'It supports organic farming and includes a lower interest rate.',
+});
