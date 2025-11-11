@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.0...@kiva/kv-components@7.3.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* make compact impact vertical card more compact ([6d8e16c](https://github.com/kiva/kv-ui-elements/commit/6d8e16cb8207ac20ced9cdba96c23383fbb9737d))
+
+
+
+
+
 # [7.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.5...@kiva/kv-components@7.3.0) (2025-11-11)
 
 
