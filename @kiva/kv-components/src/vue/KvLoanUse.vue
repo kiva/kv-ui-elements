@@ -73,6 +73,10 @@ export default {
 			type: String,
 			default: '',
 		},
+		useIndicativeHelpText: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -106,7 +110,9 @@ export default {
 			}
 
 			if (this.hideLoanAmount) {
-				return `Help ${this.nameSpan} `
+				const helpVerb = this.useIndicativeHelpText ? this.helpLanguage : 'Help';
+				const capitalizedHelpVerb = helpVerb.charAt(0).toUpperCase() + helpVerb.slice(1);
+				return `${capitalizedHelpVerb} ${this.nameSpan} `
 					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
 				+ `${this.whySpecialSentence}`;
 			}

@@ -101,6 +101,7 @@
 								:borrower-count="loanBorrowerCount"
 								:name="borrowerName"
 								:distribution-model="distributionModel"
+								:use-indicative-help-text="true"
 							/>
 						</div>
 					</div>
