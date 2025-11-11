@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.5...@kiva/kv-components@7.3.0) (2025-11-11)
+
+
+### Bug Fixes
+
+* setup transitive 'helps' option for loan use and export new KvLoanInfoCard ([bb82045](https://github.com/kiva/kv-ui-elements/commit/bb82045dae06e06babeabc366a697eca5d98ce3a))
+
+
+### Features
+
+* new basic loan information card and stories ([9d506f2](https://github.com/kiva/kv-ui-elements/commit/9d506f20bea8c5a741e022972f62596ea8a8ae98))
+
+
+
+
+
 ## [7.2.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.4...@kiva/kv-components@7.2.5) (2025-11-10)
 
 **Note:** Version bump only for package @kiva/kv-components
