@@ -136,7 +136,7 @@ export default {
 		// Computed CSS classes based on useCompactCard prop
 		const cardContainerClasses = computed(() => {
 			if (props.useCompactCard) {
-				return 'tw-p-2 md:tw-p-3 tw-flex tw-flex-row tw-items-center tw-cursor-pointer';
+				return 'tw-p-1 md:tw-p-2 tw-flex tw-flex-row tw-items-center tw-cursor-pointer';
 			}
 			return 'tw-p-2 tw-flex tw-flex-row md:tw-flex-col tw-items-center tw-cursor-pointer';
 		});
