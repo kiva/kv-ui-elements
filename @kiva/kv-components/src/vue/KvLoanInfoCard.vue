@@ -155,8 +155,8 @@ import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
 // Use this fragment to get the necessary public data for this loan card
-export const KV_CLASSIC_LOAN_CARD_FRAGMENT = gql`
-	fragment KvClassicLoanCard on LoanBasic {
+export const KV_LOAN_INFO_CARD_FRAGMENT = gql`
+	fragment KvLoanInfoCard on LoanBasic {
 		id
 		gender
 		image {
@@ -172,7 +172,7 @@ export const KV_CLASSIC_LOAN_CARD_FRAGMENT = gql`
 `;
 
 export default {
-	name: 'KvClassicLoanCard',
+	name: 'KvLoanInfoCard',
 	components: {
 		KvBorrowerImage,
 		KvLoadingPlaceholder,
