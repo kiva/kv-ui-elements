@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.2...@kiva/kv-components@7.3.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* slightly smaller pager for control top right carousel ([f2a95a8](https://github.com/kiva/kv-ui-elements/commit/f2a95a812fe54751f045ea24e5f597eee88ede5f))
+
+
+
+
+
 ## [7.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.1...@kiva/kv-components@7.3.2) (2025-11-12)
 
 
