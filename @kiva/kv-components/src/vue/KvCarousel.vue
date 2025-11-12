@@ -39,19 +39,18 @@
 			:class="{
 				'lg:tw-hidden': asideControls,
 				'tw-mt-4 md:tw-justify-center': !controlsTopRight,
-				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-2 tw-pr-1': controlsTopRight
+				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-1.5 tw-pr-1': controlsTopRight
 			}"
 		>
 			<button
 				class="tw-text-primary
-					tw-h-4 tw-w-4
 					tw-rounded-full
 					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:class="{
-					'tw-border-2': !controlsTopRight,
-					'tw-bg-white tw-shadow-lg': controlsTopRight
+					'tw-border-2 tw-h-4 tw-w-4': !controlsTopRight,
+					'tw-bg-white tw-shadow-lg tw-h-3.5 tw-w-3.5': controlsTopRight
 				}"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
@@ -71,14 +70,13 @@
 			</div>
 			<button
 				class="tw-text-primary
-					tw-h-4 tw-w-4
 					tw-rounded-full
 					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
 				:class="{
-					'tw-border-2': !controlsTopRight,
-					'tw-bg-white tw-shadow-lg': controlsTopRight
+					'tw-border-2 tw-h-4 tw-w-4': !controlsTopRight,
+					'tw-bg-white tw-shadow-lg tw-h-3.5 tw-w-3.5': controlsTopRight
 				}"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
