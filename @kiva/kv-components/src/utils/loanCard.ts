@@ -83,7 +83,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 			return customHref.value;
 		}
 
-		return customLoanDetails.value ? '' : `/lend/${loanId.value}`;
+		return customLoanDetails?.value ? '' : `/lend/${loanId.value}`;
 	});
 	const isLoading = computed(() => !loanId.value || !loan.value);
 	const borrowerName = computed(() => loan.value?.name || '');

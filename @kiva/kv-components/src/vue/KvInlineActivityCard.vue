@@ -5,8 +5,8 @@
 		<KvUserAvatar
 			:lender-image-url="lenderImageUrl"
 			:lender-name="lenderName"
+			class="tw-w-4 tw-h-4 tw-flex-shrink-0"
 			is-small
-			class="activity-avatar"
 		/>
 		<p class="tw-text-base tw-whitespace-nowrap">
 			<span class="data-hj-suppress">{{ lenderName }}</span> contributed
@@ -47,9 +47,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped lang="postcss">
-.activity-avatar, .activity-avatar :deep(img), .activity-avatar :deep(div) {
-    @apply tw-w-4 tw-h-4;
-}
-</style>

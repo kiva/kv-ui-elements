@@ -5,7 +5,7 @@
 	>
 		<kv-user-avatar
 			v-show="showBubble"
-			class="loan-image tw-rounded-full"
+			class="loan-image tw-w-6 tw-h-6"
 			:style="bubbleStyle"
 			:lender-name="borrowerName"
 			:lender-image-url="borrowerImageUrl"

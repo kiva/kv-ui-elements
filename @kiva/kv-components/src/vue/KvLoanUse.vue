@@ -65,6 +65,18 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		boldName: {
+			type: Boolean,
+			default: false,
+		},
+		country: {
+			type: String,
+			default: '',
+		},
+		useIndicativeHelpText: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -81,13 +93,26 @@ export default {
 				? ` This loan is special because ${this.whySpecial.charAt(0).toLowerCase() + this.whySpecial.slice(1)}`
 				: '';
 		},
+		nameSpan() {
+			if (!this.boldName) {
+				return `<span class="data-hj-suppress">${this.name}</span>`;
+			}
+			// boldName is true
+			if (this.country) {
+				return `<span class="data-hj-suppress tw-font-medium">${this.name} in ${this.country}</span>`;
+			}
+			// Bold name only
+			return `<span class="data-hj-suppress tw-font-medium">${this.name}</span>`;
+		},
 		loanUse() {
 			if (this.anonymizationLevel === 'full' || this.use.length === 0) {
 				return 'For the borrower\'s privacy, this loan has been made anonymous.';
 			}
 
 			if (this.hideLoanAmount) {
-				return `Help <span class="data-hj-suppress">${this.name}</span> `
+				const helpVerb = this.useIndicativeHelpText ? this.helpLanguage : 'Help';
+				const capitalizedHelpVerb = helpVerb.charAt(0).toUpperCase() + helpVerb.slice(1);
+				return `${capitalizedHelpVerb} ${this.nameSpan} `
 					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
 				+ `${this.whySpecialSentence}`;
 			}
@@ -97,7 +122,7 @@ export default {
 			return `${numeral(this.loanAmount).format('$0,0')} `
 				+ `${this.isDirect ? 'to' : this.helpLanguage} `
 				+ `${isGroup ? 'a member of ' : ''}`
-				+ `<span class="data-hj-suppress">${this.name}</span> `
+				+ `${this.nameSpan} `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
 				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
 				+ `${this.whySpecialSentence}`;

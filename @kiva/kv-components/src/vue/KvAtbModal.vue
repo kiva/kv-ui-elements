@@ -34,7 +34,7 @@
 						>
 							<!-- eslint-disable max-len -->
 							<svg
-								v-if="isFirstLoan"
+								v-if="isFirstLoan && !isLoanGoal"
 								class="tw-min-w-3"
 								width="40"
 								height="40"

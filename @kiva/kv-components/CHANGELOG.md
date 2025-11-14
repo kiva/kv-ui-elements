@@ -3,6 +3,210 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.2...@kiva/kv-components@7.3.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* slightly smaller pager for control top right carousel ([f2a95a8](https://github.com/kiva/kv-ui-elements/commit/f2a95a812fe54751f045ea24e5f597eee88ede5f))
+
+
+
+
+
+## [7.3.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.1...@kiva/kv-components@7.3.2) (2025-11-12)
+
+
+### Bug Fixes
+
+* ensure KvLoanInfoCard has unique exports ([6a61dd5](https://github.com/kiva/kv-ui-elements/commit/6a61dd5a15b8903d018c481fa702bad118a13970))
+
+
+
+
+
+## [7.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.0...@kiva/kv-components@7.3.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* make compact impact vertical card more compact ([6d8e16c](https://github.com/kiva/kv-ui-elements/commit/6d8e16cb8207ac20ced9cdba96c23383fbb9737d))
+
+
+
+
+
+# [7.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.5...@kiva/kv-components@7.3.0) (2025-11-11)
+
+
+### Bug Fixes
+
+* setup transitive 'helps' option for loan use and export new KvLoanInfoCard ([bb82045](https://github.com/kiva/kv-ui-elements/commit/bb82045dae06e06babeabc366a697eca5d98ce3a))
+
+
+### Features
+
+* new basic loan information card and stories ([9d506f2](https://github.com/kiva/kv-ui-elements/commit/9d506f20bea8c5a741e022972f62596ea8a8ae98))
+
+
+
+
+
+## [7.2.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.4...@kiva/kv-components@7.2.5) (2025-11-10)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+## [7.2.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.3...@kiva/kv-components@7.2.4) (2025-11-10)
+
+
+### Bug Fixes
+
+* kiva cards url in mobile ([aa05c93](https://github.com/kiva/kv-ui-elements/commit/aa05c93678c311068ea78ea4ef1a8a32d4794665))
+
+
+
+
+
+## [7.2.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.2...@kiva/kv-components@7.2.3) (2025-11-07)
+
+
+### Bug Fixes
+
+* add new useCompactCard optn and ability to show message for existingCategories ([b4a6bf0](https://github.com/kiva/kv-ui-elements/commit/b4a6bf06d3c22b89dcdbd945f75a4604cbec3808))
+
+
+
+
+
+## [7.2.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.1...@kiva/kv-components@7.2.2) (2025-11-07)
+
+
+### Bug Fixes
+
+* update button size options, add optional menu border styles ([90e765e](https://github.com/kiva/kv-ui-elements/commit/90e765e763ff06bff688886a342773bbc5262a56))
+
+
+
+
+
+## [7.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.2.0...@kiva/kv-components@7.2.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* slightly less padding above carousel pager ([cc92346](https://github.com/kiva/kv-ui-elements/commit/cc92346443e5eca5ff80877f1b3150adb309e567))
+
+
+
+
+
+# [7.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.1.1...@kiva/kv-components@7.2.0) (2025-11-06)
+
+
+### Features
+
+* mp-2206 compact card highlight ([8e3d5fa](https://github.com/kiva/kv-ui-elements/commit/8e3d5fa2893e65cb62d13cba0c7c41735e1cbe23))
+* mp-2206 compact card highlight ([1cdc560](https://github.com/kiva/kv-ui-elements/commit/1cdc560174f507adb9c59ed4280e3194b39a3764))
+
+
+
+
+
+## [7.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.1.0...@kiva/kv-components@7.1.1) (2025-11-06)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [7.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.0.0...@kiva/kv-components@7.1.0) (2025-11-04)
+
+
+### Bug Fixes
+
+* add padding to control ([99e6074](https://github.com/kiva/kv-ui-elements/commit/99e607452a2d09d0d0bf4a2738c2a1d8ce46b8cd))
+* add storybook ([8b3c2a9](https://github.com/kiva/kv-ui-elements/commit/8b3c2a9e388de3d1d34c86fb5613fd874e2cf3a5))
+* apply style fixes ([a4b9ccb](https://github.com/kiva/kv-ui-elements/commit/a4b9ccb21585e6f6389294d29aebd428e465e51a))
+* change tw-shadow-md to tw-shadow-lg ([1967b6e](https://github.com/kiva/kv-ui-elements/commit/1967b6e767f5c3732774ed8009cc11523581c5f6))
+* improve controls positioning ([5dd487d](https://github.com/kiva/kv-ui-elements/commit/5dd487d8e4314dfa8058b33236e3dde5f77baf54))
+* minor style change ([8a02e67](https://github.com/kiva/kv-ui-elements/commit/8a02e679fa7728d385ec128df05e72e7f98e5131))
+* remove extraneous tw class ([f77aa72](https://github.com/kiva/kv-ui-elements/commit/f77aa72195d05aaecf515e800ee8aad19aad7d2d))
+
+
+### Features
+
+* add controlsTopRight prop ([fa2cfb4](https://github.com/kiva/kv-ui-elements/commit/fa2cfb4fbe74f519f85efa1134ebdf4a1d1a1c75))
+
+
+
+
+
+# [7.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.3...@kiva/kv-components@7.0.0) (2025-11-03)
+
+
+### Bug Fixes
+
+* **KvUserAvatar:** adjust cross-browser vertical alignment ([b9a77e6](https://github.com/kiva/kv-ui-elements/commit/b9a77e62225be40f9bc1235981fe6244d09a36a1))
+
+
+* feat(KvUserAvatar)!: responsive sizing relative to width and height ([d76c5f1](https://github.com/kiva/kv-ui-elements/commit/d76c5f1b4cac90994aea7b39617acc9b3a8848e5))
+
+
+### Features
+
+* **KvUserAvatar:** option to use css placeholder ([0a78f5a](https://github.com/kiva/kv-ui-elements/commit/0a78f5abb38d1d91b72bf09612b5dc7c5469c29f))
+* **KvWwwHeader:** loading states for basket, balance, and avatar ([0c31471](https://github.com/kiva/kv-ui-elements/commit/0c314713ea48d8eaeb22fa851755eab0821c14c3))
+
+
+### BREAKING CHANGES
+
+* The size of KvUserAvatar must be styled by consumers
+
+
+
+
+
+## [6.69.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.2...@kiva/kv-components@6.69.3) (2025-11-03)
+
+
+### Bug Fixes
+
+* avoid showing badge for goals atb modal ([#734](https://github.com/kiva/kv-ui-elements/issues/734)) ([1176bee](https://github.com/kiva/kv-ui-elements/commit/1176bee51eff5f8002095effe5f55d083a5ada87))
+
+
+
+
+
+## [6.69.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.1...@kiva/kv-components@6.69.2) (2025-10-31)
+
+
+### Bug Fixes
+
+* add click event to mobile tabs in lend menu ([ab0c730](https://github.com/kiva/kv-ui-elements/commit/ab0c730d67efa96b1bcaffd9ffb877fcd170ee79))
+* prevent accordion items having double analytics ([12991f6](https://github.com/kiva/kv-ui-elements/commit/12991f654dad577dca51ba30baed8ff2be18497f))
+
+
+
+
+
+## [6.69.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.69.0...@kiva/kv-components@6.69.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* ensure all menu items have hover events ([8926d99](https://github.com/kiva/kv-ui-elements/commit/8926d99965ae447d5a6a7b715cb6d62364e94488))
+* extend analytics in mobile hamburger menu ([9bee4f6](https://github.com/kiva/kv-ui-elements/commit/9bee4f67456f34dd7b2847d3801d2d3d8a3be343))
+* move region click event to accordion item ([66e3121](https://github.com/kiva/kv-ui-elements/commit/66e31212ace02133c50ff84fec213fd775266972))
+
+
+
+
+
 # [6.69.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@6.68.0...@kiva/kv-components@6.69.0) (2025-10-30)
 
 

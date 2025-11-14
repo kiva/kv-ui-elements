@@ -82,18 +82,21 @@
 		</a>
 		<!-- basket (items) -->
 		<a
-			v-show="basketCount > 0"
+			v-show="isBasketDataLoading ? true : basketCount > 0"
 			ref="basketLink"
 			v-kv-track-event="['TopNav', 'click-Basket']"
 			href="/basket"
 			class="header-link tw-relative md:!tw-mr-0 tw-flex tw-items-center tw-gap-0.5"
 			:class="{'tw-text-tertiary': !!openMenuItem}"
+			:style="isBasketDataLoading ? {
+				display: 'var(--basket-display, flex)'
+			} : undefined"
 			style="margin-right: 2px;"
 			data-testid="header-basket"
 		>
 			<kv-icon-bag
 				class="tw-w-3 tw-h-3 md:tw-w-3.5 md:tw-h-3.5 tw-pointer-events-none tw-text-action"
-				:count="basketCount"
+				:count="isBasketDataLoading ? 0 : basketCount"
 			/>
 			<span class="tw-hidden md:tw-block">Basket</span>
 		</a>
@@ -111,19 +114,40 @@
 			>
 				<!-- avatar (sm, auth) -->
 				<kv-material-icon
-					v-if="isLegacyPlaceholderAvatar(avatarFilename) || !avatarFilename"
 					:icon="mdiAccountCircle"
 					class="tw-w-3"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-legacy-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'inline-block' : 'none'
+					}"
 				/>
 				<KvUserAvatar
-					v-else
-					class="avatar"
+					class="tw-w-3 tw-h-3"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
+					:style="isUserDataLoading ? {
+						display: 'var(--user-avatar-display, inline-block)'
+					} : {
+						display: isDefaultProfilePic ? 'none' : 'inline-block'
+					}"
+					:show-css-placeholder="isUserDataLoading"
 					is-small
 				/>
 				<!-- balance (auth) -->
-				<span class="tw-text-eco-green-4">
+				<div
+					v-if="isUserDataLoading"
+					class="tw-w-4 tw-h-3"
+					:style="{
+						display: 'var(--user-balance-loading-display, inline-block)'
+					}"
+				>
+					<KvLoadingPlaceholder />
+				</div>
+				<span
+					v-else
+					class="tw-text-eco-green-4"
+				>
 					{{ numeral(roundedBalance).format('$0') }}
 				</span>
 			</div>
@@ -155,6 +179,7 @@ import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvIconBag from '../KvIconBag.vue';
 import KvHeaderDropdownLink from './KvHeaderDropdownLink.vue';
 import KvUserAvatar from '../KvUserAvatar.vue';
+import KvLoadingPlaceholder from '../KvLoadingPlaceholder.vue';
 import { throttle } from '../../utils/throttle';
 import { isLegacyPlaceholderAvatar } from '../../utils/imageUtils';
 
@@ -169,6 +194,8 @@ const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
 const MOBILE_MENU_BASE_POS = { top: '-3.75rem', width: '100%' };
 const LEND_MENU_ITEM = 'lendButton';
+const TAKE_ACTION_MENU_ITEM = 'takeActionButton';
+const ABOUT_MENU_ITEM = 'aboutUsLink';
 
 export default {
 	components: {
@@ -176,6 +203,7 @@ export default {
 		KvIconBag,
 		KvHeaderDropdownLink,
 		KvUserAvatar,
+		KvLoadingPlaceholder,
 	},
 	props: {
 		loggedIn: {
@@ -214,6 +242,14 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		isBasketDataLoading: {
+			type: Boolean,
+			default: false,
+		},
+		isUserDataLoading: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'item-hover',
@@ -233,6 +269,14 @@ export default {
 
 		const $kvTrackEvent = inject('$kvTrackEvent');
 
+		const menuTrackingMap = {
+			[LEND_MENU_ITEM]: { action: 'hover-Lend-menu', label: 'Lend' },
+			[TAKE_ACTION_MENU_ITEM]: { action: 'hover-Take-action-menu', label: 'Take action' },
+			[ABOUT_MENU_ITEM]: { action: 'hover-About-menu', label: 'About' },
+			[MOBILE_MENU_ITEM]: { action: 'hover-Hamburger-menu', label: 'Hamburger' },
+			[AVATAR_MENU_ID]: { action: 'hover-Avatar-menu', label: 'Avatar' },
+		};
+
 		const onHover = (item, menu, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
@@ -240,12 +284,16 @@ export default {
 		const handleOnHover = (item, menu, targetPosition = null) => {
 			// Detect input method (mouse vs touch) instead of relying only on screen size
 			if (!navigator.maxTouchPoints) {
-				if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
-					$kvTrackEvent(
-						'TopNav',
-						'hover-Lend-menu',
-						'Lend',
-					);
+				// Track hover for each menu type
+				if (item && openMenuId.value !== item) {
+					const tracking = menuTrackingMap[item];
+					if (tracking) {
+						$kvTrackEvent(
+							'TopNav',
+							tracking.action,
+							tracking.label,
+						);
+					}
 				}
 				openMenuId.value = item;
 
@@ -283,13 +331,17 @@ export default {
 			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
 		};
 
-		const handleTouchStart = (item?, menu?, targetPosition?) => {
-			if (item === LEND_MENU_ITEM && openMenuId.value !== LEND_MENU_ITEM) {
-				$kvTrackEvent(
-					'TopNav',
-					'hover-Lend-menu',
-					'Lend',
-				);
+		const handleTouchStart = (item, menu, targetPosition) => {
+			// Track touch start for each menu type
+			if (item && openMenuId.value !== item) {
+				const tracking = menuTrackingMap[item];
+				if (tracking) {
+					$kvTrackEvent(
+						'TopNav',
+						tracking.action,
+						tracking.label,
+					);
+				}
 			}
 
 			// Handles the scenario when mobile menu is closed from main component
@@ -327,6 +379,10 @@ export default {
 		});
 
 		const roundedBalance = computed(() => Math.floor(props.balance));
+
+		const isDefaultProfilePic = computed(() => {
+			return isLegacyPlaceholderAvatar(avatarFilename.value) || !avatarFilename.value;
+		});
 
 		const handleEmptySpaceClick = (event) => {
 			// Only close if the click target is the container itself (not a child)
@@ -400,6 +456,7 @@ export default {
 			getAvatarMenuPosition,
 			handleEmptySpaceClick,
 			roundedBalance,
+			isDefaultProfilePic,
 		};
 	},
 };
@@ -409,9 +466,5 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
-}
-
-:deep(.avatar div:first-child) {
-	@apply tw-flex;
 }
 </style>

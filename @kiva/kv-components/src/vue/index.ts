@@ -42,6 +42,8 @@ export * from './KvLoanActivities.vue';
 export { default as KvLoanBookmark } from './KvLoanBookmark.vue';
 export * from './KvLoanBookmark.vue';
 export { default as KvLoanCallouts } from './KvLoanCallouts.vue';
+export { default as KvLoanInfoCard } from './KvLoanInfoCard.vue';
+export * from './KvLoanInfoCard.vue';
 export { default as KvLoanProgressGroup } from './KvLoanProgressGroup.vue';
 export { default as KvLoanTag } from './KvLoanTag.vue';
 export * from './KvLoanTag.vue';

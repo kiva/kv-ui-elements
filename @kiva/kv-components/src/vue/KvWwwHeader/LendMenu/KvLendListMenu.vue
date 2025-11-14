@@ -21,14 +21,21 @@
 		</a>
 		<kv-tabs ref="navLendCategories">
 			<template #tabNav>
-				<kv-tab for-panel="nav-lend-categories">
+				<kv-tab
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-Categories']"
+					for-panel="nav-lend-categories"
+				>
 					Categories
 				</kv-tab>
-				<kv-tab for-panel="nav-lend-regions">
+				<kv-tab
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-Regions']"
+					for-panel="nav-lend-regions"
+				>
 					Regions
 				</kv-tab>
 				<kv-tab
 					v-if="userId"
+					v-kv-track-event="['TopNav', 'click-Lend-Tab-My-Kiva']"
 					for-panel="nav-my-kiva"
 				>
 					My Kiva
@@ -121,12 +128,11 @@
 							:id="`lend-menu-${paramCase(region.name)}-panel`"
 							:key="region.name"
 							ref="regionAccordions"
+							v-kv-track-event="['TopNav','click-Lend-Region', region.name]"
 						>
 							<template #header>
 								<h3 class="tw-text-h4">
-									<span v-kv-track-event="['TopNav','click-Lend-Region', region.name]">
-										{{ region.name }}
-									</span>
+									{{ region.name }}
 								</h3>
 							</template>
 							<kv-lend-menu-country-list :countries="region.countries" />

@@ -17,12 +17,24 @@ export default {
 		imageWidth: {
 			control: 'number',
 		},
+		useCompactCard: {
+			control: 'boolean',
+		},
+		existingCategories: {
+			control: 'object',
+		},
+		existingCategoryMessage: {
+			control: 'text',
+		},
 	},
 	args: {
 		categoryList: impactVerticalDataMock,
 		hiddenCategories: [],
 		preSelectedCategory: null,
 		imageWidth: 64,
+		useCompactCard: false,
+		existingCategories: [],
+		existingCategoryMessage: 'Already selected',
 	},
 };
 
@@ -66,6 +78,9 @@ const Template = (args, { argTypes }) => ({
 				:hidden-categories="hiddenCategories"
 				:pre-selected-category="preSelectedCategory"
 				:image-width="imageWidth"
+				:use-compact-card="useCompactCard"
+				:existing-categories="existingCategories"
+				:existing-category-message="existingCategoryMessage"
 				@category-selected="onCategorySelected"
 			/>
 		</div>
@@ -76,6 +91,9 @@ const Template = (args, { argTypes }) => ({
 			hiddenCategories: args.hiddenCategories,
 			preSelectedCategory: args.preSelectedCategory,
 			imageWidth: args.imageWidth,
+			useCompactCard: args.useCompactCard,
+			existingCategories: args.existingCategories,
+			existingCategoryMessage: args.existingCategoryMessage,
 			selectedCategoryId: null,
 		};
 	},
@@ -104,4 +122,25 @@ export const CustomCategoryImage = Template.bind({});
 CustomCategoryImage.args = {
 	categoryList: customCategoryImageSample[0],
 	imageWidth: 100,
+};
+
+export const CompactCard = Template.bind({});
+CompactCard.args = {
+	useCompactCard: true,
+	imageWidth: 80,
+};
+
+export const CompactCardWithCustomImages = Template.bind({});
+CompactCardWithCustomImages.args = {
+	categoryList: customCategoryImageSample[0],
+	useCompactCard: true,
+	imageWidth: 80,
+};
+
+export const WithExistingCategories = Template.bind({});
+WithExistingCategories.args = {
+	existingCategories: ['28fe587c-f6f4-4329-b4ed-ac094b2c14b3', '914823b9-b4e3-4980-8811-09dbe0f19860'],
+	existingCategoryMessage: "You've already set up this fund",
+	useCompactCard: true,
+	imageWidth: 80,
 };

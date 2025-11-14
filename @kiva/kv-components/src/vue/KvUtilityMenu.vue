@@ -2,7 +2,11 @@
 	<div
 		class="tw-relative utility-menu-wrapper"
 		:class="[
-			buttonSize === 'small' ? 'tw-w-4 tw-h-4' : 'tw-w-6 tw-h-6',
+			{
+				'tw-w-4 tw-h-4': buttonSize === 'small',
+				'tw-w-5 tw-h-5': buttonSize === 'medium',
+				'tw-w-6 tw-h-6': buttonSize === 'large',
+			}
 		]"
 	>
 		<button
@@ -16,7 +20,11 @@
 			:class="[
 				buttonBorderClass,
 				buttonRadiusClass,
-				buttonSize === 'small' ? 'tw-w-4 tw-h-4' : 'tw-w-6 tw-h-6',
+				{
+					'tw-w-4 tw-h-4': buttonSize === 'small',
+					'tw-w-5 tw-h-5': buttonSize === 'medium',
+					'tw-w-6 tw-h-6': buttonSize === 'large',
+				}
 			]"
 			@click.stop="handleMenuAnchorClick"
 		>
@@ -29,15 +37,17 @@
 			ref="optionsMenu"
 			class="
 				tw-absolute
-				tw-rounded
-				tw-border tw-border-tertiary
 				tw-bg-white
 				tw-z-1
 				tw-shadow-lg
 				vertical-menu"
-			:class="[{
-				'tw-right-0': menuPosition === 'right-aligned',
-			}]"
+			:class="[
+				menuBorderClass,
+				menuRadiusClass,
+				{
+					'tw-right-0': menuPosition === 'right-aligned',
+				}
+			]"
 			:style="`width: 236px; top: ${buttonSize === 'small' ? '2.5rem' : '3.5rem'};`"
 		>
 			<slot></slot>
@@ -74,16 +84,24 @@ export default {
 		},
 		buttonSize: {
 			type: String,
-			default: 'medium',
+			default: 'large',
 			validator(value: string) {
 				return [
-					'small', 'medium',
+					'small', 'medium', 'large',
 				].includes(value);
 			},
 		},
 		icon: {
 			type: String,
 			default: mdiDotsVertical,
+		},
+		menuBorderClass: {
+			type: String,
+			default: 'tw-border tw-border-tertiary',
+		},
+		menuRadiusClass: {
+			type: String,
+			default: 'tw-rounded',
 		},
 		menuPosition: {
 			type: String,

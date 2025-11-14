@@ -2,7 +2,7 @@
 	<section
 		ref="rootEl"
 		class="kv-carousel tw-overflow-hidden tw-w-full"
-		:class="{ 'lg:tw-relative': asideControls }"
+		:class="{ 'lg:tw-relative': asideControls, 'tw-relative tw-pt-6': controlsTopRight }"
 		aria-label="carousel"
 	>
 		<!-- Carousel Content -->
@@ -34,17 +34,24 @@
 		<div
 			v-if="slideIndicatorCount > 1 && !isDotted"
 			class="kv-carousel__controls tw-flex
-			tw-justify-between md:tw-justify-center tw-items-center
-			tw-mt-4 tw-w-full"
-			:class="{ 'lg:tw-hidden': asideControls }"
+			tw-justify-between tw-items-center
+			tw-w-full"
+			:class="{
+				'lg:tw-hidden': asideControls,
+				'tw-mt-4 md:tw-justify-center': !controlsTopRight,
+				'md:tw-justify-end tw-absolute tw-top-0 tw-right-0 tw-w-auto tw-gap-1.5 tw-pr-1': controlsTopRight
+			}"
 		>
 			<button
 				class="tw-text-primary
 					tw-rounded-full
-					tw-border-2 tw-border-primary
-					tw-h-4 tw-w-4
+					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
+				:class="{
+					'tw-border-2 tw-h-4 tw-w-4': !controlsTopRight,
+					'tw-bg-white tw-shadow-lg tw-h-3.5 tw-w-3.5': controlsTopRight
+				}"
 				:disabled="embla && !embla.canScrollPrev()"
 				@click="handleUserInteraction(previousIndex, 'click-left-arrow')"
 			>
@@ -55,6 +62,7 @@
 				<span class="tw-sr-only">Show previous slide</span>
 			</button>
 			<div
+				v-if="!controlsTopRight"
 				:aria-label="`screen ${currentIndex + 1} of ${slideIndicatorCount}`"
 				class="tw-mx-2 md:tw-mx-3 lg:tw-mx-4 tw-invisible md:tw-visible"
 			>
@@ -63,10 +71,13 @@
 			<button
 				class="tw-text-primary
 					tw-rounded-full
-					tw-border-2 tw-border-primary
-					tw-h-4 tw-w-4
+					tw-border-primary
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
+				:class="{
+					'tw-border-2 tw-h-4 tw-w-4': !controlsTopRight,
+					'tw-bg-white tw-shadow-lg tw-h-3.5 tw-w-3.5': controlsTopRight
+				}"
 				:disabled="embla && !embla.canScrollNext()"
 				@click="handleUserInteraction(nextIndex, 'click-right-arrow')"
 			>
@@ -152,10 +163,10 @@ import {
 	mdiArrowRight,
 } from '@mdi/js';
 import { carouselUtil } from '../utils/carousels';
-
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
+	name: 'KvCarousel',
 	components: {
 		KvMaterialIcon,
 	},
@@ -232,6 +243,13 @@ export default {
 		 * Enables carousel slides to have a circle effect
 		 * */
 		inCircle: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Position carousel controls in the top right corner
+		 * */
+		controlsTopRight: {
 			type: Boolean,
 			default: false,
 		},

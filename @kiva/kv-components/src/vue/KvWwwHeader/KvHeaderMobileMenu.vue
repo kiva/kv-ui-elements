@@ -2,12 +2,14 @@
 	<nav class="tw--mt-0.5 tw-pb-0.5 tw-gap-2 tw-flex tw-flex-col tw-items-end md:tw-hidden tw-font-medium tw-p-2.5">
 		<KvMaterialIcon
 			v-if="isMobile"
+			v-kv-track-event="['TopNav', 'click-Hamburger-close']"
 			:icon="mdiClose"
 			class="tw-cursor-pointer"
 			@click="$emit('closing-menu')"
 		/>
 		<KvAccordionItem
 			id="accordion-take-action-menu"
+			v-kv-track-event="['TopNav', 'click-Hamburger-Take-action-accordion']"
 			open
 			class="tw-w-full tw-border-b-0"
 		>
@@ -17,25 +19,26 @@
 				</h3>
 			</template>
 			<div class="tw-flex tw-flex-col tw-gap-2 tw-pl-1">
-				<div
+				<a
 					v-for="item in menuItems"
 					:key="item.title"
 					v-kv-track-event="['TopNav', `click-${item.trackEvent}`]"
+					:href="item.url"
+					class="mobile-link"
+					@click.stop
 				>
-					<a
-						:href="item.url"
-						class="mobile-link"
-					>
+					<div>
 						{{ item.title }}
-					</a>
+					</div>
 					<p class="tw-text-secondary tw-font-book">
 						{{ item.description }}
 					</p>
-				</div>
+				</a>
 			</div>
 		</KvAccordionItem>
 		<KvAccordionItem
 			id="accordion-about-menu"
+			v-kv-track-event="['TopNav', 'click-Hamburger-About-accordion']"
 			class="tw-w-full tw-pb-1"
 		>
 			<template #header>
@@ -48,41 +51,49 @@
 					v-kv-track-event="['TopNav', 'click-About-About us']"
 					href="/about"
 					class="mobile-link"
+					@click.stop
 				>About us</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-How Kiva works']"
 					href="/about/how"
 					class="mobile-link"
+					@click.stop
 				>How Kiva works</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Where Kiva works']"
 					href="/about/where-kiva-works"
 					class="mobile-link"
+					@click.stop
 				>Where Kiva works</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Impact']"
 					href="/impact"
 					class="mobile-link"
+					@click.stop
 				>Impact</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Leadership']"
 					href="/about/leadership"
 					class="mobile-link"
+					@click.stop
 				>Leadership</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Finances']"
 					href="/about/finances"
 					class="mobile-link"
+					@click.stop
 				>Finances</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Press']"
 					href="/about/press-center"
 					class="mobile-link"
+					@click.stop
 				>Press</a>
 				<a
 					v-kv-track-event="['TopNav', 'click-About-Due diligence']"
 					href="/about/due-diligence"
 					class="mobile-link"
+					@click.stop
 				>Due diligence</a>
 			</div>
 		</KvAccordionItem>
@@ -140,7 +151,7 @@ export default {
 				{
 					title: 'Buy a Kiva Card',
 					description: 'Give the gift of lending to others',
-					url: '/portfolio/kiva-card',
+					url: '/gifts/kiva-cards',
 					trackEvent: 'menu-buy-kiva-card',
 				},
 			],
