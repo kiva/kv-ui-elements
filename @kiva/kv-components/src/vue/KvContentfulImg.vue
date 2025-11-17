@@ -41,7 +41,7 @@
 					style="width: inherit; height: inherit; object-fit: inherit;"
 					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
 					:alt="caption || alt"
-					v-bind="loading ? { loading: loading as 'lazy' | 'eager' } : {}"
+					:loading="loading"
 				>
 				<!-- eslint-enable max-len -->
 			</template>
@@ -66,7 +66,7 @@
 					:width="width ? width : null"
 					:height="height ? height : null"
 					:alt="caption || alt"
-					v-bind="loading ? { loading: loading as 'lazy' | 'eager' } : {}"
+					:loading="loading"
 				>
 			</template>
 		</picture>
@@ -167,7 +167,7 @@ export default {
 		 * `lazy, eager`
 		* */
 		loading: {
-			type: String,
+			type: String as PropType<'lazy' | 'eager' | null>,
 			default: null,
 			validator(value: string) {
 				// The value must match one of these strings
