@@ -1,12 +1,12 @@
 // Attach a touchstart event handler to the immediate children of the body.
 // Useful for capturing the user tapping outside of a target element.
-export function onBodyTouchstart(handler) {
-	[...document.body.children].forEach((child) => child.addEventListener('touchstart', handler));
+export function onBodyTouchstart(handler: EventListenerOrEventListenerObject) {
+	Array.from(document.body.children).forEach((child) => child.addEventListener('touchstart', handler));
 }
 
 // Remove a touchstart event handler from the immediate children of the body
-export function offBodyTouchstart(handler) {
-	[...document.body.children].forEach((child) => child.removeEventListener('touchstart', handler));
+export function offBodyTouchstart(handler: EventListenerOrEventListenerObject) {
+	Array.from(document.body.children).forEach((child) => child.removeEventListener('touchstart', handler));
 }
 
 // Returns true if the event target is any of the given elements or if the event target
