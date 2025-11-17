@@ -2,7 +2,8 @@
 	"compilerOptions": {
 	  "module": "es2020",
 	  "target": "es2020",
-	  "moduleResolution": "node",
+	  "moduleResolution": "bundler",
+	  "resolveJsonModule": true,
 	  "declaration": true,
 	  "noImplicitAny": false,
 	  "removeComments": true,
@@ -12,8 +13,11 @@
 	  "esModuleInterop": true,
 	  "sourceMap": true,
 	  "lib": [
-		"es6",
+		"es2020",
 		"dom"
+	  ],
+	  "types": [
+		"vite/client"
 	  ],
 	},
 	"include": [
