@@ -116,7 +116,7 @@
 				:href="readMorePath"
 				class="loan-card-use tw-no-underline tw-text-primary"
 				aria-label="Loan use"
-				@click="(event) => clickReadMore('Use', event)"
+				@click="clickReadMore('Use', $event)"
 			>
 				<!-- Loan use  -->
 				<div class="tw-pt-1">
