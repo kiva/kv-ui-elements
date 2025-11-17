@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import KvCommentsAdd from './KvCommentsAdd.vue';
 import KvCommentsList, { Comment } from './KvCommentsList.vue';
 
@@ -56,7 +57,7 @@ export default {
 		 * Activity comments
 		 */
 		comments: {
-			type: Array as () => Comment[],
+			type: Array as PropType<Comment[]>,
 			default: () => ([]),
 		},
 	},

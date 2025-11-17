@@ -99,8 +99,9 @@
 
 <script lang="ts">
 import { computed, toRefs } from 'vue';
+import type { PropType } from 'vue';
 
-interface SourceSize {
+export interface SourceSize {
 	width: number;
 	height: number;
 	media: string;
@@ -210,7 +211,7 @@ export default {
 				}
 		* */
 		sourceSizes: {
-			type: Array as () => SourceSize[],
+			type: Array as PropType<SourceSize[]>,
 			required: false,
 			default: () => [],
 		},

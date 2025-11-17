@@ -59,6 +59,7 @@
 
 <script lang="ts">
 import { computed, ref, onMounted } from 'vue';
+import type { PropType } from 'vue';
 import KvCardFrame from './KvCardFrame.vue';
 import KvContentfulImg from './KvContentfulImg.vue';
 
@@ -79,12 +80,12 @@ export default {
 	props: {
 		// Expects an array of categories from our API
 		categoryList: {
-			type: Array as () => Category[],
+			type: Array as PropType<Category[]>,
 			default: () => [],
 		},
 		// Expects a list of category ids to hide from the selector
 		hiddenCategories: {
-			type: Array as () => (string | number)[],
+			type: Array as PropType<(string | number)[]>,
 			default: () => [],
 		},
 		imageWidth: {
@@ -103,7 +104,7 @@ export default {
 		},
 		// Array of category ids that the user has already selected
 		existingCategories: {
-			type: Array,
+			type: Array as PropType<(string | number)[]>,
 			default: () => [],
 		},
 		// Message to show for categories that are in the existingCategories list

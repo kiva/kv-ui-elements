@@ -49,6 +49,7 @@
 
 <script lang="ts">
 import { computed, toRefs } from 'vue';
+import type { PropType } from 'vue';
 
 interface Point {
 	value: number;
@@ -63,7 +64,7 @@ export default {
 		 * Array of objects like [{ value: 10, label: '2014' }, { value: 20, label: '2015' }]
 		 */
 		points: {
-			type: Array as () => Point[],
+			type: Array as PropType<Point[]>,
 			required: true,
 		},
 		/**

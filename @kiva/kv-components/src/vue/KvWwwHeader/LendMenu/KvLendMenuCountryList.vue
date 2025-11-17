@@ -24,11 +24,19 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
+
+export interface LendMenuCountry {
+	isoCode: string;
+	name: string;
+	count: number;
+}
+
 export default {
 	name: 'CountryList',
 	props: {
 		countries: {
-			type: Array,
+			type: Array as PropType<LendMenuCountry[]>,
 			default: () => [],
 		},
 	},

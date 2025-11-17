@@ -103,6 +103,7 @@ import {
 	toRefs,
 	computed,
 } from 'vue';
+import type { PropType } from 'vue';
 import Alea from '../utils/Alea';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 
@@ -130,7 +131,7 @@ export default {
 			default: true,
 		},
 		values: {
-			type: Array as () => PieChartValue[],
+			type: Array as PropType<PieChartValue[]>,
 			default: () => ([]),
 		},
 	},

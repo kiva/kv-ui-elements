@@ -195,15 +195,27 @@
 <script lang="ts">
 import { mdiArrowRight } from '@mdi/js';
 import { computed, ref } from 'vue';
+import type { PropType } from 'vue';
 import KvAccordionItem from '../../KvAccordionItem.vue';
 import KvLoadingPlaceholder from '../../KvLoadingPlaceholder.vue';
 import KvLendMenuCountryList from './KvLendMenuCountryList.vue';
 import KvLendMenuSearchList from './KvLendMenuSearchList.vue';
+import type { LendMenuSearch } from './KvLendMenuSearchList.vue';
 import KvTab from '../../KvTab.vue';
 import KvTabPanel from '../../KvTabPanel.vue';
 import KvTabs from '../../KvTabs.vue';
 import paramCase from '../../../utils/paramCase';
 import KvMaterialIcon from '../../KvMaterialIcon.vue';
+
+export interface Category {
+	name: string;
+	url: string;
+}
+
+export interface Region {
+	name: string;
+	countries: any[];
+}
 
 export default {
 	components: {
@@ -218,7 +230,7 @@ export default {
 	},
 	props: {
 		categories: {
-			type: Array,
+			type: Array as PropType<Category[]>,
 			default: () => [],
 		},
 		favorites: {
@@ -230,11 +242,11 @@ export default {
 			default: null,
 		},
 		regions: {
-			type: Array,
+			type: Array as PropType<Region[]>,
 			default: () => [],
 		},
 		searches: {
-			type: Array,
+			type: Array as PropType<LendMenuSearch[]>,
 			default: () => [],
 		},
 		isRegionsLoading: {
