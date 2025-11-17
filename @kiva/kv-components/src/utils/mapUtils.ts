@@ -1,3 +1,7 @@
+import type MapLibreGl from 'maplibre-gl';
+
+declare const maplibregl: typeof MapLibreGl;
+
 /**
  * Code to generate random coordinates
  * */
@@ -227,9 +231,7 @@ export function generateMapMarkers(mapInstance, borrowerPoints) {
 
 		// add marker to map
 		// maplibregl should be defined in the KvMap component
-		// eslint-disable-next-line no-undef
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		new (globalThis as any).maplibregl.Marker({ element: el })
+		new maplibregl.Marker({ element: el })
 			.setLngLat(marker.geometry.coordinates)
 			.addTo(mapInstance);
 	});
