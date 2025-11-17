@@ -110,7 +110,7 @@ export default {
 
 			this.datepickerPromise = Promise.all([
 				import('@vuepic/vue-datepicker'),
-				import('@vuepic/vue-datepicker/dist/main.css' as any)])
+				import('@vuepic/vue-datepicker/dist/main.css')])
 				.then(async ([module]) => {
 					this.datepickerComponent = markRaw(module.default);
 					await this.$nextTick();
