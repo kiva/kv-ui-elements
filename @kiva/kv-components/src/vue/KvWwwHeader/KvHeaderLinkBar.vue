@@ -267,7 +267,11 @@ export default {
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
 
-		const $kvTrackEvent = inject('$kvTrackEvent');
+		interface TrackEventFn {
+			// eslint-disable-next-line no-unused-vars
+			(category: string, action: string, label: string): void;
+		}
+		const $kvTrackEvent = inject<TrackEventFn>('$kvTrackEvent', () => {});
 
 		const menuTrackingMap = {
 			[LEND_MENU_ITEM]: { action: 'hover-Lend-menu', label: 'Lend' },
@@ -277,7 +281,7 @@ export default {
 			[AVATAR_MENU_ID]: { action: 'hover-Avatar-menu', label: 'Avatar' },
 		};
 
-		const onHover = (item, menu, targetPosition = null) => {
+		const onHover = (item: any = null, menu: any = null, targetPosition = null) => {
 			emit('item-hover', item, menu, targetPosition);
 		};
 
@@ -331,7 +335,7 @@ export default {
 			onHover(avatar.value, KvHeaderMyKivaMenu, getAvatarMenuPosition());
 		};
 
-		const handleTouchStart = (item, menu, targetPosition) => {
+		const handleTouchStart = (item: string, menu?: any, targetPosition?: any) => {
 			// Track touch start for each menu type
 			if (item && openMenuId.value !== item) {
 				const tracking = menuTrackingMap[item];

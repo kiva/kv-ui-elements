@@ -316,7 +316,7 @@ export default {
 		};
 
 		const computedStyle = computed(() => {
-			const style = { width: '150%' };
+			const style: { width: string; transform?: string } = { width: '150%' };
 			if (sectionOpen.value) {
 				const categoryWidth = categoriesSection.value?.clientWidth ?? 0;
 				style.transform = `translateX(${categoryWidth * -1}px)`;

@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-const imgImport = import.meta.glob('./flags/**/*.svg', { query: '?url', eager: true });
+const imgImport = import.meta.glob<Record<string, string>>('./flags/**/*.svg', { query: '?url', eager: true });
 const flagUrl = (country: string, aspectRatio: string) => {
 	return imgImport[`./flags/${aspectRatio}/${country.toLowerCase()}.svg`].default;
 };

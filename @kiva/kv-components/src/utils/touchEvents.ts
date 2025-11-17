@@ -11,10 +11,10 @@ export function offBodyTouchstart(handler: EventListenerOrEventListenerObject) {
 
 // Returns true if the event target is any of the given elements or if the event target
 // is contained by any of the given elements.
-export function isTargetElement(event, elements) {
+export function isTargetElement(event: Event, elements: HTMLElement | HTMLElement[]): boolean {
 	const els = Array.isArray(elements) ? elements : [elements];
 	for (let i = 0; i < els.length; i += 1) {
-		if (els[i] === event.target || els[i].contains(event.target)) {
+		if (els[i] === event.target || els[i].contains(event.target as Node)) {
 			return true;
 		}
 	}

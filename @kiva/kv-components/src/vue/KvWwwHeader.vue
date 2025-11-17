@@ -97,6 +97,7 @@
 import {
 	ref, shallowRef, onMounted, onBeforeUnmount, computed,
 } from 'vue';
+import type { CSSProperties } from 'vue';
 import tokens from '@kiva/kv-tokens';
 import KvHeaderLinkBar from './KvWwwHeader/KvHeaderLinkBar.vue';
 import KvHeaderLogo from './KvWwwHeader/KvHeaderLogo.vue';
@@ -182,7 +183,7 @@ export default {
 		const menuOpen = ref(false);
 		const menuComponent = shallowRef(null);
 		const menuComponentInstance = ref(null);
-		const menuPosition = ref({ left: 0, position: 'relative' });
+		const menuPosition = ref<CSSProperties>({ left: 0, position: 'relative' });
 		const isMobile = ref(false);
 		const menuitem = ref(null);
 		const isComponentMount = ref(false);
