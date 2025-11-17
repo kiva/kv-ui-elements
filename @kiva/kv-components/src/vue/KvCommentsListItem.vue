@@ -108,7 +108,7 @@ import KvUserAvatar from './KvUserAvatar.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
-const ADD_REACTION_EVENT = 'add-reaction';
+export const ADD_REACTION_EVENT = 'add-reaction';
 
 export default {
 	name: 'KvCommentsListItem',
@@ -157,7 +157,7 @@ export default {
 		},
 	},
 	emits: [
-		'add-reaction',
+		ADD_REACTION_EVENT,
 	],
 	setup(props, { emit }) {
 		const {
