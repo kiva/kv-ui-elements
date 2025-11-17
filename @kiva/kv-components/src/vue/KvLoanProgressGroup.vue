@@ -15,7 +15,7 @@
 			</h4>
 		</div>
 		<kv-progress-bar
-			aria-label="Percent the loan has funded"
+			label="Percent the loan has funded"
 			:value="progressPercent * 100"
 		/>
 	</figure>

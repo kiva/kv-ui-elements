@@ -67,7 +67,7 @@
 			<kv-progress-bar
 				v-if="showPercentage"
 				class="tw-flex-grow"
-				:aria-label="'Percent of votes for ' + category"
+				:label="'Percent of votes for ' + category"
 				:value="percentage"
 			/>
 			<div

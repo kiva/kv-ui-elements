@@ -5,7 +5,7 @@
 		"
 		:class="backgroundVariant"
 		role="progressbar"
-		:aria-label="ariaLabel"
+		:aria-label="label"
 		:aria-valuemin="min"
 		:aria-valuemax="max"
 		:aria-valuenow="value"
@@ -40,7 +40,7 @@ export default {
 		 * The words to announce to screenreaders describing what this progress represents
 		 * e.g., "Percent the loan has funded"
 		 * */
-		ariaLabel: {
+		label: {
 			type: String,
 			required: true,
 		},
