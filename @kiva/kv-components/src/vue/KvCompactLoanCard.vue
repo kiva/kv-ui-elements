@@ -108,7 +108,7 @@
 		>
 			<!-- Loading State -->
 			<template v-if="!hasProgressData">
-				<div class="tw-flex-1 tw-min-w-0">
+				<div class="tw-flex-1 tw-min-w-0 tw-mr-1">
 					<kv-loading-placeholder
 						class="tw-mb-0.5"
 						:style="{ width: '100%', maxWidth: '11rem', height: '1rem' }"
