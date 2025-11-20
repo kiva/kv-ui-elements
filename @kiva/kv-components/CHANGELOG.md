@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.3...@kiva/kv-components@7.3.4) (2025-11-20)
+
+
+### Bug Fixes
+
+* small adjustment to keep space between loaders ([6389f05](https://github.com/kiva/kv-ui-elements/commit/6389f0594256a9be154d3981e31cfc0f773aeca0))
+
+
+
+
+
 ## [7.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.2...@kiva/kv-components@7.3.3) (2025-11-12)
 
 
