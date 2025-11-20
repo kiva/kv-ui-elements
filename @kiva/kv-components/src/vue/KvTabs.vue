@@ -38,7 +38,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * Components for implementing a tab UI pattern. Requires KvTab and KvTabPanel components.
  *

@@ -35,12 +35,13 @@
 	</kv-theme-provider>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref,
 	toRefs,
 	computed,
 	watch,
+	PropType,
 } from 'vue';
 import {
 	darkTheme,
@@ -63,7 +64,8 @@ export default {
 	},
 	props: {
 		controller: {
-			validator(value) {
+			type: [String, Object as PropType<HTMLElement>],
+			validator(value: string | HTMLElement) {
 				if (typeof value === 'string') return true;
 				if (typeof window !== 'undefined'
 					&& 'HTMLElement' in window
@@ -91,7 +93,7 @@ export default {
 		theme: {
 			type: String,
 			default: 'default',
-			validator(value) {
+			validator(value: string) {
 				// The value must match one of these strings
 				return [
 					'default',
@@ -124,7 +126,7 @@ export default {
 
 		const popperRef = ref(null);
 
-		const getControllerElement = () => {
+		const getControllerElement = (): HTMLElement => {
 			if (typeof props.controller === 'string') {
 				return document.getElementById(props.controller);
 			}

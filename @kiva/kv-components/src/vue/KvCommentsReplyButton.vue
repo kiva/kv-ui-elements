@@ -23,7 +23,7 @@
 	</kv-button>
 </template>
 
-<script>
+<script lang="ts">
 import KvButton from './KvButton.vue';
 
 export default {

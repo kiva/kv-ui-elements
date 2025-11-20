@@ -28,7 +28,7 @@
 	</picture>
 </template>
 
-<script>
+<script lang="ts">
 import { getKivaImageUrl } from '../utils/imageUtils';
 
 export default {

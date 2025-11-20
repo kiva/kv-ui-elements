@@ -75,18 +75,31 @@
 	</div>
 </template>
 
-<script>
-import gql from 'graphql-tag';
-import { computed, ref, toRefs } from 'vue';
-import numeral from 'numeral';
+<script lang="ts">
+import {
+	computed, toRefs, ref, PropType,
+} from 'vue';
+import { gql } from '@apollo/client/core';
 import { format } from 'date-fns';
+import numeral from 'numeral';
+import { type GetCookieFn, type SetCookieFn } from '../utils/loanUtils';
 import KvActivityRow from './KvActivityRow.vue';
 import KvLightbox from './KvLightbox.vue';
 import KvLendCta from './KvLendCta.vue';
 
+export interface ActivityData {
+	[key: string]: any;
+}
+
+export interface CombinedActivity {
+	key: string;
+	data: ActivityData[];
+}
+
 export const KV_LOAN_ACTIVITIES_FRAGMENT = gql`
 	fragment KvLoanActivities on LoanBasic {
 		id
+		name
 		lenders(limit: 0) {
 			totalCount
 		}
@@ -116,7 +129,7 @@ export default {
 		 * loan combined activities coming from parent component
 		 */
 		combinedActivities: {
-			type: Array,
+			type: Array as PropType<CombinedActivity[]>,
 			default: () => ([]),
 		},
 		/**
@@ -158,14 +171,14 @@ export default {
 		 * getCookie function for LendCta component
 		 */
 		getCookie: {
-			type: Function,
+			type: Function as PropType<GetCookieFn>,
 			default: undefined,
 		},
 		/**
 		 * setCookie function for LendCta component
 		 */
 		setCookie: {
-			type: Function,
+			type: Function as PropType<SetCookieFn>,
 			default: undefined,
 		},
 		/**
@@ -196,7 +209,9 @@ export default {
 
 		const lightboxOpen = ref(false);
 
-		const modalTitle = computed(() => `Activity for ${loan.value?.name}`);
+		const modalTitle = computed(() => {
+			return `Activity for ${loan.value?.name || ''}`;
+		});
 
 		const lendersNumber = computed(() => loan.value?.lenders?.totalCount ?? 0);
 
@@ -215,7 +230,7 @@ export default {
 			return singleAct?.data[0] ?? {};
 		});
 
-		const formattedDate = (date) => {
+		const formattedDate = (date: string) => {
 			const dateObj = new Date(date);
 			return format(dateObj, 'MMM d, yyyy');
 		};

@@ -14,7 +14,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, toRefs } from 'vue';
 import KvUserAvatar from './KvUserAvatar.vue';
 

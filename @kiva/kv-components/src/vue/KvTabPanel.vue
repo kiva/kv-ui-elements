@@ -21,12 +21,22 @@
 	</transition>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed,
 	toRefs,
 	inject,
 } from 'vue';
+
+interface NavItem {
+	forPanel?: string;
+	[key: string]: any;
+}
+
+interface KvTabContext {
+	navItems: NavItem[];
+	selectedIndex: number;
+}
 
 export default {
 	props: {
@@ -44,7 +54,7 @@ export default {
 			id,
 		} = toRefs(props);
 
-		const kvTabContext = inject('$KvTabContext');
+		const kvTabContext = inject<KvTabContext>('$KvTabContext');
 
 		const isActive = computed(() => {
 			let navItems = [];

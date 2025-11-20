@@ -41,13 +41,27 @@
 	</figure>
 </template>
 
-<script>
+<script lang="ts">
 import numeral from 'numeral';
 import kvTokensPrimitives from '@kiva/kv-tokens';
-import { getTreemap } from '../utils/treemap';
+import { getTreemap, type TreemapDataPoint, type TreemapRect } from '../utils/treemap';
 import { throttle } from '../utils/throttle';
 import KvTooltip from './KvTooltip.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+
+interface BlockData extends TreemapDataPoint {
+	label?: string;
+	percent?: number;
+}
+
+interface TreemapBlock {
+	data?: BlockData;
+	x?: number;
+	y?: number;
+	width?: number;
+	height?: number;
+	[key: string]: any;
+}
 
 const { breakpoints } = kvTokensPrimitives;
 
@@ -67,10 +81,10 @@ export default {
 			default: () => [],
 		},
 	},
-	data() {
+	data(): { screenWidth: number; activeBlock: TreemapBlock; tooltipControllerElement: HTMLElement | null } {
 		return {
 			screenWidth: 0,
-			activeBlock: { data: {} },
+			activeBlock: { data: { value: 0 } },
 			tooltipControllerElement: null,
 		};
 	},
@@ -84,7 +98,7 @@ export default {
 			return this.activeBreakpoints.includes('md');
 		},
 		// Calculate the blocks of the treemap, but don't apply any formatting
-		rawBlocks() {
+		rawBlocks(): TreemapRect<BlockData>[] {
 			// Use static blocks when no data is available (either loading or no loans)
 			if (!this.values?.length) {
 				return this.loading ? [
@@ -95,7 +109,7 @@ export default {
 					{ x: 0, y: 40, width: 30 },
 					{ x: 30, y: 40 },
 				] : [
-					{ x: 0, y: 0, data: { label: 'No loans yet' } },
+					{ x: 0, y: 0, data: { label: 'No loans yet', value: 0 } },
 				];
 			}
 
@@ -116,8 +130,8 @@ export default {
 			return [...bigBlocks, this.reduceBlocks(tooSmall)];
 		},
 		// This is the array that is iterated over in the template
-		blocks() {
-			return this.rawBlocks.map((block) => {
+		blocks(): TreemapBlock[] {
+			return this.rawBlocks.map((block: TreemapRect<BlockData>) => {
 				const {
 					data, x, y, width, height,
 				} = block ?? {};
@@ -150,7 +164,7 @@ export default {
 	},
 	methods: {
 		// Used by the p elements in the main v-for loop to determine background and text color
-		colorClasses(index) {
+		colorClasses(index: number) {
 			const classes = [];
 			const total = this.blocks?.length ?? 1;
 
@@ -165,7 +179,7 @@ export default {
 		},
 		// Used by the divs in the main v-for for block positions and the tooltip controller div to match positions
 		// with the current active block
-		blockPositionStyles(block) {
+		blockPositionStyles(block: TreemapBlock) {
 			return {
 				left: `${block.x}%`,
 				top: `${block.y}%`,
@@ -176,7 +190,7 @@ export default {
 			};
 		},
 		// Combine all small blocks into a single 'Other' block that will be at the bottom right of the figure.
-		reduceBlocks(blocks) {
+		reduceBlocks(blocks?: TreemapRect<BlockData>[]): TreemapRect<BlockData> | undefined[] {
 			return blocks?.reduce((other, block) => {
 				/* eslint-disable no-param-reassign */
 				// Use the smallest x for the overall x
@@ -205,7 +219,7 @@ export default {
 			}) ?? [];
 		},
 		// Sets the block that will be used to position the tooltip and change the info displayed in the tooltip
-		setHoverBlock(block) {
+		setHoverBlock(block: TreemapBlock) {
 			this.activeBlock = block;
 		},
 	},
