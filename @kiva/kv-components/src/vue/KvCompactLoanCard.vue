@@ -46,6 +46,7 @@
 							target="_blank"
 							class="tw-flex tw-items-center tw-gap-0.5 tw-text-secondary tw-text-small tw-font-light
 							tw-leading-normal tw-no-underline hover:tw-underline"
+							@click.stop="trackWebsiteClick"
 						>
 							<kv-material-icon
 								:icon="mdiLink"
@@ -430,6 +431,10 @@ export default {
 			clickReadMore,
 		} = loanCardMethods(props, emit);
 
+		const trackWebsiteClick = () => {
+			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
+		};
+
 		return {
 			allDataLoaded,
 			borrowerName,
@@ -455,6 +460,7 @@ export default {
 			unreservedAmount,
 			sharesAvailable,
 			clickReadMore,
+			trackWebsiteClick,
 		};
 	},
 	computed: {
