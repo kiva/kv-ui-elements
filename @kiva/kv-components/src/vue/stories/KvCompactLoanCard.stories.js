@@ -410,3 +410,21 @@ export const CustomHref = story({
 	externalLinks: true,
 	customHref: 'https://www.kiva.org',
 });
+
+export const BusinessAndWebsite = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	businessName: 'Business Name',
+	website: 'https://www.kiva.org',
+	showLoanUse: false,
+});
+
+export const HiddenLoanUse = story({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	showLoanUse: false,
+});

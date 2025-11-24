@@ -33,6 +33,28 @@
 				<div
 					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
 				>
+					<div
+						v-if="businessName"
+						class="tw-mb-0.5 tw-w-full"
+					>
+						<h3 class="tw-text-primary !tw-font-medium tw-text-base tw-leading-normal tw-truncate">
+							{{ businessName }}
+						</h3>
+						<a
+							v-if="website"
+							:href="website"
+							target="_blank"
+							class="tw-flex tw-items-center tw-gap-0.5 tw-text-secondary tw-text-small tw-font-light
+							tw-leading-normal tw-no-underline hover:tw-underline"
+						>
+							<kv-material-icon
+								:icon="mdiLink"
+								class="tw-w-2 tw-h-2"
+							/>
+							<span class="tw-truncate">{{ website }}</span>
+						</a>
+					</div>
+
 					<component
 						:is="tag"
 						:to="readMorePath"
@@ -48,6 +70,7 @@
 					</component>
 					<component
 						:is="tag"
+						v-if="showLoanUse"
 						:to="readMorePath"
 						:href="readMorePath"
 						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
@@ -186,7 +209,7 @@
 <script>
 import gql from 'graphql-tag';
 import numeral from 'numeral';
-import { mdiMapMarker, mdiHome } from '@mdi/js';
+import { mdiMapMarker, mdiHome, mdiLink } from '@mdi/js';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
@@ -366,6 +389,18 @@ export default {
 			type: String,
 			default: '',
 		},
+		businessName: {
+			type: String,
+			default: '',
+		},
+		website: {
+			type: String,
+			default: '',
+		},
+		showLoanUse: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	setup(props, { emit }) {
 		const {
@@ -413,6 +448,7 @@ export default {
 			loanUse,
 			mdiMapMarker,
 			mdiHome,
+			mdiLink,
 			readMorePath,
 			state,
 			tag,
