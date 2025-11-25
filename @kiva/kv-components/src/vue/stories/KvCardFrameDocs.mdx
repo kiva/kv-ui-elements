@@ -1,0 +1,178 @@
+import { Canvas, Meta, Story, Controls, ArgTypes } from '@storybook/blocks';
+import * as KvCardFrameStories from './KvCardFrame.stories.js';
+
+# KvCardFrame
+
+A flexible card frame component that provides a themeable container with customizable styling options for backgrounds, borders, shadows, and border radius.
+
+<Canvas>
+  <Story of={KvCardFrameStories.DefaultCardFrame} />
+</Canvas>
+
+## Overview
+
+The `KvCardFrame` component is a foundational layout component that wraps content in a styled container. It's designed to be flexible and customizable, allowing developers to create consistent card-based UI elements across the application with various visual treatments.
+
+### Key Features
+
+- **Themeable**: Supports multiple predefined themes (default, greenLight, greenDark, marigoldLight, stoneLight, stoneDark)
+- **Customizable Styling**: Control background colors, borders, shadows, and border radius through props
+- **Flexible Layout**: Uses slots to allow any content to be placed inside the card
+- **Overflow Control**: Optional control over content overflow behavior
+- **Token-based**: Leverages design tokens from `@kiva/kv-tokens` for consistent theming
+
+### When to Use
+
+Use `KvCardFrame` when you need to:
+- Create card-based layouts with consistent styling
+- Group related content visually
+- Apply themed containers to sections of your UI
+- Build components that require a styled background container
+
+### When Not to Use
+
+Avoid using `KvCardFrame` when:
+- You need a specialized card component with built-in content structure (consider creating a specific card component instead)
+- Simple divs with basic styling would suffice
+- You're creating list items that don't need card styling
+
+## Components
+
+### Props Details
+
+**`allowOverflow`** (Boolean, default: `true`)
+- Controls whether content can overflow the card boundaries
+- Set to `false` to clip content that extends beyond the card edges
+- Useful for full-image cards or when you need strict boundary control
+
+**`bgColorClass`** (String, default: `'tw-bg-primary'`)
+- Tailwind class for background color
+- Common options: `tw-bg-primary`, `tw-bg-secondary`, `tw-bg-tertiary`, `tw-bg-action`, `tw-bg-caution`, `tw-bg-danger`
+- Can accept any valid Tailwind background color class
+
+**`borderClass`** (String, default: `''`)
+- Tailwind class(es) for border styling
+- Can combine multiple classes: `'tw-border tw-border-secondary'`
+- Options include: `tw-border-none`, `tw-border`, `tw-border-2`, combined with color classes
+
+**`radiusClass`** (String, default: `'tw-rounded'`)
+- Tailwind class for border radius
+- Options: `tw-rounded-xs`, `tw-rounded-sm`, `tw-rounded-md`, `tw-rounded`, `tw-rounded-lg`, `tw-rounded-xl`, `tw-rounded-full`
+- Affects both the theme provider and the card frame container
+
+**`shadowClass`** (String, default: `'tw-shadow-lg'`)
+- Tailwind class for drop shadow
+- Options: `tw-shadow`, `tw-shadow-lg`, `tw-shadow-none`
+- Use `tw-shadow-none` for flat cards without elevation
+
+**`theme`** (String, default: `'default'`)
+- Applies a predefined theme from `@kiva/kv-tokens`
+- Valid values: `'default'`, `'greenLight'`, `'greenDark'`, `'marigoldLight'`, `'stoneLight'`, `'stoneDark'`
+- Themes affect colors of child components that use theme tokens
+
+### Slots
+
+**Default Slot**
+- Accepts any content to be rendered inside the card frame
+- Content is wrapped in a themed container with applied styling
+
+### Usage Examples
+
+#### Basic Card
+
+```vue
+<kv-card-frame>
+  <div class="tw-p-3">
+    <h2>Card Title</h2>
+    <p>Card content goes here</p>
+  </div>
+</kv-card-frame>
+```
+
+#### Themed Card with Custom Styling
+
+```vue
+<kv-card-frame
+  theme="greenLight"
+  bg-color-class="tw-bg-secondary"
+  radius-class="tw-rounded-lg"
+  shadow-class="tw-shadow"
+  border-class="tw-border tw-border-tertiary"
+>
+  <div class="tw-p-4">
+    <h2>Themed Content</h2>
+  </div>
+</kv-card-frame>
+```
+
+#### Full Image Card
+
+```vue
+<kv-card-frame
+  :allow-overflow="false"
+  class="tw-w-16 tw-h-16"
+>
+  <img src="image.jpg" alt="Card image" />
+</kv-card-frame>
+```
+
+## Guidelines
+
+### Design Principles
+
+**Consistency**
+- Use consistent shadow and radius classes across similar card types in your application
+- Stick to predefined themes when possible to maintain visual consistency
+
+**Hierarchy**
+- Use shadow depth to indicate elevation and importance
+- `tw-shadow-lg` for primary cards that need emphasis
+- `tw-shadow` for standard cards
+- `tw-shadow-none` for flat, subtle containers
+
+**Spacing**
+- Remember to add padding to your card content (the component doesn't add internal padding)
+- Use consistent padding values (`tw-p-3`, `tw-p-4`) based on card size and content density
+
+### Accessibility
+
+- Ensure sufficient color contrast between card backgrounds and text content
+- When using cards as interactive elements, ensure they have proper focus states
+- Use semantic HTML within card content (proper heading hierarchy, etc.)
+
+### Best Practices
+
+**Theme Selection**
+- Choose themes that align with your content's purpose or category
+- `greenLight`/`greenDark` for positive actions or confirmations
+- `marigoldLight` for attention or highlights
+- `stoneLight`/`stoneDark` for neutral or secondary content
+
+**Border Usage**
+- Use borders sparingly - shadows often provide better visual separation
+- Borders work well when you need clear delineation without adding depth
+- Combine borders with appropriate background colors for visibility
+
+**Shadow Usage**
+- Don't overuse heavy shadows - reserve `tw-shadow-lg` for cards that need emphasis
+- Consider removing shadows (`tw-shadow-none`) on cards within already elevated containers
+- Shadows provide depth; use them to establish visual hierarchy
+
+**Overflow Control**
+- Set `allow-overflow` to `false` when using full-bleed images
+- Keep default `true` for text-based content that might need flexibility
+- Test with various content sizes to ensure desired behavior
+
+### Troubleshooting
+
+**Card content is being clipped**
+- Check the `allow-overflow` prop - it may need to be set to `true`
+- Ensure parent containers aren't applying their own overflow restrictions
+
+**Theme colors not applying**
+- Verify that child components support theme tokens
+- Check that the theme name is spelled correctly and is a valid option
+
+**Borders not visible**
+- Ensure you're using the full border class including `tw-border` base class
+- Check that border color contrasts with the background color
