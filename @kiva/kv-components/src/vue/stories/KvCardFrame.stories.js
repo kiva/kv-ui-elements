@@ -1,9 +1,15 @@
 import KvCardFrame from '../KvCardFrame.vue';
 import KvButton from '../KvButton.vue';
+import KvCardFrameDocsMdx from './KvCardFrameDocs.mdx';
 
 export default {
 	title: 'KvCardFrame',
 	component: KvCardFrame,
+	parameters: {
+		docs: {
+			page: KvCardFrameDocsMdx,
+		},
+	},
 	args: {
 		bgColorClass: null,
 		borderClass: null,
