@@ -37,12 +37,21 @@
 						v-if="businessName"
 						class="tw-mb-0.5 tw-w-full"
 					>
-						<h3 class="tw-text-primary !tw-font-medium tw-text-base tw-leading-normal tw-truncate">
-							{{ businessName }}
-						</h3>
+						<component
+							:is="tag"
+							:to="readMorePath"
+							:href="readMorePath"
+							class="tw-no-underline hover:tw-underline focus:tw-no-underline"
+							aria-label="Business name"
+							@click.native="clickReadMore('Business', $event)"
+						>
+							<h3 class="tw-text-primary !tw-font-medium tw-text-base tw-leading-normal tw-truncate">
+								{{ businessName }}
+							</h3>
+						</component>
 						<a
 							v-if="website"
-							:href="website"
+							:href="formattedWebsite"
 							target="_blank"
 							class="tw-flex tw-items-center tw-gap-0.5 tw-text-secondary tw-text-small tw-font-light
 							tw-leading-normal tw-no-underline hover:tw-underline"
@@ -210,6 +219,7 @@
 <script>
 import gql from 'graphql-tag';
 import numeral from 'numeral';
+import { computed } from 'vue';
 import { mdiMapMarker, mdiHome, mdiLink } from '@mdi/js';
 import {
 	loanCardComputedProperties,
@@ -435,6 +445,17 @@ export default {
 			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
 		};
 
+		const formattedWebsite = computed(() => {
+			if (!props.website) {
+				return '';
+			}
+			const url = props.website.trim();
+			if (url.startsWith('http://') || url.startsWith('https://')) {
+				return url;
+			}
+			return `https://${url}`;
+		});
+
 		return {
 			allDataLoaded,
 			borrowerName,
@@ -442,6 +463,7 @@ export default {
 			countryName,
 			distributionModel,
 			formattedLocation,
+			formattedWebsite,
 			fundraisingPercent,
 			hasProgressData,
 			imageHash,
