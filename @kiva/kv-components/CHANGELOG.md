@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.4.1...@kiva/kv-components@7.5.0) (2025-12-01)
+
+
+### Features
+
+* add link for business name and fix non-formatted websites ([8f4b57d](https://github.com/kiva/kv-ui-elements/commit/8f4b57d36ca38f8aeceda1b48874db4d9c139d99))
+
+
+
+
+
 ## [7.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.4.0...@kiva/kv-components@7.4.1) (2025-11-25)
 
 **Note:** Version bump only for package @kiva/kv-components
