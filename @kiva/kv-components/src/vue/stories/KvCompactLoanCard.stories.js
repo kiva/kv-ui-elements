@@ -419,6 +419,8 @@ export const BusinessAndWebsite = story({
 	businessName: 'Business Name',
 	website: 'https://www.kiva.org',
 	showLoanUse: false,
+	showTags: false,
+	customHref: '/lend-classic/1?minimal=false',
 });
 
 export const HiddenLoanUse = story({
