@@ -3,7 +3,8 @@ import path from 'node:path';
 export default {
 	stories: [
 		'../stories/StyleguidePrimitives.stories.js', // show the base styleguide first
-		'../stories/**/*.stories.@(js|jsx|ts|tsx)'
+		'../stories/**/*.stories.@(js|jsx|ts|tsx)',
+		'../stories/**/*.mdx'
 	],
 
 	staticDirs: [

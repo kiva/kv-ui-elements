@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.4.1...@kiva/kv-components@7.5.0) (2025-12-01)
+
+
+### Features
+
+* add link for business name and fix non-formatted websites ([8f4b57d](https://github.com/kiva/kv-ui-elements/commit/8f4b57d36ca38f8aeceda1b48874db4d9c139d99))
+
+
+
+
+
+## [7.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.4.0...@kiva/kv-components@7.4.1) (2025-11-25)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [7.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.4...@kiva/kv-components@7.4.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* add website tracking click ([ce6bb8e](https://github.com/kiva/kv-ui-elements/commit/ce6bb8ec1beaabc98a025f9439a7dc1d23afd391))
+
+
+### Features
+
+* additional props for business cards ([53a7c73](https://github.com/kiva/kv-ui-elements/commit/53a7c736ef1d2c4b703784120c2a783e6669b7fd))
+
+
+
+
+
+## [7.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.3...@kiva/kv-components@7.3.4) (2025-11-20)
+
+
+### Bug Fixes
+
+* small adjustment to keep space between loaders ([6389f05](https://github.com/kiva/kv-ui-elements/commit/6389f0594256a9be154d3981e31cfc0f773aeca0))
+
+
+
+
+
 ## [7.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.3.2...@kiva/kv-components@7.3.3) (2025-11-12)
 
 

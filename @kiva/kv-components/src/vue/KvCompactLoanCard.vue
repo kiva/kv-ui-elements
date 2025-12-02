@@ -33,6 +33,38 @@
 				<div
 					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
 				>
+					<div
+						v-if="businessName"
+						class="tw-mb-0.5 tw-w-full"
+					>
+						<component
+							:is="tag"
+							:to="readMorePath"
+							:href="readMorePath"
+							class="tw-no-underline hover:tw-underline focus:tw-no-underline"
+							aria-label="Business name"
+							@click.native="clickReadMore('Business', $event)"
+						>
+							<h3 class="tw-text-primary !tw-font-medium tw-text-base tw-leading-normal tw-truncate">
+								{{ businessName }}
+							</h3>
+						</component>
+						<a
+							v-if="website"
+							:href="formattedWebsite"
+							target="_blank"
+							class="tw-flex tw-items-center tw-gap-0.5 tw-text-secondary tw-text-small tw-font-light
+							tw-leading-normal tw-no-underline hover:tw-underline"
+							@click.stop="trackWebsiteClick"
+						>
+							<kv-material-icon
+								:icon="mdiLink"
+								class="tw-w-2 tw-h-2"
+							/>
+							<span class="tw-truncate">{{ website }}</span>
+						</a>
+					</div>
+
 					<component
 						:is="tag"
 						:to="readMorePath"
@@ -48,6 +80,7 @@
 					</component>
 					<component
 						:is="tag"
+						v-if="showLoanUse"
 						:to="readMorePath"
 						:href="readMorePath"
 						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
@@ -108,7 +141,7 @@
 		>
 			<!-- Loading State -->
 			<template v-if="!hasProgressData">
-				<div class="tw-flex-1 tw-min-w-0">
+				<div class="tw-flex-1 tw-min-w-0 tw-mr-1">
 					<kv-loading-placeholder
 						class="tw-mb-0.5"
 						:style="{ width: '100%', maxWidth: '11rem', height: '1rem' }"
@@ -186,8 +219,8 @@
 <script lang="ts">
 import gql from 'graphql-tag';
 import numeral from 'numeral';
-import { mdiMapMarker, mdiHome } from '@mdi/js';
-import { PropType } from 'vue';
+import { computed, type PropType } from 'vue';
+import { mdiMapMarker, mdiHome, mdiLink } from '@mdi/js';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
@@ -368,6 +401,18 @@ export default {
 			type: String,
 			default: '',
 		},
+		businessName: {
+			type: String,
+			default: '',
+		},
+		website: {
+			type: String,
+			default: '',
+		},
+		showLoanUse: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	setup(props, { emit }) {
 		const {
@@ -397,6 +442,21 @@ export default {
 			clickReadMore,
 		} = loanCardMethods(props, emit);
 
+		const trackWebsiteClick = () => {
+			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
+		};
+
+		const formattedWebsite = computed(() => {
+			if (!props.website) {
+				return '';
+			}
+			const url = props.website.trim();
+			if (url.startsWith('http://') || url.startsWith('https://')) {
+				return url;
+			}
+			return `https://${url}`;
+		});
+
 		return {
 			allDataLoaded,
 			borrowerName,
@@ -404,6 +464,7 @@ export default {
 			countryName,
 			distributionModel,
 			formattedLocation,
+			formattedWebsite,
 			fundraisingPercent,
 			hasProgressData,
 			imageHash,
@@ -415,12 +476,14 @@ export default {
 			loanUse,
 			mdiMapMarker,
 			mdiHome,
+			mdiLink,
 			readMorePath,
 			state,
 			tag,
 			unreservedAmount,
 			sharesAvailable,
 			clickReadMore,
+			trackWebsiteClick,
 		};
 	},
 	computed: {
