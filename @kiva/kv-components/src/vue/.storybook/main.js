@@ -1,4 +1,13 @@
-import path from 'node:path';
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
+import path, { dirname, join } from 'node:path';
+import vue from '@vitejs/plugin-vue';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const require = createRequire(import.meta.url);
 
 export default {
 	stories: [
@@ -11,67 +20,19 @@ export default {
 		'../../../../../dist',
 	],
 
-	addons: [
-		"@storybook/addon-links",
-		"@storybook/addon-essentials",
-		"@storybook/addon-a11y",
-		"@storybook/addon-storysource",
-		{
-			name: '@storybook/addon-styling-webpack',
-			options: {
-				rules: [
-					// Replaces existing CSS rules to support PostCSS
-					{
-						test: /\.css$/,
-						use: [
-							'style-loader',
-							{
-								loader: 'css-loader',
-								options: { importLoaders: 1, url: false }
-							},
-							{
-								// Gets options from `postcss.config.js` in your project root
-								loader: 'postcss-loader',
-								options: { implementation: require.resolve('postcss') }
-							}
-						],
-					}
-				]
-			}
-		}
-	],
+	addons: [getAbsolutePath("@storybook/addon-links"), getAbsolutePath("@storybook/addon-a11y"), getAbsolutePath("@storybook/addon-docs")],
 
-	webpackFinal: async (config) => {
-		config.module.rules.push({
-			test: /\.mjs$/,
-			include: /node_modules/,
-			type: 'javascript/auto'
-		});
-		config.module.rules.push({
-			test: /\.js$/,
-			loader: 'import-meta-loader',
-		});
-		config.module.rules.push({
-			test: /\.postcss$/,
-			use: [
-				'style-loader',
-				{
-					loader: 'css-loader',
-					options: { importLoaders: 1, sourceMap: false },
-				},
-				{
-					loader: 'postcss-loader',
-					options: {
-						postcssOptions: {
-							plugins: [
-								require('tailwindcss'),
-								require('autoprefixer'),
-							]
-						}
-					},
-				}
-			]
-		});
+	framework: {
+		name: getAbsolutePath("@storybook/vue3-vite"),
+		options: {}
+	},
+
+	docs: {
+      defaultName: 'Kv Components'
+    },
+
+	async viteFinal(config) {
+		// Customize Vite config for Storybook
 		config.resolve.alias = {
 			...config.resolve.alias,
 			'~/node_modules': path.resolve(__dirname, '../../../../node_modules/'),
@@ -79,18 +40,22 @@ export default {
 			'#utils': path.resolve(__dirname, '../../utils'),
 			'#fixtures': path.resolve(__dirname, '../../../tests/fixtures'),
 		};
+
+		// Ensure Vue plugin runs before other plugins for .vue file processing
+		config.plugins = config.plugins || [];
+		const hasVuePlugin = config.plugins.some(p => p && p.name === 'vite:vue');
+		if (!hasVuePlugin) {
+			config.plugins.unshift(vue());
+		}
+
+		// Force SVGs to be served as URLs, not inlined as base64
+		config.build = config.build || {};
+		config.build.assetsInlineLimit = 0; // Never inline assets, always use URLs
+
 		return config;
 	},
-
-	framework: {
-		name: '@storybook/vue3-webpack5',
-		options: {}
-	},
-	core: {
-		builder: '@storybook/builder-webpack5'
-	},
-	docs: {
-		autodocs: true,
-		defaultName: 'Kv Components',
-	}
 };
+
+function getAbsolutePath(value) {
+    return dirname(require.resolve(join(value, "package.json")));
+}
