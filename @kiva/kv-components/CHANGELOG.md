@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.5.0...@kiva/kv-components@7.6.0) (2025-12-04)
+
+
+### Features
+
+* add prop to open loan in new tab ([366e32b](https://github.com/kiva/kv-ui-elements/commit/366e32bbd83501f44de6c8dd0107a10b7adfdf26))
+
+
+
+
+
 # [7.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.4.1...@kiva/kv-components@7.5.0) (2025-12-01)
 
 
