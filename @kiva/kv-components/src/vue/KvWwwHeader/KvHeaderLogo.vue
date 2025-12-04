@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import KvLogo from '../KvLogo.vue';
 
 export default {

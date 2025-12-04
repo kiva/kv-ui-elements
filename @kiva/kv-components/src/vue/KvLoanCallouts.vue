@@ -34,12 +34,20 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
+
+export interface Callout {
+	label: string;
+	id?: number | null;
+	type?: string;
+}
+
 export default {
 	name: 'KvLoanCallouts',
 	props: {
 		callouts: {
-			type: Array,
+			type: Array as PropType<Callout[]>,
 			required: true,
 		},
 	},

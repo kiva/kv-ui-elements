@@ -36,7 +36,7 @@
 	</component>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed,
 	onMounted,
@@ -72,7 +72,7 @@ export default {
 		type: {
 			type: String,
 			default: 'button',
-			validator(value) {
+			validator(value: string) {
 				return ['button', 'submit', 'reset'].includes(value);
 			},
 		},
@@ -83,7 +83,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'primary',
-			validator(value) {
+			validator(value: string) {
 				return ['primary', 'secondary', 'link', 'ghost', 'danger', 'caution'].includes(value);
 			},
 		},
@@ -94,7 +94,7 @@ export default {
 		state: {
 			type: String,
 			default: '',
-			validator(value) {
+			validator(value: string) {
 				return ['', 'active', 'disabled', 'loading'].includes(value);
 			},
 		},

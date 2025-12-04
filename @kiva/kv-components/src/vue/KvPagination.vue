@@ -58,7 +58,7 @@
 	</nav>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -71,22 +71,22 @@ export default {
 		limit: {
 			type: Number,
 			required: true,
-			validator: (value) => value > 0,
+			validator: (value: number) => value > 0,
 		},
 		total: {
 			type: Number,
 			required: true,
-			validator: (value) => value >= 0,
+			validator: (value: number) => value >= 0,
 		},
 		offset: {
 			type: Number,
 			default: 0,
-			validator: (value) => value >= 0,
+			validator: (value: number) => value >= 0,
 		},
 		extraPages: {
 			type: Number,
 			default: 3,
-			validator: (value) => value > 0,
+			validator: (value: number) => value > 0,
 		},
 		scrollToTop: {
 			type: Boolean,

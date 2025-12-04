@@ -13,7 +13,7 @@
 export function Mash() {
 	let n = 0xefc8249d;
 
-	const mash = function (data) {
+	const mash = function (data: any): number {
 		data = data.toString();
 		for (let i = 0; i < data.length; i++) {
 			n += data.charCodeAt(i);
@@ -43,8 +43,8 @@ export function Mash() {
  *
  * @returns The seeded generator function
  */
-export default function Alea() {
-	return (function (args) {
+export default function Alea(...seeds: any[]) {
+	return (function (args: any[]) {
 		let s0 = 0;
 		let s1 = 0;
 		let s2 = 0;
@@ -88,5 +88,5 @@ export default function Alea() {
 		random.args = args;
 
 		return random;
-	}(Array.prototype.slice.call(arguments)));
+	}(seeds));
 }

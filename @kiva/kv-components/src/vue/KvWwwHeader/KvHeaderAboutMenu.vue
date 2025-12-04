@@ -57,7 +57,7 @@
 	</nav>
 </template>
 
-<script>
+<script lang="ts">
 import KvHeaderMenuLink from './KvHeaderMenuLink.vue';
 
 export default {

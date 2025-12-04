@@ -7,7 +7,7 @@
 	</component>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * A light wrapper around Tailwind's grid class, setting the gaps as specified by design.
  * To use, specify the number of columns as a tailwind class on this component.

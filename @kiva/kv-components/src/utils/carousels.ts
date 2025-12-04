@@ -53,10 +53,10 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	/**
 	 * Jump to a specific slide index
 	 *
-	 * @param {Number} num Index of slide to show
+	 * @param index Index of slide to show
 	 * @public This is a public method
 	 */
-	const goToSlide = (index) => {
+	const goToSlide = (index: number) => {
 		/** Stop autoplay on go to slide interaction */
 		const autoplay = embla.value?.plugins()?.autoplay;
 		if (autoplay) {
@@ -65,7 +65,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		embla.value.scrollTo(index);
 	};
 
-	const handleUserInteraction = async (index, interactionType) => {
+	const handleUserInteraction = async (index: number | null, interactionType: string) => {
 		if (index !== null && typeof index !== 'undefined') {
 			await nextTick(); // wait for embla.
 			goToSlide(index);
@@ -94,9 +94,9 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	/**
 	 * Returns number of slides in the carousel
 	 *
-	 * @returns {Number}
+	 * @returns Number
 	 */
-	const slideIndicatorListLength = () => {
+	const slideIndicatorListLength = (): number => {
 		const indicator = embla.value ? embla.value.scrollSnapList().length : 0;
 		slideIndicatorCount.value = indicator;
 		return indicator;
@@ -131,10 +131,10 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	 * If the slide is not completely in view in the carousel
 	 * it should be aria-hidden
 	 *
-	 * @param {Number} index The current index of the slide
-	 * @returns {Boolean}
+	 * @param index The current index of the slide
+	 * @returns Boolean
 	 */
-	const isAriaHidden = (index) => {
+	const isAriaHidden = (index: number): boolean => {
 		if (embla.value) {
 			return !embla.value.slidesInView(true).includes(index);
 		}

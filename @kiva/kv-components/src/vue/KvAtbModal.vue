@@ -228,7 +228,7 @@
 	</KvCartModal>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref,
 	toRefs,
@@ -447,12 +447,12 @@ export default {
 			const header = document.getElementsByTagName('header')[0];
 			const headerPosition = header?.getBoundingClientRect() ?? null;
 
-			let targets = [...document.querySelectorAll('[data-testid="header-basket"]')];
+			let targets = Array.from(document.querySelectorAll('[data-testid="header-basket"]'));
 			let target = targets.find((t) => t?.clientHeight);
 
 			if (!target) {
 				// No basket found, using About as the closest position
-				targets = [...document.querySelectorAll('[data-testid="header-about"]')];
+				targets = Array.from(document.querySelectorAll('[data-testid="header-about"]'));
 				target = targets.find((t) => t?.clientHeight);
 			}
 

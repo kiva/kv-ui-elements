@@ -12,7 +12,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { differenceInDays, parseISO } from 'date-fns';
 import gql from 'graphql-tag';
 import numeral from 'numeral';

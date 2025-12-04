@@ -2,8 +2,8 @@ import './tailwind.css';
 import {
 	setup
 } from '@storybook/vue3';
-import { addons } from '@storybook/preview-api';
-import KvThemeProvider from '#components/KvThemeProvider';
+import { addons } from 'storybook/preview-api';
+import KvThemeProvider from '#components/KvThemeProvider.vue';
 import { defaultTheme, darkTheme } from '@kiva/kv-tokens';
 
 setup((app) => {
@@ -12,18 +12,24 @@ setup((app) => {
 });
 
 export const parameters = {
-	actions: { argTypesRegex: "^on[A-Z].*" },
-	controls: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+
+    controls: {
 		matchers: {
 			color: /(background|color)$/i,
 			date: /Date$/,
 		},
 	},
-	options: {
+
+    options: {
 		storySort: {
 			order: ['Base Styling', '*'],
 		},
 	},
+
+    docs: {
+        codePanel: true
+    }
 }
 
 // Listen for events from the dark mode plugin
@@ -51,3 +57,4 @@ export const decorators = [(story) => ({
 		channel.off('DARK_MODE', this.setTheme);
 	},
 })];
+export const tags = ['autodocs'];

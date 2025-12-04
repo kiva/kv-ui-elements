@@ -10,7 +10,7 @@
 	</component>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * A wrapper component that sets CSS custom properties to theme its children.
  * Most of the time you'll be importing a predefined theme from kv-tokens.
