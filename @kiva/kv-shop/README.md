@@ -50,6 +50,12 @@ npm run lint
 npm run build
 ```
 
+## Test
+
+```bash
+npm run test
+```
+
 ## Contribution Guidelines
 
 This project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
