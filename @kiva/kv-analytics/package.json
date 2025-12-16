@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/kiva/kv-ui-elements/issues"
   },
-  "homepage": "https://github.com/kiva/kv-ui-elements#readme",
+  "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-analytics#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
