@@ -15,6 +15,7 @@ export default {
 		width: null,
 		zoomLevel: 4,
 		advancedAnimation: {},
+		showTooltips: true,
 	},
 	parameters: {
 		chromatic: {
@@ -112,4 +113,30 @@ LoansMap.args = {
 	showLabels: false,
 	countriesData: mockLenderCountries,
 	showFundraisingLoans: true,
+};
+
+export const highlightedCountry = Template.bind({});
+highlightedCountry.args = {
+	autoZoomDelay: 500,
+	aspectRatio: 1.8,
+	lat: 23,
+	long: -102,
+	zoomLevel: 5,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: [
+		{
+			label: 'Mexico',
+			value: 100,
+			lat: 23,
+			long: -102,
+			isoCode: 'MX',
+			numLoansFundraising: 48,
+		},
+	],
+	showFundraisingLoans: false,
+	showTooltips: false,
+	defaultBaseColor: '#BFE5D1',
 };

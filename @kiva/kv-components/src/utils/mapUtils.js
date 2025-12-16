@@ -328,7 +328,7 @@ export const getLoansIntervals = (min, max, nbIntervals) => {
  * @param {Object} kvTokensPrimitives - kv tokens for colors
  * @returns {String} - color of the country
  * */
-export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives) => {
+export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives, defaultBaseColor) => {
 	const loanCountsArray = [];
 	countriesData.forEach((country) => {
 		loanCountsArray.push(country.value);
@@ -354,6 +354,10 @@ export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives) 
 				return kvTokensPrimitives.colors.brand[mapColors[i]];
 			}
 		}
+	}
+
+	if (defaultBaseColor) {
+		return defaultBaseColor;
 	}
 
 	return kvTokensPrimitives.colors.gray[300];
