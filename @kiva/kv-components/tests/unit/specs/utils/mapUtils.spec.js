@@ -68,5 +68,10 @@ describe('mapUtils', () => {
 			const result = getCountryColor(0, mockLenderCountries, kvTokensPrimitives);
 			expect(result).toBe('#C4C4C4');
 		});
+
+		it('should return #BFE5D1 gray as default base color', () => {
+			const result = getCountryColor(0, mockLenderCountries, kvTokensPrimitives, '#BFE5D1');
+			expect(result).toBe('#BFE5D1');
+		});
 	});
 });
