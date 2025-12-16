@@ -14,6 +14,14 @@
     "./vue/*": "./dist/vue/*.js",
     "./vue/*.js": "./dist/vue/*.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiva/kv-ui-elements.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kiva/kv-ui-elements/issues"
+  },
+  "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-components#readme",
   "devDependencies": {
     "@apollo/client": "^3.13.1",
     "@babel/core": "^7.14.8",
