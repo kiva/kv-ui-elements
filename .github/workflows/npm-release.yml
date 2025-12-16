@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write # Required for trusted publishing
+
 env:
   GITHUB_PAT: "${{ secrets.KIVA_ROBOT_GITHUB_PAT || github.token }}"
   AWS_REGION: "us-west-2"
@@ -14,9 +17,6 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      # 'Automation' type NPM access token used for publishing packages to NPM
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       # Configure npmrc file and node installation
       - name: Configure Node.js
@@ -24,10 +24,6 @@ jobs:
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
-
-      # Check that the NODE_AUTH_TOKEN is valid
-      - name: Confirm NPM authentication
-        run: npm whoami
 
       # Configure git user access token and fetch latest changes
       - name: Checkout repository
