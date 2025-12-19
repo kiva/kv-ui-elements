@@ -299,10 +299,10 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
 
 /**
  * This function returns an array of not overlapped intervals between min and max
- * @param {Integer} min - min number of the interval
- * @param {Integer} max - max number of the interval
- * @param {Integer} nbIntervals - number of intervals
- * @returns {Array} - array with intervals
+ * @param min - min number of the interval
+ * @param max - max number of the interval
+ * @param nbIntervals - number of intervals
+ * @returns - array with intervals
  * */
 export const getLoansIntervals = (min: number, max: number, nbIntervals: number): number[][] => {
 	const size = Math.floor((max - min) / nbIntervals);
@@ -337,12 +337,18 @@ export const getLoansIntervals = (min: number, max: number, nbIntervals: number)
 
 /**
  * This function returns the color of the country based on the number of loans
- * @param {Integer} lenderLoans - number of loans per country
- * @param {Array} countriesData - data of countries
- * @param {Object} kvTokensPrimitives - kv tokens for colors
- * @returns {String} - color of the country
+ * @param lenderLoans - number of loans per country
+ * @param countriesData - data of countries
+ * @param kvTokensPrimitives - kv tokens for colors
+ * @param defaultBaseColor - default base color
+ * @returns - color of the country
  * */
-export const getCountryColor = (lenderLoans: number, countriesData: any[], kvTokensPrimitives: any, defaultBaseColor): string => {
+export const getCountryColor = (
+	lenderLoans: number,
+	countriesData: any[],
+	kvTokensPrimitives: any,
+	defaultBaseColor: string,
+): string => {
 	const loanCountsArray: number[] = [];
 	countriesData.forEach((country) => {
 		loanCountsArray.push(country.value);
