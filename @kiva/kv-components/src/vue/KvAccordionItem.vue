@@ -32,7 +32,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 // Accordion a11y resources
 // https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html
 // https://www.aditus.io/patterns/accordion/
@@ -64,7 +64,7 @@ export default {
 		id: {
 			type: String,
 			required: true,
-			validator: (v) => v.length > 0 && !/\s/g.test(v), // must be a valid html5 id
+			validator: (v: string) => v.length > 0 && !/\s/g.test(v), // must be a valid html5 id
 		},
 		/**
 	 	* Whether the body is shown initially

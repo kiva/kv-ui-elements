@@ -12,9 +12,14 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import type Leaflet from 'leaflet';
+import type MapLibreGl from 'maplibre-gl';
 import kvTokensPrimitives from '@kiva/kv-tokens';
 import { animationCoordinator, generateMapMarkers, getCountryColor } from '../utils/mapUtils';
+
+declare const L: typeof Leaflet;
+declare const maplibregl: typeof MapLibreGl;
 
 export default {
 	name: 'KvMap',
@@ -316,8 +321,8 @@ export default {
 			 */
 			const mapScript = document.createElement('script');
 			const mapStyle = document.createElement('link');
-			mapScript.setAttribute('async', true);
-			mapScript.setAttribute('defer', true);
+			mapScript.setAttribute('async', '');
+			mapScript.setAttribute('defer', '');
 			mapStyle.setAttribute('rel', 'stylesheet');
 			if (this.checkWebGL()) {
 				mapScript.setAttribute('vmid', `maplibregljs${this.mapId}`);
@@ -356,7 +361,6 @@ export default {
 				// todo make props for the following options
 				dragging: this.allowDragging,
 				zoomControl: this.showZoomControl,
-				animate: true,
 				scrollWheelZoom: false,
 				doubleClickZoom: false,
 				attributionControl: false,
@@ -481,14 +485,22 @@ export default {
 			}
 			return true;
 		},
-		createIntersectionObserver({ callback, options, targets } = {}) {
+		createIntersectionObserver({
+			callback,
+			options,
+			targets,
+		}: {
+			callback?: any;
+			options?: any;
+			targets?: Element[];
+		} = {}) {
 			if (this.checkIntersectionObserverSupport()) {
 				const observer = new IntersectionObserver(callback, options);
 				targets.forEach((target) => observer.observe(target));
 				return observer;
 			}
 		},
-		testDelayedGlobalLibrary(library, timeout = 3000) {
+		testDelayedGlobalLibrary(library: string, timeout = 3000): Promise<{ loaded: boolean }> {
 			// return a promise
 			return new Promise((resolve, reject) => {
 				if (typeof window === 'undefined') {

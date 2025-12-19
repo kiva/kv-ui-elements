@@ -20,11 +20,19 @@
 	</ul>
 </template>
 
-<script>
+<script lang="ts">
+import type { PropType } from 'vue';
+
+export interface LendMenuSearch {
+	id: number;
+	name: string;
+	url: string;
+}
+
 export default {
 	props: {
 		searches: {
-			type: Array,
+			type: Array as PropType<LendMenuSearch[]>,
 			default: () => [],
 		},
 	},

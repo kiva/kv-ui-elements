@@ -8,7 +8,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import KvInlineActivityCard from './KvInlineActivityCard.vue';
 
 export default {

@@ -1,4 +1,4 @@
-export default function markMatches(text, marks) {
+export default function markMatches(text: string, marks?: Array<[number, number]>): string {
 	// If no match is found, just return the label, unmarked
 	if (!marks || !marks.length) {
 		return text;

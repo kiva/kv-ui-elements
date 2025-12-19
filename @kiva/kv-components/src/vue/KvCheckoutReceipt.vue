@@ -353,7 +353,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { format } from 'date-fns';
 import { mdiInformation, mdiPrinter } from '@mdi/js';
 import { computed } from 'vue';
