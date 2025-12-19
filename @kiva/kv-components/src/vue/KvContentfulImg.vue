@@ -72,24 +72,30 @@
 		</picture>
 		<figcaption
 			v-if="caption"
-			class="tw-text-h4 tw-mt-2"
+			class="tw-italic tw-my-1.5 tw-break-words tw-max-w-full tw-font-book tw-text-action-highlight"
+			:style="{ maxWidth: width ? `${width}px` : undefined }"
 		>
 			<span
-				class="tw-inline-flex tw-align-text-top"
+				v-if="!removeLeafIcon"
+				class="tw-inline-block tw-mr-0.5 tw-align-middle"
 				aria-hidden="true"
 				role="img"
 			>
 				<svg
-					class="tw-h-2 tw-w-2.5"
-					viewBox="0 0 20 20"
+					width="16"
+					height="12"
+					viewBox="0 0 16 12"
+					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
+					<!-- eslint-disable-next-line vue/html-end-tags -->
 					<!-- eslint-disable max-len -->
 					<path
-						d="m3.12088 18.7441c12.86212 0 15.87912-14.52631 15.87912-16.99996h-1.1209c-12.85272 0-15.8791 14.51376-15.8791 16.99996z"
+						d="M1.04689 11.2079C13.06 11.2079 15.8778 1.63084 15.8778 -1.6347e-07L14.831 -1.52692e-07C2.82661 -2.91013e-08 9.85148e-08 9.56873 1.15391e-07 11.2079L1.04689 11.2079Z"
 						fill="currentColor"
 					/>
 					<!-- eslint-enable max-len -->
+					<!-- eslint-enable-next-line vue/html-end-tags -->
 				</svg>
 			</span>
 			{{ caption }}
@@ -256,16 +262,29 @@ export default {
 			return 80;
 		};
 
+		// Caption is derived from alt text starting with ^
+		// e.g. ^This is the caption text
 		const caption = computed(() => {
 			if (alt.value && alt.value.charAt(0) === '^') {
-				return alt.value.slice(1).trim();
+				const trimIndex = alt.value.charAt(1) === '#' ? 2 : 1;
+				return alt.value.slice(trimIndex).trim();
 			}
 			return '';
+		});
+
+		// Appending # after ^ in the alt text will remove the leaf icon from the caption
+		// e.g. ^#This is the caption text
+		const removeLeafIcon = computed(() => {
+			if (alt.value && alt.value.charAt(1) === '#') {
+				return true;
+			}
+			return false;
 		});
 
 		return {
 			buildUrl,
 			caption,
+			removeLeafIcon,
 			setQuality,
 		};
 	},
