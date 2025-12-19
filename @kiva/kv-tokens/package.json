@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-tokens",
-    "version": "3.6.0",
+    "version": "3.6.1",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -11,6 +11,14 @@
         "lint": "eslint --ext .js ./",
         "build": "node ./build/build"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kiva/kv-ui-elements.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kiva/kv-ui-elements/issues"
+    },
+    "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-tokens#readme",
     "dependencies": {
         "@tailwindcss/typography": "^0.5.1",
         "tailwindcss": "^3.4.3"

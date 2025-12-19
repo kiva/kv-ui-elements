@@ -50,8 +50,14 @@ npm run lint
 npm run build
 ```
 
+## Test
+
+```bash
+npm run test
+```
+
 ## Contribution Guidelines
 
-The Kiva UI project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
+This project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
 
 Kiva welcomes outside contributions to our UI repository. If you have any ideas for a feature or improvement, create an issue and we can discuss whether it makes sense to create a pull request. Thanks for the help!

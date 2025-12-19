@@ -28,7 +28,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "husky": "^6.0.0",
-    "lerna": "^6.6.1",
+    "lerna": "^9.0.3",
     "lint-staged": "^10.5.4",
     "rimraf": "^5.0.10"
   },

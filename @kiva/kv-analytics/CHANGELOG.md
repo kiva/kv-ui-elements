@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.0...@kiva/kv-analytics@1.3.1) (2025-12-16)
+
+**Note:** Version bump only for package @kiva/kv-analytics
+
+
+
+
+
 # [1.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.2.2...@kiva/kv-analytics@1.3.0) (2023-12-01)
 
 

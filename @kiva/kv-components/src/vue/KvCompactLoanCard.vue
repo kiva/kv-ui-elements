@@ -14,6 +14,8 @@
 						:is="tag"
 						:to="readMorePath"
 						:href="readMorePath"
+						:target="externalLinksNewTab ? '_blank' : undefined"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex"
 						aria-label="Borrower image"
 						@click.native="clickReadMore('Photo', $event)"
@@ -41,6 +43,8 @@
 							:is="tag"
 							:to="readMorePath"
 							:href="readMorePath"
+							:target="externalLinksNewTab ? '_blank' : undefined"
+							:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 							class="tw-no-underline hover:tw-underline focus:tw-no-underline"
 							aria-label="Business name"
 							@click.native="clickReadMore('Business', $event)"
@@ -69,6 +73,8 @@
 						:is="tag"
 						:to="readMorePath"
 						:href="readMorePath"
+						:target="externalLinksNewTab ? '_blank' : undefined"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
 						aria-label="Loan tag"
 						@click.native="clickReadMore('Tag', $event)"
@@ -83,6 +89,8 @@
 						v-if="showLoanUse"
 						:to="readMorePath"
 						:href="readMorePath"
+						:target="externalLinksNewTab ? '_blank' : undefined"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
 						aria-label="Loan use"
 						@click.native="clickReadMore('Use', $event)"
@@ -167,6 +175,8 @@
 						v-if="sharesAvailable"
 						:to="readMorePath"
 						:href="readMorePath"
+						:target="externalLinksNewTab ? '_blank' : undefined"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-progress tw-no-underline tw-block"
 						aria-label="Loan progress"
 						@click.native="clickReadMore('Progress', $event)"
@@ -350,6 +360,10 @@ export default {
 			default: false,
 		},
 		externalLinks: {
+			type: Boolean,
+			default: false,
+		},
+		externalLinksNewTab: {
 			type: Boolean,
 			default: false,
 		},

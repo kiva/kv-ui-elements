@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-loan-filters",
-    "version": "1.21.1",
+    "version": "1.21.2",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -23,6 +23,14 @@
         "test-watch": "jest --watch",
         "build": "tsup src/index.ts --format cjs,esm --dts --clean"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kiva/kv-ui-elements.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kiva/kv-ui-elements/issues"
+    },
+    "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-loan-filters#readme",
     "devDependencies": {
         "@babel/preset-env": "^7.21.4",
         "@types/jest": "^29.5.14",

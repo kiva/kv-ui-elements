@@ -159,6 +159,21 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Show tooltips on fundraising loan circles
+		 * Working for leaflet only
+		 */
+		showTooltips: {
+			type: Boolean,
+			default: true,
+		},
+		/**
+		 * Default base color for countries without loans
+		 */
+		defaultBaseColor: {
+			type: String,
+			default: null,
+		},
 	},
 	data() {
 		return {
@@ -531,12 +546,14 @@ export default {
 		countryStyle(feature) {
 			return {
 				color: kvTokensPrimitives.colors.white,
-				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives),
+				// eslint-disable-next-line max-len
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives, this.defaultBaseColor),
 				weight: 1,
 				fillOpacity: 1,
 			};
 		},
 		onEachCountryFeature(feature, layer) {
+			if (!this.showTooltips) return;
 			const loansString = feature.lenderLoans
 				? `${feature.lenderLoans} loan${feature.lenderLoans > 1 ? 's' : ''}`
 				: '0 loans';
@@ -563,7 +580,8 @@ export default {
 			const { feature } = layer;
 
 			layer.setStyle({
-				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives),
+				// eslint-disable-next-line max-len
+				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives, this.defaultBaseColor),
 			});
 		},
 		circleMapClicked(countryIso) {
