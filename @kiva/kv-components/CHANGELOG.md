@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.6.3...@kiva/kv-components@8.0.0) (2026-01-05)
+
+
+### Bug Fixes
+
+* **kv-components:** add lang="ts" and fix simple typescript errors ([3d34801](https://github.com/kiva/kv-ui-elements/commit/3d3480170a6856fb646b9f1a7044751604b31ea4))
+* **kv-components:** address unknown types ([6784fde](https://github.com/kiva/kv-ui-elements/commit/6784fde33a0cbd055e34a217063bf5e290072dbb))
+* **kv-components:** adjust KvMap for Leaflet and MapLibreGL types ([b69b637](https://github.com/kiva/kv-ui-elements/commit/b69b6371505f5280cfa01ea129593e21983c71c6))
+* **kv-components:** define type for KvContentfulImg loading prop ([ee43dfc](https://github.com/kiva/kv-ui-elements/commit/ee43dfccfdfaea7e4cd6aa52ad408f73425b09ae))
+* **kv-components:** define type for maplibregl global in mapUtils ([6b6418a](https://github.com/kiva/kv-ui-elements/commit/6b6418af1a641baf8a6e154b1f6b139bef4b7534))
+* **kv-components:** remove unneccessary "as any" ([a01afc4](https://github.com/kiva/kv-ui-elements/commit/a01afc4745c3192f6db2449b07e9a2727b853edc))
+* **kv-components:** use Array.from(x) instead of [...x] for browser compatibility ([b7058fd](https://github.com/kiva/kv-ui-elements/commit/b7058fd65ef6358962d9ab3b2b64c196f48a2a68))
+* **kv-components:** use constant for event emits ([273c130](https://github.com/kiva/kv-ui-elements/commit/273c130362eb98af276f393b7dfe88e303ee6d49))
+* **kv-components:** use PropType for array prop type definitions ([c3d1020](https://github.com/kiva/kv-ui-elements/commit/c3d10201f8a6ee636ceb08c4886cbd8bd22ef9e2))
+
+
+* feat(kv-components)!: rename KvProgressBar ariaLabel prop to label ([c2a9bd0](https://github.com/kiva/kv-ui-elements/commit/c2a9bd0eb42b0a0d4548bf6665c4017b383ddf62))
+
+
+### Features
+
+* **kv-components:** add types for dependencies ([2431c38](https://github.com/kiva/kv-ui-elements/commit/2431c381dd534e0ce679c41cef60f560a7f0b048))
+* **kv-components:** cs convert to typescript ([e0bc947](https://github.com/kiva/kv-ui-elements/commit/e0bc9476c077926b48f881510382f7d04632dbbf))
+
+
+### BREAKING CHANGES
+
+* KvProgressBar prop renamed to avoid conflict with the HTML attribute.
+
+
+
+
+
 ## [7.6.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.6.2...@kiva/kv-components@7.6.3) (2025-12-22)
 
 
