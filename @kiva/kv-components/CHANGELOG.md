@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.6.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.6.2...@kiva/kv-components@7.6.3) (2025-12-22)
+
+
+### Bug Fixes
+
+* update caption styles and spacing within KvContentfulImg component ([0276c5c](https://github.com/kiva/kv-ui-elements/commit/0276c5c854334f429f5e2c684eeed18fb280d2fd))
+
+
+
+
+
 ## [7.6.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@7.6.1...@kiva/kv-components@7.6.2) (2025-12-16)
 
 **Note:** Version bump only for package @kiva/kv-components

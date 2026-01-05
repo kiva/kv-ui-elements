@@ -143,13 +143,66 @@ export const WithCaption = (args, { argTypes }) => ({
 	setup() { return { args }; },
 	template: `
 		<kv-contentful-img
-			alt="^ A descriptive caption"
 			v-bind="args"
 		/>
 	`,
 });
 
-WithCaption.args = AdaptiveImageSet.args;
+WithCaption.args = {
+	fit: 'fill',
+	focus: 'face',
+	sourceSizes: [],
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7mY5ZujL9UfbluRkVkHgkX/5ec83a74e7c1dc387f3fa35af34f5243/mg-hppromo-1-wxga-retina.jpg',
+	width: 400,
+	height: 300,
+	alt: '^ Danielle, small business owner',
+};
+
+export const CaptionWithoutLeafIcon = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	setup() { return { args }; },
+	template: `
+		<kv-contentful-img
+			v-bind="args"
+		/>
+	`,
+});
+
+CaptionWithoutLeafIcon.args = {
+	fit: 'fill',
+	focus: 'face',
+	sourceSizes: [],
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7mY5ZujL9UfbluRkVkHgkX/5ec83a74e7c1dc387f3fa35af34f5243/mg-hppromo-1-wxga-retina.jpg',
+	width: 400,
+	height: 300,
+	alt: '^# Danielle, small business owner - without the leaf icon',
+};
+
+export const CaptionWithLongText = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	setup() { return { args }; },
+	template: `
+		<kv-contentful-img
+			v-bind="args"
+		/>
+	`,
+});
+
+CaptionWithLongText.args = {
+	fit: 'fill',
+	focus: 'face',
+	sourceSizes: [],
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/7mY5ZujL9UfbluRkVkHgkX/5ec83a74e7c1dc387f3fa35af34f5243/mg-hppromo-1-wxga-retina.jpg',
+	width: 300,
+	height: 225,
+	alt: '^ This is a very long caption that demonstrates how the text wraps when it reaches the maximum width of the image. The caption will break into multiple lines and remain constrained to the image width.',
+};
 
 export const GiantImage = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
