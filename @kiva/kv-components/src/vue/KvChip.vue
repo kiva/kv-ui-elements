@@ -30,7 +30,7 @@
 		</button>
 	</div>
 </template>
-<script>
+<script lang="ts">
 import { mdiClose } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 

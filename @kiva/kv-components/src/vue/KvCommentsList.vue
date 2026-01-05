@@ -15,9 +15,16 @@
 	</div>
 </template>
 
-<script>
-
+<script lang="ts">
+import type { PropType } from 'vue';
 import KvCommentsListItem from './KvCommentsListItem.vue';
+
+export interface Comment {
+	id: string | number;
+	// eslint-disable-next-line camelcase
+	is_liked: boolean;
+	[key: string]: any;
+}
 
 const ADD_REACTION_EVENT = 'add-reaction';
 
@@ -50,7 +57,7 @@ export default {
 		 * Activity comments
 		 */
 		comments: {
-			type: Array,
+			type: Array as PropType<Comment[]>,
 			default: () => ([]),
 		},
 	},

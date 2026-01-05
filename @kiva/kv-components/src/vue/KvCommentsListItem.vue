@@ -82,7 +82,7 @@
 						:user-public-id="userPublicId"
 						:comment="childComment"
 						:nest-level="nestLevel + 1"
-						@add-reaction="$emit(ADD_REACTION_EVENT, $event);"
+						@add-reaction="$emit('add-reaction', $event);"
 					/>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiChevronDown } from '@mdi/js';
 import {
 	ref,
@@ -108,7 +108,7 @@ import KvUserAvatar from './KvUserAvatar.vue';
 
 export const REPLY_COMMENT_EVENT = 'reply-comment';
 export const LIKE_COMMENT_EVENT = 'like-comment';
-const ADD_REACTION_EVENT = 'add-reaction';
+export const ADD_REACTION_EVENT = 'add-reaction';
 
 export default {
 	name: 'KvCommentsListItem',
@@ -208,10 +208,10 @@ export default {
 		const toggleReplies = () => { repliesOpened.value = !repliesOpened.value; };
 
 		// The fetchLenderInfo method must be provided in the parent component
-		const fetchLenderInfo = inject('fetchLenderInfo');
+		const fetchLenderInfo = inject('fetchLenderInfo') as Function | undefined;
 
 		onMounted(async () => {
-			if (authorId.value) {
+			if (authorId.value && fetchLenderInfo) {
 				const authorData = await fetchLenderInfo(authorId.value);
 				authorInfo.value = authorData;
 			}

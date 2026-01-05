@@ -7,7 +7,7 @@
 	</transition>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	toRefs,
 } from 'vue';

@@ -5,7 +5,7 @@
 		"
 		:class="backgroundVariant"
 		role="progressbar"
-		:aria-label="ariaLabel"
+		:aria-label="label"
 		:aria-valuemin="min"
 		:aria-valuemax="max"
 		:aria-valuenow="value"
@@ -22,7 +22,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 /**
  * Horizontal progress bar which communicates to the user the progress of a particular process
  */
@@ -40,7 +40,7 @@ export default {
 		 * The words to announce to screenreaders describing what this progress represents
 		 * e.g., "Percent the loan has funded"
 		 * */
-		ariaLabel: {
+		label: {
 			type: String,
 			required: true,
 		},
@@ -73,7 +73,7 @@ export default {
 		variant: {
 			type: String,
 			default: 'primary',
-			validator(value) {
+			validator(value: string) {
 				return ['primary', 'ghost', 'danger', 'caution'].includes(value);
 			},
 		},
@@ -84,7 +84,7 @@ export default {
 		bgVariant: {
 			type: String,
 			default: 'secondary',
-			validator(value) {
+			validator(value: string) {
 				return ['secondary', 'tertiary'].includes(value);
 			},
 		},

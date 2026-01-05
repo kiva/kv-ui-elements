@@ -27,7 +27,7 @@
 	</kv-page-container>
 </template>
 
-<script>
+<script lang="ts">
 import { gql } from '@apollo/client/core';
 import {
 	computed, onMounted, ref, toRefs,

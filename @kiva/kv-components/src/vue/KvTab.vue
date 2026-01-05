@@ -16,7 +16,7 @@
 	</button>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	toRefs,
 	inject,
@@ -24,6 +24,18 @@ import {
 	onMounted,
 	getCurrentInstance,
 } from 'vue';
+
+interface NavItem {
+	forPanel?: string;
+	[key: string]: any;
+}
+
+interface KvTabContext {
+	navItems: NavItem[];
+	selectedIndex: number;
+	// eslint-disable-next-line no-unused-vars
+	setTab: (index: number) => void;
+}
 
 export default {
 	props: {
@@ -52,7 +64,7 @@ export default {
 			forPanel,
 		} = toRefs(props);
 
-		const kvTabContext = inject('$KvTabContext');
+		const kvTabContext = inject<KvTabContext>('$KvTabContext');
 
 		const isActive = computed(() => {
 			let navItems = [];

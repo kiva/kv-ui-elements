@@ -226,10 +226,10 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import gql from 'graphql-tag';
 import numeral from 'numeral';
-import { computed } from 'vue';
+import { computed, type PropType } from 'vue';
 import { mdiMapMarker, mdiHome, mdiLink } from '@mdi/js';
 import {
 	loanCardComputedProperties,
@@ -238,6 +238,7 @@ import {
 	LOAN_GEOCODE_FRAGMENT,
 	LOAN_PROGRESS_FRAGMENT,
 } from '../utils/loanCard';
+import { type GetCookieFn, type SetCookieFn } from '../utils/loanUtils';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanCallouts from './KvLoanCallouts.vue';
@@ -375,11 +376,11 @@ export default {
 			default: undefined,
 		},
 		getCookie: {
-			type: Function,
+			type: Function as PropType<GetCookieFn>,
 			default: undefined,
 		},
 		setCookie: {
-			type: Function,
+			type: Function as PropType<SetCookieFn>,
 			default: undefined,
 		},
 		fiveDollarsSelected: {

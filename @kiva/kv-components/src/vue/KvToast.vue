@@ -110,7 +110,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	ref,
 	computed,
@@ -177,7 +177,7 @@ export default {
 			return Math.max(characterMs, MINIMUM_MS);
 		});
 
-		const hasToastContentSlot = computed(() => !!slots?.toastContent ?? false);
+		const hasToastContentSlot = computed(() => !!slots?.toastContent || false);
 
 		const close = () => {
 			isVisible.value = false;

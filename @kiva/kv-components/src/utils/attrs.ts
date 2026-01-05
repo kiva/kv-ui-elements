@@ -36,9 +36,9 @@ function asArray(input) {
  *
  * @param   context        vue component context, from the second argument of the `setup()` function
  * @param   ownEvents      array of event name strings, same as the `emits` component option
- * @returns { classes, styles, inputAttrs, inputListeners }
+ * @returns classes, styles, inputAttrs, inputListeners
  */
-export function useAttrs({ attrs, listeners }, ownEvents = []) {
+export function useAttrs({ attrs, listeners }: any, ownEvents: string[] = []) {
 	const classes = asArray(attrs?.class);
 	const styles = asArray(attrs?.style);
 

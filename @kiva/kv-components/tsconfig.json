@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+	  "module": "es2020",
+	  "target": "es2020",
+	  "moduleResolution": "bundler",
+	  "resolveJsonModule": true,
+	  "declaration": true,
+	  "noImplicitAny": false,
+	  "removeComments": true,
+	  "noLib": false,
+	  "experimentalDecorators": true,
+	  "allowSyntheticDefaultImports": true,
+	  "esModuleInterop": true,
+	  "sourceMap": true,
+	  "lib": [
+		"es2020",
+		"dom"
+	  ],
+	  "types": [
+		"vite/client"
+	  ],
+	},
+	"include": [
+		"./src/**/*.ts",
+		"./src/**/*.vue"
+	],
+	"exclude": [
+	  "**/*/node_modules",
+	  "**/*/tests",
+	  "**/*/dist"
+	]
+}

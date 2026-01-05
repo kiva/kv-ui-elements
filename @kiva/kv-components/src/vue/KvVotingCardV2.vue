@@ -24,7 +24,7 @@
 				>
 					<kv-progress-bar
 						class="tw-flex-grow"
-						:aria-label="'Percent of votes for ' + description"
+						:label="'Percent of votes for ' + description"
 						:value="percentage"
 					/>
 					<div class="tw-ml-2">
@@ -58,7 +58,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	computed,
 	ref,

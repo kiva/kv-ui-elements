@@ -27,7 +27,7 @@
 	</kv-theme-provider>
 </template>
 
-<script>
+<script lang="ts">
 import { markRaw, computed } from 'vue';
 
 import {
@@ -55,7 +55,7 @@ export default {
 		theme: {
 			type: String,
 			default: 'default',
-			validator(value) {
+			validator(value: string) {
 				return [
 					'default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark',
 				].includes(value);

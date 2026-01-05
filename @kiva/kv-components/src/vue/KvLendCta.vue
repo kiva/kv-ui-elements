@@ -383,11 +383,14 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import gql from 'graphql-tag';
+import { type PropType } from 'vue';
 import { mdiChevronRight } from '@mdi/js';
 import { throttle } from '../utils/throttle';
-import { getLendCtaSelectedOption, getDropdownPriceArray } from '../utils/loanUtils';
+import {
+	getLendCtaSelectedOption, getDropdownPriceArray, type GetCookieFn, type SetCookieFn,
+} from '../utils/loanUtils';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
 import KvUiButton from './KvButton.vue';
@@ -476,11 +479,11 @@ export default {
 			default: undefined,
 		},
 		getCookie: {
-			type: Function,
+			type: Function as PropType<GetCookieFn>,
 			default: undefined,
 		},
 		setCookie: {
-			type: Function,
+			type: Function as PropType<SetCookieFn>,
 			default: undefined,
 		},
 		fiveDollarsSelected: {
@@ -546,7 +549,7 @@ export default {
 				this.enableFiveDollarsNotes,
 				this.route?.query?.utm_campaign,
 				this.unreservedAmount,
-				this.userBalance,
+				this.userBalance ? parseFloat(this.userBalance) : undefined,
 				this.fiveDollarsSelected,
 			),
 			selectedDropdownOption: OTHER_OPTION,
@@ -759,9 +762,8 @@ export default {
 					this.enableFiveDollarsNotes,
 					this.route?.query?.utm_campaign,
 					newValue,
-					this.userBalance,
+					this.userBalance ? parseFloat(this.userBalance) : undefined,
 					this.fiveDollarsSelected,
-					this.showPresetAmounts,
 				);
 			}
 

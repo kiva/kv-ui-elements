@@ -104,10 +104,10 @@
 		</div>
 	</kv-theme-provider>
 </template>
-<script>
+<script lang="ts">
 // Vue core
 import {
-	ref, computed, toRefs,
+	ref, computed, toRefs, type PropType,
 } from 'vue';
 
 // Theme
@@ -118,6 +118,14 @@ import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
 import KvThemeProvider from './KvThemeProvider.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvPageContainer from './KvPageContainer.vue';
+
+interface NavLink {
+	text: string;
+	href: string;
+	isExternal?: boolean;
+	isActive?: boolean;
+	[key: string]: any;
+}
 
 export default {
 	name: 'KvSecondaryNav',
@@ -132,7 +140,7 @@ export default {
 			default: '',
 		},
 		headingLink: {
-			type: Object,
+			type: Object as PropType<NavLink>,
 			required: false,
 			default: () => ({}),
 			validator(value) {
@@ -146,9 +154,9 @@ export default {
 			},
 		},
 		links: {
-			type: Array,
+			type: Array as PropType<NavLink[]>,
 			default: () => [],
-			validator(value) {
+			validator(value: NavLink[]) {
 				return value.every(
 					(link) => Object.prototype.hasOwnProperty.call(link, 'text')
 						&& Object.prototype.hasOwnProperty.call(link, 'href'),
@@ -158,14 +166,14 @@ export default {
 		linkAlignment: {
 			type: String,
 			default: '',
-			validator(value) {
+			validator(value: string) {
 				return ['left', 'right', 'center'].includes(value);
 			},
 		},
 		theme: {
 			type: String,
 			default: 'default',
-			validator(value) {
+			validator(value: string) {
 				return ['default', 'dark'].includes(value);
 			},
 		},

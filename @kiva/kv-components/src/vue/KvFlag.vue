@@ -29,9 +29,11 @@
 	</div>
 </template>
 
-<script>
-const imgImport = import.meta.glob('./flags/**/*.svg', { query: '?url', eager: true });
-const flagUrl = (country, aspectRatio) => imgImport[`./flags/${aspectRatio}/${country.toLowerCase()}.svg`].default;
+<script lang="ts">
+const imgImport = import.meta.glob<Record<string, string>>('./flags/**/*.svg', { query: '?url', eager: true });
+const flagUrl = (country: string, aspectRatio: string) => {
+	return imgImport[`./flags/${aspectRatio}/${country.toLowerCase()}.svg`].default;
+};
 
 export default {
 	name: 'KvFlag',
@@ -57,7 +59,7 @@ export default {
 		aspectRatio: {
 			type: String,
 			default: '4x3',
-			validator: (value) => ['4x3', '1x1'].includes(value),
+			validator: (value: string) => ['4x3', '1x1'].includes(value),
 		},
 		/**
 		 * Show the name of the country next to the flag

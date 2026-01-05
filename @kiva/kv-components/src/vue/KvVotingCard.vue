@@ -67,7 +67,7 @@
 			<kv-progress-bar
 				v-if="showPercentage"
 				class="tw-flex-grow"
-				:aria-label="'Percent of votes for ' + category"
+				:label="'Percent of votes for ' + category"
 				:value="percentage"
 			/>
 			<div
@@ -87,7 +87,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiInformation } from '@mdi/js';
 import { computed } from 'vue';
 import KvProgressBar from './KvProgressBar.vue';

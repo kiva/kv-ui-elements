@@ -1,3 +1,7 @@
+import type MapLibreGl from 'maplibre-gl';
+
+declare const maplibregl: typeof MapLibreGl;
+
 /**
  * Code to generate random coordinates
  * */
@@ -24,12 +28,16 @@ const mapColors = [
 
 /**
  * Given 2 coordinates and the number of steps return an array of coordinates in between
- * @param {Array} startCoordinates - starting coordinates in the format [latitude, longitude]
- * @param {Array} endCoordinates - ending coordinates in the format [latitude, longitude]
- * @param {Number} numberOfSteps - number of steps to take between the start and end coordinates
- * @returns {Array} - array of coordinates in the format [[latitude, longitude], [latitude, longitude]]
+ * @param startCoordinates - starting coordinates in the format [latitude, longitude]
+ * @param endCoordinates - ending coordinates in the format [latitude, longitude]
+ * @param numberOfSteps - number of steps to take between the start and end coordinates
+ * @returns - array of coordinates in the format [[latitude, longitude], [latitude, longitude]]
 */
-export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOfSteps) {
+export function getCoordinatesBetween(
+	startCoordinates: number[],
+	endCoordinates: number[],
+	numberOfSteps: number,
+): number[][] {
 	// All invalid inputs should return an empty array
 	if (!startCoordinates
 		|| !endCoordinates
@@ -49,7 +57,7 @@ export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOf
 	let i = 0;
 	let j = 0;
 
-	const lineCoordinates = [];
+	const lineCoordinates: number[][] = [];
 
 	while (Math.abs(i) < Math.abs(diffX) || Math.abs(j) < Math.abs(diffY)) {
 		lineCoordinates.push([startCoordinates[0] + i, startCoordinates[1] + j]);
@@ -72,14 +80,18 @@ export function getCoordinatesBetween(startCoordinates, endCoordinates, numberOf
  * This function animates a series of lines from an array of starting coordinates to a single end point
  * then animates removing the line from the origin to the end point
  * returns a promise when the animation is complete
- * @param {Map Instance} mapInstance - the map instance
- * @param {Array} originPoints - array of starting coordinates in the format [[latitude, longitude], [latitude, longitude]]
- * @param {Array} endPoint - single end point in the format [latitude, longitude]
- * @returns {Promise} - promise that resolves when the animation is complete
+ * @param mapInstance - the map instance
+ * @param originPoints - array of starting coordinates in the format [[latitude, longitude], [latitude, longitude]]
+ * @param endPoint - single end point in the format [latitude, longitude]
+ * @returns - promise that resolves when the animation is complete
 */
-function animateLines(mapInstance, originPoints, endPoint) {
+function animateLines(
+	mapInstance: any,
+	originPoints: number[][],
+	endPoint: number[],
+): Promise<void> {
 	const speedFactor = 100; // number of frames per degree, controls animation speed
-	return new Promise((resolve) => {
+	return new Promise<void>((resolve) => {
 		// EndPoint
 		mapInstance.addSource('endpoint', {
 			type: 'geojson',
@@ -91,7 +103,7 @@ function animateLines(mapInstance, originPoints, endPoint) {
 			},
 		});
 
-		const lineFlight = (startCoordinates, endCoordinates, index, lastLine = false) => {
+		const lineFlight = (startCoordinates: number[], endCoordinates: number[], index: number, lastLine = false) => {
 			const lineCoordinates = getCoordinatesBetween(startCoordinates, endCoordinates, speedFactor);
 			let animationCounter = 0;
 
@@ -184,7 +196,10 @@ function animateLines(mapInstance, originPoints, endPoint) {
  * @returns {void}
  * */
 export function generateMapMarkers(mapInstance, borrowerPoints) {
-	const geojson = {
+	const geojson: {
+		type: string;
+		features?: any[];
+	} = {
 		type: 'FeatureCollection',
 	};
 
@@ -216,7 +231,6 @@ export function generateMapMarkers(mapInstance, borrowerPoints) {
 
 		// add marker to map
 		// maplibregl should be defined in the KvMap component
-		// eslint-disable-next-line no-undef
 		new maplibregl.Marker({ element: el })
 			.setLngLat(marker.geometry.coordinates)
 			.addTo(mapInstance);
@@ -233,7 +247,7 @@ export function generateMapMarkers(mapInstance, borrowerPoints) {
  * @returns {Promise} - promise that resolves when the animation is complete
  * */
 export function animationCoordinator(mapInstance, borrowerPoints) {
-	return new Promise((resolve) => {
+	return new Promise<void>((resolve) => {
 		const destinationPoints = borrowerPoints.map((borrower) => borrower.location);
 		const totalNumberOfPoints = destinationPoints.length;
 		let currentPointIndex = 0;
@@ -285,14 +299,14 @@ export function animationCoordinator(mapInstance, borrowerPoints) {
 
 /**
  * This function returns an array of not overlapped intervals between min and max
- * @param {Integer} min - min number of the interval
- * @param {Integer} max - max number of the interval
- * @param {Integer} nbIntervals - number of intervals
- * @returns {Array} - array with intervals
+ * @param min - min number of the interval
+ * @param max - max number of the interval
+ * @param nbIntervals - number of intervals
+ * @returns - array with intervals
  * */
-export const getLoansIntervals = (min, max, nbIntervals) => {
+export const getLoansIntervals = (min: number, max: number, nbIntervals: number): number[][] => {
 	const size = Math.floor((max - min) / nbIntervals);
-	const result = [];
+	const result: number[][] = [];
 
 	if (size <= 0) return [[min, max]];
 
@@ -323,13 +337,19 @@ export const getLoansIntervals = (min, max, nbIntervals) => {
 
 /**
  * This function returns the color of the country based on the number of loans
- * @param {Integer} lenderLoans - number of loans per country
- * @param {Array} countriesData - data of countries
- * @param {Object} kvTokensPrimitives - kv tokens for colors
- * @returns {String} - color of the country
+ * @param lenderLoans - number of loans per country
+ * @param countriesData - data of countries
+ * @param kvTokensPrimitives - kv tokens for colors
+ * @param defaultBaseColor - default base color
+ * @returns - color of the country
  * */
-export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives, defaultBaseColor) => {
-	const loanCountsArray = [];
+export const getCountryColor = (
+	lenderLoans: number,
+	countriesData: any[],
+	kvTokensPrimitives: any,
+	defaultBaseColor: string,
+): string => {
+	const loanCountsArray: number[] = [];
 	countriesData.forEach((country) => {
 		loanCountsArray.push(country.value);
 	});
@@ -338,7 +358,8 @@ export const getCountryColor = (lenderLoans, countriesData, kvTokensPrimitives, 
 	const intervals = getLoansIntervals(1, maxNumLoansToOneCountry, 6);
 
 	if (intervals.length === 1) {
-		const [inf, sup] = intervals[0]; // eslint-disable-line no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const [_inf, sup] = intervals[0];
 
 		for (let i = 0; i < sup; i += 1) {
 			const loansNumber = i + 1;
