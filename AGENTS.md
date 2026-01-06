@@ -31,6 +31,7 @@ Commands can be run from the root or within specific packages:
 Each package has its own detailed AI instructions in its `AGENTS.md` file:
 
 - **[@kiva/kv-components/AGENTS.md](@kiva/kv-components/AGENTS.md)** - Component development patterns, testing, and Storybook
+- **[@kiva/kv-tokens/AGENTS.md](@kiva/kv-tokens/AGENTS.md)** - Design token system and Tailwind CSS configuration
 
 ## General Guidelines
 
@@ -47,5 +48,4 @@ The following packages need their own `AGENTS.md` files created:
 - [ ] @kiva/kv-loan-filters
 - [ ] @kiva/kv-analytics
 - [ ] @kiva/kv-activity-feed
-- [ ] @kiva/kv-tokens
 - [ ] @kiva/vite-plugin-vue-lib-css
