@@ -19,13 +19,12 @@ Accessible UI component library built with Vue 3 Composition API, Tailwind CSS, 
 
 ### Component Structure
 
-Components follow Vue 3 Composition API with Options API structure:
+Components use Vue 3 Composition API with two supported patterns:
 
-- Use `export default { setup() }` pattern, NOT `<script setup>` syntax
-- This pattern allows named exports of types, interfaces, or utility functions alongside the component
+- **`<script setup>` syntax** (recommended for new components) - Modern, concise syntax for Vue 3 Composition API
+- **`export default { setup() }` pattern** (used in existing components) - Allows named exports of types, interfaces, or utility functions alongside the component
 - Components located in [src/vue/](src/vue/)
 - **ALL new components must be exported** in [src/vue/index.ts](src/vue/index.ts)
-- Export named types/interfaces/functions when they're needed by component consumers
 - Reference examples: [KvButton.vue](src/vue/KvButton.vue), [KvCarousel.vue](src/vue/KvCarousel.vue), [KvExpandable.vue](src/vue/KvExpandable.vue)
 
 ### Key Patterns
