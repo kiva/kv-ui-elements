@@ -9,10 +9,11 @@
 		@click="onClick"
 	>
 		<span
-			class="tw-bg-primary tw-flex tw-items-center tw-justify-center"
+			class="tw-flex tw-items-center tw-justify-center tw-transition-colors tw-duration-200"
 			:class="[
 				borderClass,
 				radiusClass,
+				backgroundClasses,
 				{
 					'tw-w-4 tw-h-4': size === 'small',
 					'tw-w-5 tw-h-5': size === 'medium',
@@ -31,6 +32,7 @@
 <script lang="ts">
 import {
 	ref,
+	computed,
 } from 'vue';
 import { mdiDotsVertical } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -87,6 +89,30 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Default background color. Use 'bare' for no background, or any Tailwind bg class
+		 * @example 'bare', 'tw-bg-gray-200', 'tw-bg-brand-500'
+		 */
+		defaultBackground: {
+			type: String,
+			default: 'bare',
+		},
+		/**
+		 * Hover background color. Use 'bare' for no background, or any Tailwind bg class
+		 * @example 'bare', 'hover:tw-bg-gray-200', 'hover:tw-bg-brand-500'
+		 */
+		hoverBackground: {
+			type: String,
+			default: 'hover:tw-bg-gray-200',
+		},
+		/**
+		 * Active/pressed background color. Use 'bare' for no background, or any Tailwind bg class
+		 * @example 'bare', 'active:tw-bg-gray-300', 'active:tw-bg-brand-600'
+		 */
+		activeBackground: {
+			type: String,
+			default: 'active:tw-bg-gray-300',
+		},
 	},
 	emits: [
 		'click',
@@ -100,9 +126,31 @@ export default {
 			}
 		};
 
+		const backgroundClasses = computed(() => {
+			const classes = [];
+
+			// Default background
+			if (props.defaultBackground !== 'bare') {
+				classes.push(props.defaultBackground);
+			}
+
+			// Hover background
+			if (props.hoverBackground !== 'bare') {
+				classes.push(props.hoverBackground);
+			}
+
+			// Active background
+			if (props.activeBackground !== 'bare') {
+				classes.push(props.activeBackground);
+			}
+
+			return classes;
+		});
+
 		return {
 			buttonRef,
 			onClick,
+			backgroundClasses,
 		};
 	},
 };
