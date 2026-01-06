@@ -2,18 +2,18 @@
 
 Accessible UI component library built with Vue 3 Composition API, Tailwind CSS, and Storybook.
 
-## TODO: Upcoming Changes
-
-- [ ] **Update for TypeScript migration** - This file will need significant updates once the TypeScript conversion is complete. Key sections to update: Technology Stack, Component Structure patterns, prop definitions (TypeScript interfaces instead of JSDoc), file naming conventions (.ts/.tsx extensions), ESLint configuration, and test patterns.
-
 ## Technology Stack
 
 - **Vue 3** - Composition API (using `setup()` function, NOT `<script setup>`)
-- **JavaScript** - Pure JS, no TypeScript
+- **TypeScript** - All components and utilities use TypeScript with type definitions
 - **Tailwind CSS** - Custom `tw-` prefix for all utility classes
 - **Vite** - Build tool configured for library mode
 - **Jest + Vue Testing Library** - Testing framework
-- **Storybook 8** - Component documentation and development
+- **Storybook 10** - Component documentation and development
+
+## Getting Started
+
+**Always run `nvm use` when working in this repo** to ensure you're using the correct Node.js version specified in [.nvmrc](../../../.nvmrc).
 
 ## Component Development Patterns
 
@@ -22,14 +22,17 @@ Accessible UI component library built with Vue 3 Composition API, Tailwind CSS, 
 Components follow Vue 3 Composition API with Options API structure:
 
 - Use `export default { setup() }` pattern, NOT `<script setup>` syntax
+- This pattern allows named exports of types, interfaces, or utility functions alongside the component
 - Components located in [src/vue/](../src/vue/)
+- **ALL new components must be exported** in [src/vue/index.ts](../src/vue/index.ts)
+- Export named types/interfaces/functions when they're needed by component consumers
 - Reference examples: [KvButton.vue](../src/vue/KvButton.vue), [KvCarousel.vue](../src/vue/KvCarousel.vue), [KvExpandable.vue](../src/vue/KvExpandable.vue)
 
 ### Key Patterns
 
-1. **Props** - Define with JSDoc for Storybook documentation
+1. **Props** - Define with TypeScript type annotations and JSDoc for Storybook documentation
 2. **Composition API** - Use `ref`, `computed`, `toRefs`, `onMounted` from Vue
-3. **Utilities** - See [attrs.js](../src/utils/attrs.js) for splitting attrs/listeners
+3. **Utilities** - See [attrs.ts](../src/utils/attrs.ts) for splitting attrs/listeners
 4. **Slots** - Provide flexible content projection
 5. **v-model** - Use `modelValue` prop and `update:modelValue` emit for Vue 3
 6. **Accessibility** - ARIA labels, semantic HTML, keyboard navigation required
@@ -58,13 +61,16 @@ See [.eslintrc.cjs](../.eslintrc.cjs) for full rules:
 - **Indentation**: Tabs (NOT spaces)
 - **Max line length**: 120 characters
 - **Vue rules**: Vue 3 recommended + no self-closing HTML elements
+- **TypeScript**: Uses `@typescript-eslint/parser` and `@vue/eslint-config-typescript`
 - **Path aliases**: Use `#components`, `#utils`, `#fixtures` imports
+- **File extensions**: Import resolver configured for `.ts`, `.js`, `.json`, `.vue`
 
 ### File Naming Conventions
 
-- Components: `KvComponentName.vue` (PascalCase in [src/vue/](../src/vue/))
-- Tests: `ComponentName.spec.js` (in [tests/unit/specs/components/](../tests/unit/specs/components/))
-- Stories: `ComponentName.stories.js` (in [src/vue/stories/](../src/vue/stories/))
+- Components: `KvComponentName.vue` (PascalCase in [src/vue/](../src/vue/) with `<script lang="ts">`)
+- Utilities: `utilityName.ts` (camelCase in [src/utils/](../src/utils/))
+- Tests: `ComponentName.spec.js` or `ComponentName.spec.ts` (in [tests/unit/specs/components/](../tests/unit/specs/components/))
+- Stories: `ComponentName.stories.js` or `ComponentName.stories.ts` (in [src/vue/stories/](../src/vue/stories/))
 
 ## Testing Requirements
 
@@ -73,6 +79,7 @@ See [.eslintrc.cjs](../.eslintrc.cjs) for full rules:
 - **Jest** configured in [jest.config.cjs](../jest.config.cjs)
 - **Vue Testing Library** for component testing
 - **jest-axe** for automated accessibility testing (MANDATORY)
+- **Test files**: Supports both `.spec.js` and `.spec.ts` extensions
 
 ### Test Pattern
 
@@ -96,9 +103,9 @@ npm run lint  # ESLint check
 
 ### Configuration
 
-- **Version**: 8.4.7
+- **Version**: 10.1.10
 - **Config**: [src/vue/.storybook/main.js](../src/vue/.storybook/main.js)
-- **Addons**: a11y, docs, essentials, storysource, viewport
+- **Addons**: a11y, docs, links
 - **Port**: 6006
 
 ### Story Format (CSF)
@@ -109,6 +116,7 @@ Reference [src/vue/stories/KvButton.stories.js](../src/vue/stories/KvButton.stor
 2. Create `Template` function returning component setup
 3. Export story variations binding Template
 4. Configure `args` for each variation
+5. Stories can be written in JavaScript or TypeScript (`.stories.js` or `.stories.ts`)
 
 ### JSDoc for Storybook
 
@@ -125,7 +133,7 @@ npm run build-storybook  # Build static Storybook
 
 ### Vite Configuration
 
-See [vite.config.js](../vite.config.js):
+See [vite.config.ts](../vite.config.ts):
 
 - **Library mode** with ES modules output
 - **No bundling** - preserves file structure
@@ -142,11 +150,12 @@ npm run build     # Vite library build
 ## Component Creation Workflow
 
 1. Create component in [src/vue/](../src/vue/) following patterns in [KvButton.vue](../src/vue/KvButton.vue)
-2. Write Storybook story in [src/vue/stories/](../src/vue/stories/) following [KvButton.stories.js](../src/vue/stories/KvButton.stories.js)
-3. Write tests in [tests/unit/specs/components/](../tests/unit/specs/components/) following [KvButton.spec.js](../tests/unit/specs/components/KvButton.spec.js)
-4. Ensure jest-axe accessibility tests pass
-5. Run `npm run test` to validate linting and tests
-6. Review in Storybook with `npm run storybook`
+2. **Export the component** in [src/vue/index.ts](../src/vue/index.ts) - use `export * from` for named exports of types/interfaces
+3. Write Storybook story in [src/vue/stories/](../src/vue/stories/) following [KvButton.stories.js](../src/vue/stories/KvButton.stories.js)
+4. Write tests in [tests/unit/specs/components/](../tests/unit/specs/components/) following [KvButton.spec.js](../tests/unit/specs/components/KvButton.spec.js)
+5. Ensure jest-axe accessibility tests pass
+6. Run `npm run test` to validate linting and tests
+7. Review in Storybook with `npm run storybook`
 
 ## Design System Integration
 

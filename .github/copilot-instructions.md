@@ -34,7 +34,7 @@ Each package has its own detailed AI instructions in its `.github/copilot-instru
 
 ## General Guidelines
 
-- **Node.js**: >= 18
+- **Node.js**: Version specified in [.nvmrc](../.nvmrc) - Always run `nvm use` when working in this repo
 - **npm**: >= 10
 - **Commit conventions**: Follows [@commitlint/config-conventional](../commitlint.config.js)
 - **Pre-commit hooks**: Husky runs lint-staged on TypeScript, JavaScript, and Vue files
