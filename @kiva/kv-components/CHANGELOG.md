@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.0.1...@kiva/kv-components@8.0.2) (2026-01-07)
+
+
+### Bug Fixes
+
+* ensure lend cta has correct borders ([a521800](https://github.com/kiva/kv-ui-elements/commit/a52180058e81569d64e7837e651b806c41890561))
+
+
+
+
+
 ## [8.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.0.0...@kiva/kv-components@8.0.1) (2026-01-06)
 
 **Note:** Version bump only for package @kiva/kv-components
