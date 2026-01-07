@@ -876,7 +876,7 @@ export default {
 
 <style lang="postcss" scoped>
 .amountDropdownWrapper :deep(select) {
-    border-radius: 14px 0 0 14px;
+    border-radius: 14px 0 0 14px !important;
 }
 
 .lend-again :deep(span) {
