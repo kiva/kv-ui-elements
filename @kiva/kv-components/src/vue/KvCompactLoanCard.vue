@@ -2,12 +2,25 @@
 	<div
 		class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
         tw-bg-white tw-rounded-md tw-shadow-lg tw-w-full"
+		:class="{'tw-relative': showCloseButton, '!tw-p-1.5': showLightView }"
 	>
+		<button
+			v-if="showCloseButton"
+			class="tw-absolute tw--top-1 tw--right-1 tw-p-0.5 tw-bg-white tw-rounded-full
+				tw-w-2.5 tw-h-2.5 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-drop-shadow-sm"
+			@click="handleCloseButton"
+		>
+			<kv-material-icon
+				:icon="mdiClose"
+				class="tw-w-1.5 tw-h-1.5"
+			/>
+		</button>
 		<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
 			<!-- Image and Content -->
 			<div
 				class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover"
-				style="height: 6.75rem; max-height: 6.75rem;"
+				:class="{ '!tw-gap-1': showLightView }"
+				:style="customStyle"
 			>
 				<div class="tw-flex-shrink-0 tw-overflow-hidden">
 					<component
@@ -18,10 +31,11 @@
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex"
 						aria-label="Borrower image"
-						@click.native="clickReadMore('Photo', $event)"
+						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
 							class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
+							:class="{ '!tw-w-7.5 !tw-h-7.5': showLightView }"
 							style="width: 100px; height: 100px;"
 							:alt="`Photo of ${borrowerName}`"
 							:aspect-ratio="1"
@@ -34,6 +48,7 @@
 				</div>
 				<div
 					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
+					:class="{'!tw-gap-0.5': showLightView}"
 				>
 					<div
 						v-if="businessName"
@@ -47,7 +62,7 @@
 							:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 							class="tw-no-underline hover:tw-underline focus:tw-no-underline"
 							aria-label="Business name"
-							@click.native="clickReadMore('Business', $event)"
+							@click="clickReadMore('Business', $event)"
 						>
 							<h3 class="tw-text-primary !tw-font-medium tw-text-base tw-leading-normal tw-truncate">
 								{{ businessName }}
@@ -77,7 +92,7 @@
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
 						aria-label="Loan tag"
-						@click.native="clickReadMore('Tag', $event)"
+						@click="clickReadMore('Tag', $event)"
 					>
 						<kv-loan-tag
 							v-if="showTags && !isLoading"
@@ -93,7 +108,7 @@
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
 						aria-label="Loan use"
-						@click.native="clickReadMore('Use', $event)"
+						@click="clickReadMore('Use', $event)"
 					>
 						<div
 							v-if="isLoading"
@@ -120,6 +135,8 @@
 								:distribution-model="distributionModel"
 								:bold-name="true"
 								:country="formattedLocation"
+								:show-read-more="showLightView"
+								:truncate-words-number="truncateWordsNumber"
 								class="tw-text-small tw-leading-tight"
 							/>
 						</div>
@@ -144,8 +161,10 @@
 
 		<!-- Progress and CTA Section -->
 		<div
-			class="tw-flex tw-items-end tw-w-full tw-mt-1"
-			:class="{ 'tw-gap-1': sharesAvailable }"
+			class="tw-flex tw-items-center tw-justify-between tw-w-full tw-mt-1"
+			:class="
+				{ 'tw-gap-1': sharesAvailable }
+			"
 		>
 			<!-- Loading State -->
 			<template v-if="!hasProgressData">
@@ -179,7 +198,7 @@
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-progress tw-no-underline tw-block"
 						aria-label="Loan progress"
-						@click.native="clickReadMore('Progress', $event)"
+						@click="clickReadMore('Progress', $event)"
 					>
 						<kv-loan-progress-group
 							id="loanProgress"
@@ -191,7 +210,25 @@
 				</div>
 
 				<!-- CTA Section: fixed width, aligned right -->
+				<button
+					v-if="showLightView"
+					class="tw-ml-2"
+					@click="clickReadMore('View', $event)"
+				>
+					<span
+						class="tw-p-1 tw-rounded-l-sm tw-border tw-border-gray-100 tw-border-r-0"
+					>
+						${{ customAmountLent }}
+					</span>
+					<span
+						class="tw-bg-gray-100 tw-px-1.5 tw-py-1 tw-rounded-r-sm tw-border tw-border-gray-100
+							tw-text-action tw-font-medium hover:tw-underline tw-text-center tw-cursor-pointer"
+					>
+						View
+					</span>
+				</button>
 				<div
+					v-else
 					class="tw-flex-shrink-0 loan-card-cta"
 					:class="{ 'tw-w-full': !sharesAvailable }"
 					style="height: 40px;"
@@ -230,7 +267,9 @@
 import gql from 'graphql-tag';
 import numeral from 'numeral';
 import { computed } from 'vue';
-import { mdiMapMarker, mdiHome, mdiLink } from '@mdi/js';
+import {
+	mdiMapMarker, mdiHome, mdiLink, mdiClose,
+} from '@mdi/js';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
@@ -242,7 +281,6 @@ import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanCallouts from './KvLoanCallouts.vue';
 import KvLendCta, { KV_LEND_CTA_FRAGMENT, KV_LEND_CTA_USER_FRAGMENT } from './KvLendCta.vue';
-import KvLoanBookmark, { KV_LOAN_BOOKMARK_FRAGMENT } from './KvLoanBookmark.vue';
 import KvLoanProgressGroup from './KvLoanProgressGroup.vue';
 import KvLoanTag, { KV_LOAN_TAG_FRAGMENT } from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
@@ -285,10 +323,8 @@ export const KV_COMPACT_LOAN_CARD_USER_FRAGMENT = gql`
 	fragment KvCompactLoanCardUser on LoanBasic {
 		id
 		...KvLendCtaUser
-		...KvLoanBookmark
 	}
 	${KV_LEND_CTA_USER_FRAGMENT}
-	${KV_LOAN_BOOKMARK_FRAGMENT}
 `;
 
 export default {
@@ -301,7 +337,6 @@ export default {
 		KvLendCta,
 		KvLoanTag,
 		KvLoanCallouts,
-		KvLoanBookmark,
 		KvLoanTeamPick,
 		KvLoanProgressGroup,
 	},
@@ -341,10 +376,6 @@ export default {
 		basketItems: {
 			type: Array,
 			default: () => ([]),
-		},
-		isBookmarked: {
-			type: Boolean,
-			default: false,
 		},
 		kvTrackFunction: {
 			type: Function,
@@ -426,7 +457,26 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		showLightView: {
+			type: Boolean,
+			default: false,
+		},
+		truncateWordsNumber: {
+			type: Number,
+			default: 0,
+		},
+		showCloseButton: {
+			type: Boolean,
+			default: false,
+		},
+		customAmountLent: {
+			type: String,
+			default: '25',
+		},
 	},
+	emits: [
+		'close-button',
+	],
 	setup(props, { emit }) {
 		const {
 			allDataLoaded,
@@ -455,10 +505,6 @@ export default {
 			clickReadMore,
 		} = loanCardMethods(props, emit);
 
-		const trackWebsiteClick = () => {
-			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
-		};
-
 		const formattedWebsite = computed(() => {
 			if (!props.website) {
 				return '';
@@ -469,6 +515,21 @@ export default {
 			}
 			return `https://${url}`;
 		});
+
+		const customStyle = computed(() => {
+			const height = props.showLightView ? 'auto' : '6.75rem';
+			const maxHeight = props.showLightView ? 'none' : '6.75rem';
+
+			return { height, maxHeight };
+		});
+
+		const trackWebsiteClick = () => {
+			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
+		};
+
+		const handleCloseButton = (event) => {
+			emit('close-button', event);
+		};
 
 		return {
 			allDataLoaded,
@@ -490,13 +551,16 @@ export default {
 			mdiMapMarker,
 			mdiHome,
 			mdiLink,
+			mdiClose,
 			readMorePath,
 			state,
 			tag,
 			unreservedAmount,
 			sharesAvailable,
+			customStyle,
 			clickReadMore,
 			trackWebsiteClick,
+			handleCloseButton,
 		};
 	},
 	computed: {

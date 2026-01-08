@@ -7,11 +7,11 @@
 		<kv-ui-button
 			v-if="isInBasket"
 			variant="secondary"
-			class="tw-inline-flex tw-flex-1 tw-w-full"
+			class="tw-inline-flex tw-flex-1 tw-w-full tw-cursor-pointer"
 			data-testid="bp-lend-cta-checkout-button"
 			:to="!externalLinks ? '/basket' : undefined"
 			:href="externalLinks ? '/basket' : undefined"
-			@click.native="clickSecondaryButton($event)"
+			@click="clickSecondaryButton($event)"
 		>
 			{{ loanInBasketButtonText }}
 		</kv-ui-button>
@@ -101,7 +101,7 @@
 								}"
 								aria-label="Lend amount"
 								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
+								@click.stop="clickDropdown"
 							>
 								<option
 									v-for="priceOption in presetDropdownPrices"
@@ -127,7 +127,7 @@
 								}"
 								aria-label="Lend amount"
 								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
+								@click.stop="clickDropdown"
 							>
 								<option
 									v-for="priceOption in presetDropdownPrices"
@@ -192,7 +192,7 @@
 								}"
 								aria-label="Lend amount"
 								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
+								@click.stop="clickDropdown"
 							>
 								<option
 									v-for="priceOption in presetDropdownPrices"
@@ -218,7 +218,7 @@
 								}"
 								aria-label="Lend amount"
 								@update:modelValue="trackLendAmountSelection"
-								@click.native.stop="clickDropdown"
+								@click.stop="clickDropdown"
 							>
 								<option
 									v-for="priceOption in presetDropdownPrices"
@@ -282,7 +282,7 @@
 						}"
 						aria-label="Lend amount"
 						@update:modelValue="trackLendAmountSelection"
-						@click.native.stop="clickDropdown"
+						@click.stop="clickDropdown"
 					>
 						<option
 							v-for="priceOption in presetDropdownPrices"
@@ -306,7 +306,7 @@
 						style="border-radius: 14px 0 0 14px;"
 						aria-label="Lend amount"
 						@update:modelValue="trackLendAmountSelection"
-						@click.native.stop="clickDropdown"
+						@click.stop="clickDropdown"
 					>
 						<option
 							v-for="priceOption in prices"
