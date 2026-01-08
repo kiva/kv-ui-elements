@@ -27,7 +27,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, watch } from 'vue';
 import { mdiChevronDown } from '@mdi/js';
 import { useAttrs } from '../utils/attrs';

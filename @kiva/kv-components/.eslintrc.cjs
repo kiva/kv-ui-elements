@@ -5,9 +5,16 @@ module.exports = {
 		browser: true,
 		node: true,
 	},
+	parser: 'vue-eslint-parser',
+	parserOptions: {
+		parser: '@typescript-eslint/parser',
+		ecmaVersion: 2020,
+		sourceType: 'module',
+	},
 	extends: [
 		'../../.eslintrc.cjs',
 		'plugin:vue/recommended',
+		'@vue/eslint-config-typescript',
 	],
 	ignorePatterns: [
 		'dist/*',
@@ -15,6 +22,7 @@ module.exports = {
 	],
 	plugins: [
 		'vue',
+		'@typescript-eslint',
 	],
 	settings: {
 		'import/resolver': {
@@ -37,5 +45,11 @@ module.exports = {
 			},
 		}],
 		'import/prefer-default-export': 'off',
+		// Disable file extension requirement for TypeScript files
+		'import/extensions': ['error', 'ignorePackages', {
+			'js': 'never',
+			'ts': 'never',
+			'vue': 'always',
+		}],
 	},
 };

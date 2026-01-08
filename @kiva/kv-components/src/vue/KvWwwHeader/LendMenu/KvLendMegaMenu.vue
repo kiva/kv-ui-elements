@@ -234,14 +234,26 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { mdiArrowRight, mdiChevronLeft } from '@mdi/js';
 import { computed, ref } from 'vue';
+import type { PropType } from 'vue';
 import KvLoadingPlaceholder from '../../KvLoadingPlaceholder.vue';
 import KvGrid from '../../KvGrid.vue';
 import KvMaterialIcon from '../../KvMaterialIcon.vue';
 import KvLendMenuCountryList from './KvLendMenuCountryList.vue';
 import KvLendMenuSearchList from './KvLendMenuSearchList.vue';
+import type { LendMenuSearch } from './KvLendMenuSearchList.vue';
+
+export interface Category {
+	name: string;
+	url: string;
+}
+
+export interface Region {
+	name: string;
+	countries: any[];
+}
 
 export default {
 	components: {
@@ -253,7 +265,7 @@ export default {
 	},
 	props: {
 		categories: {
-			type: Array,
+			type: Array as PropType<Category[]>,
 			default: () => [],
 		},
 		favorites: {
@@ -273,11 +285,11 @@ export default {
 			default: null,
 		},
 		regions: {
-			type: Array,
+			type: Array as PropType<Region[]>,
 			default: () => [],
 		},
 		searches: {
-			type: Array,
+			type: Array as PropType<LendMenuSearch[]>,
 			default: () => [],
 		},
 		showMGUpsellLink: {
@@ -304,7 +316,7 @@ export default {
 		};
 
 		const computedStyle = computed(() => {
-			const style = { width: '150%' };
+			const style: { width: string; transform?: string } = { width: '150%' };
 			if (sectionOpen.value) {
 				const categoryWidth = categoriesSection.value?.clientWidth ?? 0;
 				style.transform = `translateX(${categoryWidth * -1}px)`;
@@ -313,7 +325,7 @@ export default {
 		});
 
 		const openRegions = computed(() => {
-			return props.regions.filter((region) => isOpenSection(region.name));
+			return props.regions.filter((region: Region) => isOpenSection(region.name));
 		});
 
 		const hasSearches = computed(() => {

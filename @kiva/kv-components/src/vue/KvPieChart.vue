@@ -95,7 +95,7 @@
 	</figure>
 </template>
 
-<script>
+<script lang="ts">
 import numeral from 'numeral';
 import {
 	ref,
@@ -103,8 +103,14 @@ import {
 	toRefs,
 	computed,
 } from 'vue';
+import type { PropType } from 'vue';
 import Alea from '../utils/Alea';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+
+interface PieChartValue {
+	percent: number;
+	[key: string]: any;
+}
 
 // convenience function to get point on circumference of a given circle (from https://codepen.io/grieve/pen/xwGMJp)
 function circumPointFromAngle(cx, cy, r, a) {
@@ -125,7 +131,7 @@ export default {
 			default: true,
 		},
 		values: {
-			type: Array,
+			type: Array as PropType<PieChartValue[]>,
 			default: () => ([]),
 		},
 	},
@@ -156,7 +162,7 @@ export default {
 		});
 
 		const pickColor = (index) => {
-			const rng = new Alea('loans', index, 'kiva');
+			const rng = Alea('loans', index, 'kiva');
 			let color = '#';
 			for (let i = 0; i < 3; i += 1) {
 				color += Math.floor(rng() * 256).toString(16).padStart(2, '0');

@@ -96,7 +96,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	mdiPause,
 	mdiPlay,
@@ -136,7 +136,7 @@ export default {
 		slidesToScroll: {
 			type: String,
 			default: 'auto',
-			validator: (value) => ['visible', 'auto'].indexOf(value) !== -1,
+			validator: (value: string) => ['visible', 'auto'].indexOf(value) !== -1,
 		},
 		/**
 		 * Options for the autoplay plugin - // https://www.embla-carousel.com/plugins/autoplay/#options

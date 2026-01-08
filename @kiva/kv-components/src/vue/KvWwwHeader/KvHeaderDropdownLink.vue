@@ -24,7 +24,7 @@
 	</a>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, getCurrentInstance } from 'vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
@@ -76,7 +76,7 @@ export default {
 
 		const getLinkPosition = () => {
 			if (!props.sendLinkPosition) return null;
-			const linkEl = proxy.$refs[props.refName];
+			const linkEl = proxy.$refs[props.refName] as HTMLElement;
 			if (!linkEl) return null;
 			const linkRect = linkEl.getBoundingClientRect();
 			const centerX = linkRect.left + linkRect.width / 2;

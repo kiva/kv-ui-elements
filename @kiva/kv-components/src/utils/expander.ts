@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
 
-function setInitialStyle(el, { property, delay, easing }) {
+function setInitialStyle(el: HTMLElement, { property, delay, easing }) {
 	el.style.overflow = 'hidden';
 	el.style.transition = `${property} ${delay}ms ${easing}`;
 }
 
-function unsetStyles(el, { property }) {
+function unsetStyles(el: HTMLElement, { property }) {
 	el.style[property] = null;
 	el.style.overflow = null;
 	el.style.transition = null;
 }
 
-export function expand(el, {
+export function expand(el: HTMLElement, {
 	easing = 'ease',
 	delay = 500,
 	done = () => {},
@@ -45,7 +45,7 @@ export function expand(el, {
 	el.style[property] = propValue;
 }
 
-export function collapse(el, {
+export function collapse(el: HTMLElement, {
 	easing = 'ease',
 	delay = 500,
 	done = () => {},

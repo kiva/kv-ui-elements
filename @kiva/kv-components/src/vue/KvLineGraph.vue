@@ -47,8 +47,16 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, toRefs } from 'vue';
+import type { PropType } from 'vue';
+
+interface Point {
+	value: number;
+	label?: string;
+	x?: number;
+	y?: number;
+}
 
 export default {
 	props: {
@@ -56,7 +64,7 @@ export default {
 		 * Array of objects like [{ value: 10, label: '2014' }, { value: 20, label: '2015' }]
 		 */
 		points: {
-			type: Array,
+			type: Array as PropType<Point[]>,
 			required: true,
 		},
 		/**

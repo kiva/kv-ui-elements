@@ -25,7 +25,7 @@ jobs:
         run: npm run prepare-storybook
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
-        uses: chromaui/action@v11.4.0
+        uses: chromaui/action@latest
         # Options required to the GitHub Chromatic Action
         with:
           workingDir: ./@kiva/kv-components

@@ -55,7 +55,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import {
 	onBeforeUnmount,
 	onMounted,
@@ -85,7 +85,7 @@ export default {
 		buttonSize: {
 			type: String,
 			default: 'large',
-			validator(value) {
+			validator(value: string) {
 				return [
 					'small', 'medium', 'large',
 				].includes(value);
@@ -106,7 +106,7 @@ export default {
 		menuPosition: {
 			type: String,
 			default: 'left-aligned',
-			validator(value) {
+			validator(value: string) {
 				return [
 					'left-aligned',
 					'right-aligned',

@@ -39,7 +39,7 @@
 				<img
 					class="tw-max-w-full tw-max-h-full"
 					style="width: inherit; height: inherit; object-fit: inherit;"
-					:src="`${buildUrl(width, height)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
+					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
 					:alt="caption || alt"
 					:loading="loading"
 				>
@@ -103,8 +103,17 @@
 	</figure>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, toRefs } from 'vue';
+import type { PropType } from 'vue';
+
+export interface SourceSize {
+	width: number;
+	height: number;
+	media: string;
+	url?: string;
+}
+
 // Since it's easy for marketing or other to upload massive images to contentful,
 // in order to be performant respectful of our users data plans, and not damage
 // our SEO, we shouldn't send the source image directly to our users.
@@ -133,9 +142,9 @@ export default {
 		fallbackFormat: {
 			type: String,
 			default: 'jpg',
-			validator(value) {
+			validator(value: string) {
 				// The value must match one of these strings
-				return ['jpg', 'png', 'gif'].indexOf(value) !== -1;
+				return value === null || ['jpg', 'png', 'gif'].indexOf(value) !== -1;
 			},
 		},
 		/**
@@ -164,11 +173,11 @@ export default {
 		 * `lazy, eager`
 		* */
 		loading: {
-			type: String,
+			type: String as PropType<'lazy' | 'eager' | null>,
 			default: null,
-			validator(value) {
+			validator(value: string) {
 				// The value must match one of these strings
-				return ['lazy', 'eager'].indexOf(value) !== -1;
+				return value === null || ['lazy', 'eager'].indexOf(value) !== -1;
 			},
 		},
 		/**
@@ -178,7 +187,7 @@ export default {
 		focus: {
 			type: String,
 			default: 'center',
-			validator(value) {
+			validator(value: string) {
 				// The value must match one of these strings
 				// eslint-disable-next-line max-len
 				return ['center', 'top', 'right', 'left', 'bottom', 'top_right', 'top_left', 'bottom_right', 'bottom_left', 'face', 'faces'].indexOf(value) !== -1;
@@ -191,7 +200,7 @@ export default {
 		fit: {
 			type: String,
 			default: 'fill',
-			validator(value) {
+			validator(value: string) {
 				// The value must match one of these strings
 				return ['pad', 'fill', 'scale', 'crop', 'thumb'].indexOf(value) !== -1;
 			},
@@ -208,7 +217,7 @@ export default {
 				}
 		* */
 		sourceSizes: {
-			type: Array,
+			type: Array as PropType<SourceSize[]>,
 			required: false,
 			default: () => [],
 		},
@@ -251,12 +260,12 @@ export default {
 			return src;
 		};
 
-		const setQuality = (imgWidth, imgScale) => {
+		const setQuality = (imgWidth: string | number, imgScale: string) => {
 			if (imgScale === '2x') {
 				return 65;
 			}
 			// Smaller images show a marked degradation at 80 quality so we bump it up to 95
-			if (imgWidth && parseInt(imgWidth, 10) < 200) {
+			if (imgWidth && parseInt(imgWidth.toString(), 10) < 200) {
 				return 95;
 			}
 			return 80;
