@@ -38,7 +38,7 @@
 			:state="`${allSharesReserved ? 'disabled' : ''}`"
 			:to="!externalLinks ? readMorePath : undefined"
 			:href="externalLinks ? readMorePath : undefined"
-			class="tw-mb-0"
+			class="tw-mb-0 tw-cursor-pointer"
 			@click="$emit('show-loan-details', $event)"
 		>
 			<span class="tw-flex tw-items-center">

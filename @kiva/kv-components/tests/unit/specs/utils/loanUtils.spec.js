@@ -6,6 +6,7 @@ import {
 	ERL_COOKIE_NAME,
 	TOP_UP_CAMPAIGN,
 	BASE_CAMPAIGN,
+	truncateStringByWords,
 } from '#utils/loanUtils';
 
 describe('loanUtils', () => {
@@ -432,6 +433,43 @@ describe('loanUtils', () => {
 			const result = getDropdownPriceArray('30.00', true, 25, true);
 
 			expect(result).toEqual(['5', '10', '15', '20', '25', '30']);
+		});
+	});
+
+	describe('truncateStringByWords', () => {
+		it('should return undefined for empty string', () => {
+			expect(truncateStringByWords('', 5)).toBeUndefined();
+		});
+	
+		it('should return original string when truncateWordsNumber is 0 or negative', () => {
+			const text = 'This is a test string';
+			expect(truncateStringByWords(text, 0)).toBe(text);
+			expect(truncateStringByWords(text, -1)).toBe(text);
+		});
+	
+		it('should return original string when word count is less than truncateWordsNumber', () => {
+			const text = 'Short text';
+			expect(truncateStringByWords(text, 5)).toBe(text);
+		});
+	
+		it('should return original string when word count equals truncateWordsNumber', () => {
+			const text = 'This has five words exactly';
+			expect(truncateStringByWords(text, 5)).toBe(text);
+		});
+	
+		it('should truncate string and add ellipsis when word count exceeds truncateWordsNumber', () => {
+			const text = 'This is a very long string with many words';
+			expect(truncateStringByWords(text, 3)).toBe('This is a...');
+		});
+	
+		it('should handle single word truncation', () => {
+			const text = 'One two three four five';
+			expect(truncateStringByWords(text, 1)).toBe('One...');
+		});
+	
+		it('should handle strings with single word', () => {
+			const text = 'SingleWord';
+			expect(truncateStringByWords(text, 5)).toBe('SingleWord');
 		});
 	});
 });

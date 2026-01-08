@@ -46,10 +46,7 @@
 						/>
 					</component>
 				</div>
-				<div
-					class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0"
-					:class="{'!tw-gap-0.5': showLightView}"
-				>
+				<div class="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-flex-1 tw-min-w-0">
 					<div
 						v-if="businessName"
 						class="tw-mb-0.5 tw-w-full"

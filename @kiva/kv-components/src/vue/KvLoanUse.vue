@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
 	<p
-		class="tw-line-clamp-4 tw-cursor-pointer"
+		class="tw-line-clamp-4"
 		v-html="loanUse"
 	></p>
 </template>
@@ -9,6 +9,7 @@
 <script lang="ts">
 import gql from 'graphql-tag';
 import numeral from 'numeral';
+import { truncateStringByWords } from '../utils/loanUtils';
 
 const DIRECT = 'direct';
 
@@ -125,7 +126,7 @@ export default {
 				+ `${this.whySpecialSentence}`;
 
 				if (this.showReadMore) {
-					const truncatedUse = this.truncateByWords(useString);
+					const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
 					useString = `${truncatedUse} `
 					+ '<span class=" tw-text-action tw-underline">read more</span>';
 				}
@@ -144,26 +145,12 @@ export default {
 				+ `${this.whySpecialSentence}`;
 
 			if (this.showReadMore) {
-				const truncatedUse = this.truncateByWords(useString);
+				const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
 				useString = `${truncatedUse} `
 					+ '<span class=" tw-text-action tw-underline">read more</span>';
 			}
 
 			return useString;
-		},
-	},
-	methods: {
-		truncateByWords(str) {
-			if (!str || this.truncateWordsNumber <= 0) return '';
-			const words = str.trim().split(' ');
-			const truncatedWords = words.slice(0, this.truncateWordsNumber);
-			let result = truncatedWords.join(' ');
-
-			if (words.length > this.truncateWordsNumber) {
-				result += '...';
-			}
-
-			return result;
 		},
 	},
 };
