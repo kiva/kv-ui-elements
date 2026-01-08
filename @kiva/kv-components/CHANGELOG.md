@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.0.2...@kiva/kv-components@8.1.0) (2026-01-08)
+
+
+### Features
+
+* light compact loan card variant added ([#762](https://github.com/kiva/kv-ui-elements/issues/762)) ([43525ff](https://github.com/kiva/kv-ui-elements/commit/43525ff8a852e0b76c060030bc273d59c86d2cd9))
+
+
+
+
+
 ## [8.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.0.1...@kiva/kv-components@8.0.2) (2026-01-07)
 
 
