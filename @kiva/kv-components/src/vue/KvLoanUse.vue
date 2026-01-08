@@ -9,6 +9,7 @@
 <script lang="ts">
 import gql from 'graphql-tag';
 import numeral from 'numeral';
+import { truncateStringByWords } from '../utils/loanUtils';
 
 const DIRECT = 'direct';
 
@@ -77,6 +78,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		showReadMore: {
+			type: Boolean,
+			default: false,
+		},
+		truncateWordsNumber: {
+			type: Number,
+			default: 0,
+		},
 	},
 	computed: {
 		helpLanguage() {
@@ -112,20 +121,36 @@ export default {
 			if (this.hideLoanAmount) {
 				const helpVerb = this.useIndicativeHelpText ? this.helpLanguage : 'Help';
 				const capitalizedHelpVerb = helpVerb.charAt(0).toUpperCase() + helpVerb.slice(1);
-				return `${capitalizedHelpVerb} ${this.nameSpan} `
+				let useString = `${capitalizedHelpVerb} ${this.nameSpan} `
 					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
 				+ `${this.whySpecialSentence}`;
+
+				if (this.showReadMore) {
+					const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
+					useString = `${truncatedUse} `
+					+ '<span class=" tw-text-action tw-underline">read more</span>';
+				}
+
+				return useString;
 			}
 
 			const isGroup = this.borrowerCount > 1;
 
-			return `${numeral(this.loanAmount).format('$0,0')} `
+			let useString = `${numeral(this.loanAmount).format('$0,0')} `
 				+ `${this.isDirect ? 'to' : this.helpLanguage} `
 				+ `${isGroup ? 'a member of ' : ''}`
 				+ `${this.nameSpan} `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
 				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
 				+ `${this.whySpecialSentence}`;
+
+			if (this.showReadMore) {
+				const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
+				useString = `${truncatedUse} `
+					+ '<span class=" tw-text-action tw-underline">read more</span>';
+			}
+
+			return useString;
 		},
 	},
 };

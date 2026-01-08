@@ -215,3 +215,24 @@ export function getDropdownPriceArray(
 
 	return priceArray;
 }
+
+/**
+ *	Truncates a string to the specified number of words
+ *
+ * @param str string to be truncated
+ * @param truncateWordsNumber number of words to truncate string to
+ * @returns string truncated to the specified number of words with ellipsis if truncated
+ */
+export function truncateStringByWords(str: string, truncateWordsNumber: number) {
+	if (!str) return;
+	if (truncateWordsNumber <= 0) return str;
+	const words = str.trim().split(' ');
+	const truncatedWords = words.slice(0, truncateWordsNumber);
+	let result = truncatedWords.join(' ');
+
+	if (words.length > truncateWordsNumber) {
+		result += '...';
+	}
+
+	return result;
+}

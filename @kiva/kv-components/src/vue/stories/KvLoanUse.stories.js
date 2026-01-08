@@ -79,3 +79,13 @@ export const IndicativeHelpText = story({
 	useIndicativeHelpText: true,
 	whySpecial: 'It supports organic farming and includes a lower interest rate.',
 });
+
+export const ShowReadMore = story({
+	use: 'buy supplies.',
+	loanAmount: '1000.00',
+	status: 'fundraising',
+	name: 'Bob Smith',
+	whySpecial: 'It supports organic farming and includes a lower interest rate.',
+	showReadMore: true,
+	truncateWordsNumber: 8,
+});

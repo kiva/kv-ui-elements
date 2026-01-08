@@ -12,15 +12,30 @@ const story = (args) => {
 		setup() { return { args: templateArgs }; },
 		template: `
 			<div style="width: 380px; background: #27593cff; padding: 20px;">
+				<kv-compact-loan-card v-bind="args" />
+			</div>
+		`,
+	});
+	template.args = args;
+	return template;
+};
+
+const lightStory = (args) => {
+	const template = (templateArgs, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { KvCompactLoanCard },
+		setup() { return { args: templateArgs }; },
+		template: `
+			<div style="width: 256px;">
 				<kv-compact-loan-card
-				v-bind="args"
-					@show-loan-details="showLoanDetails"
+					v-bind="args"
+					@close-button="closeButtonHandler"
 				/>
 			</div>
 		`,
 		methods: {
-			showLoanDetails() {
-				console.log('show-loan-details');
+			closeButtonHandler() {
+				console.log('close-button clicked');
 			},
 		},
 	});
@@ -30,6 +45,8 @@ const story = (args) => {
 
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
+
+const TRUNCATE_WORDS_NUMBER = 10;
 
 const loan = {
 	id: 1,
@@ -269,6 +286,44 @@ export const ViewLoanFunded = story({
 	kvTrackFunction,
 	photoPath,
 	showViewLoan: true,
+});
+
+export const LightViewLoan = lightStory({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
+});
+
+export const MatchedLightViewLoan = lightStory({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		matchingText: 'Matched by Ebay',
+		matchRatio: 1,
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '200.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
+});
+
+export const LightViewCloseButton = lightStory({
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	showCloseButton: true,
+	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
 export const LendAgain = story({
