@@ -1,30 +1,38 @@
 import {
 	mdiDotsVertical,
-	mdiHeart,
 	mdiClose,
 	mdiMenu,
 	mdiPlus,
 	mdiMinus,
 	mdiChevronRight,
 	mdiChevronLeft,
+	mdiBookmark,
+	mdiBookmarkOutline,
 } from '@mdi/js';
 import KvIconButton from '../KvIconButton.vue';
+import KvIconButtonDocsMdx from './KvIconButtonDocs.mdx';
 
 export default {
 	title: 'KvIconButton',
 	component: KvIconButton,
+	parameters: {
+		docs: {
+			page: KvIconButtonDocsMdx,
+		},
+	},
 	argTypes: {
 		icon: {
 			control: 'select',
 			options: {
 				'Dots Vertical': mdiDotsVertical,
-				Heart: mdiHeart,
 				Close: mdiClose,
 				Menu: mdiMenu,
 				Plus: mdiPlus,
 				Minus: mdiMinus,
 				'Chevron Right': mdiChevronRight,
 				'Chevron Left': mdiChevronLeft,
+				'Bookmark Outline': mdiBookmarkOutline,
+				Bookmark: mdiBookmark,
 			},
 		},
 		size: {
@@ -72,29 +80,58 @@ const Template = (args, { argTypes }) => ({
 });
 
 // Size Variants
-export const Small = Template.bind({});
-Small.args = {
-	size: 'small',
+export const SizeVariants = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvIconButton },
+	setup() { return { args }; },
+	template: `
+		<div class="tw-bg-secondary tw-rounded-md tw-p-6">
+			<div class="tw-flex tw-gap-4 tw-items-center">
+				<div class="tw-text-center">
+					<kv-icon-button
+						size="small"
+						:icon="args.icon"
+						:default-background="args.defaultBackground"
+						@click="onClick"
+					/>
+					<p class="tw-text-small tw-mt-1">Small</p>
+				</div>
+				<div class="tw-text-center">
+					<kv-icon-button
+						size="medium"
+						:icon="args.icon"
+						:default-background="args.defaultBackground"
+						@click="onClick"
+					/>
+					<p class="tw-text-small tw-mt-1">Medium</p>
+				</div>
+				<div class="tw-text-center">
+					<kv-icon-button
+						size="large"
+						:icon="args.icon"
+						:default-background="args.defaultBackground"
+						@click="onClick"
+					/>
+					<p class="tw-text-small tw-mt-1">Large</p>
+				</div>
+			</div>
+		</div>
+	`,
+	methods: {
+		onClick(e) { console.log('Icon button clicked', e); },
+	},
+});
+SizeVariants.args = {
 	icon: mdiDotsVertical,
-};
-
-export const Medium = Template.bind({});
-Medium.args = {
-	size: 'medium',
-	icon: mdiDotsVertical,
-};
-
-export const Large = Template.bind({});
-Large.args = {
-	size: 'large',
-	icon: mdiDotsVertical,
+	defaultBackground: 'tw-bg-white',
 };
 
 // Icon Variants
-export const CloseIcon = Template.bind({});
-CloseIcon.args = {
+export const RoundedSquare = Template.bind({});
+RoundedSquare.args = {
 	size: 'large',
 	icon: mdiClose,
+	defaultBackground: 'tw-bg-white',
 	radiusClass: 'tw-rounded',
 };
 
@@ -103,16 +140,7 @@ export const WithBorder = Template.bind({});
 WithBorder.args = {
 	size: 'large',
 	icon: mdiDotsVertical,
-	borderClass: 'tw-border-2 tw-border-action',
-};
-
-// Rounded Variants
-export const FullyRounded = Template.bind({});
-FullyRounded.args = {
-	size: 'large',
-	icon: mdiPlus,
-	radiusClass: 'tw-rounded-full',
-	borderClass: 'tw-border tw-border-tertiary',
+	borderClass: 'tw-border tw-border-1 tw-border-action',
 };
 
 // Disabled State
@@ -121,34 +149,6 @@ Disabled.args = {
 	size: 'large',
 	icon: mdiDotsVertical,
 	disabled: true,
-};
-
-// Multiple Buttons
-export const MultipleSizes = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { KvIconButton },
-	setup() { return { args }; },
-	template: `
-		<div class="tw-bg-secondary tw-rounded-md tw-p-6 tw-inline-block">
-			<div class="tw-flex tw-gap-2 tw-items-center">
-				<kv-icon-button
-					size="small"
-					:icon="args.icon"
-				/>
-				<kv-icon-button
-					size="medium"
-					:icon="args.icon"
-				/>
-				<kv-icon-button
-					size="large"
-					:icon="args.icon"
-				/>
-			</div>
-		</div>
-	`,
-});
-MultipleSizes.args = {
-	icon: mdiHeart,
 };
 
 // Touch Target Visualization
@@ -165,68 +165,32 @@ export const TouchTargetVisualization = (args, { argTypes }) => ({
 			<div class="tw-flex tw-gap-4 tw-items-center">
 				<div class="tw-text-center">
 					<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-						<kv-icon-button size="small" :icon="args.icon" :default-background="args.defaultBackground" />
+						<kv-icon-button size="small" :icon="args.icon" :default-background="args.defaultBackground" @click="onClick" />
 					</div>
 					<p class="tw-text-small tw-mt-1">Small (16px)</p>
 				</div>
 				<div class="tw-text-center">
 					<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-						<kv-icon-button size="medium" :icon="args.icon" :default-background="args.defaultBackground" />
+						<kv-icon-button size="medium" :icon="args.icon" :default-background="args.defaultBackground" @click="onClick" />
 					</div>
 					<p class="tw-text-small tw-mt-1">Medium (20px)</p>
 				</div>
 				<div class="tw-text-center">
 					<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-						<kv-icon-button size="large" :icon="args.icon" :default-background="args.defaultBackground" />
+						<kv-icon-button size="large" :icon="args.icon" :default-background="args.defaultBackground" @click="onClick" />
 					</div>
 					<p class="tw-text-small tw-mt-1">Large (24px)</p>
 				</div>
 			</div>
 		</div>
 	`,
+	methods: {
+		onClick(e) { console.log('Icon button clicked', e); },
+	},
 });
 TouchTargetVisualization.args = {
 	icon: mdiDotsVertical,
 	defaultBackground: 'tw-bg-white',
-};
-
-// Background State Variants
-export const BareState = Template.bind({});
-BareState.args = {
-	size: 'large',
-	icon: mdiClose,
-	defaultBackground: 'bare',
-	hoverBackground: 'bare',
-	activeBackground: 'bare',
-};
-
-export const DefaultState = Template.bind({});
-DefaultState.args = {
-	size: 'large',
-	icon: mdiClose,
-	defaultBackground: 'bare',
-	hoverBackground: 'tw-bg-gray-200',
-	activeBackground: 'tw-bg-gray-300',
-};
-
-export const PrimaryState = Template.bind({});
-PrimaryState.args = {
-	size: 'large',
-	icon: mdiHeart,
-	iconClass: 'tw-text-primary-inverse',
-	defaultBackground: 'tw-bg-brand-500',
-	hoverBackground: 'tw-bg-brand-600',
-	activeBackground: 'tw-bg-brand-700',
-};
-
-export const SecondaryState = Template.bind({});
-SecondaryState.args = {
-	size: 'large',
-	icon: mdiPlus,
-	defaultBackground: 'tw-bg-white',
-	hoverBackground: 'tw-bg-gray-100',
-	activeBackground: 'tw-bg-gray-200',
-	borderClass: 'tw-border tw-border-tertiary',
 };
 
 // Background States Demo
@@ -247,6 +211,7 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 							default-background="bare"
 							hover-background="bare"
 							active-background="bare"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="medium"
@@ -254,6 +219,7 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 							default-background="bare"
 							hover-background="bare"
 							active-background="bare"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="large"
@@ -261,6 +227,7 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 							default-background="bare"
 							hover-background="bare"
 							active-background="bare"
+							@click="onClick"
 						/>
 					</div>
 				</div>
@@ -272,23 +239,26 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 						<kv-icon-button
 							size="small"
 							:icon="args.icon"
-							default-background="bare"
-							hover-background="tw-bg-gray-200"
-							active-background="tw-bg-gray-300"
+							default-background="tw-bg-white"
+							hover-background="hover:tw-bg-gray-200"
+							active-background="active:tw-bg-gray-300"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="medium"
 							:icon="args.icon"
-							default-background="bare"
-							hover-background="tw-bg-gray-200"
-							active-background="tw-bg-gray-300"
+							default-background="tw-bg-white"
+							hover-background="hover:tw-bg-gray-200"
+							active-background="active:tw-bg-gray-300"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="large"
 							:icon="args.icon"
-							default-background="bare"
-							hover-background="tw-bg-gray-200"
-							active-background="tw-bg-gray-300"
+							default-background="tw-bg-white"
+							hover-background="hover:tw-bg-gray-200"
+							active-background="active:tw-bg-gray-300"
+							@click="onClick"
 						/>
 					</div>
 				</div>
@@ -302,24 +272,27 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 							:icon="args.icon"
 							icon-class="tw-text-primary-inverse"
 							default-background="tw-bg-brand-500"
-							hover-background="tw-bg-brand-600"
-							active-background="tw-bg-brand-700"
+							hover-background="hover:tw-bg-brand-600"
+							active-background="active:tw-bg-brand-700"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="medium"
 							:icon="args.icon"
 							icon-class="tw-text-primary-inverse"
 							default-background="tw-bg-brand-500"
-							hover-background="tw-bg-brand-600"
-							active-background="tw-bg-brand-700"
+							hover-background="hover:tw-bg-brand-600"
+							active-background="active:tw-bg-brand-700"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="large"
 							:icon="args.icon"
 							icon-class="tw-text-primary-inverse"
 							default-background="tw-bg-brand-500"
-							hover-background="tw-bg-brand-600"
-							active-background="tw-bg-brand-700"
+							hover-background="hover:tw-bg-brand-600"
+							active-background="active:tw-bg-brand-700"
+							@click="onClick"
 						/>
 					</div>
 				</div>
@@ -332,32 +305,110 @@ export const BackgroundStatesDemo = (args, { argTypes }) => ({
 							size="small"
 							:icon="args.icon"
 							default-background="tw-bg-white"
-							hover-background="tw-bg-gray-100"
-							active-background="tw-bg-gray-200"
+							hover-background="hover:tw-bg-gray-100"
+							active-background="active:tw-bg-gray-200"
 							border-class="tw-border tw-border-tertiary"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="medium"
 							:icon="args.icon"
 							default-background="tw-bg-white"
-							hover-background="tw-bg-gray-100"
-							active-background="tw-bg-gray-200"
+							hover-background="hover:tw-bg-gray-100"
+							active-background="active:tw-bg-gray-200"
 							border-class="tw-border tw-border-tertiary"
+							@click="onClick"
 						/>
 						<kv-icon-button
 							size="large"
 							:icon="args.icon"
 							default-background="tw-bg-white"
-							hover-background="tw-bg-gray-100"
-							active-background="tw-bg-gray-200"
+							hover-background="hover:tw-bg-gray-100"
+							active-background="active:tw-bg-gray-200"
 							border-class="tw-border tw-border-tertiary"
+							@click="onClick"
 						/>
 					</div>
 				</div>
 			</div>
 		</div>
 	`,
+	methods: {
+		onClick(e) { console.log('Icon button clicked', e); },
+	},
 });
 BackgroundStatesDemo.args = {
 	icon: mdiClose,
+};
+
+// Toggleable Button
+export const ToggleableButton = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvIconButton },
+	setup() { return { args }; },
+	template: `
+		<div class="tw-bg-secondary tw-rounded-md tw-p-6">
+			<div class="tw-space-y-4">
+				<p class="tw-text-primary tw-text-small tw-mb-3">
+					Click the bookmark icon to toggle between saved (filled) and unsaved (outline) states.
+				</p>
+				<div class="tw-flex tw-gap-2 tw-items-center">
+					<kv-icon-button
+						size="small"
+						:icon="args.icon"
+						:active-icon="args.activeIcon"
+						:active-icon-class="args.activeIconClass"
+						:default-background="args.defaultBackground"
+						:hover-background="args.hoverBackground"
+						:active-background="args.activeBackground"
+						toggleable
+						v-model="isToggledSmall"
+						@click="onClick"
+					/>
+					<kv-icon-button
+						size="medium"
+						:icon="args.icon"
+						:active-icon="args.activeIcon"
+						:active-icon-class="args.activeIconClass"
+						:default-background="args.defaultBackground"
+						:hover-background="args.hoverBackground"
+						:active-background="args.activeBackground"
+						toggleable
+						v-model="isToggledMedium"
+						@click="onClick"
+					/>
+					<kv-icon-button
+						size="large"
+						:icon="args.icon"
+						:active-icon="args.activeIcon"
+						:active-icon-class="args.activeIconClass"
+						:default-background="args.defaultBackground"
+						:hover-background="args.hoverBackground"
+						:active-background="args.activeBackground"
+						toggleable
+						v-model="isToggledLarge"
+						@click="onClick"
+					/>
+				</div>
+			</div>
+		</div>
+	`,
+	data() {
+		return {
+			isToggledSmall: false,
+			isToggledMedium: false,
+			isToggledLarge: false,
+		};
+	},
+	methods: {
+		onClick(e) { console.log('Icon button clicked', e); },
+	},
+});
+ToggleableButton.args = {
+	icon: mdiBookmarkOutline,
+	activeIcon: mdiBookmark,
+	activeIconClass: 'tw-text-marigold-2',
+	defaultBackground: 'tw-bg-white',
+	hoverBackground: 'hover:tw-bg-gray-100',
+	activeBackground: 'active:tw-bg-gray-200',
 };
