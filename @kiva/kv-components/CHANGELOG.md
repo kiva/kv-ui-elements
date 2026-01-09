@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.0...@kiva/kv-components@8.1.1) (2026-01-09)
+
+
+### Bug Fixes
+
+* custom loan card padding fix ([#763](https://github.com/kiva/kv-ui-elements/issues/763)) ([e97bead](https://github.com/kiva/kv-ui-elements/commit/e97bead4a659d85381ebb5b8b256b7351cc44134))
+
+
+
+
+
 # [8.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.0.2...@kiva/kv-components@8.1.0) (2026-01-08)
 
 
