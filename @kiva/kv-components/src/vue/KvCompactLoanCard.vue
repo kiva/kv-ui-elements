@@ -122,6 +122,7 @@
 						<div
 							v-else
 							class="loan-card-use-text tw-w-full tw-overflow-hidden"
+							:class="{ '!tw--mt-1': showTags && loan.matchingText && showLightView }"
 						>
 							<kv-loan-use
 								:use="loanUse"
