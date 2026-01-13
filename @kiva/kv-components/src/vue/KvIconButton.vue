@@ -10,21 +10,23 @@
 		@click="onClick"
 	>
 		<span
-			class="tw-flex tw-items-center tw-justify-center tw-transition-colors tw-duration-200"
-			:class="[
-				borderClass,
-				radiusClass,
-				backgroundClasses,
-				{
-					'tw-w-4 tw-h-4': size === 'small',
-					'tw-w-5 tw-h-5': size === 'medium',
-					'tw-w-6 tw-h-6': size === 'large',
-				}
-			]"
+			class="tw-flex tw-items-center tw-justify-center tw-transition-colors tw-duration-200 tw-rounded-full"
+			:class="{
+				'tw-w-4 tw-h-4': size === 'small',
+				'tw-w-5 tw-h-5': size === 'medium',
+				'tw-w-6 tw-h-6': size === 'large',
+				'tw-bg-white hover:tw-bg-gray-100 active:tw-bg-gray-200': showBackground,
+				'tw-border': showBorder,
+				'tw-border-primary': showBorder && borderColor === 'primary',
+				'tw-border-secondary': showBorder && borderColor === 'secondary',
+				'tw-border-tertiary': showBorder && borderColor === 'tertiary',
+			}"
 		>
 			<kv-material-icon
 				:icon="currentIcon"
-				:class="currentIconClass"
+				:class="{
+					'tw-w-2.5 tw-h-2.5': size === 'small',
+				}"
 			/>
 		</span>
 	</button>
@@ -39,6 +41,7 @@ import { mdiDotsVertical } from '@mdi/js';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
 type ButtonSize = 'small' | 'medium' | 'large';
+type BorderColor = 'primary' | 'secondary' | 'tertiary';
 
 const props = defineProps({
 	/**
@@ -60,25 +63,30 @@ const props = defineProps({
 		},
 	},
 	/**
-	 * Border classes to apply to the visual button element
+	 * Whether to show a border on the button
 	 */
-	borderClass: {
-		type: String,
-		default: '',
+	showBorder: {
+		type: Boolean,
+		default: false,
 	},
 	/**
-	 * Border radius classes to apply to the visual button element
+	 * Border color variant. Only applies when showBorder is true.
+	 * `primary, secondary, tertiary`
 	 */
-	radiusClass: {
-		type: String,
-		default: 'tw-rounded-full',
+	borderColor: {
+		type: String as PropType<BorderColor>,
+		default: 'tertiary',
+		validator(value: BorderColor): boolean {
+			return ['primary', 'secondary', 'tertiary'].includes(value);
+		},
 	},
 	/**
-	 * Additional classes to apply to the icon
+	 * Whether to show background on the button
+	 * Applies white background with hover and active states
 	 */
-	iconClass: {
-		type: String,
-		default: '',
+	showBackground: {
+		type: Boolean,
+		default: false,
 	},
 	/**
 	 * Whether the button is disabled
@@ -86,30 +94,6 @@ const props = defineProps({
 	disabled: {
 		type: Boolean,
 		default: false,
-	},
-	/**
-	 * Default background color. Use 'bare' for no background, or any Tailwind bg class
-	 * @example 'bare', 'tw-bg-gray-200', 'tw-bg-brand-500'
-	 */
-	defaultBackground: {
-		type: String,
-		default: 'bare',
-	},
-	/**
-	 * Hover background color. Use 'bare' for no background, or any Tailwind bg class
-	 * @example 'bare', 'hover:tw-bg-gray-200', 'hover:tw-bg-brand-500'
-	 */
-	hoverBackground: {
-		type: String,
-		default: 'hover:tw-bg-gray-200',
-	},
-	/**
-	 * Active/pressed background color. Use 'bare' for no background, or any Tailwind bg class
-	 * @example 'bare', 'active:tw-bg-gray-300', 'active:tw-bg-brand-600'
-	 */
-	activeBackground: {
-		type: String,
-		default: 'active:tw-bg-gray-300',
 	},
 	/**
 	 * Whether the button acts as a toggle (on/off switch)
@@ -132,14 +116,6 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
-	/**
-	 * Additional classes to apply to the icon when toggle is active. Only used when toggleable is true.
-	 * @example 'tw-text-action', 'tw-text-brand-500'
-	 */
-	activeIconClass: {
-		type: String,
-		default: '',
-	},
 });
 
 const emit = defineEmits(['click', 'update:modelValue']);
@@ -158,33 +134,5 @@ const currentIcon = computed((): string => {
 		return props.activeIcon;
 	}
 	return props.icon;
-});
-
-const currentIconClass = computed((): string => {
-	if (props.toggleable && props.modelValue && props.activeIconClass) {
-		return props.activeIconClass;
-	}
-	return props.iconClass;
-});
-
-const backgroundClasses = computed((): string[] => {
-	const classes: string[] = [];
-
-	// Default background
-	if (props.defaultBackground !== 'bare') {
-		classes.push(props.defaultBackground);
-	}
-
-	// Hover background
-	if (props.hoverBackground !== 'bare') {
-		classes.push(props.hoverBackground);
-	}
-
-	// Active background
-	if (props.activeBackground !== 'bare') {
-		classes.push(props.activeBackground);
-	}
-
-	return classes;
 });
 </script>
