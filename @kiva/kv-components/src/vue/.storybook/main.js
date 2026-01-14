@@ -28,10 +28,6 @@ export default {
 		options: {}
 	},
 
-	// docs: {
-    //   defaultName: 'Kv Components'
-    // },
-
 	async viteFinal(config) {
 		// Customize Vite config for Storybook
 		config.resolve.alias = {
