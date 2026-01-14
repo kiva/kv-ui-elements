@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.1...@kiva/kv-components@8.2.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* add tests for KvIconButton ([7e08eea](https://github.com/kiva/kv-ui-elements/commit/7e08eeac4631c02e5dbd751a6e0847a7917e1c3a))
+* code quality improvements and story cleanup ([8644061](https://github.com/kiva/kv-ui-elements/commit/864406144c0b30f5df11d25df21900407bec20cc))
+* correct KvCardFrameDocs config + story usage ([01700f0](https://github.com/kiva/kv-ui-elements/commit/01700f0dde0420719d42e77c532b0906b5614274))
+* implement minimum button touch area along with default hover and active states ([0d541f3](https://github.com/kiva/kv-ui-elements/commit/0d541f3e8c09eb90d09deb94d40d96c7fa45bbd0))
+* setup static image handling and update KvIconButtonDocs to use it ([91abfcb](https://github.com/kiva/kv-ui-elements/commit/91abfcbcbbed713098ba31c5ea350c527dff05e7))
+* simplified KvIconButton to more closely follow the design spec, improved documentation ([998dffc](https://github.com/kiva/kv-ui-elements/commit/998dffc9b946ad94361687dcc6e15590726690f5))
+* update static image include path ([27d5e40](https://github.com/kiva/kv-ui-elements/commit/27d5e40f752d706d8ed1a36cea5e8af5dc7dd8e3))
+
+
+### Features
+
+* initial setup and stories for new KvIconButton component ([267851f](https://github.com/kiva/kv-ui-elements/commit/267851fb358ecf2020554a5e15835b5c040dee8f))
+
+
+
+
+
 ## [8.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.0...@kiva/kv-components@8.1.1) (2026-01-09)
 
 
