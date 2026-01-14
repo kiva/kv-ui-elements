@@ -18,6 +18,7 @@ export default {
 	parameters: {
 		docs: {
 			page: KvIconButtonDocsMdx,
+			title: 'Kv Icon Button Docs',
 		},
 	},
 	argTypes: {
@@ -329,6 +330,59 @@ export const ToggleableButton = {
 							v-model="isToggledLarge"
 							@click="onClick"
 						/>
+					</div>
+				</div>
+			</div>
+		`,
+		methods: {
+			onClick(e) { console.log('Icon button clicked', e); },
+		},
+	}),
+};
+
+// Icon Button States
+export const IconButtonStates = {
+	args: {
+		icon: mdiDotsVertical,
+		showBackground: true,
+		showBorder: true,
+		borderColor: 'tertiary',
+	},
+	render: (args) => ({
+		components: { KvIconButton },
+		setup() {
+			return { args };
+		},
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6">
+				<div class="tw-space-y-4">
+					<p class="tw-text-primary tw-text-small tw-mb-3">
+						Icon buttons can be enabled or disabled. The disabled state reduces opacity and prevents interaction.
+					</p>
+					<div class="tw-flex tw-gap-8 tw-items-start">
+						<div class="tw-text-center">
+							<p class="tw-text-small tw-mb-2 tw-font-medium">Default State (Hover and Click for background variations)</p>
+							<kv-icon-button
+								size="medium"
+								:icon="args.icon"
+								:show-background="args.showBackground"
+								:show-border="args.showBorder"
+								:border-color="args.borderColor"
+								@click="onClick"
+							/>
+						</div>
+						<div class="tw-text-center">
+							<p class="tw-text-small tw-mb-2 tw-font-medium">Disabled State</p>
+							<kv-icon-button
+								size="medium"
+								:icon="args.icon"
+								:show-background="args.showBackground"
+								:show-border="args.showBorder"
+								:border-color="args.borderColor"
+								disabled
+								@click="onClick"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

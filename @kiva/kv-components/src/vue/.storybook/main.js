@@ -18,6 +18,7 @@ export default {
 
 	staticDirs: [
 		'../../../../../dist',
+		'../stories/assets',
 	],
 
 	addons: [getAbsolutePath("@storybook/addon-links"), getAbsolutePath("@storybook/addon-a11y"), getAbsolutePath("@storybook/addon-docs")],
@@ -27,9 +28,9 @@ export default {
 		options: {}
 	},
 
-	docs: {
-      defaultName: 'Kv Components'
-    },
+	// docs: {
+    //   defaultName: 'Kv Components'
+    // },
 
 	async viteFinal(config) {
 		// Customize Vite config for Storybook
