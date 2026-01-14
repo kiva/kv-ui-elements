@@ -1,13 +1,13 @@
 import { Canvas, Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
 import * as KvCardFrameStories from './KvCardFrame.stories.js';
 
+<Meta title="KvCardFrame" component={KvCardFrameStories.Component} />
+
 # KvCardFrame
 
 A flexible card frame component that provides a themeable container with customizable styling options for backgrounds, borders, shadows, and border radius.
 
-<Canvas>
-  <Story of={KvCardFrameStories.DefaultCardFrame} />
-</Canvas>
+<Canvas of={KvCardFrameStories.DefaultCardFrame} />
 
 ## Overview
 
@@ -37,6 +37,9 @@ Avoid using `KvCardFrame` when:
 - You're creating list items that don't need card styling
 
 ## Components
+
+<Canvas of={KvCardFrameStories.CustomizableCardFrame} />
+<Controls of={KvCardFrameStories.CustomizableCardFrame} />
 
 ### Props Details
 
