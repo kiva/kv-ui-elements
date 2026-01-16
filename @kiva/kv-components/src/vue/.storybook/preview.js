@@ -28,8 +28,8 @@ export const parameters = {
 	},
 
     docs: {
-        codePanel: true
-    }
+        codePanel: true,
+    },
 }
 
 // Listen for events from the dark mode plugin

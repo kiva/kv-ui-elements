@@ -1,0 +1,157 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as {{ComponentName}}Stories from './{{ComponentName}}.stories.js';
+
+<Meta title="{{ComponentName}}" component={ {{ComponentName}}Stories.Component} />
+
+# {{ComponentName}}
+
+{{componentDescription}}
+
+## Component Overview
+
+{{componentOverviewDescription}}
+
+<Story of={ {{ComponentName}}Stories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+{{variationsDescription}}
+
+<Story of={ {{ComponentName}}Stories.AllVariations} />
+
+## Usage Information
+
+{{usageInformationDescription}}
+
+### When to Use
+
+{{whenToUseList}}
+
+### When Not to Use
+
+{{whenNotToUseList}}
+
+---
+
+## Behavior
+
+{{behaviorDescription}}
+
+### {{BehaviorSubsection1Title}}
+
+{{behaviorSubsection1Description}}
+
+<Story of={ {{ComponentName}}Stories.{{BehaviorSubsection1StoryName}}} />
+
+### {{BehaviorSubsection2Title}}
+
+{{behaviorSubsection2Description}}
+
+<Story of={ {{ComponentName}}Stories.{{BehaviorSubsection2StoryName}}} />
+
+## Anatomy
+
+{{anatomyDescription}}
+
+{{anatomyBulletList}}
+
+---
+
+## Specs
+
+### {{SpecsSubsection1Title}}
+
+{{specsSubsection1Description}}
+
+<Story of={ {{ComponentName}}Stories.{{SpecsSubsection1StoryName}}} />
+
+### {{SpecsSubsection2Title}}
+
+{{specsSubsection2Description}}
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="{{ComponentName}}/{{bestPractice1ImageFileName}}" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>{{bestPractice1DoDescription}}</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="{{ComponentName}}/{{bestPractice1DontImageFileName}}" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>{{bestPractice1DontDescription}}</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="{{ComponentName}}/{{bestPractice2ImageFileName}}" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>{{bestPractice2DoDescription}}</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="{{ComponentName}}/{{bestPractice2DontImageFileName}}" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>{{bestPractice2DontDescription}}</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+{{accessibilityBulletList}}
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={ {{ComponentName}}Stories.Default} />
+<Controls of={ {{ComponentName}}Stories.Default} />
+
+---
+
+## Code Examples
+
+### {{codeExample1Title}}
+
+```vue
+{{codeExample1}}
+```
+
+### {{codeExample2Title}}
+
+```vue
+{{codeExample2}}
+```
+
+### {{codeExample3Title}}
+
+```vue
+{{codeExample3}}
+```
