@@ -1,0 +1,263 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvTooltipStories from './KvTooltip.stories.js';
+
+<Meta title="KvTooltip" component={KvTooltipStories.Component} />
+
+# KvTooltip
+
+A flexible, accessible tooltip component that displays helpful information when users hover over or focus on an element. Built on top of KvPopper, it provides consistent positioning, theming, and interaction patterns.
+
+## Component Overview
+
+Tooltips provide contextual information when users hover over or focus on an element. They support multiple themes, flexible positioning, and programmatic control.
+
+<Story of={KvTooltipStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+
+## Variations
+
+The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+
+<Story of={KvTooltipStories.AllVariations} />
+
+## Usage Information
+
+Tooltips provide supplementary information without cluttering the interface. They appear on hover or focus and automatically position themselves relative to their trigger element.
+
+### When to Use
+
+- To explain the purpose of an icon button or control
+- To provide additional context for form fields
+- To show more detailed information about a feature or data point
+- For definitions of technical terms or abbreviations
+- When space is limited and full explanations would clutter the UI
+
+### When Not to Use
+
+- For critical information that users must see (use visible text instead)
+- For long-form content (use a modal or dedicated section)
+- For interactive content (tooltips disappear on mouse out)
+- For information needed for task completion (make it always visible)
+- As a substitute for clear labeling
+
+---
+
+## Behavior
+
+### Hover and Focus Interaction
+
+Tooltips appear when users hover over or focus on the controller element. They automatically hide when the user moves away or removes focus.
+
+- Tooltips trigger on **mouseover** and **focus** events
+- They hide on **mouseout** and **blur** events  
+- There is a subtle fade-in/fade-out transition
+
+<Story of={KvTooltipStories.PlacementShowcase} />
+
+### Programmatic Control
+
+Tooltips can be controlled programmatically using the `showTooltip` prop and `@tool-tip-visible` event. This allows for manual show/hide control while maintaining normal hover/focus behavior.
+
+<Story of={KvTooltipStories.ToggleShowcase} />
+
+## Anatomy
+
+The tooltip consists of four main parts:
+
+- **Controller**: The target element (button, icon, text) that triggers the tooltip
+- **Container**: The tooltip popup with background, padding, and rounded corners
+- **Title** (optional): Bold text at the top of the tooltip for emphasis
+- **Content**: The main descriptive text in the default slot
+- **Arrow**: A small triangular pointer connecting the tooltip to its controller
+
+---
+
+## Specs
+
+### Positioning
+
+Tooltips intelligently position themselves using Popper.js:
+
+- **Default placement**: Top (can be changed via `placement` prop)
+- **Auto-flipping**: Automatically repositions if there's not enough space
+- **12 placement options**: top, bottom, left, right, and their start/end variants
+- **Custom modifiers**: Fine-tune positioning with Popper.js modifiers
+
+<Story of={KvTooltipStories.ModifiersShowcase} />
+
+### Theming
+
+Eight pre-defined themes provide visual variety:
+
+### Theming
+
+Eight pre-defined themes provide visual variety:
+
+- **default**: Standard Kiva branding
+- **ecoGreenLight** / **ecoGreenDark**: Green tones for eco-related content
+- **ecoLightMarigold**: Warm marigold theme
+- **ecoStoneLight** / **ecoStoneDark**: Neutral stone tones (stoneDark is most commonly used)
+- **mint**: Fresh mint theme
+- **dark**: High contrast dark theme
+
+<Story of={KvTooltipStories.ThemeShowcase} />
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTooltip/Do-concise-content.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Keep tooltip content brief and focused. Use 1-2 sentences to provide helpful context.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTooltip/Do-not-long-content.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Overload tooltips with lengthy explanations or multiple paragraphs. Use a modal for complex content.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTooltip/Do-focusable-controllers.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Ensure the controller element is keyboard focusable so tooltips are accessible to all users.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTooltip/Do-not-critical-info.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Hide essential information in tooltips. Critical content should be visible without interaction.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- ✅ **Keyboard accessible:** Tooltip appears on focus, not just hover
+- ✅ **Semantic HTML:** Uses proper ARIA attributes via KvPopper
+- ✅ **Focus management:** Tooltips appear when trigger element receives focus
+- ✅ **ESC key support:** Inherited from KvPopper for dismissing tooltips
+- ✅ **Controller accessibility:** Works with any focusable element
+- ✅ **No mouse-only interaction:** Full keyboard and screen reader support
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvTooltipStories.Default} />
+<Controls of={KvTooltipStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Tooltip
+
+```vue
+<template>
+  <button id="help-button">Need Help?</button>
+
+  <kv-tooltip controller="help-button">
+    <template #title>What is this?</template>
+    This feature helps you understand the current section.
+  </kv-tooltip>
+</template>
+```
+
+### Tooltip with Custom Theme and Placement
+
+```vue
+<template>
+  <button id="info-btn">More Info</button>
+
+  <kv-tooltip 
+    controller="info-btn"
+    theme="ecoStoneDark"
+    placement="bottom"
+    max-width="300px"
+  >
+    <template #title>Extended Information</template>
+    This tooltip uses a custom theme, placement, and wider max-width
+    for more detailed explanations.
+  </kv-tooltip>
+</template>
+```
+
+### Programmatically Controlled Tooltip
+
+```vue
+<template>
+  <button id="target">Info</button>
+  <button @click="toggleTooltip">Toggle Tooltip</button>
+
+  <kv-tooltip
+    controller="target"
+    :show-tooltip="isVisible"
+    @tool-tip-visible="handleVisibility"
+  >
+    <template #title>Programmatic Control</template>
+    This tooltip can be shown/hidden programmatically.
+  </kv-tooltip>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const isVisible = ref(false);
+
+const toggleTooltip = () => {
+  isVisible.value = !isVisible.value;
+};
+
+const handleVisibility = (visible) => {
+  console.log('Tooltip is now:', visible ? 'visible' : 'hidden');
+};
+</script>
+```
+
+### Tooltip with Custom Modifiers
+
+```vue
+<template>
+  <button id="custom-btn">Custom Position</button>
+
+  <kv-tooltip
+    controller="custom-btn"
+    placement="bottom-start"
+    :modifiers="{
+      preventOverflow: { padding: 20 },
+      offset: { offset: '0,10' }
+    }"
+  >
+    This tooltip has custom positioning modifiers applied.
+  </kv-tooltip>
+</template>
+```
