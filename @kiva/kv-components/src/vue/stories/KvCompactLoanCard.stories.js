@@ -288,6 +288,15 @@ export const ViewLoanFunded = story({
 	showViewLoan: true,
 });
 
+export const LightViewLoanLoading = lightStory({
+	loanId: loan.id,
+	loan: undefined,
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
+});
+
 export const LightViewLoan = lightStory({
 	loanId: loan.id,
 	loan,

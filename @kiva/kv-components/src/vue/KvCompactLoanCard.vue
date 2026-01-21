@@ -112,7 +112,7 @@
 							class="loan-card-use-text tw-w-full tw-overflow-hidden"
 						>
 							<div
-								v-for="(_n, i) in [...Array(4)]"
+								v-for="(_n, i) in [...Array(loanUseLoadingRows)]"
 								:key="i"
 								class="tw-h-2 tw-mb-1"
 							>
@@ -525,6 +525,8 @@ export default {
 			return { height, maxHeight };
 		});
 
+		const loanUseLoadingRows = computed(() => props.showLightView ? 3 : 4);
+
 		const trackWebsiteClick = () => {
 			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
 		};
@@ -560,6 +562,7 @@ export default {
 			unreservedAmount,
 			sharesAvailable,
 			customStyle,
+			loanUseLoadingRows,
 			clickReadMore,
 			trackWebsiteClick,
 			handleCloseButton,
