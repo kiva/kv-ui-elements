@@ -525,7 +525,9 @@ export default {
 			return { height, maxHeight };
 		});
 
-		const loanUseLoadingRows = computed(() => props.showLightView ? 3 : 4);
+		const loanUseLoadingRows = computed(() => {
+			return props.showLightView ? 3 : 4;
+		});
 
 		const trackWebsiteClick = () => {
 			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
