@@ -83,6 +83,11 @@ export const Anonymous = story({
 	lenderName: 'Anonymous',
 });
 
+export const GreenLightTheme = story({
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	lenderName: 'Anonymous',
+	theme: 'ecoGreenLight',
+});
 export const LegacyDefaultImage = story({
 	lenderImageUrl: 'https://www.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 	lenderName: 'Default Profile',
