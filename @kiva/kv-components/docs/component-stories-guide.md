@@ -66,11 +66,13 @@ While stories and documentation can be created in any order, here are recommende
 If creating stories before documentation:
 
 ```javascript
-// TODO: Create KvComponentDocs.mdx
+// TODO: Create KvComponentDocs.mdx (use the template)
 // Required sections: Component Overview, Variations, Usage Information,
 // Behavior, Anatomy, Specs, Best Practices, Accessibility, Code Examples
 
-import KvComponentDocsMdx from './KvComponentDocs.mdx'; // Will be created later
+// NOTE: Only import docs if the file exists. Create a stub from the template,
+// or omit this import + docs.page until docs are ready.
+import KvComponentDocsMdx from './KvComponentDocs.mdx';
 
 export default {
   title: 'KvComponent',
@@ -83,7 +85,8 @@ export default {
 };
 ```
 
-The import won't break the build. Storybook will show default documentation until the MDX file is created.
+Importing a missing MDX file will fail. Create a stub MDX file from the template, or omit the docs import
+and `docs.page` until the documentation exists.
 
 ## Story File Structure
 

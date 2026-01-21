@@ -26,7 +26,7 @@ Attach the prompt file to your chat and reference it directly. The AI can read t
 @ai-stories-prompt.md Use the "For Scaffolding a New Component" prompt
 to create a stories file for KvButton.
 
-Component: src/vue/components/KvButton.vue
+Component: src/vue/KvButton.vue
 ```
 
 **Why this works well:**
@@ -45,7 +45,7 @@ I need to scaffold a basic Storybook stories file for a new Vue 3
 component that I'm just starting to build.
 
 Component Name: KvButton
-Component File: @kiva/kv-components/src/vue/components/KvButton.vue
+Component File: @kiva/kv-components/src/vue/KvButton.vue
 
 Task: Create a minimal stories file to get started with interactive development.
 
@@ -89,14 +89,14 @@ I'm starting work on a new KvToggle component. Can you scaffold
 a basic stories file with just the Default story so I can develop
 it interactively?
 
-Component: src/vue/components/KvToggle.vue
+Component: src/vue/KvToggle.vue
 ```
 
 **File reference approach:**
 ```
 @ai-stories-prompt.md Use the scaffolding prompt for KvToggle
 
-Component file: src/vue/components/KvToggle.vue
+Component file: src/vue/KvToggle.vue
 ```
 
 ### Creating Comprehensive Stories
@@ -106,7 +106,7 @@ Component file: src/vue/components/KvToggle.vue
 Following the comprehensive stories guide, create all stories for
 KvModal including ComponentOverview, AllVariations, and behavior stories.
 
-Component: src/vue/components/KvModal.vue
+Component: src/vue/KvModal.vue
 Documentation: src/vue/stories/KvModalDocs.mdx
 ```
 
@@ -115,7 +115,7 @@ Documentation: src/vue/stories/KvModalDocs.mdx
 @ai-stories-prompt.md Use "For Comprehensive Stories" prompt for KvModal
 
 Files:
-- Component: src/vue/components/KvModal.vue
+- Component: src/vue/KvModal.vue
 - Docs: src/vue/stories/KvModalDocs.mdx
 ```
 
@@ -126,7 +126,7 @@ Files:
 Create MDX documentation for KvButton following the documentation
 template. The stories already exist.
 
-Component: src/vue/components/KvButton.vue
+Component: src/vue/KvButton.vue
 Stories: src/vue/stories/KvButton.stories.js
 ```
 
@@ -134,7 +134,7 @@ Stories: src/vue/stories/KvButton.stories.js
 ```
 @ai-documentation-prompt.md Generate new documentation for KvButton
 
-Component: src/vue/components/KvButton.vue
+Component: src/vue/KvButton.vue
 Stories: src/vue/stories/KvButton.stories.js
 ```
 
@@ -148,7 +148,7 @@ guidelines in the stories prompt?
 
 Existing stories: src/vue/stories/KvCard.stories.js
 Documentation: src/vue/stories/KvCardDocs.mdx
-Component: src/vue/components/KvCard.vue
+Component: src/vue/KvCard.vue
 ```
 
 **File reference approach:**
@@ -158,7 +158,7 @@ Component: src/vue/components/KvCard.vue
 Files:
 - Existing stories: src/vue/stories/KvCard.stories.js
 - Documentation: src/vue/stories/KvCardDocs.mdx
-- Component: src/vue/components/KvCard.vue
+- Component: src/vue/KvCard.vue
 ```
 
 ### Migrating Documentation
@@ -171,7 +171,7 @@ content and add missing sections.
 
 Existing docs: src/vue/stories/KvButtonDocs.mdx
 Stories: src/vue/stories/KvButton.stories.js
-Component: src/vue/components/KvButton.vue
+Component: src/vue/KvButton.vue
 ```
 
 **File reference approach:**
@@ -181,7 +181,7 @@ Component: src/vue/components/KvButton.vue
 Files:
 - Existing docs: src/vue/stories/KvButtonDocs.mdx
 - Stories: src/vue/stories/KvButton.stories.js
-- Component: src/vue/components/KvButton.vue
+- Component: src/vue/KvButton.vue
 ```
 
 ## Tips for Best Results

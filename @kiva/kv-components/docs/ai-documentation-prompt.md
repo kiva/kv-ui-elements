@@ -37,7 +37,7 @@ The template provides:
 I need to create comprehensive Storybook documentation for a Vue 3 component in the @kiva/kv-components library.
 
 Component Name: {{ComponentName}}
-Component File: @kiva/kv-components/src/vue/components/{{ComponentName}}.vue
+Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 Story File: @kiva/kv-components/src/vue/stories/{{ComponentName}}.stories.js [May not exist yet]
 Existing Documentation: [None | Path to existing MDX file]
 
@@ -45,11 +45,11 @@ Please use the documentation template located at:
 @kiva/kv-components/src/vue/.storybook/templates/ComponentDocs.template.mdx
 
 **IMPORTANT - If Story File Does Not Exist:**
-1. Proceed with documentation creation as normal
-2. Reference standard story names that should be created (ComponentOverview, AllVariations, Default, etc.)
-3. Add a TODO comment at the top indicating which stories need to be created
-4. List all required stories clearly in the TODO
-5. The documentation will guide story creation later
+1. Create a **stub** `.stories.js` file first (use the stories template with minimal working exports)
+2. Ensure the stub exports all story names referenced in the MDX (ComponentOverview, AllVariations, Default, etc.)
+3. Then proceed with documentation creation
+4. Add a TODO comment at the top indicating which stories need to be fully implemented
+5. The documentation can guide story creation later, but the file must exist to avoid MDX import errors
 
 **IMPORTANT:** If existing documentation exists:
 1. Analyze the existing MDX file structure and content
@@ -193,9 +193,9 @@ See [Component Stories Guide - Recommended Creation Order](./ai-stories-prompt.m
 ## Handling Missing Files
 
 ### When Stories Don't Exist Yet
-1. **Proceed with documentation** - Reference standard story names
-2. **Add TODO comments** - Clearly list required stories
-3. **Use placeholders** - Story references won't break the build
+1. **Create a stub stories file first** - The MDX import requires it
+2. **Reference standard story names** - ComponentOverview, AllVariations, Default, etc.
+3. **Add TODO comments** - Clearly list required stories to flesh out
 4. **Provide clear guidance** - Describe what each story should show
 
 **Example TODO comment:**
@@ -273,7 +273,7 @@ For a hypothetical KvModal component:
 Generate documentation for KvModal using the template at
 @kiva/kv-components/src/vue/.storybook/templates/ComponentDocs.template.mdx
 
-Component: @kiva/kv-components/src/vue/components/KvModal.vue
+Component: @kiva/kv-components/src/vue/KvModal.vue
 Stories: @kiva/kv-components/src/vue/stories/KvModal.stories.js
 
 This is a modal dialog component with:

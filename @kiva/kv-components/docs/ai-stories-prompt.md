@@ -35,7 +35,7 @@ The template provides:
 I need to scaffold a basic Storybook stories file for a new Vue 3 component that I'm just starting to build.
 
 Component Name: {{ComponentName}}
-Component File: @kiva/kv-components/src/vue/components/{{ComponentName}}.vue
+Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 
 Task: Create a minimal stories file to get started with interactive development.
 
@@ -52,9 +52,11 @@ Required:
 // TODO: Add ComponentOverview story showing key variants
 // TODO: Add AllVariations story or multiple focused variation stories
 // TODO: Add behavior/feature stories as component evolves
-// TODO: Create ComponentNameDocs.mdx documentation
+// TODO: Create ComponentNameDocs.mdx documentation (use the template)
 
 import ComponentName from '../ComponentName.vue';
+// NOTE: Only import docs if the file exists. Create a stub from the template,
+// or omit this import + docs.page until docs are ready.
 import ComponentNameDocsMdx from './ComponentNameDocs.mdx';
 
 export default {
@@ -99,7 +101,7 @@ Guidelines:
 - Add event handlers that log to console
 - Use proper Vue 3 Composition API patterns
 - Include TODOs for stories to add later
-- The MDX import is fine even if file doesn't exist yet
+- The MDX import must point to an existing file; create a stub from the template or omit the docs import + docs.page until ready
 
 Output:
 A minimal, working stories file that enables interactive component development in Storybook.
@@ -113,7 +115,7 @@ A minimal, working stories file that enables interactive component development i
 I need to create comprehensive Storybook stories for a Vue 3 component in the @kiva/kv-components library.
 
 Component Name: {{ComponentName}}
-Component File: @kiva/kv-components/src/vue/components/{{ComponentName}}.vue
+Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 Documentation File: @kiva/kv-components/src/vue/stories/{{ComponentName}}Docs.mdx [May not exist yet]
 Existing Stories: [None | Path to existing .stories.js file]
 
@@ -122,11 +124,11 @@ Please use the stories template located at:
 
 **IMPORTANT - If Documentation File Does Not Exist:**
 1. Proceed with story creation as normal
-2. Include the MDX import and reference in the default export (even though file doesn't exist yet)
-3. Add a TODO comment at the top of the file indicating documentation needs to be created
-4. Base story structure on component props and common patterns
-5. Create standard stories: ComponentOverview, AllVariations, Default
-6. The build will still work - documentation can be added later
+2. **Do not import a missing MDX file**
+3. Either create a stub MDX file from the template OR omit the docs import + docs.page block until docs exist
+4. Add a TODO comment at the top of the file indicating documentation needs to be created
+5. Base story structure on component props and common patterns
+6. Create standard stories: ComponentOverview, AllVariations, Default
 
 Generate a complete stories file by filling in all template placeholders with appropriate content based on the component's implementation and documented behaviors.
 
@@ -221,7 +223,7 @@ I need to enhance existing Storybook stories to meet current documentation stand
 Component Name: {{ComponentName}}
 Existing Stories: @kiva/kv-components/src/vue/stories/{{ComponentName}}.stories.js
 Documentation File: @kiva/kv-components/src/vue/stories/{{ComponentName}}Docs.mdx
-Component File: @kiva/kv-components/src/vue/components/{{ComponentName}}.vue
+Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 
 Task:
 1. Analyze existing stories and identify what's working well
@@ -260,7 +262,7 @@ Output:
 ⚠️ CRITICAL: I need to create comprehensive MDX documentation using the required template.
 
 Component Name: {{ComponentName}}
-Component File: @kiva/kv-components/src/vue/components/{{ComponentName}}.vue
+Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 Stories File: @kiva/kv-components/src/vue/stories/{{ComponentName}}.stories.js
 **TEMPLATE FILE: @kiva/kv-components/src/vue/.storybook/templates/ComponentDocs.template.mdx**
 
@@ -490,7 +492,7 @@ For a hypothetical KvModal component:
 Generate Storybook stories for KvModal using the template at
 @kiva/kv-components/src/vue/.storybook/templates/Component.stories.template.js
 
-Component: @kiva/kv-components/src/vue/components/KvModal.vue
+Component: @kiva/kv-components/src/vue/KvModal.vue
 Documentation: @kiva/kv-components/src/vue/stories/KvModalDocs.mdx
 
 This modal component has:

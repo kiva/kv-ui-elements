@@ -48,7 +48,7 @@ Documentation can be created before or after stories:
 
 ## Handling Missing Stories
 
-If creating documentation before stories exist:
+If creating documentation before stories exist, create a **stub** `.stories.js` file first so the MDX import resolves.
 
 ```mdx
 <!--
@@ -72,7 +72,8 @@ import * as KvComponentStories from './KvComponent.stories.js';
 <Story of={KvComponentStories.ComponentOverview} />
 ```
 
-The story references won't break the build. They'll show an error in Storybook until stories are created, which serves as a reminder of what needs to be built.
+The MDX import requires a real stories file. Use a stub with matching export names (ComponentOverview, AllVariations,
+Default, etc.) so Storybook can load while you flesh out the stories.
 
 ## Documentation Structure
 
