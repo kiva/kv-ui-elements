@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.2.0...@kiva/kv-components@8.3.0) (2026-01-21)
+
+
+### Features
+
+* new green light user avatar ([d8ba08e](https://github.com/kiva/kv-ui-elements/commit/d8ba08e1ce3390a83bd72d469f7dbb83f2818009))
+
+
+
+
+
 # [8.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.1...@kiva/kv-components@8.2.0) (2026-01-14)
 
 
