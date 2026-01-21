@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.3.0...@kiva/kv-components@8.3.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* add new story and documentation templates, ai prompts, guidelines and checklists ([92ad41c](https://github.com/kiva/kv-ui-elements/commit/92ad41ca7c3a9234708374e95cde349fa1acc736))
+* added clarification to story and documentation prompts and guidelines ([8372a69](https://github.com/kiva/kv-ui-elements/commit/8372a69da12f64e98c9025a3f4db6c2bec8e6506))
+* clarify when to run nvm use instead of forcing agents to always run it ([db11d9f](https://github.com/kiva/kv-ui-elements/commit/db11d9f726a1d894655103cca4a2364942725129))
+* corrected prompts and guidelines with correct file paths of components ([4374563](https://github.com/kiva/kv-ui-elements/commit/437456354a41ac61809fe05aa649d2144fcbf369))
+* generate updated stories and documentation for KvTooltip and KvCardFrame using ai prompts ([f627f67](https://github.com/kiva/kv-ui-elements/commit/f627f6791af1d192c6d299dd8f9b9a79245ed7f3))
+* ran story and docs prompts for KvTextLink ([9b80cee](https://github.com/kiva/kv-ui-elements/commit/9b80ceedae09f07d76226e55908a99fccce7d0e2))
+
+
+
+
+
 # [8.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.2.0...@kiva/kv-components@8.3.0) (2026-01-21)
 
 

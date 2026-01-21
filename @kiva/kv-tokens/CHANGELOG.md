@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.6.3...@kiva/kv-tokens@3.6.4) (2026-01-21)
+
+
+### Bug Fixes
+
+* clarify when to run nvm use instead of forcing agents to always run it ([db11d9f](https://github.com/kiva/kv-ui-elements/commit/db11d9f726a1d894655103cca4a2364942725129))
+
+
+
+
+
 ## [3.6.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.6.2...@kiva/kv-tokens@3.6.3) (2026-01-06)
 
 **Note:** Version bump only for package @kiva/kv-tokens
