@@ -12,14 +12,16 @@ Use this checklist to ensure comprehensive, high-quality Storybook stories for c
 
 ## Existing Stories Assessment (if applicable)
 
+⚠️ **CRITICAL: Do NOT convert existing stories to CSF3 or modify their format**
+
 - [ ] Existing stories file reviewed
-- [ ] Default story exists and evaluated for quality
-- [ ] All existing stories inventoried
-- [ ] Working stories identified for preservation
-- [ ] Missing stories identified from documentation
-- [ ] Evaluated if AllVariations is practical or if multiple stories are better
-- [ ] ComponentOverview needs assessed (new vs. reuse existing)
-- [ ] Enhancement opportunities identified (argTypes, templates, etc.)
+- [ ] All existing story exports listed (preserve all as-is)
+- [ ] MDX documentation reviewed for story references
+- [ ] Missing stories identified (referenced in MDX but not in stories file)
+- [ ] Confirmed existing stories will NOT be modified or converted
+- [ ] New stories use exact names matching MDX references
+- [ ] Evaluated if ComponentOverview already exists or is needed
+- [ ] Evaluated if AllVariations is practical or if existing stories suffice
 
 ## File Setup
 
@@ -80,16 +82,15 @@ Use this checklist to ensure comprehensive, high-quality Storybook stories for c
 - [ ] Documentation references appropriate variation stories
 
 ### Default
-- [ ] **If existing: Preserved and enhanced (not replaced)**
-- [ ] Story exists with proper args object
-- [ ] All props included with sensible defaults
-- [ ] Uses `render: (args) => ({})` format
+- [ ] **If existing: Leave completely untouched** (do not convert format)
+- [ ] If new: Story exists with proper args object
+- [ ] If new: Uses CSF3 `render: (args) => ({})` format
+- [ ] If new: All props included with sensible defaults
 - [ ] Component uses `v-bind="args"`
 - [ ] Event handlers included and log to console
 - [ ] Template is simple and focused
 - [ ] Gray background container used
 - [ ] Story works as interactive playground
-- [ ] argTypes enhanced if needed (without breaking functionality)
 
 ## Additional Behavior/Feature Stories
 

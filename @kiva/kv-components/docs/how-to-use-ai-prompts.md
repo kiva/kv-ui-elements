@@ -6,8 +6,8 @@ This guide explains how to use the AI prompt files in this repository to generat
 
 - **[ai-stories-prompt.md](./ai-stories-prompt.md)** - Generate Storybook stories
   - Scaffold minimal stories for new components
-  - Create comprehensive stories
-  - Enhance existing stories
+  - Create comprehensive stories for stable components
+  - Add documentation stories to existing story files
 
 - **[ai-documentation-prompt.md](./ai-documentation-prompt.md)** - Generate component documentation
   - Create new MDX documentation
@@ -138,13 +138,13 @@ Component: src/vue/KvButton.vue
 Stories: src/vue/stories/KvButton.stories.js
 ```
 
-### Enhancing Existing Stories
+### Adding Stories to Existing Story Files
 
 **Natural language approach:**
 ```
-I have existing stories for KvCard but they're missing some stories
-referenced in the docs. Can you enhance them following the preservation
-guidelines in the stories prompt?
+I have existing stories for KvCard but the MDX docs reference some
+stories that don't exist yet. Add the missing stories without
+modifying the existing ones.
 
 Existing stories: src/vue/stories/KvCard.stories.js
 Documentation: src/vue/stories/KvCardDocs.mdx
@@ -153,7 +153,7 @@ Component: src/vue/KvCard.vue
 
 **File reference approach:**
 ```
-@ai-stories-prompt.md Use "For Enhancing Existing Stories" prompt for KvCard
+@ai-stories-prompt.md Use "For Adding Documentation Stories" prompt for KvCard
 
 Files:
 - Existing stories: src/vue/stories/KvCard.stories.js
@@ -249,12 +249,12 @@ Step 3: Add pagination stories
 1. **Assess what exists**
    ```
    Review the stories and docs for [ComponentName] and tell me
-   what's missing compared to current standards
+   what stories are referenced in the MDX but missing from the stories file
    ```
-2. **Enhance stories** (preserve working ones)
+2. **Add missing stories** (don't convert or modify existing ones)
    ```
-   Enhance [ComponentName] stories following the preservation
-   guidelines - keep Default story and add missing ones
+   Add the missing documentation stories to [ComponentName].stories.js
+   without modifying any existing stories
    ```
 3. **Migrate documentation**
    ```
@@ -281,8 +281,8 @@ Step 3: Add pagination stories
 
 ### "Which prompt should I use?"
 - Starting new component? → Scaffolding prompt
-- Component is stable? → Comprehensive stories prompt
-- Stories already exist? → Enhancement prompt
+- Component is stable, needs full stories? → Comprehensive stories prompt
+- Stories exist but MDX references missing ones? → Add documentation stories prompt
 - No documentation yet? → New documentation prompt
 - Docs need updating? → Migration prompt
 
@@ -292,7 +292,7 @@ Step 3: Add pagination stories
 |------|-------------|---------|-----------|
 | Scaffold stories for new component | ai-stories-prompt.md | For Scaffolding | "Scaffold stories for [Component]" |
 | Create all stories | ai-stories-prompt.md | For Comprehensive Stories | "Create comprehensive stories for [Component]" |
-| Add missing stories | ai-stories-prompt.md | For Enhancing | "Enhance stories for [Component]" |
+| Add missing doc stories | ai-stories-prompt.md | For Adding Documentation Stories | "Add missing stories for [Component] docs" |
 | Create new docs | ai-documentation-prompt.md | For New Documentation | "Create docs for [Component]" |
 | Update existing docs | ai-documentation-prompt.md | For Migrating | "Migrate docs for [Component]" |
 

@@ -215,43 +215,54 @@ A complete, working .stories.js file ready to save as {{ComponentName}}.stories.
 
 ---
 
-### For Enhancing Existing Stories
+### For Adding Documentation Stories to Existing Story Files
 
 ```
-I need to enhance existing Storybook stories to meet current documentation standards.
+I need to add specific stories to an existing Storybook file to support MDX documentation.
 
 Component Name: {{ComponentName}}
 Existing Stories: @kiva/kv-components/src/vue/stories/{{ComponentName}}.stories.js
 Documentation File: @kiva/kv-components/src/vue/stories/{{ComponentName}}Docs.mdx
 Component File: @kiva/kv-components/src/vue/{{ComponentName}}.vue
 
+⚠️ CRITICAL RULES:
+1. **DO NOT convert or modify existing stories** - Leave all existing stories in their current format (CSF2 or CSF3)
+2. **DO NOT refactor or rename existing stories** - They are working and should remain untouched
+3. **ONLY add new stories** that are specifically referenced in the MDX documentation but don't exist
+
 Task:
-1. Analyze existing stories and identify what's working well
-2. Identify missing stories referenced in documentation
-3. **PRESERVE all existing working stories** - especially Default story
-4. Add only the missing stories needed
-5. Enhance existing stories if they need improvements (better argTypes, cleaner templates, etc.)
-6. Determine if ComponentOverview is needed or if existing stories suffice
-7. Evaluate if AllVariations is feasible or if multiple smaller stories are better
+1. Read the existing stories file and list all current story exports
+2. Read the MDX documentation file and identify story references (e.g., `<Story of={Stories.ComponentOverview} />`)
+3. Compare the two lists to find stories referenced in docs but missing from the stories file
+4. Add ONLY the missing stories with exact names matching the MDX references
+5. Use CSF3 format for new stories only
 
-Preservation Priority:
-1. Default story - Keep and enhance if needed, never replace
-2. Working behavior/feature stories - Keep as-is
-3. Existing variation stories - Reuse rather than consolidate
-4. argTypes configuration - Enhance but preserve working controls
+Story Names to Check For:
+- `ComponentOverview` - Simple visual showcase (2-4 examples with labels)
+- `AllVariations` - Comprehensive variant grid (only if practical)
+- Feature-specific stories referenced in Behavior/Specs sections of MDX
 
-Enhancement Approach:
-- **Add, don't replace**: Create missing stories, preserve existing ones
-- **Enhance incrementally**: Improve existing stories without breaking them
-- **Practical over perfect**: If AllVariations would be too complex, use multiple stories
-- **Document what exists**: Update MDX to reference existing stories properly
+Format for New Stories:
+```javascript
+// Add after existing stories - DO NOT modify anything above
+
+export const ComponentOverview = {
+	render: () => ({
+		components: { ComponentName },
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
+				<!-- 2-4 simple examples with labels -->
+			</div>
+		`,
+	}),
+};
+```
 
 Output:
-- Enhanced .stories.js file with preserved + new stories
-- List of existing stories preserved
-- List of new stories added
-- Suggestions for MDX documentation updates
-- Assessment of whether AllVariations is practical or if alternatives are better
+- List of existing stories (unchanged)
+- List of stories referenced in MDX documentation
+- New stories to add (with complete code)
+- Confirmation that no existing stories were modified
 ```
 
 ---

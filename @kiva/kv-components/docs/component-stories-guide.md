@@ -7,43 +7,39 @@ This guide outlines the standards and best practices for creating Storybook stor
 **NEVER create duplicate story files.** When updating existing stories:
 
 1. **Work within the existing file** - Edit the current `.stories.js` file directly
-2. **Convert format, preserve presentation** - Update CSF2 stories to CSF3 format while keeping the same visual presentation and functionality
-3. **Use replace operations** - Use `replace_string_in_file` or similar tools to update sections in place
-4. **No `.new.js` or backup files** - Make changes directly; version control handles history
+2. **Do NOT convert existing story formats** - Leave existing CSF2 stories in their current format; they work fine
+3. **Only add new stories** - Add stories with specific titles needed for documentation
+4. **Use replace operations** - Use `replace_string_in_file` or similar tools to update sections in place
+5. **No `.new.js` or backup files** - Make changes directly; version control handles history
 
-**Converting CSF2 to CSF3:**
+**Working with Existing Story Suites:**
 
-CSF2 format (old):
+When a component already has a comprehensive suite of stories:
+
+1. **Preserve all existing stories exactly as-is** - Do not refactor, rename, or convert format
+2. **Identify missing documentation stories** - Check MDX docs for story references that don't exist
+3. **Add only the specific stories needed** - Create new stories with exact names referenced in docs
+4. **Use CSF3 for new stories only** - New stories should use CSF3 format, but don't convert existing ones
+
+**Common documentation story names to add:**
+- `ComponentOverview` - Simple visual showcase for docs overview section
+- `AllVariations` - Comprehensive variant grid (or use existing stories)
+- Feature-specific stories referenced in MDX documentation
+
+**Format for new stories (CSF3):**
+
 ```javascript
-export const StoryName = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { ComponentName },
-	template: `...`,
-});
-StoryName.args = { /* defaults */ };
-```
-
-CSF3 format (new):
-```javascript
-export const StoryName = {
-	args: { /* defaults */ },
-	render: (args) => ({
+export const ComponentOverview = {
+	render: () => ({
 		components: { ComponentName },
-		setup() {
-			return { args };
-		},
-		template: `...`,
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
+				<!-- 2-4 simple examples with labels -->
+			</div>
+		`,
 	}),
 };
 ```
-
-**Key conversion steps:**
-- Wrap the story in an object with `args` and `render` properties
-- Move `.args` assignment into the story object
-- Remove `props: Object.keys(argTypes)`
-- Add `setup()` function that returns `{ args }`
-- Preserve all template markup and functionality exactly as-is
-- Keep the same event handlers and methods
 
 ## Creation Order
 
@@ -189,7 +185,12 @@ argTypes: {
 Every component story file should include these stories at minimum:
 
 **Note on Existing Stories:**
-When working with existing story files, preserve working stories rather than recreating them. The Default story should never be replaced if it exists and works. For ComponentOverview and AllVariations, evaluate if existing stories can serve these purposes before creating new ones.
+When a component already has a suite of stories, **do not modify or convert existing stories**. Instead:
+- Preserve all existing stories in their current format (CSF2 or CSF3)
+- Only add new stories that are specifically referenced in documentation but don't exist yet
+- Use exact story names that match MDX documentation references
+- For ComponentOverview and AllVariations, evaluate if existing stories can serve these purposes before creating new ones
+- If existing stories cover the needed functionality, reference them in documentation instead of creating duplicates
 
 #### ComponentOverview
 Shows simple, clear examples of the component's main variants.
