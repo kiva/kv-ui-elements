@@ -72,7 +72,7 @@ npm test       # No tests specified (placeholder)
 
 ### Technology
 
-- **Node.js**: Version specified in [.nvmrc](../../.nvmrc) - Always run `nvm use`
+- **Node.js**: Version specified in [.nvmrc](../../.nvmrc) - Run `nvm use` before terminal commands
 - **Tailwind CSS**: ^3.4.3
 - **@tailwindcss/typography**: ^0.5.1 for prose styling
 

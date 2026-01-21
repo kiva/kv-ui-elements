@@ -1,9 +1,16 @@
 import KvButton from '../KvButton.vue';
 import KvTooltip from '../KvTooltip.vue';
+import KvTooltipDocsMdx from './KvTooltipDocs.mdx';
 
 export default {
 	title: 'KvTooltip',
 	component: KvTooltip,
+	parameters: {
+		docs: {
+			page: KvTooltipDocsMdx,
+			title: 'KvTooltip Documentation',
+		},
+	},
 	args: {
 		theme: 'ecoStoneDark',
 		placement: 'top',
@@ -51,6 +58,265 @@ export default {
 		},
 	},
 };
+
+// ComponentOverview - Simple examples showing key use cases
+export const ComponentOverview = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvButton,
+		KvTooltip,
+	},
+	setup() { return { args }; },
+	template: `
+		<div class="tw-bg-gray-50 tw-rounded-md tw-p-8 tw-space-y-8">
+			<div class="tw-space-y-3">
+				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Basic Tooltip</p>
+				<div>
+					<kv-button id="basic-tooltip-btn">Hover or Focus</kv-button>
+					<kv-tooltip controller="basic-tooltip-btn" theme="ecoStoneDark">
+						This is a simple tooltip with just content
+					</kv-tooltip>
+				</div>
+			</div>
+
+			<div class="tw-space-y-3">
+				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Tooltip with Title</p>
+				<div>
+					<kv-button id="title-tooltip-btn">What is this?</kv-button>
+					<kv-tooltip controller="title-tooltip-btn" theme="ecoStoneDark">
+						<template #title>Tooltip Title</template>
+						This tooltip includes both a title and descriptive content
+					</kv-tooltip>
+				</div>
+			</div>
+
+			<div class="tw-space-y-3">
+				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Different Placement</p>
+				<div>
+					<kv-button id="placement-tooltip-btn">Bottom Tooltip</kv-button>
+					<kv-tooltip controller="placement-tooltip-btn" theme="ecoStoneDark" placement="bottom">
+						<template #title>Bottom Placement</template>
+						This tooltip appears below the button
+					</kv-tooltip>
+				</div>
+			</div>
+
+			<div class="tw-space-y-3">
+				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Custom Width</p>
+				<div>
+					<kv-button id="width-tooltip-btn">Wide Tooltip</kv-button>
+					<kv-tooltip controller="width-tooltip-btn" theme="ecoStoneDark" max-width="400px">
+						<template #title>Extended Tooltip Content</template>
+						This tooltip has a custom max-width of 400px, allowing for more detailed
+						explanations without wrapping too tightly. Perfect for longer descriptions.
+					</kv-tooltip>
+				</div>
+			</div>
+		</div>
+	`,
+});
+
+// AllVariations - Comprehensive showcase of all tooltip variations
+export const AllVariations = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvButton,
+		KvTooltip,
+	},
+	setup() { return { args }; },
+	template: `
+		<div class="tw-bg-gray-50 tw-rounded-md tw-p-8 tw-space-y-12">
+			<!-- Placement Variations -->
+			<div>
+				<h3 class="tw-text-h3 tw-font-medium tw-mb-6">Placement Variations</h3>
+				<div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Top</p>
+						<kv-button id="var-top" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="var-top" placement="top" theme="ecoStoneDark">
+							Top placement
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Bottom</p>
+						<kv-button id="var-bottom" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="var-bottom" placement="bottom" theme="ecoStoneDark">
+							Bottom placement
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Left</p>
+						<kv-button id="var-left" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="var-left" placement="left" theme="ecoStoneDark">
+							Left placement
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Right</p>
+						<kv-button id="var-right" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="var-right" placement="right" theme="ecoStoneDark">
+							Right placement
+						</kv-tooltip>
+					</div>
+				</div>
+			</div>
+
+			<!-- Theme Variations -->
+			<div>
+				<h3 class="tw-text-h3 tw-font-medium tw-mb-6">Theme Variations</h3>
+				<div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-6">
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Default</p>
+						<kv-button id="theme-default" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-default" theme="default">
+							Default theme
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Eco Stone Dark</p>
+						<kv-button id="theme-stone-dark" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-stone-dark" theme="ecoStoneDark">
+							Stone Dark
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Eco Green Light</p>
+						<kv-button id="theme-green-light" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-green-light" theme="ecoGreenLight">
+							Green Light
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Mint</p>
+						<kv-button id="theme-mint" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-mint" theme="mint">
+							Mint theme
+						</kv-tooltip>
+					</div>
+				</div>
+			</div>
+
+			<!-- Content Variations -->
+			<div>
+				<h3 class="tw-text-h3 tw-font-medium tw-mb-6">Content Variations</h3>
+				<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-6">
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Content Only</p>
+						<kv-button id="content-only" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="content-only" theme="ecoStoneDark">
+							Simple tooltip content
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">With Title</p>
+						<kv-button id="with-title" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="with-title" theme="ecoStoneDark">
+							<template #title>Title Here</template>
+							Description content
+						</kv-tooltip>
+					</div>
+					<div class="tw-text-center">
+						<p class="tw-text-small tw-mb-2">Long Content</p>
+						<kv-button id="long-content" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="long-content" theme="ecoStoneDark" max-width="300px">
+							<template #title>Extended Information</template>
+							This is a longer tooltip that demonstrates how content wraps
+							when it exceeds the maximum width constraint.
+						</kv-tooltip>
+					</div>
+				</div>
+			</div>
+		</div>
+	`,
+});
+
+// ThemeShowcase - All available themes in one view
+export const ThemeShowcase = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvButton,
+		KvTooltip,
+	},
+	setup() { return { args }; },
+	template: `
+		<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
+			<h3 class="tw-text-h3 tw-font-medium tw-mb-6">All Available Themes</h3>
+			<div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-8">
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">default</p>
+					<kv-button id="showcase-default" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-default" theme="default">
+						<template #title>Default Theme</template>
+						Standard Kiva branding
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoGreenLight</p>
+					<kv-button id="showcase-green-light" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-green-light" theme="ecoGreenLight">
+						<template #title>Eco Green Light</template>
+						Light green theme
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoGreenDark</p>
+					<kv-button id="showcase-green-dark" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-green-dark" theme="ecoGreenDark">
+						<template #title>Eco Green Dark</template>
+						Dark green theme
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoLightMarigold</p>
+					<kv-button id="showcase-marigold" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-marigold" theme="ecoLightMarigold">
+						<template #title>Eco Marigold</template>
+						Warm marigold theme
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoStoneLight</p>
+					<kv-button id="showcase-stone-light" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-stone-light" theme="ecoStoneLight">
+						<template #title>Eco Stone Light</template>
+						Light stone theme
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoStoneDark</p>
+					<kv-button id="showcase-stone-dark" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-stone-dark" theme="ecoStoneDark">
+						<template #title>Eco Stone Dark</template>
+						Dark stone theme (default)
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">mint</p>
+					<kv-button id="showcase-mint" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-mint" theme="mint">
+						<template #title>Mint Theme</template>
+						Fresh mint theme
+					</kv-tooltip>
+				</div>
+
+				<div class="tw-text-center">
+					<p class="tw-text-small tw-mb-3 tw-font-medium">dark</p>
+					<kv-button id="showcase-dark" class="tw-w-full">Hover Me</kv-button>
+					<kv-tooltip controller="showcase-dark" theme="dark">
+						<template #title>Dark Theme</template>
+						High contrast dark theme
+					</kv-tooltip>
+				</div>
+			</div>
+		</div>
+	`,
+});
 
 export const Default = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),

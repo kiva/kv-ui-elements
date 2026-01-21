@@ -2,6 +2,18 @@
 
 This is a Lerna-managed monorepo containing Kiva's design system and UI component libraries.
 
+## ⚠️ IMPORTANT: Node Version Management
+
+**Before running ANY terminal commands** (npm, node, etc.) in this repository, you MUST run:
+
+```bash
+nvm use
+```
+
+This ensures you're using the correct Node.js version specified in [.nvmrc](.nvmrc). Running commands with the wrong Node version can cause build failures, dependency issues, and unexpected behavior.
+
+**Note:** This is only required when executing terminal commands. File reading, editing, and other non-terminal operations do not require `nvm use`.
+
 ## Repository Structure
 
 This monorepo uses **Lerna** (independent versioning) and **npm workspaces** for package management.
@@ -35,10 +47,22 @@ Each package has its own detailed AI instructions in its `AGENTS.md` file:
 
 ## General Guidelines
 
-- **Node.js**: Version specified in [.nvmrc](.nvmrc) - Always run `nvm use` when working in this repo
+- **Node.js**: Version specified in [.nvmrc](.nvmrc)
+  - Run `nvm use` before executing terminal commands (npm, node, etc.)
+  - Not required for file editing or reading operations
 - **npm**: >= 10
 - **Commit conventions**: Follows [@commitlint/config-conventional](commitlint.config.js)
 - **Pre-commit hooks**: Husky runs lint-staged on TypeScript, JavaScript, and Vue files
+
+## AI Assistant Workflow
+
+When working in this repository, AI assistants should:
+
+1. **Before terminal commands**: Run `nvm use` before any npm, node, or other terminal commands
+   - This is NOT required for file reading, editing, or other non-terminal operations
+2. Check package-specific AGENTS.md files for detailed instructions
+3. Use proper error handling and validation
+4. Follow the commit conventions for any generated commits
 
 ## TODO: Unconfigured Packages
 

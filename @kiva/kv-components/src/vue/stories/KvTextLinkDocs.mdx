@@ -1,0 +1,217 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvTextLinkStories from './KvTextLink.stories.js';
+
+<Meta title="KvTextLink" component={KvTextLinkStories.Component} />
+
+# KvTextLink
+
+A versatile text-based link component that renders as a button, anchor, or router-link with optional trailing icon and hover animation.
+
+## Component Overview
+
+Text links provide a lightweight, accessible way to navigate or trigger actions. They support internal routing, external links, and button-style click handlers, with an optional trailing icon that animates on hover/focus.
+
+<Story of={KvTextLinkStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties--demo)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component adapts its rendering based on the props provided, supporting three distinct link types and optional icon display.
+
+<Story of={KvTextLinkStories.AllVariations} />
+
+## Usage Information
+
+KvTextLink is designed for inline navigation and action triggers where a full button would be visually heavy. It automatically determines the appropriate HTML element based on the props you provide.
+
+- **Button mode** (default): When neither `to` nor `href` is provided, renders as a `<button>` element
+- **Router link mode**: When `to` is provided, renders as a Vue Router `<router-link>`
+- **Anchor mode**: When `href` is provided, renders as a standard `<a>` element
+
+### When to Use
+
+- For secondary navigation within content areas
+- As "Learn more" or "View all" links with optional arrow icons
+- For call-to-action links that complement primary buttons
+- In card footers or list items to link to detail pages
+- For inline actions within paragraphs of text
+
+### When Not to Use
+
+- For primary actions—use KvButton instead
+- When the action is destructive or irreversible
+- For navigation that should look like a button (use KvButton with appropriate styling)
+- When you need a standalone link without the styled appearance
+
+---
+
+## Behavior
+
+### Dynamic Element Rendering
+
+The component intelligently renders as different HTML elements based on the props provided, ensuring proper semantics and functionality.
+
+<Story of={KvTextLinkStories.LinkRendering} />
+
+### Icon Animation
+
+When a trailing icon is provided, it animates to the right on hover and focus states, providing visual feedback and indicating forward navigation or action.
+
+<Story of={KvTextLinkStories.IconAnimation} />
+
+## Anatomy
+
+The text link component consists of two main parts:
+
+- **Link Text**: The visible text content provided via the default slot, styled with `tw-text-h4` typography and link color
+- **Icon (Optional)**: A trailing Material Design icon that animates on hover/focus, sized responsively (smaller on mobile, larger on desktop)
+
+---
+
+## Specs
+
+### Typography
+
+The component uses the `tw-text-h4` class for consistent typography across all variants:
+
+- Font weight and size are inherited from the h4 text style
+- Color is set to the link color (`tw-text-link`)
+- Disabled state reduces opacity (`tw-opacity-low`)
+
+### Icon Sizing
+
+The trailing icon uses responsive sizing:
+
+- **Mobile**: 1.5 units (6px × 6px)
+- **Desktop (md+)**: 2 units (8px × 8px)
+
+### Animation
+
+Icon animation on hover/focus:
+
+- **Property**: `transform: translateX(0.125rem)`
+- **Duration**: 200ms
+- **Timing**: ease-in-out
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTextLink/do-use-concise-text.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use concise, action-oriented link text that clearly describes the destination or action.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTextLink/dont-use-vague-text.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Avoid vague link text like "Click here" or "Read more" without context—it's unhelpful for screen reader users.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTextLink/do-use-icons-for-navigation.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Use arrow or chevron icons to indicate forward navigation or to draw attention to important links.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvTextLink/dont-overuse-icons.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't add icons to every text link—reserve them for primary CTAs or when visual emphasis is needed.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- Renders as semantic HTML elements (`<button>`, `<a>`, or `<router-link>`) based on usage context
+- Button variant prevents default behavior and emits click events for proper SPA handling
+- Disabled state sets `disabled` attribute on buttons and applies `pointer-events-none` for visual indication
+- Link text should be descriptive and make sense out of context for screen reader users
+- Focus states are visible through default browser focus indicators and icon animation
+- Icons are decorative and do not require additional aria labels when paired with descriptive link text
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvTextLinkStories.Default} />
+<Controls of={KvTextLinkStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Text Link (Button)
+
+```vue
+<template>
+  <kv-text-link @click="handleAction">
+    Find a borrower
+  </kv-text-link>
+</template>
+
+<script setup>
+const handleAction = () => {
+  console.log('Text link clicked');
+};
+</script>
+```
+
+### External Link with Icon
+
+```vue
+<template>
+  <kv-text-link
+    href="https://www.kiva.org/about"
+    :icon="mdiArrowRight"
+  >
+    Learn about Kiva
+  </kv-text-link>
+</template>
+
+<script setup>
+import { mdiArrowRight } from '@mdi/js';
+</script>
+```
+
+### Router Link for Internal Navigation
+
+```vue
+<template>
+  <kv-text-link
+    to="/lend"
+    :icon="mdiChevronRight"
+  >
+    Browse all loans
+  </kv-text-link>
+</template>
+
+<script setup>
+import { mdiChevronRight } from '@mdi/js';
+</script>
+```

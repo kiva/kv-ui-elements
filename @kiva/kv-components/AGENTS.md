@@ -13,7 +13,7 @@ Accessible UI component library built with Vue 3 Composition API, Tailwind CSS, 
 
 ## Getting Started
 
-**Always run `nvm use` when working in this repo** to ensure you're using the correct Node.js version specified in [.nvmrc](../../../.nvmrc).
+**Run `nvm use` before any terminal commands** (npm, node, etc.) to ensure you're using the correct Node.js version specified in [.nvmrc](../../../.nvmrc). This is not required for file reading or editing operations.
 
 ## Component Development Patterns
 
