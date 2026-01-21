@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "8.1.1",
+  "version": "8.3.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "@babel/preset-env": "^7.24.8",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
-    "@kiva/kv-tokens": "^3.6.3",
+    "@kiva/kv-tokens": "^3.6.4",
     "@kiva/vite-plugin-vue-lib-css": "^2.0.0",
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
     "@mdi/js": "^7.4.47",

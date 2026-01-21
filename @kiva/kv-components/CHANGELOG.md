@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.3.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.3.0...@kiva/kv-components@8.3.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* add new story and documentation templates, ai prompts, guidelines and checklists ([92ad41c](https://github.com/kiva/kv-ui-elements/commit/92ad41ca7c3a9234708374e95cde349fa1acc736))
+* added clarification to story and documentation prompts and guidelines ([8372a69](https://github.com/kiva/kv-ui-elements/commit/8372a69da12f64e98c9025a3f4db6c2bec8e6506))
+* clarify when to run nvm use instead of forcing agents to always run it ([db11d9f](https://github.com/kiva/kv-ui-elements/commit/db11d9f726a1d894655103cca4a2364942725129))
+* corrected prompts and guidelines with correct file paths of components ([4374563](https://github.com/kiva/kv-ui-elements/commit/437456354a41ac61809fe05aa649d2144fcbf369))
+* generate updated stories and documentation for KvTooltip and KvCardFrame using ai prompts ([f627f67](https://github.com/kiva/kv-ui-elements/commit/f627f6791af1d192c6d299dd8f9b9a79245ed7f3))
+* ran story and docs prompts for KvTextLink ([9b80cee](https://github.com/kiva/kv-ui-elements/commit/9b80ceedae09f07d76226e55908a99fccce7d0e2))
+
+
+
+
+
+# [8.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.2.0...@kiva/kv-components@8.3.0) (2026-01-21)
+
+
+### Features
+
+* new green light user avatar ([d8ba08e](https://github.com/kiva/kv-ui-elements/commit/d8ba08e1ce3390a83bd72d469f7dbb83f2818009))
+
+
+
+
+
+# [8.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.1...@kiva/kv-components@8.2.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* add tests for KvIconButton ([7e08eea](https://github.com/kiva/kv-ui-elements/commit/7e08eeac4631c02e5dbd751a6e0847a7917e1c3a))
+* code quality improvements and story cleanup ([8644061](https://github.com/kiva/kv-ui-elements/commit/864406144c0b30f5df11d25df21900407bec20cc))
+* correct KvCardFrameDocs config + story usage ([01700f0](https://github.com/kiva/kv-ui-elements/commit/01700f0dde0420719d42e77c532b0906b5614274))
+* implement minimum button touch area along with default hover and active states ([0d541f3](https://github.com/kiva/kv-ui-elements/commit/0d541f3e8c09eb90d09deb94d40d96c7fa45bbd0))
+* setup static image handling and update KvIconButtonDocs to use it ([91abfcb](https://github.com/kiva/kv-ui-elements/commit/91abfcbcbbed713098ba31c5ea350c527dff05e7))
+* simplified KvIconButton to more closely follow the design spec, improved documentation ([998dffc](https://github.com/kiva/kv-ui-elements/commit/998dffc9b946ad94361687dcc6e15590726690f5))
+* update static image include path ([27d5e40](https://github.com/kiva/kv-ui-elements/commit/27d5e40f752d706d8ed1a36cea5e8af5dc7dd8e3))
+
+
+### Features
+
+* initial setup and stories for new KvIconButton component ([267851f](https://github.com/kiva/kv-ui-elements/commit/267851fb358ecf2020554a5e15835b5c040dee8f))
+
+
+
+
+
 ## [8.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.1.0...@kiva/kv-components@8.1.1) (2026-01-09)
 
 

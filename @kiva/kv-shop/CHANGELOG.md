@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.42](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.41...@kiva/kv-shop@3.7.42) (2026-01-21)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.7.41](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.40...@kiva/kv-shop@3.7.41) (2026-01-21)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.7.40](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.39...@kiva/kv-shop@3.7.40) (2026-01-14)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.7.39](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.38...@kiva/kv-shop@3.7.39) (2026-01-09)
 
 **Note:** Version bump only for package @kiva/kv-shop

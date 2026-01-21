@@ -1,178 +1,222 @@
-import { Canvas, Meta, Story, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
 import * as KvCardFrameStories from './KvCardFrame.stories.js';
+
+<Meta title="KvCardFrame" component={KvCardFrameStories.Component} />
 
 # KvCardFrame
 
 A flexible card frame component that provides a themeable container with customizable styling options for backgrounds, borders, shadows, and border radius.
 
-<Canvas>
-  <Story of={KvCardFrameStories.DefaultCardFrame} />
-</Canvas>
-
-## Overview
+## Component Overview
 
 The `KvCardFrame` component is a foundational layout component that wraps content in a styled container. It's designed to be flexible and customizable, allowing developers to create consistent card-based UI elements across the application with various visual treatments.
 
-### Key Features
+<Story of={KvCardFrameStories.ComponentOverview} />
 
-- **Themeable**: Supports multiple predefined themes (default, greenLight, greenDark, marigoldLight, stoneLight, stoneDark)
-- **Customizable Styling**: Control background colors, borders, shadows, and border radius through props
-- **Flexible Layout**: Uses slots to allow any content to be placed inside the card
-- **Overflow Control**: Optional control over content overflow behavior
-- **Token-based**: Leverages design tokens from `@kiva/kv-tokens` for consistent theming
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties--demo)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The KvCardFrame supports multiple visual variations through its props, including different themes, shadow depths, border radii, background colors, and borders. Combine these options to create the exact appearance you need.
+
+<Story of={KvCardFrameStories.AllVariations} />
+
+## Usage Information
+
+Use `KvCardFrame` when you need to create card-based layouts with consistent styling, group related content visually, or apply themed containers to sections of your UI.
 
 ### When to Use
 
-Use `KvCardFrame` when you need to:
-- Create card-based layouts with consistent styling
-- Group related content visually
-- Apply themed containers to sections of your UI
-- Build components that require a styled background container
+- Creating card-based layouts with consistent styling
+- Grouping related content that needs visual distinction
+- Applying themed containers to sections of your UI
+- Building components that require a styled background container
+- Creating elevated content sections with shadows
+- Wrapping content that needs specific theme colors
 
 ### When Not to Use
 
-Avoid using `KvCardFrame` when:
 - You need a specialized card component with built-in content structure (consider creating a specific card component instead)
 - Simple divs with basic styling would suffice
-- You're creating list items that don't need card styling
+- Creating list items that don't need card styling
+- When the overhead of theming is unnecessary for the use case
 
-## Components
+---
 
-### Props Details
+## Behavior
 
-**`allowOverflow`** (Boolean, default: `true`)
-- Controls whether content can overflow the card boundaries
-- Set to `false` to clip content that extends beyond the card edges
-- Useful for full-image cards or when you need strict boundary control
+### Theme Application
 
-**`bgColorClass`** (String, default: `'tw-bg-primary'`)
-- Tailwind class for background color
-- Common options: `tw-bg-primary`, `tw-bg-secondary`, `tw-bg-tertiary`, `tw-bg-action`, `tw-bg-caution`, `tw-bg-danger`
-- Can accept any valid Tailwind background color class
+The component wraps content in a `KvThemeProvider` that applies the selected theme. Themes affect the color tokens available to child components, allowing for consistent theming throughout the card's content.
 
-**`borderClass`** (String, default: `''`)
-- Tailwind class(es) for border styling
-- Can combine multiple classes: `'tw-border tw-border-secondary'`
-- Options include: `tw-border-none`, `tw-border`, `tw-border-2`, combined with color classes
+<Story of={KvCardFrameStories.ThemeComparison} />
 
-**`radiusClass`** (String, default: `'tw-rounded'`)
-- Tailwind class for border radius
-- Options: `tw-rounded-xs`, `tw-rounded-sm`, `tw-rounded-md`, `tw-rounded`, `tw-rounded-lg`, `tw-rounded-xl`, `tw-rounded-full`
-- Affects both the theme provider and the card frame container
+### Overflow Control
 
-**`shadowClass`** (String, default: `'tw-shadow-lg'`)
-- Tailwind class for drop shadow
-- Options: `tw-shadow`, `tw-shadow-lg`, `tw-shadow-none`
-- Use `tw-shadow-none` for flat cards without elevation
+The `allowOverflow` prop controls whether content can extend beyond the card's boundaries. This is particularly important for full-image cards or when you need precise content clipping.
 
-**`theme`** (String, default: `'default'`)
-- Applies a predefined theme from `@kiva/kv-tokens`
-- Valid values: `'default'`, `'greenLight'`, `'greenDark'`, `'marigoldLight'`, `'stoneLight'`, `'stoneDark'`
-- Themes affect colors of child components that use theme tokens
+<Story of={KvCardFrameStories.OverflowBehavior} />
 
-### Slots
+## Anatomy
 
-**Default Slot**
-- Accepts any content to be rendered inside the card frame
-- Content is wrapped in a themed container with applied styling
+The KvCardFrame component consists of two main layers:
 
-### Usage Examples
+- **Theme Provider Wrapper**: Applies the selected theme and border radius to establish the theming context
+- **Card Container**: The visible card frame with background, border, shadow, and overflow settings
+- **Content Slot**: Default slot that accepts any content to be rendered inside the card
 
-#### Basic Card
+---
 
-```vue
-<kv-card-frame>
-  <div class="tw-p-3">
-    <h2>Card Title</h2>
-    <p>Card content goes here</p>
-  </div>
-</kv-card-frame>
-```
+## Specs
 
-#### Themed Card with Custom Styling
+### Theme Options
 
-```vue
-<kv-card-frame
-  theme="greenLight"
-  bg-color-class="tw-bg-secondary"
-  radius-class="tw-rounded-lg"
-  shadow-class="tw-shadow"
-  border-class="tw-border tw-border-tertiary"
->
-  <div class="tw-p-4">
-    <h2>Themed Content</h2>
-  </div>
-</kv-card-frame>
-```
+The component supports six predefined themes from `@kiva/kv-tokens`:
+- `default` - Standard theme for general use
+- `greenLight` - Light green theme for positive actions
+- `greenDark` - Dark green theme with light text
+- `marigoldLight` - Warm yellow theme for attention
+- `stoneLight` - Light neutral theme
+- `stoneDark` - Dark neutral theme
 
-#### Full Image Card
+<Story of={KvCardFrameStories.ThemeComparison} />
 
-```vue
-<kv-card-frame
-  :allow-overflow="false"
-  class="tw-w-16 tw-h-16"
->
-  <img src="image.jpg" alt="Card image" />
-</kv-card-frame>
-```
+### Styling Flexibility
 
-## Guidelines
+All styling props accept Tailwind CSS classes, providing complete control over the card's appearance:
+- **Background**: Any Tailwind background color class
+- **Borders**: Border width and color combinations
+- **Radius**: Seven border radius options from `xs` to `full`
+- **Shadow**: Three shadow depths including none
 
-### Design Principles
+---
 
-**Consistency**
-- Use consistent shadow and radius classes across similar card types in your application
-- Stick to predefined themes when possible to maintain visual consistency
+## Best Practices
 
-**Hierarchy**
-- Use shadow depth to indicate elevation and importance
-- `tw-shadow-lg` for primary cards that need emphasis
-- `tw-shadow` for standard cards
-- `tw-shadow-none` for flat, subtle containers
+**Shadow Depth:**
+- ✓ Use appropriate shadow depth to indicate content importance and elevation
+- ✗ Don't use excessive shadow depth for standard content - it creates unnecessary visual weight
 
-**Spacing**
-- Remember to add padding to your card content (the component doesn't add internal padding)
-- Use consistent padding values (`tw-p-3`, `tw-p-4`) based on card size and content density
+**Content Spacing:**
+- ✓ Add padding to card content for proper spacing
+- ✗ Don't forget to add padding - the card frame itself doesn't include internal padding
 
-### Accessibility
+**Additional Guidelines:**
 
+- **Theme Selection**: Choose themes that align with your content's purpose - greenLight/greenDark for positive actions, marigoldLight for attention, stone variants for neutral content
+- **Consistency**: Use consistent shadow and radius classes across similar card types in your application
+- **Hierarchy**: Use shadow depth to establish visual hierarchy - reserve `tw-shadow-lg` for primary cards
+- **Border Usage**: Use borders sparingly; shadows often provide better visual separation. Borders work well for subtle delineation without depth
+- **Overflow Control**: Set `allow-overflow` to `false` when using full-bleed images; keep it `true` for text-based content
+
+---
+
+## Accessibility
+
+- The component itself is a presentational container and doesn't impose accessibility constraints
 - Ensure sufficient color contrast between card backgrounds and text content
-- When using cards as interactive elements, ensure they have proper focus states
-- Use semantic HTML within card content (proper heading hierarchy, etc.)
+- When using cards as interactive elements, ensure they have proper focus states and keyboard navigation
+- Use semantic HTML within card content (proper heading hierarchy, landmarks, etc.)
+- For dark themes (greenDark, stoneDark), ensure text colors provide adequate contrast
 
-### Best Practices
+---
 
-**Theme Selection**
-- Choose themes that align with your content's purpose or category
-- `greenLight`/`greenDark` for positive actions or confirmations
-- `marigoldLight` for attention or highlights
-- `stoneLight`/`stoneDark` for neutral or secondary content
+## Component Properties + Demo
 
-**Border Usage**
-- Use borders sparingly - shadows often provide better visual separation
-- Borders work well when you need clear delineation without adding depth
-- Combine borders with appropriate background colors for visibility
+<Canvas of={KvCardFrameStories.Default} />
+<Controls of={KvCardFrameStories.Default} />
 
-**Shadow Usage**
-- Don't overuse heavy shadows - reserve `tw-shadow-lg` for cards that need emphasis
-- Consider removing shadows (`tw-shadow-none`) on cards within already elevated containers
-- Shadows provide depth; use them to establish visual hierarchy
+---
 
-**Overflow Control**
-- Set `allow-overflow` to `false` when using full-bleed images
-- Keep default `true` for text-based content that might need flexibility
-- Test with various content sizes to ensure desired behavior
+## Code Examples
 
-### Troubleshooting
+### Basic Card
 
-**Card content is being clipped**
-- Check the `allow-overflow` prop - it may need to be set to `true`
-- Ensure parent containers aren't applying their own overflow restrictions
+```vue
+<template>
+  <kv-card-frame>
+    <div class="tw-p-4">
+      <h2>Card Title</h2>
+      <p>Card content goes here</p>
+    </div>
+  </kv-card-frame>
+</template>
 
-**Theme colors not applying**
-- Verify that child components support theme tokens
-- Check that the theme name is spelled correctly and is a valid option
+<script>
+import { KvCardFrame } from '@kiva/kv-components';
 
-**Borders not visible**
-- Ensure you're using the full border class including `tw-border` base class
-- Check that border color contrasts with the background color
+export default {
+  components: {
+    KvCardFrame,
+  },
+};
+</script>
+```
+
+### Themed Card with Custom Styling
+
+```vue
+<template>
+  <kv-card-frame
+    theme="greenLight"
+    bg-color-class="tw-bg-secondary"
+    radius-class="tw-rounded-lg"
+    shadow-class="tw-shadow"
+    border-class="tw-border tw-border-tertiary"
+  >
+    <div class="tw-p-4">
+      <h2>Themed Content</h2>
+      <p>This card uses the greenLight theme with custom styling.</p>
+    </div>
+  </kv-card-frame>
+</template>
+
+<script>
+import { KvCardFrame } from '@kiva/kv-components';
+
+export default {
+  components: {
+    KvCardFrame,
+  },
+};
+</script>
+```
+
+### Full Image Card
+
+```vue
+<template>
+  <kv-card-frame
+    :allow-overflow="false"
+    class="tw-w-64 tw-h-64"
+  >
+    <img
+      src="image.jpg"
+      alt="Card image"
+      class="tw-w-full tw-h-full tw-object-cover"
+    />
+  </kv-card-frame>
+</template>
+
+<script>
+import { KvCardFrame } from '@kiva/kv-components';
+
+export default {
+  components: {
+    KvCardFrame,
+  },
+};
+</script>
+```

@@ -1,0 +1,201 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvIconButtonStories from './KvIconButton.stories.js';
+
+<Meta title="KvIconButton" component={KvIconButtonStories.Component} />
+
+# KvIconButton
+
+A compact, accessible icon button component designed to provide interactive icon-based actions with proper touch targets and customizable visual states.
+
+## Component Overview
+
+Icon buttons provide a simplified, icon-only interface for common actions. They come in several variants to support different visual needs.
+
+<Story of={KvIconButtonStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports different sizes across all style and functional variants.
+
+<Story of={KvIconButtonStories.AllVariations} />
+
+## Usage Information
+
+Icon Button represent actions using only an icon, without label use them only when the action is clear and easily recognizable.
+
+There are two types of icon buttons: **Default** and **Toggle**. Each type has style variants to support different needs.
+
+- **Default icon button**: Triggers an action, such as opening a menu or revealing additional content.
+- **Toggle icon button**: Represents an on/off or selected/unselected state, such as marking something as a favorite or saving an item.
+
+### When to Use
+
+- For common, recognizable actions (close, menu, more options)
+- When space is limited and text labels would clutter the interface
+- For actions that can be clearly communicated with a universally understood icon
+- In toolbars, headers, or card actions where icons provide quick access
+
+### When Not to Use
+
+- For primary actions that need emphasis
+- When the icon meaning is not immediately clear
+- For actions that are critical and need explicit labeling
+- When accessibility requires clear text labels
+
+---
+
+## Behavior
+
+### Icon Button States
+
+Icon buttons follow the same behavior as standard buttons with four distinct states:
+
+1. **Default**: Standard appearance without interaction
+2. **Hover**: Background color changes to show interactivity
+3. **Active**: Background color changes darker to show selection
+4. **Disabled**: Reduced opacity and non-interactive
+
+<Story of={KvIconButtonStories.IconButtonStates} />
+
+### Toggle Selection
+
+Toggle icon buttons allow users to select or deselect a single option, such as adding or removing a loan card from bookmarks.
+
+- Use an **outlined icon** when toggle is unselected, and switch to a **filled icon** when selected to provide a clear visual cue
+- Toggle state should update **immediately** after interaction
+
+<Story of={KvIconButtonStories.ToggleableButton} />
+
+## Anatomy
+
+The icon button consists of three main parts:
+
+- **Icon**: The visual symbol representing the action (configurable via the `icon` prop, with optional `activeIcon` for toggleable buttons)
+- **Button Container**: Circular shape (always `tw-rounded-full`) with optional background (`showBackground`) and border (`showBorder` with color variants)
+- **Touch Target**: Minimum 44 x 44px interactive area for accessibility, regardless of visual button size
+
+---
+
+## Specs
+
+### Target Size
+
+All icon button variants maintain a minimum touch target of 44 x 44px to support touch interactions and meet accessibility guidelines.
+
+
+### Touch Target Visualization
+
+<Story of={KvIconButtonStories.TouchTargetVisualization} />
+
+### Spacing
+
+- Icon buttons should have adequate spacing around them to prevent accidental clicks
+- Maintain at least 8px spacing between adjacent icon buttons
+- In toolbars, use consistent spacing between all icon buttons
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvIconButton/Do-use-predefined-sizes.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use the predefined size property provided by the component to control its dimensions consistently.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvIconButton/Do-not-manually-alter-sizing.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Manually change the padding, size, or dimensions of the container or the icon itself.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvIconButton/Do-use-appropriate-icons-with-meaning.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Use an icons with a well-established association to an action in Kiva and other software products.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvIconButton/Do-not-poor-icon-selection.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don’t use one icon to mean many different things, and don’t use icons that aren’t clear and universally used to most people.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- Icon buttons must have an `aria-label` or `aria-labelledby` attribute to provide accessible names
+- Toggle buttons use `aria-pressed` to communicate their state to assistive technologies
+- All icon buttons maintain a minimum 44px touch target for accessibility
+- Icon buttons support keyboard navigation (Enter and Space keys)
+- Disabled state is communicated through `aria-disabled`
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvIconButtonStories.Default} />
+<Controls of={KvIconButtonStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Icon Button
+
+```vue
+<kv-icon-button
+  :icon="mdiDotsVertical"
+  @click="handleClick"
+/>
+```
+
+### Icon Button with activated properties
+
+```vue
+<kv-icon-button
+  :icon="mdiMenu"
+  :show-background="true"
+  show-border
+  button-size="medium"
+  @click="openMenu"
+/>
+```
+
+### Toggle Icon Button
+
+```vue
+<kv-icon-button
+  :icon="mdiBookmarkOutline"
+  :active-icon="mdiBookmark"
+  :toggleable="true"
+  v-model="isBookmarked"
+  :show-background="true"
+  @click="toggleBookmark"
+/>
+```
