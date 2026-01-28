@@ -1,0 +1,208 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvUserAvatarStories from './KvUserAvatar.stories.js';
+
+<Meta title="KvUserAvatar" component={KvUserAvatarStories.Component} />
+
+# KvUserAvatar
+
+A circular avatar component that displays user profile images, initial letters, or the Kiva logo for anonymous users.
+
+## Component Overview
+
+The User Avatar component intelligently handles different user states: displaying profile images when available, showing a styled initial letter when no image exists, or presenting the Kiva "K" logo for anonymous users.
+
+<Story of={KvUserAvatarStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports multiple display modes based on the user's data and several size options controlled via CSS classes.
+
+<Story of={KvUserAvatarStories.AllVariations} />
+
+## Usage Information
+
+KvUserAvatar provides a consistent way to display user identity across the Kiva platform. It automatically adapts to available user data, showing images, initials, or a branded fallback.
+
+### When to Use
+
+- To display a lender's profile picture in loan cards, activity feeds, or comments
+- To show user identity in headers, navigation, or account sections
+- When you need consistent avatar rendering with automatic fallback handling
+- In lists of multiple lenders or team members
+
+### When Not to Use
+
+- For borrower photos (use dedicated borrower image components)
+- For decorative images that don't represent a specific user
+- When you need clickable profile links (wrap with an anchor or use a different component)
+- For large hero-style profile displays
+
+---
+
+## Behavior
+
+The component determines what to display based on the provided props and handles image loading states gracefully.
+
+### Display Types
+
+The avatar automatically selects the appropriate display based on available data:
+
+1. **With Image**: Shows the user's profile image when `lenderImageUrl` is provided and valid
+2. **Initial Letter**: Shows the first letter of `lenderName` with a randomized background color when no image is available
+3. **Anonymous**: Shows the Kiva "K" logo when `lenderName` is "Anonymous" or when no data is provided
+
+<Story of={KvUserAvatarStories.DisplayTypes} />
+
+### Legacy Placeholder Detection
+
+The component automatically detects legacy placeholder images from the Kiva monolith and treats them as "no image", displaying the initial letter instead.
+
+<Story of={KvUserAvatarStories.LegacyPlaceholderHandling} />
+
+## Anatomy
+
+The avatar component consists of these main parts:
+
+- **Container**: A circular (`tw-rounded-full`) wrapper that clips content and provides the background color
+- **Profile Image**: The user's actual avatar image (when available)
+- **Initial Letter**: An SVG text element displaying the first letter of the user's name
+- **Kiva Logo**: The Kiva "K" SVG icon shown for anonymous users
+- **Loading Placeholder**: A shimmer effect shown while images are loading
+
+---
+
+## Specs
+
+### Sizing
+
+Avatar size is controlled via Tailwind width and height classes on the component. Common sizes include:
+
+<table style={{width: '100%', borderCollapse: 'collapse', marginBottom: '1rem'}}>
+	<thead>
+		<tr style={{borderBottom: '2px solid #e5e7eb'}}>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Size</th>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Classes</th>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Use Case</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr style={{borderBottom: '1px solid #e5e7eb'}}>
+			<td style={{padding: '0.75rem 1rem'}}>XSmall</td>
+			<td style={{padding: '0.75rem 1rem'}}><code>tw-w-3 tw-h-3</code></td>
+			<td style={{padding: '0.75rem 1rem'}}>Compact lists, inline mentions</td>
+		</tr>
+		<tr style={{borderBottom: '1px solid #e5e7eb'}}>
+			<td style={{padding: '0.75rem 1rem'}}>Small</td>
+			<td style={{padding: '0.75rem 1rem'}}><code>tw-w-4 tw-h-4</code></td>
+			<td style={{padding: '0.75rem 1rem'}}>Dense layouts, small cards</td>
+		</tr>
+		<tr style={{borderBottom: '1px solid #e5e7eb'}}>
+			<td style={{padding: '0.75rem 1rem'}}>Medium</td>
+			<td style={{padding: '0.75rem 1rem'}}><code>tw-w-6 tw-h-6</code></td>
+			<td style={{padding: '0.75rem 1rem'}}>Standard cards, comments</td>
+		</tr>
+		<tr>
+			<td style={{padding: '0.75rem 1rem'}}>Large</td>
+			<td style={{padding: '0.75rem 1rem'}}><code>tw-w-8 tw-h-8</code></td>
+			<td style={{padding: '0.75rem 1rem'}}>Profile headers, featured areas</td>
+		</tr>
+	</tbody>
+</table>
+
+### Color Randomization
+
+When displaying initial letters, the background and text colors are deterministically randomized based on the user's name. This ensures:
+
+- The same user always gets the same color combination
+- Visual variety when displaying multiple avatars together
+- Consistent branding colors from the Kiva palette
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use consistent avatar sizes within the same context (e.g., all avatars in a list should be the same size).</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Mix different avatar sizes inconsistently within the same list or layout.</p>
+	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Provide both `lenderName` and `lenderImageUrl` when available to ensure proper fallback behavior.</p>
+  	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Rely solely on image URLs without providing a name fallback, as images may fail to load.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The profile image includes an `alt` attribute ("Image of lender") for screen readers
+- The component uses `data-hj-suppress` class to prevent session recording tools from capturing user avatars
+- Color combinations for initial letters maintain sufficient contrast ratios
+- The SVG elements use appropriate semantic markup
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvUserAvatarStories.Default} />
+<Controls of={KvUserAvatarStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Usage with Image
+
+```vue
+<KvUserAvatar
+  lender-name="Roger"
+  lender-image-url="https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg"
+  class="tw-w-6 tw-h-6"
+/>
+```
+
+### Initial Letter Fallback
+
+```vue
+<KvUserAvatar
+  lender-name="Sarah"
+  lender-image-url=""
+  class="tw-w-6 tw-h-6"
+/>
+```
+
+### Anonymous User with Theme
+
+```vue
+<KvUserAvatar
+  lender-name="Anonymous"
+  theme="ecoGreenLight"
+  class="tw-w-6 tw-h-6"
+/>
+```

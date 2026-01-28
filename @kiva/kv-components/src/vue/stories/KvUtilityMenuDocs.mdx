@@ -1,0 +1,253 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvUtilityMenuStories from './KvUtilityMenu.stories.js';
+
+<Meta title="KvUtilityMenu" component={KvUtilityMenuStories.Component} />
+
+# KvUtilityMenu
+
+A dropdown menu component triggered by an icon button, commonly used for contextual actions like "more options" menus.
+
+## Component Overview
+
+The Utility Menu provides a compact way to group related actions behind an icon button. It supports customizable icons, button sizes, and menu positioning to fit various UI contexts.
+
+<Story of={KvUtilityMenuStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports multiple button sizes, border radius styles, custom icons, and menu positioning options.
+
+<Story of={KvUtilityMenuStories.AllVariations} />
+
+## Usage Information
+
+KvUtilityMenu is designed for secondary or contextual actions that don't need to be visible at all times. It keeps interfaces clean by hiding less-frequently used options behind a recognizable icon trigger.
+
+### When to Use
+
+- For "more options" or overflow menus on cards, rows, or compact UI elements
+- When you have 2-5 related actions that don't need primary visibility
+- In toolbars or headers where space is limited
+- For edit/delete/share action groupings on content items
+
+### When Not to Use
+
+- For primary actions that users need quick access to
+- When there's only one action (use a button instead)
+- For navigation menus (use dedicated navigation components)
+- When actions are critical and should always be visible
+
+---
+
+## Behavior
+
+The menu opens and closes based on user interaction, with built-in click-outside detection.
+
+### Toggle Behavior
+
+Clicking the trigger button toggles the menu open/closed. The component emits `kv-utility-menu-clicked` with the current state, allowing parent components to react to menu state changes.
+
+<Story of={KvUtilityMenuStories.MenuBehavior} />
+
+### Click Outside to Close
+
+When the menu is open, clicking anywhere outside the menu or trigger button will automatically close it. This is handled via a document-level click listener that's cleaned up when the component unmounts.
+
+## Anatomy
+
+The utility menu consists of these main parts:
+
+- **Trigger Button**: An icon button that opens/closes the menu. Customizable via `icon`, `buttonSize`, `buttonRadiusClass`, and `buttonBorderClass` props.
+- **Dropdown Menu**: A positioned container that appears below the trigger. Customizable via `menuPosition`, `menuRadiusClass`, and `menuBorderClass` props.
+- **Menu Content (Slot)**: The default slot receives the menu items, typically a list of links or buttons.
+
+---
+
+## Specs
+
+### Button Sizes
+
+The trigger button comes in three sizes:
+
+<table style={{width: '100%', borderCollapse: 'collapse', marginBottom: '1rem'}}>
+	<thead>
+		<tr style={{borderBottom: '2px solid #e5e7eb'}}>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Size</th>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Dimensions</th>
+			<th style={{textAlign: 'left', padding: '0.75rem 1rem'}}>Use Case</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr style={{borderBottom: '1px solid #e5e7eb'}}>
+			<td style={{padding: '0.75rem 1rem'}}>Small</td>
+			<td style={{padding: '0.75rem 1rem'}}>16x16px (<code>tw-w-4 tw-h-4</code>)</td>
+			<td style={{padding: '0.75rem 1rem'}}>Compact layouts, tables</td>
+		</tr>
+		<tr style={{borderBottom: '1px solid #e5e7eb'}}>
+			<td style={{padding: '0.75rem 1rem'}}>Medium</td>
+			<td style={{padding: '0.75rem 1rem'}}>20x20px (<code>tw-w-5 tw-h-5</code>)</td>
+			<td style={{padding: '0.75rem 1rem'}}>Standard cards, lists</td>
+		</tr>
+		<tr>
+			<td style={{padding: '0.75rem 1rem'}}>Large</td>
+			<td style={{padding: '0.75rem 1rem'}}>24x24px (<code>tw-w-6 tw-h-6</code>)</td>
+			<td style={{padding: '0.75rem 1rem'}}>Prominent placements</td>
+		</tr>
+	</tbody>
+</table>
+
+### Menu Positioning
+
+The menu dropdown is 236px wide and positioned below the trigger button:
+- **Left-aligned** (default): Menu extends to the right of the trigger
+- **Right-aligned**: Menu extends to the left, anchored at the right edge
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use recognizable icons that hint at the menu's purpose (dots for general options, pencil for edit actions, cog for settings).</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use obscure icons that don't clearly indicate a menu will appear when clicked.</p>
+	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Position the menu so it doesn't get cut off by viewport edges. Use right-aligned for menus near the right edge of the screen.</p>
+  	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Allow the menu to overflow outside the viewport or overlap important content.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The trigger button is a native `<button>` element for keyboard accessibility
+- Menu items should be focusable and support keyboard navigation
+- Consider adding `aria-haspopup="true"` and `aria-expanded` attributes for screen reader users
+- Ensure sufficient color contrast for the icon and menu items
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvUtilityMenuStories.Default} />
+<Controls of={KvUtilityMenuStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Utility Menu
+
+```vue
+<template>
+  <KvUtilityMenu
+    buttonSize="medium"
+    buttonRadiusClass="tw-rounded-full"
+  >
+    <ul class="tw-m-0 tw-p-0">
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <a href="#" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">View Details</a>
+      </li>
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <a href="#" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Share</a>
+      </li>
+      <li class="tw-list-none">
+        <a href="#" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Bookmark</a>
+      </li>
+    </ul>
+  </KvUtilityMenu>
+</template>
+```
+
+### Edit Menu with Custom Icon
+
+```vue
+<template>
+  <KvUtilityMenu
+    :icon="mdiPencil"
+    buttonSize="medium"
+    buttonRadiusClass="tw-rounded"
+    buttonBorderClass="tw-border tw-border-primary"
+    menuPosition="right-aligned"
+    @kv-utility-menu-clicked="handleMenuToggle"
+  >
+    <ul class="tw-m-0 tw-p-0">
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <button @click="editItem" class="tw-w-full tw-text-left tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Edit</button>
+      </li>
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <button @click="duplicateItem" class="tw-w-full tw-text-left tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Duplicate</button>
+      </li>
+      <li class="tw-list-none">
+        <button @click="deleteItem" class="tw-w-full tw-text-left tw-px-2 tw-py-2 hover:tw-bg-secondary-light tw-text-danger">Delete</button>
+      </li>
+    </ul>
+  </KvUtilityMenu>
+</template>
+
+<script setup>
+import { mdiPencil } from '@mdi/js';
+
+const handleMenuToggle = (event) => {
+  console.log('Menu is now:', event.open ? 'open' : 'closed');
+};
+</script>
+```
+
+### Settings Menu with Custom Styling
+
+```vue
+<template>
+  <KvUtilityMenu
+    :icon="mdiCogOutline"
+    buttonSize="large"
+    buttonRadiusClass="tw-rounded-sm"
+    buttonBorderClass="tw-border tw-border-tertiary"
+    menuRadiusClass="tw-rounded-sm"
+    menuBorderClass="tw-border tw-border-tertiary"
+    analyticsCategory="settings"
+  >
+    <ul class="tw-m-0 tw-p-0">
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <a href="/settings/profile" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Profile Settings</a>
+      </li>
+      <li class="tw-list-none tw-border-b tw-border-gray-100">
+        <a href="/settings/notifications" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Notifications</a>
+      </li>
+      <li class="tw-list-none">
+        <a href="/settings/privacy" class="tw-block tw-px-2 tw-py-2 hover:tw-bg-secondary-light">Privacy</a>
+      </li>
+    </ul>
+  </KvUtilityMenu>
+</template>
+
+<script setup>
+import { mdiCogOutline } from '@mdi/js';
+</script>
+```
