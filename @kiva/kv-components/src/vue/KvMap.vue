@@ -311,7 +311,8 @@ export default {
 				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
 
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
-					if (response.loaded && !this.mapLoaded && !this.useLeaflet && this.lat && this.long) {
+					if (response.loaded && !this.mapLoaded && !this.useLeaflet
+						&& this.lat != null && this.long != null) {
 						this.initializeMapLibre();
 						this.mapLibreReady = true;
 					}
