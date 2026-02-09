@@ -205,12 +205,12 @@ export default {
 	},
 	watch: {
 		lat(next, prev) {
-			if (prev === null && this.long && !this.mapLibreReady && !this.leafletReady) {
+			if (prev === null && this.long !== null && !this.mapLibreReady && !this.leafletReady) {
 				this.initializeMap();
 			}
 		},
 		long(next, prev) {
-			if (prev === null && this.lat && !this.mapLibreReady && !this.leafletReady) {
+			if (prev === null && this.lat !== null && !this.mapLibreReady && !this.leafletReady) {
 				this.initializeMap();
 			}
 		},
@@ -331,7 +331,8 @@ export default {
 				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
 
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
-					if (response.loaded && !this.mapLoaded && !this.useLeaflet && this.lat && this.long) {
+					if (response.loaded && !this.mapLoaded && !this.useLeaflet
+						&& this.lat != null && this.long != null) {
 						this.initializeMapLibre();
 						this.mapLibreReady = true;
 					}
@@ -343,7 +344,7 @@ export default {
 				mapStyle.setAttribute('href', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
 
 				this.testDelayedGlobalLibrary('L').then((leafletTest) => {
-					if (leafletTest.loaded && !this.mapLoaded && this.lat && this.long) {
+					if (leafletTest.loaded && !this.mapLoaded && this.lat != null && this.long != null) {
 						this.initializeLeaflet();
 						this.leafletReady = true;
 					}
