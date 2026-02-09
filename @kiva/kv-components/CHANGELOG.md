@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.1...@kiva/kv-components@8.4.2) (2026-02-09)
+
+
+### Bug Fixes
+
+* missing other conditions ([f74f310](https://github.com/kiva/kv-ui-elements/commit/f74f3103534aeac3d12c020b40afdeead91cb939))
+* no map when lat or long have value 0 ([4c610d6](https://github.com/kiva/kv-ui-elements/commit/4c610d606ba54a822fd7aec1a57477b11bc4498e))
+
+
+
+
+
 ## [8.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.0...@kiva/kv-components@8.4.1) (2026-01-28)
 
 **Note:** Version bump only for package @kiva/kv-components
