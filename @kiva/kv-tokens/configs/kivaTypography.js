@@ -381,7 +381,6 @@ export const textStyles = (() => {
 		},
 	};
 
-	// Updated to use new (2026) semantic font sizes and other properties
 	const textBase = {
 		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
