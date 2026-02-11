@@ -7,6 +7,7 @@ const {
 	fontWeights,
 	letterSpacings,
 	lineHeights,
+	lineHeightsAbsolute,
 	radii,
 	semanticFontSizes,
 	space,
@@ -383,9 +384,13 @@ export const textStyles = (() => {
 	// Updated to use new (2026) semantic font sizes and other properties
 	const textBase = {
 		fontWeight: fontWeights.light,
-		fontSize: rem(semanticFontSizes.base.sm),
-		letterSpacing: em(letterSpacings.normal, semanticFontSizes.base.sm),
-		lineHeight: lineHeights[140],
+		fontSize: rem(fontSizes.base.sm),
+		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
+		lineHeight: lineHeights.normal,
+		'@screen lg': {
+			fontSize: rem(fontSizes.base.lg),
+			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
+		},
 	};
 
 	// Updated to use new (2026) semantic font sizes and other properties
@@ -429,14 +434,16 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.jumbo.sm),
 		letterSpacing: em(letterSpacings['-400'], semanticFontSizes.jumbo.sm),
-		lineHeight: lineHeights[130],
+		lineHeight: em(lineHeightsAbsolute.jumbo.sm, semanticFontSizes.jumbo.sm),
 		'@screen md': {
 			fontSize: rem(semanticFontSizes.jumbo.md),
 			letterSpacing: em(letterSpacings['-500'], semanticFontSizes.jumbo.md),
+			lineHeight: em(lineHeightsAbsolute.jumbo.md, semanticFontSizes.jumbo.md),
 		},
 		'@screen lg': {
 			fontSize: rem(semanticFontSizes.jumbo.lg),
 			letterSpacing: em(letterSpacings['-600'], semanticFontSizes.jumbo.lg),
+			lineHeight: em(lineHeightsAbsolute.jumbo.lg, semanticFontSizes.jumbo.lg),
 		},
 	};
 
@@ -445,7 +452,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.h1.sm),
 		letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.sm),
-		lineHeight: lineHeights[140],
+		lineHeight: em(lineHeightsAbsolute.h1.sm, semanticFontSizes.h1.sm),
 		'@screen md': {
 			fontSize: rem(semanticFontSizes.h1.md),
 			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.md),
@@ -453,6 +460,7 @@ export const textStyles = (() => {
 		'@screen lg': {
 			fontSize: rem(semanticFontSizes.h1.lg),
 			letterSpacing: em(letterSpacings['-300'], semanticFontSizes.h1.lg),
+			lineHeight: em(lineHeightsAbsolute.h1.lg, semanticFontSizes.h1.lg),
 		},
 	};
 
@@ -461,7 +469,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.h2.sm),
 		letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.sm),
-		lineHeight: lineHeights[130],
+		lineHeight: em(lineHeightsAbsolute.h2.sm, semanticFontSizes.h2.sm),
 		'@screen md': {
 			fontSize: rem(semanticFontSizes.h2.md),
 			letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.md),
@@ -469,7 +477,7 @@ export const textStyles = (() => {
 		'@screen lg': {
 			fontSize: rem(semanticFontSizes.h2.lg),
 			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.lg),
-			lineHeight: lineHeights[140],
+			lineHeight: em(lineHeightsAbsolute.h2.lg, semanticFontSizes.h2.lg),
 		},
 	};
 
@@ -478,12 +486,13 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.h3.sm),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
-		lineHeight: lineHeights[130],
+		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
 		'@screen md': {
 			fontSize: rem(semanticFontSizes.h3.md),
 		},
 		'@screen lg': {
 			fontSize: rem(semanticFontSizes.h3.lg),
+			lineHeight: em(lineHeightsAbsolute.h3.lg, semanticFontSizes.h3.lg),
 		},
 	};
 
@@ -492,7 +501,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.button.button),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.button.button),
-		lineHeight: lineHeights[125],
+		lineHeight: em(lineHeightsAbsolute.button.sm, semanticFontSizes.button.button),
 	};
 
 	const textUpper = {
@@ -500,7 +509,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.small.small),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
-		lineHeight: lineHeights[125],
+		lineHeight: em(lineHeightsAbsolute.upper.sm, semanticFontSizes.small.small),
 		textTransform: 'uppercase',
 	};
 
@@ -509,7 +518,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.small.small),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
-		lineHeight: lineHeights[125],
+		lineHeight: em(lineHeightsAbsolute.label.sm, semanticFontSizes.small.small),
 	};
 
 	const textCaption = {
@@ -517,7 +526,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.normal,
 		fontSize: rem(semanticFontSizes.small.small),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
-		lineHeight: lineHeights[125],
+		lineHeight: em(lineHeightsAbsolute.caption.sm, semanticFontSizes.small.small),
 	};
 
 	return {

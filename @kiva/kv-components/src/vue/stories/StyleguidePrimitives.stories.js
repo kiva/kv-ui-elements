@@ -48,7 +48,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Primitives</h1>
-		<section class="tw-py-8">
+		<section id="background-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Background Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -116,7 +116,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="text-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Text Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -172,7 +172,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="border-ring-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Border/Ring Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -228,7 +228,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="text-styles" class="tw-py-8">
 			<h2 class="tw-mb-4">Text Styles</h2>
 
 			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
@@ -330,7 +330,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="font-weights" class="tw-py-8">
 			<h2 class="tw-mb-4">Font Weights</h2>
 			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
 				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
@@ -382,7 +382,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="radii" class="tw-py-8">
 			<h2 class="tw-mb-4">Radii</h2>
 
 			<kv-grid
@@ -412,7 +412,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="opacity" class="tw-py-8">
 			<h2 class="tw-mb-4">Opacity</h2>
 			<kv-grid as="ul" class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5">
 				<li
@@ -437,7 +437,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-grid>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="space" class="tw-py-8">
 			<h2 class="tw-mb-4">Space</h2>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
@@ -462,7 +462,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</ul>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="breakpoints" class="tw-py-8">
 			<h2 class="tw-mb-4">Breakpoints</h2>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4 tw-overflow-x-auto">
 				<li
@@ -481,7 +481,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</ul>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="z-indices" class="tw-py-8">
 			<h2 class="tw-mb-4">Z-Indices</h2>
 			<ul class="tw-relative">
 				<li

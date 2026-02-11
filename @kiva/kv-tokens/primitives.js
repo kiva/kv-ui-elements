@@ -430,7 +430,6 @@ export default {
 		serif: "dovetail-mvb, dovetail-mvb-fallback, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif",
 	},
 	fontSizes: {
-		// deprecated in favor of semanticFontSizes, but keeping defined here for backwards compatibility with existing text styles
 		base: {
 			sm: 16,
 			md: 16,
@@ -532,6 +531,17 @@ export default {
 		130: 1.3,
 		140: 1.4,
 		150: 1.5,
+	},
+	lineHeightsAbsolute: {
+		jumbo: { sm: 47, md: 52, lg: 57 },
+		h1: { sm: 31, md: 31, lg: 36 },
+		h2: { sm: 26, md: 26, lg: 31 },
+		h3: { sm: 23, md: 23, lg: 26 },
+		base: { sm: 22, md: 22, lg: 22 },
+		button: { sm: 21, md: 21, lg: 21 },
+		upper: { sm: 18, md: 18, lg: 18 },
+		label: { sm: 18, md: 18, lg: 18 },
+		caption: { sm: 18, md: 18, lg: 18 },
 	},
 	letterSpacings: {
 		normal: 0,

@@ -204,7 +204,7 @@ export default {
 					'-moz-osx-font-smoothing': 'grayscale',
 					'text-rendering': 'optimizeLegibility',
 				},
-				button: { fontWeight: 'inherit' },
+				button: { ...textStyles.textButton, fontWeight: 'inherit' },
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,
