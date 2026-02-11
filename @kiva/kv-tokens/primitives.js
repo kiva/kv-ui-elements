@@ -430,6 +430,7 @@ export default {
 		serif: "dovetail-mvb, dovetail-mvb-fallback, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif",
 	},
 	fontSizes: {
+		// deprecated in favor of semanticFontSizes, but keeping defined here for backwards compatibility with existing text styles
 		base: {
 			sm: 16,
 			md: 16,
@@ -440,6 +441,7 @@ export default {
 			md: 48,
 			lg: 72,
 		},
+		// deprecated in favor of semanticFontSizes, but keeping defined here for backwards compatibility with existing text styles
 		small: {
 			sm: 13,
 			md: 13,
