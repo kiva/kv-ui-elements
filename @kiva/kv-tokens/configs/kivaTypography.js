@@ -8,6 +8,7 @@ const {
 	letterSpacings,
 	lineHeights,
 	radii,
+	semanticFontSizes,
 	space,
 } = designTokens;
 
@@ -379,15 +380,12 @@ export const textStyles = (() => {
 		},
 	};
 
+	// Updated to use new (2026) semantic font sizes and other properties
 	const textBase = {
 		fontWeight: fontWeights.light,
-		fontSize: rem(fontSizes.base.sm),
-		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		lineHeight: lineHeights.normal,
-		'@screen lg': {
-			fontSize: rem(fontSizes.base.lg),
-			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		},
+		fontSize: rem(semanticFontSizes.base.sm),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.base.sm),
+		lineHeight: lineHeights[140],
 	};
 
 	const textSmall = {
@@ -428,6 +426,102 @@ export const textStyles = (() => {
 		},
 	};
 
+	const textDisplay = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.jumbo.sm),
+		letterSpacing: em(letterSpacings['-400'], semanticFontSizes.jumbo.sm),
+		lineHeight: lineHeights[130],
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.jumbo.md),
+			letterSpacing: em(letterSpacings['-500'], semanticFontSizes.jumbo.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.jumbo.lg),
+			letterSpacing: em(letterSpacings['-600'], semanticFontSizes.jumbo.lg),
+		},
+	};
+
+	const textHeadline = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h1.sm),
+		letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.sm),
+		lineHeight: lineHeights[140],
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h1.md),
+			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h1.lg),
+			letterSpacing: em(letterSpacings['-300'], semanticFontSizes.h1.lg),
+		},
+	};
+
+	const textSubHeadline = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h2.sm),
+		letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.sm),
+		lineHeight: lineHeights[130],
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h2.md),
+			letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.lg),
+			lineHeight: lineHeights[140],
+		},
+	};
+
+	const textTitle = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h3.sm),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
+		lineHeight: lineHeights[130],
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h3.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h3.lg),
+		},
+	};
+
+	const textButton = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.button.button),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.button.button),
+		lineHeight: lineHeights[125],
+	};
+
+	const textUpper = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: lineHeights[125],
+		textTransform: 'uppercase',
+	};
+
+	const textLabel = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: lineHeights[125],
+	};
+
+	const textCaption = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.normal,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: lineHeights[125],
+	};
+
 	return {
 		textJumbo,
 		textH1,
@@ -441,6 +535,14 @@ export const textStyles = (() => {
 		textLink,
 		textPlaceholder,
 		textBlockquote,
+		textDisplay,
+		textHeadline,
+		textSubHeadline,
+		textTitle,
+		textButton,
+		textUpper,
+		textLabel,
+		textCaption,
 	};
 })();
 

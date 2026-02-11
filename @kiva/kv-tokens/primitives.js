@@ -476,6 +476,46 @@ export default {
 			lg: 24,
 		},
 	},
+	semanticFontSizes: {
+		jumbo: {
+			sm: 36,
+			md: 40,
+			lg: 44,
+		},
+		h1: {
+			sm: 22,
+			md: 22,
+			lg: 26,
+		},
+		h2: {
+			sm: 20,
+			md: 20,
+			lg: 22,
+		},
+		h3: {
+			sm: 18,
+			md: 18,
+			lg: 20,
+		},
+		base: {
+			base: 16,
+		},
+		button: {
+			button: 17,
+		},
+		caption: {
+			small: 14,
+		},
+		label: {
+			small: 14,
+		},
+		small: {
+			small: 14,
+		},
+		upper: {
+			small: 14,
+		},
+	},
 	fontWeights: {
 		light: 300,
 		normal: 400,
@@ -485,11 +525,22 @@ export default {
 		'nearly-none': 1.05,
 		tight: 1.25,
 		normal: 1.5,
+		100: 1,
+		125: 1.25,
+		130: 1.3,
+		140: 1.4,
+		150: 1.5,
 	},
 	letterSpacings: {
 		normal: 0,
+		'-100': -0.2,
+		'-200': -0.22,
 		'-0.3': -0.3,
 		'-0.5': -0.5,
+		'-300': -0.52,
+		'-400': -0.72,
+		'-500': -0.8,
+		'-600': -0.88,
 		'-1': -1,
 		'-2': -2,
 	},
