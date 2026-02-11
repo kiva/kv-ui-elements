@@ -440,7 +440,6 @@ export default {
 			md: 48,
 			lg: 72,
 		},
-		// deprecated in favor of semanticFontSizes, but keeping defined here for backwards compatibility with existing text styles
 		small: {
 			sm: 13,
 			md: 13,

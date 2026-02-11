@@ -392,10 +392,12 @@ export const textStyles = (() => {
 		},
 	};
 
-	// Updated to use new (2026) semantic font sizes and other properties
 	const textSmall = {
-		fontSize: rem(semanticFontSizes.small.sm),
+		fontSize: rem(fontSizes.small.sm),
 		lineHeight: lineHeights.normal,
+		'@screen lg': {
+			fontSize: rem(fontSizes.small.lg),
+		},
 	};
 
 	const textLink = {
