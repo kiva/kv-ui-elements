@@ -204,7 +204,7 @@ export default {
 					'-moz-osx-font-smoothing': 'grayscale',
 					'text-rendering': 'optimizeLegibility',
 				},
-				button: { fontWeight: 'inherit' },
+				button: { ...textStyles.textButton, fontWeight: 'inherit' },
 				h1: textStyles.textH1,
 				h2: textStyles.textH2,
 				h3: textStyles.textH3,
@@ -250,6 +250,14 @@ export default {
 				'.text-small': textStyles.textSmall,
 				'.text-link': textStyles.textLink,
 				'.text-blockquote': textStyles.textBlockquote,
+				// new (2026) semantic text styles
+				'.text-display': textStyles.textDisplay,
+				'.text-headline': textStyles.textHeadline,
+				'.text-subheadline': textStyles.textSubheadline,
+				'.text-title': textStyles.textTitle,
+				'.text-button': textStyles.textButton,
+				'.text-upper': textStyles.textUpper,
+				'.text-caption': textStyles.textCaption,
 			}, ['responsive']);
 		}),
 	],

@@ -7,7 +7,9 @@ const {
 	fontWeights,
 	letterSpacings,
 	lineHeights,
+	lineHeightsAbsolute,
 	radii,
+	semanticFontSizes,
 	space,
 } = designTokens;
 
@@ -428,6 +430,106 @@ export const textStyles = (() => {
 		},
 	};
 
+	const textDisplay = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.jumbo.sm),
+		letterSpacing: em(letterSpacings['-400'], semanticFontSizes.jumbo.sm),
+		lineHeight: em(lineHeightsAbsolute.jumbo.sm, semanticFontSizes.jumbo.sm),
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.jumbo.md),
+			letterSpacing: em(letterSpacings['-500'], semanticFontSizes.jumbo.md),
+			lineHeight: em(lineHeightsAbsolute.jumbo.md, semanticFontSizes.jumbo.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.jumbo.lg),
+			letterSpacing: em(letterSpacings['-600'], semanticFontSizes.jumbo.lg),
+			lineHeight: em(lineHeightsAbsolute.jumbo.lg, semanticFontSizes.jumbo.lg),
+		},
+	};
+
+	const textHeadline = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h1.sm),
+		letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.sm),
+		lineHeight: em(lineHeightsAbsolute.h1.sm, semanticFontSizes.h1.sm),
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h1.md),
+			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h1.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h1.lg),
+			letterSpacing: em(letterSpacings['-300'], semanticFontSizes.h1.lg),
+			lineHeight: em(lineHeightsAbsolute.h1.lg, semanticFontSizes.h1.lg),
+		},
+	};
+
+	const textSubHeadline = {
+		fontFamily: fonts.serif,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h2.sm),
+		letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.sm),
+		lineHeight: em(lineHeightsAbsolute.h2.sm, semanticFontSizes.h2.sm),
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h2.md),
+			letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.lg),
+			lineHeight: em(lineHeightsAbsolute.h2.lg, semanticFontSizes.h2.lg),
+		},
+	};
+
+	const textTitle = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.h3.sm),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
+		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h3.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h3.lg),
+			lineHeight: em(lineHeightsAbsolute.h3.lg, semanticFontSizes.h3.lg),
+		},
+	};
+
+	const textButton = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.button.button),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.button.button),
+		lineHeight: em(lineHeightsAbsolute.button.sm, semanticFontSizes.button.button),
+	};
+
+	const textUpper = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: em(lineHeightsAbsolute.upper.sm, semanticFontSizes.small.small),
+		textTransform: 'uppercase',
+	};
+
+	const textLabel = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.medium,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: em(lineHeightsAbsolute.label.sm, semanticFontSizes.small.small),
+	};
+
+	const textCaption = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.normal,
+		fontSize: rem(semanticFontSizes.small.small),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
+		lineHeight: em(lineHeightsAbsolute.caption.sm, semanticFontSizes.small.small),
+	};
+
 	return {
 		textJumbo,
 		textH1,
@@ -441,6 +543,14 @@ export const textStyles = (() => {
 		textLink,
 		textPlaceholder,
 		textBlockquote,
+		textDisplay,
+		textHeadline,
+		textSubHeadline,
+		textTitle,
+		textButton,
+		textUpper,
+		textLabel,
+		textCaption,
 	};
 })();
 

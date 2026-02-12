@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.6.4...@kiva/kv-tokens@3.7.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* apply semantic type size to small, add comments ([bc7fe4b](https://github.com/kiva/kv-ui-elements/commit/bc7fe4bb20a06a589340ee640b96e4540920655c))
+* remove comments about base style updates as they were reverted ([cf57f81](https://github.com/kiva/kv-ui-elements/commit/cf57f81857bef212ea2fa34a3a191f8518740168))
+* revert base styles and implement absolute line height mapping ([2bea294](https://github.com/kiva/kv-ui-elements/commit/2bea29451e4d44565c217cbc76bab4c8aeea2eb8))
+* revert new small text styles as they rely on updated base styles ([b1b4985](https://github.com/kiva/kv-ui-elements/commit/b1b49857e32580dd57f7382056fe7a16bd6ff5ea))
+
+
+### Features
+
+* add new sematic type derived primitives and utility classes ([4196d7c](https://github.com/kiva/kv-ui-elements/commit/4196d7c7b7aafcf2b19a484b4945b743db385e87))
+
+
+
+
+
 ## [3.6.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.6.3...@kiva/kv-tokens@3.6.4) (2026-01-21)
 
 

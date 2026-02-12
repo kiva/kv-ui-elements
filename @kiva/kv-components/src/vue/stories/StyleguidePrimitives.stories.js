@@ -48,7 +48,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 	template: `
 	<kv-page-container>
 		<h1 class="tw-mt-4">Primitives</h1>
-		<section class="tw-py-8">
+		<section id="background-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Background Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -116,7 +116,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="text-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Text Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -172,7 +172,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="border-ring-colors" class="tw-py-8">
 			<h2 class="tw-mb-4">Border/Ring Colors</h2>
 			<kv-tabs>
 				<template #tabNav>
@@ -228,149 +228,161 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="text-styles" class="tw-py-8">
 			<h2 class="tw-mb-4">Text Styles</h2>
+
 			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
 				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
 			</div>
+
 			<br><br>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
-				<li
-					v-for="typeStyle in kivaTypography"
-					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
-					class="tw-overflow-x-auto tw-w-full"
-				>
-					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
-					>
-						<p
-							class="tw-mb-1"
-							:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
-							style="width: 12em;"
-						>
-							{{ pangram }}
-						</p>
-						<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
-					</button>
-				</li>
-			</ul>
-		</section>
-		<section class="tw-py-8">
-			<h2 class="tw-mb-4">Text Styles <i>(Italics)</i></h2>
-			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
-				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
-			</div>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
-				<li
-					v-for="typeStyle in kivaTypography"
-					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
-					class="tw-overflow-x-auto tw-w-full"
-				>
-					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
-					>
-						<p
-							class="tw-mb-1 tw-italic"
-							:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
-							style="width: 12em;"
-						>
-							{{ pangram }}
-						</p>
-						<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} .tw-italic</span>
-					</button>
-				</li>
-			</ul>
-		</section>
-		<section class="tw-py-8">
-			<h2 class="tw-mb-4">Fallback Text Styles</h2>
-			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
-				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
-			</div>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
-				<li
-					v-for="typeStyle in kivaTypography"
-					:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
-					class="tw-overflow-x-auto tw-w-full"
-				>
-					<p
-						class="tw-mb-1"
-						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
-						style="width: 12em;"
-					>
-						{{ pangram }}
-					</p>
-					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
-					<p
-						class="tw-mb-1 tw-mt-1.5"
-						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
-						style="width: 12em;"
-						:style="fallbackStyle(typeStyle, true)"
-					>
-						{{ pangram }}
-					</p>
-					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with adjusted fallback font-family</span>
-					<p
-						class="tw-mb-1 tw-mt-1.5"
-						:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
-						style="width: 12em;"
-						:style="fallbackStyle(typeStyle, false)"
-					>
-						{{ pangram }}
-					</p>
-					<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with non-adjusted fallback font-family</span>
-				</li>
-			</ul>
+
+			<kv-tabs>
+				<template #tabNav>
+					<kv-tab for-panel="text_default">Default</kv-tab>
+					<kv-tab for-panel="text_italic">Italic</kv-tab>
+					<kv-tab for-panel="text_fallback">Fallback</kv-tab>
+				</template>
+				<template #tabPanels>
+					<kv-tab-panel id="text_default">
+						<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+							<li
+								v-for="typeStyle in kivaTypography"
+								:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
+								class="tw-overflow-x-auto tw-w-full"
+							>
+								<button
+									class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
+								>
+									<p
+										class="tw-mb-1"
+										:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
+										style="width: 12em;"
+									>
+										{{ pangram }}
+									</p>
+									<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
+								</button>
+							</li>
+						</ul>
+					</kv-tab-panel>
+					<kv-tab-panel id="text_italic">
+						<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+							<li
+								v-for="typeStyle in kivaTypography"
+								:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
+								class="tw-overflow-x-auto tw-w-full"
+							>
+								<button
+									class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-text', typeStyleKeyToClassName(typeStyle)))"
+								>
+									<p
+										class="tw-mb-1 tw-italic"
+										:class="buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))"
+										style="width: 12em;"
+									>
+										{{ pangram }}
+									</p>
+									<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} .tw-italic</span>
+								</button>
+							</li>
+						</ul>
+					</kv-tab-panel>
+					<kv-tab-panel id="text_fallback">
+						<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+							<li
+								v-for="typeStyle in kivaTypography"
+								:key="buildClassName('text', typeStyleKeyToClassName(typeStyle))"
+								class="tw-overflow-x-auto tw-w-full"
+							>
+								<p
+									class="tw-mb-1"
+									:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+									style="width: 12em;"
+								>
+									{{ pangram }}
+								</p>
+								<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}}</span>
+								<p
+									class="tw-mb-1 tw-mt-1.5"
+									:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+									style="width: 12em;"
+									:style="fallbackStyle(typeStyle, true)"
+								>
+									{{ pangram }}
+								</p>
+								<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with adjusted fallback font-family</span>
+								<p
+									class="tw-mb-1 tw-mt-1.5"
+									:class="[buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))]"
+									style="width: 12em;"
+									:style="fallbackStyle(typeStyle, false)"
+								>
+									{{ pangram }}
+								</p>
+								<span>.{{buildClassName('tw-text', typeStyleKeyToClassName(typeStyle))}} with non-adjusted fallback font-family</span>
+							</li>
+						</ul>
+					</kv-tab-panel>
+				</template>
+			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="font-weights" class="tw-py-8">
 			<h2 class="tw-mb-4">Font Weights</h2>
 			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
 				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
 			</div>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
-				<li
-					v-for="fontWeight in fontWeights"
-					:key="buildClassName('tw-font', fontWeight[0])"
-				>
-					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-font', fontWeight[0]))"
-					>
-						<p :class="buildClassName('tw-font', fontWeight[0])">
-							{{ pangram }}
-						</p>
-						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
-					</button>
-				</li>
-			</ul>
+
+			<kv-tabs>
+				<template #tabNav>
+					<kv-tab for-panel="text_weights_sans">Sans</kv-tab>
+					<kv-tab for-panel="text_weights_serif">Serif</kv-tab>
+				</template>
+				<template #tabPanels>
+					<kv-tab-panel id="text_weights_sans">
+						<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+							<li
+								v-for="fontWeight in fontWeights"
+								:key="buildClassName('tw-font', fontWeight[0])"
+							>
+								<button
+									class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-font', fontWeight[0]))"
+								>
+									<p :class="buildClassName('tw-font', fontWeight[0])">
+										{{ pangram }}
+									</p>
+									<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
+								</button>
+							</li>
+						</ul>
+					</kv-tab-panel>
+					<kv-tab-panel id="text_weights_serif">
+						<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
+							<li
+								v-for="fontWeight in fontWeights"
+								:key="buildClassName('tw-font', fontWeight[0])"
+							>
+								<button
+									class="tw-text-left tw-font-book hover:tw-text-action-highlight"
+									@click="copy(buildClassName('tw-font', fontWeight[0]))"
+								>
+									<p :class="[buildClassName('tw-font', fontWeight[0]), 'tw-font-serif']">
+										{{ pangram }}
+									</p>
+									<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
+								</button>
+							</li>
+						</ul>
+					</kv-tab-panel>
+				</template>
+			</kv-tabs>
 		</section>
 		<hr>
-		<section class="tw-py-8">
-			<h2 class="tw-mb-4">Font Weights (Serif)</h2>
-			<div class="tw-flex tw-gap-2 tw-sticky tw-top-0 tw-bg-white tw-py-2">
-				<kv-button variant="secondary" @click="newPangram">New Pangram</kv-button>
-			</div>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
-				<li
-					v-for="fontWeight in fontWeights"
-					:key="buildClassName('tw-font', fontWeight[0])"
-				>
-					<button
-						class="tw-text-left tw-font-book hover:tw-text-action-highlight"
-						@click="copy(buildClassName('tw-font', fontWeight[0]))"
-					>
-						<p :class="[buildClassName('tw-font', fontWeight[0]), 'tw-font-serif']">
-							{{ pangram }}
-						</p>
-						<span>.{{buildClassName('tw-font', fontWeight[0])}}</span>
-					</button>
-				</li>
-			</ul>
-		</section>
-		<hr>
-		<section class="tw-py-8">
+		<section id="radii" class="tw-py-8">
 			<h2 class="tw-mb-4">Radii</h2>
 
 			<kv-grid
@@ -400,7 +412,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="opacity" class="tw-py-8">
 			<h2 class="tw-mb-4">Opacity</h2>
 			<kv-grid as="ul" class="tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5">
 				<li
@@ -425,7 +437,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</kv-grid>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="space" class="tw-py-8">
 			<h2 class="tw-mb-4">Space</h2>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4">
 				<li
@@ -450,7 +462,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</ul>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="breakpoints" class="tw-py-8">
 			<h2 class="tw-mb-4">Breakpoints</h2>
 			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4 tw-overflow-x-auto">
 				<li
@@ -469,7 +481,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 			</ul>
 		</section>
 		<hr>
-		<section class="tw-py-8">
+		<section id="z-indices" class="tw-py-8">
 			<h2 class="tw-mb-4">Z-Indices</h2>
 			<ul class="tw-relative">
 				<li

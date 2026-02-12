@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.4.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.2...@kiva/kv-components@8.4.3) (2026-02-11)
+
+
+### Bug Fixes
+
+* make type styls primitive stories tab interfaces to reduce page height ([655ffb8](https://github.com/kiva/kv-ui-elements/commit/655ffb84dc8dbaa47e89415219476df370460bca))
+* revert base styles and implement absolute line height mapping ([2bea294](https://github.com/kiva/kv-ui-elements/commit/2bea29451e4d44565c217cbc76bab4c8aeea2eb8))
+
+
+
+
+
 ## [8.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.1...@kiva/kv-components@8.4.2) (2026-02-09)
 
 
