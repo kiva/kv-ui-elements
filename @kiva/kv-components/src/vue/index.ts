@@ -61,6 +61,7 @@ export { default as KvPieChart } from './KvPieChart.vue';
 export { default as KvPill } from './KvPill.vue';
 export { default as KvPopper } from './KvPopper.vue';
 export { default as KvProgressBar } from './KvProgressBar.vue';
+export { default as KvProgressCircle } from './KvProgressCircle.vue';
 export { default as KvPulsingDot } from './KvPulsingDot.vue';
 export { default as KvRadio } from './KvRadio.vue';
 export { default as KvSelect } from './KvSelect.vue';
