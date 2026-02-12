@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.3...@kiva/kv-components@8.5.0) (2026-02-12)
+
+
+### Features
+
+* kvprogresscircle component added ([#773](https://github.com/kiva/kv-ui-elements/issues/773)) ([d0ef01c](https://github.com/kiva/kv-ui-elements/commit/d0ef01ca5aa229d00e0a2bdbd4f50c16fd390c5d))
+
+
+
+
+
 ## [8.4.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.4.2...@kiva/kv-components@8.4.3) (2026-02-11)
 
 
