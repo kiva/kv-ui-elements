@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-tokens",
-    "version": "3.7.0",
+    "version": "3.7.1",
     "type": "module",
     "publishConfig": {
         "access": "public"
