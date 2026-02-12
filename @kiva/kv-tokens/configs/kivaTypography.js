@@ -497,7 +497,7 @@ export const textStyles = (() => {
 		},
 	};
 
-	const textButton = {
+	const textButtonLink = {
 		fontFamily: fonts.sans,
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.button.button),
@@ -547,7 +547,7 @@ export const textStyles = (() => {
 		textHeadline,
 		textSubHeadline,
 		textTitle,
-		textButton,
+		textButtonLink,
 		textUpper,
 		textLabel,
 		textCaption,
