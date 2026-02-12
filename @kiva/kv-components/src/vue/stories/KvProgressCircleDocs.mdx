@@ -1,0 +1,226 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvProgressCircleStories from './KvProgressCircle.stories.js';
+
+<Meta title="KvProgressCircle" component={KvProgressCircleStories.Component} />
+
+# KvProgressCircle
+
+A circular progress indicator component that visually represents completion percentage with accessible SVG rendering and flexible styling options.
+
+## Component Overview
+
+KvProgressCircle displays progress as a circular ring that fills based on the provided value. It supports full circles, partial arcs, customizable colors, stroke widths, and optional numeric labels. The component includes a visually hidden native `<progress>` element for screen reader accessibility.
+
+<Story of={KvProgressCircleStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports multiple configuration options:
+
+- **Colors**: Use different color themes (brand, action, caution, danger, primary, secondary) to convey meaning
+- **Stroke Width**: Adjust the thickness of the progress ring from thin to bold
+- **Number Display**: Optionally show the percentage value as text along the progress arc
+- **Arc Scale**: Create partial circles (gauges) instead of full rings for specialized visualizations
+
+<Story of={KvProgressCircleStories.AllVariations} />
+
+## Usage Information
+
+KvProgressCircle is designed to communicate progress or completion status in a compact, visually appealing format. It excels in scenarios where space is limited or where a more graphical representation is preferred over a linear progress bar.
+
+The component is highly customizable through props that control its appearance (color, strokeWidth), shape (arcScale, rotate), and labeling (showNumber).
+
+### When to Use
+
+- To display loan funding progress in a compact visual format
+- For showing completion status of multi-step processes
+- In dashboard metrics or statistics displays
+- When you need a gauge-style indicator for percentages
+- To highlight achievement milestones or goals
+
+### When Not to Use
+
+- For showing multiple related progress values (use a progress bar group instead)
+- When exact values need to be prominently displayed (consider using text with the circle)
+- For indeterminate loading states (use a spinner instead)
+- When the progress steps are discrete rather than continuous
+
+---
+
+## Behavior
+
+The component smoothly transitions between values with CSS animations, providing visual feedback when progress changes.
+
+### Progress States
+
+The progress circle visually fills from 0% (empty ring) to 100% (complete ring). The foreground stroke grows clockwise from the starting position, overlaying the background ring.
+
+- **0%**: Shows only the background ring
+- **1-99%**: Shows partial fill indicating progress
+- **100%**: Complete ring showing full completion
+
+<Story of={KvProgressCircleStories.ProgressStates} />
+
+### Arc and Rotation Configurations
+
+When using `arcScale` less than 1, the component creates partial arcs instead of full circles. The `rotate` prop positions the arc opening. Combined, these create gauge-style visualizations for specialized use cases like speedometers or dial indicators.
+
+<Story of={KvProgressCircleStories.ArcConfigurations} />
+
+## Anatomy
+
+The progress circle consists of several layered elements:
+
+- **Hidden Progress Element**: A visually hidden native `<progress>` element that provides accessibility for screen readers
+- **Background Ring**: A muted circle showing the track/path that progress fills
+- **Foreground Ring**: The colored progress indicator that fills based on the value
+- **Text Path (optional)**: When `showNumber` is true, displays the percentage value curved along the progress arc with a white backdrop for readability
+
+---
+
+## Specs
+
+### Sizing
+
+The component uses an internal viewBox of 200x200 units and scales responsively to fit its container. Control the size by setting width/height on the parent element or using inline styles.
+
+<Story of={KvProgressCircleStories.SizeExamples} />
+
+### Stroke Width
+
+The `strokeWidth` prop controls the thickness of both the background and foreground rings. The value represents proportional units relative to the circle's internal coordinate system (radius of 100). Common values:
+
+- **4-6**: Thin, subtle rings
+- **8** (default): Balanced, standard appearance
+- **12-16**: Bold, prominent rings
+- **20+**: Very thick, gauge-like appearance
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvProgressCircle/do-use-appropriate-colors.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use semantic colors to convey meaning: brand for general progress, action for success/completion, caution for warnings, danger for critical states.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvProgressCircle/dont-use-random-colors.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use colors inconsistently or choose colors that don't align with the semantic meaning of the progress state.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvProgressCircle/do-provide-context.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Accompany the progress circle with descriptive text or labels that explain what the progress represents.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvProgressCircle/dont-use-without-context.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Display progress circles without any context, leaving users to guess what the percentage means.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The component includes a visually hidden native `<progress>` element with `max="100"` and the current `value`, ensuring screen readers announce progress correctly
+- The hidden progress element is styled with `tw-sr-only` (screen reader only) to be invisible but accessible
+- Progress changes are reflected in the hidden element, allowing assistive technologies to track updates
+- Color is not the only indicator; the visual fill level communicates progress independently of color
+- **Note**: The `showNumber` text feature may not display in Firefox due to browser limitations with text on SVG paths (handled with CSS `@supports`)
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvProgressCircleStories.Default} />
+<Controls of={KvProgressCircleStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Progress Circle
+
+```vue
+<template>
+  <KvProgressCircle
+    :value="65"
+    style="width: 100px;"
+  />
+</template>
+
+<script setup>
+import { KvProgressCircle } from '@kiva/kv-components';
+</script>
+```
+
+### Progress Circle with Number Display
+
+```vue
+<template>
+  <KvProgressCircle
+    :value="75"
+    :show-number="true"
+    color="action"
+    style="width: 150px;"
+  />
+</template>
+
+<script setup>
+import { KvProgressCircle } from '@kiva/kv-components';
+</script>
+```
+
+### Gauge-style Half Circle
+
+```vue
+<template>
+  <div class="gauge-container">
+    <KvProgressCircle
+      :value="loanFundingPercent"
+      :arc-scale="0.5"
+      :rotate="90"
+      :stroke-width="12"
+      color="brand"
+      style="width: 200px;"
+    />
+    <p class="gauge-label">{{ loanFundingPercent }}% funded</p>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvProgressCircle } from '@kiva/kv-components';
+
+const loanFundingPercent = ref(68);
+</script>
+```
