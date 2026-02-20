@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.2...@kiva/kv-components@8.5.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* cleanup card height and learn more link position when in carousel ([54beeb0](https://github.com/kiva/kv-ui-elements/commit/54beeb092463a0c78347049584cb52261f9a50ef))
+
+
+
+
+
 ## [8.5.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.1...@kiva/kv-components@8.5.2) (2026-02-12)
 
 **Note:** Version bump only for package @kiva/kv-components
