@@ -1,0 +1,268 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvLoanInfoCardStories from './KvLoanInfoCard.stories.js';
+
+<Meta title="KvLoanInfoCard" component={KvLoanInfoCardStories.Component} />
+
+# KvLoanInfoCard
+
+A card component that displays essential loan information including borrower photo, location, loan use, and a call-to-action link for viewing more details.
+
+## Component Overview
+
+Loan info cards provide a compact, scannable preview of loan opportunities. They're designed to show key borrower and loan information at a glance while encouraging users to learn more.
+
+<Story of={KvLoanInfoCardStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports standard and large card sizes, full-width layouts, and loading states.
+
+<Story of={KvLoanInfoCardStories.AllVariations} />
+
+## Usage Information
+
+Loan info cards are designed to present loan opportunities in a concise, visually appealing format. They combine borrower imagery, location context, and loan purpose to help users quickly understand and connect with lending opportunities.
+
+### When to Use
+
+- Displaying loan opportunities in browse/search results
+- Showing recommended loans on homepage or category pages
+- Within carousels or grids featuring multiple lending opportunities
+- When you need a compact loan preview with essential information
+
+### When Not to Use
+
+- For detailed loan information that requires more context (use a loan detail page)
+- When displaying already-funded or completed loans without appropriate status indicators
+- In very narrow containers where the 230px minimum width cannot be accommodated
+- For non-loan content (use appropriate alternative card components)
+
+---
+
+## Behavior
+
+### Loading State
+
+When loan data is being fetched, the card displays animated loading placeholders for the image, text content, and link. This provides visual feedback while preventing layout shift.
+
+<Story of={KvLoanInfoCardStories.Loading} />
+
+### Large Card Loading
+
+The large card variant also supports loading state with appropriately sized placeholders.
+
+<Story of={KvLoanInfoCardStories.LargeCardLoading} />
+
+### Click Interactions
+
+The card contains multiple interactive areas that all lead to the loan details:
+
+1. **Borrower Photo**: Clicking the image navigates to loan details
+2. **Loan Use Text**: Clicking the use description navigates to loan details
+3. **Primary Link**: The "Learn more" (or custom text) link navigates to loan details
+
+All interactions emit the `show-loan-details` event when `customLoanDetails` is true, allowing parent components to handle navigation or modal display.
+
+## Anatomy
+
+The loan info card consists of several key parts:
+
+- **Borrower Image**: Responsive image with configurable aspect ratio (3:4 standard, 5:8 large)
+- **Location Badge**: Overlay showing city/state and country with map marker icon
+- **Loan Use Section**: Description of how the loan will be used, with borrower name
+- **Primary Link**: Call-to-action text (default: "Learn more") that links to full loan details
+- **Card Container**: White background with rounded corners and subtle shadow
+
+---
+
+## Specs
+
+### Card Dimensions
+
+- **Minimum Width**: 230px
+- **Maximum Width**: 374px (standard) or 100% (when `useFullWidth` is true)
+- **Image Aspect Ratio**: 3:4 (standard) or 5:8 (large card)
+
+### Large Card Variant
+
+The large card variant uses a 5:8 aspect ratio for the borrower image, optimized for larger displays.
+
+<Story of={KvLoanInfoCardStories.LargeCard} />
+
+### Full Width Layout
+
+When `useFullWidth` is true, the card expands to fill its container width.
+
+<Story of={KvLoanInfoCardStories.UseFullWidth} />
+
+### US Loan (Direct Distribution)
+
+Cards display differently for US-based loans with direct distribution model.
+
+<Story of={KvLoanInfoCardStories.USLoan} />
+
+### Custom Href
+
+Cards can link to custom URLs when using external links.
+
+<Story of={KvLoanInfoCardStories.CustomHref} />
+
+### Carousel Integration
+
+Multiple cards can be displayed in a carousel layout for browsing loan opportunities.
+
+<Story of={KvLoanInfoCardStories.CarouselMultipleCards} />
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvLoanInfoCard/do-consistent-card-heights.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use cards of consistent sizes within the same view to create visual harmony and improve scannability.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvLoanInfoCard/dont-mixed-card-sizes.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Mix standard and large card variants within the same row or carousel, as it creates visual inconsistency.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvLoanInfoCard/do-provide-loading-states.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Show loading placeholders when loan data is being fetched to provide feedback and prevent layout shift.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvLoanInfoCard/dont-empty-states.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Display empty cards or cards with missing data without proper loading states or error handling.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- **Alt Text**: Borrower images include descriptive alt text with the borrower's name
+- **Semantic Links**: All clickable areas use proper anchor or router-link elements with appropriate aria-labels
+- **Focus States**: Interactive elements have visible focus indicators for keyboard navigation
+- **Color Contrast**: Text meets WCAG 2.1 contrast requirements against the white card background
+- **Loading Feedback**: Loading placeholders provide visual feedback; consider aria-live regions for dynamic content updates
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvLoanInfoCardStories.Default} />
+<Controls of={KvLoanInfoCardStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Usage
+
+```vue
+<template>
+  <kv-loan-info-card
+    :loan-id="loan.id"
+    :loan="loan"
+    :kv-track-function="trackEvent"
+    :photo-path="photoPath"
+    @show-loan-details="handleLoanDetails"
+  />
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      loan: {
+        id: 1,
+        name: 'Maria',
+        geocode: {
+          city: 'Lima',
+          country: { name: 'Peru', isoCode: 'PE' }
+        },
+        image: { hash: 'abc123' },
+        use: 'to expand her bakery business',
+        loanAmount: '500.00',
+        status: 'fundraising'
+      },
+      photoPath: 'https://www.kiva.org/img/'
+    };
+  },
+  methods: {
+    trackEvent(category, action, label) {
+      // Analytics tracking
+    },
+    handleLoanDetails() {
+      // Handle loan details modal or navigation
+    }
+  }
+};
+</script>
+```
+
+### Large Card Variant
+
+```vue
+<template>
+  <kv-loan-info-card
+    :loan-id="loan.id"
+    :loan="loan"
+    :kv-track-function="trackEvent"
+    :photo-path="photoPath"
+    large-card
+    @show-loan-details="handleLoanDetails"
+  />
+</template>
+```
+
+### In a Carousel
+
+```vue
+<template>
+  <kv-carousel
+    :embla-options="{ loop: false }"
+    :multiple-slides-visible="true"
+    slides-to-scroll="visible"
+  >
+    <template v-for="(loan, index) in loans" :key="loan.id" #[`slide${index + 1}`]>
+      <kv-loan-info-card
+        :loan-id="loan.id"
+        :loan="loan"
+        :kv-track-function="trackEvent"
+        :photo-path="photoPath"
+        @show-loan-details="handleLoanDetails(loan)"
+      />
+    </template>
+  </kv-carousel>
+</template>
+```

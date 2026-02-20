@@ -1,13 +1,13 @@
 <template>
 	<div
-		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-w-full tw-pb-1 tw-p-1"
+		class="tw-flex tw-flex-col tw-bg-white tw-rounded tw-h-full tw-w-full tw-pb-1 tw-p-1"
 		:class="{ 'tw-pointer-events-none' : isLoading }"
 		data-testid="loan-card"
 		style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);"
 		:style="{ minWidth: '230px', maxWidth: cardWidth }"
 	>
 		<div class="tw-grow">
-			<div class="loan-card-active-hover">
+			<div class="loan-card-active-hover tw-h-full tw-flex tw-flex-col">
 				<!-- Borrower image -->
 				<kv-loading-placeholder
 					v-if="isLoading"
@@ -116,6 +116,7 @@
 						tw-no-underline hover:tw-no-underline
 						tw-font-medium
 						tw-text-action hover:tw-text-action-highlight
+						tw-mt-auto
 					"
 					:aria-label="primaryLinkText"
 					@click.native="clickReadMore(primaryLinkText, $event)"
