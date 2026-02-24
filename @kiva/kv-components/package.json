@@ -39,6 +39,7 @@
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
     "@mdi/js": "^7.4.47",
     "@storybook/addon-a11y": "^10.1.10",
+    "@storybook/addon-designs": "^11.1.2",
     "@storybook/addon-docs": "^10.1.10",
     "@storybook/addon-links": "^10.1.10",
     "@storybook/builder-vite": "^10.1.10",

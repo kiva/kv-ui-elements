@@ -21,7 +21,12 @@ export default {
 		'../stories/assets',
 	],
 
-	addons: [getAbsolutePath("@storybook/addon-links"), getAbsolutePath("@storybook/addon-a11y"), getAbsolutePath("@storybook/addon-docs")],
+	addons: [
+		getAbsolutePath("@storybook/addon-links"),
+		getAbsolutePath("@storybook/addon-a11y"),
+		getAbsolutePath("@storybook/addon-docs"),
+		getAbsolutePath("@storybook/addon-designs"),
+	],
 
 	framework: {
 		name: getAbsolutePath("@storybook/vue3-vite"),
