@@ -465,26 +465,41 @@ export const textStyles = (() => {
 		},
 	};
 
-	const textSubHeadline = {
+	const textHeadlineTwo = {
 		fontFamily: fonts.serif,
 		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.h2.sm),
-		letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.sm),
+		letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.sm),
 		lineHeight: em(lineHeightsAbsolute.h2.sm, semanticFontSizes.h2.sm),
 		'@screen md': {
 			fontSize: rem(semanticFontSizes.h2.md),
-			letterSpacing: em(letterSpacings['-100'], semanticFontSizes.h2.md),
+			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.md),
 		},
 		'@screen lg': {
 			fontSize: rem(semanticFontSizes.h2.lg),
-			letterSpacing: em(letterSpacings['-200'], semanticFontSizes.h2.lg),
+			letterSpacing: em(letterSpacings['-300'], semanticFontSizes.h2.lg),
 			lineHeight: em(lineHeightsAbsolute.h2.lg, semanticFontSizes.h2.lg),
+		},
+	};
+
+	const textSubHeadline = {
+		fontFamily: fonts.sans,
+		fontWeight: fontWeights.light,
+		fontSize: rem(semanticFontSizes.h3.sm),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
+		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
+		'@screen md': {
+			fontSize: rem(semanticFontSizes.h3.md),
+		},
+		'@screen lg': {
+			fontSize: rem(semanticFontSizes.h3.lg),
+			lineHeight: em(lineHeightsAbsolute.h3.lg, semanticFontSizes.h3.lg),
 		},
 	};
 
 	const textTitle = {
 		fontFamily: fonts.sans,
-		fontWeight: fontWeights.medium,
+		fontWeight: fontWeights.normal,
 		fontSize: rem(semanticFontSizes.h3.sm),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
 		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
@@ -545,6 +560,7 @@ export const textStyles = (() => {
 		textBlockquote,
 		textDisplay,
 		textHeadline,
+		textHeadlineTwo,
 		textSubHeadline,
 		textTitle,
 		textButtonLink,

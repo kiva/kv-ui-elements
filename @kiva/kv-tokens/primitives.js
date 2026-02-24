@@ -518,7 +518,9 @@ export default {
 	},
 	fontWeights: {
 		light: 300,
+		// Note: this is referred to as "medium" in the figma files for Post Grotesk but matches the font-weight of the font file we load
 		normal: 400,
+		// Note: this is referred to as "medium" in the figma files for Dovetail but matches the font-weight of the font file we load
 		medium: 500,
 	},
 	lineHeights: {
