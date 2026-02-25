@@ -2,7 +2,7 @@ import { publicLenderId, comments } from '#fixtures/mockCommentsData';
 import KvCommentsContainer from '../KvCommentsContainer.vue';
 
 export default {
-	title: 'KvCommentsContainer',
+	title: 'Comments/KvCommentsContainer',
 	component: KvCommentsContainer,
 };
 

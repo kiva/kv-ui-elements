@@ -1,7 +1,7 @@
 import KvLendAmountButton from '../KvLendAmountButton.vue';
 
 export default {
-	title: 'KvLendAmountButton',
+	title: 'Loan Display/KvLendAmountButton',
 	component: KvLendAmountButton,
 };
 

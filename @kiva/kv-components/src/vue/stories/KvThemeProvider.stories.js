@@ -28,7 +28,7 @@ const buildTailwindClasses = (prefix) => {
 };
 
 export default {
-	title: 'KvThemeProvider',
+	title: 'Base Styling/KvThemeProvider',
 	component: KvThemeProvider,
 	args: {
 		theme: {},

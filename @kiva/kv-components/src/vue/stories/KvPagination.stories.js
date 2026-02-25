@@ -1,7 +1,7 @@
 import KvPagination from '../KvPagination.vue';
 
 export default {
-	title: 'KvPagination',
+	title: 'Interface Elements/KvPagination',
 	component: KvPagination,
 };
 

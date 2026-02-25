@@ -1,7 +1,7 @@
 import KvLoadingPlaceholder from '../KvLoadingPlaceholder.vue';
 
 export default {
-	title: 'KvLoadingPlaceholder',
+	title: 'Interface Elements/KvLoadingPlaceholder',
 	component: KvLoadingPlaceholder,
 };
 

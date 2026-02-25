@@ -1,7 +1,7 @@
 import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
 import * as KvTooltipStories from './KvTooltip.stories.js';
 
-<Meta title="KvTooltip" component={KvTooltipStories.Component} />
+<Meta title="Interface Elements/KvTooltip" component={KvTooltipStories.Component} />
 
 # KvTooltip
 
@@ -66,7 +66,7 @@ Tooltips provide supplementary information without cluttering the interface. The
 Tooltips appear when users hover over or focus on the controller element. They automatically hide when the user moves away or removes focus.
 
 - Tooltips trigger on **mouseover** and **focus** events
-- They hide on **mouseout** and **blur** events  
+- They hide on **mouseout** and **blur** events
 - There is a subtle fade-in/fade-out transition
 
 <Story of={KvTooltipStories.PlacementShowcase} />
@@ -198,7 +198,7 @@ Eight pre-defined themes provide visual variety:
 <template>
   <button id="info-btn">More Info</button>
 
-  <kv-tooltip 
+  <kv-tooltip
     controller="info-btn"
     theme="ecoStoneDark"
     placement="bottom"

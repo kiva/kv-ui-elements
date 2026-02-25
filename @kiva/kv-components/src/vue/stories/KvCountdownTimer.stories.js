@@ -2,7 +2,7 @@ import { add } from 'date-fns';
 import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
-	title: 'KvCountdownTimer',
+	title: 'Interface Elements/KvCountdownTimer',
 	component: KvCountdownTimer,
 };
 

@@ -2,7 +2,7 @@ import KvImpactVerticalSelector from '../KvImpactVerticalSelector.vue';
 import impactVerticalDataMock from '../../mock-data/impact-vertical-data-mock';
 
 export default {
-	title: 'KvImpactVerticalSelector',
+	title: 'Components/KvImpactVerticalSelector',
 	component: KvImpactVerticalSelector,
 	argTypes: {
 		categoryList: {

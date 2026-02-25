@@ -1,7 +1,7 @@
 import KvLoanBookmark from '../KvLoanBookmark.vue';
 
 export default {
-	title: 'KvLoanBookmark',
+	title: 'Loan Display/KvLoanBookmark',
 	component: KvLoanBookmark,
 };
 

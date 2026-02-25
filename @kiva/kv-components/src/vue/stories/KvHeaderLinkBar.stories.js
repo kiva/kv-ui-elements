@@ -1,7 +1,7 @@
 import KvHeaderLinkBar from '../KvWwwHeader/KvHeaderLinkBar.vue';
 
 export default {
-	title: 'KvWwwHeader/KvHeaderLinkBar',
+	title: 'Page Frame/KvHeaderLinkBar',
 	component: KvHeaderLinkBar,
 };
 

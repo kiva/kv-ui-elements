@@ -3,7 +3,7 @@ import KvButton from '../KvButton.vue';
 import KvCardFrameDocsMdx from './KvCardFrameDocs.mdx';
 
 export default {
-	title: 'KvCardFrame',
+	title: 'Interface Elements/KvCardFrame',
 	component: KvCardFrame,
 	parameters: {
 		docs: {

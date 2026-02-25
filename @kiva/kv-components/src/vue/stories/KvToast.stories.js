@@ -2,7 +2,7 @@ import KvButton from '../KvButton.vue';
 import KvToast from '../KvToast.vue';
 
 export default {
-	title: 'KvToast',
+	title: 'Interface Elements/KvToast',
 	component: KvToast,
 	args: {
 		message: 'Successfully added to basket!',

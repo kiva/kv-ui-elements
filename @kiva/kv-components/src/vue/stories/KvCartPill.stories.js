@@ -1,7 +1,7 @@
 import KvCartPill from '../KvCartPill.vue';
 
 export default {
-	title: 'KvCartPill',
+	title: 'Checkout/KvCartPill',
 	component: KvCartPill,
 	parameters: {
 		layout: 'fullscreen',

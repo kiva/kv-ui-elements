@@ -1,7 +1,7 @@
 import KvPulsingDot from '../KvPulsingDot.vue';
 
 export default {
-	title: 'KvPulsingDot',
+	title: 'Interface Elements/KvPulsingDot',
 	component: KvPulsingDot,
 	args: {
 		dotColorClass: 'tw-bg-brand',

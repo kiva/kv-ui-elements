@@ -1,7 +1,7 @@
 import KvAccordionItem from '../KvAccordionItem.vue';
 
 export default {
-	title: 'KvAccordionItem',
+	title: 'Interface Elements/KvAccordionItem',
 	component: KvAccordionItem,
 };
 

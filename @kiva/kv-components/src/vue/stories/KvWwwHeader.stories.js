@@ -2,7 +2,7 @@ import KvWwwHeader from '../KvWwwHeader.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
 export default {
-	title: 'KvWwwHeader',
+	title: 'Page Frame/KvWwwHeader',
 	component: KvWwwHeader,
 	parameters: {
 		layout: 'fullscreen',

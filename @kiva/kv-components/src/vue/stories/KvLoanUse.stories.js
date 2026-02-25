@@ -1,7 +1,7 @@
 import KvLoanUse from '../KvLoanUse.vue';
 
 export default {
-	title: 'KvLoanUse',
+	title: 'Loan Display/KvLoanUse',
 	component: KvLoanUse,
 };
 

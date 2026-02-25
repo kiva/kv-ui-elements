@@ -1,7 +1,7 @@
 import KvContentfulImg from '../KvContentfulImg.vue';
 
 export default {
-	title: 'KvContentfulImg',
+	title: 'Interface Elements/KvContentfulImg',
 	component: KvContentfulImg,
 	args: {
 		contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/35lkLRfbLxzFPlDVgA4aKI/c435630d811f9ad35ddfc88eaea22b08/Blog-import-1082518_us_shawn_16.jpg',

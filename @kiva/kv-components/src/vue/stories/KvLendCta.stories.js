@@ -1,7 +1,7 @@
 import KvLendCta from '../KvLendCta.vue';
 
 export default {
-	title: 'KvLendCta',
+	title: 'Loan Display/KvLendCta',
 	component: KvLendCta,
 };
 

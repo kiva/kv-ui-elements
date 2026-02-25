@@ -2,7 +2,7 @@ import mockLenderCountries from '#fixtures/mockLenderCountries';
 import KvMap from '../KvMap.vue';
 
 export default {
-	title: 'KvMap',
+	title: 'Components/KvMap',
 	component: KvMap,
 	args: {
 		autoZoomDelay: 1000,

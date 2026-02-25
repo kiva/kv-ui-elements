@@ -1,7 +1,7 @@
 import KvButton from '../KvButton.vue';
 
 export default {
-	title: 'KvButton',
+	title: 'Forms/KvButton',
 	component: KvButton,
 	argTypes: {
 		variant: {

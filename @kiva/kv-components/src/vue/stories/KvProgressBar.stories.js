@@ -1,7 +1,7 @@
 import KvProgressBar from '../KvProgressBar.vue';
 
 export default {
-	title: 'KvProgressBar',
+	title: 'Interface Elements/KvProgressBar',
 	component: KvProgressBar,
 	args: {
 		min: 0,

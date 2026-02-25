@@ -2,7 +2,7 @@ import KvIntroductionLoanCard from '../KvIntroductionLoanCard.vue';
 import KvFlag from '../KvFlag.vue';
 
 export default {
-	title: 'KvIntroductionLoanCard',
+	title: 'Loan Display/KvIntroductionLoanCard',
 	component: KvIntroductionLoanCard,
 };
 

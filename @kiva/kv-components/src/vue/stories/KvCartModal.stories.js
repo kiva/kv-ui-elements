@@ -2,7 +2,7 @@ import KvCartModal from '../KvCartModal.vue';
 import KvButton from '../KvButton.vue';
 
 export default {
-	title: 'KvCartModal',
+	title: 'Checkout/KvCartModal',
 	component: KvCartModal,
 	parameters: {
 		layout: 'fullscreen',

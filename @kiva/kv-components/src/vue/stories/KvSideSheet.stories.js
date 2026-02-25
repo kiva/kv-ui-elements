@@ -2,7 +2,7 @@ import KvSideSheet from '../KvSideSheet.vue';
 import KvButton from '../KvButton.vue';
 
 export default {
-	title: 'KvSideSheet',
+	title: 'Interface Elements/KvSideSheet',
 	component: KvSideSheet,
 };
 

@@ -1,7 +1,7 @@
 import KvCommentsReplyButton from '../KvCommentsReplyButton.vue';
 
 export default {
-	title: 'KvCommentsReplyButton',
+	title: 'Comments/KvCommentsReplyButton',
 	component: KvCommentsReplyButton,
 };
 

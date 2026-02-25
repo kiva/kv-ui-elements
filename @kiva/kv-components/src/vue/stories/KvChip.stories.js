@@ -1,7 +1,7 @@
 import KvChip from '../KvChip.vue';
 
 export default {
-	title: 'KvChip',
+	title: 'Interface Elements/KvChip',
 	component: KvChip,
 };
 

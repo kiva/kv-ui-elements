@@ -24,7 +24,7 @@ import {
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 
 export default {
-	title: 'KvMaterialIcon',
+	title: 'Interface Elements/KvMaterialIcon',
 	component: KvMaterialIcon,
 	argTypes: {
 		icon: {

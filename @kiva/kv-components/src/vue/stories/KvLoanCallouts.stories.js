@@ -1,7 +1,7 @@
 import KvLoanCallouts from '../KvLoanCallouts.vue';
 
 export default {
-	title: 'KvLoanCallouts',
+	title: 'Loan Display/KvLoanCallouts',
 	component: KvLoanCallouts,
 };
 

@@ -2,7 +2,7 @@ import KvLoanTag from '../KvLoanTag.vue';
 import KvCountdownTimer from '../KvCountdownTimer.vue';
 
 export default {
-	title: 'KvLoanTag',
+	title: 'Loan Display/KvLoanTag',
 	component: KvLoanTag,
 };
 

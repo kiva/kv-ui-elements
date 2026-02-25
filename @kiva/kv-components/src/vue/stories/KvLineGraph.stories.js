@@ -1,7 +1,7 @@
 import KvLineGraph from '../KvLineGraph.vue';
 
 export default {
-	title: 'KvLineGraph',
+	title: 'Charts/KvLineGraph',
 	component: KvLineGraph,
 };
 

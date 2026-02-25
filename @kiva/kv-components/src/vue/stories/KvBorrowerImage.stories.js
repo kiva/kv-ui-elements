@@ -1,7 +1,7 @@
 import KvBorrowerImage from '../KvBorrowerImage.vue';
 
 export default {
-	title: 'KvBorrowerImage',
+	title: 'Loan Display/KvBorrowerImage',
 	component: KvBorrowerImage,
 };
 

@@ -1,7 +1,7 @@
 import KvLoanActivities from '../KvLoanActivities.vue';
 
 export default {
-	title: 'KvLoanActivities',
+	title: 'Loan Display/KvLoanActivities',
 	component: KvLoanActivities,
 };
 
