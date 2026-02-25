@@ -59,8 +59,9 @@ import ComponentName from '../ComponentName.vue';
 // or omit this import + docs.page until docs are ready.
 import ComponentNameDocsMdx from './ComponentNameDocs.mdx';
 
+// IMPORTANT: Title must include a folder prefix (see guidance below)
 export default {
-  title: 'ComponentName',
+  title: 'Folder Prefix/ComponentName',
   component: ComponentName,
   parameters: {
     docs: {
@@ -72,6 +73,30 @@ export default {
     // Comprehensive argTypes for all props
   },
 };
+
+**Storybook Folder Prefixes:**
+
+All story titles MUST include a folder prefix to organize components in the Storybook sidebar. Use one of the existing prefixes below, or ask the user which prefix to use if none fit:
+
+- **Base Styling/** - Style guide, theme provider, and foundational styling components
+- **Charts/** - Chart and data visualization components (e.g., KvPieChart, KvLineGraph, KvTreeMapChart)
+- **Checkout/** - Checkout flow components (e.g., KvAtbModal, KvCartModal, KvCartPill, KvCheckoutReceipt)
+- **Comments/** - Comment-related components (e.g., KvCommentsAdd, KvCommentsList, KvCommentsListItem)
+- **Components/** - General-purpose components that don't fit other categories (e.g., KvCarousel, KvLightbox, KvMap, KvUtilityMenu)
+- **Forms/** - Form controls and input components (e.g., KvButton, KvCheckbox, KvTextInput, KvSelect, KvSwitch)
+- **Interface Elements/** - General UI elements, indicators, and feedback components (e.g., KvToast, KvTooltip, KvProgressBar, KvLoadingSpinner)
+- **Loan Display/** - Loan-specific display components (e.g., KvLoanInfoCard, KvClassicLoanCard, KvBorrowerImage)
+- **Page Frame/** - Page layout and structural components (e.g., KvPageContainer, KvGrid, KvWwwHeader)
+
+**CRITICAL DECISION POINT:**
+- If the component clearly fits an existing category, use that prefix
+- If uncertain or the component represents a new category, **ASK THE USER** which prefix to use or if a new folder prefix should be created
+- Never omit the folder prefix
+
+Example titles:
+- `'Forms/KvButton'`
+- `'Loan Display/KvLoanInfoCard'`
+- `'Interface Elements/KvToast'`
 
 // Default story - Interactive playground
 export const Default = {
@@ -149,7 +174,27 @@ Template Variables to Fill:
 - {{ComponentName}} - Component name (e.g., KvButton, KvModal)
 
 **Story Configuration:**
+- {{folderPrefix}} - Storybook folder prefix (see prefix guidance below)
 - {{argTypes}} - Complete argTypes object with controls for all props
+
+**Storybook Folder Prefixes:**
+
+All story titles MUST include a folder prefix. Use one of the existing prefixes below, or ask the user which prefix to use if none fit:
+
+- **Base Styling/** - Style guide, theme provider, and foundational styling components
+- **Charts/** - Chart and data visualization components (e.g., KvPieChart, KvLineGraph, KvTreeMapChart)
+- **Checkout/** - Checkout flow components (e.g., KvAtbModal, KvCartModal, KvCartPill, KvCheckoutReceipt)
+- **Comments/** - Comment-related components (e.g., KvCommentsAdd, KvCommentsList, KvCommentsListItem)
+- **Components/** - General-purpose components that don't fit other categories (e.g., KvCarousel, KvLightbox, KvMap, KvUtilityMenu)
+- **Forms/** - Form controls and input components (e.g., KvButton, KvCheckbox, KvTextInput, KvSelect, KvSwitch)
+- **Interface Elements/** - General UI elements, indicators, and feedback components (e.g., KvToast, KvTooltip, KvProgressBar, KvLoadingSpinner)
+- **Loan Display/** - Loan-specific display components (e.g., KvLoanInfoCard, KvClassicLoanCard, KvBorrowerImage)
+- **Page Frame/** - Page layout and structural components (e.g., KvPageContainer, KvGrid, KvWwwHeader)
+
+**CRITICAL DECISION POINT:**
+- If the component clearly fits an existing category, use that prefix
+- If uncertain or the component represents a new category, **ASK THE USER** which prefix to use or if a new folder prefix should be created
+- Never omit the folder prefix
 
 **ComponentOverview Story:**
 - {{dataSection}} - data() function if reactive state needed (optional, remove if not needed)

@@ -4,8 +4,10 @@ import {
 import {{ComponentName}} from '../{{ComponentName}}.vue';
 import {{ComponentName}}DocsMdx from './{{ComponentName}}Docs.mdx';
 
+// IMPORTANT: {{folderPrefix}} must use an existing Storybook folder or ask for clarification
+// Existing prefixes: Base Styling, Charts, Checkout, Comments, Components, Forms, Interface Elements, Loan Display, Page Frame
 export default {
-	title: '{{ComponentName}}',
+	title: '{{folderPrefix}}/{{ComponentName}}',
 	component: {{ComponentName}},
 	parameters: {
 		docs: {

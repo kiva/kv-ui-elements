@@ -73,9 +73,35 @@ Required steps:
 Template Variables to Fill:
 
 **Basic Info:**
+- {{folderPrefix}} - Storybook folder prefix for the component (see prefix guidance below)
 - {{ComponentName}} - Component name (e.g., KvButton, KvModal)
 - {{componentDescription}} - One-sentence component purpose
 - {{componentOverviewDescription}} - Brief paragraph about the component
+
+**Storybook Folder Prefixes:**
+
+The MDX `<Meta title="..." />` MUST include a folder prefix matching the component's `.stories.js` file. Use one of the existing prefixes below, or ask the user which prefix to use if none fit:
+
+- **Base Styling/** - Style guide, theme provider, and foundational styling components
+- **Charts/** - Chart and data visualization components (e.g., KvPieChart, KvLineGraph, KvTreeMapChart)
+- **Checkout/** - Checkout flow components (e.g., KvAtbModal, KvCartModal, KvCartPill, KvCheckoutReceipt)
+- **Comments/** - Comment-related components (e.g., KvCommentsAdd, KvCommentsList, KvCommentsListItem)
+- **Components/** - General-purpose components that don't fit other categories (e.g., KvCarousel, KvLightbox, KvMap, KvUtilityMenu)
+- **Forms/** - Form controls and input components (e.g., KvButton, KvCheckbox, KvTextInput, KvSelect, KvSwitch)
+- **Interface Elements/** - General UI elements, indicators, and feedback components (e.g., KvToast, KvTooltip, KvProgressBar, KvLoadingSpinner)
+- **Loan Display/** - Loan-specific display components (e.g., KvLoanInfoCard, KvClassicLoanCard, KvBorrowerImage)
+- **Page Frame/** - Page layout and structural components (e.g., KvPageContainer, KvGrid, KvWwwHeader)
+
+**CRITICAL DECISION POINT:**
+- If the component clearly fits an existing category, use that prefix
+- If uncertain or the component represents a new category, **ASK THE USER** which prefix to use or if a new folder prefix should be created
+- The prefix in the MDX file MUST match the prefix in the corresponding .stories.js file
+- Never omit the folder prefix
+
+Example Meta tags:
+- `<Meta title="Forms/KvButton" ... />`
+- `<Meta title="Loan Display/KvLoanInfoCard" ... />`
+- `<Meta title="Interface Elements/KvToast" ... />`
 
 **Variations:**
 - {{variationsDescription}} - Describe all available variations
