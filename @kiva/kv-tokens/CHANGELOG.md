@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.1...@kiva/kv-tokens@3.7.2) (2026-02-25)
+
+
+### Bug Fixes
+
+* add new tw-text-headline-two semantic text class, shift values for title and subhealine classes ([6c8b345](https://github.com/kiva/kv-ui-elements/commit/6c8b345612bd88d09014b33c020d41075e7c3f57))
+
+
+
+
+
 ## [3.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.0...@kiva/kv-tokens@3.7.1) (2026-02-12)
 
 
