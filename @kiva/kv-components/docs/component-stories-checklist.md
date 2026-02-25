@@ -33,7 +33,7 @@ Use this checklist to ensure comprehensive, high-quality Storybook stories for c
 
 ## Default Export Configuration
 
-- [ ] `title` includes appropriate folder prefix (Base Styling, Charts, Checkout, Comments, Components, Forms, Interface Elements, Loan Display, or Page Frame)
+- [ ] `title` includes appropriate folder prefix (see [Storybook Folder Prefixes](./storybook-folder-prefixes.md))
 - [ ] If uncertain about prefix, asked for clarification or checked existing similar components
 - [ ] `title` matches format: 'Folder Prefix/ComponentName'
 - [ ] `component` references the Vue component correctly
