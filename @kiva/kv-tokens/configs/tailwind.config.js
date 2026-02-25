@@ -253,6 +253,7 @@ export default {
 				// new (2026) semantic text styles
 				'.text-display': textStyles.textDisplay,
 				'.text-headline': textStyles.textHeadline,
+				'.text-headline-two': textStyles.textHeadlineTwo,
 				'.text-subheadline': textStyles.textSubheadline,
 				'.text-title': textStyles.textTitle,
 				'.text-button-link': textStyles.textButtonLink,
