@@ -16,6 +16,7 @@ export default {
 		zoomLevel: 4,
 		advancedAnimation: {},
 		showTooltips: true,
+		optimizeInitialMapZoom: false,
 	},
 	parameters: {
 		chromatic: {
@@ -139,4 +140,101 @@ highlightedCountry.args = {
 	showFundraisingLoans: false,
 	showTooltips: false,
 	defaultBaseColor: '#BFE5D1',
+};
+
+// Subsets of mockLenderCountries for optimizeInitialMapZoom demos
+const singleCountry = mockLenderCountries.filter((c) => c.isoCode === 'KE');
+const eastAfricaCountries = mockLenderCountries.filter((c) => ['KE', 'TZ', 'EG'].includes(c.isoCode));
+const globalSpreadCountries = mockLenderCountries.filter((c) => ['US', 'PE', 'PH', 'KE', 'MN'].includes(c.isoCode));
+
+export const OptimizedZoomSingleCountry = Template.bind({});
+OptimizedZoomSingleCountry.args = {
+	height: 450,
+	width: 600,
+	lat: null,
+	long: null,
+	aspectRatio: 1.8,
+	mapId: 95,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: singleCountry,
+	optimizeInitialMapZoom: true,
+};
+OptimizedZoomSingleCountry.parameters = {
+	docs: {
+		description: {
+			story: 'Single country (Kenya) - automatically centers on Kenya with zoom level 4.',
+		},
+	},
+};
+
+export const OptimizedZoomRegional = Template.bind({});
+OptimizedZoomRegional.args = {
+	height: 450,
+	width: 600,
+	lat: null,
+	long: null,
+	aspectRatio: 1.8,
+	mapId: 96,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: eastAfricaCountries,
+	optimizeInitialMapZoom: true,
+};
+OptimizedZoomRegional.parameters = {
+	docs: {
+		description: {
+			story: 'Regional countries (Kenya, Tanzania, Egypt) - centers on East Africa with moderate zoom.',
+		},
+	},
+};
+
+export const OptimizedZoomGlobal = Template.bind({});
+OptimizedZoomGlobal.args = {
+	height: 450,
+	width: 600,
+	lat: null,
+	long: null,
+	aspectRatio: 1.8,
+	mapId: 97,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: globalSpreadCountries,
+	optimizeInitialMapZoom: true,
+};
+OptimizedZoomGlobal.parameters = {
+	docs: {
+		description: {
+			story: 'Globally spread countries (US, Peru, Philippines, Kenya, Mongolia) - zooms out to show all.',
+		},
+	},
+};
+
+export const OptimizedZoomWithExplicitOverride = Template.bind({});
+OptimizedZoomWithExplicitOverride.args = {
+	height: 450,
+	width: 600,
+	aspectRatio: 1.8,
+	lat: 0,
+	long: 0,
+	mapId: 98,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: eastAfricaCountries,
+	optimizeInitialMapZoom: true,
+};
+OptimizedZoomWithExplicitOverride.parameters = {
+	docs: {
+		description: {
+			story: 'Explicit lat/long (0, 0) overrides computed center, but zoom is still optimized from countriesData.',
+		},
+	},
 };
