@@ -1,7 +1,10 @@
 import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
 import * as {{ComponentName}}Stories from './{{ComponentName}}.stories.js';
 
-<Meta title="{{ComponentName}}" component={ {{ComponentName}}Stories.Component} />
+<!-- IMPORTANT: {{folderPrefix}} must match the folder prefix in the .stories.js file -->
+<!-- Use existing prefixes: Base Styling, Charts, Checkout, Comments, Components, Forms, Interface Elements, Loan Display, or Page Frame -->
+<!-- If uncertain, ask for clarification on which prefix to use -->
+<Meta title="{{folderPrefix}}/{{ComponentName}}" component={ {{ComponentName}}Stories.Component} />
 
 # {{ComponentName}}
 

@@ -59,8 +59,9 @@ import ComponentName from '../ComponentName.vue';
 // or omit this import + docs.page until docs are ready.
 import ComponentNameDocsMdx from './ComponentNameDocs.mdx';
 
+// IMPORTANT: Title must include a folder prefix (see guidance below)
 export default {
-  title: 'ComponentName',
+  title: 'Folder Prefix/ComponentName',
   component: ComponentName,
   parameters: {
     docs: {
@@ -72,6 +73,10 @@ export default {
     // Comprehensive argTypes for all props
   },
 };
+
+**Storybook Folder Prefixes:**
+
+All story titles MUST include a folder prefix. See **[Storybook Folder Prefixes](./storybook-folder-prefixes.md)** for the full list of prefixes, guidelines, and examples. If uncertain about which prefix to use, **ASK THE USER**.
 
 // Default story - Interactive playground
 export const Default = {
@@ -149,7 +154,12 @@ Template Variables to Fill:
 - {{ComponentName}} - Component name (e.g., KvButton, KvModal)
 
 **Story Configuration:**
+- {{folderPrefix}} - Storybook folder prefix (see prefix guidance below)
 - {{argTypes}} - Complete argTypes object with controls for all props
+
+**Storybook Folder Prefixes:**
+
+All story titles MUST include a folder prefix. See **[Storybook Folder Prefixes](./storybook-folder-prefixes.md)** for the full list of prefixes, guidelines, and examples. If uncertain about which prefix to use, **ASK THE USER**.
 
 **ComponentOverview Story:**
 - {{dataSection}} - data() function if reactive state needed (optional, remove if not needed)

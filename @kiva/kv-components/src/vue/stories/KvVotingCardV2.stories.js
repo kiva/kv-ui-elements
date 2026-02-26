@@ -1,7 +1,7 @@
 import KvVotingCardV2 from '../KvVotingCardV2.vue';
 
 export default {
-	title: 'KvVotingCardV2',
+	title: 'Components/KvVotingCardV2',
 	component: KvVotingCardV2,
 };
 

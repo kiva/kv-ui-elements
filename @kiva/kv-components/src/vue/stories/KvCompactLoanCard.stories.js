@@ -1,7 +1,7 @@
 import KvCompactLoanCard from '../KvCompactLoanCard.vue';
 
 export default {
-	title: 'KvCompactLoanCard',
+	title: 'Loan Display/KvCompactLoanCard',
 	component: KvCompactLoanCard,
 };
 

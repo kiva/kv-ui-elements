@@ -2,7 +2,7 @@ import { publicLenderId, comments } from '#fixtures/mockCommentsData';
 import KvCommentsListItem from '../KvCommentsListItem.vue';
 
 export default {
-	title: 'KvCommentsListItem',
+	title: 'Comments/KvCommentsListItem',
 	component: KvCommentsListItem,
 };
 

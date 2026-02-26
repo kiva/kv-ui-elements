@@ -1,7 +1,7 @@
 import KvSecondaryNav from '../KvSecondaryNav.vue';
 
 export default {
-	title: 'KvSecondaryNav',
+	title: 'Page Frame/KvSecondaryNav',
 	component: KvSecondaryNav,
 	args: {
 		heading: 'Due Diligence',

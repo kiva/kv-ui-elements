@@ -1,7 +1,7 @@
 import KvInlineActivityCard from '../KvInlineActivityCard.vue';
 
 export default {
-	title: 'KvInlineActivityCard',
+	title: 'Interface Elements/KvInlineActivityCard',
 	component: KvInlineActivityCard,
 };
 

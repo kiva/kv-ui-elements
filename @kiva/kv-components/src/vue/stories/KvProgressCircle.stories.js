@@ -2,7 +2,7 @@ import KvProgressCircle from '../KvProgressCircle.vue';
 import KvProgressCircleDocsMdx from './KvProgressCircleDocs.mdx';
 
 export default {
-	title: 'KvProgressCircle',
+	title: 'Interface Elements/KvProgressCircle',
 	component: KvProgressCircle,
 	parameters: {
 		docs: {

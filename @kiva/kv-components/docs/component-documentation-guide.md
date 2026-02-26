@@ -65,15 +65,21 @@ See component-stories-guide.md for implementation details.
 import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
 import * as KvComponentStories from './KvComponent.stories.js';
 
-<Meta title="KvComponent" component={KvComponentStories.Component} />
+<Meta title="Folder Prefix/KvComponent" component={KvComponentStories.Component} />
 
 ## Component Overview
 
 <Story of={KvComponentStories.ComponentOverview} />
 ```
 
+**Important:** The `<Meta title="..." />` MUST include a folder prefix that matches the component's `.stories.js` file. See the **Storybook Folder Prefixes** section below for guidance.
+
 The MDX import requires a real stories file. Use a stub with matching export names (ComponentOverview, AllVariations,
 Default, etc.) so Storybook can load while you flesh out the stories.
+
+#### Storybook Folder Prefixes
+
+The MDX `<Meta title="..." />` MUST include a folder prefix matching the component's `.stories.js` file. See **[Storybook Folder Prefixes](./storybook-folder-prefixes.md)** for the full list of prefixes, guidelines, and examples.
 
 ## Documentation Structure
 

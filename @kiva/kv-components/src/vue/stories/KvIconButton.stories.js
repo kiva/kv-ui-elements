@@ -13,7 +13,7 @@ import KvIconButton from '../KvIconButton.vue';
 import KvIconButtonDocsMdx from './KvIconButtonDocs.mdx';
 
 export default {
-	title: 'KvIconButton',
+	title: 'Forms/KvIconButton',
 	component: KvIconButton,
 	parameters: {
 		docs: {

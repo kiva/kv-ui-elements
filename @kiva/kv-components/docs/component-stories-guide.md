@@ -104,7 +104,7 @@ import ComponentNameDocsMdx from './ComponentNameDocs.mdx';
 
 ```javascript
 export default {
-	title: 'ComponentName',
+	title: 'Folder Prefix/ComponentName',
 	component: ComponentName,
 	parameters: {
 		docs: {
@@ -119,10 +119,14 @@ export default {
 ```
 
 **Key elements:**
-- **title**: Display name in Storybook sidebar (matches component name)
+- **title**: Display name in Storybook sidebar - MUST include folder prefix (see guidance below)
 - **component**: Reference to the Vue component
 - **parameters.docs.page**: Links to the MDX documentation
 - **argTypes**: Defines interactive controls and their configuration
+
+#### Storybook Folder Prefixes
+
+All story titles MUST include a folder prefix. See **[Storybook Folder Prefixes](./storybook-folder-prefixes.md)** for the full list of prefixes, guidelines, and examples.
 
 ### 3. argTypes Configuration
 

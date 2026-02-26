@@ -1,7 +1,7 @@
 import KvImpactDashboardHeader from '../KvImpactDashboardHeader.vue';
 
 export default {
-	title: 'KvImpactDashboardHeader',
+	title: 'Page Frame/KvImpactDashboardHeader',
 	component: KvImpactDashboardHeader,
 };
 

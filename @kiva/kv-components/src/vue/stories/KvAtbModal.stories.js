@@ -1,7 +1,7 @@
 import KvAtbModal from '../KvAtbModal.vue';
 
 export default {
-	title: 'KvAtbModal',
+	title: 'Checkout/KvAtbModal',
 	component: KvAtbModal,
 	argTypes: {
 		modalVisible: false,

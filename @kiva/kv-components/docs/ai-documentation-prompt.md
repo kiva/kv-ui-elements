@@ -73,9 +73,14 @@ Required steps:
 Template Variables to Fill:
 
 **Basic Info:**
+- {{folderPrefix}} - Storybook folder prefix for the component (see prefix guidance below)
 - {{ComponentName}} - Component name (e.g., KvButton, KvModal)
 - {{componentDescription}} - One-sentence component purpose
 - {{componentOverviewDescription}} - Brief paragraph about the component
+
+**Storybook Folder Prefixes:**
+
+The MDX `<Meta title="..." />` MUST include a folder prefix matching the component's `.stories.js` file. See **[Storybook Folder Prefixes](./storybook-folder-prefixes.md)** for the full list of prefixes, guidelines, and examples. If uncertain about which prefix to use, **ASK THE USER**.
 
 **Variations:**
 - {{variationsDescription}} - Describe all available variations

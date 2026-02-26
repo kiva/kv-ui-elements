@@ -3,7 +3,7 @@ import KvTooltip from '../KvTooltip.vue';
 import KvTooltipDocsMdx from './KvTooltipDocs.mdx';
 
 export default {
-	title: 'KvTooltip',
+	title: 'Interface Elements/KvTooltip',
 	component: KvTooltip,
 	parameters: {
 		docs: {

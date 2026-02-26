@@ -3,7 +3,7 @@ import KvTab from '../KvTab.vue';
 import KvTabPanel from '../KvTabPanel.vue';
 
 export default {
-	title: 'KvTabs',
+	title: 'Interface Elements/KvTabs',
 	component: KvTabs,
 	args: {
 		vertical: true,

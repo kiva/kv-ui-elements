@@ -1,7 +1,7 @@
 import KvActivityRow from '../KvActivityRow.vue';
 
 export default {
-	title: 'KvActivityRow',
+	title: 'Interface Elements/KvActivityRow',
 	component: KvActivityRow,
 };
 

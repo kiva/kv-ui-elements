@@ -5,7 +5,7 @@ import KvButton from '../KvButton.vue';
 import KvToast from '../KvToast.vue';
 
 export default {
-	title: 'KvLightbox',
+	title: 'Components/KvLightbox',
 	component: KvLightbox,
 	parameters: {
 		layout: 'fullscreen',

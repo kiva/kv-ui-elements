@@ -15,7 +15,7 @@ const mockedAPIResponse = {
 	},
 };
 export default {
-	title: 'Components/KvCheckoutReceipt',
+	title: 'Checkout/KvCheckoutReceipt',
 	component: KvCheckoutReceipt,
 };
 

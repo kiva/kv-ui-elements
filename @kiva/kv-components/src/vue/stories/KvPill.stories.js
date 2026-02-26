@@ -5,7 +5,7 @@ import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvPill from '../KvPill.vue';
 
 export default {
-	title: 'KvPill',
+	title: 'Interface Elements/KvPill',
 	component: KvPill,
 	parameters: {
 		layout: 'fullscreen',

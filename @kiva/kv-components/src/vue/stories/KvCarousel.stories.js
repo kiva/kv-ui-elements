@@ -64,7 +64,7 @@ const defaultCarouselSlides = `
 `;
 
 export default {
-	title: 'KvCarousel',
+	title: 'Components/KvCarousel',
 	component: KvCarousel,
 };
 

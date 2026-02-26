@@ -2,7 +2,7 @@ import KvAvatarBubble from '../KvAvatarBubble.vue';
 import KvButton from '../KvButton.vue';
 
 export default {
-	title: 'KvAvatarBubble',
+	title: 'Interface Elements/KvAvatarBubble',
 	component: KvAvatarBubble,
 };
 

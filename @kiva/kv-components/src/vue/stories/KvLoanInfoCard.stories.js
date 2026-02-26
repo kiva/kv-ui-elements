@@ -3,7 +3,7 @@ import KvCarousel from '../KvCarousel.vue';
 import KvLoanInfoCardDocsMdx from './KvLoanInfoCardDocs.mdx';
 
 export default {
-	title: 'KvLoanInfoCard',
+	title: 'Loan Display/KvLoanInfoCard',
 	component: KvLoanInfoCard,
 	parameters: {
 		docs: {

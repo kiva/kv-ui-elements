@@ -26,7 +26,9 @@ Use this checklist to ensure comprehensive, high-quality component documentation
 - [ ] MDX file created in `src/vue/stories/[ComponentName]Docs.mdx`
 - [ ] Correct imports for Storybook blocks (Canvas, Meta, Story, Controls)
 - [ ] Story file imported correctly (`import * as ComponentStories from './Component.stories.js'`)
-- [ ] Meta tag configured with component name and reference
+- [ ] Meta tag includes folder prefix matching the .stories.js file (see [Storybook Folder Prefixes](./storybook-folder-prefixes.md))
+- [ ] If uncertain about prefix, asked for clarification or checked existing similar components
+- [ ] Meta tag configured with component reference
 - [ ] **No freeform MDX structure** - All template sections present
 
 ## Content Sections

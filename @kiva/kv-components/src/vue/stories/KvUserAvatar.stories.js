@@ -2,7 +2,7 @@ import KvUserAvatar from '../KvUserAvatar.vue';
 import KvUserAvatarDocsMdx from './KvUserAvatarDocs.mdx';
 
 export default {
-	title: 'KvUserAvatar',
+	title: 'Interface Elements/KvUserAvatar',
 	component: KvUserAvatar,
 	parameters: {
 		docs: {

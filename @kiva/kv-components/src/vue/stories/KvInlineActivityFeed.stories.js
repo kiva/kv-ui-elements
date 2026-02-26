@@ -54,7 +54,7 @@ const activities = [
 ];
 
 export default {
-	title: 'KvInlineActivityFeed',
+	title: 'Components/KvInlineActivityFeed',
 	component: KvInlineActivityFeed,
 };
 

@@ -3,7 +3,7 @@ import KvUtilityMenu from '../KvUtilityMenu.vue';
 import KvUtilityMenuDocsMdx from './KvUtilityMenuDocs.mdx';
 
 export default {
-	title: 'KvUtilityMenu',
+	title: 'Components/KvUtilityMenu',
 	component: KvUtilityMenu,
 	parameters: {
 		docs: {

@@ -7,7 +7,7 @@ import KvTextLink from '../KvTextLink.vue';
 import KvTextLinkDocsMdx from './KvTextLinkDocs.mdx';
 
 export default {
-	title: 'KvTextLink',
+	title: 'Forms/KvTextLink',
 	component: KvTextLink,
 	parameters: {
 		docs: {
