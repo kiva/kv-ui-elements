@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.4...@kiva/kv-components@8.5.5) (2026-02-26)
+
+
+### Bug Fixes
+
+* deduplicate ai documentation and establish single file for instructions around title prefixes ([f02bf27](https://github.com/kiva/kv-ui-elements/commit/f02bf277b2ace6b861a9d64025be6af8a580ab74))
+
+
+
+
+
 ## [8.5.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.3...@kiva/kv-components@8.5.4) (2026-02-25)
 
 **Note:** Version bump only for package @kiva/kv-components
