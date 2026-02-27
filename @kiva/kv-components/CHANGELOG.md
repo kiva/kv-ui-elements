@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.5.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.5...@kiva/kv-components@8.5.6) (2026-02-27)
+
+
+### Bug Fixes
+
+* add new optimized centering and zoom for countries data prop to KvMap ([a042cde](https://github.com/kiva/kv-ui-elements/commit/a042cdef3200b048182c3b79ea87dc0b40cc2366))
+* ensure all KvMap stories pass an id to prevent country data pollution across stories ([8f29545](https://github.com/kiva/kv-ui-elements/commit/8f295454b4cd764c86e6f0467e600f2373b988b4))
+
+
+
+
+
 ## [8.5.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.5.4...@kiva/kv-components@8.5.5) (2026-02-26)
 
 
