@@ -16,7 +16,13 @@
 import type Leaflet from 'leaflet';
 import type MapLibreGl from 'maplibre-gl';
 import kvTokensPrimitives from '@kiva/kv-tokens';
-import { animationCoordinator, generateMapMarkers, getCountryColor } from '../utils/mapUtils';
+import {
+	animationCoordinator,
+	generateMapMarkers,
+	getCountryColor,
+	computeMapCenter,
+	computeMapZoom,
+} from '../utils/mapUtils';
 
 declare const L: typeof Leaflet;
 declare const maplibregl: typeof MapLibreGl;
@@ -174,6 +180,17 @@ export default {
 			type: String,
 			default: null,
 		},
+		/**
+		 * Automatically compute optimal map center and zoom level based on countriesData distribution.
+		 * This is an alternative to setting lat/long/zoomLevel directly.
+		 * Requires: countriesData prop must contain data with lat/long coordinates.
+		 * Note: Explicit lat/long props will override the computed center when provided.
+		 * When enabled, zoomLevel prop is ignored in favor of the computed optimal zoom.
+		 */
+		optimizeInitialMapZoom: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -202,17 +219,64 @@ export default {
 		refString() {
 			return `mapholder${this.mapId}`;
 		},
+		/**
+		 * Computed center from countriesData when optimizeInitialMapZoom is enabled
+		 */
+		computedCenter() {
+			if (!this.optimizeInitialMapZoom || !this.countriesData?.length) {
+				return { lat: 0, long: 0 };
+			}
+			return computeMapCenter(this.countriesData);
+		},
+		/**
+		 * Effective latitude: explicit prop overrides computed value
+		 */
+		effectiveLat() {
+			if (this.lat !== null) return this.lat;
+			if (this.optimizeInitialMapZoom && this.countriesData?.length) {
+				return this.computedCenter.lat;
+			}
+			return null;
+		},
+		/**
+		 * Effective longitude: explicit prop overrides computed value
+		 */
+		effectiveLong() {
+			if (this.long !== null) return this.long;
+			if (this.optimizeInitialMapZoom && this.countriesData?.length) {
+				return this.computedCenter.long;
+			}
+			return null;
+		},
+		/**
+		 * Effective zoom level: when optimizing, always use computed zoom
+		 */
+		effectiveZoomLevel() {
+			if (this.optimizeInitialMapZoom && this.countriesData?.length) {
+				return computeMapZoom(this.countriesData);
+			}
+			return this.zoomLevel;
+		},
 	},
 	watch: {
 		lat(next, prev) {
-			if (prev === null && this.long !== null && !this.mapLibreReady && !this.leafletReady) {
+			if (prev === null && this.effectiveLong !== null && !this.mapLibreReady && !this.leafletReady) {
 				this.initializeMap();
 			}
 		},
 		long(next, prev) {
-			if (prev === null && this.lat !== null && !this.mapLibreReady && !this.leafletReady) {
+			if (prev === null && this.effectiveLat !== null && !this.mapLibreReady && !this.leafletReady) {
 				this.initializeMap();
 			}
+		},
+		countriesData: {
+			handler() {
+				// Re-initialize map when countriesData changes and we're optimizing
+				if (this.optimizeInitialMapZoom && !this.mapLibreReady && !this.leafletReady) {
+					this.initializeMap();
+				}
+			},
+			deep: true,
 		},
 		showFundraisingLoans() {
 			if (this.mapInstance) {
@@ -248,7 +312,7 @@ export default {
 			const { mapInstance, hasWebGL, mapLibreReady } = this;
 			const currentZoomLevel = mapInstance.getZoom();
 			// exit if already zoomed in (getZoom() works for both leaflet + maplibregl)
-			if ((!zoomOut && currentZoomLevel === this.zoomLevel)
+			if ((!zoomOut && currentZoomLevel === this.effectiveZoomLevel)
 				|| (zoomOut && currentZoomLevel === this.initialZoom)) return false;
 
 			this.zoomActive = true;
@@ -257,12 +321,12 @@ export default {
 				if (hasWebGL && mapLibreReady) {
 					// maplibregl specific zoom method
 					mapInstance.zoomTo(
-						zoomOut ? this.initialZoom : this.zoomLevel,
+						zoomOut ? this.initialZoom : this.effectiveZoomLevel,
 						{ duration: 1200 },
 					);
 				} else {
 					// leaflet specific zoom method
-					mapInstance.setZoom(zoomOut ? this.initialZoom : this.zoomLevel);
+					mapInstance.setZoom(zoomOut ? this.initialZoom : this.effectiveZoomLevel);
 				}
 
 				clearTimeout(timedZoom);
@@ -332,7 +396,7 @@ export default {
 
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
 					if (response.loaded && !this.mapLoaded && !this.useLeaflet
-						&& this.lat != null && this.long != null) {
+						&& this.effectiveLat != null && this.effectiveLong != null) {
 						this.initializeMapLibre();
 						this.mapLibreReady = true;
 					}
@@ -344,7 +408,8 @@ export default {
 				mapStyle.setAttribute('href', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
 
 				this.testDelayedGlobalLibrary('L').then((leafletTest) => {
-					if (leafletTest.loaded && !this.mapLoaded && this.lat != null && this.long != null) {
+					if (leafletTest.loaded && !this.mapLoaded
+						&& this.effectiveLat != null && this.effectiveLong != null) {
 						this.initializeLeaflet();
 						this.leafletReady = true;
 					}
@@ -357,8 +422,8 @@ export default {
 			/* eslint-disable no-undef, max-len */
 			// Initialize primary mapInstance
 			this.mapInstance = L.map(`kv-map-holder-${this.mapId}`, {
-				center: [this.lat, this.long],
-				zoom: this.initialZoom || this.zoomLevel,
+				center: [this.effectiveLat, this.effectiveLong],
+				zoom: this.initialZoom || this.effectiveZoomLevel,
 				// todo make props for the following options
 				dragging: this.allowDragging,
 				zoomControl: this.showZoomControl,
@@ -428,8 +493,8 @@ export default {
 			this.mapInstance = new maplibregl.Map({
 				container: `kv-map-holder-${this.mapId}`,
 				style: tileLayer,
-				center: [this.long, this.lat],
-				zoom: this.initialZoom || this.zoomLevel,
+				center: [this.effectiveLong, this.effectiveLat],
+				zoom: this.initialZoom || this.effectiveZoomLevel,
 				attributionControl: false,
 				dragPan: this.allowDragging,
 				scrollZoom: false,
@@ -471,8 +536,8 @@ export default {
 						this.mapInstance.scrollZoom.enable();
 						this.mapInstance.scrollZoom.enable();
 						this.mapInstance.easeTo({
-							center: [this.long, this.lat],
-							zoom: this.initialZoom || this.zoomLevel,
+							center: [this.effectiveLong, this.effectiveLat],
+							zoom: this.initialZoom || this.effectiveZoomLevel,
 						});
 					});
 			}, 500);

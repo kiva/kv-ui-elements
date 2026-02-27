@@ -383,3 +383,48 @@ export const getCountryColor = (
 
 	return kvTokensPrimitives.colors.gray[300];
 };
+
+/**
+ * Computes the map center based on the distribution of loans across countries.
+ * If there are no loans, it defaults to a world view (0, 0).
+ * @param data - array of country stats with lat/long coordinates
+ * @returns - center coordinates as { lat, long }
+ */
+export const computeMapCenter = (
+	data: Array<{ lat: number; long: number }>,
+): { lat: number; long: number } => {
+	if (!data.length) return { lat: 0, long: 0 };
+
+	const lat = data.reduce((sum, d) => sum + d.lat, 0) / data.length;
+	const long = data.reduce((sum, d) => sum + d.long, 0) / data.length;
+
+	return { lat, long };
+};
+
+/**
+ * Computes the zoom level based on the geographic spread of countries.
+ * Uses a logarithmic scale based on the maximum span of latitudes and longitudes,
+ * with padding to ensure all points are visible within a buffer zone.
+ * @param data - array of country stats with lat/long coordinates
+ * @returns - zoom level between 1 and 6
+ */
+export const computeMapZoom = (
+	data: Array<{ lat: number; long: number }>,
+): number => {
+	if (!data.length) return 2;
+	if (data.length === 1) return 5;
+
+	const lats = data.map((d) => d.lat);
+	const longs = data.map((d) => d.long);
+	const latSpan = Math.max(...lats) - Math.min(...lats);
+	const longSpan = Math.max(...longs) - Math.min(...longs);
+	const maxSpan = Math.max(latSpan, longSpan);
+
+	// Countries very close together (< 1 degree apart)
+	if (maxSpan < 1) return 6;
+	// Countries in same region (< 10 degrees apart)
+	if (maxSpan < 10) return 5;
+	// Padding multiplier of 2.5 ensures countries stay within a buffer zone from map edges
+	const zoom = Math.floor(Math.log2(360 / (maxSpan * 2.5)));
+	return Math.max(1, Math.min(zoom, 6));
+};
