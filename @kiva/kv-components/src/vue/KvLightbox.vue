@@ -282,7 +282,9 @@ export default {
 			 * @event lightbox-closed
 			 * @type {Event}
 			*/
-			emit('lightbox-closed', { type: closedBy });
+			if (visible.value) {
+				emit('lightbox-closed', { type: closedBy });
+			}
 		};
 
 		onKeyUp = (e) => {
