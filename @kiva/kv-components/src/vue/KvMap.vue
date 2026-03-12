@@ -200,7 +200,8 @@ export default {
 			mapLibreReady: false,
 			mapLoaded: false,
 			zoomActive: false,
-			countriesBorders: {},
+			countriesBorders: null,
+			countriesBordersPromise: null,
 		};
 	},
 	computed: {
@@ -270,7 +271,10 @@ export default {
 			}
 		},
 		countriesData: {
-			handler() {
+			handler(next) {
+				if (next?.length) {
+					this.ensureCountriesBordersLoaded();
+				}
 				// Re-initialize map when countriesData changes and we're optimizing
 				if (this.optimizeInitialMapZoom && !this.mapLibreReady && !this.leafletReady) {
 					this.initializeMap();
@@ -285,11 +289,9 @@ export default {
 			}
 		},
 	},
-	async mounted() {
-		if (this.countriesData) {
-			// current source data is from https://geojson.xyz/ under "admin 0 countries"
-			// https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_admin_0_countries.geojson
-			this.countriesBorders = await import('../data/ne_110m_admin_0_countries.json');
+	mounted() {
+		if (this.countriesData?.length) {
+			this.ensureCountriesBordersLoaded();
 		}
 
 		if (!this.mapLibreReady && !this.leafletReady) {
@@ -418,7 +420,7 @@ export default {
 			document.head.appendChild(mapScript);
 			document.head.appendChild(mapStyle);
 		},
-		initializeLeaflet() {
+		async initializeLeaflet() {
 			/* eslint-disable no-undef, max-len */
 			// Initialize primary mapInstance
 			this.mapInstance = L.map(`kv-map-holder-${this.mapId}`, {
@@ -430,6 +432,7 @@ export default {
 				scrollWheelZoom: false,
 				doubleClickZoom: false,
 				attributionControl: false,
+				worldCopyJump: true,
 			});
 			/* eslint-disable quotes */
 			// Add our tileset to the mapInstance
@@ -445,32 +448,35 @@ export default {
 			}).addTo(this.mapInstance);
 
 			if (this.countriesData.length > 0) {
-				L.geoJson(
-					this.getCountriesData(),
-					{
-						style: this.countryStyle,
-						onEachFeature: this.onEachCountryFeature,
-					},
-				).addTo(this.mapInstance);
+				await this.ensureCountriesBordersLoaded();
+				if (this.countriesBorders) {
+					L.geoJson(
+						this.getCountriesData(),
+						{
+							style: this.countryStyle,
+							onEachFeature: this.onEachCountryFeature,
+						},
+					).addTo(this.mapInstance);
 
-				this.countriesData.forEach((country) => {
-					if (country.numLoansFundraising > 0 && this.showFundraisingLoans) {
-						const circle = L.circle([country.lat, country.long], {
-							color: kvTokensPrimitives.colors.black,
-							weight: 1,
-							fillColor: kvTokensPrimitives.colors.brand[900],
-							fillOpacity: 1,
-							radius: 130000,
-						}).addTo(this.mapInstance);
+					this.countriesData.forEach((country) => {
+						if (country.numLoansFundraising > 0 && this.showFundraisingLoans) {
+							const circle = L.circle([country.lat, country.long], {
+								color: kvTokensPrimitives.colors.black,
+								weight: 1,
+								fillColor: kvTokensPrimitives.colors.brand[900],
+								fillOpacity: 1,
+								radius: 130000,
+							}).addTo(this.mapInstance);
 
-						const tooltipText = `Click to see ${country.numLoansFundraising} fundraising loans in ${country.label}`;
-						circle.bindTooltip(tooltipText);
+							const tooltipText = `Click to see ${country.numLoansFundraising} fundraising loans in ${country.label}`;
+							circle.bindTooltip(tooltipText);
 
-						circle.on('click', () => {
-							this.circleMapClicked(country.isoCode);
-						});
-					}
-				});
+							circle.on('click', () => {
+								this.circleMapClicked(country.isoCode);
+							});
+						}
+					});
+				}
 			}
 			/* eslint-enable quotes */
 			/* eslint-enable no-undef, max-len */
@@ -597,7 +603,11 @@ export default {
 			});
 		},
 		getCountriesData() {
-			const countriesFeatures = this.countriesBorders.features ?? [];
+			if (!this.countriesBorders) {
+				return { type: 'FeatureCollection', features: [] };
+			}
+			const borders = this.countriesBorders;
+			const countriesFeatures = borders.features ?? [];
 
 			countriesFeatures.forEach((country, index) => {
 				const countryData = this.countriesData.find((data) => data.isoCode === country.properties.iso_a2);
@@ -607,7 +617,28 @@ export default {
 				}
 			});
 
-			return this.countriesBorders;
+			return borders;
+		},
+		ensureCountriesBordersLoaded() {
+			if (this.countriesBorders) {
+				return Promise.resolve(this.countriesBorders);
+			}
+			if (!this.countriesBordersPromise) {
+				this.countriesBordersPromise = import('../data/ne_110m_admin_0_countries.json')
+					.then((module) => {
+						const geoJson = module.default ?? module;
+						return JSON.parse(JSON.stringify(geoJson));
+					})
+					.then((clonedGeoJson) => {
+						this.countriesBorders = clonedGeoJson;
+						return this.countriesBorders;
+					})
+					.catch(() => {
+						this.countriesBordersPromise = null;
+						return null;
+					});
+			}
+			return this.countriesBordersPromise;
 		},
 		countryStyle(feature) {
 			return {
