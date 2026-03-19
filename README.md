@@ -42,6 +42,22 @@ npm unlink --no-save @kiva/kv-components
 npm unlink --no-save @kiva/kv-shop
 ```
 
+## Releases
+
+Merging to **main** triggers an automated stable release — Lerna versions changed packages and publishes them to npm under the `latest` tag.
+
+### Pre-releases
+
+Pre-releases are available via three branches. Push or merge to one of these branches to publish with the corresponding dist-tag:
+
+| Branch | npm dist-tag | Install with |
+|--------|-------------|--------------|
+| `alpha` | `alpha` | `npm i @kiva/kv-components@alpha` |
+| `beta` | `beta` | `npm i @kiva/kv-components@beta` |
+| `next` | `next` | `npm i @kiva/kv-components@next` |
+
+Versions are suffixed with the pre-release identifier (e.g., `1.2.0-next.0`).
+
 ## Contribution Guidelines
 
 The Kiva UI project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
