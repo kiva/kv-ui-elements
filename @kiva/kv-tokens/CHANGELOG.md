@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3-next.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.2...@kiva/kv-tokens@3.7.3-next.0) (2026-03-19)
+
+
+### Bug Fixes
+
+* add smaller line-height to match new type base style definitions ([6b5b4fe](https://github.com/kiva/kv-ui-elements/commit/6b5b4feffa71f70066fdce9d2cc5dd11d9e98c69))
+* demo base and small type sizes ([865dacc](https://github.com/kiva/kv-ui-elements/commit/865dacc45b00f10181b84cd000db2cca51643a0d))
+
+
+
+
+
 ## [3.7.3-alpha.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.2...@kiva/kv-tokens@3.7.3-alpha.0) (2026-03-19)
 
 
