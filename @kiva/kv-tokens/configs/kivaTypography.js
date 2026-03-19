@@ -385,7 +385,7 @@ export const textStyles = (() => {
 		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
 		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		lineHeight: lineHeights.normal,
+		lineHeight: lineHeights['140'],
 		'@screen lg': {
 			fontSize: rem(fontSizes.base.lg),
 			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
