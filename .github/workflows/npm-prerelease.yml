@@ -3,7 +3,7 @@ name: NPM Prerelease
 on:
   push:
     branches:
-      - alpha
+      - next
 
 permissions:
   id-token: write # Required for trusted publishing
