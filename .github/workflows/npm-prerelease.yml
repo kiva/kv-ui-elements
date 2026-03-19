@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - next
+      - alpha
+      - beta
 
 permissions:
   id-token: write # Required for trusted publishing
@@ -68,6 +70,6 @@ jobs:
       - name: Reset git working directory
         run: git reset --hard HEAD
 
-      # Tag prerelease and publish to NPM with 'next' dist-tag
+      # Derive preid and dist-tag from the branch name
       - name: Publish prerelease
-        run: npm run publish-prerelease -- --yes --no-verify-access
+        run: npm run publish-prerelease -- --yes --no-verify-access --preid ${{ github.ref_name }} --dist-tag ${{ github.ref_name }}
