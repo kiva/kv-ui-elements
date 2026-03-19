@@ -77,5 +77,5 @@ jobs:
         run: npm run publish-release -- --yes --no-verify-access
 
       - name: Publish prerelease
-        if: github.ref_name != 'main'
+        if: contains(fromJSON('["next","alpha","beta"]'), github.ref_name)
         run: npm run publish-prerelease -- --yes --no-verify-access --preid ${{ github.ref_name }} --dist-tag ${{ github.ref_name }}
