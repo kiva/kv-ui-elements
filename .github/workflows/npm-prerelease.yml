@@ -1,0 +1,73 @@
+name: NPM Prerelease
+
+on:
+  push:
+    branches:
+      - next
+
+permissions:
+  id-token: write # Required for trusted publishing
+
+env:
+  GITHUB_PAT: "${{ secrets.KIVA_ROBOT_GITHUB_PAT || github.token }}"
+  AWS_REGION: "us-west-2"
+  AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+  AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+
+jobs:
+  prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      # Configure npmrc file and node installation
+      - name: Configure Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Configure git user access token and fetch latest changes
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          # Required in order to publish all the commits since the last release
+          fetch-depth: 0
+          # Personal Access Token with the 'public_repo' scope, to allow tagging the latest release
+          token: ${{ secrets.PUBLISH_PAT }}
+
+      # Checkout shared GitHub Actions workflows
+      - name: Checkout shared workflows
+        uses: actions/checkout@v3
+        with:
+          repository: kiva/github-actions
+          ref: main
+          token: ${{ env.GITHUB_PAT }}
+          path: .github/
+
+      # Configure Git user email and name for the release tags
+      - name: Configure Git user
+        run: |
+          git config --global user.email "ci@kiva.org"
+          git config --global user.name "ci@$GITHUB_ACTOR"
+
+      # Install dependencies for release scripts
+      - name: Install dependencies
+        run: npm ci
+
+      # Build projects
+      - name: Build projects
+        run: npm run build
+
+      # Upload static asssets
+      - name: Upload static assets
+        uses: ./.github/actions/upload-static-assets
+        with:
+          source_dir: "dist"
+          include: "kvui/*"
+
+      # Reset the git working directory to the last commit before publishing with lerna
+      - name: Reset git working directory
+        run: git reset --hard HEAD
+
+      # Tag prerelease and publish to NPM with 'next' dist-tag
+      - name: Publish prerelease
+        run: npm run publish-prerelease -- --yes --no-verify-access
