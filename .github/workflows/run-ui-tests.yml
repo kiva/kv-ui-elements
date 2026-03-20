@@ -6,7 +6,10 @@ on:
       - main
   pull_request:
     branches:
+      - alpha
+      - beta
       - main
+      - next
       - vue3
 
 jobs:
