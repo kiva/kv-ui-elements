@@ -106,7 +106,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@kiva/kv-tokens": "3.x",
+    "@kiva/kv-tokens": ">=3",
     "@mdi/js": "7.x",
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/integrations": "14.x",
