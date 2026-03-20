@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.6.2-next.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.0...@kiva/kv-components@8.6.2-next.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* allow pre-release versions to fulfill peer deps for other sub packages in this repo ([c9cdfd7](https://github.com/kiva/kv-ui-elements/commit/c9cdfd725d7a4b282f0c132ae7355efbbbba3f28))
+
+
+
+
+
 ## [8.6.2-next.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.1...@kiva/kv-components@8.6.2-next.0) (2026-03-19)
 
 **Note:** Version bump only for package @kiva/kv-components
