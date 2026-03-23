@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.57-next.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.57-next.1...@kiva/kv-shop@3.7.57-next.2) (2026-03-23)
+
+
+### Bug Fixes
+
+* ensure these package's peerDeps allow prereleases ([3db768d](https://github.com/kiva/kv-ui-elements/commit/3db768d225808e932f5236bf2e083552dc6b63bb))
+
+
+
+
+
 ## [3.7.57-next.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.57-next.0...@kiva/kv-shop@3.7.57-next.1) (2026-03-20)
 
 
