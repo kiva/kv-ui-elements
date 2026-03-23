@@ -58,7 +58,7 @@
     "peerDependencies": {
         "@apollo/client": "3.x",
         "@kiva/kv-analytics": ">=1",
-        "@kiva/kv-components": ">=5",
+        "@kiva/kv-components": "5.0.0-0",
         "braintree-web-drop-in": "1.x",
         "numeral": "2.x",
         "vue": "3.x"
