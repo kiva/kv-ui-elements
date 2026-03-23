@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.57-next.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.57-next.2...@kiva/kv-shop@3.7.57-next.3) (2026-03-23)
+
+
+### Bug Fixes
+
+* try open syntax for peerDep declaration ([36e7f86](https://github.com/kiva/kv-ui-elements/commit/36e7f862d38fcc3aa7206e59298bd3ff1beb87ca))
+
+
+
+
+
 ## [3.7.57-next.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.57-next.1...@kiva/kv-shop@3.7.57-next.2) (2026-03-23)
 
 

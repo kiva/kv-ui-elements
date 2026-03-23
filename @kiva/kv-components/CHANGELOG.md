@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.6.2-next.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.2...@kiva/kv-components@8.6.2-next.3) (2026-03-23)
+
+
+### Bug Fixes
+
+* try open syntax for peerDep declaration ([36e7f86](https://github.com/kiva/kv-ui-elements/commit/36e7f862d38fcc3aa7206e59298bd3ff1beb87ca))
+
+
+
+
+
 ## [8.6.2-next.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.1...@kiva/kv-components@8.6.2-next.2) (2026-03-23)
 
 
