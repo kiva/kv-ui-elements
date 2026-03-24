@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.6.2-next.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.4...@kiva/kv-components@8.6.2-next.5) (2026-03-24)
+
+
+### Bug Fixes
+
+* pin peerDeps temporarily for install compatibility ([f85823d](https://github.com/kiva/kv-ui-elements/commit/f85823d5b14ed3a21f78fed7b0748a420ee09865))
+
+
+
+
+
 ## [8.6.2-next.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.3...@kiva/kv-components@8.6.2-next.4) (2026-03-23)
 
 
