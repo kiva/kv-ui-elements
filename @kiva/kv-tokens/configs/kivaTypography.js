@@ -482,7 +482,7 @@ export const textStyles = (() => {
 		},
 	};
 
-	const textSubHeadline = {
+	const textSubheadline = {
 		fontFamily: fonts.sans,
 		fontWeight: fontWeights.light,
 		fontSize: rem(semanticFontSizes.h3.sm),
@@ -561,7 +561,7 @@ export const textStyles = (() => {
 		textDisplay,
 		textHeadline,
 		textHeadlineTwo,
-		textSubHeadline,
+		textSubheadline,
 		textTitle,
 		textButtonLink,
 		textUpper,
