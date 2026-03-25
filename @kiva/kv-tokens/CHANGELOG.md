@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.2...@kiva/kv-tokens@3.7.3) (2026-03-25)
+
+
+### Bug Fixes
+
+* semantic style class ([d6dd649](https://github.com/kiva/kv-ui-elements/commit/d6dd649e5ec97153a97a5facf8d9ebbeb8edecd0))
+
+
+
+
+
 ## [3.7.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.1...@kiva/kv-tokens@3.7.2) (2026-02-25)
 
 
