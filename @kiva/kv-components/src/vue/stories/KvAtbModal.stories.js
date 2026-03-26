@@ -1,34 +1,167 @@
 import KvAtbModal from '../KvAtbModal.vue';
+import KvAtbModalDocsMdx from './KvAtbModalDocs.mdx';
 
 export default {
 	title: 'Checkout/KvAtbModal',
 	component: KvAtbModal,
+	parameters: {
+		docs: {
+			page: KvAtbModalDocsMdx,
+			title: 'KvAtbModal Docs',
+		},
+	},
 	argTypes: {
-		modalVisible: false,
-		userData: {},
-		addedLoan: {},
-		myKivaExperimentEnabled: false,
-		photoPath: '',
-		showModalContent: false,
-		oneLoanAwayCategory: '',
-		oneLoanAwayFilteredUrl: '',
-		oneAwayText: '',
-		milestonesNumber: 0,
-		milestonesProgress: {},
-		isLoanGoal: false,
-		isCompletingGoal: false,
+		/**
+		 * Show modal
+		 */
+		modalVisible: {
+			control: 'boolean',
+			description: 'Controls visibility of the modal.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+		},
+		/**
+		 * Added loan to basket
+		 */
+		addedLoan: {
+			control: 'object',
+			description: 'The loan object that was added to the basket. Contains id, name, gender, borrowerCount, themes, basketSize.',
+			table: {
+				type: { summary: 'object' },
+				defaultValue: { summary: '{}' },
+			},
+		},
+		/**
+		 * User data
+		 */
+		userData: {
+			control: 'object',
+			description: 'User data object containing my.loans.totalCount for determining first loan status.',
+			table: {
+				type: { summary: 'object' },
+				defaultValue: { summary: '{}' },
+			},
+		},
+		/**
+		 * Photo path base URL
+		 */
+		photoPath: {
+			control: 'text',
+			description: 'Base path for borrower photo images.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
+		/**
+		 * Milestones number
+		 */
+		milestonesNumber: {
+			control: 'number',
+			description: 'Number of milestones the user is close to achieving.',
+			table: {
+				type: { summary: 'number' },
+				defaultValue: { summary: '0' },
+			},
+		},
+		/**
+		 * Show modal content
+		 */
+		showModalContent: {
+			control: 'boolean',
+			description: 'Whether to show the modal content section.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+		},
+		/**
+		 * User has ever logged in
+		 */
+		hasEverLoggedIn: {
+			control: 'boolean',
+			description: 'Whether the user has ever logged in before.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+		},
+		/**
+		 * One loan away category name
+		 */
+		oneLoanAwayCategory: {
+			control: 'text',
+			description: 'Category name for "one loan away" milestone.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
+		/**
+		 * One loan away filtered URL
+		 */
+		oneLoanAwayFilteredUrl: {
+			control: 'text',
+			description: 'URL to redirect user to find loans in the "one away" category.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
+		/**
+		 * One away text
+		 */
+		oneAwayText: {
+			control: 'text',
+			description: 'Text displayed when user is one loan away from milestone.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
+		/**
+		 * Milestones progress
+		 */
+		milestonesProgress: {
+			control: 'object',
+			description: 'Object tracking progress on various milestone categories.',
+			table: {
+				type: { summary: 'object' },
+				defaultValue: { summary: '{}' },
+			},
+		},
+		/**
+		 * Is loan goal modal
+		 */
+		isLoanGoal: {
+			control: 'boolean',
+			description: 'Whether this is a loan goal modal variation.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+		},
+		/**
+		 * Is completing goal modal
+		 */
+		isCompletingGoal: {
+			control: 'boolean',
+			description: 'Whether the user is completing their annual goal with this loan.',
+			table: {
+				type: { summary: 'boolean' },
+				defaultValue: { summary: 'false' },
+			},
+		},
 	},
 };
 
-const userData = {
+// Mock data for stories
+const mockUserData = {
 	my: {
 		__typename: 'My',
 		id: '5225402',
-		userPreferences: {
-			__typename: 'UserPreferences',
-			id: 3298130,
-			preferences: '{"myKivaPageExp":1}',
-		},
 		loans: {
 			__typename: 'LoanBasicCollection',
 			totalCount: 1,
@@ -36,160 +169,186 @@ const userData = {
 	},
 };
 
-const addedLoan = {
+const mockAddedLoan = {
 	id: 2968271,
-	name: 'Dr. Tracey J.',
+	name: 'Maria',
 	gender: 'female',
 	borrowerCount: 1,
 	themes: [],
 	basketSize: 1,
 };
 
-const Template = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
-	components: { KvAtbModal },
-	setup() {
-		return args;
+/**
+ * Default story - Interactive playground for exploring all props.
+ * The modal appears anchored to the header basket element.
+ */
+export const Default = {
+	args: {
+		modalVisible: true,
+		addedLoan: mockAddedLoan,
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		milestonesNumber: 0,
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		oneLoanAwayCategory: '',
+		oneLoanAwayFilteredUrl: '',
+		oneAwayText: '',
+		milestonesProgress: {},
+		isLoanGoal: false,
+		isCompletingGoal: false,
 	},
-	template: `
-			<header>
-				<div data-testid="header-basket">
+	render: (args) => ({
+		components: { KvAtbModal },
+		setup() {
+			return { args };
+		},
+		template: `
+			<header class="tw-bg-primary tw-p-4">
+				<div class="tw-flex tw-justify-end" data-testid="header-basket">
+					<button class="tw-text-white">Basket</button>
 					<KvAtbModal
-						:modalVisible="isVisible"
-						:userData="userData"
-						:addedLoan="addedLoan"
-						:myKivaExperimentEnabled="myKivaExperimentEnabled"
-						:showModalContent="showModalContent"
-						photoPath='https://www.kiva.org/img/'
-						:oneLoanAwayCategory="oneLoanAwayCategory"
-						:oneLoanAwayFilteredUrl="oneLoanAwayFilteredUrl"
-						:oneAwayText="oneAwayText"
-						:milestonesNumber="milestonesNumber"
-						:milestonesProgress="milestonesProgress"
-						:isLoanGoal="isLoanGoal"
-						:isCompletingGoal="isCompletingGoal"
-						@close-redirect="isVisible = false"
-						@reset-modal="isVisible = false"
+						v-bind="args"
+						@reset-modal="onResetModal"
+						@close-redirect="onCloseRedirect"
 					/>
 				</div>
 			</header>
 		`,
-	data() {
-		return {
-			isVisible: true,
-		};
+		methods: {
+			onResetModal() {
+				console.log('Event: reset-modal');
+			},
+			onCloseRedirect(payload) {
+				console.log('Event: close-redirect', payload);
+			},
+		},
+	}),
+};
+
+// Reusable render function for stories
+const renderModal = (args) => ({
+	components: { KvAtbModal },
+	setup() {
+		return { args };
+	},
+	template: `
+		<header class="tw-bg-primary tw-p-4">
+			<div class="tw-flex tw-justify-end" data-testid="header-basket">
+				<button class="tw-text-white">Basket</button>
+				<KvAtbModal
+					v-bind="args"
+					@reset-modal="onResetModal"
+					@close-redirect="onCloseRedirect"
+				/>
+			</div>
+		</header>
+	`,
+	methods: {
+		onResetModal() {
+			console.log('Event: reset-modal');
+		},
+		onCloseRedirect(payload) {
+			console.log('Event: close-redirect', payload);
+		},
 	},
 });
 
-export const Default = Template.bind({});
-Default.args = {
-	userData,
-	addedLoan,
-};
-
-export const MyKiva = Template.bind({});
-MyKiva.args = {
-	userData,
-	addedLoan,
-	myKivaExperimentEnabled: true,
-	showModalContent: true,
-};
-
-export const MyKivaMultipleMilestones = Template.bind({});
-MyKivaMultipleMilestones.args = {
-	userData,
-	addedLoan: {
-		...addedLoan,
-		basketSize: 2,
+/**
+ * Overview showing the modal in a typical add-to-basket scenario.
+ */
+export const ComponentOverview = {
+	args: {
+		modalVisible: true,
+		addedLoan: mockAddedLoan,
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		milestonesNumber: 1,
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		milestonesProgress: { 'womens-equality': 1 },
 	},
-	myKivaExperimentEnabled: true,
-	showModalContent: true,
-	milestonesNumber: 2,
-	milestonesProgress: { 'womens-equality': 1, 'us-economic-equality': 1 },
+	render: renderModal,
 };
 
-export const MyKivaFirstLoan = Template.bind({});
-MyKivaFirstLoan.args = {
-	userData: {
-		my: {
-			...userData.my,
-			loans: {
-				totalCount: 0,
-			},
-		},
+/**
+ * First loan experience - Shows special badge for new lenders.
+ */
+export const FirstLoanExperience = {
+	args: {
+		modalVisible: true,
+		addedLoan: { ...mockAddedLoan, basketSize: 1 },
+		userData: { my: null },
+		photoPath: 'https://www.kiva.org/img/',
+		showModalContent: true,
+		hasEverLoggedIn: false,
 	},
-	addedLoan,
-	myKivaExperimentEnabled: true,
+	render: renderModal,
 };
 
-export const MyKivaFirstLoanMale = Template.bind({});
-MyKivaFirstLoanMale.args = {
-	userData: {
-		my: {
-			...userData.my,
-			loans: {
-				totalCount: 0,
-			},
-		},
+/**
+ * Milestone achievement - Shows progress toward multiple milestones.
+ */
+export const MilestoneAchievement = {
+	args: {
+		modalVisible: true,
+		addedLoan: { ...mockAddedLoan, basketSize: 2 },
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		milestonesNumber: 2,
+		milestonesProgress: { 'womens-equality': 1, 'us-economic-equality': 1 },
 	},
-	addedLoan: {
-		...addedLoan,
-		name: 'Joe',
-		gender: 'male',
+	render: renderModal,
+};
+
+/**
+ * One loan away - Shows when user is close to next achievement.
+ */
+export const OneLoanAway = {
+	args: {
+		modalVisible: true,
+		addedLoan: { ...mockAddedLoan, basketSize: 3 },
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		oneLoanAwayCategory: 'Women-owned businesses',
+		oneLoanAwayFilteredUrl: '/lend/filter?gender=female',
+		oneAwayText: '1 away',
 	},
-	myKivaExperimentEnabled: true,
+	render: renderModal,
 };
 
-export const MyKivaFirstLoanSocialEnterprise = Template.bind({});
-MyKivaFirstLoanSocialEnterprise.args = {
-	userData: {
-		my: {
-			...userData.my,
-			loans: {
-				totalCount: 0,
-			},
-		},
+/**
+ * Loan goal progress - Shows progress toward annual lending goal.
+ */
+export const LoanGoalProgress = {
+	args: {
+		modalVisible: true,
+		addedLoan: mockAddedLoan,
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		isLoanGoal: true,
 	},
-	addedLoan: {
-		...addedLoan,
-		themes: ['Social Enterprise'],
+	render: renderModal,
+};
+
+/**
+ * Goal completion - Shows when loan completes annual goal.
+ */
+export const GoalCompletion = {
+	args: {
+		modalVisible: true,
+		addedLoan: mockAddedLoan,
+		userData: mockUserData,
+		photoPath: 'https://www.kiva.org/img/',
+		showModalContent: true,
+		hasEverLoggedIn: true,
+		isCompletingGoal: true,
 	},
-	myKivaExperimentEnabled: true,
-};
-
-export const MyKivaGuest = Template.bind({});
-MyKivaGuest.args = {
-	userData: {},
-	addedLoan,
-	myKivaExperimentEnabled: true,
-};
-
-export const MyKivaOneLoanAway = Template.bind({});
-MyKivaOneLoanAway.args = {
-	userData,
-	addedLoan,
-	myKivaExperimentEnabled: true,
-	showModalContent: true,
-	oneLoanAwayCategory: 'entrepreneur',
-	oneLoanAwayFilteredUrl: '/lend-by-category/kiva-u-s',
-	oneAwayText: '4 of 5',
-};
-
-export const IsLoanGoal = Template.bind({});
-IsLoanGoal.args = {
-	userData,
-	addedLoan,
-	myKivaExperimentEnabled: true,
-	showModalContent: true,
-	isLoanGoal: true,
-};
-
-export const IsCompletingGoal = Template.bind({});
-IsCompletingGoal.args = {
-	userData,
-	addedLoan,
-	myKivaExperimentEnabled: true,
-	showModalContent: true,
-	isLoanGoal: true,
-	isCompletingGoal: true,
+	render: renderModal,
 };

@@ -297,13 +297,6 @@ export default {
 			default: false,
 		},
 		/**
-		 * is under myKiva experiment
-		 * */
-		myKivaExperimentEnabled: {
-			type: Boolean,
-			default: false,
-		},
-		/**
 		 * one loan away category name
 		 * */
 		oneLoanAwayCategory: {
@@ -356,7 +349,6 @@ export default {
 			addedLoan,
 			userData,
 			hasEverLoggedIn,
-			myKivaExperimentEnabled,
 			oneLoanAwayCategory,
 			oneLoanAwayFilteredUrl,
 			milestonesProgress,
@@ -381,9 +373,9 @@ export default {
 		const isGuest = computed(() => !userData.value?.my);
 
 		const isFirstLoan = computed(() => {
-			return myKivaExperimentEnabled.value
-			&& ((isGuest.value && !hasEverLoggedIn.value) || (!isGuest.value && !userData.value?.my?.loans?.totalCount))
-			&& basketCount.value === 1;
+			return ((isGuest.value && !hasEverLoggedIn.value)
+				|| (!isGuest.value && !userData.value?.my?.loans?.totalCount))
+				&& basketCount.value === 1;
 		});
 
 		const showOneAway = computed(() => oneLoanAwayCategory.value && oneLoanAwayFilteredUrl.value && !isFirstLoan.value); // eslint-disable-line max-len
