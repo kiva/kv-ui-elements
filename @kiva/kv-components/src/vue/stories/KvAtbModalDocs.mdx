@@ -1,0 +1,345 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvAtbModalStories from './KvAtbModal.stories.js';
+
+<Meta title="Checkout/KvAtbModal" component={KvAtbModalStories.Component} />
+
+# KvAtbModal
+
+A contextual modal component that provides feedback and engagement opportunities after a user adds a loan to their basket, displaying milestone progress, achievement notifications, and personalized messaging.
+
+## Component Overview
+
+The Add-to-Basket (ATB) Modal enhances the lending experience by providing immediate visual feedback when users add loans to their basket. It dynamically adapts its content based on the user's lending history, milestone progress, and proximity to achievements, encouraging continued engagement.
+
+<Story of={KvAtbModalStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The modal adapts its content based on user context, displaying different messaging and visual elements depending on the user's lending journey.
+
+### First Loan Experience
+
+Shows a special badge and personalized welcome message for first-time lenders.
+
+<Story of={KvAtbModalStories.FirstLoanExperience} />
+
+### Milestone Achievement
+
+Displays progress when the user is close to achieving one or more milestones.
+
+<Story of={KvAtbModalStories.MilestoneAchievement} />
+
+### One Loan Away
+
+Shows when the user is just one loan away from unlocking an achievement, with a link to find similar loans.
+
+<Story of={KvAtbModalStories.OneLoanAway} />
+
+### Loan Goal Progress
+
+Indicates progress toward the user's annual lending goal.
+
+<Story of={KvAtbModalStories.LoanGoalProgress} />
+
+### Goal Completion
+
+Celebrates when a loan completes the user's annual lending goal.
+
+<Story of={KvAtbModalStories.GoalCompletion} />
+
+## Usage Information
+
+The KvAtbModal provides contextual feedback after basket additions, encouraging users to continue their lending journey through gamification and achievement tracking.
+
+### When to Use
+
+- After a user successfully adds a loan to their basket
+- To provide immediate visual confirmation of the basket action
+- To display and encourage milestone/achievement progress
+- To highlight when users are close to unlocking achievements
+- To celebrate goal completion moments
+
+### When Not to Use
+
+- For general modal dialogs unrelated to basket actions
+- For error messages or critical alerts
+- When the basket action failed and needs error handling
+- For checkout or payment flow modals
+
+---
+
+## Behavior
+
+### Modal Positioning
+
+The modal positions itself relative to the header basket element, appearing below and aligned with the basket icon. It uses CSS custom properties (`--modal-right`, `--modal-top`) to dynamically adjust its position based on scroll and resize events.
+
+<Story of={KvAtbModalStories.Default} />
+
+### Content Adaptation
+
+The modal intelligently adapts its content based on the user's context:
+
+1. **Guest/First-time user**: Shows welcome badge and personalized message
+2. **Returning user**: Displays milestone progress and achievement notifications
+3. **Close to achievement**: Highlights proximity with "one away" messaging
+4. **Goal tracking**: Shows annual goal progress or completion celebration
+
+<Story of={KvAtbModalStories.MilestoneAchievement} />
+
+## Anatomy
+
+The modal consists of the following structural elements:
+
+- **Modal Container** (`KvCartModal`): Outer wrapper providing positioning and background
+- **Borrower Photo**: Visual representation of the funded loan
+- **Content Section**: Contains the pill message and relevant badges
+- **Achievement Pill** (`KvCartPill`): Displays milestone info, borrower name, and custom messaging
+- **Icon Slot**: Shows contextual icons (first loan badge, achievement indicator)
+- **Action Buttons**: View basket and support another loan options (via `KvCartModal`)
+
+---
+
+## Specs
+
+### Positioning
+
+The modal is positioned using CSS custom properties that are recalculated on scroll and resize:
+
+- `--modal-right`: Distance from the right edge of the viewport
+- `--modal-top`: Distance from the top of the viewport (below header)
+
+### Responsive Behavior
+
+- On desktop (`md` and above): Modal anchors to the header basket element
+- Position updates are throttled (50ms) for performance during scroll/resize
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvAtbModal/Do-provide-contextual-messaging.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Provide contextual, personalized messaging based on the user's lending history and milestone progress.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvAtbModal/Dont-show-generic-messages.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Show generic confirmation messages that don't acknowledge the user's progress or engagement.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvAtbModal/Do-highlight-achievements.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Highlight when users are close to achievements to encourage continued engagement and goal completion.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvAtbModal/Dont-overwhelm-with-data.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Overwhelm users with too much progress data or multiple competing calls to action.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- **Focus management**: Modal traps focus appropriately when visible (handled by `KvCartModal`)
+- **Keyboard navigation**: Supports Escape key to close the modal
+- **Screen reader announcements**: Content changes are announced appropriately
+- **Color contrast**: All text and interactive elements meet WCAG contrast requirements
+- **Touch targets**: Buttons meet minimum 44x44px touch target requirements
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvAtbModalStories.Default} />
+<Controls of={KvAtbModalStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Usage
+
+```vue
+<template>
+  <header>
+    <div data-testid="header-basket">
+      <KvAtbModal
+        :modal-visible="showModal"
+        :added-loan="addedLoan"
+        :user-data="userData"
+        photo-path="https://www.kiva.org/img/"
+        :show-modal-content="true"
+        @reset-modal="handleResetModal"
+        @close-redirect="handleCloseRedirect"
+      />
+    </div>
+  </header>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvAtbModal } from '@kiva/kv-components';
+
+const showModal = ref(true);
+const addedLoan = {
+  id: 12345,
+  name: 'Maria',
+  gender: 'female',
+  borrowerCount: 1,
+  themes: [],
+  basketSize: 1,
+};
+const userData = {
+  my: {
+    loans: { totalCount: 5 },
+  },
+};
+
+const handleResetModal = () => {
+  showModal.value = false;
+};
+
+const handleCloseRedirect = ({ type, path }) => {
+  showModal.value = false;
+  // Navigate to path based on type
+};
+</script>
+```
+
+### With Milestone Progress
+
+```vue
+<template>
+  <header>
+    <div data-testid="header-basket">
+      <KvAtbModal
+        :modal-visible="showModal"
+        :added-loan="addedLoan"
+        :user-data="userData"
+        photo-path="https://www.kiva.org/img/"
+        :show-modal-content="true"
+        :milestones-number="2"
+        :milestones-progress="{
+          'womens-equality': 1,
+          'us-economic-equality': 1
+        }"
+        @reset-modal="handleResetModal"
+        @close-redirect="handleCloseRedirect"
+      />
+    </div>
+  </header>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvAtbModal } from '@kiva/kv-components';
+
+const showModal = ref(true);
+const addedLoan = {
+  id: 12345,
+  name: 'Maria',
+  gender: 'female',
+  borrowerCount: 1,
+  themes: [],
+  basketSize: 2,
+};
+const userData = {
+  my: {
+    loans: { totalCount: 10 },
+  },
+};
+
+const handleResetModal = () => {
+  showModal.value = false;
+};
+
+const handleCloseRedirect = ({ type, path }) => {
+  showModal.value = false;
+};
+</script>
+```
+
+### One Loan Away Achievement
+
+```vue
+<template>
+  <header>
+    <div data-testid="header-basket">
+      <KvAtbModal
+        :modal-visible="showModal"
+        :added-loan="addedLoan"
+        :user-data="userData"
+        photo-path="https://www.kiva.org/img/"
+        :show-modal-content="true"
+        :has-ever-logged-in="true"
+        one-loan-away-category="Women-owned businesses"
+        one-loan-away-filtered-url="/lend/filter?gender=female"
+        one-away-text="1 away"
+        @reset-modal="handleResetModal"
+        @close-redirect="handleCloseRedirect"
+      />
+    </div>
+  </header>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvAtbModal } from '@kiva/kv-components';
+
+const showModal = ref(true);
+const addedLoan = {
+  id: 12345,
+  name: 'Maria',
+  gender: 'female',
+  borrowerCount: 1,
+  themes: [],
+  basketSize: 5,
+};
+const userData = {
+  my: {
+    loans: { totalCount: 24 },
+  },
+};
+
+const handleResetModal = () => {
+  showModal.value = false;
+};
+
+const handleCloseRedirect = ({ type, path }) => {
+  showModal.value = false;
+  if (type === 'support-another') {
+    window.location.href = path;
+  }
+};
+</script>
+```
