@@ -100,13 +100,13 @@ h3 u {
   background-position: left bottom;
 }
 .tw-text-jumbo u {
-	background-size: 100% 0.75rem;
-	padding-bottom: 0.375rem;
+	background-size: 100% 0.5rem;
+	padding-bottom: 0.25rem;
 }
 .tw-text-h1 u,
 h1 u {
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.375rem;
+  background-size: 100% 0.5rem;
+  padding-bottom: 0.25rem;
 }
 .tw-text-h2 u,
 h2 u {
@@ -115,12 +115,12 @@ h2 u {
 }
 .tw-text-h3 u,
 h3 u {
-  background-size: 100% 0.375rem;
+  background-size: 100% 0.35rem;
   padding-bottom: 0.2rem;
 }
 @screen lg {
 	.tw-text-jumbo u {
-		background-size: 100% 1rem;
+		background-size: 100% 0.5rem;
 		padding-bottom: 0.375rem;
 	}
 }
