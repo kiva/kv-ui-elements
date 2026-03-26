@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.6.2-next.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.5...@kiva/kv-components@8.6.2-next.6) (2026-03-26)
+
+
+### Bug Fixes
+
+* set html header elements styles based on new type definitions, tweak underline size to match ([e22c128](https://github.com/kiva/kv-ui-elements/commit/e22c128d9b8fe5704fe534ba440c36dd40131071))
+
+
+
+
+
 ## [8.6.2-next.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2-next.4...@kiva/kv-components@8.6.2-next.5) (2026-03-24)
 
 
