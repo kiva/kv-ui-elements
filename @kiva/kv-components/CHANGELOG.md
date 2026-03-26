@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.2...@kiva/kv-components@8.7.0) (2026-03-26)
+
+
+### Features
+
+* kvatbmodal update ([#795](https://github.com/kiva/kv-ui-elements/issues/795)) ([e14780c](https://github.com/kiva/kv-ui-elements/commit/e14780c88b188a89d9dc182ef2c12f319f9bba9e))
+
+
+
+
+
 ## [8.6.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.6.1...@kiva/kv-components@8.6.2) (2026-03-25)
 
 **Note:** Version bump only for package @kiva/kv-components
