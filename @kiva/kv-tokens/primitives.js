@@ -517,6 +517,7 @@ export default {
 		},
 	},
 	fontWeights: {
+		// Conicides with "book" for Post Grotesk in Figma
 		light: 300,
 		// Note: this is referred to as "medium" in the figma files for Post Grotesk but matches the font-weight of the font file we load
 		normal: 400,
@@ -534,7 +535,7 @@ export default {
 		150: 1.5,
 	},
 	lineHeightsAbsolute: {
-		jumbo: { sm: 47, md: 52, lg: 57 },
+		jumbo: { sm: 52, md: 52, lg: 57 },
 		h1: { sm: 31, md: 31, lg: 36 },
 		h2: { sm: 26, md: 26, lg: 31 },
 		h3: { sm: 23, md: 23, lg: 26 },

@@ -100,7 +100,7 @@ h3 u {
   background-position: left bottom;
 }
 .tw-text-jumbo u {
-	background-size: 100% 0.5rem;
+	background-size: 100% 0.625rem;
 	padding-bottom: 0.25rem;
 }
 .tw-text-h1 u,
@@ -120,8 +120,8 @@ h3 u {
 }
 @screen lg {
 	.tw-text-jumbo u {
-		background-size: 100% 0.5rem;
-		padding-bottom: 0.375rem;
+		background-size: 100% 0.625rem;
+		padding-bottom: 0.25rem;
 	}
 }
 </style>
