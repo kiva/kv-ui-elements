@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3-next.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3-next.1...@kiva/kv-tokens@3.7.3-next.2) (2026-03-30)
+
+
+### Bug Fixes
+
+* semantic style class ([cc62fce](https://github.com/kiva/kv-ui-elements/commit/cc62fce672058ab82d84abafae1d12c28cf9cdf0))
+* update global html headers + jumbo to match new type guidelines, refine underline sizes ([10e7295](https://github.com/kiva/kv-ui-elements/commit/10e7295686bca126525e3a4b5ff00de6fbe28dcc))
+
+
+
+
+
 ## [3.7.3-next.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3-next.0...@kiva/kv-tokens@3.7.3-next.1) (2026-03-26)
 
 
