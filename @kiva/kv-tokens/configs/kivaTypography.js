@@ -384,20 +384,14 @@ export const textStyles = (() => {
 	const textBase = {
 		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
-		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		lineHeight: lineHeights.normal,
-		'@screen lg': {
-			fontSize: rem(fontSizes.base.lg),
-			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		},
+		lineHeight: em(lineHeightsAbsolute.base.sm, fontSizes.small.sm),
 	};
 
 	const textSmall = {
 		fontSize: rem(fontSizes.small.sm),
-		lineHeight: lineHeights.normal,
-		'@screen lg': {
-			fontSize: rem(fontSizes.small.lg),
-		},
+		fontWeight: fontWeights.light,
+		letterSpacing: em(letterSpacings.normal, fontSizes.small.sm),
+		lineHeight: em(lineHeightsAbsolute.caption.sm, fontSizes.small.sm),
 	};
 
 	const textLink = {
