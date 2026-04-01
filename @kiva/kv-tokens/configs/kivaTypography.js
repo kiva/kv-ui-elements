@@ -384,7 +384,7 @@ export const textStyles = (() => {
 	const textBase = {
 		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
-		lineHeight: em(lineHeightsAbsolute.base.sm, fontSizes.small.sm),
+		lineHeight: em(lineHeightsAbsolute.base.sm, fontSizes.base.sm),
 	};
 
 	const textSmall = {
