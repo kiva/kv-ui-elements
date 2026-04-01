@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.4...@kiva/kv-tokens@3.7.5) (2026-04-01)
+
+
+### Bug Fixes
+
+* found a couple typos in the updated defs ([30dca19](https://github.com/kiva/kv-ui-elements/commit/30dca19d1b15ab3c4bdb64a07eaa504a7d6d721c))
+
+
+
+
+
 ## [3.7.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3...@kiva/kv-tokens@3.7.4) (2026-04-01)
 
 

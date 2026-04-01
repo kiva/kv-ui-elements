@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.7.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.2...@kiva/kv-components@8.7.3) (2026-04-01)
+
+
+### Bug Fixes
+
+* small tweak to rounded corner ([faa9f85](https://github.com/kiva/kv-ui-elements/commit/faa9f8570812a846bdf1c0546306d39908a5794a))
+
+
+
+
+
 ## [8.7.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.1...@kiva/kv-components@8.7.2) (2026-04-01)
 
 
