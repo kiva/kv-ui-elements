@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3-next.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3-next.2...@kiva/kv-tokens@3.7.3-next.3) (2026-04-01)
+
+
+### Bug Fixes
+
+* sync latest from main, continued application of semantic classes, prose h1 override ([22ce4a6](https://github.com/kiva/kv-ui-elements/commit/22ce4a6389994244ccffcf67466dcfe01da8c8a5))
+
+
+
+
+
 ## [3.7.3-next.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3-next.1...@kiva/kv-tokens@3.7.3-next.2) (2026-03-30)
 
 
