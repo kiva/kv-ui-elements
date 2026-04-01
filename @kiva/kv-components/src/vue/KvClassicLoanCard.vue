@@ -12,7 +12,7 @@
 				<kv-loading-placeholder
 					v-if="isLoading"
 					class="tw-mb-1 tw-w-full"
-					:class="{ 'tw-rounded-t tw-rounded-b-none': largeCard, 'tw-rounded': !largeCard }"
+					:class="{ 'tw-rounded-t tw-rounded-b-none': largeCard, 'tw-rounded-sm': !largeCard }"
 					:style="{ height: '15rem' }"
 				/>
 				<div
@@ -34,7 +34,7 @@
 								tw-bg-black
 								tw-bg-clip-content
 							"
-							:class="{ 'tw-rounded-t-sm': largeCard, 'tw-rounded-sm': !largeCard }"
+							:class="{ 'tw-rounded-t': largeCard, 'tw-rounded-sm': !largeCard }"
 							:alt="`Photo of ${borrowerName}`"
 							:aspect-ratio="imageAspectRatio"
 							:default-image="{ width: imageDefaultWidth }"
