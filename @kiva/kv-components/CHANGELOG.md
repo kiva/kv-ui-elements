@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.7.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.1...@kiva/kv-components@8.7.2) (2026-04-01)
+
+
+### Bug Fixes
+
+* fixes image rounded corner on loan card ([b76530a](https://github.com/kiva/kv-ui-elements/commit/b76530a94c853e66de281f353129b8eecd82a839))
+
+
+
+
+
 ## [8.7.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.0...@kiva/kv-components@8.7.1) (2026-04-01)
 
 **Note:** Version bump only for package @kiva/kv-components
