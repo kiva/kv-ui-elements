@@ -385,36 +385,32 @@ export const textStyles = (() => {
 	};
 
 	const textSubhead = {
+		// Replaced with styles for new text-subhealine class
 		fontFamily: fonts.sans,
-		fontSize: rem(fontSizes.subhead.sm),
 		fontWeight: fontWeights.light,
-		letterSpacing: em(letterSpacings.normal, fontSizes.subhead.sm),
-		lineHeight: lineHeights.tight,
+		fontSize: rem(semanticFontSizes.h3.sm),
+		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
+		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
 		'@screen md': {
-			fontSize: rem(fontSizes.subhead.md),
+			fontSize: rem(semanticFontSizes.h3.md),
 		},
 		'@screen lg': {
-			fontSize: rem(fontSizes.subhead.lg),
+			fontSize: rem(semanticFontSizes.h3.lg),
+			lineHeight: em(lineHeightsAbsolute.h3.lg, semanticFontSizes.h3.lg),
 		},
 	};
 
 	const textBase = {
 		fontWeight: fontWeights.light,
 		fontSize: rem(fontSizes.base.sm),
-		letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		lineHeight: lineHeights['140'],
-		'@screen lg': {
-			fontSize: rem(fontSizes.base.lg),
-			letterSpacing: em(letterSpacings.normal, fontSizes.base.sm),
-		},
+		lineHeight: em(lineHeightsAbsolute.base.sm, fontSizes.base.sm),
 	};
 
 	const textSmall = {
 		fontSize: rem(fontSizes.small.sm),
-		lineHeight: lineHeights.normal,
-		'@screen lg': {
-			fontSize: rem(fontSizes.small.lg),
-		},
+		fontWeight: fontWeights.light,
+		letterSpacing: em(letterSpacings.normal, fontSizes.small.sm),
+		lineHeight: em(lineHeightsAbsolute.caption.sm, fontSizes.small.sm),
 	};
 
 	const textLink = {
@@ -664,11 +660,22 @@ export const proseOverrides = () => ({
 				padding: `0 0 0 ${rem(space['6'])}`,
 			},
 			h1: {
-				fontSize: false,
-				letterSpacing: false,
 				marginTop: '0',
 				marginBottom: rem(space[2]),
 				color: textBaseColor,
+				fontSize: rem(semanticFontSizes.jumbo.sm),
+				letterSpacing: em(letterSpacings['-400'], semanticFontSizes.jumbo.sm),
+				lineHeight: em(lineHeightsAbsolute.jumbo.sm, semanticFontSizes.jumbo.sm),
+				'@screen md': {
+					fontSize: rem(semanticFontSizes.jumbo.md),
+					letterSpacing: em(letterSpacings['-500'], semanticFontSizes.jumbo.md),
+					lineHeight: em(lineHeightsAbsolute.jumbo.md, semanticFontSizes.jumbo.md),
+				},
+				'@screen lg': {
+					fontSize: rem(semanticFontSizes.jumbo.lg),
+					letterSpacing: em(letterSpacings['-600'], semanticFontSizes.jumbo.lg),
+					lineHeight: em(lineHeightsAbsolute.jumbo.lg, semanticFontSizes.jumbo.lg),
+				},
 			},
 			h2: {
 				fontSize: false,
