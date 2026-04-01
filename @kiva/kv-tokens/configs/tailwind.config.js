@@ -215,7 +215,7 @@ export default {
 					fontSize: '0.875em',
 				},
 				blockquote: textStyles.textBlockquote,
-				'figure figcaption': textStyles.textBase,
+				'figure figcaption': textStyles.textCaption,
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},
@@ -240,13 +240,13 @@ export default {
 			});
 			addUtilities({
 				'.text-base': textStyles.textBase,
-				'.text-h1': textStyles.textH1,
-				'.text-h2': textStyles.textH2,
-				'.text-h3': textStyles.textH3,
-				'.text-h4': textStyles.textH4,
+				'.text-h1': textStyles.textHeadline,
+				'.text-h2': textStyles.textHeadlineTwo,
+				'.text-h3': textStyles.textSubheadline,
+				'.text-h4': textStyles.textTitle,
 				'.text-h5': textStyles.textH5,
-				'.text-subhead': textStyles.textSubhead,
-				'.text-jumbo': textStyles.textJumbo,
+				'.text-subhead': textStyles.textSubheadline,
+				'.text-jumbo': textStyles.textDisplay,
 				'.text-small': textStyles.textSmall,
 				'.text-link': textStyles.textLink,
 				'.text-blockquote': textStyles.textBlockquote,
