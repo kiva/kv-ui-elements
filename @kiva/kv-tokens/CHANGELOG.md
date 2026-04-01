@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3...@kiva/kv-tokens@3.7.4) (2026-04-01)
+
+
+### Bug Fixes
+
+* update global base and small type sizes to match updated design definitions ([9b90164](https://github.com/kiva/kv-ui-elements/commit/9b901648e2d71164e108f18c628c0e7c0b8a62c2))
+
+
+
+
+
 ## [3.7.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.2...@kiva/kv-tokens@3.7.3) (2026-03-25)
 
 
