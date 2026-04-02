@@ -12,7 +12,7 @@
 				<kv-loading-placeholder
 					v-if="isLoading"
 					class="tw-mb-1 tw-w-full"
-					:class="{ 'tw-rounded-t tw-rounded-b-none': largeCard, 'tw-rounded': !largeCard }"
+					:class="{ 'tw-rounded-t tw-rounded-b-none': largeCard, '!tw-rounded-sm': !largeCard }"
 					:style="{ height: '15rem' }"
 				/>
 				<div
