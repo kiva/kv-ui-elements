@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.7.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.4...@kiva/kv-components@8.7.5) (2026-04-02)
+
+
+### Bug Fixes
+
+* border radius fix for additional loan cards ([757bfaf](https://github.com/kiva/kv-ui-elements/commit/757bfaff5839ba69eb131f6492fa759a4bc92189))
+* loading corners ([4c4259f](https://github.com/kiva/kv-ui-elements/commit/4c4259f4776de5b90a02f9fa54fa722b2ac0a5be))
+* loanBorrowerCount in loan info card ([3eefe26](https://github.com/kiva/kv-ui-elements/commit/3eefe26b1764b3aaa6a0033ce245554d31eaa635))
+
+
+
+
+
 ## [8.7.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.3...@kiva/kv-components@8.7.4) (2026-04-02)
 
 **Note:** Version bump only for package @kiva/kv-components
