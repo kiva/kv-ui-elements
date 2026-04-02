@@ -533,7 +533,7 @@ export const textStyles = (() => {
 
 	const textCaption = {
 		fontFamily: fonts.sans,
-		fontWeight: fontWeights.normal,
+		fontWeight: fontWeights.light,
 		fontSize: rem(semanticFontSizes.small.small),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.small.small),
 		lineHeight: em(lineHeightsAbsolute.caption.sm, semanticFontSizes.small.small),
