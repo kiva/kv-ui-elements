@@ -259,6 +259,7 @@ export default {
 				'.text-button-link': textStyles.textButtonLink,
 				'.text-upper': textStyles.textUpper,
 				'.text-caption': textStyles.textCaption,
+				'.text-label': textStyles.textLabel,
 			}, ['responsive']);
 		}),
 	],
