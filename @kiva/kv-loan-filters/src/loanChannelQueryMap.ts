@@ -1455,7 +1455,7 @@ export default {
 				{
 					id: 175,
 					url: 'climate-mitigation',
-					queryParams: 'sector=18,19,21,20',
+					queryParams: 'status=fundRaising&sector=18,19,21,20',
 					flssLoanSearch: {
 						sectorId: [18, 19, 21, 20],
 					},
