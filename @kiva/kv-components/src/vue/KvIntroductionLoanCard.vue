@@ -34,6 +34,7 @@
 								tw-bg-black
 								tw-rounded-t
 								borrower-image
+								tw-bg-clip-content
 							"
 							:alt="`Photo of ${borrowerName}`"
 							:aspect-ratio="imageAspectRatio"

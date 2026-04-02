@@ -12,7 +12,7 @@
 				<kv-loading-placeholder
 					v-if="isLoading"
 					class="tw-mb-1 tw-w-full"
-					:class="{ 'tw-rounded-t tw-rounded-b-none': largeCard, 'tw-rounded': !largeCard }"
+					:class="{ 'tw-rounded-t-sm tw-rounded-b-none': largeCard, '!tw-rounded-sm': !largeCard }"
 					:style="{ height: '15rem' }"
 				/>
 				<div
@@ -32,8 +32,9 @@
 								tw-relative
 								tw-w-full
 								tw-bg-black
+								tw-bg-clip-content
 							"
-							:class="{ 'tw-rounded-t': largeCard, 'tw-rounded': !largeCard }"
+							:class="{ 'tw-rounded-t-sm': largeCard, 'tw-rounded-sm': !largeCard }"
 							:alt="`Photo of ${borrowerName}`"
 							:aspect-ratio="imageAspectRatio"
 							:default-image="{ width: imageDefaultWidth }"
@@ -237,6 +238,7 @@ export default {
 			imageHash,
 			isLoading,
 			loanAmount,
+			loanBorrowerCount,
 			loanStatus,
 			loanUse,
 			mdiMapMarker,
@@ -261,6 +263,7 @@ export default {
 			imageHash,
 			isLoading,
 			loanAmount,
+			loanBorrowerCount,
 			loanStatus,
 			loanUse,
 			mdiMapMarker,

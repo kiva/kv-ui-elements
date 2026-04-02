@@ -34,7 +34,7 @@
 						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
-							class="tw-bg-gray-300 tw-rounded-md tw-object-cover"
+							class="tw-bg-gray-300 tw-rounded-sm tw-object-cover tw-bg-clip-content"
 							:class="{ '!tw-w-7.5 !tw-h-7.5': showLightView }"
 							style="width: 100px; height: 100px;"
 							:alt="`Photo of ${borrowerName}`"

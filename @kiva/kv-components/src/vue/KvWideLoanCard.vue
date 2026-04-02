@@ -42,7 +42,8 @@
 								tw-relative
 								tw-w-full
 								tw-bg-black
-								tw-rounded
+								tw-rounded-sm
+								tw-bg-clip-content
 							"
 						:alt="`Photo of ${borrowerName}`"
 						:aspect-ratio="imageAspectRatio"
