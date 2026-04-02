@@ -1452,6 +1452,14 @@ export default {
 						amountLeft: createMinMaxRange(100, 1000000),
 					},
 				},
+				{
+					id: 175,
+					url: 'climate-mitigation',
+					queryParams: 'status=fundRaising&sector=18,19,21,20',
+					flssLoanSearch: {
+						sectorId: [18, 19, 21, 20],
+					},
+				},
 			],
 		};
 	},

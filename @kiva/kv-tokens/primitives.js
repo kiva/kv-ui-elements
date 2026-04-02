@@ -433,7 +433,7 @@ export default {
 		base: {
 			sm: 16,
 			md: 16,
-			lg: 6,
+			lg: 16,
 		},
 		jumbo: {
 			sm: 42,

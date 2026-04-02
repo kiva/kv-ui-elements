@@ -34,7 +34,7 @@
 								tw-bg-black
 								tw-bg-clip-content
 							"
-							:class="{ 'tw-rounded-t-sm': largeCard, 'tw-rounded-sm': !largeCard }"
+							:class="{ 'tw-rounded-t': largeCard, 'tw-rounded-sm': !largeCard }"
 							:alt="`Photo of ${borrowerName}`"
 							:aspect-ratio="imageAspectRatio"
 							:default-image="{ width: imageDefaultWidth }"

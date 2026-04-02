@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.5...@kiva/kv-tokens@3.7.6) (2026-04-02)
+
+
+### Bug Fixes
+
+* expose new tw-text-label class ([565aaff](https://github.com/kiva/kv-ui-elements/commit/565aaffe560ca935fcb87daa457a0a9b50f05114))
+* update font-weight on new tw-text-caption class ([3076910](https://github.com/kiva/kv-ui-elements/commit/30769103e11241d7fae5a43c968aeb7fb30a288e))
+
+
+
+
+
+## [3.7.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.4...@kiva/kv-tokens@3.7.5) (2026-04-01)
+
+
+### Bug Fixes
+
+* found a couple typos in the updated defs ([30dca19](https://github.com/kiva/kv-ui-elements/commit/30dca19d1b15ab3c4bdb64a07eaa504a7d6d721c))
+
+
+
+
+
 ## [3.7.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.3...@kiva/kv-tokens@3.7.4) (2026-04-01)
 
 
