@@ -2,17 +2,17 @@
 	<div
 		class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
         tw-bg-white tw-rounded-md tw-shadow-lg tw-w-full"
-		:class="{'tw-relative': showCloseButton, '!tw-p-1.5': showLightView }"
+		:class="{'tw-relative': showRefreshButton, '!tw-p-1.5': showLightView }"
 	>
 		<button
-			v-if="showCloseButton"
-			class="tw-absolute tw--top-1 tw--right-1 tw-p-0.5 tw-bg-white tw-rounded-full
+			v-if="showRefreshButton"
+			class="tw-absolute tw--top-1 tw--right-1 tw-bg-white tw-rounded-full
 				tw-w-2.5 tw-h-2.5 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-drop-shadow-sm"
-			@click="handleCloseButton"
+			@click="handleRefreshButton"
 		>
 			<kv-material-icon
-				:icon="mdiClose"
-				class="tw-w-1.5 tw-h-1.5"
+				:icon="mdiCached"
+				class="tw-w-2.5 tw-h-2.5 tw--scale-x-100 tw-text-gray-500"
 			/>
 		</button>
 		<div class="tw-flex tw-flex-col tw-items-start tw-w-full">
@@ -266,7 +266,7 @@ import gql from 'graphql-tag';
 import numeral from 'numeral';
 import { computed, type PropType } from 'vue';
 import {
-	mdiMapMarker, mdiHome, mdiLink, mdiClose,
+	mdiMapMarker, mdiHome, mdiLink, mdiCached,
 } from '@mdi/js';
 import {
 	loanCardComputedProperties,
@@ -464,7 +464,7 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		showCloseButton: {
+		showRefreshButton: {
 			type: Boolean,
 			default: false,
 		},
@@ -474,7 +474,7 @@ export default {
 		},
 	},
 	emits: [
-		'close-button',
+		'refresh-button',
 		'jump-filter-page',
 		'add-to-basket',
 		'remove-from-basket',
@@ -533,8 +533,8 @@ export default {
 			props.kvTrackFunction('Lending', 'click-Business Website', 'Website', props.loanId);
 		};
 
-		const handleCloseButton = (event) => {
-			emit('close-button', event);
+		const handleRefreshButton = (event) => {
+			emit('refresh-button', event);
 		};
 
 		return {
@@ -557,7 +557,7 @@ export default {
 			mdiMapMarker,
 			mdiHome,
 			mdiLink,
-			mdiClose,
+			mdiCached,
 			readMorePath,
 			state,
 			tag,
@@ -567,7 +567,7 @@ export default {
 			loanUseLoadingRows,
 			clickReadMore,
 			trackWebsiteClick,
-			handleCloseButton,
+			handleRefreshButton,
 		};
 	},
 	computed: {

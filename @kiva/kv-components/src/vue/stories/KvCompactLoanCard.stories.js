@@ -1,8 +1,15 @@
 import KvCompactLoanCard from '../KvCompactLoanCard.vue';
+import KvCompactLoanCardDocsMdx from './KvCompactLoanCardDocs.mdx';
 
 export default {
 	title: 'Loan Display/KvCompactLoanCard',
 	component: KvCompactLoanCard,
+	parameters: {
+		docs: {
+			page: KvCompactLoanCardDocsMdx,
+			title: 'KvCompactLoanCard Docs',
+		},
+	},
 };
 
 const story = (args) => {
@@ -29,13 +36,13 @@ const lightStory = (args) => {
 			<div style="width: 256px;">
 				<kv-compact-loan-card
 					v-bind="args"
-					@close-button="closeButtonHandler"
+					@refresh-button="refreshButtonHandler"
 				/>
 			</div>
 		`,
 		methods: {
-			closeButtonHandler() {
-				console.log('close-button clicked');
+			refreshButtonHandler() {
+				console.log('refresh-button clicked');
 			},
 		},
 	});
@@ -325,13 +332,13 @@ export const MatchedLightViewLoan = lightStory({
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
-export const LightViewCloseButton = lightStory({
+export const LightViewRefreshButton = lightStory({
 	loanId: loan.id,
 	loan,
 	kvTrackFunction,
 	photoPath,
 	showLightView: true,
-	showCloseButton: true,
+	showRefreshButton: true,
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
@@ -494,3 +501,197 @@ export const HiddenLoanUse = story({
 	photoPath,
 	showLoanUse: false,
 });
+
+/**
+ * Default story - Interactive playground for exploring all props.
+ */
+export const Default = {
+	args: {
+		loanId: loan.id,
+		loan,
+		kvTrackFunction,
+		photoPath,
+		showTags: true,
+		showLoanUse: true,
+		showViewLoan: false,
+		showLightView: false,
+		isAdding: false,
+		isVisitor: true,
+		externalLinks: false,
+		primaryButtonText: 'Lend',
+	},
+	render: (args) => ({
+		components: { KvCompactLoanCard },
+		setup() { return { args }; },
+		template: `
+			<div style="width: 380px; background: #27593cff; padding: 20px;">
+				<kv-compact-loan-card v-bind="args" />
+			</div>
+		`,
+	}),
+};
+
+/**
+ * Component Overview - Shows the standard loan card appearance.
+ */
+export const ComponentOverview = {
+	render: () => ({
+		components: { KvCompactLoanCard },
+		setup() {
+			return {
+				loan,
+				kvTrackFunction,
+				photoPath,
+			};
+		},
+		template: `
+			<div style="width: 380px; background: #27593cff; padding: 20px;">
+				<kv-compact-loan-card
+					:loan-id="loan.id"
+					:loan="loan"
+					:kv-track-function="kvTrackFunction"
+					:photo-path="photoPath"
+					:show-tags="true"
+				/>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * All Variations - Grid showing key variations of the component.
+ */
+export const AllVariations = {
+	render: () => ({
+		components: { KvCompactLoanCard },
+		setup() {
+			const matchedLoan = {
+				...loan,
+				matchingText: 'Matched by Ebay',
+				matchRatio: 1,
+				loanFundraisingInfo: {
+					id: loan.id,
+					fundedAmount: '200.00',
+					isExpiringSoon: false,
+					reservedAmount: '0.00',
+				},
+			};
+			const almostFundedLoan = {
+				...loan,
+				loanFundraisingInfo: {
+					id: loan.id,
+					fundedAmount: '950.00',
+					isExpiringSoon: false,
+					reservedAmount: '0.00',
+				},
+			};
+			const fullyReservedLoan = {
+				...loan,
+				loanFundraisingInfo: {
+					id: loan.id,
+					fundedAmount: '800.00',
+					reservedAmount: '200.00',
+				},
+			};
+			const usLoan = {
+				...loan,
+				geocode: {
+					city: 'Kittanning',
+					state: 'PA',
+					country: {
+						isoCode: 'US',
+						name: 'United States',
+						region: 'North America',
+						__typename: 'Country',
+					},
+					__typename: 'Geocode',
+				},
+				distributionModel: 'direct',
+			};
+			return {
+				loan,
+				matchedLoan,
+				almostFundedLoan,
+				fullyReservedLoan,
+				usLoan,
+				kvTrackFunction,
+				photoPath,
+			};
+		},
+		template: `
+			<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4">
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Standard with Tags</p>
+					<div style="width: 380px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="loan.id"
+							:loan="loan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							:show-tags="true"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Matched Loan</p>
+					<div style="width: 380px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="matchedLoan.id"
+							:loan="matchedLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							:show-tags="true"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Almost Funded</p>
+					<div style="width: 380px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="almostFundedLoan.id"
+							:loan="almostFundedLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							:show-tags="true"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">All Shares Reserved</p>
+					<div style="width: 380px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="fullyReservedLoan.id"
+							:loan="fullyReservedLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">US Direct Loan</p>
+					<div style="width: 380px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="usLoan.id"
+							:loan="usLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Light View</p>
+					<div style="width: 256px;">
+						<kv-compact-loan-card
+							:loan-id="loan.id"
+							:loan="loan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							:show-light-view="true"
+							:truncate-words-number="10"
+						/>
+					</div>
+				</div>
+			</div>
+		`,
+	}),
+};
