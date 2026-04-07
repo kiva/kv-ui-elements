@@ -29,13 +29,13 @@ const lightStory = (args) => {
 			<div style="width: 256px;">
 				<kv-compact-loan-card
 					v-bind="args"
-					@close-button="closeButtonHandler"
+					@refresh-button="refreshButtonHandler"
 				/>
 			</div>
 		`,
 		methods: {
-			closeButtonHandler() {
-				console.log('close-button clicked');
+			refreshButtonHandler() {
+				console.log('refresh-button clicked');
 			},
 		},
 	});
@@ -325,13 +325,13 @@ export const MatchedLightViewLoan = lightStory({
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
-export const LightViewCloseButton = lightStory({
+export const LightViewRefreshButton = lightStory({
 	loanId: loan.id,
 	loan,
 	kvTrackFunction,
 	photoPath,
 	showLightView: true,
-	showCloseButton: true,
+	showRefreshButton: true,
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
