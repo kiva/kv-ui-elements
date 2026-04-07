@@ -1,0 +1,271 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvCompactLoanCardStories from './KvCompactLoanCard.stories.js';
+
+<Meta title="Loan Display/KvCompactLoanCard" component={KvCompactLoanCardStories.Component} />
+
+# KvCompactLoanCard
+
+A compact loan card component that displays essential borrower and loan information in a space-efficient layout, designed for loan listings and collections on the Kiva platform.
+
+## Component Overview
+
+KvCompactLoanCard provides a condensed view of loan information including borrower image, name, location, loan purpose, funding progress, and lending actions. It supports multiple display modes (standard and light view), handles loading states gracefully, and integrates with Kiva's basket and tracking systems. The component is highly configurable to support various use cases like matched loans, team picks, and US direct loans.
+
+<Story of={KvCompactLoanCardStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports numerous variations to handle different loan states and display contexts:
+
+- **Standard View**: Full-featured card with tags, callouts, and lending CTA on dark backgrounds
+- **Light View**: Simplified, compact version for lighter UI contexts with smaller dimensions
+- **Loading States**: Skeleton placeholders while loan data is being fetched
+- **Matched Loans**: Displays matching partner information and special styling
+- **Almost Funded**: Shows loans near completion with appropriate progress indicators
+- **In Basket**: Indicates when a loan is already in the user's cart
+- **Team Pick**: Special designation for team-selected loans
+- **US Direct Loans**: Adapted layout for US-based borrowers with different location formatting
+- **Business View**: Alternative display showing business name and website links
+
+<Story of={KvCompactLoanCardStories.AllVariations} />
+
+## Usage Information
+
+KvCompactLoanCard is the primary component for displaying individual loans in compact listing contexts. It integrates with Kiva's loan data structure through GraphQL fragments and provides comprehensive tracking capabilities.
+
+The component requires two essential props: `kvTrackFunction` for analytics and `photoPath` for constructing borrower image URLs. The `loan` object should conform to the GraphQL fragment structure exported by the component.
+
+### When to Use
+
+- In loan listing pages where multiple loans are displayed
+- For loan carousels and recommendation sections
+- In search results showing matching loans
+- On user dashboards displaying saved or bookmarked loans
+- Within team pages showing team pick selections
+- For matched loan promotions where partner matching is highlighted
+
+### When Not to Use
+
+- When a full loan detail view is needed (use dedicated loan detail components)
+- For single, featured loan displays where more detail is appropriate
+- In contexts where the dark green background styling doesn't fit
+- When loan information is purely informational without lending actions
+
+---
+
+## Behavior
+
+The component handles various interactive states and responds to user actions through emitted events.
+
+### Loading States
+
+The component gracefully handles partial data loading with skeleton placeholders. When `loan` is undefined or partially loaded, placeholder elements appear for the image, loan use text, callouts, and CTA button. This allows the UI to remain stable while data is being fetched.
+
+<Story of={KvCompactLoanCardStories.Loading} />
+
+### Funding Progress
+
+The loan progress bar updates based on `fundedAmount` and `reservedAmount` from `loanFundraisingInfo`. When all shares are reserved, the CTA changes to reflect unavailability. Almost-funded loans display the remaining amount needed prominently.
+
+<Story of={KvCompactLoanCardStories.AlmostFunded} />
+
+### Basket Integration
+
+When a loan is in the user's basket, the component displays an "In basket" state with a modified CTA. The `basketItems` prop should contain the current basket contents to enable this detection.
+
+<Story of={KvCompactLoanCardStories.InBasket} />
+
+## Anatomy
+
+The compact loan card consists of several key sections:
+
+- **Borrower Image**: Square thumbnail linking to the full loan page, rendered via KvBorrowerImage
+- **Content Area**: Contains business name (optional), loan tags, and loan use description
+- **Loan Tags**: Category and attribute pills displayed via KvLoanTag component
+- **Loan Callouts**: Additional loan information chips via KvLoanCallouts
+- **Progress Section**: KvLoanProgressGroup showing funding status and amount remaining
+- **CTA Section**: KvLendCta providing lending actions (Add to basket, View loan, etc.)
+- **Refresh Button** (Light View): Optional button for refreshing loan data
+- **Team Pick Badge**: Optional overlay for team-selected loans via KvLoanTeamPick
+
+---
+
+## Specs
+
+### Card Dimensions
+
+The standard card renders at 380px width with 20px padding in its container. The light view variant renders at 256px width for more compact contexts.
+
+### Image Sizing
+
+- **Standard View**: 100px × 100px borrower image
+- **Light View**: Smaller 60px × 60px (7.5 spacing units) image
+
+<Story of={KvCompactLoanCardStories.LightViewLoan} />
+
+### Progress and CTA Layout
+
+The bottom section uses a flex layout with the progress information taking available space and the CTA button maintaining a fixed width. The CTA height is constrained to 40px for visual consistency.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/do-provide-tracking-function.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Always provide a valid tracking function via kvTrackFunction prop to enable analytics for user interactions.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/dont-omit-tracking.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Omit the tracking function or use a no-op function in production, as this loses valuable user interaction data.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/do-use-on-dark-backgrounds.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Place the standard card variant on Kiva's signature dark green background (#27593c) for optimal visual contrast.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/dont-use-standard-on-light.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Use the standard card variant on light backgrounds—use the lightView variant instead for lighter contexts.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- **Image Alt Text**: Borrower images include descriptive alt text with the borrower's name ("Photo of [Name]")
+- **Semantic Labels**: Interactive elements (image, tag, loan use, progress) have `aria-label` attributes describing their purpose
+- **Link Purpose**: All clickable areas clearly indicate their destination or action
+- **Loading States**: Placeholder elements maintain layout stability during data loading
+- **Color Contrast**: White card background against dark container ensures WCAG-compliant contrast ratios
+- **Focus Management**: Interactive elements are focusable and receive visible focus indicators
+- **Keyboard Navigation**: All interactive elements are accessible via keyboard
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvCompactLoanCardStories.Default} />
+<Controls of={KvCompactLoanCardStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Loan Card
+
+```vue
+<template>
+  <div style="width: 380px; background: #27593c; padding: 20px;">
+    <KvCompactLoanCard
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :show-tags="true"
+    />
+  </div>
+</template>
+
+<script setup>
+import { KvCompactLoanCard } from '@kiva/kv-components';
+
+const photoPath = 'https://www.kiva.org/img/';
+const loan = { /* loan data from GraphQL */ };
+const trackEvent = (category, action, label, value) => {
+  // Analytics tracking implementation
+};
+</script>
+```
+
+### Light View with Refresh
+
+```vue
+<template>
+  <div style="width: 256px;">
+    <KvCompactLoanCard
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :show-light-view="true"
+      :show-refresh-button="true"
+      :truncate-words-number="10"
+      @refresh-button="handleRefresh"
+    />
+  </div>
+</template>
+
+<script setup>
+import { KvCompactLoanCard } from '@kiva/kv-components';
+
+const handleRefresh = () => {
+  // Refresh loan data
+};
+</script>
+```
+
+### Loan Card with Basket Integration
+
+```vue
+<template>
+  <div style="width: 380px; background: #27593c; padding: 20px;">
+    <KvCompactLoanCard
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :basket-items="basketItems"
+      :is-visitor="false"
+      :show-tags="true"
+      @add-to-basket="handleAddToBasket"
+      @remove-from-basket="handleRemoveFromBasket"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvCompactLoanCard } from '@kiva/kv-components';
+
+const basketItems = ref([]);
+
+const handleAddToBasket = (event) => {
+  basketItems.value.push({ id: event.loanId, __typename: 'LoanReservation' });
+};
+
+const handleRemoveFromBasket = (event) => {
+  basketItems.value = basketItems.value.filter(item => item.id !== event.loanId);
+};
+</script>
+```
