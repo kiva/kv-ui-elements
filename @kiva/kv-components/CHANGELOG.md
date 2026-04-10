@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.8.0...@kiva/kv-components@8.9.0) (2026-04-10)
+
+
+### Bug Fixes
+
+* handle gifs better in kvContentfulImg ([e08ebd3](https://github.com/kiva/kv-ui-elements/commit/e08ebd359aebc11127c987d720177b0528f69ae5))
+
+
+### Features
+
+* add unit tests ([4469226](https://github.com/kiva/kv-ui-elements/commit/44692266c6ccb745309bbbf16fe0bbf4a2771db4))
+
+
+
+
+
 # [8.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.7.5...@kiva/kv-components@8.8.0) (2026-04-07)
 
 
