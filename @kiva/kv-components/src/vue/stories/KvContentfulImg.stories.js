@@ -224,3 +224,25 @@ GiantImage.args = {
 	height: 2000,
 	sourceSizes: [],
 };
+
+export const GiantGif = (args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: {
+		KvContentfulImg,
+	},
+	setup() { return { args }; },
+	template: `
+		<kv-contentful-img
+			alt="Descriptive alt text"
+			v-bind="args"
+		/>
+	`,
+});
+
+GiantGif.args = {
+	contentfulSrc: 'https://images.ctfassets.net/j0p9a6ql0rn7/4q5zPRN6hi0KJDTUXmcB2n/b9fd6b1b81f2c88e215f540c0fe2bb0d/loan-loop-1200w.gif',
+	fallbackFormat: 'gif',
+	width: 1200,
+	height: 1000,
+	sourceSizes: [],
+};

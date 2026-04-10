@@ -10,17 +10,19 @@
 			<!-- Set of image sources -->
 			<template v-if="sourceSizes.length > 0">
 				<!-- browser supports webp -->
-				<source
-					v-for="(image, index) in sourceSizes"
-					:key="'webp-image'+index"
-					:media="'('+image.media+')'"
-					type="image/webp"
-					:width="image.width ? image.width : null"
-					:height="image.height ? image.height : null"
-					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(image.width, '2x')} 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(image.width, '1x')} 1x`"
-				>
+				<template v-if="!isAnimatedGif">
+					<source
+						v-for="(image, index) in sourceSizes"
+						:key="'webp-image'+index"
+						:media="'('+image.media+')'"
+						type="image/webp"
+						:width="image.width ? image.width : null"
+						:height="image.height ? image.height : null"
+						:srcset="`
+							${buildUrl(image, 2)}${fitFocusParams}&fm=webp&q=${setQuality(image.width, '2x')} 2x,
+							${buildUrl(image)}${fitFocusParams}&fm=webp&q=${setQuality(image.width, '1x')} 1x`"
+					>
+				</template>
 				<!-- browser doesn't support webp -->
 				<!-- eslint-disable max-len -->
 				<source
@@ -30,8 +32,8 @@
 					:width="image.width ? image.width : null"
 					:height="image.height ? image.height : null"
 					:srcset="`
-						${buildUrl(image, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(image.width, '2x')} 2x,
-						${buildUrl(image)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(image.width, '1x')} 1x`"
+						${buildUrl(image, 2)}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, image.width, '2x')} 2x,
+						${buildUrl(image)}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, image.width, '1x')} 1x`"
 				>
 				<!-- eslint-enable max-len -->
 				<!-- browser doesn't support picture element -->
@@ -39,7 +41,7 @@
 				<img
 					class="tw-max-w-full tw-max-h-full"
 					style="width: inherit; height: inherit; object-fit: inherit;"
-					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
+					:src="`${buildUrl()}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, width, '1x')}`"
 					:alt="caption || alt"
 					:loading="loading"
 				>
@@ -50,24 +52,27 @@
 			<template v-if="sourceSizes.length === 0">
 				<!-- browser supports webp -->
 				<source
+					v-if="!isAnimatedGif"
 					type="image/webp"
 					:srcset="`
-						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(width, '2x')} 2x,
-						${buildUrl()}&fit=${fit}&f=${focus}&fm=webp&q=${setQuality(width, '1x')} 1x`"
+						${buildUrl(null, 2)}${fitFocusParams}&fm=webp&q=${setQuality(width, '2x')} 2x,
+						${buildUrl()}${fitFocusParams}&fm=webp&q=${setQuality(width, '1x')} 1x`"
 				>
 				<!-- browser doesn't support webp or browser doesn't support picture element -->
+				<!-- eslint-disable max-len -->
 				<img
 					class="tw-max-w-full tw-max-h-full"
 					style="width: inherit; height: inherit; object-fit: inherit;"
 					:srcset="`
-						${buildUrl(null, 2)}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '2x')} 2x,
-						${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')} 1x`"
-					:src="`${buildUrl()}&fit=${fit}&f=${focus}&fm=${fallbackFormat}&q=${setQuality(width, '1x')}`"
+						${buildUrl(null, 2)}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, width, '2x')} 2x,
+						${buildUrl()}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, width, '1x')} 1x`"
+					:src="`${buildUrl()}${fitFocusParams}${buildFormatQualityParams(effectiveFallbackFormat, width, '1x')}`"
 					:width="width ? width : null"
 					:height="height ? height : null"
 					:alt="caption || alt"
 					:loading="loading"
 				>
+				<!-- eslint-enable max-len -->
 			</template>
 		</picture>
 		<figcaption
@@ -137,11 +142,12 @@ export default {
 		},
 		/**
 		 * If the browser can't support webp we fallback to this image format.
-		 * `jpg, png, webp`
+		 * Defaults to the format derived from the source URL: gif→gif, png→png, jpg→jpg, webp→jpg.
+		 * `jpg, png, gif`
 		* */
 		fallbackFormat: {
 			type: String,
-			default: 'jpg',
+			default: null,
 			validator(value: string) {
 				// The value must match one of these strings
 				return value === null || ['jpg', 'png', 'gif'].indexOf(value) !== -1;
@@ -230,8 +236,29 @@ export default {
 			height,
 		} = toRefs(props);
 
+		const isAnimatedGif = computed(() => {
+			const path = contentfulSrc.value?.split('?')[0] ?? '';
+			return path.toLowerCase().endsWith('.gif');
+		});
+
+		const effectiveFallbackFormat = computed(() => {
+			if (props.fallbackFormat) return props.fallbackFormat;
+			const ext = contentfulSrc.value?.split('?')[0].split('.').pop()?.toLowerCase();
+			if (ext === 'png') return 'png';
+			if (ext === 'gif') return 'gif';
+			return 'jpg'; // jpg and webp both fall back to jpg
+		});
+
+		const fitFocusParams = computed(() => {
+			if (isAnimatedGif.value) return '';
+			return `&fit=${props.fit}&f=${props.focus}`;
+		});
+
 		const buildUrl = (image = null, multiplier = 1) => {
-			let src = image && image.url ? `${image.url}?` : `${contentfulSrc.value}?`;
+			const baseSrc = image && image.url ? image.url : contentfulSrc.value;
+			// For animated GIFs, skip dimension params — resizing may break animation
+			if (isAnimatedGif.value) return baseSrc;
+			let src = `${baseSrc}?`;
 			let imgWidth = image ? image.width : width.value;
 			let imgHeight = image ? image.height : height.value;
 			// The max contentful image size is 4000px so we have to
@@ -271,6 +298,13 @@ export default {
 			return 80;
 		};
 
+		// Contentful does not support `fm` or `q` params for GIF format.
+		// Requesting fm=webp for an animated GIF also strips the animation (returns first frame only).
+		const buildFormatQualityParams = (format: string, imgWidth: string | number, scale: string) => {
+			if (isAnimatedGif.value) return '';
+			return `&fm=${format}&q=${setQuality(imgWidth, scale)}`;
+		};
+
 		// Caption is derived from alt text starting with ^
 		// e.g. ^This is the caption text
 		const caption = computed(() => {
@@ -291,8 +325,12 @@ export default {
 		});
 
 		return {
+			buildFormatQualityParams,
 			buildUrl,
 			caption,
+			effectiveFallbackFormat,
+			fitFocusParams,
+			isAnimatedGif,
 			removeLeafIcon,
 			setQuality,
 		};
