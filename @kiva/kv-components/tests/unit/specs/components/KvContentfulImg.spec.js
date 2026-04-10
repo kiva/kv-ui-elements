@@ -179,6 +179,111 @@ describe('KvContentfulImg', () => {
 		});
 	});
 
+	describe('animated gif handling', () => {
+		const gifSrc = 'https://images.ctfassets.net/test/animation.gif';
+
+		it('should not render a webp source element for animated gifs', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc: gifSrc,
+					width: 400,
+					height: 300,
+					alt: 'Animated gif',
+				},
+			});
+
+			const webpSource = container.querySelector('source[type="image/webp"]');
+			expect(webpSource).toBeNull();
+		});
+
+		it('should render a webp source element for non-gif images', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc,
+					width: 400,
+					height: 300,
+					alt: 'Regular image',
+				},
+			});
+
+			const webpSource = container.querySelector('source[type="image/webp"]');
+			expect(webpSource).not.toBeNull();
+		});
+
+		it('should use the raw gif url without query params on the img src', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc: gifSrc,
+					width: 400,
+					height: 300,
+					alt: 'Animated gif',
+				},
+			});
+
+			const img = container.querySelector('img');
+			expect(img.getAttribute('src')).toBe(gifSrc);
+		});
+	});
+
+	describe('fallbackFormat default param handling', () => {
+		it('should default to jpg for a .jpg source url', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc,
+					width: 400,
+					height: 300,
+					alt: 'Test image',
+				},
+			});
+
+			const img = container.querySelector('img');
+			expect(img.getAttribute('src')).toContain('fm=jpg');
+		});
+
+		it('should default to png for a .png source url', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc: 'https://images.ctfassets.net/test/image.png',
+					width: 400,
+					height: 300,
+					alt: 'Test image',
+				},
+			});
+
+			const img = container.querySelector('img');
+			expect(img.getAttribute('src')).toContain('fm=png');
+		});
+
+		it('should default to jpg for a .webp source url', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc: 'https://images.ctfassets.net/test/image.webp',
+					width: 400,
+					height: 300,
+					alt: 'Test image',
+				},
+			});
+
+			const img = container.querySelector('img');
+			expect(img.getAttribute('src')).toContain('fm=jpg');
+		});
+
+		it('should use explicit fallbackFormat prop over url-derived format', () => {
+			const { container } = render(KvContentfulImg, {
+				props: {
+					contentfulSrc,
+					width: 400,
+					height: 300,
+					alt: 'Test image',
+					fallbackFormat: 'png',
+				},
+			});
+
+			const img = container.querySelector('img');
+			expect(img.getAttribute('src')).toContain('fm=png');
+		});
+	});
+
 	describe('alt text behavior', () => {
 		it('should use regular alt text on img element when no caption', () => {
 			const { container } = render(KvContentfulImg, {
