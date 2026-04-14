@@ -1,0 +1,445 @@
+{
+  "collection": "mapped",
+  "displayName": "Mapped",
+  "source": {
+    "rawFiles": [
+      "primary.tokens.json",
+      "secondary.tokens.json"
+    ]
+  },
+  "modes": [
+    "primary",
+    "secondary"
+  ],
+  "tokens": {
+    "button.color.default": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "secondary": {
+          "hex": "#FFFFFF",
+          "alpha": 0
+        }
+      },
+      "figmaId": "VariableID:17888:8665",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "default theme/background/action",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.color.hover": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "secondary": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        }
+      },
+      "figmaId": "VariableID:17889:8676",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "default theme/background/action-highlight",
+          "collection": "Alias - Color (deprecated)"
+        },
+        "secondary": {
+          "name": "default theme/background/secondary",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.color.active": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "secondary": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        }
+      },
+      "figmaId": "VariableID:17891:8700",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "default theme/background/action",
+          "collection": "Alias - Color (deprecated)"
+        },
+        "secondary": {
+          "name": "default theme/background/secondary",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.color.disabled": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#276A43",
+          "alpha": 0.30000001192092896
+        },
+        "secondary": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "figmaId": "VariableID:17891:8699",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "default theme/background/primary-disabled",
+          "collection": "Alias - Color (deprecated)"
+        },
+        "secondary": {
+          "name": "default theme/border/secondary-disabled",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.color.text": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "secondary": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "figmaId": "VariableID:17889:8677",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "default theme/text/primary-inverse",
+          "collection": "Alias - Color (deprecated)"
+        },
+        "secondary": {
+          "name": "default theme/text/secondary-disabled",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.color.border": {
+      "type": "color",
+      "values": {
+        "primary": {
+          "hex": "#FFFFFF",
+          "alpha": 0
+        },
+        "secondary": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "figmaId": "VariableID:17898:8740",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "secondary": {
+          "name": "default theme/border/secondary-disabled",
+          "collection": "Alias - Color (deprecated)"
+        }
+      }
+    },
+    "button.text.font-family": {
+      "type": "string",
+      "values": {
+        "primary": "Kiva Post Grot",
+        "secondary": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:17889:8686",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "text/button/font-family",
+          "collection": "Alias - Text/Spacing/Layout"
+        },
+        "secondary": {
+          "name": "text/button/font-family",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.text.font-weight": {
+      "type": "string",
+      "values": {
+        "primary": "Medium",
+        "secondary": "Medium"
+      },
+      "figmaId": "VariableID:17889:8687",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "text/button/font-weight",
+          "collection": "Alias - Text/Spacing/Layout"
+        },
+        "secondary": {
+          "name": "text/button/font-weight",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.text.line-height": {
+      "type": "number",
+      "values": {
+        "primary": 21,
+        "secondary": 21
+      },
+      "figmaId": "VariableID:17889:8689",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "text/button/line-height",
+          "collection": "Alias - Text/Spacing/Layout"
+        },
+        "secondary": {
+          "name": "text/button/line-height",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.text.font-size": {
+      "type": "number",
+      "values": {
+        "primary": 16,
+        "secondary": 16
+      },
+      "figmaId": "VariableID:17889:8690",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "text/button/font-size",
+          "collection": "Alias - Text/Spacing/Layout"
+        },
+        "secondary": {
+          "name": "text/button/font-size",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.text.letter-spacing": {
+      "type": "number",
+      "values": {
+        "primary": 0,
+        "secondary": 0
+      },
+      "figmaId": "VariableID:17889:8691",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "text/button/letter-spacing",
+          "collection": "Alias - Text/Spacing/Layout"
+        },
+        "secondary": {
+          "name": "text/button/letter-spacing",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.inset.lg": {
+      "type": "number",
+      "values": {
+        "primary": 18,
+        "secondary": 18
+      },
+      "figmaId": "VariableID:17889:8695",
+      "scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "button.inset.md": {
+      "type": "number",
+      "values": {
+        "primary": 14,
+        "secondary": 14
+      },
+      "figmaId": "VariableID:17892:8708",
+      "scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "button.inset.sm": {
+      "type": "number",
+      "values": {
+        "primary": 8,
+        "secondary": 8
+      },
+      "figmaId": "VariableID:17892:8709",
+      "scopes": [
+        "ALL_SCOPES"
+      ]
+    },
+    "button.radius.lg": {
+      "type": "number",
+      "values": {
+        "primary": 16,
+        "secondary": 21
+      },
+      "figmaId": "VariableID:17892:8717",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "radius/default",
+          "collection": "Global"
+        },
+        "secondary": {
+          "name": "text/button/line-height",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.radius.md": {
+      "type": "number",
+      "values": {
+        "primary": 16,
+        "secondary": 16
+      },
+      "figmaId": "VariableID:17892:8718",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "radius/default",
+          "collection": "Global"
+        },
+        "secondary": {
+          "name": "text/button/font-size",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.radius.sm": {
+      "type": "number",
+      "values": {
+        "primary": 8,
+        "secondary": 0
+      },
+      "figmaId": "VariableID:17892:8719",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "primary": {
+          "name": "radius/sm",
+          "collection": "Global"
+        },
+        "secondary": {
+          "name": "text/button/letter-spacing",
+          "collection": "Alias - Text/Spacing/Layout"
+        }
+      }
+    },
+    "button.border stroke weight.default": {
+      "type": "number",
+      "values": {
+        "primary": 0,
+        "secondary": 1
+      },
+      "figmaId": "VariableID:17898:8741",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "secondary": {
+          "name": "default",
+          "collection": "Alias - Border"
+        }
+      }
+    },
+    "button.border stroke weight.hover": {
+      "type": "number",
+      "values": {
+        "primary": 0,
+        "secondary": 1.2000000476837158
+      },
+      "figmaId": "VariableID:17898:8742",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "secondary": {
+          "name": "hover",
+          "collection": "Alias - Border"
+        }
+      }
+    },
+    "button.border stroke weight.active": {
+      "type": "number",
+      "values": {
+        "primary": 0,
+        "secondary": 1.2000000476837158
+      },
+      "figmaId": "VariableID:17898:8743",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "secondary": {
+          "name": "active",
+          "collection": "Alias - Border"
+        }
+      }
+    },
+    "button.border stroke weight.loading": {
+      "type": "number",
+      "values": {
+        "primary": 0,
+        "secondary": 1
+      },
+      "figmaId": "VariableID:17898:8744",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "secondary": {
+          "name": "default",
+          "collection": "Alias - Border"
+        }
+      }
+    }
+  },
+  "purpose": "Component-level bindings — declares which semantic alias each component variant uses (e.g. button.color.default in the 'primary' mode points to background.action).",
+  "modeNote": "Modes are component variants (primary, secondary), NOT themes.",
+  "warnings": [
+    "Concrete hex values in this file match only the DEFAULT theme. For cross-theme values, follow aliasOf into the referenced collection (usually Alias - Color) and read the theme mode there.",
+    "Some aliasOf targets reference 'Alias - Color (deprecated)' — a collection not in this snapshot. The current equivalent lives in Alias - Color at the matching leaf path."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "global": {
+    "purpose": "Primitives — raw colors (eco-green, marigold, stone, neutral), type atoms (font sizes, weights, line heights, letter spacings), spacing scale, layout widths, radius atoms, elevation atoms. All other collections alias into this one."
+  },
+  "alias-border": {
+    "purpose": "Semantic border widths."
+  },
+  "alias-color": {
+    "purpose": "Semantic color roles: text/*, background/*, border/*, action/*, icon/*. Values vary by theme mode — this is the canonical source for theme-aware colors."
+  },
+  "alias-elevation": {
+    "purpose": "Shadow attribute axes. Each 'mode' is one dimension of a drop shadow — combine Blur + Opacity + Spread + y for a given elevation token to build a complete CSS box-shadow.",
+    "modeNote": "Modes are attribute axes (Blur, Opacity, Spread, y), NOT themes. To render a shadow, read all four modes for the same token."
+  },
+  "alias-text-spacing-layout": {
+    "purpose": "Responsive text sizes, spacing, and layout widths. Values vary by breakpoint mode — pick the mode matching the viewport you're rendering for."
+  },
+  "mapped": {
+    "purpose": "Component-level bindings — declares which semantic alias each component variant uses (e.g. button.color.default in the 'primary' mode points to background.action).",
+    "modeNote": "Modes are component variants (primary, secondary), NOT themes.",
+    "warnings": [
+      "Concrete hex values in this file match only the DEFAULT theme. For cross-theme values, follow aliasOf into the referenced collection (usually Alias - Color) and read the theme mode there.",
+      "Some aliasOf targets reference 'Alias - Color (deprecated)' — a collection not in this snapshot. The current equivalent lives in Alias - Color at the matching leaf path."
+    ]
+  },
+  "radius-size": {
+    "purpose": "Semantic radius tokens for specific component sizes (button.radius.sm/md/lg, card, input, dropdown). Aliases into Global's radius primitives."
+  }
+}

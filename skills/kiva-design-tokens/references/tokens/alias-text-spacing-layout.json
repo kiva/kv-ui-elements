@@ -1,0 +1,2474 @@
+{
+  "collection": "alias-text-spacing-layout",
+  "displayName": "Alias - Text_Spacing_Layout",
+  "source": {
+    "rawFiles": [
+      "desktop (lg).tokens.json",
+      "desktop (xl).tokens.json",
+      "mobile (sm).tokens.json",
+      "mobile (xs).tokens.json",
+      "tablet (md).tokens.json"
+    ]
+  },
+  "modes": [
+    "desktop (lg)",
+    "desktop (xl)",
+    "mobile (sm)",
+    "mobile (xs)",
+    "tablet (md)"
+  ],
+  "tokens": {
+    "text.display.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Dovetail MVB",
+        "desktop (xl)": "Dovetail MVB",
+        "mobile (sm)": "Dovetail MVB",
+        "mobile (xs)": "Dovetail MVB",
+        "tablet (md)": "Dovetail MVB"
+      },
+      "figmaId": "VariableID:15644:4978",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.display.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 44,
+        "desktop (xl)": 44,
+        "mobile (sm)": 36,
+        "mobile (xs)": 36,
+        "tablet (md)": 40
+      },
+      "figmaId": "VariableID:15462:4604",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/jumbo/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/jumbo/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/jumbo/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/jumbo/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/jumbo/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.display.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6402",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.display.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 57,
+        "desktop (xl)": 57,
+        "mobile (sm)": 47,
+        "mobile (xs)": 47,
+        "tablet (md)": 52
+      },
+      "figmaId": "VariableID:15462:4606",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/jumbo/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/jumbo/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/jumbo/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/jumbo/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/jumbo/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.display.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": -0.8799999952316284,
+        "desktop (xl)": -0.8799999952316284,
+        "mobile (sm)": -0.7200000286102295,
+        "mobile (xs)": -0.7200000286102295,
+        "tablet (md)": -0.800000011920929
+      },
+      "figmaId": "VariableID:15644:4979",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/-600",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/-600",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/-400",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/-400",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/-500",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 1.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Dovetail MVB",
+        "desktop (xl)": "Dovetail MVB",
+        "mobile (sm)": "Dovetail MVB",
+        "mobile (xs)": "Dovetail MVB",
+        "tablet (md)": "Dovetail MVB"
+      },
+      "figmaId": "VariableID:16815:10222",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 1.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 26,
+        "desktop (xl)": 26,
+        "mobile (sm)": 22,
+        "mobile (xs)": 22,
+        "tablet (md)": 22
+      },
+      "figmaId": "VariableID:16815:10223",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/h1/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/h1/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/h1/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/h1/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/h1/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 1.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6403",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 1.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 36,
+        "desktop (xl)": 36,
+        "mobile (sm)": 31,
+        "mobile (xs)": 31,
+        "tablet (md)": 31
+      },
+      "figmaId": "VariableID:16815:10225",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/h1/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/h1/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/h1/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/h1/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/h1/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 1.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": -0.5199999809265137,
+        "desktop (xl)": -0.5199999809265137,
+        "mobile (sm)": -0.2199999988079071,
+        "mobile (xs)": -0.2199999988079071,
+        "tablet (md)": -0.2199999988079071
+      },
+      "figmaId": "VariableID:16815:10226",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/-300",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/-300",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/-200",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/-200",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/-200",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 2.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Dovetail MVB",
+        "desktop (xl)": "Dovetail MVB",
+        "mobile (sm)": "Dovetail MVB",
+        "mobile (xs)": "Dovetail MVB",
+        "tablet (md)": "Dovetail MVB"
+      },
+      "figmaId": "VariableID:16815:10227",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/serif",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 2.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 22,
+        "desktop (xl)": 22,
+        "mobile (sm)": 20,
+        "mobile (xs)": 20,
+        "tablet (md)": 20
+      },
+      "figmaId": "VariableID:16815:10228",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/h2/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/h2/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/h2/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/h2/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/h2/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 2.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6404",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 2.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 31,
+        "desktop (xl)": 31,
+        "mobile (sm)": 26,
+        "mobile (xs)": 26,
+        "tablet (md)": 26
+      },
+      "figmaId": "VariableID:16815:10230",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/h2/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/h2/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/h2/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/h2/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/h2/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.headline 2.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": -0.2199999988079071,
+        "desktop (xl)": -0.2199999988079071,
+        "mobile (sm)": -0.20000000298023224,
+        "mobile (xs)": -0.20000000298023224,
+        "tablet (md)": -0.20000000298023224
+      },
+      "figmaId": "VariableID:16815:10231",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/-200",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/-200",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/-100",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/-100",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/-100",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.subheadline.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:17281:5738",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.subheadline.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 20,
+        "desktop (xl)": 20,
+        "mobile (sm)": 18,
+        "mobile (xs)": 18,
+        "tablet (md)": 18
+      },
+      "figmaId": "VariableID:17281:5739",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/h3/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/h3/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/h3/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/h3/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/h3/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.subheadline.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Book",
+        "desktop (xl)": "Book",
+        "mobile (sm)": "Book",
+        "mobile (xs)": "Book",
+        "tablet (md)": "Book"
+      },
+      "figmaId": "VariableID:17281:5740",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.subheadline.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 26,
+        "desktop (xl)": 26,
+        "mobile (sm)": 23,
+        "mobile (xs)": 23,
+        "tablet (md)": 23
+      },
+      "figmaId": "VariableID:17281:5741",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/h3/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/h3/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/h3/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/h3/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/h3/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.subheadline.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:17281:5742",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.title.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10232",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.title.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 20,
+        "desktop (xl)": 20,
+        "mobile (sm)": 18,
+        "mobile (xs)": 18,
+        "tablet (md)": 18
+      },
+      "figmaId": "VariableID:16815:10233",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/h3/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/h3/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/h3/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/h3/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/h3/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.title.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6405",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.title.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 26,
+        "desktop (xl)": 26,
+        "mobile (sm)": 23,
+        "mobile (xs)": 23,
+        "tablet (md)": 23
+      },
+      "figmaId": "VariableID:16815:10235",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/h3/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/h3/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/h3/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/h3/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/h3/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.title.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10236",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.base.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10237",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.base.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 16,
+        "desktop (xl)": 16,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 16
+      },
+      "figmaId": "VariableID:16815:10238",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/base/base",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/base/base",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/base/base",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/base/base",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/base/base",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.base.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Book",
+        "desktop (xl)": "Book",
+        "mobile (sm)": "Book",
+        "mobile (xs)": "Book",
+        "tablet (md)": "Book"
+      },
+      "figmaId": "VariableID:17200:6406",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.base.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 22,
+        "desktop (xl)": 22,
+        "mobile (sm)": 22,
+        "mobile (xs)": 22,
+        "tablet (md)": 22
+      },
+      "figmaId": "VariableID:16815:10240",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/base/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/base/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/base/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/base/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/base/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.base.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10241",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.button.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10242",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.button.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 16,
+        "desktop (xl)": 16,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 16
+      },
+      "figmaId": "VariableID:16815:10243",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/button/button",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/button/button",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/button/button",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/button/button",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/button/button",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.button.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6408",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.button.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 21,
+        "desktop (xl)": 21,
+        "mobile (sm)": 21,
+        "mobile (xs)": 21,
+        "tablet (md)": 21
+      },
+      "figmaId": "VariableID:16815:10245",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/button/button",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/button/button",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/button/button",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/button/button",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/button/button",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.button.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10246",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.upper.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10247",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.upper.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 14,
+        "desktop (xl)": 14,
+        "mobile (sm)": 14,
+        "mobile (xs)": 14,
+        "tablet (md)": 14
+      },
+      "figmaId": "VariableID:16815:10248",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.upper.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6409",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.upper.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 18,
+        "desktop (xl)": 18,
+        "mobile (sm)": 18,
+        "mobile (xs)": 18,
+        "tablet (md)": 18
+      },
+      "figmaId": "VariableID:16815:10250",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/upper/upper",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/upper/upper",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/upper/upper",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/upper/upper",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/upper/upper",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.upper.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10251",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.label.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10252",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.label.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 14,
+        "desktop (xl)": 14,
+        "mobile (sm)": 14,
+        "mobile (xs)": 14,
+        "tablet (md)": 14
+      },
+      "figmaId": "VariableID:16815:10253",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.label.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Medium",
+        "desktop (xl)": "Medium",
+        "mobile (sm)": "Medium",
+        "mobile (xs)": "Medium",
+        "tablet (md)": "Medium"
+      },
+      "figmaId": "VariableID:17200:6410",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/medium",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.label.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 18,
+        "desktop (xl)": 18,
+        "mobile (sm)": 18,
+        "mobile (xs)": 18,
+        "tablet (md)": 18
+      },
+      "figmaId": "VariableID:16815:10255",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/label/label",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/label/label",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/label/label",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/label/label",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/label/label",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.label.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10256",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caption.font-family": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Kiva Post Grot",
+        "desktop (xl)": "Kiva Post Grot",
+        "mobile (sm)": "Kiva Post Grot",
+        "mobile (xs)": "Kiva Post Grot",
+        "tablet (md)": "Kiva Post Grot"
+      },
+      "figmaId": "VariableID:16815:10258",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-family/sans",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caption.font-size": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 14,
+        "desktop (xl)": 14,
+        "mobile (sm)": 14,
+        "mobile (xs)": 14,
+        "tablet (md)": 14
+      },
+      "figmaId": "VariableID:16815:10259",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-size/small/small",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caption.font-weight": {
+      "type": "string",
+      "values": {
+        "desktop (lg)": "Book",
+        "desktop (xl)": "Book",
+        "mobile (sm)": "Book",
+        "mobile (xs)": "Book",
+        "tablet (md)": "Book"
+      },
+      "figmaId": "VariableID:17200:6411",
+      "scopes": [
+        "FONT_STYLE"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/font-weight/normal",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caption.line-height": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 18,
+        "desktop (xl)": 18,
+        "mobile (sm)": 18,
+        "mobile (xs)": 18,
+        "tablet (md)": 18
+      },
+      "figmaId": "VariableID:16815:10261",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/line-height/caption/caption",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/line-height/caption/caption",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/line-height/caption/caption",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/line-height/caption/caption",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/line-height/caption/caption",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caption.letter-spacing": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 0,
+        "desktop (xl)": 0,
+        "mobile (sm)": 0,
+        "mobile (xs)": 0,
+        "tablet (md)": 0
+      },
+      "figmaId": "VariableID:16815:10262",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "type/letter-spacing/0",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.structure.XL": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 32,
+        "desktop (xl)": 32,
+        "mobile (sm)": 24,
+        "mobile (xs)": 24,
+        "tablet (md)": 32
+      },
+      "description": "Large Section Spacing. Used for significant vertical gaps between major page sections. Mapped to space[4] (32px) on desktop, scaling down to space[3] (24px) on mobile.",
+      "figmaId": "VariableID:16935:5252",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/4",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/4",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.structure.L": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 24,
+        "desktop (xl)": 24,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 24
+      },
+      "description": "Standard Section Spacing. Used for separating distinct content blocks within a section. Mapped to space[3] (24px) on desktop, scaling to space[2] (16px) on mobile.",
+      "figmaId": "VariableID:16935:5253",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.structure.M": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 16,
+        "desktop (xl)": 16,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 16
+      },
+      "description": "Compact Section Spacing. Used for grouping related modules or headers. Consistently mapped to space[2] (16px) across most modes.",
+      "figmaId": "VariableID:17077:5510",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.structure.S": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 8,
+        "desktop (xl)": 8,
+        "mobile (sm)": 8,
+        "mobile (xs)": 8,
+        "tablet (md)": 8
+      },
+      "description": "Tight Section Spacing. Used for small vertical gaps between related text elements. Fixed at space[1] (8px) across all modes.",
+      "figmaId": "VariableID:17306:6829",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.gap.L": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 16,
+        "desktop (xl)": 16,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 16
+      },
+      "description": "Primary Component Gap. Defines the internal spacing between large child elements within a component (e.g., card body to footer). Mapped to space[2] (16px).",
+      "figmaId": "VariableID:16935:5254",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.gap.M": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 8,
+        "desktop (xl)": 8,
+        "mobile (sm)": 8,
+        "mobile (xs)": 8,
+        "tablet (md)": 8
+      },
+      "description": "Secondary Component Gap. Used for standard spacing between elements like icons and labels. Mapped to space[1] (8px).",
+      "figmaId": "VariableID:17077:5511",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.gap.S": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 4,
+        "desktop (xl)": 4,
+        "mobile (sm)": 4,
+        "mobile (xs)": 4,
+        "tablet (md)": 4
+      },
+      "description": "Tertiary Component Gap. Used for very tight internal spacing or subtle alignments. Mapped to space[0.5] (4px).",
+      "figmaId": "VariableID:17077:5512",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.inset.XL": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 32,
+        "desktop (xl)": 32,
+        "mobile (sm)": 20,
+        "mobile (xs)": 20,
+        "tablet (md)": 24
+      },
+      "description": "Generous Component Padding. Used for the inner padding of large containers or hero-style cards. Scales from space[4] (32px) down to space[2.5] (20px) for mobile.",
+      "figmaId": "VariableID:16935:5257",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/4",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/4",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2-5",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2-5",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.inset.L": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 24,
+        "desktop (xl)": 24,
+        "mobile (sm)": 20,
+        "mobile (xs)": 20,
+        "tablet (md)": 24
+      },
+      "description": "Standard Component Padding. The default inner padding for cards and containers. Scales from space[3] (24px) down to space[2.5] (20px) for mobile.",
+      "figmaId": "VariableID:16935:5258",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2-5",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2-5",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.inset.M": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 16,
+        "desktop (xl)": 16,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 16
+      },
+      "description": "Compact Component Padding. Used for smaller cards, banners, or buttons. Fixed at space[2] (16px).",
+      "figmaId": "VariableID:16935:5259",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.inset.S": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 8,
+        "desktop (xl)": 8,
+        "mobile (sm)": 8,
+        "mobile (xs)": 8,
+        "tablet (md)": 8
+      },
+      "description": "Tight Component Padding. Used for small UI elements like tags or compact buttons. Fixed at space[1] (8px).",
+      "figmaId": "VariableID:17077:5513",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.component.inset.XS": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 4,
+        "desktop (xl)": 4,
+        "mobile (sm)": 4,
+        "mobile (xs)": 4,
+        "tablet (md)": 4
+      },
+      "description": "Minimal Component Padding. Used for the smallest interactive elements or tooltips. Fixed at space[0.5] (4px).",
+      "figmaId": "VariableID:17077:5514",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        }
+      }
+    },
+    "spacing.micro.micro": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 4,
+        "desktop (xl)": 4,
+        "mobile (sm)": 4,
+        "mobile (xs)": 4,
+        "tablet (md)": 4
+      },
+      "description": "Atomic Spacing. The smallest possible unit in the system. Used for hairline alignments or extreme precision. Mapped to space[0.5] (4px).",
+      "figmaId": "VariableID:17077:5517",
+      "scopes": [
+        "GAP"
+      ],
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "spacing/scale/0-5",
+          "collection": "Global"
+        }
+      }
+    },
+    "layout.breakpoint": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 1024,
+        "desktop (xl)": 1024,
+        "mobile (sm)": 320,
+        "mobile (xs)": 0,
+        "tablet (md)": 734
+      },
+      "description": "Responsive Viewport Target. Defines the specific screen width threshold for triggering layout transitions. Based on values: sm (390), md (734), lg (1024), and xl (1440).",
+      "figmaId": "VariableID:17797:6111",
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "layout/breakpoint/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "layout/breakpoint/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "layout/breakpoint/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "layout/breakpoint/xs",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "layout/breakpoint/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "layout.grid-columns": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 12,
+        "desktop (xl)": 12,
+        "mobile (sm)": 4,
+        "mobile (xs)": 4,
+        "tablet (md)": 8
+      },
+      "description": "Vertical Content Subdivisions. The number of columns used to align content within the grid. This typically scales from 4 columns on mobile (sm) to 12 columns on desktop (lg/xl) to facilitate complex layouts.",
+      "figmaId": "VariableID:17797:6112",
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "layout/grid-columns/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "layout/grid-columns/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "layout/grid-columns/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "layout/grid-columns/xs",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "layout/grid-columns/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "layout.grid-margin": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 64,
+        "desktop (xl)": 64,
+        "mobile (sm)": 20,
+        "mobile (xs)": 20,
+        "tablet (md)": 32
+      },
+      "description": "Outer Page Gutters. The horizontal safety margin between the content container and the edge of the viewport. Scales from 20px (sm) to 120px (xl) to maintain visual balance.",
+      "figmaId": "VariableID:17797:6113",
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "layout/page-margin/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "layout/page-margin/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "layout/page-margin/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "layout/page-margin/xs",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "layout/page-margin/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "layout.grid-gutter": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 32,
+        "desktop (xl)": 32,
+        "mobile (sm)": 16,
+        "mobile (xs)": 16,
+        "tablet (md)": 24
+      },
+      "description": "Inter-column Spacing. The fixed horizontal space between grid columns used to separate content modules. Ensures consistent internal alignment across all responsive modes.",
+      "figmaId": "VariableID:17797:6114",
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "layout/gutter/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "layout/gutter/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "layout/gutter/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "layout/gutter/xs",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "layout/gutter/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "layout.content-max-width": {
+      "type": "number",
+      "values": {
+        "desktop (lg)": 896,
+        "desktop (xl)": 896,
+        "mobile (sm)": 350,
+        "mobile (xs)": 350,
+        "tablet (md)": 24
+      },
+      "description": "Container Limit. The maximum width the main content area can reach (1200px). It remains fluid on sm/md/lg and becomes fixed and centered on XL screens to prevent excessive line lengths.",
+      "figmaId": "VariableID:17801:6098",
+      "aliasOf": {
+        "desktop (lg)": {
+          "name": "layout/content-max-width/lg",
+          "collection": "Global"
+        },
+        "desktop (xl)": {
+          "name": "layout/content-max-width/lg",
+          "collection": "Global"
+        },
+        "mobile (sm)": {
+          "name": "layout/content-max-width/sm",
+          "collection": "Global"
+        },
+        "mobile (xs)": {
+          "name": "layout/content-max-width/sm",
+          "collection": "Global"
+        },
+        "tablet (md)": {
+          "name": "layout/gutter/md",
+          "collection": "Global"
+        }
+      }
+    }
+  },
+  "purpose": "Responsive text sizes, spacing, and layout widths. Values vary by breakpoint mode — pick the mode matching the viewport you're rendering for."
+}

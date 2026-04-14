@@ -1,0 +1,122 @@
+{
+  "collection": "radius-size",
+  "displayName": "radius size",
+  "source": {
+    "rawFiles": [
+      "radius size.tokens.json"
+    ]
+  },
+  "modes": [
+    "radius size"
+  ],
+  "tokens": {
+    "button": {
+      "type": "number",
+      "values": {
+        "radius size": 8
+      },
+      "description": "Action Radius. Mapped from radii.sm (8px). Ensures consistent corner treatment for all interactive action components.",
+      "figmaId": "VariableID:17801:6283",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "aliasOf": {
+        "radius size": {
+          "name": "radius/sm",
+          "collection": "Global"
+        }
+      }
+    },
+    "input": {
+      "type": "number",
+      "values": {
+        "radius size": 8
+      },
+      "description": "Form Radius. Mapped from radii.sm (8px). Aligns input fields and text areas with button styling for a cohesive form UI.",
+      "figmaId": "VariableID:17801:6284",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "aliasOf": {
+        "radius size": {
+          "name": "radius/sm",
+          "collection": "Global"
+        }
+      }
+    },
+    "card": {
+      "type": "number",
+      "values": {
+        "radius size": 20
+      },
+      "description": "Container Radius. Mapped from radii.lg (20px). Applied to standard content cards and informational sections.",
+      "figmaId": "VariableID:17801:6285",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "aliasOf": {
+        "radius size": {
+          "name": "radius/lg",
+          "collection": "Global"
+        }
+      }
+    },
+    "dropdown": {
+      "type": "number",
+      "values": {
+        "radius size": 12
+      },
+      "description": "Menu Radius. Mapped from radii.md (12px). Used for floating menus; sharper than cards but softer than buttons.",
+      "figmaId": "VariableID:17801:6286",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "aliasOf": {
+        "radius size": {
+          "name": "radius/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "modal": {
+      "type": "number",
+      "values": {
+        "radius size": 24
+      },
+      "description": "Overlay Radius. Mapped from radii.xl (24px). Provides a softer, more encapsulated feel for large-scale modal windows.",
+      "figmaId": "VariableID:17801:6287",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "aliasOf": {
+        "radius size": {
+          "name": "radius/xl",
+          "collection": "Global"
+        }
+      }
+    },
+    "none": {
+      "type": "number",
+      "values": {
+        "radius size": 0
+      },
+      "description": "Hard Edge. Zero radius. Used for full-bleed containers or specific sharp-edged design requirements.",
+      "figmaId": "VariableID:17801:6288",
+      "scopes": [
+        "CORNER_RADIUS"
+      ]
+    },
+    "full": {
+      "type": "number",
+      "values": {
+        "radius size": 9999
+      },
+      "description": "Maximum Radius. Mapped to 9999px. Used for pill-shaped buttons, circular avatars, or progress bar ends.",
+      "figmaId": "VariableID:17801:6289",
+      "scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "purpose": "Semantic radius tokens for specific component sizes (button.radius.sm/md/lg, card, input, dropdown). Aliases into Global's radius primitives."
+}

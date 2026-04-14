@@ -1,0 +1,8 @@
+{
+  "bar": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": { "com.figma.variableId": "VariableID:2:1" }
+  },
+  "$extensions": { "com.figma.modeName": "b" }
+}

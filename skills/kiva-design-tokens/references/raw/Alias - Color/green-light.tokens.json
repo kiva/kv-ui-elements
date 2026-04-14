@@ -1,0 +1,1081 @@
+{
+  "text": {
+    "primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13333334028720856,
+          0.21960784494876862,
+          0.16078431904315948
+        ],
+        "alpha": 1,
+        "hex": "#223829"
+      },
+      "$description": "Main high-contrast text color. Used for body text, titles, headlines and primary icons to ensure maximum readability.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1247",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38ca28d126fa774f5807101aeaa7f573a854fb82/-1:-1",
+          "targetVariableName": "color/eco-green/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "primary-inverse": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.929411768913269,
+          0.95686274766922,
+          0.9450980424880981
+        ],
+        "alpha": 1,
+        "hex": "#EDF4F1"
+      },
+      "$description": "Inverted text color for dark buttons and dark backgrounds. Used on dark surfaces (like primary-inverse backgrounds) to maintain contrast.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1248",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:e795f5f225895b9cea5c54789b481662e0f3709b/-1:-1",
+          "targetVariableName": "color/eco-green/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3137255012989044,
+          0.3137255012989044,
+          0.3137255012989044
+        ],
+        "alpha": 1,
+        "hex": "#505050"
+      },
+      "$description": "Medium-contrast supportive text. Used for secondary labels, subtitles, metadata, and placeholder text.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1249",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ee9b8d6df43cfd479b3ecce64f3715275400cc88/-1:-1",
+          "targetVariableName": "color/gray/600",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4588235318660736,
+          0.4588235318660736,
+          0.4588235318660736
+        ],
+        "alpha": 1,
+        "hex": "#757575"
+      },
+      "$description": "Low-contrast muted text. Used for hints or non-essential decorative text.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1250",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ad9f7698438cedb978dd108eb1ccfd7b9bc32f93/-1:-1",
+          "targetVariableName": "color/gray/500",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.15294118225574493,
+          0.4156862795352936,
+          0.26274511218070984
+        ],
+        "alpha": 1,
+        "hex": "#276A43"
+      },
+      "$description": "Brand-colored interactive text. Used for links, clickable labels, and active navigation items.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1251",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:88201682a56d2eab1f807ad35db638a0582ad96e/-1:-1",
+          "targetVariableName": "color/eco-green/3",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13333334028720856,
+          0.21960784494876862,
+          0.16078431904315948
+        ],
+        "alpha": 1,
+        "hex": "#223829"
+      },
+      "$description": "Brand text for active/pressed states. Used for links and clickable labels when the mouse hovers over them.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1252",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38ca28d126fa774f5807101aeaa7f573a854fb82/-1:-1",
+          "targetVariableName": "color/eco-green/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-disabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6196078658103943,
+          0.6196078658103943,
+          0.6196078658103943
+        ],
+        "alpha": 0.30000001192092896,
+        "hex": "#9E9E9E"
+      },
+      "$description": "Disabled or inactive state for button or link text.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1258",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1432e0d475609ee3d99abadb510fde6bb0c1dda7/-1:-1",
+          "targetVariableName": "color/gray/400-1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3490196168422699,
+          0.19607843458652496,
+          0.027450980618596077
+        ],
+        "alpha": 1,
+        "hex": "#593207"
+      },
+      "$description": "Dark text for warning context. Used for warning messages or status labels that require user attention.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1254",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:70460dd8295390b77bc0fb96cc5742bf95481bea/-1:-1",
+          "targetVariableName": "color/marigold/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6000000238418579,
+          0.3843137323856354,
+          0.062745101749897
+        ],
+        "alpha": 1,
+        "hex": "#996210"
+      },
+      "$description": "Hover state for warning-related text. Enhances visibility for interactive warning elements during hover.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1255",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3b54103d5c2b944e338ef06cc2b63f860736abdd/-1:-1",
+          "targetVariableName": "color/marigold/3",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3607843220233917,
+          0.16470588743686676,
+          0.13333334028720856
+        ],
+        "alpha": 1,
+        "hex": "#5C2A22"
+      },
+      "$description": "Dark text for error context. Used for error messages, critical alerts, and destructive action labels. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1256",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:f8c7da4358dc846a7f9e6ee7c9cec81d8fc51b64/-1:-1",
+          "targetVariableName": "color/desert-rose/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6352941393852234,
+          0.2705882489681244,
+          0.21176470816135406
+        ],
+        "alpha": 1,
+        "hex": "#A24536"
+      },
+      "$description": "Hover state for error-related text. Visual feedback for interactive destructive or error-prone elements.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1257",
+        "com.figma.scopes": [
+          "TEXT_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:eda68d530abb3dd69788a8e6ef814f1d1dc5bfe0/-1:-1",
+          "targetVariableName": "color/desert-rose/3",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "background": {
+    "primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.929411768913269,
+          0.95686274766922,
+          0.9450980424880981
+        ],
+        "alpha": 1,
+        "hex": "#EDF4F1"
+      },
+      "$description": "Main application surface. The base color for the entire page or main content areas.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1259",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:e795f5f225895b9cea5c54789b481662e0f3709b/-1:-1",
+          "targetVariableName": "color/eco-green/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "primary-inverse": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13333334028720856,
+          0.21960784494876862,
+          0.16078431904315948
+        ],
+        "alpha": 1,
+        "hex": "#223829"
+      },
+      "$description": "High-contrast dark surface. Use for high-emphasis containers like dark headers, sidebars, or hero cards.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1260",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38ca28d126fa774f5807101aeaa7f573a854fb82/-1:-1",
+          "targetVariableName": "color/eco-green/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$description": "Subtle secondary surface. Use for section backgrounds, form inputs, or to differentiate cards from the main page.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1261",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1da98dab863f7ec08b5934a4a07af04a1b9cbe5f/-1:-1",
+          "targetVariableName": "color/neutral/white",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7686274647712708,
+          0.7686274647712708,
+          0.7686274647712708
+        ],
+        "alpha": 1,
+        "hex": "#C4C4C4"
+      },
+      "$description": "Low-priority decorative surface. Use inside a component, e.g. the track behind a progress bar, or a disabled button surface. Not for page-level or section-level backgrounds.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1262",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:8719b79bfdf4a0f5fb6dbc59a504d0de8bf89df8/-1:-1",
+          "targetVariableName": "color/gray/300",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.15294118225574493,
+          0.4156862795352936,
+          0.26274511218070984
+        ],
+        "alpha": 1,
+        "hex": "#276A43"
+      },
+      "$description": "Brand-colored action surface. The base color for primary buttons, active toggles, and brand-heavy elements.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1263",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:88201682a56d2eab1f807ad35db638a0582ad96e/-1:-1",
+          "targetVariableName": "color/eco-green/3",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13333334028720856,
+          0.21960784494876862,
+          0.16078431904315948
+        ],
+        "alpha": 1,
+        "hex": "#223829"
+      },
+      "$description": "Hover state for action surfaces. Specifically for primary button hover effects and interactive brand surfaces.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1264",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38ca28d126fa774f5807101aeaa7f573a854fb82/-1:-1",
+          "targetVariableName": "color/eco-green/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.929411768913269,
+          0.95686274766922,
+          0.9450980424880981
+        ],
+        "alpha": 1,
+        "hex": "#EDF4F1"
+      },
+      "$description": "Default state for secondary button's surface. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1265",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:e795f5f225895b9cea5c54789b481662e0f3709b/-1:-1",
+          "targetVariableName": "color/eco-green/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-secondary-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$description": "Hover and active state for action surfaces. Specifically for secondary button hover effects, active state and interactive surfaces.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1266",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1da98dab863f7ec08b5934a4a07af04a1b9cbe5f/-1:-1",
+          "targetVariableName": "color/neutral/white",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "primary-disabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.15294118225574493,
+          0.4156862795352936,
+          0.26274511218070984
+        ],
+        "alpha": 0.30000001192092896,
+        "hex": "#276A43"
+      },
+      "$description": "Disabled or inactive state for primary button.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1271",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:7ec673ef1c748d2f44cf7c8c9eb53d554c23a123/-1:-1",
+          "targetVariableName": "color/eco-green/3-1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9725490212440491,
+          0.8039215803146362,
+          0.4117647111415863
+        ],
+        "alpha": 1,
+        "hex": "#F8CD69"
+      },
+      "$description": "Subtle amber background. Background color for warning banners, toast notifications, and alert callouts.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1267",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:6f529fcf2a4046a933a0fd48a2e48b22bfb30561/-1:-1",
+          "targetVariableName": "color/marigold/2",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9725490212440491,
+          0.9490196108818054,
+          0.9019607901573181
+        ],
+        "alpha": 1,
+        "hex": "#F8F2E6"
+      },
+      "$description": "Hover state for warning surfaces. Feedback color for interactive warning cards or actionable alerts on hover.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1268",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:45f78500315a16079dba5a3c1ebc4cbb75e4d424/-1:-1",
+          "targetVariableName": "color/marigold/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8784313797950745,
+          0.5960784554481506,
+          0.5529412031173706
+        ],
+        "alpha": 1,
+        "hex": "#E0988D"
+      },
+      "$description": "Subtle red background. Background color for error banners, destructive action dialogs, or invalid states. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1269",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:d569cc0248ca3061ec4c411572a6f3c3a11a566d/-1:-1",
+          "targetVariableName": "color/desert-rose/2",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9764705896377563,
+          0.9411764740943909,
+          0.9372549057006836
+        ],
+        "alpha": 1,
+        "hex": "#F9F0EF"
+      },
+      "$description": "Hover state for danger surfaces. Feedback color for \"Delete\" buttons or destructive UI elements on hover. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1270",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:885ca53c577dd302a1b5ae656b01b7b97ff96415/-1:-1",
+          "targetVariableName": "color/desert-rose/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "border": {
+    "primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3137255012989044,
+          0.3137255012989044,
+          0.3137255012989044
+        ],
+        "alpha": 1,
+        "hex": "#505050"
+      },
+      "$description": "High-contrast border. Use for component outlines, input field borders, and strong layout dividers.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1272",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ee9b8d6df43cfd479b3ecce64f3715275400cc88/-1:-1",
+          "targetVariableName": "color/gray/600",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "primary-inverse": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          1,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$description": "Inverted border for dark surfaces. Contrast border for elements placed on dark-themed containers. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1273",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1da98dab863f7ec08b5934a4a07af04a1b9cbe5f/-1:-1",
+          "targetVariableName": "color/neutral/white",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4588235318660736,
+          0.4588235318660736,
+          0.4588235318660736
+        ],
+        "alpha": 1,
+        "hex": "#757575"
+      },
+      "$description": "Medium-contrast border. Use for card borders, internal table dividers, and secondary component outlines.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1274",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ad9f7698438cedb978dd108eb1ccfd7b9bc32f93/-1:-1",
+          "targetVariableName": "color/gray/500",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "secondary-disabled": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6196078658103943,
+          0.6196078658103943,
+          0.6196078658103943
+        ],
+        "alpha": 0.30000001192092896,
+        "hex": "#9E9E9E"
+      },
+      "$description": "Disabled or inactive border state for secondary button.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1275",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1432e0d475609ee3d99abadb510fde6bb0c1dda7/-1:-1",
+          "targetVariableName": "color/gray/400-1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "tertiary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7686274647712708,
+          0.7686274647712708,
+          0.7686274647712708
+        ],
+        "alpha": 1,
+        "hex": "#C4C4C4"
+      },
+      "$description": "Low-contrast subtle border. Use for low-emphasis decorative lines or subtle element separation.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1276",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:8719b79bfdf4a0f5fb6dbc59a504d0de8bf89df8/-1:-1",
+          "targetVariableName": "color/gray/300",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.15294118225574493,
+          0.4156862795352936,
+          0.26274511218070984
+        ],
+        "alpha": 1,
+        "hex": "#276A43"
+      },
+      "$description": "Brand-colored border. Use for active focus states, selection rings, and brand-themed outlines.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1277",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:88201682a56d2eab1f807ad35db638a0582ad96e/-1:-1",
+          "targetVariableName": "color/eco-green/3",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "action-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.13333334028720856,
+          0.21960784494876862,
+          0.16078431904315948
+        ],
+        "alpha": 1,
+        "hex": "#223829"
+      },
+      "$description": "Hover state for brand-colored borders. Visual feedback when hovering over interactive brand elements (e.g., secondary buttons)",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1278",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:38ca28d126fa774f5807101aeaa7f573a854fb82/-1:-1",
+          "targetVariableName": "color/eco-green/4",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9725490212440491,
+          0.8039215803146362,
+          0.4117647111415863
+        ],
+        "alpha": 1,
+        "hex": "#F8CD69"
+      },
+      "$description": "Dark border for warning-related components. Used for borders on warning banners, alert cards, or validation states.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1279",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:6f529fcf2a4046a933a0fd48a2e48b22bfb30561/-1:-1",
+          "targetVariableName": "color/marigold/2",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "caution-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9725490212440491,
+          0.9490196108818054,
+          0.9019607901573181
+        ],
+        "alpha": 1,
+        "hex": "#F8F2E6"
+      },
+      "$description": "Hover state for warning-related borders. Visual feedback for interactive warning components on hover. ",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1280",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:45f78500315a16079dba5a3c1ebc4cbb75e4d424/-1:-1",
+          "targetVariableName": "color/marigold/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8784313797950745,
+          0.5960784554481506,
+          0.5529412031173706
+        ],
+        "alpha": 1,
+        "hex": "#E0988D"
+      },
+      "$description": "Dark border for error-related components. Used for invalid input fields, error banners, or critical alert containers.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1281",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:d569cc0248ca3061ec4c411572a6f3c3a11a566d/-1:-1",
+          "targetVariableName": "color/desert-rose/2",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "danger-highlight": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9764705896377563,
+          0.9411764740943909,
+          0.9372549057006836
+        ],
+        "alpha": 1,
+        "hex": "#F9F0EF"
+      },
+      "$description": "Hover state for error-related borders. Visual feedback for interactive destructive or error components on hover.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1282",
+        "com.figma.scopes": [
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:885ca53c577dd302a1b5ae656b01b7b97ff96415/-1:-1",
+          "targetVariableName": "color/desert-rose/1",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "heading-underline": {
+    "primary": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.16470588743686676,
+          0.6627451181411743,
+          0.40392157435417175
+        ],
+        "alpha": 1,
+        "hex": "#2AA967"
+      },
+      "$description": "Brand-colored heading accent. A specific decorative variable used for brand underlines beneath main titles.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1283",
+        "com.figma.scopes": [
+          "SHAPE_FILL",
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:f0d3e5d8ecf39d0b7b2ca9e12c6acd4489223a0e/-1:-1",
+          "targetVariableName": "color/eco-green/default",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "shadow": {
+    "default": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.07999999821186066,
+        "hex": "#000000"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1284",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:0148445be610be83bf1b4f794e8ed92b685aabc9/-1:-1",
+          "targetVariableName": "color/shadow/default",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.1599999964237213,
+        "hex": "#000000"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1285",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b400ed4c29141453ab4e8aa3a0f0ebb4bd9c19e7/-1:-1",
+          "targetVariableName": "color/shadow/hover",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "click-active": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.07999999821186066,
+        "hex": "#000000"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:18613:1286",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2ee5c6d52fd78cd144f53ec6fdf70eabdbb3cf66/-1:-1",
+          "targetVariableName": "color/shadow/click-active",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "green-light"
+  }
+}

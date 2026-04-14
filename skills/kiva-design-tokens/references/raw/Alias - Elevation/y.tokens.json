@@ -1,0 +1,59 @@
+{
+  "rest": {
+    "$type": "number",
+    "$value": 1,
+    "$description": "Standard level. Used for default cards, input fields, and search bars. Provide a subtle sense of surface separation (Layer 1)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17797:6321",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:47bc69144a87770642916533cd7f1f688ce7e330/-1:-1",
+        "targetVariableName": "elevation/y/sm",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "raised": {
+    "$type": "number",
+    "$value": 4,
+    "$description": "Floating level. Used for hover states, dropdown menus, and popovers. Indicates an interactive element lifted above the page (Layer 2).",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6094",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:b69206f90aad97d49df613b73fdcf607820a54e6/-1:-1",
+        "targetVariableName": "elevation/y/md",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "overlay": {
+    "$type": "number",
+    "$value": 10,
+    "$description": "Maximum level. Used for modals, global notifications, and drawers. Used deep shadows to force focus on high-priority overlays (Level 3)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6095",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:202704a0d1dce67f3af4e06bddfe9d27b57b392a/-1:-1",
+        "targetVariableName": "elevation/y/lg",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "y"
+  }
+}

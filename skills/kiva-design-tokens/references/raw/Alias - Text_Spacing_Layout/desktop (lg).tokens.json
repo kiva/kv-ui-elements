@@ -1,0 +1,1220 @@
+{
+  "text": {
+    "display": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Dovetail MVB",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15644:4978",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:95417b909d2b5b25c844126e68eee146e7ebfa70/-1:-1",
+            "targetVariableName": "type/font-family/serif",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 44,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15462:4604",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d096d0c629ca3b7431050c6931caf7ec61a0dcd4/-1:-1",
+            "targetVariableName": "type/font-size/jumbo/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6402",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 57,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15462:4606",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:0fc6e9040262817261dfc78803b2e5453cd536e5/-1:-1",
+            "targetVariableName": "type/line-height/jumbo/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": -0.8799999952316284,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15644:4979",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c4cf5876f1cf6d1c9ce43766e140c589e56e895f/-1:-1",
+            "targetVariableName": "type/letter-spacing/-600",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "headline 1": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Dovetail MVB",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10222",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:95417b909d2b5b25c844126e68eee146e7ebfa70/-1:-1",
+            "targetVariableName": "type/font-family/serif",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 26,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10223",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:29e3721547ba1b8aeea06c6aaa55e688d38ec924/-1:-1",
+            "targetVariableName": "type/font-size/h1/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6403",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 36,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10225",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1899518ce108ac3abf34cff353d5e65152e873c1/-1:-1",
+            "targetVariableName": "type/line-height/h1/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": -0.5199999809265137,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10226",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:8c6b69fc9f9c7b4f4864a52955b5dc50323a3b3a/-1:-1",
+            "targetVariableName": "type/letter-spacing/-300",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "headline 2": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Dovetail MVB",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10227",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:95417b909d2b5b25c844126e68eee146e7ebfa70/-1:-1",
+            "targetVariableName": "type/font-family/serif",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10228",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:596d71f9100284a5d172c7755295e4e74ee9b6bd/-1:-1",
+            "targetVariableName": "type/font-size/h2/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6404",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 31,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10230",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5c2ea9a00db6ed9dedfeb20dd18ac410d6ac4b54/-1:-1",
+            "targetVariableName": "type/line-height/h2/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": -0.2199999988079071,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10231",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:88d7002327276c66702ca060e911b56de293aa6a/-1:-1",
+            "targetVariableName": "type/letter-spacing/-200",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "subheadline": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17281:5738",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 20,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17281:5739",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:fc9678855e4d0f150cf961a19417995fc2fc4f9f/-1:-1",
+            "targetVariableName": "type/font-size/h3/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Book",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17281:5740",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:18d9e0d797cadf3cc7063ab8d04a62b9aa6aada9/-1:-1",
+            "targetVariableName": "type/font-weight/normal",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 26,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17281:5741",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5754a93a7a8e366d669b7d0eb5da40eb39d893b8/-1:-1",
+            "targetVariableName": "type/line-height/h3/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17281:5742",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "title": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10232",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 20,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10233",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:fc9678855e4d0f150cf961a19417995fc2fc4f9f/-1:-1",
+            "targetVariableName": "type/font-size/h3/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6405",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 26,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10235",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5754a93a7a8e366d669b7d0eb5da40eb39d893b8/-1:-1",
+            "targetVariableName": "type/line-height/h3/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10236",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "base": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10237",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10238",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:462b86db5fc4526edb700864db16cd62312fa63d/-1:-1",
+            "targetVariableName": "type/font-size/base/base",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Book",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6406",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:18d9e0d797cadf3cc7063ab8d04a62b9aa6aada9/-1:-1",
+            "targetVariableName": "type/font-weight/normal",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 22,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10240",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:83a066b3b66c8672af46873f69db9b30ed911c46/-1:-1",
+            "targetVariableName": "type/line-height/base/lg",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10241",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "button": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10242",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10243",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:e91c20459ab7e221ca5947b481f36dfe053993af/-1:-1",
+            "targetVariableName": "type/font-size/button/button",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6408",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 21,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10245",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:bd8c024feb58d1c4bcf5b9c81b7967169013e6f3/-1:-1",
+            "targetVariableName": "type/line-height/button/button",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10246",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "upper": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10247",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 14,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10248",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:98879fca7230d63edea1779b44d17062210efbf4/-1:-1",
+            "targetVariableName": "type/font-size/small/small",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6409",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10250",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:e279e7ddddbaaa24d587e262b376c0f6655d5370/-1:-1",
+            "targetVariableName": "type/line-height/upper/upper",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10251",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "label": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10252",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 14,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10253",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:98879fca7230d63edea1779b44d17062210efbf4/-1:-1",
+            "targetVariableName": "type/font-size/small/small",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Medium",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6410",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:71b05980590cd124511fe980d846be706ff8e191/-1:-1",
+            "targetVariableName": "type/font-weight/medium",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10255",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:8775245114a9402f0a6f42d53493b178bb724943/-1:-1",
+            "targetVariableName": "type/line-height/label/label",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10256",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "caption": {
+      "font-family": {
+        "$type": "string",
+        "$value": "Kiva Post Grot",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10258",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2a8fa76ac3cab91681ad6425c59458a6612fd00e/-1:-1",
+            "targetVariableName": "type/font-family/sans",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-size": {
+        "$type": "number",
+        "$value": 14,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10259",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:98879fca7230d63edea1779b44d17062210efbf4/-1:-1",
+            "targetVariableName": "type/font-size/small/small",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "font-weight": {
+        "$type": "string",
+        "$value": "Book",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17200:6411",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.type": "string",
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:18d9e0d797cadf3cc7063ab8d04a62b9aa6aada9/-1:-1",
+            "targetVariableName": "type/font-weight/normal",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": 18,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10261",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:698bb441852e7023d784a90bdb0f308943d16e67/-1:-1",
+            "targetVariableName": "type/line-height/caption/caption",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "letter-spacing": {
+        "$type": "number",
+        "$value": 0,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16815:10262",
+          "com.figma.scopes": [
+            "LETTER_SPACING"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:781d3663ecaa2c7a9417a91d37715613dea4a42e/-1:-1",
+            "targetVariableName": "type/letter-spacing/0",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
+  "spacing": {
+    "structure": {
+      "XL": {
+        "$type": "number",
+        "$value": 32,
+        "$description": "Large Section Spacing. Used for significant vertical gaps between major page sections. Mapped to space[4] (32px) on desktop, scaling down to space[3] (24px) on mobile.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16935:5252",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:d8db6c2b5474202308dcb579bf36f1df57534ea0/-1:-1",
+            "targetVariableName": "spacing/scale/4",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "L": {
+        "$type": "number",
+        "$value": 24,
+        "$description": "Standard Section Spacing. Used for separating distinct content blocks within a section. Mapped to space[3] (24px) on desktop, scaling to space[2] (16px) on mobile.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:16935:5253",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:712275d8f6977a3c85884a8975e8c7f1f76d8fcf/-1:-1",
+            "targetVariableName": "spacing/scale/3",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "M": {
+        "$type": "number",
+        "$value": 16,
+        "$description": "Compact Section Spacing. Used for grouping related modules or headers. Consistently mapped to space[2] (16px) across most modes.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17077:5510",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2ee83043e9dfc76308ba58d9869ff4511106b7aa/-1:-1",
+            "targetVariableName": "spacing/scale/2",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "S": {
+        "$type": "number",
+        "$value": 8,
+        "$description": "Tight Section Spacing. Used for small vertical gaps between related text elements. Fixed at space[1] (8px) across all modes.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17306:6829",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:14f6be099eda63dd2529a1e635986cf57b73cd6a/-1:-1",
+            "targetVariableName": "spacing/scale/1",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "component": {
+      "gap": {
+        "L": {
+          "$type": "number",
+          "$value": 16,
+          "$description": "Primary Component Gap. Defines the internal spacing between large child elements within a component (e.g., card body to footer). Mapped to space[2] (16px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:16935:5254",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2ee83043e9dfc76308ba58d9869ff4511106b7aa/-1:-1",
+              "targetVariableName": "spacing/scale/2",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "M": {
+          "$type": "number",
+          "$value": 8,
+          "$description": "Secondary Component Gap. Used for standard spacing between elements like icons and labels. Mapped to space[1] (8px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:17077:5511",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:14f6be099eda63dd2529a1e635986cf57b73cd6a/-1:-1",
+              "targetVariableName": "spacing/scale/1",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "S": {
+          "$type": "number",
+          "$value": 4,
+          "$description": "Tertiary Component Gap. Used for very tight internal spacing or subtle alignments. Mapped to space[0.5] (4px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:17077:5512",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2544a6b9c068d574c2b1f4406a273f715502b53d/-1:-1",
+              "targetVariableName": "spacing/scale/0-5",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        }
+      },
+      "inset": {
+        "XL": {
+          "$type": "number",
+          "$value": 32,
+          "$description": "Generous Component Padding. Used for the inner padding of large containers or hero-style cards. Scales from space[4] (32px) down to space[2.5] (20px) for mobile.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:16935:5257",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:d8db6c2b5474202308dcb579bf36f1df57534ea0/-1:-1",
+              "targetVariableName": "spacing/scale/4",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "L": {
+          "$type": "number",
+          "$value": 24,
+          "$description": "Standard Component Padding. The default inner padding for cards and containers. Scales from space[3] (24px) down to space[2.5] (20px) for mobile.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:16935:5258",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:712275d8f6977a3c85884a8975e8c7f1f76d8fcf/-1:-1",
+              "targetVariableName": "spacing/scale/3",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "M": {
+          "$type": "number",
+          "$value": 16,
+          "$description": "Compact Component Padding. Used for smaller cards, banners, or buttons. Fixed at space[2] (16px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:16935:5259",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2ee83043e9dfc76308ba58d9869ff4511106b7aa/-1:-1",
+              "targetVariableName": "spacing/scale/2",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "S": {
+          "$type": "number",
+          "$value": 8,
+          "$description": "Tight Component Padding. Used for small UI elements like tags or compact buttons. Fixed at space[1] (8px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:17077:5513",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:14f6be099eda63dd2529a1e635986cf57b73cd6a/-1:-1",
+              "targetVariableName": "spacing/scale/1",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "XS": {
+          "$type": "number",
+          "$value": 4,
+          "$description": "Minimal Component Padding. Used for the smallest interactive elements or tooltips. Fixed at space[0.5] (4px).",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:17077:5514",
+            "com.figma.scopes": [
+              "GAP"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2544a6b9c068d574c2b1f4406a273f715502b53d/-1:-1",
+              "targetVariableName": "spacing/scale/0-5",
+              "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+              "targetVariableSetName": "Global"
+            },
+            "com.figma.isOverride": true
+          }
+        }
+      }
+    },
+    "micro": {
+      "micro": {
+        "$type": "number",
+        "$value": 4,
+        "$description": "Atomic Spacing. The smallest possible unit in the system. Used for hairline alignments or extreme precision. Mapped to space[0.5] (4px).",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:17077:5517",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2544a6b9c068d574c2b1f4406a273f715502b53d/-1:-1",
+            "targetVariableName": "spacing/scale/0-5",
+            "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+            "targetVariableSetName": "Global"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
+  "layout": {
+    "breakpoint": {
+      "$type": "number",
+      "$value": 1024,
+      "$description": "Responsive Viewport Target. Defines the specific screen width threshold for triggering layout transitions. Based on values: sm (390), md (734), lg (1024), and xl (1440).",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:17797:6111",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b8365cbd131c21cf30b87068fe6f4910dd94a8d0/-1:-1",
+          "targetVariableName": "layout/breakpoint/lg",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "grid-columns": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "Vertical Content Subdivisions. The number of columns used to align content within the grid. This typically scales from 4 columns on mobile (sm) to 12 columns on desktop (lg/xl) to facilitate complex layouts.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:17797:6112",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:18515328cae035f26ae8d1c217b8ab846af18d40/-1:-1",
+          "targetVariableName": "layout/grid-columns/lg",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "grid-margin": {
+      "$type": "number",
+      "$value": 64,
+      "$description": "Outer Page Gutters. The horizontal safety margin between the content container and the edge of the viewport. Scales from 20px (sm) to 120px (xl) to maintain visual balance.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:17797:6113",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:b6086d81c82cc5900f73e335374acb012a976527/-1:-1",
+          "targetVariableName": "layout/page-margin/lg",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "grid-gutter": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "Inter-column Spacing. The fixed horizontal space between grid columns used to separate content modules. Ensures consistent internal alignment across all responsive modes.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:17797:6114",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ff850736f058f61d3e4d99122dd25646a36700a4/-1:-1",
+          "targetVariableName": "layout/gutter/lg",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "content-max-width": {
+      "$type": "number",
+      "$value": 896,
+      "$description": "Container Limit. The maximum width the main content area can reach (1200px). It remains fluid on sm/md/lg and becomes fixed and centered on XL screens to prevent excessive line lengths.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:17801:6098",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:d39e43928c733c493ef9dadf7d6c331b40e15f89/-1:-1",
+          "targetVariableName": "layout/content-max-width/lg",
+          "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+          "targetVariableSetName": "Global"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "desktop (lg)"
+  }
+}

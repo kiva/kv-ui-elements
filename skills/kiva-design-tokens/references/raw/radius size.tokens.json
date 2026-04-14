@@ -1,0 +1,119 @@
+{
+  "button": {
+    "$type": "number",
+    "$value": 8,
+    "$description": "Action Radius. Mapped from radii.sm (8px). Ensures consistent corner treatment for all interactive action components.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6283",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:9df86cf0f6fc9eece0e643fbf6b72ecaca99b303/-1:-1",
+        "targetVariableName": "radius/sm",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "input": {
+    "$type": "number",
+    "$value": 8,
+    "$description": "Form Radius. Mapped from radii.sm (8px). Aligns input fields and text areas with button styling for a cohesive form UI.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6284",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:9df86cf0f6fc9eece0e643fbf6b72ecaca99b303/-1:-1",
+        "targetVariableName": "radius/sm",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "card": {
+    "$type": "number",
+    "$value": 20,
+    "$description": "Container Radius. Mapped from radii.lg (20px). Applied to standard content cards and informational sections.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6285",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:6463e4e468439576846b01065ee8dc521371e4a2/-1:-1",
+        "targetVariableName": "radius/lg",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "dropdown": {
+    "$type": "number",
+    "$value": 12,
+    "$description": "Menu Radius. Mapped from radii.md (12px). Used for floating menus; sharper than cards but softer than buttons.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6286",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:268ff31ae7b69158787463b05539a9daf8d35e2c/-1:-1",
+        "targetVariableName": "radius/md",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "modal": {
+    "$type": "number",
+    "$value": 24,
+    "$description": "Overlay Radius. Mapped from radii.xl (24px). Provides a softer, more encapsulated feel for large-scale modal windows.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6287",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:2322860084aace2dc9e9ebf801c77dc9b0d7b554/-1:-1",
+        "targetVariableName": "radius/xl",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "none": {
+    "$type": "number",
+    "$value": 0,
+    "$description": "Hard Edge. Zero radius. Used for full-bleed containers or specific sharp-edged design requirements.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6288",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "full": {
+    "$type": "number",
+    "$value": 9999,
+    "$description": "Maximum Radius. Mapped to 9999px. Used for pill-shaped buttons, circular avatars, or progress bar ends.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17801:6289",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "radius size"
+  }
+}

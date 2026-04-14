@@ -1,0 +1,114 @@
+{
+  "collection": "alias-elevation",
+  "displayName": "Alias - Elevation",
+  "source": {
+    "rawFiles": [
+      "Blur.tokens.json",
+      "Opacity.tokens.json",
+      "Spread.tokens.json",
+      "y.tokens.json"
+    ]
+  },
+  "modes": [
+    "Blur",
+    "Opacity",
+    "Spread",
+    "y"
+  ],
+  "tokens": {
+    "rest": {
+      "type": "number",
+      "values": {
+        "Blur": 2,
+        "Opacity": 0.10000000149011612,
+        "Spread": 0,
+        "y": 1
+      },
+      "description": "Standard level. Used for default cards, input fields, and search bars. Provide a subtle sense of surface separation (Layer 1)",
+      "figmaId": "VariableID:17797:6321",
+      "scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "aliasOf": {
+        "Blur": {
+          "name": "elevation/blur/sm",
+          "collection": "Global"
+        },
+        "Opacity": {
+          "name": "elevation/opacity/sm",
+          "collection": "Global"
+        },
+        "y": {
+          "name": "elevation/y/sm",
+          "collection": "Global"
+        }
+      }
+    },
+    "raised": {
+      "type": "number",
+      "values": {
+        "Blur": 6,
+        "Opacity": 0.15000000596046448,
+        "Spread": -1,
+        "y": 4
+      },
+      "description": "Floating level. Used for hover states, dropdown menus, and popovers. Indicates an interactive element lifted above the page (Layer 2).",
+      "figmaId": "VariableID:17800:6094",
+      "scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "aliasOf": {
+        "Blur": {
+          "name": "elevation/blur/md",
+          "collection": "Global"
+        },
+        "Opacity": {
+          "name": "elevation/opacity/md",
+          "collection": "Global"
+        },
+        "Spread": {
+          "name": "elevation/spread/clean",
+          "collection": "Global"
+        },
+        "y": {
+          "name": "elevation/y/md",
+          "collection": "Global"
+        }
+      }
+    },
+    "overlay": {
+      "type": "number",
+      "values": {
+        "Blur": 15,
+        "Opacity": 0.20000000298023224,
+        "Spread": -3,
+        "y": 10
+      },
+      "description": "Maximum level. Used for modals, global notifications, and drawers. Used deep shadows to force focus on high-priority overlays (Level 3)",
+      "figmaId": "VariableID:17800:6095",
+      "scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "aliasOf": {
+        "Blur": {
+          "name": "elevation/blur/lg",
+          "collection": "Global"
+        },
+        "Opacity": {
+          "name": "elevation/opacity/lg",
+          "collection": "Global"
+        },
+        "Spread": {
+          "name": "elevation/spread/deep",
+          "collection": "Global"
+        },
+        "y": {
+          "name": "elevation/y/lg",
+          "collection": "Global"
+        }
+      }
+    }
+  },
+  "purpose": "Shadow attribute axes. Each 'mode' is one dimension of a drop shadow — combine Blur + Opacity + Spread + y for a given elevation token to build a complete CSS box-shadow.",
+  "modeNote": "Modes are attribute axes (Blur, Opacity, Spread, y), NOT themes. To render a shadow, read all four modes for the same token."
+}

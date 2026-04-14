@@ -1,0 +1,59 @@
+{
+  "default": {
+    "$type": "number",
+    "$value": 1,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17804:28",
+      "com.figma.scopes": [
+        "STROKE_FLOAT",
+        "FONT_VARIATIONS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:35c58846b3de0f2348aa06631c37d70e56722b69/-1:-1",
+        "targetVariableName": "border/default",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "hover": {
+    "$type": "number",
+    "$value": 1.2000000476837158,
+    "$description": "For secondary button's hover state",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17898:8746",
+      "com.figma.scopes": [
+        "STROKE_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:f583e2dffacdfccea9054924df3413ac67f3efcd/-1:-1",
+        "targetVariableName": "border/hover",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "active": {
+    "$type": "number",
+    "$value": 1.2000000476837158,
+    "$description": "For secondary button's active state",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17898:8745",
+      "com.figma.scopes": [
+        "STROKE_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:a3c7710a9ca7ee1cd5f2ff57ff8738553c4e9d7b/-1:-1",
+        "targetVariableName": "border/active",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

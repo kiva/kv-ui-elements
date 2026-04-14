@@ -1,0 +1,2064 @@
+{
+  "collection": "alias-color",
+  "displayName": "Alias - Color",
+  "source": {
+    "rawFiles": [
+      "default.tokens.json",
+      "green-dark.tokens.json",
+      "green-light.tokens.json",
+      "marigold.tokens.json",
+      "stone.tokens.json"
+    ]
+  },
+  "modes": [
+    "default",
+    "green-dark",
+    "green-light",
+    "marigold",
+    "stone"
+  ],
+  "tokens": {
+    "text.primary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#2E271E",
+          "alpha": 1
+        }
+      },
+      "description": "Main high-contrast text color. Used for body text, titles, headlines and primary icons to ensure maximum readability.",
+      "figmaId": "VariableID:18613:1247",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.primary-inverse": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F3F1EF",
+          "alpha": 1
+        }
+      },
+      "description": "Inverted text color for dark buttons and dark backgrounds. Used on dark surfaces (like primary-inverse backgrounds) to maintain contrast.",
+      "figmaId": "VariableID:18613:1248",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.secondary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#505050",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#505050",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#505050",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#505050",
+          "alpha": 1
+        }
+      },
+      "description": "Medium-contrast supportive text. Used for secondary labels, subtitles, metadata, and placeholder text.",
+      "figmaId": "VariableID:18613:1249",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.tertiary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#757575",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#E0E0E0",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#757575",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#757575",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#757575",
+          "alpha": 1
+        }
+      },
+      "description": "Low-contrast muted text. Used for hints or non-essential decorative text.",
+      "figmaId": "VariableID:18613:1250",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/gray/200",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.action": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#78C79F",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#635544",
+          "alpha": 1
+        }
+      },
+      "description": "Brand-colored interactive text. Used for links, clickable labels, and active navigation items.",
+      "figmaId": "VariableID:18613:1251",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.action-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#2E271E",
+          "alpha": 1
+        }
+      },
+      "description": "Brand text for active/pressed states. Used for links and clickable labels when the mouse hovers over them.",
+      "figmaId": "VariableID:18613:1252",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.action-disabled": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "green-dark": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "green-light": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "marigold": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "stone": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "description": "Disabled or inactive state for button or link text.",
+      "figmaId": "VariableID:18613:1258",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caution": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#593207",
+          "alpha": 1
+        }
+      },
+      "description": "Dark text for warning context. Used for warning messages or status labels that require user attention.",
+      "figmaId": "VariableID:18613:1254",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.caution-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#996210",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for warning-related text. Enhances visibility for interactive warning elements during hover.",
+      "figmaId": "VariableID:18613:1255",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.danger": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#5C2A22",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#5C2A22",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#5C2A22",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#5C2A22",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#5C2A22",
+          "alpha": 1
+        }
+      },
+      "description": "Dark text for error context. Used for error messages, critical alerts, and destructive action labels. ",
+      "figmaId": "VariableID:18613:1256",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "text.danger-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#A24536",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#A24536",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#A24536",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#A24536",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#A24536",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for error-related text. Visual feedback for interactive destructive or error-prone elements.",
+      "figmaId": "VariableID:18613:1257",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/3",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/3",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/3",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.primary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F3F1EF",
+          "alpha": 1
+        }
+      },
+      "description": "Main application surface. The base color for the entire page or main content areas.",
+      "figmaId": "VariableID:18613:1259",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.primary-inverse": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#2E271E",
+          "alpha": 1
+        }
+      },
+      "description": "High-contrast dark surface. Use for high-emphasis containers like dark headers, sidebars, or hero cards.",
+      "figmaId": "VariableID:18613:1260",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.secondary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        }
+      },
+      "description": "Subtle secondary surface. Use for section backgrounds, form inputs, or to differentiate cards from the main page.",
+      "figmaId": "VariableID:18613:1261",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.tertiary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        }
+      },
+      "description": "Low-priority decorative surface. Use inside a component, e.g. the track behind a progress bar, or a disabled button surface. Not for page-level or section-level backgrounds.",
+      "figmaId": "VariableID:18613:1262",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.action": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#78C79F",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#635544",
+          "alpha": 1
+        }
+      },
+      "description": "Brand-colored action surface. The base color for primary buttons, active toggles, and brand-heavy elements.",
+      "figmaId": "VariableID:18613:1263",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.action-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#2E271E",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for action surfaces. Specifically for primary button hover effects and interactive brand surfaces.",
+      "figmaId": "VariableID:18613:1264",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.action-secondary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F3F1EF",
+          "alpha": 1
+        }
+      },
+      "description": "Default state for secondary button's surface. ",
+      "figmaId": "VariableID:18613:1265",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.action-secondary-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        }
+      },
+      "description": "Hover and active state for action surfaces. Specifically for secondary button hover effects, active state and interactive surfaces.",
+      "figmaId": "VariableID:18613:1266",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.primary-disabled": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#276A43",
+          "alpha": 0.30000001192092896
+        },
+        "green-dark": {
+          "hex": "#276A43",
+          "alpha": 0.30000001192092896
+        },
+        "green-light": {
+          "hex": "#276A43",
+          "alpha": 0.30000001192092896
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 0.30000001192092896
+        },
+        "stone": {
+          "hex": "#635544",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "description": "Disabled or inactive state for primary button.",
+      "figmaId": "VariableID:18613:1271",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/3-1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/3-1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/3-1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3-1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/3-1",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.caution": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        }
+      },
+      "description": "Subtle amber background. Background color for warning banners, toast notifications, and alert callouts.",
+      "figmaId": "VariableID:18613:1267",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.caution-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for warning surfaces. Feedback color for interactive warning cards or actionable alerts on hover.",
+      "figmaId": "VariableID:18613:1268",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.danger": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#E0988D",
+          "alpha": 1
+        }
+      },
+      "description": "Subtle red background. Background color for error banners, destructive action dialogs, or invalid states. ",
+      "figmaId": "VariableID:18613:1269",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "background.danger-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for danger surfaces. Feedback color for \"Delete\" buttons or destructive UI elements on hover. ",
+      "figmaId": "VariableID:18613:1270",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.primary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#505050",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#505050",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#635544",
+          "alpha": 1
+        }
+      },
+      "description": "High-contrast border. Use for component outlines, input field borders, and strong layout dividers.",
+      "figmaId": "VariableID:18613:1272",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/600",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.primary-inverse": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F3F1EF",
+          "alpha": 1
+        }
+      },
+      "description": "Inverted border for dark surfaces. Contrast border for elements placed on dark-themed containers. ",
+      "figmaId": "VariableID:18613:1273",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.secondary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#757575",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#757575",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#AA9E8D",
+          "alpha": 1
+        }
+      },
+      "description": "Medium-contrast border. Use for card borders, internal table dividers, and secondary component outlines.",
+      "figmaId": "VariableID:18613:1274",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/500",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.secondary-disabled": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "green-dark": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "green-light": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "marigold": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        },
+        "stone": {
+          "hex": "#9E9E9E",
+          "alpha": 0.30000001192092896
+        }
+      },
+      "description": "Disabled or inactive border state for secondary button.",
+      "figmaId": "VariableID:18613:1275",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/gray/400-1",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.tertiary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#78C79F",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#C4C4C4",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#FFFFFF",
+          "alpha": 1
+        }
+      },
+      "description": "Low-contrast subtle border. Use for low-emphasis decorative lines or subtle element separation.",
+      "figmaId": "VariableID:18613:1276",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/gray/300",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/neutral/white",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.action": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#78C79F",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#276A43",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#996210",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#635544",
+          "alpha": 1
+        }
+      },
+      "description": "Brand-colored border. Use for active focus states, selection rings, and brand-themed outlines.",
+      "figmaId": "VariableID:18613:1277",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/3",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/3",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/3",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.action-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#EDF4F1",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#223829",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#593207",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#2E271E",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for brand-colored borders. Visual feedback when hovering over interactive brand elements (e.g., secondary buttons)",
+      "figmaId": "VariableID:18613:1278",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/4",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/4",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/4",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.caution": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        }
+      },
+      "description": "Dark border for warning-related components. Used for borders on warning banners, alert cards, or validation states.",
+      "figmaId": "VariableID:18613:1279",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.caution-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F8F2E6",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for warning-related borders. Visual feedback for interactive warning components on hover. ",
+      "figmaId": "VariableID:18613:1280",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/marigold/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.danger": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#E0988D",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#E0988D",
+          "alpha": 1
+        }
+      },
+      "description": "Dark border for error-related components. Used for invalid input fields, error banners, or critical alert containers.",
+      "figmaId": "VariableID:18613:1281",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "border.danger-highlight": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#F9F0EF",
+          "alpha": 1
+        }
+      },
+      "description": "Hover state for error-related borders. Visual feedback for interactive destructive or error components on hover.",
+      "figmaId": "VariableID:18613:1282",
+      "scopes": [
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/desert-rose/1",
+          "collection": "Global"
+        }
+      }
+    },
+    "heading-underline.primary": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#2AA967",
+          "alpha": 1
+        },
+        "green-dark": {
+          "hex": "#2AA967",
+          "alpha": 1
+        },
+        "green-light": {
+          "hex": "#2AA967",
+          "alpha": 1
+        },
+        "marigold": {
+          "hex": "#F8CD69",
+          "alpha": 1
+        },
+        "stone": {
+          "hex": "#AA9E8D",
+          "alpha": 1
+        }
+      },
+      "description": "Brand-colored heading accent. A specific decorative variable used for brand underlines beneath main titles.",
+      "figmaId": "VariableID:18613:1283",
+      "scopes": [
+        "SHAPE_FILL",
+        "STROKE"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/eco-green/default",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/eco-green/default",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/eco-green/default",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/marigold/2",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/stone/2",
+          "collection": "Global"
+        }
+      }
+    },
+    "shadow.default": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "green-dark": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "green-light": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "marigold": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "stone": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        }
+      },
+      "figmaId": "VariableID:18613:1284",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/shadow/default",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/shadow/default",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/shadow/default",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/shadow/default",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/shadow/default",
+          "collection": "Global"
+        }
+      }
+    },
+    "shadow.hover": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#000000",
+          "alpha": 0.1599999964237213
+        },
+        "green-dark": {
+          "hex": "#000000",
+          "alpha": 0.1599999964237213
+        },
+        "green-light": {
+          "hex": "#000000",
+          "alpha": 0.1599999964237213
+        },
+        "marigold": {
+          "hex": "#000000",
+          "alpha": 0.1599999964237213
+        },
+        "stone": {
+          "hex": "#000000",
+          "alpha": 0.1599999964237213
+        }
+      },
+      "figmaId": "VariableID:18613:1285",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/shadow/hover",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/shadow/hover",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/shadow/hover",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/shadow/hover",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/shadow/hover",
+          "collection": "Global"
+        }
+      }
+    },
+    "shadow.click-active": {
+      "type": "color",
+      "values": {
+        "default": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "green-dark": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "green-light": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "marigold": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        },
+        "stone": {
+          "hex": "#000000",
+          "alpha": 0.07999999821186066
+        }
+      },
+      "figmaId": "VariableID:18613:1286",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "aliasOf": {
+        "default": {
+          "name": "color/shadow/click-active",
+          "collection": "Global"
+        },
+        "green-dark": {
+          "name": "color/shadow/click-active",
+          "collection": "Global"
+        },
+        "green-light": {
+          "name": "color/shadow/click-active",
+          "collection": "Global"
+        },
+        "marigold": {
+          "name": "color/shadow/click-active",
+          "collection": "Global"
+        },
+        "stone": {
+          "name": "color/shadow/click-active",
+          "collection": "Global"
+        }
+      }
+    }
+  },
+  "purpose": "Semantic color roles: text/*, background/*, border/*, action/*, icon/*. Values vary by theme mode — this is the canonical source for theme-aware colors."
+}

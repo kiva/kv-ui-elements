@@ -1,0 +1,66 @@
+{
+  "collection": "alias-border",
+  "displayName": "Alias - Border",
+  "source": {
+    "rawFiles": [
+      "Alias - Border.tokens.json"
+    ]
+  },
+  "modes": [
+    "Mode 1"
+  ],
+  "tokens": {
+    "default": {
+      "type": "number",
+      "values": {
+        "Mode 1": 1
+      },
+      "figmaId": "VariableID:17804:28",
+      "scopes": [
+        "STROKE_FLOAT",
+        "FONT_VARIATIONS"
+      ],
+      "aliasOf": {
+        "Mode 1": {
+          "name": "border/default",
+          "collection": "Global"
+        }
+      }
+    },
+    "hover": {
+      "type": "number",
+      "values": {
+        "Mode 1": 1.2000000476837158
+      },
+      "description": "For secondary button's hover state",
+      "figmaId": "VariableID:17898:8746",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "aliasOf": {
+        "Mode 1": {
+          "name": "border/hover",
+          "collection": "Global"
+        }
+      }
+    },
+    "active": {
+      "type": "number",
+      "values": {
+        "Mode 1": 1.2000000476837158
+      },
+      "description": "For secondary button's active state",
+      "figmaId": "VariableID:17898:8745",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "aliasOf": {
+        "Mode 1": {
+          "name": "border/active",
+          "collection": "Global"
+        }
+      }
+    }
+  },
+  "purpose": "Semantic border widths."
+}
