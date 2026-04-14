@@ -1,0 +1,59 @@
+{
+  "rest": {
+    "$type": "number",
+    "$value": 2,
+    "$description": "Standard level. Used for default cards, input fields, and search bars. Provide a subtle sense of surface separation (Layer 1)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17797:6321",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:f1b4aa40e46f9c77246aaa8ccf1e23095e8f4075/-1:-1",
+        "targetVariableName": "elevation/blur/sm",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "raised": {
+    "$type": "number",
+    "$value": 6,
+    "$description": "Floating level. Used for hover states, dropdown menus, and popovers. Indicates an interactive element lifted above the page (Layer 2).",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6094",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:7c29e2d98953b9efc8b1771cca71ec19170c46d7/-1:-1",
+        "targetVariableName": "elevation/blur/md",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "overlay": {
+    "$type": "number",
+    "$value": 15,
+    "$description": "Maximum level. Used for modals, global notifications, and drawers. Used deep shadows to force focus on high-priority overlays (Level 3)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6095",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:07088fc84f5c57b50b0870d4f85dc3dfd97b341f/-1:-1",
+        "targetVariableName": "elevation/blur/lg",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Blur"
+  }
+}

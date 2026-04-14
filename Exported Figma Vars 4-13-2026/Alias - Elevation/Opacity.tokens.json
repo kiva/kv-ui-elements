@@ -1,0 +1,59 @@
+{
+  "rest": {
+    "$type": "number",
+    "$value": 0.10000000149011612,
+    "$description": "Standard level. Used for default cards, input fields, and search bars. Provide a subtle sense of surface separation (Layer 1)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17797:6321",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:34f26125000d68918f974676109209bfc69532f0/-1:-1",
+        "targetVariableName": "elevation/opacity/sm",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "raised": {
+    "$type": "number",
+    "$value": 0.15000000596046448,
+    "$description": "Floating level. Used for hover states, dropdown menus, and popovers. Indicates an interactive element lifted above the page (Layer 2).",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6094",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:c12b4a93484f3c056db76a4c4f6eb50673b3d9ac/-1:-1",
+        "targetVariableName": "elevation/opacity/md",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "overlay": {
+    "$type": "number",
+    "$value": 0.20000000298023224,
+    "$description": "Maximum level. Used for modals, global notifications, and drawers. Used deep shadows to force focus on high-priority overlays (Level 3)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6095",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:f6b719c7634a5e4d8fb285ee3e3b45c5230e81fc/-1:-1",
+        "targetVariableName": "elevation/opacity/lg",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Opacity"
+  }
+}

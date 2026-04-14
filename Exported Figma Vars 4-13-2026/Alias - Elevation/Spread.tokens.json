@@ -1,0 +1,53 @@
+{
+  "rest": {
+    "$type": "number",
+    "$value": 0,
+    "$description": "Standard level. Used for default cards, input fields, and search bars. Provide a subtle sense of surface separation (Layer 1)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17797:6321",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.isOverride": true
+    }
+  },
+  "raised": {
+    "$type": "number",
+    "$value": -1,
+    "$description": "Floating level. Used for hover states, dropdown menus, and popovers. Indicates an interactive element lifted above the page (Layer 2).",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6094",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:4c1eb298bab7b090008e58b7f6a28d25bd4f72df/-1:-1",
+        "targetVariableName": "elevation/spread/clean",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "overlay": {
+    "$type": "number",
+    "$value": -3,
+    "$description": "Maximum level. Used for modals, global notifications, and drawers. Used deep shadows to force focus on high-priority overlays (Level 3)",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:17800:6095",
+      "com.figma.scopes": [
+        "EFFECT_FLOAT"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:2fc7acac0f5efff5745e98c0f60b22d74b05d226/-1:-1",
+        "targetVariableName": "elevation/spread/deep",
+        "targetVariableSetId": "VariableCollectionId:94da6095580ec91be0c947087a600d20e6113509/-1:-1",
+        "targetVariableSetName": "Global"
+      },
+      "com.figma.isOverride": true
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Spread"
+  }
+}
