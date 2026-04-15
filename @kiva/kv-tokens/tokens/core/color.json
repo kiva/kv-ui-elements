@@ -1,0 +1,66 @@
+{
+	"color": {
+		"white": { "$type": "color", "$value": "#FFFFFF" },
+		"black": { "$type": "color", "$value": "#000000" },
+		"gray": {
+			"800": { "$type": "color", "$value": "#212121" },
+			"700": { "$type": "color", "$value": "#454545" },
+			"600": { "$type": "color", "$value": "#505050" },
+			"500": { "$type": "color", "$value": "#757575" },
+			"400": { "$type": "color", "$value": "#9E9E9E" },
+			"300": { "$type": "color", "$value": "#C4C4C4" },
+			"200": { "$type": "color", "$value": "#E0E0E0" },
+			"100": { "$type": "color", "$value": "#F5F5F5" },
+			"50":  { "$type": "color", "$value": "#fafafa" }
+		},
+		"brand": {
+			"1000": { "$type": "color", "$value": "#19653E" },
+			"950":  { "$type": "color", "$value": "#1B6E43" },
+			"900":  { "$type": "color", "$value": "#1D7748" },
+			"800":  { "$type": "color", "$value": "#228752" },
+			"700":  { "$type": "color", "$value": "#26985D" },
+			"650":  { "$type": "color", "$value": "#28A062" },
+			"DEFAULT": { "$type": "color", "$value": "#2AA967" },
+			"550":  { "$type": "color", "$value": "#35AD6F" },
+			"500":  { "$type": "color", "$value": "#4AB67E" },
+			"400":  { "$type": "color", "$value": "#6AC395" },
+			"300":  { "$type": "color", "$value": "#95D4B3" },
+			"200":  { "$type": "color", "$value": "#BFE5D1" },
+			"100":  { "$type": "color", "$value": "#EAF6F0" },
+			"50":   { "$type": "color", "$value": "#F4FBF7" }
+		},
+		"eco-green": {
+			"1": { "$type": "color", "$value": "#EDF4F1" },
+			"2": { "$type": "color", "$value": "#78C79F" },
+			"DEFAULT": { "$type": "color", "$value": "#2AA967" },
+			"3": { "$type": "color", "$value": "#276A43" },
+			"4": { "$type": "color", "$value": "#223829" }
+		},
+		"marigold": {
+			"1": { "$type": "color", "$value": "#F8F2E6" },
+			"2": { "$type": "color", "$value": "#F8CD69" },
+			"DEFAULT": { "$type": "color", "$value": "#F4B539" },
+			"3": { "$type": "color", "$value": "#996210" },
+			"4": { "$type": "color", "$value": "#593207" }
+		},
+		"desert-rose": {
+			"1": { "$type": "color", "$value": "#F9F0EF" },
+			"2": { "$type": "color", "$value": "#E0988D" },
+			"DEFAULT": { "$type": "color", "$value": "#C45F4F" },
+			"3": { "$type": "color", "$value": "#A24536" },
+			"4": { "$type": "color", "$value": "#5C2A22" }
+		},
+		"stone": {
+			"1": { "$type": "color", "$value": "#F3F1EF" },
+			"2": { "$type": "color", "$value": "#AA9E8D" },
+			"DEFAULT": { "$type": "color", "$value": "#DFD0BC" },
+			"3": { "$type": "color", "$value": "#635544" },
+			"4": { "$type": "color", "$value": "#2E271E" }
+		},
+		"social": {
+			"facebook": { "$type": "color", "$value": "#3b5998" },
+			"twitter":  { "$type": "color", "$value": "#1D9BF0" },
+			"linkedin": { "$type": "color", "$value": "#0A66C2" }
+		}
+	}
+}
