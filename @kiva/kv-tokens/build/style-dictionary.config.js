@@ -30,5 +30,16 @@ export default {
 				},
 			],
 		},
+		scss: {
+			transforms: ['attribute/cti', 'name/kebab', 'kiva/dimension-to-number'],
+			buildPath: 'dist/scss/',
+			files: [
+				{
+					destination: 'tokens.scss',
+					format: 'scss/variables',
+					options: { outputReferences: false },
+				},
+			],
+		},
 	},
 };
