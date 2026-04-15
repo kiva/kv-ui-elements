@@ -29,12 +29,13 @@ const restoreKey = (key) => {
 };
 
 // camelCase that preserves underscores as digit separators so `space.1_5`
-// and `space.15` don't collide. Dashes are stripped.
+// and `space.15` don't collide. Dashes split into word boundaries.
 const camelCase = (parts) => parts
-	.map((p, i) => {
-		const clean = String(p).replace(/-/g, '');
-		if (i === 0) return clean.toLowerCase();
-		return clean.charAt(0).toUpperCase() + clean.slice(1);
+	.flatMap((p) => String(p).split('-').filter(Boolean))
+	.map((w, i) => {
+		const lower = w.toLowerCase();
+		if (i === 0) return lower;
+		return lower.charAt(0).toUpperCase() + lower.slice(1);
 	})
 	.join('');
 
