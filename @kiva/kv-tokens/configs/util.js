@@ -19,18 +19,3 @@ export const base64 = (str) => {
 	if (typeof window === 'undefined') return Buffer.from(str).toString('base64');
 	return window.btoa(str);
 };
-
-export const flattenJSON = (obj, parentKey = '') => {
-	const flattened = {};
-
-	Object.keys(obj).forEach((key) => {
-		const newKey = parentKey ? `${parentKey}-${key}` : key;
-		if (typeof obj[key] === 'object') {
-			Object.assign(flattened, flattenJSON(obj[key], newKey));
-		} else {
-			flattened[newKey] = obj[key];
-		}
-	});
-
-	return flattened;
-};
