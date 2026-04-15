@@ -10,6 +10,7 @@
         "test": "echo No tests specified for @kiva/kv-tokens.",
         "lint": "eslint --ext .js ./",
         "build:tokens": "style-dictionary build --config ./build/style-dictionary.config.js",
+        "verify:tokens": "node ./build/verify-parity.js",
         "build": "npm run build:tokens && node ./build/build"
     },
     "repository": {
