@@ -1,5 +1,5 @@
 import { hexToRGB } from './util.js';
-import designTokens from '../primitives.js';
+import designTokens from '../dist/js/tokens.js';
 
 const {
 	DEFAULT: defaultThemeTokens,
