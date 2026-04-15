@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import designTokens from '../primitives.js';
+import designTokens from '../dist/js/tokens.js';
 import { generateExternalSVG } from '../configs/kivaHeadingUnderline.js';
 import { flattenJSON } from '../configs/util.js';
 
