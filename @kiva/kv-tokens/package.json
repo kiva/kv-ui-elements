@@ -6,6 +6,20 @@
         "access": "public"
     },
     "main": "index.js",
+    "exports": {
+        ".": "./index.js",
+        "./tokens": "./dist/js/tokens.js",
+        "./tailwind": "./configs/tailwind.config.js",
+        "./css": "./dist/css/tokens.css",
+        "./scss": "./dist/scss/tokens.scss"
+    },
+    "files": [
+        "index.js",
+        "configs/",
+        "dist/",
+        "assets/",
+        "build/"
+    ],
     "scripts": {
         "test": "echo No tests specified for @kiva/kv-tokens.",
         "lint": "eslint --ext .js ./",
