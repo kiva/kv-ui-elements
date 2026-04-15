@@ -11,7 +11,7 @@ export default {
 	source: ['tokens/**/*.json'],
 	platforms: {
 		js: {
-			transforms: ['attribute/cti', 'name/camel', 'kiva/dimension-to-number'],
+			transforms: ['attribute/cti', 'name/kebab', 'kiva/dimension-to-number'],
 			buildPath: 'dist/js/',
 			files: [
 				{
@@ -21,7 +21,7 @@ export default {
 			],
 		},
 		css: {
-			transforms: ['attribute/cti'],
+			transforms: ['attribute/cti', 'name/kebab'],
 			buildPath: 'dist/css/',
 			files: [
 				{
