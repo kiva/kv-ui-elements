@@ -1,0 +1,30 @@
+{
+	"theme": {
+		"stone-light": {
+			"text": {
+				"primary":          { "$type": "color", "$value": "#2E271E" },
+				"primary-inverse":  { "$type": "color", "$value": "#F3F1EF" },
+				"action":           { "$type": "color", "$value": "#635544" },
+				"action-highlight": { "$type": "color", "$value": "#2E271E" }
+			},
+			"background": {
+				"primary":          { "$type": "color", "$value": "#F3F1EF" },
+				"primary-inverse":  { "$type": "color", "$value": "#2E271E" },
+				"secondary":        { "$type": "color", "$value": "#FFFFFF" },
+				"action":           { "$type": "color", "$value": "#635544" },
+				"action-highlight": { "$type": "color", "$value": "#2E271E" }
+			},
+			"border": {
+				"primary":          { "$type": "color", "$value": "#635544" },
+				"primary-inverse":  { "$type": "color", "$value": "#F3F1EF" },
+				"secondary":        { "$type": "color", "$value": "#AA9E8D" },
+				"tertiary":         { "$type": "color", "$value": "#FFFFFF" },
+				"action":           { "$type": "color", "$value": "#635544" },
+				"action-highlight": { "$type": "color", "$value": "#2E271E" }
+			},
+			"heading-underline": {
+				"primary": { "$type": "color", "$value": "#AA9E8D" }
+			}
+		}
+	}
+}

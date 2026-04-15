@@ -1,0 +1,45 @@
+{
+	"theme": {
+		"DEFAULT": {
+			"text": {
+				"primary":           { "$type": "color", "$value": "#223829" },
+				"primary-inverse":   { "$type": "color", "$value": "#EDF4F1" },
+				"secondary":         { "$type": "color", "$value": "#757575" },
+				"tertiary":          { "$type": "color", "$value": "#9E9E9E" },
+				"action":            { "$type": "color", "$value": "#276A43" },
+				"action-highlight":  { "$type": "color", "$value": "#223829" },
+				"caution":           { "$type": "color", "$value": "#593207" },
+				"caution-highlight": { "$type": "color", "$value": "#996210" },
+				"danger":            { "$type": "color", "$value": "#5C2A22" },
+				"danger-highlight":  { "$type": "color", "$value": "#A24536" }
+			},
+			"background": {
+				"primary":           { "$type": "color", "$value": "#FFFFFF" },
+				"primary-inverse":   { "$type": "color", "$value": "#223829" },
+				"secondary":         { "$type": "color", "$value": "#EDF4F1" },
+				"tertiary":          { "$type": "color", "$value": "#C4C4C4" },
+				"action":            { "$type": "color", "$value": "#276A43" },
+				"action-highlight":  { "$type": "color", "$value": "#223829" },
+				"caution":           { "$type": "color", "$value": "#F8CD69" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger":            { "$type": "color", "$value": "#E0988D" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			},
+			"border": {
+				"primary":           { "$type": "color", "$value": "#505050" },
+				"primary-inverse":   { "$type": "color", "$value": "#FFFFFF" },
+				"secondary":         { "$type": "color", "$value": "#757575" },
+				"tertiary":          { "$type": "color", "$value": "#C4C4C4" },
+				"action":            { "$type": "color", "$value": "#276A43" },
+				"action-highlight":  { "$type": "color", "$value": "#223829" },
+				"caution":           { "$type": "color", "$value": "#F8CD69" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger":            { "$type": "color", "$value": "#E0988D" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			},
+			"heading-underline": {
+				"primary": { "$type": "color", "$value": "#2AA967" }
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+{
+	"theme": {
+		"green-dark": {
+			"text": {
+				"primary":          { "$type": "color", "$value": "#EDF4F1" },
+				"primary-inverse":  { "$type": "color", "$value": "#223829" },
+				"secondary":        { "$type": "color", "$value": "#C4C4C4" },
+				"tertiary":         { "$type": "color", "$value": "#E0E0E0" },
+				"action":           { "$type": "color", "$value": "#78C79F" },
+				"action-highlight": { "$type": "color", "$value": "#EDF4F1" }
+			},
+			"background": {
+				"primary":           { "$type": "color", "$value": "#223829" },
+				"primary-inverse":   { "$type": "color", "$value": "#FFFFFF" },
+				"secondary":         { "$type": "color", "$value": "#276A43" },
+				"tertiary":          { "$type": "color", "$value": "#C4C4C4" },
+				"action":            { "$type": "color", "$value": "#78C79F" },
+				"action-highlight":  { "$type": "color", "$value": "#EDF4F1" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			},
+			"border": {
+				"primary":           { "$type": "color", "$value": "#EDF4F1" },
+				"primary-inverse":   { "$type": "color", "$value": "#223829" },
+				"secondary":         { "$type": "color", "$value": "#276A43" },
+				"action":            { "$type": "color", "$value": "#78C79F" },
+				"action-highlight":  { "$type": "color", "$value": "#EDF4F1" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			}
+		}
+	}
+}
