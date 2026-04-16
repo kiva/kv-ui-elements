@@ -5,9 +5,6 @@ import KvTabPanel from '../KvTabPanel.vue';
 export default {
 	title: 'Interface Elements/KvTabs',
 	component: KvTabs,
-	args: {
-		vertical: true,
-	},
 };
 
 export const DefaultTemplate = () => ({
@@ -60,16 +57,16 @@ export const InitialTabSelection = () => ({
 	},
 });
 
-export const VerticalOrientation = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
+export const VerticalOrientation = (args) => ({
 	components: { KvTabs, KvTab, KvTabPanel },
+	setup() { return { args }; },
 	template: `
-		<kv-tabs @tab-changed="handleTabChanged" :vertical="vertical">
+		<kv-tabs @tab-changed="handleTabChanged" :vertical="args.vertical">
 			<template #tabNav>
-				<kv-tab :vertical="vertical" forPanel="demo-1-first">First</kv-tab>
-				<kv-tab :vertical="vertical" forPanel="demo-1-second">Second</kv-tab>
-				<kv-tab :vertical="vertical" forPanel="demo-1-third">Third</kv-tab>
-				<kv-tab :vertical="vertical" forPanel="demo-1-forth">Forth is longer</kv-tab>
+				<kv-tab :vertical="args.vertical" forPanel="demo-1-first">First</kv-tab>
+				<kv-tab :vertical="args.vertical" forPanel="demo-1-second">Second</kv-tab>
+				<kv-tab :vertical="args.vertical" forPanel="demo-1-third">Third</kv-tab>
+				<kv-tab :vertical="args.vertical" forPanel="demo-1-forth">Forth is longer</kv-tab>
 			</template>
 			<template #tabPanels>
 				<kv-tab-panel id="demo-1-first"><p>First Panel</p></kv-tab-panel>
@@ -85,6 +82,7 @@ export const VerticalOrientation = (args, { argTypes }) => ({
 		},
 	},
 });
+VerticalOrientation.args = { vertical: true };
 
 export const MultipleOnAPage = () => ({
 	components: { KvTabs, KvTab, KvTabPanel },
