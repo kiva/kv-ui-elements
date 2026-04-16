@@ -24,10 +24,9 @@
 				"
 				:class="{ 'tw-hidden md:tw-block tw-top-0 md:tw-bg-action' : vertical}"
 				:style="`
-					width: ${selectedTabEl && !vertical ? selectedTabEl.clientWidth : 3}px;
-					height: ${selectedTabEl && vertical ? `${selectedTabEl.clientHeight}px` : '0.25rem'};
-					transform: ${selectedTabEl && !vertical ? `translateX(${selectedTabEl.offsetLeft}px)`
-				: selectedTabEl ? `translateY(${selectedTabEl.offsetTop}px)` : null};
+					width: ${indicatorStyle.width}px;
+					height: ${indicatorStyle.height};
+					transform: ${indicatorStyle.transform};
 				`"
 			></div>
 		</div>
@@ -65,10 +64,25 @@ import {
 	reactive,
 	provide,
 	computed,
+	watch,
+	nextTick,
 	onMounted,
-	getCurrentInstance,
 	onBeforeUnmount,
+	type ComponentPublicInstance,
 } from 'vue';
+
+interface TabNavItem extends ComponentPublicInstance {
+	forPanel?: string;
+	isActive?: boolean;
+	selected?: boolean;
+}
+
+interface TabContext {
+	selectedIndex: number;
+	// eslint-disable-next-line no-unused-vars
+	setTab: ((index: number) => void) | null;
+	navItems: TabNavItem[];
+}
 
 export default {
 	props: {
@@ -78,22 +92,35 @@ export default {
 		},
 	},
 	setup(props, { emit }) {
-		const tabContext = reactive({
+		const tabContext: TabContext = reactive({
 			selectedIndex: 0,
 			setTab: null,
 			navItems: [],
 		});
-		const selectedTabResizeObserver = ref(null);
+		const selectedTabResizeObserver = ref<ResizeObserver | null>(null);
 
 		const selectedTabEl = computed(() => {
 			const { navItems, selectedIndex } = tabContext;
 			return navItems[selectedIndex]?.$el ?? null;
 		});
 
-		const forceUpdate = () => {
-			const instance = getCurrentInstance();
-			if (instance) {
-				instance.proxy.$forceUpdate();
+		const indicatorStyle = reactive({
+			width: 3,
+			height: '0.25rem',
+			transform: '',
+		});
+
+		const updateIndicator = () => {
+			const el = selectedTabEl.value;
+			if (!el) return;
+			if (!props.vertical) {
+				indicatorStyle.width = el.clientWidth;
+				indicatorStyle.height = '0.25rem';
+				indicatorStyle.transform = `translateX(${el.offsetLeft}px)`;
+			} else {
+				indicatorStyle.width = 3;
+				indicatorStyle.height = `${el.clientHeight}px`;
+				indicatorStyle.transform = `translateY(${el.offsetTop}px)`;
 			}
 		};
 
@@ -151,6 +178,24 @@ export default {
 			}
 		};
 
+		// Tab size can change as @font-face fonts come in or
+		// the screen breakpoint changes the font size. If this happens
+		// we need to re-size and position the indicator bar.
+		const observeSelectedTab = () => {
+			selectedTabResizeObserver.value?.disconnect();
+			if (selectedTabEl.value) {
+				selectedTabResizeObserver.value = new ResizeObserver(() => {
+					updateIndicator();
+				});
+				selectedTabResizeObserver.value.observe(selectedTabEl.value);
+			}
+		};
+
+		watch(selectedTabEl, () => {
+			observeSelectedTab();
+			nextTick(updateIndicator);
+		});
+
 		onMounted(() => {
 			// check if any of the KvTab components are declaratively selected
 			tabContext.navItems.forEach((navItem, index) => {
@@ -159,22 +204,19 @@ export default {
 				}
 			});
 
-			// Tab size can change as @font-face fonts come in or
-			// the screen breakpoint changes the font size. If this happens
-			// we need to re-size and position the indicator bar.
-			selectedTabResizeObserver.value = new ResizeObserver(() => {
-				forceUpdate();
-			});
-			selectedTabResizeObserver.value.observe(selectedTabEl.value);
+			updateIndicator();
+			observeSelectedTab();
+			window.addEventListener('resize', updateIndicator);
 		});
 
 		onBeforeUnmount(() => {
-			selectedTabResizeObserver.value.disconnect();
+			selectedTabResizeObserver.value?.disconnect();
+			window.removeEventListener('resize', updateIndicator);
 		});
 
 		return {
 			handleKeyDown,
-			selectedTabEl,
+			indicatorStyle,
 			tabContext,
 		};
 	},
