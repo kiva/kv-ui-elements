@@ -51,8 +51,15 @@ module.exports = {
 		}],
 		'^.+\\.ts$': ['ts-jest', {
 			useESM: true,
+			diagnostics: false,
 			tsconfig: {
 				allowJs: true,
+				types: ['jest', 'node'],
+				baseUrl: '.',
+				paths: {
+					'#components/*': ['src/vue/*'],
+					'#utils/*': ['src/utils/*'],
+				},
 			},
 		}],
 		'^.+\\.js$': 'babel-jest',
