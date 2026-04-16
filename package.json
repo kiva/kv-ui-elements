@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
-    "build": "rimraf dist && npm run build --workspaces",
+    "build": "rimraf dist && lerna run build",
     "prepare": "husky install",
     "publish-release": "lerna publish -m 'chore: publish [skip ci]'",
     "publish-prerelease": "lerna publish --conventional-prerelease -m 'chore: publish prerelease [skip ci]'",
