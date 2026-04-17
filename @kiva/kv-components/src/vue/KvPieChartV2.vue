@@ -4,68 +4,70 @@
 		aria-label="Pie chart"
 	>
 		<!-- Donut chart SVG -->
-		<svg
-			viewBox="0 0 262 262"
-			fill="none"
-			class="tw-w-full"
-			role="img"
-			aria-hidden="true"
-		>
-			<!-- Skeleton ring -->
-			<circle
-				v-if="loading || !hasData"
-				:cx="CX"
-				:cy="CY"
-				:r="radius"
-				stroke="#e5e7eb"
-				:stroke-width="strokeWidth"
+		<div class="tw-px-2">
+			<svg
+				viewBox="0 0 262 262"
 				fill="none"
-				class="skeleton-ring"
-				:class="{ 'skeleton-ring--hidden': animatedIn }"
-			/>
+				class="tw-w-full"
+				role="img"
+				aria-hidden="true"
+			>
+				<!-- Skeleton ring -->
+				<circle
+					v-if="loading || !hasData"
+					:cx="CX"
+					:cy="CY"
+					:r="radius"
+					:stroke="LOADING_BG_COLOR"
+					:stroke-width="strokeWidth"
+					fill="none"
+					class="skeleton-ring tw-opacity-0"
+					:class="{ 'skeleton-ring--hidden': animatedIn }"
+				/>
 
-			<!-- Colored segments -->
-			<circle
-				v-for="segment in visibleSegments"
-				:key="segment.label"
-				:cx="CX"
-				:cy="CY"
-				:r="radius"
-				:stroke="segment.color"
-				:stroke-width="strokeWidth"
-				fill="none"
-				:stroke-dasharray="`${segment.dashLength} ${circumference * 2}`"
-				:transform="`rotate(${segment.startDeg}, ${CX}, ${CY})`"
-				class="segment-circle"
-				:style="{
-					strokeDashoffset: segment.isVisible ? 0 : segment.dashLength,
-					transitionDelay: `${segment.delay}ms`,
-				}"
-			/>
+				<!-- Colored segments -->
+				<circle
+					v-for="segment in visibleSegments"
+					:key="segment.label"
+					:cx="CX"
+					:cy="CY"
+					:r="radius"
+					:stroke="segment.color"
+					:stroke-width="strokeWidth"
+					fill="none"
+					:stroke-dasharray="`${segment.dashLength} ${circumference * 2}`"
+					:transform="`rotate(${segment.startDeg}, ${CX}, ${CY})`"
+					class="segment-circle"
+					:style="{
+						strokeDashoffset: segment.isVisible ? 0 : segment.dashLength,
+						transitionDelay: `${segment.delay}ms`,
+					}"
+				/>
 
-			<!-- "Other" segment -->
-			<circle
-				v-if="otherSegment"
-				:cx="CX"
-				:cy="CY"
-				:r="radius"
-				stroke="#C4C4C4"
-				:stroke-width="strokeWidth"
-				fill="none"
-				:stroke-dasharray="`${otherSegment.dashLength} ${circumference * 2}`"
-				:transform="`rotate(${otherSegment.startDeg}, ${CX}, ${CY})`"
-				class="segment-circle"
-				:style="{
-					strokeDashoffset: otherSegment.isVisible ? 0 : otherSegment.dashLength,
-					transitionDelay: `${otherSegment.delay}ms`,
-				}"
-			/>
-		</svg>
+				<!-- "Other" segment -->
+				<circle
+					v-if="otherSegment"
+					:cx="CX"
+					:cy="CY"
+					:r="radius"
+					:stroke="OTHER_SEGMENT_BG_COLOR"
+					:stroke-width="strokeWidth"
+					fill="none"
+					:stroke-dasharray="`${otherSegment.dashLength} ${circumference * 2}`"
+					:transform="`rotate(${otherSegment.startDeg}, ${CX}, ${CY})`"
+					class="segment-circle"
+					:style="{
+						strokeDashoffset: otherSegment.isVisible ? 0 : otherSegment.dashLength,
+						transitionDelay: `${otherSegment.delay}ms`,
+					}"
+				/>
+			</svg>
+		</div>
 
 		<!-- Legend: 2-column grid -->
 		<div
 			v-if="hasData && !loading"
-			class="tw-grid tw-grid-cols-2 tw-gap-0.5 tw-w-full"
+			class="tw-flex tw-flex-wrap tw-justify-center tw-gap-0.5 tw-w-full tw-pt-0.5"
 		>
 			<!-- Visible segment pills -->
 			<div
@@ -76,11 +78,9 @@
 					tw-flex tw-gap-0.5 tw-items-center
 					tw-px-1 tw-py-0.5
 					tw-rounded-xs
-					tw-justify-between
-					tw-w-full
 				"
 			>
-				<div class="tw-flex tw-gap-0.5 tw-items-center tw-shrink-0 tw-overflow-hidden">
+				<div class="tw-flex tw-gap-0.5 tw-items-center tw-min-w-0 tw-overflow-hidden">
 					<span
 						class="tw-shrink-0 tw-w-1 tw-h-1 tw-rounded-full legend-dot"
 						:style="{
@@ -102,7 +102,7 @@
 						tw-font-light tw-text-small tw-text-primary
 						tw-text-right tw-shrink-0 tw-tabular-nums
 					"
-					style="min-width: 2.8ch;"
+					:style="{ minWidth: valueMinWidth }"
 				>
 					{{ formatDisplayValue(index) }}
 				</span>
@@ -116,8 +116,6 @@
 					tw-flex tw-gap-0.5 tw-items-center
 					tw-px-1 tw-py-0.5
 					tw-rounded-xs
-					tw-justify-between
-					tw-w-full
 					tw-cursor-pointer
 					tw-border-0
 					tw-text-left
@@ -142,7 +140,7 @@
 						tw-font-light tw-text-small tw-text-primary
 						tw-text-right tw-shrink-0 tw-tabular-nums
 					"
-					style="min-width: 2.8ch;"
+					:style="{ minWidth: valueMinWidth }"
 				>
 					{{ formatOtherDisplayValue() }}
 				</span>
@@ -208,7 +206,7 @@ import {
 	watch,
 } from 'vue';
 import type { PropType } from 'vue';
-import { getPieChartColor } from '../utils/pieChartColors';
+import { getPieChartColor, LOADING_BG_COLOR, OTHER_SEGMENT_BG_COLOR } from '../utils/pieChartColors';
 import { easeInOutCubic } from '../utils/useCountUp';
 import KvLightbox from './KvLightbox.vue';
 
@@ -524,6 +522,32 @@ export default {
 			return formatDisplayValue(otherIndex);
 		};
 
+		// Reserve enough width for the widest final formatted value so pills
+		// don't shift during the count-up animation.
+		const valueMinWidth = computed(() => {
+			const allSegments = [
+				...visibleSegments.value,
+				...(otherSegment.value ? [otherSegment.value] : []),
+			];
+			let maxLen = 0;
+			allSegments.forEach((seg) => {
+				const target = getDisplayTarget(seg);
+				let formatted: string;
+				switch (unit.value) {
+					case 'percent':
+						formatted = `${target}%`;
+						break;
+					case 'amount':
+						formatted = `$${target.toLocaleString()}`;
+						break;
+					default:
+						formatted = `${target.toLocaleString()}`;
+				}
+				if (formatted.length > maxLen) maxLen = formatted.length;
+			});
+			return `${maxLen}ch`;
+		});
+
 		// Trigger animation on mount or when loading completes.
 		// Double rAF ensures the browser paints the initial state (segments
 		// hidden) before flipping `animatedIn`, so the CSS transition fires.
@@ -566,6 +590,8 @@ export default {
 			CY,
 			radius,
 			circumference,
+			LOADING_BG_COLOR,
+			OTHER_SEGMENT_BG_COLOR,
 			// State
 			showOtherLightbox,
 			animatedIn,
@@ -576,6 +602,7 @@ export default {
 			otherSegment,
 			otherItems,
 			allItemsWithColors,
+			valueMinWidth,
 			// Methods
 			formatDisplayValue,
 			formatItemValue,
@@ -592,10 +619,6 @@ export default {
 
 .skeleton-ring {
 	transition: opacity 500ms ease-in-out;
-}
-
-.skeleton-ring--hidden {
-	opacity: 0;
 }
 
 .legend-dot {

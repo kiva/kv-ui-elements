@@ -170,7 +170,7 @@ export const Default = {
 		},
 		template: `
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-inline-block">
-				<div style="width: 262px;">
+				<div style="max-width: 262px;">
 					<KvPieChartV2 v-bind="args" />
 				</div>
 			</div>

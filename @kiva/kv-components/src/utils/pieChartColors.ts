@@ -2,6 +2,8 @@ import kvTokensPrimitives from '@kiva/kv-tokens';
 
 const { colors } = kvTokensPrimitives;
 
+export const LOADING_BG_COLOR: string = colors.gray[100]; // #F5F5F5
+export const OTHER_SEGMENT_BG_COLOR: string = colors.gray[300]; // #C4C4C4
 /**
  * Tiered chart color palette drawn from kv-tokens design primitives.
  * Tier 1 (indices 0-7): Bold primary colors for maximum visual distinction.
