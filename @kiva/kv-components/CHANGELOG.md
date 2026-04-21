@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.9.1...@kiva/kv-components@8.10.0) (2026-04-17)
+
+
+### Bug Fixes
+
+* improve responsiveness for small layouts, use more design system colors ([4728a8f](https://github.com/kiva/kv-ui-elements/commit/4728a8f34888cec4686a5e647c9575bedb1a4eef))
+
+
+### Features
+
+* create new pie chart component along with stories and tests ([90df895](https://github.com/kiva/kv-ui-elements/commit/90df895bd214d2b4493a6223d9efe15d1fa4f8bd))
+
+
+
+
+
+## [8.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.9.0...@kiva/kv-components@8.9.1) (2026-04-16)
+
+
+### Bug Fixes
+
+* resolve tab issues with kvtabs ([#808](https://github.com/kiva/kv-ui-elements/issues/808)) ([66e90c2](https://github.com/kiva/kv-ui-elements/commit/66e90c2e838f97ff056033283406b82bf9a1882f))
+
+
+
+
+
 # [8.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.8.0...@kiva/kv-components@8.9.0) (2026-04-10)
 
 

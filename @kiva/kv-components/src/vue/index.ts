@@ -58,6 +58,7 @@ export { default as KvMaterialIcon } from './KvMaterialIcon.vue';
 export { default as KvPageContainer } from './KvPageContainer.vue';
 export { default as KvPagination } from './KvPagination.vue';
 export { default as KvPieChart } from './KvPieChart.vue';
+export { default as KvPieChartV2 } from './KvPieChartV2.vue';
 export { default as KvPill } from './KvPill.vue';
 export { default as KvPopper } from './KvPopper.vue';
 export { default as KvProgressBar } from './KvProgressBar.vue';

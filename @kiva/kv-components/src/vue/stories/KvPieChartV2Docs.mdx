@@ -1,0 +1,272 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvPieChartV2Stories from './KvPieChartV2.stories.js';
+
+<Meta title="Charts/KvPieChartV2" component={KvPieChartV2Stories.Component} />
+
+# KvPieChartV2
+
+An animated donut chart with an accompanying legend, designed for compact displays of categorical breakdowns with optional overflow into an "Other" lightbox.
+
+## Component Overview
+
+KvPieChartV2 renders a sorted donut chart with one ring segment per data item and a two-column legend of color-coded pills. Segments animate in with a staggered grow effect while their values count up from zero. When the dataset exceeds `shownSegments`, the remaining items collapse into an "Other" segment whose pill opens a lightbox listing every item in descending order.
+
+<Story of={KvPieChartV2Stories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component exposes several axes of customization:
+
+- **Unit Format**: Display legend values as `percent`, `amount` (with `$` prefix), or raw `count`
+- **Ring Thickness**: `strokeWidth` controls how thick the donut ring is; the radius shrinks as it grows so the outer edge always fits the viewBox
+- **Segment Gap**: `segmentGap` adds visual breathing room between adjacent segments
+- **Segment Cap**: `shownSegments` caps the number of distinct segments before the rest collapse into "Other"
+- **Custom Colors**: Each item can override its assigned palette color via an optional `color` field
+- **Animation Timing**: `initialDelay` postpones the entrance animation; `animateOut` reverses it
+
+<Story of={KvPieChartV2Stories.AllVariations} />
+
+## Usage Information
+
+KvPieChartV2 is intended for compact dashboard tiles, profile cards, and modal panels where a categorical breakdown should feel approachable rather than data-dense. The animated entrance draws attention to the chart on first view, and the "Other" overflow keeps the legend scannable even when the underlying dataset is long.
+
+### When to Use
+
+- To show how a small number of categories add up to a whole (sectors, gender, status, etc.)
+- In compact contexts (~262px wide) where a full chart library would be overkill
+- When animated reveals add value to the experience (e.g., on loan or impact pages)
+- When you want a clickable "Other" affordance for long-tail data
+
+### When Not to Use
+
+- For precise, comparison-heavy data — use a bar chart or table instead
+- For time-series data — use [KvLineGraph](/?path=/docs/charts-kvlinegraph--docs)
+- When the dataset has dozens of equally-weighted categories that resist meaningful collapse
+- For interactive drill-down or hover tooltips — the component is read-only beyond the "Other" lightbox
+
+---
+
+## Behavior
+
+The chart's behavior centers on its entrance animation, the "Other" overflow affordance, and the loading skeleton.
+
+### Loading State
+
+When `loading` is true, the chart renders a neutral gray skeleton ring in place of the segments and hides the legend. This keeps layout stable while data fetches and avoids partial renders. As soon as `loading` flips to false (with `values` present), the entrance animation begins after `initialDelay`.
+
+<Story of={KvPieChartV2Stories.LoadingState} />
+
+### Other Segment Overflow
+
+When the number of items exceeds `shownSegments`, all overflow items are merged into a single gray "Other" segment in the ring and a corresponding "Other" pill in the legend. Clicking the pill opens a lightbox showing **every** item — both visible and collapsed — sorted in descending order with their assigned colors. This lets consumers scan the long tail without inflating the chart itself.
+
+<Story of={KvPieChartV2Stories.DataDensity} />
+
+## Anatomy
+
+The component is composed of:
+
+- **Donut ring**: An SVG with one `<circle>` per visible segment and an optional gray "Other" circle, all rendered with `stroke-dasharray` to control segment length
+- **Skeleton ring**: A neutral gray placeholder circle shown while `loading` is true or when no data is present
+- **Legend grid**: A two-column grid of color-coded pills, each showing the segment label and its animated value
+- **Other pill**: A trigger pill that opens the lightbox when overflow exists
+- **Other lightbox**: A modal listing all items in descending order, rendered via [KvLightbox](/?path=/docs/components-kvlightbox--docs)
+
+---
+
+## Specs
+
+### Ring Thickness
+
+The donut renders inside a fixed `262 × 262` viewBox. The radius is derived from `strokeWidth` so the outer edge always lands on the viewBox boundary — thicker rings grow inward toward center rather than overflowing the SVG. Common values:
+
+- **16-24**: Thin, subtle rings
+- **56** (default): Balanced standard appearance
+- **80-120**: Bold, prominent rings (smaller inner hole)
+
+<Story of={KvPieChartV2Stories.RingThickness} />
+
+### Segment Gap
+
+The `segmentGap` prop subtracts visual length (in SVG user units along the circumference) from each segment so adjacent segments appear separated. A value of `0` produces a continuous ring; the default of `2` matches the design spec; values around `8-10` create distinct "petal" segments.
+
+### Animation Timing
+
+The entrance animation runs in three coordinated phases:
+
+- **Initial delay** (`initialDelay`, default `1000ms`): Wait before any segment animates
+- **Per-segment grow** (500ms): Each segment expands clockwise from its starting angle
+- **Stagger** (500ms): Each segment begins as the previous one completes
+
+Count-up animations on legend pill values run in parallel with their corresponding segment animations using cubic ease-in-out.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvPieChartV2/do-limit-segments.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Cap visible segments at 5–6 with `shownSegments` and let the rest collapse into "Other" so the legend stays scannable.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvPieChartV2/dont-show-too-many.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Render every category as its own segment. Crowded rings make individual slices unreadable and force the legend to grow indefinitely.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvPieChartV2/do-match-unit.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pick the `unit` that matches the underlying data: `percent` for share-of-whole, `amount` for currency, `count` for raw tallies.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvPieChartV2/dont-mix-units.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Display amounts as percents (or vice versa) just because it looks tidier. The unit must reflect what the chart actually measures.</p>
+	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The chart `<figure>` carries an `aria-label="Pie chart"` so it is announced as an image to assistive tech
+- The decorative SVG is marked `aria-hidden="true"` since the legend pills carry the same data in textual form
+- The "Other" pill is a real `<button>` with an accessible name, supporting keyboard activation and focus styles
+- The lightbox triggered from "Other" is a focus-trapped dialog (`role="dialog"`) provided by [KvLightbox](/?path=/docs/components-kvlightbox--docs)
+- Segment colors are drawn from the design-system palette to maintain WCAG-friendly contrast against the page background; custom overrides are the consumer's responsibility
+- Animated entrance respects standard motion: pure CSS transitions on stroke offsets and rAF-based count-up, with no parallax or large movement
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvPieChartV2Stories.Default} />
+<Controls of={KvPieChartV2Stories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Donut with Percent Legend
+
+```vue
+<template>
+  <div style="width: 262px;">
+    <KvPieChartV2 :values="sectorValues" />
+  </div>
+</template>
+
+<script>
+import { KvPieChartV2 } from '@kiva/kv-components';
+
+export default {
+  components: { KvPieChartV2 },
+  setup() {
+    const sectorValues = [
+      { label: 'Agriculture', value: 28 },
+      { label: 'Eco-friendly', value: 28 },
+      { label: 'Services', value: 17 },
+      { label: 'Water', value: 13 },
+      { label: 'Food', value: 12 },
+      { label: 'Other', value: 5 },
+    ];
+    return { sectorValues };
+  },
+};
+</script>
+```
+
+### Currency Breakdown with Custom Thickness
+
+```vue
+<template>
+  <div style="width: 262px;">
+    <KvPieChartV2
+      :values="spendByCategory"
+      unit="amount"
+      :stroke-width="40"
+      :segment-gap="4"
+    />
+  </div>
+</template>
+
+<script>
+import { KvPieChartV2 } from '@kiva/kv-components';
+
+export default {
+  components: { KvPieChartV2 },
+  setup() {
+    const spendByCategory = [
+      { label: 'Housing', value: 1450 },
+      { label: 'Food', value: 620 },
+      { label: 'Transport', value: 310 },
+      { label: 'Utilities', value: 180 },
+    ];
+    return { spendByCategory };
+  },
+};
+</script>
+```
+
+### Long Dataset with "Other" Overflow
+
+```vue
+<template>
+  <div style="width: 262px;">
+    <KvPieChartV2
+      :values="loansBySector"
+      :shown-segments="5"
+      unit="count"
+    />
+  </div>
+</template>
+
+<script>
+import { KvPieChartV2 } from '@kiva/kv-components';
+
+export default {
+  components: { KvPieChartV2 },
+  setup() {
+    const loansBySector = [
+      { label: 'Food', value: 575 },
+      { label: 'Retail', value: 377 },
+      { label: 'Agriculture', value: 285 },
+      { label: 'Services', value: 211 },
+      { label: 'Clothing', value: 183 },
+      { label: 'Arts', value: 65 },
+      { label: 'Housing', value: 65 },
+      { label: 'Education', value: 36 },
+      { label: 'Construction', value: 28 },
+    ];
+    return { loansBySector };
+  },
+};
+</script>
+```
