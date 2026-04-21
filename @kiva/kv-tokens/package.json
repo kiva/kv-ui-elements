@@ -10,6 +10,10 @@
         ".": "./index.js",
         "./tokens": "./dist/js/tokens.js",
         "./tailwind": "./configs/tailwind.config.js",
+        "./configs/*": "./configs/*",
+        "./configs/tailwind.config.js": "./configs/tailwind.config.js",
+        "./configs/kivaColors.js": "./configs/kivaColors.js",
+        "./configs/kivaTypography.js": "./configs/kivaTypography.js",
         "./css": "./dist/css/tokens.css",
         "./scss": "./dist/scss/tokens.scss"
     },
