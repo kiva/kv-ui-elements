@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.9.1-next.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.9.0...@kiva/kv-components@8.9.1-next.0) (2026-04-21)
+
+
+### Bug Fixes
+
+* ensure order of package builds using lerna, clear dist if it exists ([ba0ffbf](https://github.com/kiva/kv-ui-elements/commit/ba0ffbf920f57a64c97cb149920230a6ee148c97))
+
+
+
+
+
 # [8.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.8.0...@kiva/kv-components@8.9.0) (2026-04-10)
 
 
