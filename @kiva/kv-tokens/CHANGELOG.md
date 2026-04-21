@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-next.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.0.0-next.0...@kiva/kv-tokens@4.0.0-next.1) (2026-04-21)
+
+
+### Bug Fixes
+
+* ensure expected files are importable ([61135a6](https://github.com/kiva/kv-ui-elements/commit/61135a6591e56835056464e15ba694407aba8070))
+
+
+
+
+
 # [4.0.0-next.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@3.7.6...@kiva/kv-tokens@4.0.0-next.0) (2026-04-21)
 
 
