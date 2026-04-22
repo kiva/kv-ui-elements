@@ -8,12 +8,14 @@
     "main": "index.js",
     "exports": {
         ".": "./index.js",
-        "./tokens": "./dist/js/tokens.js",
+        "./tokens": "./dist/dtcg/tokens.json",
+        "./tokens/*": "./tokens/*",
         "./tailwind": "./configs/tailwind.config.js",
         "./configs/*": "./configs/*",
         "./configs/tailwind.config.js": "./configs/tailwind.config.js",
         "./configs/kivaColors.js": "./configs/kivaColors.js",
         "./configs/kivaTypography.js": "./configs/kivaTypography.js",
+        "./js": "./dist/js/tokens.js",
         "./css": "./dist/css/tokens.css",
         "./scss": "./dist/scss/tokens.scss"
     },
@@ -22,13 +24,16 @@
         "configs/",
         "dist/",
         "assets/",
-        "build/"
+        "build/",
+        "tokens/"
     ],
     "scripts": {
-        "test": "echo No tests specified for @kiva/kv-tokens.",
+        "test": "node --test",
         "lint": "eslint --ext .js ./",
         "build:tokens": "style-dictionary build --config ./build/style-dictionary.config.js",
-        "build": "rimraf dist && npm run build:tokens && node ./build/build"
+        "build:dtcg": "node ./build/build-dtcg.js",
+        "build": "rimraf dist && npm run build:tokens && npm run build:dtcg && node ./build/build",
+        "prepare": "npm run build"
     },
     "repository": {
         "type": "git",

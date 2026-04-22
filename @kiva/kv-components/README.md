@@ -58,6 +58,12 @@ cd @kiva/kv-components
 npm run storybook
 ```
 
+### About `@kiva/kv-tokens`
+
+kv-components imports design tokens and the Tailwind preset from the sibling [`@kiva/kv-tokens`](../kv-tokens/) workspace, which ships pre-built artifacts under `dist/`. That directory is gitignored, but kv-tokens' `prepare` lifecycle script regenerates it during the root `npm install` — so Storybook starts without a separate build step.
+
+If you edit token sources under [`../kv-tokens/tokens/`](../kv-tokens/tokens/), rerun `npm run build` in that package to regenerate `dist/`; Storybook will pick up the change on reload.
+
 ### Writing Stories
 
 -   Write stories in the [CSF format](https://storybook.js.org/docs/vue/writing-stories/introduction)
