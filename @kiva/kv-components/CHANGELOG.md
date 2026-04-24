@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.10.0...@kiva/kv-components@8.11.0) (2026-04-24)
+
+
+### Bug Fixes
+
+* ensure order of package builds using lerna, clear dist if it exists ([ba0ffbf](https://github.com/kiva/kv-ui-elements/commit/ba0ffbf920f57a64c97cb149920230a6ee148c97))
+
+
+### Features
+
+* add raw token export and access, set js tokens under that path, ensure token build ([efad446](https://github.com/kiva/kv-ui-elements/commit/efad446e1b3d7164fee5da4524687ca40c2d7542))
+
+
+
+
+
 # [8.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.9.1...@kiva/kv-components@8.10.0) (2026-04-17)
 
 
