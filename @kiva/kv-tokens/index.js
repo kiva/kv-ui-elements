@@ -1,4 +1,4 @@
-import tokens from './primitives.js';
+import tokens from './dist/js/tokens.js';
 
 export * from './configs/kivaColors.js';
 export * from './configs/kivaTypography.js';

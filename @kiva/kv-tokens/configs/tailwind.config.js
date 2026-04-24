@@ -7,7 +7,7 @@ import {
 	webFonts,
 } from './kivaTypography.js';
 import { defaultTheme, buildColorChoices } from './kivaColors.js';
-import designTokens from '../primitives.js';
+import designTokens from '../dist/js/tokens.js';
 import { rem } from './util.js';
 
 const {

@@ -1,4 +1,4 @@
-import designTokens from '../primitives.js';
+import designTokens from '../dist/js/tokens.js';
 import { base64 } from './util.js';
 import underlinePath from './underlinePath.js';
 

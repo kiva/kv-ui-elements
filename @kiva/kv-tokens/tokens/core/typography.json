@@ -1,0 +1,68 @@
+{
+	"font-family": {
+		"sans":  { "$type": "fontFamily", "$value": "PostGrotesk, PostGrotesk-fallback, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif" },
+		"serif": { "$type": "fontFamily", "$value": "dovetail-mvb, dovetail-mvb-fallback, ui-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Palatino', Georgia, 'Times New Roman', serif" }
+	},
+	"font-weight": {
+		"light":  { "$type": "fontWeight", "$value": 300 },
+		"normal": { "$type": "fontWeight", "$value": 400 },
+		"medium": { "$type": "fontWeight", "$value": 500 }
+	},
+	"font-size": {
+		"base":   { "sm": { "$type": "number", "$value": 16 }, "md": { "$type": "number", "$value": 16 }, "lg": { "$type": "number", "$value": 16 } },
+		"jumbo":  { "sm": { "$type": "number", "$value": 42 }, "md": { "$type": "number", "$value": 48 }, "lg": { "$type": "number", "$value": 72 } },
+		"small":  { "sm": { "$type": "number", "$value": 14 }, "md": { "$type": "number", "$value": 14 }, "lg": { "$type": "number", "$value": 14 } },
+		"h1":     { "sm": { "$type": "number", "$value": 36 }, "md": { "$type": "number", "$value": 40 }, "lg": { "$type": "number", "$value": 48 } },
+		"h2":     { "sm": { "$type": "number", "$value": 28 }, "md": { "$type": "number", "$value": 28 }, "lg": { "$type": "number", "$value": 32 } },
+		"h3":     { "sm": { "$type": "number", "$value": 22 }, "md": { "$type": "number", "$value": 22 }, "lg": { "$type": "number", "$value": 24 } },
+		"h4":     { "sm": { "$type": "number", "$value": 14 }, "md": { "$type": "number", "$value": 14 }, "lg": { "$type": "number", "$value": 14 } },
+		"h5":     { "sm": { "$type": "number", "$value": 13 }, "md": { "$type": "number", "$value": 13 }, "lg": { "$type": "number", "$value": 14 } },
+		"subhead":{ "sm": { "$type": "number", "$value": 22 }, "md": { "$type": "number", "$value": 22 }, "lg": { "$type": "number", "$value": 24 } }
+	},
+	"semantic-font-size": {
+		"jumbo":   { "sm": { "$type": "number", "$value": 36 }, "md": { "$type": "number", "$value": 40 }, "lg": { "$type": "number", "$value": 44 } },
+		"h1":      { "sm": { "$type": "number", "$value": 22 }, "md": { "$type": "number", "$value": 22 }, "lg": { "$type": "number", "$value": 26 } },
+		"h2":      { "sm": { "$type": "number", "$value": 20 }, "md": { "$type": "number", "$value": 20 }, "lg": { "$type": "number", "$value": 22 } },
+		"h3":      { "sm": { "$type": "number", "$value": 18 }, "md": { "$type": "number", "$value": 18 }, "lg": { "$type": "number", "$value": 20 } },
+		"base":    { "base":   { "$type": "number", "$value": 16 } },
+		"button":  { "button": { "$type": "number", "$value": 17 } },
+		"caption": { "small":  { "$type": "number", "$value": 14 } },
+		"label":   { "small":  { "$type": "number", "$value": 14 } },
+		"small":   { "small":  { "$type": "number", "$value": 14 } },
+		"upper":   { "small":  { "$type": "number", "$value": 14 } }
+	},
+	"line-height": {
+		"nearly-none": { "$type": "number", "$value": 1.05 },
+		"tight":       { "$type": "number", "$value": 1.25 },
+		"normal":      { "$type": "number", "$value": 1.5 },
+		"100":         { "$type": "number", "$value": 1 },
+		"125":         { "$type": "number", "$value": 1.25 },
+		"130":         { "$type": "number", "$value": 1.3 },
+		"140":         { "$type": "number", "$value": 1.4 },
+		"150":         { "$type": "number", "$value": 1.5 }
+	},
+	"line-height-absolute": {
+		"jumbo":   { "sm": { "$type": "number", "$value": 47 }, "md": { "$type": "number", "$value": 52 }, "lg": { "$type": "number", "$value": 57 } },
+		"h1":      { "sm": { "$type": "number", "$value": 31 }, "md": { "$type": "number", "$value": 31 }, "lg": { "$type": "number", "$value": 36 } },
+		"h2":      { "sm": { "$type": "number", "$value": 26 }, "md": { "$type": "number", "$value": 26 }, "lg": { "$type": "number", "$value": 31 } },
+		"h3":      { "sm": { "$type": "number", "$value": 23 }, "md": { "$type": "number", "$value": 23 }, "lg": { "$type": "number", "$value": 26 } },
+		"base":    { "sm": { "$type": "number", "$value": 22 }, "md": { "$type": "number", "$value": 22 }, "lg": { "$type": "number", "$value": 22 } },
+		"button":  { "sm": { "$type": "number", "$value": 21 }, "md": { "$type": "number", "$value": 21 }, "lg": { "$type": "number", "$value": 21 } },
+		"upper":   { "sm": { "$type": "number", "$value": 18 }, "md": { "$type": "number", "$value": 18 }, "lg": { "$type": "number", "$value": 18 } },
+		"label":   { "sm": { "$type": "number", "$value": 18 }, "md": { "$type": "number", "$value": 18 }, "lg": { "$type": "number", "$value": 18 } },
+		"caption": { "sm": { "$type": "number", "$value": 18 }, "md": { "$type": "number", "$value": 18 }, "lg": { "$type": "number", "$value": 18 } }
+	},
+	"letter-spacing": {
+		"normal": { "$type": "number", "$value": 0 },
+		"n100":   { "$type": "number", "$value": -0.2 },
+		"n200":   { "$type": "number", "$value": -0.22 },
+		"n0_3":   { "$type": "number", "$value": -0.3 },
+		"n0_5":   { "$type": "number", "$value": -0.5 },
+		"n300":   { "$type": "number", "$value": -0.52 },
+		"n400":   { "$type": "number", "$value": -0.72 },
+		"n500":   { "$type": "number", "$value": -0.8 },
+		"n600":   { "$type": "number", "$value": -0.88 },
+		"n1":     { "$type": "number", "$value": -1 },
+		"n2":     { "$type": "number", "$value": -2 }
+	}
+}

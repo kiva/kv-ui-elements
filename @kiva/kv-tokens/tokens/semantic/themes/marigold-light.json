@@ -1,0 +1,35 @@
+{
+	"theme": {
+		"marigold-light": {
+			"text": {
+				"primary":          { "$type": "color", "$value": "#593207" },
+				"primary-inverse":  { "$type": "color", "$value": "#F8F2E6" },
+				"action":           { "$type": "color", "$value": "#996210" },
+				"action-highlight": { "$type": "color", "$value": "#593207" }
+			},
+			"background": {
+				"primary":           { "$type": "color", "$value": "#F8F2E6" },
+				"primary-inverse":   { "$type": "color", "$value": "#593207" },
+				"secondary":         { "$type": "color", "$value": "#FFFFFF" },
+				"tertiary":          { "$type": "color", "$value": "#C4C4C4" },
+				"action":            { "$type": "color", "$value": "#996210" },
+				"action-highlight":  { "$type": "color", "$value": "#593207" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			},
+			"border": {
+				"primary":           { "$type": "color", "$value": "#996210" },
+				"primary-inverse":   { "$type": "color", "$value": "#F8F2E6" },
+				"secondary":         { "$type": "color", "$value": "#F8CD69" },
+				"tertiary":          { "$type": "color", "$value": "#FFFFFF" },
+				"action":            { "$type": "color", "$value": "#996210" },
+				"action-highlight":  { "$type": "color", "$value": "#593207" },
+				"caution-highlight": { "$type": "color", "$value": "#F8F2E6" },
+				"danger-highlight":  { "$type": "color", "$value": "#F9F0EF" }
+			},
+			"heading-underline": {
+				"primary": { "$type": "color", "$value": "#F8CD69" }
+			}
+		}
+	}
+}

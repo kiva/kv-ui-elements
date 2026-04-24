@@ -101,7 +101,7 @@
     "lint": "eslint --ext .ts,.vue ./",
     "test": "npm run lint && jest",
     "prebuild": "node build/copyFlags.js",
-    "build": "vite build",
+    "build": "rimraf dist && vite build",
     "postbuild": "mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
   },
   "peerDependencies": {

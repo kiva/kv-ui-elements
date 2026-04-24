@@ -1,0 +1,10 @@
+{
+	"theme": {
+		"green-light": {
+			"background": {
+				"primary":   { "$type": "color", "$value": "#EDF4F1" },
+				"secondary": { "$type": "color", "$value": "#FFFFFF" }
+			}
+		}
+	}
+}
