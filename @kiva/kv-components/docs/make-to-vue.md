@@ -85,7 +85,7 @@ Decide: new component, v2 of existing, or enhancement to existing.
 Figma Make output is presentational/demo code. Determine what needs to change:
 
 - **Hardcoded data** -> Dynamic props
-- **Hardcoded colors** -> Design system tokens from `@kiva/kv-tokens/primitives.js`
+- **Hardcoded colors** -> Design system tokens from `@kiva/kv-tokens`
 - **Fixed dimensions** -> Container-responsive sizing
 - **Presentational strings** -> Configurable via props/slots
 - **React animation libraries** -> CSS transitions or Vue composables (prefer no extra deps)
@@ -123,7 +123,7 @@ Figma Make outputs raw Tailwind classes. Convert to kv-components patterns:
 - **Replace hardcoded font families** with design system fonts (`tw-font-sans`, `tw-font-serif`)
 - **Replace hardcoded colors** with token references where possible
 - **Replace pixel values** in Tailwind classes with spacing scale values (8px increments)
-- **Use design tokens** from `@kiva/kv-tokens/primitives.js` for colors, spacing, typography
+- **Use design tokens** from `@kiva/kv-tokens` for colors, spacing, typography
 
 ### 2.4 Animation Translation
 
@@ -184,7 +184,7 @@ Extract into `src/utils/` when:
 
 ### 4.1 Colors
 
-Always check `@kiva/kv-tokens/primitives.js` for existing color tokens before using hardcoded hex values. Map Figma Make colors to the closest token:
+Always check `@kiva/kv-tokens` for existing color tokens before using hardcoded hex values. Map Figma Make colors to the closest token:
 
 ```js
 import kvTokensPrimitives from '@kiva/kv-tokens';
