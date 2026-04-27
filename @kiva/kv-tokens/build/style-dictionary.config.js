@@ -1,3 +1,4 @@
+// Build-time token generation only. This file is not part of the published runtime surface.
 import StyleDictionary from 'style-dictionary';
 import jsTokensFormat from './formats/js-tokens.js';
 import cssThemesFormat from './formats/css-themes.js';
