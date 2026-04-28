@@ -55,16 +55,17 @@
 									tw-p-1
 									tw-mb-0
 									tw-mr-2
-									tw-text-upper
-									tw-inline-flex
-									tw-items-center"
+									tw-text-label
+									tw-flex
+									tw-items-center
+									tw-h-3"
 								style="padding: 2px 6px; text-transform: capitalize;"
 							>
 								<kv-material-icon
 									class="tw-h-2 tw-w-2"
 									:icon="mdiMapMarker"
 								/>
-								{{ formattedLocation }}
+								<span style="margin-top: 0.125rem;">{{ formattedLocation }}</span>
 							</p>
 						</div>
 					</component>

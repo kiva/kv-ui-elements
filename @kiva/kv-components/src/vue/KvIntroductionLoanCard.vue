@@ -56,9 +56,10 @@
 									tw-p-1
 									tw-mb-0
 									tw-mr-2
-									tw-text-upper
-									tw-inline-flex
+									tw-text-label
+									tw-flex
 									tw-items-center
+									tw-h-3
 									!tw-capitalize
 								"
 								style="padding: 2px 6px;"
@@ -72,7 +73,7 @@
 										hide-border
 									/>
 								</suspense>
-								{{ formattedLocation }}
+								<span style="margin-top: 0.125rem;">{{ formattedLocation }}</span>
 							</p>
 						</div>
 					</component>
