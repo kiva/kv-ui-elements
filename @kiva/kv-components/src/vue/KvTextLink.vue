@@ -4,7 +4,7 @@
 		ref="buttonRef"
 		:to="to"
 		:disabled="state === 'disabled'"
-		class="tw-text-h4 tw-text-link"
+		class="tw-text-upper tw-text-link"
 		:class="{
 			'tw-opacity-low tw-pointer-events-none': state === 'disabled',
 			'tw-group tw-inline-flex tw-items-center tw-gap-x-0.5': icon

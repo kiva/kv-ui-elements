@@ -56,7 +56,7 @@
 									tw-p-1
 									tw-mb-0
 									tw-mr-2
-									tw-text-h4
+									tw-text-upper
 									tw-inline-flex
 									tw-items-center
 									!tw-capitalize

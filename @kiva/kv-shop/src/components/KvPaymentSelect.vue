@@ -320,7 +320,7 @@ Braintree guarantees that these will not be easily changed.
 .kv-payment-select [data-braintree-id="apple-pay-sheet-header"] .braintree-sheet__label,
 .kv-payment-select [data-braintree-id="google-pay-sheet-header"] .braintree-sheet__label,
 .kv-payment-select [data-braintree-id="card-sheet-header"] .braintree-sheet__label {
-	@apply tw-ml-0 tw-text-h4 tw-text-primary tw-text-left;
+	@apply tw-ml-0 tw-text-upper tw-text-primary tw-text-left;
 }
 
 /* Saved payment methods container
@@ -357,7 +357,7 @@ List of vaulted cards */
 /* 'Choose another way to pay' text */
 .kv-payment-select [data-braintree-id="toggle"],
 .kv-payment-select [data-braintree-id="toggle"]:hover {
-	@apply tw-bg-transparent tw-text-h4 tw-text-link;
+	@apply tw-bg-transparent tw-text-upper tw-text-link;
 }
 
 .kv-payment-select [data-braintree-id="toggle"] span,

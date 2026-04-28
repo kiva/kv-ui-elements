@@ -37,13 +37,13 @@
 				</span>
 			</template>
 		</figure>
-		<h4
+		<p
 			v-if="axisLabel"
-			class="tw-text-center"
+			class="tw-text-center tw-text-upper"
 			:class="{ 'tw-pt-1': !hasValueLabels, 'tw-pt-6': hasValueLabels }"
 		>
 			{{ axisLabel }}
-		</h4>
+		</p>
 	</div>
 </template>
 

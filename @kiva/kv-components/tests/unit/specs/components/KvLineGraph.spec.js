@@ -35,7 +35,7 @@ describe('KvLineGraph', () => {
 
 	it('should render chart with x-axis label', () => {
 		const { container } = render(KvLineGraph, { props: { points, axisLabel: 'People supported over time' } });
-		const label = container.querySelectorAll('h4');
+		const label = container.querySelectorAll('p.tw-text-upper');
 
 		expect(label.length).toBe(1);
 	});
@@ -43,7 +43,7 @@ describe('KvLineGraph', () => {
 	it('should render chart with value labels and x-axis label', () => {
 		const { container } = render(KvLineGraph, { props: { points: pointsWithLabels, axisLabel: 'People supported over time' } });
 		const pointElements = container.querySelectorAll('span');
-		const label = container.querySelectorAll('h4');
+		const label = container.querySelectorAll('p.tw-text-upper');
 
 		expect(pointElements.length).toBe(points.length * 2);
 		expect(label.length).toBe(1);

@@ -1,18 +1,18 @@
 <template>
 	<figure>
 		<div :class="{'tw-flex tw-justify-between': amountGoal}">
-			<h4
-				class="tw-lowercase tw-mb-0.5"
+			<p
+				class="tw-text-label tw-mb-0.5"
 				:class="{ 'progress-group-amount-low': amountLow}"
 			>
 				{{ fundingText }}
-			</h4>
-			<h4
+			</p>
+			<p
 				v-if="amountGoal"
-				class="tw-lowercase tw-mb-0.5"
+				class="tw-text-label tw-mb-0.5"
 			>
 				{{ goalText }}
-			</h4>
+			</p>
 		</div>
 		<kv-progress-bar
 			label="Percent the loan has funded"
