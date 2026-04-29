@@ -24,7 +24,7 @@
 		</div>
 		<span
 			v-if="showName"
-			class="tw-text-h4 tw-my-2"
+			class="tw-text-upper tw-my-2"
 		>{{ name }}</span>
 	</div>
 </template>

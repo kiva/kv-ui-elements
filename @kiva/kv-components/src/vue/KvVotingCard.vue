@@ -20,7 +20,7 @@
 					tw-text-primary
 					tw-bg-white
 					tw-rounded
-					tw-text-h4
+					tw-text-upper
 					tw-inline-flex
 					tw-items-center"
 				style="padding: 2px 6px; text-transform: capitalize;"

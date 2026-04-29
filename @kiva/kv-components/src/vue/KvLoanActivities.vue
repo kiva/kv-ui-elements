@@ -35,9 +35,9 @@
 					:key="activity.key"
 					class="md:tw-px-8 lg:tw-px-14 tw-mt-4"
 				>
-					<h4 class="tw-text-center tw-text-h4">
+					<p class="tw-text-center tw-text-upper">
 						{{ formattedDate(activity.key) }}
-					</h4>
+					</p>
 					<div class="tw-flex tw-flex-col tw-gap-y-1">
 						<KvActivityRow
 							v-for="(act, index) in activity.data"
