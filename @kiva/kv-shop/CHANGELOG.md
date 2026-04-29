@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.71](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.70...@kiva/kv-shop@3.7.71) (2026-04-29)
+
+
+### Bug Fixes
+
+* pre-emptive fixes for h4 tags in global components for incoming header style definitions ([281bb46](https://github.com/kiva/kv-ui-elements/commit/281bb468e037672973a8afec1bb1dbe99a39cebb))
+
+
+
+
+
 ## [3.7.70](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.69...@kiva/kv-shop@3.7.70) (2026-04-27)
 
 **Note:** Version bump only for package @kiva/kv-shop

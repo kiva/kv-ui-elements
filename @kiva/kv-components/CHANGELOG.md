@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.11.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.2...@kiva/kv-components@8.11.3) (2026-04-29)
+
+
+### Bug Fixes
+
+* improve loan card location pill layout ([72f4e63](https://github.com/kiva/kv-ui-elements/commit/72f4e630089eb7cb5e88561c24ee093e3e9a99e2))
+* pre-emptive fixes for h4 tags in global components for incoming header style definitions ([281bb46](https://github.com/kiva/kv-ui-elements/commit/281bb468e037672973a8afec1bb1dbe99a39cebb))
+
+
+
+
+
 ## [8.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.1...@kiva/kv-components@8.11.2) (2026-04-27)
 
 **Note:** Version bump only for package @kiva/kv-components
