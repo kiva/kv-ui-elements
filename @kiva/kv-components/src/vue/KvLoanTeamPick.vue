@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="tw-bg-white tw-rounded tw-px-1 tw-right-6 tw-flex tw-items-center tw-gap-0.5 tw-py-0.5
-			tw-text-h5 tw-font-medium"
+			tw-text-label"
 	>
 		<svg
 			width="20"

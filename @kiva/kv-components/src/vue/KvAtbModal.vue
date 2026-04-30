@@ -216,7 +216,7 @@
 							<!-- eslint-enable max-len -->
 							<div
 								v-if="showOneAway"
-								class="tw-text-h5"
+								class="tw-text-base"
 							>
 								{{ oneAwayText }}
 							</div>
