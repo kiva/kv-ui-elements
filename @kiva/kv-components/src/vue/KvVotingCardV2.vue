@@ -47,7 +47,7 @@
 			@lightbox-closed="isLightboxOpen = false"
 		>
 			<template #header>
-				<h3>
+				<h3 class="tw-text-title">
 					{{ title }}
 				</h3>
 			</template>

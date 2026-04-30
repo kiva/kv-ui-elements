@@ -7,6 +7,7 @@ Skills capture **design intent from Figma**, the canonical source of truth for t
 ## Skills
 
 - [typography](docs/skills/typography.md) — Type scale, heading hierarchy, font families, pairing rules, and HTML/Tailwind mappings.
+- [header-element-audit](docs/skills/header-element-audit.md) — Pre-emptive audit and cleanup of `<h1>`–`<h6>` elements and `tw-text-h1`–`tw-text-h6` utility classes ahead of the semantic typography remap.
 
 ## Conventions
 

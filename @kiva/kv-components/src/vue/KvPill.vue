@@ -5,7 +5,7 @@
 	>
 		<slot name="icon"></slot>
 		<span
-			class="tw-text-wrap tw-text-h5"
+			class="tw-text-wrap tw-text-label"
 			style="padding-top: 0.15rem;"
 		>
 			<slot></slot>
