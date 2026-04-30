@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.11.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.3...@kiva/kv-components@8.11.4) (2026-04-30)
+
+
+### Bug Fixes
+
+* preemptive fixes for H3 tag and classes before global header style rollout ([c7cab1c](https://github.com/kiva/kv-ui-elements/commit/c7cab1c080377b76e17525e8e38b81d06f9b1505))
+* preemptive fixes for the h5 elements before global header updates ([5faa4b2](https://github.com/kiva/kv-ui-elements/commit/5faa4b22800d27216560d89a9997974850dd3114))
+
+
+
+
+
 ## [8.11.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.2...@kiva/kv-components@8.11.3) (2026-04-29)
 
 
