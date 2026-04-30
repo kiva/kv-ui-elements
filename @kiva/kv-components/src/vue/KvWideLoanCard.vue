@@ -94,7 +94,7 @@
 		<div
 			class="tw-flex tw-flex-col tw-flex-1 tw-px-1"
 		>
-			<h3 class="tw-hidden md:tw-inline-block">
+			<h3 class="tw-hidden md:tw-inline-block tw-text-title">
 				{{ borrowerName }}
 			</h3>
 			<!-- Loan tag -->

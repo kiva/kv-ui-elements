@@ -25,7 +25,7 @@
 			@lightbox-closed="closeLightbox"
 		>
 			<template #header>
-				<h2 class="tw-text-h3 tw-flex-1 data-hj-suppress">
+				<h2 class="tw-text-title tw-flex-1 data-hj-suppress">
 					{{ modalTitle }}
 				</h2>
 			</template>

@@ -49,7 +49,7 @@
 							class="loan"
 						>
 							<h3
-								class="loan__name data-hj-suppress"
+								class="loan__name data-hj-suppress tw-text-title"
 								data-testid="loan-name"
 							>
 								<template v-if="disableRedirects">
@@ -82,7 +82,7 @@
 								</p>
 							</div>
 							<div
-								class="loan__amount tw-text-h3"
+								class="loan__amount tw-text-title"
 								data-testid="loan-amount"
 							>
 								${{ loan.price }}
@@ -103,7 +103,7 @@
 							<template v-if="card.kivaCardObject.deliveryType === 'print'">
 								<div>
 									<h3
-										class="loan__name loan__name--inline"
+										class="loan__name loan__name--inline tw-text-title"
 										data-testid="kcard-type-print"
 									>
 										Print-it-yourself Kiva Card
@@ -137,7 +137,7 @@
 							</template>
 							<template v-else-if="card.kivaCardObject.deliveryType === 'postal'">
 								<h3
-									class="loan__name"
+									class="loan__name tw-text-title"
 									data-testid="kcard-type-postal"
 								>
 									Postal delivery Kiva Card
@@ -159,7 +159,7 @@
 							</template>
 							<template v-else-if="card.kivaCardObject.deliveryType === 'lender'">
 								<h3
-									class="loan__name"
+									class="loan__name tw-text-title"
 									data-testid="kcard-type-lender"
 								>
 									Kiva Card
@@ -174,7 +174,7 @@
 							</template>
 							<template v-else-if="card.kivaCardObject.deliveryType === 'email'">
 								<h3
-									class="loan__name"
+									class="loan__name tw-text-title"
 									data-testid="kcard-type-email"
 								>
 									Email delivery Kiva Card
@@ -191,7 +191,7 @@
 								</div>
 							</template>
 							<div
-								class="loan__amount tw-text-h3"
+								class="loan__amount tw-text-title"
 								data-testid="kcard-amount"
 							>
 								${{ card.price }}
@@ -220,7 +220,7 @@
 							class="loan"
 							data-testid="donation"
 						>
-							<h3 class="loan__name">
+							<h3 class="loan__name tw-text-title">
 								Donation to Kiva
 							</h3>
 							<a
@@ -233,7 +233,7 @@
 								Print Donation Information
 							</a>
 							<div
-								class="loan__amount tw-text-h3"
+								class="loan__amount tw-text-title"
 								data-testid="donation-amount"
 							>
 								${{ receipt.totals.donationTotal }}
@@ -244,11 +244,11 @@
 						data-testid="receipt-total"
 						class="section total"
 					>
-						<h3 class="total__header tw-text-h3">
+						<h3 class="total__header tw-text-title">
 							Total:
 						</h3>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="total-amount"
 						>${{ receipt.totals.itemTotal }}</span>
 					</li>
@@ -264,9 +264,9 @@
 						data-testid="payment-type-kcard"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Kiva Card:</span>
+						<span class="total__header tw-text-title">Kiva Card:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="kcard-payment-amount"
 						>
 							${{ receipt.totals.redemptionCodeAppliedTotal }}
@@ -277,9 +277,9 @@
 						data-testid="payment-type-free-trial"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Free Trial:</span>
+						<span class="total__header tw-text-title">Free Trial:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="free-trial-payment-amount"
 						>Free!</span>
 					</li>
@@ -288,9 +288,9 @@
 						data-testid="payment-type-free-credit"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Free credit:</span>
+						<span class="total__header tw-text-title">Free credit:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="free-credit-payment-amount"
 						>{{ receipt.totals.bonusAppliedTotal }}</span>
 					</li>
@@ -299,9 +299,9 @@
 						data-testid="payment-type-kiva-credit-added"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Kiva credit added:</span>
+						<span class="total__header tw-text-title">Kiva credit added:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="kiva-credit-added-payment-amount"
 						>
 							${{ receipt.totals.depositTotals.kivaCreditAdded }}
@@ -312,9 +312,9 @@
 						data-testid="payment-kiva-credit-used"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Kiva credit:</span>
+						<span class="total__header tw-text-title">Kiva credit:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="kiva-credit-use-payment-amount"
 						>
 							${{ receipt.totals.depositTotals.kivaCreditUsed }}
@@ -325,9 +325,9 @@
 						data-testid="payment-type-amount-charged"
 						class="total"
 					>
-						<span class="total__header tw-text-h3">Amount charged:</span>
+						<span class="total__header tw-text-title">Amount charged:</span>
 						<span
-							class="total__amount tw-text-h3"
+							class="total__amount tw-text-title"
 							data-testid="amount-charged-payment-amount"
 						>
 							${{ receipt.totals.depositTotals.depositTotal }}

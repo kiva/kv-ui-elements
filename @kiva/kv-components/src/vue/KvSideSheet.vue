@@ -44,7 +44,10 @@
 								:icon="mdiArrowLeft"
 							/>
 						</button>
-						<h3 v-if="headline">
+						<h3
+							v-if="headline"
+							class="tw-text-title"
+						>
 							{{ headline }}
 						</h3>
 					</div>

@@ -105,7 +105,7 @@
 					@click.native="clickReadMore('Name', $event)"
 				>
 					<h3
-						class="loan-card-name"
+						class="loan-card-name tw-text-title"
 						:class="{ 'tw-text-center': borrowerName.length < 20 }"
 						style="font-size: 28px;"
 					>

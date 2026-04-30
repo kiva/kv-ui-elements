@@ -50,7 +50,7 @@
 		</div>
 		<div class="tw-flex tw-flex-grow">
 			<div class="tw-flex-grow">
-				<h3 class="tw-font-medium">
+				<h3 class="tw-text-title">
 					{{ category }}
 				</h3>
 			</div>
