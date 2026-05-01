@@ -303,12 +303,20 @@ export const AllVariations = {
  * Loading State - Skeleton ring while data is unavailable.
  */
 export const LoadingState = {
-	render: () => ({
+	args: {
+		values: [],
+		loading: true,
+		strokeWidth: 56,
+	},
+	render: (args) => ({
 		components: { KvPieChartV2 },
+		setup() {
+			return { args };
+		},
 		template: `
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-inline-block">
 				<div style="width: 262px;">
-					<KvPieChartV2 :values="[]" :loading="true" />
+					<KvPieChartV2 v-bind="args" />
 				</div>
 			</div>
 		`,
