@@ -50,12 +50,16 @@ describe('KvPieChartV2', () => {
 		getByRole('button', { name: /Other/i });
 	});
 
-	it('shows skeleton ring when loading is true', () => {
+	it('shows animated gray-200 skeleton ring when loading is true', () => {
 		const { container } = render(KvPieChartV2, {
-			props: { values: [], loading: true },
+			props: { values: [], loading: true, strokeWidth: 88 },
 		});
 		const skeletonRing = container.querySelector('.skeleton-ring');
 		expect(skeletonRing).toBeTruthy();
+		expect(skeletonRing?.getAttribute('stroke')).toBe('#E0E0E0');
+		expect(skeletonRing?.getAttribute('stroke-width')).toBe('88');
+		expect(skeletonRing?.classList.contains('skeleton-ring--loading')).toBe(true);
+		expect(skeletonRing?.classList.contains('tw-opacity-0')).toBe(false);
 	});
 
 	it('does not show legend when loading', () => {

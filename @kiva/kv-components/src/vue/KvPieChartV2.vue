@@ -21,8 +21,8 @@
 					:stroke="LOADING_BG_COLOR"
 					:stroke-width="strokeWidth"
 					fill="none"
-					class="skeleton-ring tw-opacity-0"
-					:class="{ 'skeleton-ring--hidden': animatedIn }"
+					class="skeleton-ring"
+					:class="{ 'skeleton-ring--loading': loading }"
 				/>
 
 				<!-- Colored segments -->
@@ -618,10 +618,33 @@ export default {
 }
 
 .skeleton-ring {
+	opacity: 1;
 	transition: opacity 500ms ease-in-out;
+}
+
+.skeleton-ring--loading {
+	animation: skeleton-ring-pulse 1.4s ease-in-out infinite;
+	transform-origin: center;
 }
 
 .legend-dot {
 	transition: background-color 500ms ease-in-out;
+}
+
+@keyframes skeleton-ring-pulse {
+	0%,
+	100% {
+		opacity: 0.45;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.skeleton-ring--loading {
+		animation: none;
+	}
 }
 </style>
