@@ -793,7 +793,7 @@ onBeforeUnmount(() => {
 .kv-simple-map__control-btn {
 	@apply tw-w-4 tw-h-4 tw-flex tw-items-center tw-justify-center
 		tw-bg-white tw-border tw-border-tertiary tw-rounded-xs tw-cursor-pointer;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+	@apply tw-shadow;
 }
 
 .kv-simple-map__control-btn:disabled {
@@ -817,18 +817,16 @@ onBeforeUnmount(() => {
    .kv-simple-map__popup-content holds the actual card and sits offset
    from the anchor based on the placement modifier class. */
 .kv-simple-map__popup {
-	width: 0;
-	height: 0;
+	@apply tw-w-0 tw-h-0;
 }
 .kv-simple-map__popup-content {
-	position: absolute;
-	white-space: nowrap;
+	@apply tw-absolute tw-whitespace-nowrap;
 }
 
 /* "top" — card sits above the country, horizontally centred. */
 .kv-simple-map__popup--top > .kv-simple-map__popup-content {
 	bottom: var(--kv-simple-map-popup-offset, 4px);
-	left: 0;
+	@apply tw-left-0;
 	transform: translateX(-50%);
 }
 
@@ -852,10 +850,10 @@ onBeforeUnmount(() => {
 }
 .kv-simple-map-popup-enter-from,
 .kv-simple-map-popup-leave-to {
-	opacity: 0;
+	@apply tw-opacity-0;
 }
 .kv-simple-map-popup-enter-to,
 .kv-simple-map-popup-leave-from {
-	opacity: 1;
+	@apply tw-opacity-full;
 }
 </style>
