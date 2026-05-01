@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.4...@kiva/kv-components@8.12.0) (2026-05-01)
+
+
+### Bug Fixes
+
+* refine initial animation so the map starts centered instead of top left ([2840251](https://github.com/kiva/kv-ui-elements/commit/2840251e5bbce156fbc7c26965bda281bc95fe48))
+* remove original data build script which relied on additional external dependencies ([f4e7e0a](https://github.com/kiva/kv-ui-elements/commit/f4e7e0a8c684aeeac90bf55b61cae958c0ab90b5))
+* swap in more tailwind classes ([e11e2e6](https://github.com/kiva/kv-ui-elements/commit/e11e2e6ff1d4cb2374ab830adab4e2778f72832b))
+
+
+### Features
+
+* new KvSimpleMap that is a self contained svg map based on recent design requests ([f24de55](https://github.com/kiva/kv-ui-elements/commit/f24de558c17e5fbc27d64984d774e73b54d8a373))
+
+
+
+
+
 ## [8.11.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.3...@kiva/kv-components@8.11.4) (2026-04-30)
 
 
