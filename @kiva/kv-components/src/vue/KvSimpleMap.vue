@@ -408,6 +408,10 @@ const focusedTransform = computed<Transform | null>(() => {
 
 const manualTransform = ref<Transform>({ x: 0, y: 0, scale: 1 });
 const isDragging = ref(false);
+// Off until after the first painted frame so the initial fit-to-countries
+// transform lands instantly rather than animating from {0, 0, 1} (top-left)
+// before container measurement settles.
+const transitionsEnabled = ref(false);
 
 // True once the user has dragged or zoomed since the last countries change.
 // Suppresses the auto-fit refit logic so we don't yank the camera back during
@@ -496,7 +500,7 @@ watch(() => props.autoplay, () => {
 
 const panLayerStyle = computed(() => {
 	const { x, y, scale } = displayTransform.value;
-	const transitionEnabled = !isDragging.value;
+	const transitionEnabled = !isDragging.value && transitionsEnabled.value;
 	return {
 		width: `${SVG_W}px`,
 		height: `${SVG_H}px`,
@@ -765,6 +769,14 @@ onMounted(() => {
 		resizeObserver = new ResizeObserver(measure);
 		resizeObserver.observe(rootRef.value as Element);
 	}
+	// Allow CSS transitions only after the first paint so the initial fit
+	// settles instantly. Two rAFs — first lets the watcher apply the fitted
+	// transform, second flips the flag so subsequent updates animate.
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			transitionsEnabled.value = true;
+		});
+	});
 });
 
 onBeforeUnmount(() => {
