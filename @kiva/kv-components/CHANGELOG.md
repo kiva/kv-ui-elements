@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.12.0...@kiva/kv-components@8.12.1) (2026-05-01)
+
+
+### Bug Fixes
+
+* add basic loading state to pie chart v2, previously wasn't working ([9eaae7b](https://github.com/kiva/kv-ui-elements/commit/9eaae7b15702622565a242e3de2a0fd36e8228fe))
+
+
+
+
+
 # [8.12.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.11.4...@kiva/kv-components@8.12.0) (2026-05-01)
 
 
