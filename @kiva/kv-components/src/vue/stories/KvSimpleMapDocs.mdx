@@ -1,0 +1,204 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvSimpleMapStories from './KvSimpleMap.stories.js';
+
+<Meta title="Components/KvSimpleMap" component={KvSimpleMapStories.Component} />
+
+# KvSimpleMap
+
+A lightweight, interactive world map rendered from inline SVG paths — no third-party tile server — that highlights Kiva markets with loan-count tier colours, hover popups, drag-to-pan, zoom controls, and an optional scripted country-by-country tour.
+
+## Component Overview
+
+KvSimpleMap surfaces a list of countries (with optional loan counts) on a static SVG world. Every country with a known ISO-2 code is hover-able and shows its name in a popup; countries supplied via the `countries` prop additionally fill with one of four eco-green tiers based on their loan count. Consumers can opt into an `autoplay` tour that pans and zooms through the supplied list, with a built-in pause / resume affordance.
+
+<Story of={KvSimpleMapStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+KvSimpleMap supports several presentation modes: static interactive map, autoplay tour (looping or one-shot), responsive sizing for narrow / mobile containers, two popup placements (centred above the country or hugging its bottom-right bbox corner), and a fully static no-controls mode.
+
+<Story of={KvSimpleMapStories.AllVariations} />
+
+## Usage Information
+
+Use KvSimpleMap to give a quick visual sense of where Kiva activity is concentrated, or as a marketing-page accent that walks a viewer through a small set of featured markets. It is intentionally cheaper than `KvMap` (no tile server, no MapLibre) and trades cartographic fidelity for fast paint and predictable styling.
+
+### When to Use
+
+- Showing the global footprint of Kiva markets at a glance
+- Highlighting a small curated list of countries with loan-count context
+- Marketing or landing-page accents that want an animated "tour" of featured countries
+- Embedded visualisations where a heavy tile-server map would be overkill
+
+### When Not to Use
+
+- Plotting geocoded points (lat/lng pins) — use `KvMap` with MapLibre
+- Showing sub-country regions, administrative divisions, or detailed boundaries
+- Real-time / queryable map data, clustering, or routing
+- Cases where the user must zoom past country level
+
+---
+
+## Behavior
+
+KvSimpleMap is interactive by default — every country with a known ISO-2 code gets a hover popup and pointer cursor. Loan-bearing countries supplied via the `countries` prop fill with an eco-green tier and lift to the brand colour on hover; loan-less countries hover to a neutral gray. The optional autoplay tour overlays a scripted camera path on top of all of this.
+
+### Autoplay Tour
+
+When `autoplay` is true, the map runs a timed cycle through the `countries` list: it pans + zooms to each country, accumulates a highlight, and shows a popup at each stop. With `loop` true (default) the cycle repeats; with `loop` false it ends on the overview view. While the tour is running, drag and the zoom buttons are suspended.
+
+The user can exit the tour at any time by clicking or dragging the map — the camera snapshots its current state, autoplay pauses, and pan / zoom become available. A small play button in the bottom-right corner lets them resume the tour from the start.
+
+<Story of={KvSimpleMapStories.Autoplay} />
+
+### Hover Popups & Loan-Count Tiers
+
+Every country that has a known name (sourced from `ALL_COUNTRIES_ISO_MAP`) shows a popup on hover. Countries supplied via the `countries` prop fill with one of four eco-green tiers based on their loan count — by default `1–3` → tier 1, `4–8` → tier 2, `9–14` → tier 3, `15+` → tier 4. The hover state lifts loan-bearing countries to eco-green DEFAULT and pluralises the loan count in the popup ("1 loan" vs "12 loans").
+
+<Story of={KvSimpleMapStories.NameOnly} />
+
+## Anatomy
+
+KvSimpleMap is composed of a single SVG world on top of an ocean-coloured backdrop, with three overlay layers for popups and controls.
+
+- **Ocean backdrop** — a solid colour (`oceanColor`, default light blue) sized to the responsive container.
+- **Pan layer** — a transformable group containing the world SVG; this is what drag, zoom, and the tour camera animate.
+- **Country paths** — 210 SVG paths covering every country, each filled by tier (loan-bearing) or `baseColor` (everything else).
+- **Hover popup** — a card anchored to the hovered country, positioned via the `popupPlacement` prop and gap-controlled via `popupOffset`.
+- **Zoom controls** — `+` / `−` buttons in the top-right (hidden during an active tour).
+- **Resume button** — a play button in the bottom-right that appears when an autoplay tour has been paused or completed.
+
+---
+
+## Specs
+
+### Popup Placement
+
+The hover/tour popup supports two placements via the `popupPlacement` prop. The default `'top'` centres the popup above the country and auto-flips to below if the country sits too close to the container's top edge. The alternate `'bottom-right'` anchors the popup's top-left to the country bbox bottom-right corner. Both placements use the `popupOffset` prop to control the pixel gap; negative values let the popup overlap the country for a tight hug.
+
+<Story of={KvSimpleMapStories.PopupBottomRight} />
+
+### Custom Popup Content
+
+The default popup template renders the country's name and pluralised loan count when present. For non-default content, consumers can replace the entire popup card via the named `popup` slot, which receives the active country object as a slot prop.
+
+<Story of={KvSimpleMapStories.CustomPopupSlot} />
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSimpleMap/do-keep-tour-list-short.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Keep autoplay tour lists short (5–8 countries) so the cycle stays under ~30 seconds.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSimpleMap/dont-tour-everywhere.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pass dozens of countries into autoplay — viewers will lose attention before the cycle returns.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSimpleMap/do-pair-name-and-count.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Supply both `name` and `loanCount` so the default popup shows context-rich content.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSimpleMap/dont-skip-loan-data.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pass only `id` for featured countries — the tier colour won't apply and the popup loses meaning.</p>
+	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The world SVG carries `aria-hidden="true"` because the country paths are decorative — meaningful content is surfaced via the hover popup.
+- Zoom buttons (`Zoom in`, `Zoom out`) and the resume button (`Resume tour`) use descriptive `aria-label`s.
+- Disabled control buttons set the native `disabled` attribute so screen readers and keyboard users skip them.
+- Tier colours meet WCAG contrast against the ocean backdrop; the eco-green hover state preserves contrast against neighbouring countries.
+- Country names for hover popups come from a complete ISO-3166-1 alpha-2 lookup, so every visible country surfaces a name (no silent-on-hover regions).
+
+> **Note:** Country paths are pointer-driven only; there is no per-country keyboard focus path. For keyboard-first audiences, surface the underlying loan-list separately rather than relying on the map alone.
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvSimpleMapStories.Default} />
+<Controls of={KvSimpleMapStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic interactive map
+
+```vue
+<template>
+	<kv-simple-map :countries="markets" />
+</template>
+
+<script setup>
+import { KvSimpleMap } from '@kiva/kv-components';
+
+const markets = [
+	{ id: 'KE', name: 'Kenya', loanCount: 54 },
+	{ id: 'PE', name: 'Peru', loanCount: 12 },
+	{ id: 'KH', name: 'Cambodia', loanCount: 1 },
+	{ id: 'SN', name: 'Senegal', loanCount: 7 },
+	{ id: 'TZ', name: 'Tanzania', loanCount: 4 },
+];
+</script>
+```
+
+### Autoplay one-shot with bottom-right popup
+
+```vue
+<kv-simple-map
+	:countries="markets"
+	autoplay
+	:loop="false"
+	popup-placement="bottom-right"
+	:popup-offset="0"
+/>
+```
+
+### Custom popup slot
+
+```vue
+<kv-simple-map :countries="markets" autoplay>
+	<template #popup="{ country }">
+		<div class="tw-bg-eco-green tw-text-white tw-rounded-full tw-py-1 tw-px-3 tw-shadow">
+			{{ country.name }} · {{ country.loanCount }} loans
+		</div>
+	</template>
+</kv-simple-map>
+```
