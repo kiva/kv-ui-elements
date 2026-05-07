@@ -214,6 +214,7 @@
 				v-else
 				:callouts="loanCallouts"
 				class="tw-mt-1.5"
+				:class="{ 'goal-variant-callouts': isPostGoalVariant }"
 				@click="$emit('jump-filter-page', $event)"
 			/>
 		</div>
@@ -262,7 +263,7 @@
 					<kv-loan-progress-group
 						:money-left="unreservedAmount"
 						:progress-percent="fundraisingPercent"
-						class="tw-text-black"
+						class="tw-text-black goal-variant-progress-group"
 					/>
 				</div>
 				<div class="tw-min-w-12">
@@ -893,5 +894,13 @@ export default {
 
 :deep(.amount-dropdown select) {
 	@apply tw-h-4 tw-border-gray-100 tw-pl-1;
+}
+
+:deep(.goal-variant-callouts span) {
+	@apply tw-font-medium;
+}
+
+.goal-variant-progress-group :deep(div[role=progressbar]) {
+	background-color: #D9D9D9;
 }
 </style>
