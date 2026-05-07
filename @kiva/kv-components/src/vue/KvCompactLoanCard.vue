@@ -866,7 +866,7 @@ export default {
 }
 
 :deep(.amount-dropdown select) {
-	@apply tw-h-4 tw-border-gray-100 tw-pl-1;
+	@apply tw-h-4.5 tw-border-gray-100 tw-pl-1;
 }
 
 :deep(.goal-variant-callouts span) {
