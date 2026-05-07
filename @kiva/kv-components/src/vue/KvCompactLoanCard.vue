@@ -35,11 +35,7 @@
 						:to="readMorePath"
 						:href="readMorePath"
 						:target="externalLinksNewTab ? '_blank' : undefined"
-						:rel="
-							externalLinksNewTab
-								? 'noopener noreferrer'
-								: undefined
-						"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex"
 						aria-label="Borrower image"
 						@click="clickReadMore('Photo', $event)"
@@ -139,9 +135,7 @@
 							data-testid="loan-use-statement"
 						>
 							<span>{{ loanUsePrefixStart }}</span>
-							<span class="tw-font-medium">{{
-								borrowerNameWithCountry
-							}}</span>
+							<span class="tw-font-medium">{{ borrowerNameWithCountry }}</span>
 							<span>{{ loanUsePrefixEnd }}</span>
 							<span>{{ visibleUseStatement }}</span>
 						</p>
@@ -166,9 +160,7 @@
 							class="loan-card-use-text tw-w-full tw-overflow-hidden"
 						>
 							<div
-								v-for="(_n, i) in [
-									...Array(loanUseLoadingRows),
-								]"
+								v-for="(_n, i) in [...Array(loanUseLoadingRows)]"
 								:key="i"
 								class="tw-h-2 tw-mb-1"
 							>
@@ -178,12 +170,7 @@
 						<div
 							v-else
 							class="loan-card-use-text tw-w-full tw-overflow-hidden"
-							:class="{
-								'!tw--mt-1':
-									showTags &&
-									loan.matchingText &&
-									showLightView,
-							}"
+							:class="{ '!tw--mt-1': showTags && loan.matchingText && showLightView }"
 						>
 							<kv-loan-use
 								:use="loanUse"
@@ -232,19 +219,11 @@
 				<div class="tw-flex-1 tw-min-w-0 tw-mr-1">
 					<kv-loading-placeholder
 						class="tw-mb-0.5"
-						:style="{
-							width: '100%',
-							maxWidth: '11rem',
-							height: '1rem',
-						}"
+						:style="{ width: '100%', maxWidth: '11rem', height: '1rem' }"
 					/>
 					<kv-loading-placeholder
 						class="tw-rounded"
-						:style="{
-							width: '100%',
-							maxWidth: '11rem',
-							height: '0.5rem',
-						}"
+						:style="{ width: '100%', maxWidth: '11rem', height: '0.5rem' }"
 					/>
 				</div>
 				<kv-loading-placeholder
@@ -294,11 +273,7 @@
 						:to="readMorePath"
 						:href="readMorePath"
 						:target="externalLinksNewTab ? '_blank' : undefined"
-						:rel="
-							externalLinksNewTab
-								? 'noopener noreferrer'
-								: undefined
-						"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-progress tw-no-underline tw-block"
 						aria-label="Loan progress"
 						@click="clickReadMore('Progress', $event)"
@@ -358,9 +333,7 @@
 						:secondary-button-handler="secondaryButtonHandler"
 						@add-to-basket="$emit('add-to-basket', $event)"
 						@show-loan-details="clickReadMore('ViewLoan', $event)"
-						@remove-from-basket="
-							$emit('remove-from-basket', $event)
-						"
+						@remove-from-basket="$emit('remove-from-basket', $event)"
 					/>
 				</div>
 			</template>
