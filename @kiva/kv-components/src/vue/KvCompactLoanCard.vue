@@ -48,7 +48,7 @@
 							class="tw-bg-gray-300 tw-rounded-sm tw-object-cover tw-bg-clip-content"
 							:class="{
 								'!tw-w-7.5 !tw-h-7.5': showLightView,
-								'tw-w-7.5 tw-h-7.5 md:tw-w-12.5 md:tw-h-12.5':
+								'!tw-w-7.5 !tw-h-7.5 md:!tw-w-12.5 md:!tw-h-12.5':
 									isPostGoalVariant,
 							}"
 							:style="borrowerImageStyle"
