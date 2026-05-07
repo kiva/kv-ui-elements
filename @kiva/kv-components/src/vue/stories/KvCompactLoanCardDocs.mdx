@@ -40,6 +40,7 @@ The component supports numerous variations to handle different loan states and d
 - **Team Pick**: Special designation for team-selected loans
 - **US Direct Loans**: Adapted layout for US-based borrowers with different location formatting
 - **Business View**: Alternative display showing business name and website links
+- **Post Goal Variant**: A compact post-goal-creation layout with the full loan use statement up to 200 characters and an amount dropdown instead of the full lending CTA
 
 <Story of={KvCompactLoanCardStories.AllVariations} />
 
@@ -266,6 +267,34 @@ const handleAddToBasket = (event) => {
 
 const handleRemoveFromBasket = (event) => {
   basketItems.value = basketItems.value.filter(item => item.id !== event.loanId);
+};
+</script>
+```
+
+### Post Goal Variant
+
+```vue
+<template>
+  <div style="width: 408px;">
+    <KvCompactLoanCard
+      variant="post-goal"
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :show-tags="true"
+      external-links
+      custom-href="https://www.kiva.org/lend/1"
+      @update:selected-amount="handleSelectedAmount"
+    />
+  </div>
+</template>
+
+<script setup>
+import { KvCompactLoanCard } from '@kiva/kv-components';
+
+const handleSelectedAmount = (amount) => {
+  // Persist or forward selected lend amount
 };
 </script>
 ```
