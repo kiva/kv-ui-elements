@@ -208,7 +208,7 @@
 			<kv-loading-placeholder
 				v-if="isLoading || typeof loanCallouts === 'undefined'"
 				class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
-				:style="{ width: '20%', height: '1.5rem' }"
+				:style="{ width: '60%', height: '1.5rem' }"
 			/>
 
 			<kv-loan-callouts
