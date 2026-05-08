@@ -5,8 +5,9 @@
 		:class="{
 			'tw-relative': showRefreshButton,
 			'!tw-p-1.5': showLightView || isPostGoalVariant,
+			'tw-pointer-events-none tw-opacity-low': isPostGoalVariant && isAdding,
 		}"
-		:aria-busy="isLoading ? 'true' : 'false'"
+		:aria-busy="isLoading || (isPostGoalVariant && isAdding) ? 'true' : 'false'"
 	>
 		<button
 			v-if="showRefreshButton"
@@ -208,7 +209,7 @@
 			<kv-loading-placeholder
 				v-if="isLoading || typeof loanCallouts === 'undefined'"
 				class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
-				:style="{ width: '20%', height: '1.5rem' }"
+				:style="{ width: '60%', height: '1.5rem' }"
 			/>
 
 			<kv-loan-callouts
@@ -264,7 +265,7 @@
 						:id="`PostGoalAmountDropdown_${loan?.id ?? loanId}`"
 						v-model="selectedAmount"
 						aria-label="Lend amount"
-						:disabled="!amountOptions.length"
+						:disabled="!amountOptions.length || isAdding"
 						class="amount-dropdown"
 						@update:modelValue="handleSelectedAmount"
 					>
