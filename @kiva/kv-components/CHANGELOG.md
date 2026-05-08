@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.12.1...@kiva/kv-components@8.13.0) (2026-05-08)
+
+
+### Bug Fixes
+
+* adjust dropdown height ([9682e2d](https://github.com/kiva/kv-ui-elements/commit/9682e2da8277c78ff30516715d95fb4e7e9f131d))
+* amount dropdown styles ([9a26a17](https://github.com/kiva/kv-ui-elements/commit/9a26a1752886cae3d1224065499c99eaaf27b26a))
+* borrower image not visible on mobile ([9b4fcaf](https://github.com/kiva/kv-ui-elements/commit/9b4fcaf655485eff444a4d12efc6e557c04296d3))
+* code indentation ([1cc9ec7](https://github.com/kiva/kv-ui-elements/commit/1cc9ec7df151c174bd86269a20a31dca71a270a1))
+* revert callout placeholder width ([868a088](https://github.com/kiva/kv-ui-elements/commit/868a088ec0b8f57038b36ca820bb94ae7f5edfb7))
+* small design changes ([87bceb5](https://github.com/kiva/kv-ui-elements/commit/87bceb5360082ec19b6f0e97544b4984f065550c))
+
+
+### Features
+
+* add disable state when loan is being added to the basket ([8954451](https://github.com/kiva/kv-ui-elements/commit/895445111e4e4d4c4779b9bebdf1a077dab44e7f))
+* create loan card for post goal creation ([9946aa0](https://github.com/kiva/kv-ui-elements/commit/9946aa0a6232d82972e7c1b25aa900e58970b9e8))
+* separating computed property for testing and fixing missing placeholder in image ([dd25ffe](https://github.com/kiva/kv-ui-elements/commit/dd25ffe08b4a0408558447c083e49c7b6c1ae683))
+
+
+
+
+
 ## [8.12.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.12.0...@kiva/kv-components@8.12.1) (2026-05-01)
 
 
