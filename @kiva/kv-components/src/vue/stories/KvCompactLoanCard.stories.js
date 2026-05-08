@@ -50,6 +50,21 @@ const lightStory = (args) => {
 	return template;
 };
 
+const postGoalStory = (args) => {
+	const template = (templateArgs, { argTypes }) => ({
+		props: Object.keys(argTypes),
+		components: { KvCompactLoanCard },
+		setup() { return { args: templateArgs }; },
+		template: `
+			<div style="width: 408px;">
+				<kv-compact-loan-card v-bind="args" />
+			</div>
+		`,
+	});
+	template.args = args;
+	return template;
+};
+
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
 
@@ -180,6 +195,31 @@ export const Matched = story({
 	kvTrackFunction,
 	photoPath,
 	showTags: true,
+});
+
+export const PostGoalVariant = postGoalStory({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		matchingText: 'Kiva Match Fund',
+		matchRatio: 1,
+		use: 'to deliver 24/7 clean energy access through solar micro-grids, expand maintenance staffing, buy replacement batteries, support customer training, improve reliable electricity service for families and small businesses.',
+	},
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customHref: 'https://www.kiva.org/lend/1',
+	variant: 'post-goal',
+});
+
+export const PostGoalVariantLoading = postGoalStory({
+	loanId: loan.id,
+	loan: undefined,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customHref: 'https://www.kiva.org/lend/1',
+	variant: 'post-goal',
 });
 
 export const AlmostFunded = story({
@@ -608,12 +648,19 @@ export const AllVariations = {
 				},
 				distributionModel: 'direct',
 			};
+			const postGoalLoan = {
+				...loan,
+				matchingText: 'Kiva Match Fund',
+				matchRatio: 1,
+				use: 'to deliver 24/7 clean energy access through solar micro-grids, expand maintenance staffing, buy replacement batteries, support customer training, improve reliable electricity service for families and small businesses.',
+			};
 			return {
 				loan,
 				matchedLoan,
 				almostFundedLoan,
 				fullyReservedLoan,
 				usLoan,
+				postGoalLoan,
 				kvTrackFunction,
 				photoPath,
 			};
@@ -688,6 +735,21 @@ export const AllVariations = {
 							:photo-path="photoPath"
 							:show-light-view="true"
 							:truncate-words-number="10"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Post Goal</p>
+					<div style="width: 408px; background: #27593cff; padding: 20px;">
+						<kv-compact-loan-card
+							:loan-id="postGoalLoan.id"
+							:loan="postGoalLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							:show-tags="true"
+							external-links
+							custom-href="https://www.kiva.org/lend/1"
+							variant="post-goal"
 						/>
 					</div>
 				</div>
