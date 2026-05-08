@@ -107,13 +107,6 @@ const loan = {
 	plannedExpirationDate: nextWeek.toISOString(),
 };
 
-const postGoalFeaturedLoan = {
-	...loan,
-	matchingText: 'Kiva Match Fund',
-	matchRatio: 1,
-	use: 'to deliver 24/7 clean energy access through solar micro-grids, expand maintenance staffing, buy replacement batteries, support customer training, improve reliable electricity service for families and small businesses.',
-};
-
 const combinedActivities = [
 	{
 		key: 'Mon Nov 13 2023',
@@ -206,23 +199,17 @@ export const Matched = story({
 
 export const PostGoalVariant = postGoalStory({
 	loanId: loan.id,
-	loan: postGoalFeaturedLoan,
+	loan: {
+		...loan,
+		matchingText: 'Kiva Match Fund',
+		matchRatio: 1,
+		use: 'to deliver 24/7 clean energy access through solar micro-grids, expand maintenance staffing, buy replacement batteries, support customer training, improve reliable electricity service for families and small businesses.',
+	},
 	kvTrackFunction,
 	photoPath,
 	externalLinks: true,
 	customHref: 'https://www.kiva.org/lend/1',
 	variant: 'post-goal',
-});
-
-export const PostGoalVariantAddingToBasket = postGoalStory({
-	loanId: loan.id,
-	loan: postGoalFeaturedLoan,
-	kvTrackFunction,
-	photoPath,
-	externalLinks: true,
-	customHref: 'https://www.kiva.org/lend/1',
-	variant: 'post-goal',
-	isAdding: true,
 });
 
 export const PostGoalVariantLoading = postGoalStory({
