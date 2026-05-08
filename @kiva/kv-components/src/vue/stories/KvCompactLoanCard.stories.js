@@ -212,6 +212,16 @@ export const PostGoalVariant = postGoalStory({
 	variant: 'post-goal',
 });
 
+export const PostGoalVariantLoading = postGoalStory({
+	loanId: loan.id,
+	loan: undefined,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customHref: 'https://www.kiva.org/lend/1',
+	variant: 'post-goal',
+});
+
 export const AlmostFunded = story({
 	loanId: loan.id,
 	loan: {

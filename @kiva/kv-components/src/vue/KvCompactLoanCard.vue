@@ -29,7 +29,20 @@
 				}"
 				:style="customStyle"
 			>
-				<div class="tw-flex-shrink-0 tw-overflow-hidden">
+				<kv-loading-placeholder
+					v-if="isLoading"
+					aria-hidden="true"
+					:class="{
+						'!tw-w-7.5 !tw-h-7.5': showLightView,
+						'!tw-w-7.5 !tw-h-7.5 md:!tw-w-12.5 md:!tw-h-12.5':
+							isPostGoalVariant,
+					}"
+					:style="borrowerImageStyle"
+				/>
+				<div
+					v-else
+					class="tw-flex-shrink-0 tw-overflow-hidden"
+				>
 					<component
 						:is="tag"
 						:to="readMorePath"
@@ -99,6 +112,7 @@
 
 					<component
 						:is="tag"
+						v-if="!isLoading"
 						:to="readMorePath"
 						:href="readMorePath"
 						:target="externalLinksNewTab ? '_blank' : undefined"
@@ -112,7 +126,7 @@
 						@click="clickReadMore('Tag', $event)"
 					>
 						<kv-loan-tag
-							v-if="showTags && !isLoading"
+							v-if="showTags"
 							:class="{
 								'tw-mb-1 !tw-font-medium': isPostGoalVariant,
 							}"
@@ -122,9 +136,9 @@
 					<template v-if="isPostGoalVariant">
 						<template v-if="isLoading">
 							<kv-loading-placeholder
-								v-for="row in 3"
+								v-for="row in 4"
 								:key="row"
-								class="tw-mb-0.5 md:!tw-mb-1.5 !tw-w-full !tw-h-2 md:!tw-h-3"
+								class="tw-mb-0.5 md:!tw-mb-1.5 !tw-w-full !tw-h-1.5 md:!tw-h-2"
 							/>
 						</template>
 						<p
@@ -194,7 +208,7 @@
 			<kv-loading-placeholder
 				v-if="isLoading || typeof loanCallouts === 'undefined'"
 				class="tw-mt-1.5 tw-mb-1 tw-rounded-full"
-				:style="{ width: '60%', height: '1.5rem' }"
+				:style="{ width: '20%', height: '1.5rem' }"
 			/>
 
 			<kv-loan-callouts
@@ -364,6 +378,9 @@ import {
 	type GetCookieFn,
 	type SetCookieFn,
 } from '../utils/loanUtils';
+import {
+	computePostGoalLoanCardStatement,
+} from '../utils/postGoalStatement';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanCallouts from './KvLoanCallouts.vue';
@@ -382,20 +399,6 @@ const CARD_VARIANTS = {
 	default: 'default',
 	postGoal: 'post-goal',
 } as const;
-const MAX_USE_STATEMENT_LENGTH = 200;
-const ELLIPSIS = '...';
-
-const normalizeUse = (use: string) => {
-	if (!use.length) return '';
-	return use.charAt(0).toLowerCase() + use.slice(1);
-};
-
-const truncateText = (value: string, maxLength: number) => {
-	if (maxLength <= 0) return '';
-	if (value.length <= maxLength) return value;
-	if (maxLength <= ELLIPSIS.length) return ELLIPSIS.slice(0, maxLength);
-	return `${value.slice(0, maxLength - ELLIPSIS.length).trimEnd()}${ELLIPSIS}`;
-};
 
 const isAmountBetween25And500 = (amount: number) => amount < 500 && amount >= 25;
 const isCompleteLoanActive = (amount: number) => isLessThan25(amount) || isAmountBetween25And500(amount);
@@ -657,44 +660,17 @@ export default {
 			return { height, maxHeight };
 		});
 
-		const postGoalStatement = computed(() => {
-			const location = formattedLocation.value;
-			const borrowerLocation = location
-				? `${borrowerName.value} in ${location}`
-				: borrowerName.value;
-			const hasLoanUse = props.loan?.anonymizationLevel !== 'full' && loanUse.value.length;
-			const helpLanguage = ['fundraising', 'inactive', 'reviewed'].includes(loanStatus.value)
-				? 'helps'
-				: 'helped';
-			const prefixStart = hasLoanUse
-				? [
-					numeral(loanAmount.value).format('$0,0'),
-					distributionModel.value === 'direct' ? 'to' : helpLanguage,
-					loanBorrowerCount.value > 1 ? 'a member of' : '',
-				].filter(Boolean).join(' ')
-				: '';
-			let prefixEnd = '';
-			if (hasLoanUse) {
-				prefixEnd = distributionModel.value === 'direct' ? ` ${helpLanguage} ` : ' ';
-			}
-
-			const whySpecialSentence = props.loan?.whySpecial
-				? ` This loan is special because ${normalizeUse(props.loan.whySpecial)}`
-				: '';
-			const rawStatement = hasLoanUse
-				? `${normalizeUse(loanUse.value)}${whySpecialSentence}`
-				: "For the borrower's privacy, this loan has been made anonymous.";
-			const prefix = hasLoanUse ? `${prefixStart} ${borrowerLocation}${prefixEnd}` : '';
-			const fullStatement = `${prefix}${rawStatement}`;
-
-			return {
-				borrowerNameWithCountry: borrowerLocation,
-				loanUsePrefixStart: prefixStart ? `${prefixStart} ` : '',
-				loanUsePrefixEnd: prefixEnd,
-				statementTitle: fullStatement.length > MAX_USE_STATEMENT_LENGTH ? fullStatement : undefined,
-				visibleUseStatement: truncateText(rawStatement, MAX_USE_STATEMENT_LENGTH - prefix.length),
-			};
-		});
+		const postGoalStatement = computed(() => computePostGoalLoanCardStatement({
+			anonymizationLevel: props.loan?.anonymizationLevel,
+			borrowerName: borrowerName.value,
+			distributionModel: distributionModel.value,
+			formattedLocation: formattedLocation.value,
+			loanAmount: loanAmount.value,
+			loanBorrowerCount: loanBorrowerCount.value,
+			loanStatus: loanStatus.value,
+			loanUse: loanUse.value,
+			whySpecial: props.loan?.whySpecial,
+		}));
 		const borrowerNameWithCountry = computed(() => postGoalStatement.value.borrowerNameWithCountry);
 		const loanUsePrefixStart = computed(() => postGoalStatement.value.loanUsePrefixStart);
 		const loanUsePrefixEnd = computed(() => postGoalStatement.value.loanUsePrefixEnd);
