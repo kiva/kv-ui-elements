@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.0...@kiva/kv-components@8.13.1) (2026-05-15)
+
+
+### Bug Fixes
+
+* disable state when loan in basket and dropdown container width ([e887775](https://github.com/kiva/kv-ui-elements/commit/e887775537ae9750a42174c937596085d5e8307c))
+
+
+
+
+
 # [8.13.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.12.1...@kiva/kv-components@8.13.0) (2026-05-08)
 
 
