@@ -259,12 +259,12 @@
 						class="tw-text-black goal-variant-progress-group"
 					/>
 				</div>
-				<div class="tw-min-w-12">
+				<div>
 					<kv-select
 						:id="`PostGoalAmountDropdown_${loan?.id ?? loanId}`"
 						v-model="selectedAmount"
 						aria-label="Lend amount"
-						:disabled="!amountOptions.length"
+						:disabled="!amountOptions.length || isInBasket"
 						class="amount-dropdown"
 						@update:modelValue="handleSelectedAmount"
 					>
@@ -796,6 +796,11 @@ export default {
 		amountLent() {
 			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
 			return numeral(amount).format('$0,0');
+		},
+		isInBasket() {
+			return this.basketItems
+			// eslint-disable-next-line no-underscore-dangle
+				?.some((item) => item.__typename === 'LoanReservation' && item.id === this.loanId) ?? false;
 		},
 	},
 };
