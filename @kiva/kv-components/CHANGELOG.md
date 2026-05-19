@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.1...@kiva/kv-components@8.13.2) (2026-05-19)
+
+
+### Bug Fixes
+
+* add a few more KvSimpleMap centroid pop up modifiers for other countries ([a77a799](https://github.com/kiva/kv-ui-elements/commit/a77a7998d4e184fd73a4dfc5ed6300b096e4d219))
+* improve mobile zoom levels with dynamic zoom modifier, improve pop up placement ([1f085c4](https://github.com/kiva/kv-ui-elements/commit/1f085c46654ee4ebb9f7cf2ea42b3639dc63917e))
+
+
+
+
+
 ## [8.13.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.0...@kiva/kv-components@8.13.1) (2026-05-15)
 
 
