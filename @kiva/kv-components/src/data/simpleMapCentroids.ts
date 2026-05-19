@@ -1,12 +1,25 @@
 // Bounding-box midpoint and bottom-right corner per ISO-2 country in the SVG
 // coordinate space (1300.02 × 571.784). cx/cy drives camera pan targets;
 // xMax/yMax anchors the popup at the country's bottom-right.
+//
+// For large or multi-territory countries (e.g. US, AU, IN) the geometric bbox
+// center can be far from the visually dominant landmass. The optional popup*
+// fields provide a tighter anchor specifically for popup positioning without
+// affecting camera panning or zoom-to-fit calculations.
 
 export interface Centroid {
 	cx: number;
 	cy: number;
 	xMax: number;
 	yMax: number;
+	/** Popup anchor X — visual mainland center. Falls back to cx when absent. */
+	popupCx?: number;
+	/** Popup anchor Y — visual mainland center. Falls back to cy when absent. */
+	popupCy?: number;
+	/** Popup-specific right edge of the visual mainland bbox. Falls back to xMax. */
+	popupXMax?: number;
+	/** Popup-specific bottom edge of the visual mainland bbox. Falls back to yMax. */
+	popupYMax?: number;
 }
 
 const simpleMapCentroids: Record<string, Centroid> = {
@@ -51,6 +64,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 451.16,
 		xMax: 1190.78,
 		yMax: 521.76,
+		// Main continent — tighter than full bbox with remote islands
+		popupCx: 1120,
+		popupCy: 450,
+		popupXMax: 1170,
+		popupYMax: 500,
 	},
 	AT: {
 		cx: 682.12,
@@ -159,6 +177,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 78.04,
 		xMax: 502.28,
 		yMax: 154.65,
+		// Southern populated mainland — excludes Arctic archipelago
+		popupCx: 330,
+		popupCy: 105,
+		popupXMax: 420,
+		popupYMax: 140,
 	},
 	CH: {
 		cx: 665.97,
@@ -171,6 +194,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 490.74,
 		xMax: 431.06,
 		yMax: 571.28,
+		// Central Chile (Santiago region) — avoids extreme N-S elongation
+		popupCx: 410,
+		popupCy: 475,
+		popupXMax: 425,
+		popupYMax: 500,
 	},
 	CN: {
 		cx: 986.5,
@@ -399,12 +427,22 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 345.31,
 		xMax: 1162.16,
 		yMax: 379.27,
+		// Java/Bali region — most populated; avoids geometric center in open sea
+		popupCx: 1065,
+		popupCy: 360,
+		popupXMax: 1095,
+		popupYMax: 378,
 	},
 	IN: {
 		cx: 937.01,
 		cy: 241.69,
 		xMax: 988.21,
 		yMax: 300.71,
+		// Indian peninsula — excludes Andaman/Nicobar and Lakshadweep
+		popupCx: 942,
+		popupCy: 240,
+		popupXMax: 975,
+		popupYMax: 280,
 	},
 	IE: {
 		cx: 613.51,
@@ -627,6 +665,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 318.33,
 		xMax: 1080.71,
 		yMax: 331.5,
+		// Peninsular Malaysia — avoids centroid falling in sea between halves
+		popupCx: 1018,
+		popupCy: 318,
+		popupXMax: 1027,
+		popupYMax: 330,
 	},
 	NA: {
 		cx: 706.27,
@@ -663,6 +706,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 48.37,
 		xMax: 722.29,
 		yMax: 88.49,
+		// Southern mainland — excludes Svalbard/Arctic pulling centroid far north
+		popupCx: 680,
+		popupCy: 75,
+		popupXMax: 700,
+		popupYMax: 89,
 	},
 	NP: {
 		cx: 940.71,
@@ -675,6 +723,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 508.39,
 		xMax: 1256.51,
 		yMax: 534.29,
+		// North + South Island — excludes distant Chatham Islands inflating west
+		popupCx: 1242,
+		popupCy: 510,
+		popupXMax: 1257,
+		popupYMax: 535,
 	},
 	OM: {
 		cx: 842.43,
@@ -759,6 +812,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 82.39,
 		xMax: 1158.54,
 		yMax: 158.22,
+		// Central Russia — avoids extreme east-west spread
+		popupCx: 900,
+		popupCy: 95,
+		popupXMax: 1000,
+		popupYMax: 135,
 	},
 	RW: {
 		cx: 749.91,
@@ -933,6 +991,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 146.09,
 		xMax: 416.07,
 		yMax: 253.75,
+		// Continental US mainland — excludes Alaska/Hawaii bbox inflation
+		popupCx: 275,
+		popupCy: 175,
+		popupXMax: 340,
+		popupYMax: 210,
 	},
 	UZ: {
 		cx: 856.34,

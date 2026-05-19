@@ -392,13 +392,45 @@ function resolveCentroid(country: SimpleMapCountry): { cx: number; cy: number } 
 	return fallback ?? null;
 }
 
+// Responsive zoom – narrower containers get a higher effective zoom
+// factor via a continuous lerp so the tour feels impactful on mobile without
+// any hard breakpoint jumps.
+const effectiveZoomFactor = computed(() => {
+	const minW = 320;
+	const maxW = 1200;
+	const boost = 1.4; // narrow screens get up to 1.4× the configured zoomFactor
+	const t = Math.max(0, Math.min(1, (containerW.value - minW) / (maxW - minW)));
+	return props.zoomFactor * (boost - t * (boost - 1));
+});
+
 const focusedTransform = computed<Transform | null>(() => {
 	if (panIdx.value < 0) return null;
 	const country = props.countries[panIdx.value];
 	if (!country) return null;
 	const centroid = resolveCentroid(country);
 	if (!centroid) return null;
-	const scale = baseScale.value * props.zoomFactor;
+
+	// Responsive base zoom
+	const baseZoomScale = baseScale.value * effectiveZoomFactor.value;
+
+	// Bbox-fit zoom: ensure the country fills a reasonable portion
+	// of the viewport — especially helpful for small countries on narrow screens.
+	let bboxFitScale = baseZoomScale;
+	const c = centroids[country.id];
+	if (c) {
+		const boxW = Math.max(2 * (c.xMax - c.cx), 20);
+		const boxH = Math.max(2 * (c.yMax - c.cy), 20);
+		const targetFill = 0.45; // country should fill ~45% of container
+		bboxFitScale = Math.min(
+			(containerW.value * targetFill) / boxW,
+			(containerH.value * targetFill) / boxH,
+		);
+	}
+
+	// Take the larger of the two approaches, clamped to maxZoom
+	const maxScale = baseScale.value * props.maxZoom;
+	const scale = Math.min(maxScale, Math.max(baseZoomScale, bboxFitScale));
+
 	return {
 		x: containerW.value / 2 - centroid.cx * scale,
 		y: containerH.value / 2 - centroid.cy * scale,
@@ -592,7 +624,7 @@ const POPUP_FLIP_THRESHOLD = 60;
 
 interface CountryBox { cx: number; cy: number; xMin: number; xMax: number; yMin: number; yMax: number; }
 
-function resolveCountryBox(country: SimpleMapCountry): CountryBox | null {
+function resolveCountryBox(country: SimpleMapCountry, forPopup = false): CountryBox | null {
 	// Caller-supplied cx/cy is a single point — degenerate bbox at that point.
 	if (country.cx != null && country.cy != null) {
 		return {
@@ -606,19 +638,25 @@ function resolveCountryBox(country: SimpleMapCountry): CountryBox | null {
 	}
 	const c = centroids[country.id];
 	if (!c) return null;
+	// When positioning a popup, prefer the tighter popup-specific fields that
+	// target the visual mainland rather than the full territorial bbox.
+	const cx = (forPopup && c.popupCx != null) ? c.popupCx : c.cx;
+	const cy = (forPopup && c.popupCy != null) ? c.popupCy : c.cy;
+	const xMax = (forPopup && c.popupXMax != null) ? c.popupXMax : c.xMax;
+	const yMax = (forPopup && c.popupYMax != null) ? c.popupYMax : c.yMax;
 	// Mirror cx/cy across the recorded max corner to derive the min corner.
 	return {
-		cx: c.cx,
-		cy: c.cy,
-		xMax: c.xMax,
-		yMax: c.yMax,
-		xMin: 2 * c.cx - c.xMax,
-		yMin: 2 * c.cy - c.yMax,
+		cx,
+		cy,
+		xMax,
+		yMax,
+		xMin: 2 * cx - xMax,
+		yMin: 2 * cy - yMax,
 	};
 }
 
 function resolvePopupView(country: SimpleMapCountry): Pick<PopupView, 'placement' | 'style'> | null {
-	const box = resolveCountryBox(country);
+	const box = resolveCountryBox(country, true);
 	if (!box) return null;
 	const t = displayTransform.value;
 	const offsetVar = { '--kv-simple-map-popup-offset': `${props.popupOffset}px` } as Record<string, string>;
