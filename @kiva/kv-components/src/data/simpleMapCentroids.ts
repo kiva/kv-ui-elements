@@ -194,6 +194,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 490.74,
 		xMax: 431.06,
 		yMax: 571.28,
+		// Central Chile (Santiago region) — avoids extreme N-S elongation
+		popupCx: 410,
+		popupCy: 475,
+		popupXMax: 425,
+		popupYMax: 500,
 	},
 	CN: {
 		cx: 986.5,
@@ -422,6 +427,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 345.31,
 		xMax: 1162.16,
 		yMax: 379.27,
+		// Java/Bali region — most populated; avoids geometric center in open sea
+		popupCx: 1065,
+		popupCy: 360,
+		popupXMax: 1095,
+		popupYMax: 378,
 	},
 	IN: {
 		cx: 937.01,
@@ -655,6 +665,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 318.33,
 		xMax: 1080.71,
 		yMax: 331.5,
+		// Peninsular Malaysia — avoids centroid falling in sea between halves
+		popupCx: 1018,
+		popupCy: 318,
+		popupXMax: 1027,
+		popupYMax: 330,
 	},
 	NA: {
 		cx: 706.27,
@@ -691,6 +706,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 48.37,
 		xMax: 722.29,
 		yMax: 88.49,
+		// Southern mainland — excludes Svalbard/Arctic pulling centroid far north
+		popupCx: 680,
+		popupCy: 75,
+		popupXMax: 700,
+		popupYMax: 89,
 	},
 	NP: {
 		cx: 940.71,
@@ -703,6 +723,11 @@ const simpleMapCentroids: Record<string, Centroid> = {
 		cy: 508.39,
 		xMax: 1256.51,
 		yMax: 534.29,
+		// North + South Island — excludes distant Chatham Islands inflating west
+		popupCx: 1242,
+		popupCy: 510,
+		popupXMax: 1257,
+		popupYMax: 535,
 	},
 	OM: {
 		cx: 842.43,
