@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.13.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.2...@kiva/kv-components@8.13.3) (2026-05-20)
+
+
+### Bug Fixes
+
+* improve centering during and after animation to focus on active countries ([cbc8713](https://github.com/kiva/kv-ui-elements/commit/cbc87137a941cfae2bda9b38ca5ed68acd7f3650))
+
+
+
+
+
 ## [8.13.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.1...@kiva/kv-components@8.13.2) (2026-05-19)
 
 
