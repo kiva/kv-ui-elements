@@ -30,6 +30,7 @@ module.exports = {
 	moduleNameMapper: {
 		'^#components/(.*)$': '<rootDir>/src/vue/$1',
 		'^#utils/(.*)$': '<rootDir>/src/utils/$1',
+		'\\.css$': '<rootDir>/tests/unit/styleMock.js',
 	},
 
 	// The test environment that will be used for testing

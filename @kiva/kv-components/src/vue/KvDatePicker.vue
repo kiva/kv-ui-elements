@@ -4,31 +4,22 @@
 			class="kv-datepicker"
 			:class="theme"
 		>
-			<div
-				v-if="datepickerComponent"
-				class="kv-datepicker__content"
-			>
-				<component
-					:is="datepickerComponent"
-					:key="componentKey"
+			<div class="kv-datepicker__content">
+				<vue-date-picker
 					v-model="selectedDate"
 					v-bind="$attrs"
 					:auto-apply="true"
 					@update:model-value="handleDateChange"
 				/>
 			</div>
-			<div
-				v-else
-				class="kv-datepicker__loading"
-			>
-				Loading...
-			</div>
 		</div>
 	</kv-theme-provider>
 </template>
 
 <script lang="ts">
-import { markRaw, computed } from 'vue';
+import { computed } from 'vue';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
 
 import {
 	defaultTheme,
@@ -44,6 +35,7 @@ export default {
 	name: 'KvDatePicker',
 	components: {
 		KvThemeProvider,
+		VueDatePicker,
 	},
 	inheritAttrs: false,
 	props: {
@@ -86,10 +78,7 @@ export default {
 	},
 	data() {
 		return {
-			datepickerComponent: null,
-			datepickerPromise: null,
 			selectedDate: null,
-			componentKey: 0,
 		};
 	},
 	watch: {
@@ -100,24 +89,7 @@ export default {
 			immediate: true,
 		},
 	},
-	mounted() {
-		this.loadDatepicker();
-	},
 	methods: {
-		async loadDatepicker() {
-			if (this.datepickerComponent) return;
-			if (this.datepickerPromise) return this.datepickerPromise;
-
-			this.datepickerPromise = Promise.all([
-				import('@vuepic/vue-datepicker'),
-				import('@vuepic/vue-datepicker/dist/main.css')])
-				.then(async ([module]) => {
-					this.datepickerComponent = markRaw(module.default);
-					await this.$nextTick();
-				});
-
-			return this.datepickerPromise;
-		},
 		handleDateChange(value) {
 			this.selectedDate = value;
 			this.$emit('update:model-value', value);
@@ -128,12 +100,6 @@ export default {
 </script>
 
 <style>
-.kv-datepicker__loading {
-	padding: 20px;
-	text-align: center;
-	color: var(--text-secondary);
-}
-
 .kv-datepicker .dp__input {
 	font-family: inherit;
 	font-weight: inherit;
