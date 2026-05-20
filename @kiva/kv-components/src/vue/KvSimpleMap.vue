@@ -507,7 +507,7 @@ const fitTransform = computed<Transform | null>(() => {
 const initialManualTransform = computed<Transform>(() => fitTransform.value ?? overviewTransform.value);
 
 const displayTransform = computed<Transform>(() => {
-	if (isTourRunning.value) return focusedTransform.value ?? overviewTransform.value;
+	if (isTourRunning.value) return focusedTransform.value ?? fitTransform.value ?? overviewTransform.value;
 	return manualTransform.value;
 });
 
