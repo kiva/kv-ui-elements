@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.3...@kiva/kv-components@8.14.0) (2026-05-21)
+
+
+### Features
+
+* mp-2831 fix datepicker stays loading ([83fe0e7](https://github.com/kiva/kv-ui-elements/commit/83fe0e72b8e3e34592d0645ce4b3a9dfbf3391fe))
+
+
+
+
+
 ## [8.13.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.2...@kiva/kv-components@8.13.3) (2026-05-20)
 
 
