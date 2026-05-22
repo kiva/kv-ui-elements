@@ -25,7 +25,6 @@ export interface ComputePostGoalStatementArgs {
 	loanStatus: string;
 	loanUse: string;
 	anonymizationLevel?: string;
-	whySpecial?: string;
 }
 
 export interface PostGoalStatementResult {
@@ -52,7 +51,6 @@ export function computePostGoalLoanCardStatement(
 		loanBorrowerCount,
 		loanStatus,
 		loanUse,
-		whySpecial,
 	} = args;
 
 	const borrowerLocation = formattedLocation
@@ -77,11 +75,8 @@ export function computePostGoalLoanCardStatement(
 		prefixEnd = distributionModel === 'direct' ? ` ${helpLanguage} ` : ' ';
 	}
 
-	const whySpecialSentence = whySpecial
-		? ` This loan is special because ${normalizeUse(whySpecial)}`
-		: '';
 	const rawStatement = hasLoanUse
-		? `${normalizeUse(loanUse)}${whySpecialSentence}`
+		? normalizeUse(loanUse)
 		: "For the borrower's privacy, this loan has been made anonymous.";
 
 	const prefix = hasLoanUse ? `${prefixStart} ${borrowerLocation}${prefixEnd}` : '';

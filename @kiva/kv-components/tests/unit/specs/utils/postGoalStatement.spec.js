@@ -78,13 +78,17 @@ describe('computePostGoalLoanCardStatement', () => {
 		);
 	});
 
-	it('appends normalized why-special sentence before truncation', () => {
-		expect(
-			computePostGoalLoanCardStatement({
-				...baseLoan(),
-				whySpecial: 'They uplift their village.',
-			}).visibleUseStatement,
-		).toContain('This loan is special because they uplift their village.');
+	it('does not apply whySpecial field even if provided', () => {
+		const resultWithWhySpecial = computePostGoalLoanCardStatement({
+			...baseLoan(),
+			whySpecial: 'They uplift their village.',
+		});
+		const resultWithoutWhySpecial = computePostGoalLoanCardStatement(baseLoan());
+
+		expect(resultWithWhySpecial.visibleUseStatement).toBe(
+			resultWithoutWhySpecial.visibleUseStatement,
+		);
+		expect(resultWithWhySpecial.visibleUseStatement).toBe('to purchase dairy equipment.');
 	});
 
 	it('sets statementTitle when the full text exceeds POST_GOAL_STATEMENT_MAX_LENGTH and truncates visible use', () => {
