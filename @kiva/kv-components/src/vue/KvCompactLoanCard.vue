@@ -669,7 +669,6 @@ export default {
 			loanBorrowerCount: loanBorrowerCount.value,
 			loanStatus: loanStatus.value,
 			loanUse: loanUse.value,
-			whySpecial: props.loan?.whySpecial,
 		}));
 		const borrowerNameWithCountry = computed(() => postGoalStatement.value.borrowerNameWithCountry);
 		const loanUsePrefixStart = computed(() => postGoalStatement.value.loanUsePrefixStart);
