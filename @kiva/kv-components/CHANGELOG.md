@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.14.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.14.0...@kiva/kv-components@8.14.1) (2026-05-22)
+
+
+### Bug Fixes
+
+* remove why special statement in loan card after goal set ([aa16351](https://github.com/kiva/kv-ui-elements/commit/aa16351b212f57d9c597e7776dcaed2629f38dd5))
+
+
+
+
+
 # [8.14.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.13.3...@kiva/kv-components@8.14.0) (2026-05-21)
 
 
