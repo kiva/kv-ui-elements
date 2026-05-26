@@ -10,7 +10,7 @@ when_to_use: When designing or implementing anything that has color — backgrou
 
 This skill captures the **semantic color system** as defined in Figma (the Kiva Ecosystem 2026 file). Figma is the canonical source for design intent: which primitives exist, which themes are supported, what each semantic token means, when to use it, and how tokens compose into accessible pairings.
 
-Hex values and token names in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Current code state" at the end of this skill for known gaps and naming divergences.
+Hex values and token names in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Outstanding discrepancies" at the end of this skill for known gaps, and "Using with Tailwind" for code naming and the shipped utility surface.
 
 ## Why color matters
 
@@ -182,48 +182,50 @@ If the variable picker shows two tokens with the same hex value, pick by *role*,
 
 Walk the file and check fills, strokes, and text colors for raw hex values. **Re-bind any raw value to a variable** — a raw hex is a detached color decision that won't follow updates and gives engineering nothing to map to. The Figma panel calls this out explicitly; treat it as a hard gate on hand-off.
 
-## Current code state (verify before depending)
+## Using with Tailwind
 
-The shipped color system in `@kiva/kv-tokens` is largely aligned with Figma's intent but has several naming divergences and one primitive mismatch worth noting.
+The color utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-- **Authoritative sources:**
-  - `@kiva/kv-tokens/tokens/core/color.json` — primitive palette declarations.
-  - `@kiva/kv-tokens/dist/js/tokens.js` (`colors.theme.*`) — the built, per-theme semantic token tree.
-  - `@kiva/kv-tokens/configs/kivaColors.js` — turns each theme into CSS custom properties and exposes Tailwind color choices.
-  - `@kiva/kv-tokens/configs/tailwind.config.js` — wires the CSS custom properties into `tw-text-*`, `tw-bg-*`, `tw-border-*`, `tw-divide-*`, `tw-ring-*` utilities.
-  - Component-side wrapper: [`KvThemeProvider.vue`](../../../kv-components/src/vue/KvThemeProvider.vue) sets the theme custom properties on a subtree.
+**Themable colors** are exposed as `tw-text-{slot}`, `tw-bg-{slot}`, `tw-border-{slot}`, `tw-divide-{slot}`, and `tw-ring-{slot}` — e.g. `tw-bg-primary`, `tw-text-action`, `tw-border-danger-highlight`. The slot names match the semantic token names in [color-themes.md](color-themes.md) (with `background/` → `bg-`). They compile to `rgb(var(--token))` and resolve at runtime from CSS custom properties, so they follow the active theme — reach for them by default. See [tailwind → Color is semantic, themable, and runtime-resolved](tailwind.md#color-is-semantic-themable-and-runtime-resolved), and [tailwind → Make themable colors resolve](tailwind.md#3-make-themable-colors-resolve-required-for-color-to-render) for how the custom properties get onto the page (`KvThemeProvider` does this in components).
 
-- **Theme name divergences (Figma → code):**
-  - "Default" → `DEFAULT`
-  - "Green Light" → `green-light`
-  - "Green Dark" → `green-dark`
-  - "Marigold" → `marigold-light` *(code suffixes `-light`; Figma does not)*
-  - "Stone Light" → `stone-light`
-  - When importing themes from `@kiva/kv-tokens` (e.g., `marigoldLightTheme`, `stoneLightTheme`), use the code names. The Figma name is the design intent; the code name is what to type.
+**Primitive (non-themed) utilities** — `tw-bg-eco-green-3`, `tw-text-marigold-DEFAULT`, `tw-bg-gray-100`, etc. — resolve directly to primitive values and do **not** change with theme. Use sparingly; components should consume semantic tokens, not primitives.
 
-- **Legacy themes still exported in code, not in the Figma 2026 system:** `dark`, `dark-green`, `dark-mint`, `dark-stone`, `mint`, `stone-dark`. These predate the five-theme system and are kept for backwards compatibility with existing consumers. Don't pick them for new work — use one of the five Figma themes.
+**Theme names: type the code name, not the Figma name.** When importing themes from `@kiva/kv-tokens` (e.g. `marigoldLightTheme`) or referencing one in code:
 
-- **Two Figma text-label typos for `eco-green/2` — not real divergences.** Code's `eco-green/2 = #78C79F` is the canonical value and matches every actual swatch fill in Figma. Two text labels in Figma misreport it:
-  - The Color Overview swatch label reads `#C7EDD7`, but the swatch is filled with `#78C79F`.
-  - The Green Dark theme table renders the hex column as `#276A43` (an `eco-green/3` value) for tokens that reference primitive `color/eco-green/2`; the chip color shown next to the row is `#78C79F`.
+| Figma (design intent) | Code (what to type) |
+|---|---|
+| Default | `DEFAULT` |
+| Green Light | `green-light` |
+| Green Dark | `green-dark` |
+| Marigold | `marigold-light` *(code suffixes `-light`)* |
+| Stone Light | `stone-light` |
 
-  Treat the chip color and primitive name as canonical in Figma. The labels are stale text that wasn't updated; flag them to the design system team but no code change is needed.
+Legacy themes still exported in code (`dark`, `dark-green`, `dark-mint`, `dark-stone`, `mint`, `stone-dark`) predate the five-theme system and are kept for backwards compatibility — **don't pick them for new work.**
 
-- **Tailwind utility surface.** Themable colors are exposed via custom properties and consumed through `tw-text-{slot}`, `tw-bg-{slot}`, `tw-border-{slot}`, `tw-divide-{slot}`, `tw-ring-{slot}`. Examples: `tw-bg-primary`, `tw-text-action`, `tw-border-danger-highlight`. The slot names match the semantic token names listed in [color-themes.md](color-themes.md) (with `background/` → `bg-`).
+**Authoritative sources** (verify before depending):
 
-- **Primitive utilities (not themed).** `tw-bg-eco-green-3`, `tw-text-marigold-DEFAULT`, `tw-bg-gray-100`, etc., resolve directly to primitive values. Use sparingly — components should consume semantic tokens, not primitives.
+- `@kiva/kv-tokens/tokens/core/color.json` — primitive palette declarations.
+- `@kiva/kv-tokens/dist/js/tokens.js` (`colors.theme.*`) — the built, per-theme semantic token tree.
+- `@kiva/kv-tokens/configs/kivaColors.js` — turns each theme into CSS custom properties and exposes the Tailwind color choices.
+- `@kiva/kv-tokens/configs/tailwind.config.js` — wires the custom properties into the `tw-text-*` / `tw-bg-*` / `tw-border-*` / `tw-divide-*` / `tw-ring-*` utilities.
+- [`KvThemeProvider.vue`](../../../kv-components/src/vue/KvThemeProvider.vue) — sets the theme custom properties on a subtree.
 
-- **`heading-underline/primary` is the only `heading-underline` token shipped today,** and only Default, Marigold, and Stone Light (`stone-dark` in code's legacy set, too) define it. Other themes fall back to whatever the parent provides.
+### Without the preset
 
-- **Sync gaps — semantic tokens in Figma not yet in code.** Several disabled-state and action-secondary tokens are defined in the Figma per-theme tables but absent from the shipped `colors.theme.*` tree:
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Stock-Tailwind / non-Kiva project:** the themable utilities won't exist. Either import the shipped custom properties from `@kiva/kv-tokens/css` ([`dist/css/tokens.css`](../../dist/css/tokens.css), which ships a `:root` block plus `[data-theme="…"]` blocks) and reference `var(--token)` yourself, or use the static hex values from [color-themes.md](color-themes.md). The hex route loses runtime theming and the values are point-in-time.
+
+## Outstanding discrepancies
+
+- **`heading-underline/primary` is the only `heading-underline` token shipped,** and only Default, Marigold, and Stone Light (plus legacy `stone-dark`) define it; other themes fall back to whatever the parent provides.
+- **Semantic tokens defined in Figma but not yet in the shipped `colors.theme.*` tree:**
   - `text/action-disabled` (all themes)
   - `background/action-secondary`, `background/action-secondary-highlight`, `background/primary-disabled` (all themes except Green Light)
   - `border/secondary-disabled`, `border/tertiary` (Green Dark, Marigold, Stone Light)
-  - `text/secondary`, `text/tertiary`, `background/tertiary`, `border/tertiary` (Green Dark, Marigold, Stone Light — Default has these but the named themes' overrides aren't all wired up)
+  - `text/secondary`, `text/tertiary`, `background/tertiary`, `border/tertiary` (Green Dark, Marigold, Stone Light)
 
-  These can be added without breaking changes since they're new entries. Tracked as part of the long-running token sync work.
-
-- **Shadow tokens are not yet color-tokenized in the JSON.** `boxShadow.DEFAULT` and `boxShadow.lg` in `tailwind.config.js` are hardcoded `rgb(0 0 0 / 0.08)` values; the `shadow/default`, `shadow/hover`, `shadow/click-active` semantic tokens described in Figma have no corresponding code entry yet. This is a real sync gap, not an intentional difference.
+  These can be added without breaking changes since they're new entries.
+- **Shadow tokens are not yet color-tokenized.** `boxShadow.DEFAULT` and `boxShadow.lg` in `tailwind.config.js` are hardcoded `rgb(0 0 0 / 0.08)`; the `shadow/default`, `shadow/hover`, `shadow/click-active` semantic tokens described in Figma have no code entry yet.
 
 When you find a divergence between this skill and the shipped tokens/components, flag it — closing those gaps is part of the long-running token sync work, and each instance is a data point.
 

@@ -8,7 +8,7 @@ when_to_use: Whenever starting a new skill that extracts a Figma design-system s
 
 ## What this skill produces
 
-A single self-contained Markdown skill file in `@kiva/kv-tokens/docs/skills/<name>.md`, plus a one-line entry in `@kiva/kv-tokens/SKILLS.md`. The skill captures *design intent* from Figma (canonical) and notes *real divergences* in the shipped code (so consumers know what to verify before depending on a token name).
+A single self-contained Markdown skill file in `@kiva/kv-tokens/docs/skills/<name>.md`, plus a one-line entry in `@kiva/kv-tokens/SKILLS.md`. The skill captures *design intent* from Figma (canonical), then ends with two code-facing sections: **Using with Tailwind** (how to express that intent with the Kiva Tailwind preset, hybrid so it works with or without the preset) and **Outstanding discrepancies** (the real Figma-vs-code sync gaps consumers should verify before depending on a token name).
 
 Existing exemplars in this repo:
 
@@ -16,8 +16,11 @@ Existing exemplars in this repo:
 - `layout.md` — multi-panel extraction with cross-skill linkage
 - `spacing.md` — the most complex (semantic categories + raw ramp + responsive values)
 - `radius.md` — small, tight scale with a per-component lookup table
+- `color.md` + `color-themes.md` — the umbrella + reference-companion split
 
 Read at least one before starting a new extraction; mirror voice, headings, and table conventions.
+
+A different kind of skill also lives here: [`tailwind`](tailwind.md) documents the **shipped mechanics** of the Kiva Tailwind preset and is *code-canonical* (not Figma-canonical). You don't author skills like it with this process, but every design-intent skill's "Using with Tailwind" section links into it — treat it as the canonical reference for preset mechanics rather than re-explaining them.
 
 ## Inputs to gather from the user
 
@@ -48,9 +51,9 @@ The color skill round of this process missed ~5 tokens per theme and invented in
 - **New skill:** `@kiva/kv-tokens/docs/skills/<kebab-name>.md`
 - **Index to update:** `@kiva/kv-tokens/SKILLS.md` (add one line under `## Skills`, format: `- [name](docs/skills/name.md) — one-line hook`)
 
-## Code verification — before writing "Current code state"
+## Code verification — before writing the code-facing sections
 
-Every skill ends with a **Current code state** section that flags where shipped code diverges from the Figma spec. Don't write that section from memory or from the Figma side alone — read the source.
+Every skill ends with two code-facing sections (see *Standard skill structure* below): **Using with Tailwind** — how to express the section's intent in code via the Kiva Tailwind preset, written hybrid so it's useful with or without the preset — and **Outstanding discrepancies** — the genuine Figma-vs-code sync gaps. Both are *code-canonical* (unlike the Figma-canonical body above them), so don't write them from memory or the Figma side alone — read the source.
 
 Standard verification path (start narrow, widen only as needed):
 
@@ -74,7 +77,7 @@ When you find a divergence, **ask the user or check context** before framing it 
 
 ### List concrete missing tokens — don't summarize gaps in prose
 
-When you find real sync gaps (Figma defines tokens or values that code doesn't ship), enumerate them as a bullet list inside the "Current code state" section. A list of names — `text/action-disabled`, `background/action-secondary`, `border/secondary-disabled` — is actionable; "several tokens are missing" is not. Group by theme or category if there are more than ~5 missing entries.
+When you find real sync gaps (Figma defines tokens or values that code doesn't ship), enumerate them as a bullet list inside the "Outstanding discrepancies" section. A list of names — `text/action-disabled`, `background/action-secondary`, `border/secondary-disabled` — is actionable; "several tokens are missing" is not. Group by theme or category if there are more than ~5 missing entries.
 
 ### Extracting table data — prefer `get_metadata` for dense tables
 
@@ -98,7 +101,7 @@ when_to_use: <concrete triggers — when designing/implementing X, picking betwe
 # Kiva <Section Title>
 
 ## Source of truth
-<Figma is canonical. Code may lag. Verify before depending. Link to "Current code state" at bottom.>
+<Figma is canonical. Code may lag. Verify before depending. Link to "Outstanding discrepancies" at bottom.>
 
 ## Why <section> matters / About
 <2-4 sentences on the why. Lift from the Overview panel. Include "Common alternative names" line if Figma has one.>
@@ -118,14 +121,38 @@ when_to_use: <concrete triggers — when designing/implementing X, picking betwe
 ## How to use in Figma
 <Variable picker tips, library hover descriptions, before-handoff check (re-bind any raw values).>
 
-## Current code state (verify before depending)
-<Authoritative source file path. Real gaps. Intentional differences explicitly marked as such.>
+## Using with Tailwind
+<How to express this section's intent with the Kiva Tailwind preset; hybrid. Cross-link into tailwind.md for mechanics; link to in-body tables for values. Include a "### Without the preset" subsection. See "Writing the code-facing sections" below.>
+
+## Outstanding discrepancies
+<Only the critical, unresolved Figma-vs-code sync gaps. Concrete token names. Omit if there are none. Keep the "flag it — it's a data point" closer.>
 
 ## Figma source references
 - <Panel name>: node `XXXXX:XXXX`
 - ...
 File: `TPmBUB4olYPMF6glEhBGDG` (Ecosystem 2026 — WIP)
 ```
+
+## Writing the code-facing sections
+
+These two sections are where an otherwise Figma-canonical skill becomes **code-canonical**. They sit where the old single "Current code state" section used to — right before "Figma source references" — and they defer to the [`tailwind`](tailwind.md) skill, the canonical shipped-mechanics guide to the Kiva preset. Don't regenerate `tailwind`'s content here; link into it.
+
+### `## Using with Tailwind`
+
+Teach how to express *this section's* intent in code. It must be **hybrid**: encourage setting up and using the Kiva Tailwind preset, but still help a reader whose project doesn't have it. Use this four-part backbone:
+
+1. **Hybrid setup line.** State that the utilities come from the `@kiva/kv-tokens` preset, link to [tailwind → Consuming the preset](tailwind.md#consuming-the-preset) for projects not yet wired up, and point to the "Without the preset" subsection for projects that won't adopt it.
+2. **Authoring guidance (topic-specific).** How to pick/apply the class for this concern, plus the one key gotcha (e.g. `tw-rounded` = 16px, no `tw-text-lg`, the 8px spacing scale). **Link to the matching `tailwind.md` subsection** for the mechanics rationale instead of re-explaining it, and **point to any in-body mapping table** already in the skill instead of reprinting it.
+3. **Shipped-state details.** What actually ships today, with the authoritative source pointer (`tokens/core/*.json`, the relevant `configs/tailwind.config.js → theme.*` block). Put the "verify against the current config before depending" caveat on these lines — it replaces the old hedged section header.
+4. **`### Without the preset`.** Two clearly-separated fallbacks:
+   - *Kiva (or Kiva-adjacent) repo, preset not registered yet* → install + register (link to tailwind.md); arbitrary values are a stopgap until then.
+   - *Stock-Tailwind / non-Kiva project* → replicate the intent from the documented values, or pull CSS custom properties from `@kiva/kv-tokens/css` (`dist/css/tokens.css`); note that copied values are point-in-time and the static/hex route loses runtime theming.
+
+**Cross-link discipline:** never re-explain `tailwind.md` mechanics, and never copy a mapping table that already exists in the skill body — link to both. This keeps the section a thin bridge that won't drift as tokens change.
+
+### `## Outstanding discrepancies`
+
+Only the **critical, unresolved** Figma-vs-code divergences worth future work — the things a consumer would otherwise trip on. List concrete token names (see "List concrete missing tokens" above), and keep the closing line: "When you find a divergence … flag it — each is a data point for the design-system team." **Omit this section entirely** when a skill has no genuine gaps (a purely additive skill may not need it). Don't park stable, intentional facts here — code naming you type (`marigold-light`, the `default`/`base` split) belongs in "Using with Tailwind"; known Figma-label typos belong beside the value they describe or in a companion's source-caveats. Reserve "Outstanding discrepancies" for things that *should* change.
 
 ## Voice and formatting conventions
 
@@ -150,7 +177,7 @@ Naming: `<topic>.md` (umbrella) + `<topic>-<axis>.md` (companion). Examples: `co
 
 What lives where:
 
-- **Umbrella** (`<topic>.md`): source-of-truth caveat, why, principles, token grammar, accessibility framework, best practices / usage rules, Figma usage, current code state.
+- **Umbrella** (`<topic>.md`): source-of-truth caveat, why, principles, token grammar, accessibility framework, best practices / usage rules, Figma usage, Using with Tailwind, Outstanding discrepancies.
 - **Companion** (`<topic>-<axis>.md`): the full structured tables, with whatever columns the Figma source has (name, hex, primitive, description, etc.). Light intro pointing back to the umbrella; per-X "source caveats" sections for Figma typos specific to that table.
 
 Add **both** files to `SKILLS.md`. The companion's index entry should explicitly mark it as a reference: e.g., *"Reference companion to `color`: the full per-theme token tables …"*
@@ -171,7 +198,7 @@ Add **both** files to `SKILLS.md`. The companion's index entry should explicitly
 2. **(Optional) Skim one or two existing skills** if you haven't recently — pattern-match voice and structure.
 3. **Decide on the data source per panel.** Screenshots for conceptual panels; `get_design_context` (and a parser) for dense token tables. See "When to start with screenshots vs. the Figma MCP" above.
 4. **Decide whether to split** into an umbrella + reference companion before drafting. The split shape is hard to retrofit after the fact. See "When to split into a companion reference file."
-5. **Verify code state.** Open the relevant token JSON, the Tailwind config block, and any wrapper components. Note real gaps and intentional differences; list concrete missing tokens by name.
+5. **Verify code state.** Open the relevant token JSON, the Tailwind config block, and any wrapper components. Note the shipped utilities (for "Using with Tailwind"), the real gaps (for "Outstanding discrepancies"), and intentional differences; list concrete missing tokens by name.
 6. **Draft the skill(s)** using the standard structure. Write into `@kiva/kv-tokens/docs/skills/<name>.md`. Use the `Write` tool for new files; use `Edit` if revising.
 7. **Update the index.** Add one entry per file to `@kiva/kv-tokens/SKILLS.md` under `## Skills`.
 8. **Self-verify against canonical Figma data.** Before declaring done, pull every panel you summarized from screenshots and spot-check at least: (a) primitive / token values that drive other claims, (b) every callout in the accessibility or "do not use" sections, (c) every Do/Don't headline. Stale Figma labels and copy-paste errors are common enough that this step regularly catches real factual mistakes — treat it as required, not optional.

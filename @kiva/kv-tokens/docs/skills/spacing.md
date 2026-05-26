@@ -10,7 +10,7 @@ when_to_use: When designing or implementing any UI that involves space — secti
 
 This skill captures the **semantic spacing system** as defined in Figma (the Kiva Ecosystem 2026 file). Figma is the canonical source for design intent: which categories exist, what each token means, when to use it, and how spacing values are expected to scale across breakpoints.
 
-Numeric values and token names in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Current code state" at the end of this skill for known gaps.
+Numeric values and token names in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Outstanding discrepancies" at the end of this skill for known gaps.
 
 ## Why spacing matters
 
@@ -113,7 +113,7 @@ Quick formula: `N` = `N × 8px`, and `N-5` = `N × 8px + 4px` — both of which 
 | 7-5 | 60 | 3.75 | | 16 | 128 | 8 |
 | 8 | 64 | 4 | | | | |
 
-The raw ramp is the layer the **Tailwind config** ships today (e.g., `tw-p-2.5` = 20px). The semantic categories above are not yet exposed in code — see "Current code state."
+The raw ramp is the layer the **Tailwind config** ships today (e.g., `tw-p-2.5` = 20px). The semantic categories above are not yet exposed in code — see "Outstanding discrepancies."
 
 > **Caveat about the Figma table:** the Spacing Scales & Tokens panel in Figma has typos in the `rem` column from row `10-5` onward (the values appear to have wrapped), and the panel labels the bottom two rows as `16 = 124px` and `16-5 = 128px` when they are actually `15-5` and `16` on the ramp. The shipped `tokens/core/size.json` is authoritative — trust it (and the formula above) over the rendered Figma table.
 
@@ -179,20 +179,31 @@ Check auto-layout properties on key frames. If you see a raw number instead of a
 
 Open a request with the design system team. Include the use case, the component, and why the existing categories or tokens don't fit.
 
-## Current code state (verify before depending)
+## Using with Tailwind
 
-The shipped code exposes the **raw numeric ramp** but not the **semantic categories** described above. Check before assuming a token exists:
+The spacing utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-- **Authoritative source:** `@kiva/kv-tokens/tokens/core/size.json`. This is the canonical declaration of the `space` scale (and `breakpoint`, `radius`, `border-width`). All other code-side spacing references derive from it.
-- **Three different key conventions are in play** for the same tokens — don't get tripped up:
-  - **`tokens/core/size.json`** (source): `0_5`, `1`, `1_5`, `2`, `2_5`, … (underscores in keys)
-  - **Tailwind utility classes** (consumer): `tw-p-0.5`, `tw-p-1`, `tw-p-1.5`, `tw-p-2`, `tw-p-2.5`, … (dots, because Tailwind class names use them)
-  - **Figma variable picker** (design tool): `0-5`, `1`, `1-5`, `2`, `2-5`, … (hyphens, because Figma variable paths use them)
-- **Tailwind utilities resolve to the ramp** with the `tw-` prefix (`tw-p-2.5` = 20px, `tw-gap-2` = 16px, `tw-mt-4` = 32px). All `tw-p-*`, `tw-m-*`, `tw-gap-*`, `tw-space-*`, etc. flow from `space`.
-- **There are no shipped semantic spacing tokens** named `structure-xl`, `component-gap-l`, `component-inset-xl`, `micro`, etc. The semantic layer lives only in Figma variables today. In code, the only way to express the design intent right now is to pick the matching ramp value and (optionally) leave a comment or wrap a thin component abstraction.
-- **No responsive spacing tokens.** The Figma tokens encode per-tier shifts (e.g., `Inset XL` is `32 / 24 / 20`); the code does not. Today, responsive shifts must be expressed with Tailwind responsive prefixes (`tw-p-2.5 md:tw-p-3 lg:tw-p-4` — note that `sm` is not a defined screen; mobile is the unprefixed default).
+The preset wires every value on [the raw spacing ramp](#the-raw-spacing-ramp) into the standard spacing utilities — `tw-p-*`, `tw-m-*`, `tw-gap-*`, `tw-space-*`, etc. all flow from the `space` scale. The thing to internalize: this is an **8px scale with 4px half-steps**, so the same number means a different size than stock Tailwind — `tw-p-4` is **32px** here, not 16px. See [tailwind → Spacing is an 8px scale](tailwind.md#spacing-is-an-8px-scale-with-4px-half-steps).
 
-When you find a divergence between this skill and the shipped tokens/components, flag it — closing those gaps is part of the long-running token sync work, and each instance is a data point.
+Three key-naming conventions describe the same tokens — don't get tripped up:
+
+- **Tailwind classes** use dots: `tw-p-0.5`, `tw-p-1`, `tw-p-1.5`, `tw-p-2.5` (4px, 8px, 12px, 20px).
+- **`tokens/core/size.json`** (the authoritative source) uses underscores: `0_5`, `1`, `1_5`, `2_5`.
+- **Figma's variable picker** uses hyphens: `0-5`, `1`, `1-5`, `2-5`.
+
+The shipped code exposes this **raw numeric ramp**, not the semantic categories above — verify a value against `@kiva/kv-tokens/tokens/core/size.json` before depending on it. Express responsive shifts with breakpoint prefixes (`tw-p-2.5 md:tw-p-3 lg:tw-p-4`); note there is **no `sm` screen** — mobile is the unprefixed default.
+
+### Without the preset
+
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Stock-Tailwind / non-Kiva project:** the ramp is plain px, so the values in [the raw spacing ramp](#the-raw-spacing-ramp) table can be applied as arbitrary values (`p-[20px]`) or used to define your own scale. These are point-in-time copies.
+
+## Outstanding discrepancies
+
+- **No shipped semantic spacing tokens.** `structure-xl`, `component-gap-l`, `component-inset-xl`, `micro`, etc. do not exist in code — the semantic layer lives only in Figma variables today. In code, express the intent by picking the matching ramp value (optionally with a comment or a thin component wrapper).
+- **No responsive spacing tokens.** Figma encodes per-tier shifts (e.g. `Inset XL` is `32 / 24 / 20`); the code does not. Today, responsive shifts must be done with Tailwind responsive prefixes.
+
+When you find a divergence between this skill and the shipped tokens, flag it — each is a data point for the design-system team.
 
 ## Figma source references
 

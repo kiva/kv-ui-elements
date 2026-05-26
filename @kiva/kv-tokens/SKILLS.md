@@ -2,10 +2,11 @@
 
 Cross-agent skill files documenting design system intent. Each skill is a self-contained markdown file with YAML frontmatter (`name`, `description`, `when_to_use`) and is portable across agent platforms (Claude Code, Codex, OpenCode, Gemini, etc.).
 
-Skills capture **design intent from Figma**, the canonical source of truth for the design system. Numeric values and token names may temporarily diverge from shipped code while sync work is in progress — verify against current code before depending on specifics.
+Most skills capture **design intent from Figma**, the canonical source of truth for the design system; numeric values and token names may temporarily diverge from shipped code while sync work is in progress, so verify against current code before depending on specifics. A few skills instead document **integration mechanics** — how the shipped config and build pipeline actually work (see [tailwind](docs/skills/tailwind.md)).
 
 ## Skills
 
+- [tailwind](docs/skills/tailwind.md) — How to use Tailwind v3 backed by Kiva's tokens: what the `@kiva/kv-tokens` preset changes vs. stock Tailwind (the `tw-` prefix, themable colors as CSS vars, disabled `fontSize`/`lineHeight` plugins, token-driven scales, the base layer), how to wire up the preset, and how it's compiled from DTCG tokens. Integration mechanics — defer to the per-topic skills below for which value to pick.
 - [typography](docs/skills/typography.md) — Type scale, heading hierarchy, font families, pairing rules, and HTML/Tailwind mappings.
 - [layout](docs/skills/layout.md) — Layout grid system: breakpoint tiers (XS/SM/MD/LG/XL), columns, gutters, margins, nested grids, and rules for placing content on the grid.
 - [spacing](docs/skills/spacing.md) — Semantic spacing categories (Structure, Component Gap, Component Inset, Micro), the 4px-grain ramp, and the "between vs. inside" decision for picking a token.

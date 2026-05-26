@@ -10,7 +10,7 @@ when_to_use: When designing or implementing any UI that has corners — buttons,
 
 This skill captures the **border-radius system** as defined in Figma (the Kiva Ecosystem 2026 file). Figma is the canonical source for design intent: which tokens exist, what each represents, and how to choose between them for any given component.
 
-Numeric values, token names, and class references in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Current code state" at the end of this skill for known gaps.
+Numeric values, token names, and class references in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` may temporarily lag behind these specs while the token sync work is in progress. **Verify any token reference against the current code before depending on it.** See "Outstanding discrepancies" at the end of this skill for known gaps.
 
 ## Why radius matters
 
@@ -141,26 +141,35 @@ All radius tokens are published as variables in the Kiva Ecosystem library. When
 - Hover a variable to see its value and intended use cases.
 - Before handoff, inspect the frame: if the corner-radius field shows a raw number instead of a variable name, **re-bind it from the library**. A raw value is a detached decision that won't follow updates and leaves developers without a token to map to.
 
-## Current code state (verify before depending)
+## Using with Tailwind
 
-The shipped code has a small structural gap relative to the new Figma spec. Check before assuming a token name:
+The radius utilities below come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered the preset yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset at all? See [Without the preset](#without-the-preset) below.
 
-- **Authoritative source:** `@kiva/kv-tokens/tokens/core/size.json` — the canonical declaration of the `radius` token set (alongside `space`, `breakpoint`, `border-width`).
-- **`size.json` currently defines six tokens:** `xs` (4), `sm` (8), `md` (12), **`default`** (16), `lg` (20), `xl` (24).
-  - **The 16px token is `default` in code, `base` in Figma** (see the Anatomy note above). Figma renamed it to `base` for visual consistency with the `xs/sm/md/lg/xl` scale and treats `default` as the legacy name; code still ships `default` in `size.json`. The one piece that is mechanically fixed on the code side is Tailwind's **`DEFAULT`** key — that convention is what generates the unsuffixed `tw-rounded` utility, so the mapping resolves through `DEFAULT` regardless of the source token's name. Both names are correct in their own surface: when reading or writing code today, use `default` / `radii.default` / `DEFAULT`; in Figma, use `base`.
-  - **`none` (0px) and `full` (9999px) are not in `size.json`.** They are currently *hardcoded directly in the Tailwind preset* — see below — rather than flowing from the token source. This *is* a sync gap worth closing.
-- **Tailwind utility classes** (`@kiva/kv-tokens/configs/tailwind.config.js` → `theme.borderRadius`) ship the full spec scale today:
-  - `tw-rounded-none` → `0px` (hardcoded in preset)
-  - `tw-rounded-xs` → `4px` (from `radii.xs`)
-  - `tw-rounded-sm` → `8px` (from `radii.sm`)
-  - `tw-rounded-md` → `12px` (from `radii.md`)
-  - `tw-rounded` → `16px` (`DEFAULT` key, from `radii.default`)
-  - `tw-rounded-lg` → `20px` (from `radii.lg`)
-  - `tw-rounded-xl` → `24px` (from `radii.xl`)
-  - `tw-rounded-full` → `500rem` (hardcoded in preset; functionally a pill at any real-world width)
-- **Net effect:** at the utility-class layer everything in the Figma scale is usable today. At the token-source layer, two tokens (`none`, `full`) are not yet first-class entries in `size.json` and one (`base`) is still named `default`.
+Pick the class straight from the [scale table](#the-scale) above — each token's `tw-rounded-*` utility is listed there. The one trap carried over from stock Tailwind: **`tw-rounded` (no suffix) is 16px here**, not a small radius; use `tw-rounded-full` for a pill or circle. See [The `tw-rounded` gotcha](#the-tw-rounded-gotcha) above, and [tailwind](tailwind.md#border-radius-is-token-driven-and-tw-rounded--pill) for why.
 
-When you find a divergence between this skill and the shipped tokens/components, flag it — closing those gaps is part of the long-running token sync work, and each instance is a data point.
+**Shipped today** (verify against `@kiva/kv-tokens/configs/tailwind.config.js → theme.borderRadius` before depending):
+
+- `tw-rounded-none` → `0px` (hardcoded in the preset)
+- `tw-rounded-xs` → `4px` (from `radii.xs`)
+- `tw-rounded-sm` → `8px` (from `radii.sm`)
+- `tw-rounded-md` → `12px` (from `radii.md`)
+- `tw-rounded` → `16px` (the `DEFAULT` key, from `radii.default`)
+- `tw-rounded-lg` → `20px` (from `radii.lg`)
+- `tw-rounded-xl` → `24px` (from `radii.xl`)
+- `tw-rounded-full` → `500rem` (hardcoded in the preset; functionally a pill at any real width)
+
+The 16px token is **`default` in code** and **`base` in Figma** — Tailwind's `DEFAULT` key generates the unsuffixed `tw-rounded` utility, so the mapping resolves through `DEFAULT` regardless of the source name. In code use `default` / `DEFAULT`; in Figma use `base`.
+
+### Without the preset
+
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Until then, arbitrary values (`rounded-[16px]`) are a stopgap.
+- **Stock-Tailwind / non-Kiva project:** use arbitrary values from the [scale table](#the-scale) (`rounded-[16px]`, `rounded-[20px]`). These are point-in-time copies of the token values, so re-check them if the scale changes.
+
+## Outstanding discrepancies
+
+- **`none` (0px) and `full` (500rem) are hardcoded in the preset** rather than flowing from `tokens/core/size.json` like the rest of the scale. A sync gap worth closing.
+
+When you find a divergence from the shipped tokens, flag it — each is a data point for the design-system team.
 
 ## Figma source references
 

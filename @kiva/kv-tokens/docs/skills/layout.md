@@ -10,7 +10,7 @@ when_to_use: When designing or implementing any page layout, responsive composit
 
 This skill captures the **layout grid system** as defined in Figma (the Kiva Ecosystem 2026 file). Figma is the canonical source for design intent: which tiers exist, what their column/gutter/margin values are, and how content is meant to sit on the grid.
 
-Numeric values, tier names, and any class references in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` and `@kiva/kv-components` may temporarily lag behind these specs while the layout token sync work is in progress. **Verify any breakpoint value, gap class, or grid utility against the current code before depending on it.** See "Current code state" at the end of this skill for known gaps.
+Numeric values, tier names, and any class references in this document reflect the Figma specifications. The shipped code in `@kiva/kv-tokens` and `@kiva/kv-components` may temporarily lag behind these specs while the layout token sync work is in progress. **Verify any breakpoint value, gap class, or grid utility against the current code before depending on it.** See "Outstanding discrepancies" at the end of this skill for known gaps.
 
 ## Why a grid
 
@@ -168,15 +168,26 @@ Match the style to the frame width and to whether the frame represents a page or
 - Don't add a margin to a nested grid — nested grids have no margin by design.
 - Don't reuse the same span number across tiers without re-checking against the tier's column count.
 
-## Current code state (verify before depending)
+## Using with Tailwind
 
-The shipped code currently exposes a narrower view of the layout system than the Figma spec describes. Check before assuming a token or class exists:
+The layout primitives come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-- **Breakpoints in `@kiva/kv-tokens`** today: `md: 734`, `lg: 1024`, `xl: 1440`. **There is no `sm` or `xs` Tailwind screen** — mobile is the unprefixed default. The XS / SM tier values in this skill are design-side targets that are not yet expressed as named breakpoints in code.
-- **`KvGrid`** (`@kiva/kv-components/src/vue/KvGrid.vue`) is a thin wrapper around `tw-grid` that hard-codes its gap as `tw-gap-2 md:tw-gap-3 lg:tw-gap-3.5`. These gap values **do not currently match** the Figma tier gutters (16 / 16 / 24 / 32 / 32). If you need spec-accurate gutters, set them explicitly with Tailwind gap utilities rather than relying on `KvGrid`'s defaults.
-- **Margins** (20 / 20 / 32 / 64 / 120) and the **1200px content max-width** are not yet shipped as named tokens. Page-container behavior currently lives per-consumer.
+Breakpoints are **mobile-first min-width screens: `md`, `lg`, `xl`** (plus a `print` screen) — there is **no `sm` and no `2xl`**. Unprefixed utilities are the base tier, so the design system's XS and SM tiers both fall under "no prefix" in Tailwind; layer `md:` / `lg:` / `xl:` on top. See [tailwind → Breakpoints are `md` / `lg` / `xl`](tailwind.md#breakpoints-are-md--lg--xl-mobile-first-no-sm). Build grids with `tw-grid` and the column/gap utilities, or use `KvGrid` (with the gutter caveat below).
 
-When you find a divergence between this skill and the shipped tokens/components, flag it — closing those gaps is the long-running token sync work, and each instance is a data point.
+**Shipped breakpoint values** (verify against `@kiva/kv-tokens/configs/tailwind.config.js` / `tokens/core/size.json`): `md: 734`, `lg: 1024`, `xl: 1440`.
+
+### Without the preset
+
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Stock-Tailwind / non-Kiva project:** define `md` / `lg` / `xl` screens at the values above in your own config (or use arbitrary min-width media), and set gutters/margins explicitly from the [grid specs](#breakpoint-tiers--page-grid-specs). Copied values are point-in-time.
+
+## Outstanding discrepancies
+
+- **XS and SM tiers are not named breakpoints in code** — mobile is the unprefixed default; the XS/SM values in this skill are design-side targets only.
+- **`KvGrid`** ([`@kiva/kv-components/src/vue/KvGrid.vue`](../../../kv-components/src/vue/KvGrid.vue)) hard-codes its gap as `tw-gap-2 md:tw-gap-3 lg:tw-gap-3.5`, which **does not match** the Figma tier gutters (16 / 16 / 24 / 32 / 32). For spec-accurate gutters, set them explicitly with gap utilities rather than relying on `KvGrid`'s defaults.
+- **Margins** (20 / 20 / 32 / 64 / 120) and the **1200px content max-width** are not shipped as named tokens; page-container behavior lives per-consumer today.
+
+When you find a divergence between this skill and the shipped tokens/components, flag it — each is a data point for the design-system team.
 
 ## Figma source references
 

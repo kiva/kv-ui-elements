@@ -14,6 +14,8 @@ Five themes are documented below in the order they appear in Figma, followed by 
 
 The **Token** column is the semantic name a designer or engineer references. The **Primitive** column shows which raw value powers it — useful when tracing how the system composes, and the only place opacity-based disabled tokens (e.g., `color/gray/800-1` = `#212121 (30%)`) are visible.
 
+**Wiring colors without the Tailwind preset?** These hex and primitive values are your fallback. See [color → Using with Tailwind](color.md#using-with-tailwind): when the `@kiva/kv-tokens` preset isn't registered, the themable `tw-bg-*` / `tw-text-*` utilities don't exist, so you either pull the CSS custom properties from `@kiva/kv-tokens/css` or apply the hex values in the tables below directly (losing runtime theming).
+
 ## Source-of-truth caveats
 
 Several rows in the Figma source have obvious copy-paste or transcription errors. These are surfaced in **Figma source caveats** at the bottom of each theme rather than transcribed verbatim. When in doubt, treat the **Primitive** column as the canonical answer — primitive token names rarely have typos, and the hex/description should match the primitive.
