@@ -65,6 +65,7 @@ Our Tailwind config has some differences to the standard install. Notably
 | `@kiva/kv-tokens/js`           | `dist/js/tokens.js`         | Generated JS tokens (flat + nested)       |
 | `@kiva/kv-tokens/css`          | `dist/css/tokens.css`       | Themed CSS custom properties              |
 | `@kiva/kv-tokens/scss`         | `dist/scss/tokens.scss`     | SCSS `$variable` map                      |
+| `@kiva/kv-tokens/make-kit/*`   | `dist/make-kit/*`           | Figma Make kit (guidelines + style context) |
 
 ## Importing Source Tokens
 
@@ -98,6 +99,36 @@ Or read them off disk from `node_modules/@kiva/kv-tokens/tokens/…` — useful 
 **Note on stability:** once shipped, the on-disk layout of `tokens/` (directory names, file names) is part of this package's public contract. Reorganizing it is a breaking change.
 
 For the transformed, resolved-values-with-code-facing-names shape used by component code, prefer the default export of `@kiva/kv-tokens` or the flat-and-nested `@kiva/kv-tokens/js` module.
+
+## Figma Make kit
+
+`npm run build` emits `dist/make-kit/`, a [Figma Make kit](https://developers.figma.com/docs/code/write-design-system-guidelines/) built from the design-system skills in [`docs/skills/`](docs/skills):
+
+```
+dist/make-kit/
+├── styles.css                 # compiled Tailwind stylesheet (base + utilities + type + theme vars)
+└── guidelines/
+    ├── Guidelines.md          # routing document Make reads first (replaces Make's auto-created stub)
+    ├── setup.md               # how to consume the kit (styles.css, tw- prefix, theming)
+    └── foundations/*.md       # one file per design foundation
+```
+
+A skill is included in the kit when its frontmatter sets `make_kit.include: true` (with a `category` and `order`); skills without that block are excluded. Adding a new tagged skill makes it appear in the kit — and in the `Guidelines.md` routing — on the next build, with no script changes. The transform logic lives in [`build/make-kit-transform.js`](build/make-kit-transform.js); the orchestrator is [`build/build-make-kit.js`](build/build-make-kit.js).
+
+`styles.css` is the Kiva Tailwind preset compiled to a full stylesheet — base layer (fonts, headings), `tw-`-prefixed token utilities, the `tw-text-*` type system (with responsive variants), and every theme's color variables — so Make can match the design system's measurements and type whether or not it runs Tailwind itself. The safelist of utilities to emit is generated from the token scales ([`build/make-kit-safelist.js`](build/make-kit-safelist.js)), so it stays in sync as tokens change.
+
+### Importing into Figma Make
+
+Figma Make has no API to pull these in by path — you upload/drag the files into the kit. One-time setup:
+
+1. **Get the files:** `npm i @kiva/kv-tokens`, then copy from `node_modules/@kiva/kv-tokens/dist/make-kit/` (the `guidelines/` files and `styles.css`).
+2. In Figma Make: **Settings → Create a kit**.
+3. Open the **Code** view → the **`guidelines/`** folder. **Upload or drag in** `setup.md` and the `foundations/*.md` files, and replace the auto-created `Guidelines.md` with ours (or paste its contents in).
+4. Add **`styles.css`** to the project as the kit's style context (drag it into the file explorer).
+5. *(Optional)* The kit import modal also accepts npm packages and library styles, but Make kits currently support **React** codebases only — so `@kiva/kv-tokens` (a Tailwind/token package, not React) isn't added here; the compiled `styles.css` is the delivery.
+6. **Test** (prompt Make to build something and confirm it matches), then **Publish kit** to your team/org. Teammates pick it via **"Select a Make kit"** in a Make file.
+
+See [Get started with Make kits](https://help.figma.com/hc/en-us/articles/39241689698839-Get-started-with-Make-kits) and [Add guidelines to Figma Make](https://help.figma.com/hc/en-us/articles/33665861260823-Add-guidelines-to-Figma-Make).
 
 ## Local Development
 
