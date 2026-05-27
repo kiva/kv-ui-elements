@@ -128,12 +128,29 @@
 			@mouseleave="handleMouseOut('avatarMenu')"
 			@touchstart.stop="handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition())"
 		>
-			<span class="tw-text-eco-green-4">{{ formattedBalance }}</span>
+			<!-- balance: loader while user data is in flight -->
+			<div
+				v-if="isUserDataLoading"
+				class="tw-w-4 tw-h-3"
+			>
+				<kv-loading-placeholder />
+			</div>
+			<span
+				v-else
+				class="tw-text-eco-green-4"
+			>{{ formattedBalance }}</span>
+			<!-- avatar: loader while user data is in flight -->
+			<div
+				v-if="isUserDataLoading"
+				class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+			>
+				<kv-loading-placeholder />
+			</div>
 			<kv-user-avatar
+				v-else
 				class="tw-w-3 tw-h-3"
 				:lender-name="lenderName"
 				:lender-image-url="lenderImageUrl"
-				:show-css-placeholder="isUserDataLoading"
 				is-small
 			/>
 		</div>
@@ -149,6 +166,7 @@ import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import KvIconBag from '#components/KvIconBag.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
+import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import KvHeaderDropdownLink from '#components/KvWwwHeader/KvHeaderDropdownLink.vue';
@@ -169,7 +187,14 @@ const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
 export default {
 	name: 'LinkBar',
 	components: {
-		KvMaterialIcon, KvIconBag, KvUserAvatar, KvButton, KvHeaderLogo, KvHeaderDropdownLink, SearchBar,
+		KvMaterialIcon,
+		KvIconBag,
+		KvUserAvatar,
+		KvLoadingPlaceholder,
+		KvButton,
+		KvHeaderLogo,
+		KvHeaderDropdownLink,
+		SearchBar,
 	},
 	props: {
 		loggedIn: { type: Boolean, default: false },

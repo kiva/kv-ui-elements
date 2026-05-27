@@ -1,7 +1,6 @@
 <template>
 	<nav
-		class="tw-flex tw-flex-col tw-items-start tw-font-medium"
-		:class="isMobile ? 'tw-px-0' : 'tw--mt-0.5 tw-pb-0.5 tw-px-2.5'"
+		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw--mt-0.5 tw-pb-0.5 tw-px-2.5"
 	>
 		<kv-header-menu-link
 			:href="myDashboardUrl"
