@@ -1,6 +1,7 @@
 <template>
 	<div
-		class="tw-h-full tw-flex tw-items-center tw-gap-1 md:tw-gap-2 lg:tw-gap-2.5"
+		class="tw-h-full tw-min-h-[4rem] tw-font-medium
+			tw-flex tw-items-center tw-gap-1 md:tw-gap-2 lg:tw-gap-2.5"
 		@touchstart="handleEmptySpaceClick"
 	>
 		<!-- hamburger (mobile only) -->
@@ -95,7 +96,9 @@
 		>
 			<!-- tablet/desktop: light-green count panel + "Basket" (matches the live www header) -->
 			<span class="tw-hidden md:tw-flex tw-items-center">
-				<span class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1">{{ basketCount }}</span>
+				<span
+					class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
+				>{{ basketCount }}</span>
 				Basket
 			</span>
 			<!-- mobile: bag icon with count -->
