@@ -52,18 +52,19 @@
 		/>
 		<!-- spacer keeps the right-side cluster pinned right -->
 		<div class="tw-flex-1"></div>
-		<!-- primary text links: Partner (always), Borrow (visitor) -->
+		<!-- primary text links: Partner (always), Borrow (visitor) — desktop only; mobile shows them in the drawer -->
 		<a
 			v-for="link in visiblePrimaryLinks"
 			:key="link.id"
 			:href="link.href"
-			class="header-link"
+			class="header-link tw-hidden md:tw-block"
 			:data-testid="`header-link-${link.id}`"
 			@click="onPrimaryClick(link)"
 		>{{ link.label }}</a>
-		<!-- About dropdown -->
+		<!-- About dropdown (desktop only; mobile shows About in the drawer) -->
 		<kv-header-dropdown-link
 			ref-name="aboutLink"
+			class="tw-hidden md:tw-block"
 			:menu-component="AboutMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
@@ -98,16 +99,18 @@
 			/>
 			<span class="tw-sr-only">Basket</span>
 		</a>
-		<!-- Support Kiva (always) -->
-		<kv-button
-			variant="secondary"
-			href="/donate/supportus"
-			class="tw-whitespace-nowrap"
-			data-testid="header-support-kiva"
-			@click="onSupportKivaClick"
-		>
-			Support Kiva
-		</kv-button>
+		<!-- Support Kiva (desktop only; mobile shows it in the drawer) -->
+		<div class="tw-hidden md:tw-block">
+			<kv-button
+				variant="secondary"
+				href="/donate/supportus"
+				class="tw-whitespace-nowrap"
+				data-testid="header-support-kiva"
+				@click="onSupportKivaClick"
+			>
+				Support Kiva
+			</kv-button>
+		</div>
 		<!-- balance + avatar → MyKiva menu (logged-in) -->
 		<div
 			v-if="loggedIn"
