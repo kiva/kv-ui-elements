@@ -47,9 +47,8 @@
 				@touchstart="handleOverlayClick"
 			>
 				<div
-					class="tw-bg-primary tw-overflow-y-auto tw-w-full
-						md:tw-w-auto tw-rounded-none md:tw-rounded-b-sm"
-					:class="{ 'tw-min-h-dvh': isMobileMenuActive }"
+					class="tw-bg-primary tw-overflow-y-auto"
+					:class="menuPanelClass"
 					:style="{
 						...menuPosition,
 						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${HEADER_HEIGHT})` : 'auto',
@@ -136,6 +135,15 @@ export default {
 		const linksVisible = ref(true);
 
 		const isMobileMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MobileMenu');
+		const isMyKivaMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MyKivaMenu');
+
+		// Hamburger = full-screen drawer; MyKiva = constrained dropdown on every breakpoint
+		// (right-aligned to its trigger via menuPosition); Lend/About stay full-width on mobile, auto at md+.
+		const menuPanelClass = computed(() => {
+			if (isMobileMenuActive.value) return 'tw-w-full tw-min-h-dvh tw-rounded-none';
+			if (isMyKivaMenuActive.value) return 'tw-w-auto tw-rounded-b-sm';
+			return 'tw-w-full md:tw-w-auto tw-rounded-none md:tw-rounded-b-sm';
+		});
 
 		function emitLendMenuEvent(): void {
 			emit('load-lend-menu-data');
@@ -166,6 +174,7 @@ export default {
 			menuItem,
 			menuPosition,
 			isMobileMenuActive,
+			menuPanelClass,
 			menuComponentInstance,
 			setMenu,
 			handleOverlayClick,

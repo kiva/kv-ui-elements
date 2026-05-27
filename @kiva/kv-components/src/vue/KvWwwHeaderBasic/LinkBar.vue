@@ -50,6 +50,8 @@
 			@load-search-data="$emit('load-search-data')"
 			@search-submit="$emit('search-submit', $event)"
 		/>
+		<!-- spacer keeps the right-side cluster pinned right -->
+		<div class="md:tw-hidden tw-flex-1"></div>
 		<!-- primary text links: Partner (always), Borrow (visitor) — desktop only; mobile shows them in the drawer -->
 		<a
 			v-for="link in visiblePrimaryLinks"
@@ -158,9 +160,6 @@ interface TrackEvent {
 	(category: string, action: string, label?: string, value?: number): void;
 }
 
-// Assumed MyKiva dropdown width, used to right-anchor it under the avatar (mirrors KvWwwHeader).
-const AVATAR_MENU_WIDTH = 150;
-
 // Drawer/dropdown menus are async-loaded; they render in the orchestrator's overlay, not inline here.
 const KvLendMenu = defineAsyncComponent(() => import('#components/KvWwwHeader/LendMenu/KvLendMenu.vue'));
 const AboutMenu = defineAsyncComponent(() => import('./AboutMenu.vue'));
@@ -199,16 +198,13 @@ export default {
 		// Untyped ref (like KvHeaderLinkBar): keeps the heavy HTMLElement type out of the emitted .d.ts.
 		const avatarMenu = ref(null);
 
-		// Anchor the MyKiva dropdown under the avatar at md+ (About-style positioned panel);
-		// returning null on mobile leaves the orchestrator's full-width drawer style in place.
+		// Right-align the MyKiva dropdown to the trigger's right edge on every breakpoint, so the
+		// constrained panel always opens on-screen (the orchestrator sizes it w-auto for MyKiva).
 		function getAvatarMenuPosition(): { right: string } | null {
-			if (props.isMobile) return null;
 			const el = avatarMenu.value as HTMLElement | null;
 			const rect = el?.getBoundingClientRect();
 			if (!rect) return null;
-			const center = rect.left + rect.width / 2;
-			const menuLeft = center - AVATAR_MENU_WIDTH / 2;
-			return { right: `${window.innerWidth - menuLeft - AVATAR_MENU_WIDTH}px` };
+			return { right: `${window.innerWidth - rect.right}px` };
 		}
 
 		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
