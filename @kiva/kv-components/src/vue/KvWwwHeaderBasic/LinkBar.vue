@@ -50,8 +50,6 @@
 			@load-search-data="$emit('load-search-data')"
 			@search-submit="$emit('search-submit', $event)"
 		/>
-		<!-- spacer keeps the right-side cluster pinned right -->
-		<div class="tw-flex-1"></div>
 		<!-- primary text links: Partner (always), Borrow (visitor) — desktop only; mobile shows them in the drawer -->
 		<a
 			v-for="link in visiblePrimaryLinks"
@@ -84,20 +82,28 @@
 			data-testid="header-login"
 			@click="onLoginClick"
 		>Log in</a>
-		<!-- basket (logged-in, when items present) -->
+		<!-- basket (logged-in, when items present): count panel + label at md+, bag icon + count on mobile -->
 		<a
 			v-if="loggedIn"
 			v-show="basketCount > 0 || isBasketDataLoading"
 			href="/basket"
-			class="header-link tw-flex tw-items-center tw-gap-0.5"
+			class="header-link tw-flex tw-items-center"
 			data-testid="header-basket"
 			@click="onBasketClick"
 		>
-			<kv-icon-bag
-				class="tw-w-3 tw-h-3 tw-text-action tw-pointer-events-none"
-				:count="isBasketDataLoading ? 0 : basketCount"
-			/>
-			<span class="tw-sr-only">Basket</span>
+			<!-- tablet/desktop: light-green count panel + "Basket" (matches the live www header) -->
+			<span class="tw-hidden md:tw-flex tw-items-center">
+				<span class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1">{{ basketCount }}</span>
+				Basket
+			</span>
+			<!-- mobile: bag icon with count -->
+			<span class="tw-flex md:tw-hidden tw-items-center">
+				<kv-icon-bag
+					class="tw-w-3 tw-h-3 tw-text-action tw-pointer-events-none"
+					:count="isBasketDataLoading ? 0 : basketCount"
+				/>
+				<span class="tw-sr-only">Basket</span>
+			</span>
 		</a>
 		<!-- Support Kiva (desktop only; mobile shows it in the drawer) -->
 		<div class="tw-hidden md:tw-block">
@@ -111,13 +117,14 @@
 				Support Kiva
 			</kv-button>
 		</div>
-		<!-- balance + avatar → MyKiva menu (logged-in) -->
+		<!-- balance + avatar → MyKiva menu (logged-in); anchored dropdown at md+, full-width drawer on mobile -->
 		<div
 			v-if="loggedIn"
+			ref="avatarMenu"
 			class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
-			@mouseenter="handleOnHover('avatarMenu', MyKivaMenu)"
+			@mouseenter="handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition())"
 			@mouseleave="handleMouseOut('avatarMenu')"
-			@touchstart.stop="handleTouchStart('avatarMenu', MyKivaMenu)"
+			@touchstart.stop="handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition())"
 		>
 			<span class="tw-text-eco-green-4">{{ formattedBalance }}</span>
 			<kv-user-avatar
@@ -150,6 +157,9 @@ interface TrackEvent {
 	// eslint-disable-next-line no-unused-vars
 	(category: string, action: string, label?: string, value?: number): void;
 }
+
+// Assumed MyKiva dropdown width, used to right-anchor it under the avatar (mirrors KvWwwHeader).
+const AVATAR_MENU_WIDTH = 150;
 
 // Drawer/dropdown menus are async-loaded; they render in the orchestrator's overlay, not inline here.
 const KvLendMenu = defineAsyncComponent(() => import('#components/KvWwwHeader/LendMenu/KvLendMenu.vue'));
@@ -186,6 +196,20 @@ export default {
 	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
 		const openItem = ref<string | null>(null);
+		// Untyped ref (like KvHeaderLinkBar): keeps the heavy HTMLElement type out of the emitted .d.ts.
+		const avatarMenu = ref(null);
+
+		// Anchor the MyKiva dropdown under the avatar at md+ (About-style positioned panel);
+		// returning null on mobile leaves the orchestrator's full-width drawer style in place.
+		function getAvatarMenuPosition(): { right: string } | null {
+			if (props.isMobile) return null;
+			const el = avatarMenu.value as HTMLElement | null;
+			const rect = el?.getBoundingClientRect();
+			if (!rect) return null;
+			const center = rect.left + rect.width / 2;
+			const menuLeft = center - AVATAR_MENU_WIDTH / 2;
+			return { right: `${window.innerWidth - menuLeft - AVATAR_MENU_WIDTH}px` };
+		}
 
 		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
 			if (link.visibility === 'visitor') return !props.loggedIn;
@@ -254,6 +278,8 @@ export default {
 			AboutMenu,
 			MyKivaMenu,
 			MobileMenu,
+			avatarMenu,
+			getAvatarMenuPosition,
 			visiblePrimaryLinks,
 			lendUrl,
 			formattedBalance,

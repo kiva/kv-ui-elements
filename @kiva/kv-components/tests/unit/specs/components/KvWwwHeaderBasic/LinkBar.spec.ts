@@ -30,6 +30,15 @@ describe('LinkBar', () => {
 		expect(getByText(/partner/i)).toBeTruthy();
 	});
 
+	it('renders the basket as a count panel with the word "Basket" for logged-in users', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, basketCount: 3 }, global,
+		});
+		const basket = getByTestId('header-basket');
+		expect(basket.textContent).toContain('3');
+		expect(basket.textContent).toContain('Basket');
+	});
+
 	it('renders the Kiva home logo link in the bar', () => {
 		const { getByLabelText } = render(LinkBar, { props: { loggedIn: false }, global });
 		const logo = getByLabelText('Kiva home');
