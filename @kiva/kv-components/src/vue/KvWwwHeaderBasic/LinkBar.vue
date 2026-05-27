@@ -173,8 +173,8 @@ import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import KvHeaderDropdownLink from '#components/KvWwwHeader/KvHeaderDropdownLink.vue';
+import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
 import SearchBar from './SearchBar.vue';
-import { PRIMARY_LINKS, type NavLink } from './utils/navLinks';
 
 interface TrackEvent {
 	// eslint-disable-next-line no-unused-vars

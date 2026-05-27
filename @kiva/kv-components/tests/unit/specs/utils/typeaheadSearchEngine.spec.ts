@@ -1,4 +1,4 @@
-import SearchEngine, { type SearchSuggestion } from '#components/KvWwwHeaderBasic/utils/searchEngine';
+import SearchEngine, { type SearchSuggestion } from '#utils/typeaheadSearchEngine';
 
 const data: SearchSuggestion[] = [
 	{ group: 'Countries and Territories', label: 'Philippines', query: 'country=29' },

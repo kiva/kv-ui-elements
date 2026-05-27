@@ -1,8 +1,8 @@
 import {
 	ref, watch, computed, type Ref,
 } from 'vue';
-import SearchEngine, { type SearchSuggestion } from '../utils/searchEngine';
-import { SECTION_ORDER, MAX_PER_GROUP, GIFT_SUGGESTIONS } from '../utils/searchConfig';
+import SearchEngine, { type SearchSuggestion } from '#utils/typeaheadSearchEngine';
+import { SECTION_ORDER, MAX_PER_GROUP, GIFT_SUGGESTIONS } from '#utils/typeaheadSearchConfig';
 
 export interface SubmitPayload {
 	url: string;

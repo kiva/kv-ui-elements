@@ -76,8 +76,8 @@ import {
 import { mdiMagnify } from '@mdi/js';
 import KvTextInput from '#components/KvTextInput.vue';
 import markMatches from '#utils/markMatches';
+import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
 import { useHeaderBasicSearch } from './composables/useHeaderBasicSearch';
-import type { SearchSuggestion } from './utils/searchEngine';
 
 interface TrackEvent {
 	// eslint-disable-next-line no-unused-vars

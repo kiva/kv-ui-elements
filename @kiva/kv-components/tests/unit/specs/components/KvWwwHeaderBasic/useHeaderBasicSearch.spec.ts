@@ -1,6 +1,6 @@
 import { ref, nextTick } from 'vue';
 import { useHeaderBasicSearch } from '#components/KvWwwHeaderBasic/composables/useHeaderBasicSearch';
-import type { SearchSuggestion } from '#components/KvWwwHeaderBasic/utils/searchEngine';
+import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
 
 const suggestions: SearchSuggestion[] = [
 	{ group: 'Countries and Territories', label: 'Peru', query: 'country=70' },

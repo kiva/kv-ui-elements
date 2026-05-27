@@ -1,4 +1,4 @@
-import type { SearchSuggestion } from './searchEngine';
+import type { SearchSuggestion } from './typeaheadSearchEngine';
 
 // Section render order for grouped suggestions. Copied verbatim from both app SearchBar files
 // (cms-page-server/components/header/SearchBar.vue and ui/src/components/WwwFrame/SearchBar.vue),
