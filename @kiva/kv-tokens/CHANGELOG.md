@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.0.3...@kiva/kv-tokens@4.1.0) (2026-05-27)
+
+
+### Features
+
+* create and index design system topic skills along with a skill for repeating this process ([203e1b7](https://github.com/kiva/kv-ui-elements/commit/203e1b7294708c5a59b4d81ced786238f0625a7e))
+* create kiva tailwind config skill file and augment design system skills with tailwind guidance ([2f5ae00](https://github.com/kiva/kv-ui-elements/commit/2f5ae002734de92b70c7d5768f661655b2d9ad64))
+* establish skill categorization and build process for compiled figma make kit artifacts ([3049dcd](https://github.com/kiva/kv-ui-elements/commit/3049dcd9fbc8a2a5e1085bcff15525d09edb161a))
+
+
+
+
+
 ## [4.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.0.2...@kiva/kv-tokens@4.0.3) (2026-04-30)
 
 **Note:** Version bump only for package @kiva/kv-tokens
