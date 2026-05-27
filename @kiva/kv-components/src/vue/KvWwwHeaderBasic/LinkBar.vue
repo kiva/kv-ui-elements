@@ -85,12 +85,15 @@
 			<span class="tw-sr-only">Basket</span>
 		</a>
 		<!-- Support Kiva (always) -->
-		<a
+		<kv-button
+			variant="secondary"
 			href="/donate/supportus"
-			class="support-kiva-button"
+			class="tw-whitespace-nowrap"
 			data-testid="header-support-kiva"
 			@click="onSupportKivaClick"
-		>Support Kiva</a>
+		>
+			Support Kiva
+		</kv-button>
 		<!-- balance + avatar → MyKiva menu (logged-in) -->
 		<div
 			v-if="loggedIn"
@@ -120,6 +123,7 @@ import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import KvIconBag from '#components/KvIconBag.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
+import KvButton from '#components/KvButton.vue';
 import KvHeaderDropdownLink from '#components/KvWwwHeader/KvHeaderDropdownLink.vue';
 import SearchBar from './SearchBar.vue';
 import { PRIMARY_LINKS, type NavLink } from './utils/navLinks';
@@ -138,7 +142,7 @@ const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
 export default {
 	name: 'LinkBar',
 	components: {
-		KvMaterialIcon, KvIconBag, KvUserAvatar, KvHeaderDropdownLink, SearchBar,
+		KvMaterialIcon, KvIconBag, KvUserAvatar, KvButton, KvHeaderDropdownLink, SearchBar,
 	},
 	props: {
 		loggedIn: { type: Boolean, default: false },
@@ -248,11 +252,5 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
-}
-
-.support-kiva-button {
-	@apply tw-inline-flex tw-items-center tw-px-2 tw-py-1 tw-rounded-md
-		tw-bg-action tw-text-primary-inverse tw-no-underline
-		hover:tw-no-underline hover:tw-bg-action-active;
 }
 </style>
