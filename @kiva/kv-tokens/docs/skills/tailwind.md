@@ -2,6 +2,10 @@
 name: tailwind
 description: How to use Tailwind CSS v3 when it is backed by Kiva's design tokens — what the @kiva/kv-tokens preset changes about stock Tailwind (the tw- prefix, themable colors compiled to CSS custom properties, disabled core plugins, token-driven scales, an opinionated base layer), how to wire the preset into a project, and how the preset is compiled from DTCG tokens. Mechanical and integration-focused; for which token to pick, defer to the per-topic skills (color, spacing, radius, typography, layout).
 when_to_use: When authoring or reviewing Tailwind utility classes in any repo that uses the Kiva preset (kv-components, kiva/ui, and other consumers), when setting up the preset in a new project, when a Tailwind class behaves differently than stock Tailwind would suggest (e.g. tw-text-lg or tw-font-bold "not working"), or when modifying the design-token → Tailwind pipeline inside this monorepo. Read this for how the system works and how to use it; read color/spacing/radius/typography/layout for which value to choose.
+make_kit:
+  include: true
+  category: foundations
+  order: 10
 ---
 
 # Kiva Tailwind

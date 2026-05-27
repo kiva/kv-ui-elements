@@ -2,6 +2,10 @@
 name: spacing
 description: Semantic spacing system from the Kiva design system — token categories (Structure, Component Gap, Component Inset, Micro), the 4px-grain ramp, responsive per-tier values, and rules for picking a token by spatial relationship rather than pixel value. Sourced from Figma; values describe design intent and may diverge from current code implementation.
 when_to_use: When designing or implementing any UI that involves space — section gaps, component padding, gaps inside a component, padding inside a card or modal, or any auto-layout gap/padding decision in Figma. Use it whenever someone reaches for a raw pixel value, or when picking between two tokens that happen to share the same number. Reference design intent first; verify token names against current code before relying on them.
+make_kit:
+  include: true
+  category: foundations
+  order: 40
 ---
 
 # Kiva Spacing

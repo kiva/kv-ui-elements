@@ -2,6 +2,10 @@
 name: radius
 description: Border-radius token system from the Kiva design system — the 8-step scale from none (0px) to full (9999px), per-component use cases, the inner-radius formula for nested elements, and rules for keeping corners consistent. Sourced from Figma; values describe design intent and may diverge from current code implementation.
 when_to_use: When designing or implementing any UI that has corners — buttons, cards, modals, inputs, chips, tags, avatars, images, section frames. Use it whenever someone reaches for a raw px corner-radius value, when nesting one rounded element inside another, or when picking a Tailwind `tw-rounded-*` utility. Reference design intent first; verify token names against current code before relying on them.
+make_kit:
+  include: true
+  category: foundations
+  order: 60
 ---
 
 # Kiva Radius

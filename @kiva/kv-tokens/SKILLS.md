@@ -21,3 +21,4 @@ Most skills capture **design intent from Figma**, the canonical source of truth 
 - One topic per skill file. Split a skill if it grows beyond what an agent can comfortably load on demand.
 - Frontmatter: `name`, `description` (specific enough to gate relevance), `when_to_use` (concrete trigger conditions).
 - Skill bodies should describe semantic intent first; code-level specifics second, with caveats where Figma and code may diverge.
+- Skills tagged with `make_kit.include: true` in their frontmatter are exported into a Figma Make kit at `dist/make-kit/` by `npm run build` (see [README](README.md#figma-make-kit)). Process/authoring skills omit the block and are excluded.

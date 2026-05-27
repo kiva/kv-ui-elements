@@ -2,6 +2,10 @@
 name: typography
 description: Semantic typography guidelines from the Kiva design system — type scale, heading hierarchy, font families, pairing rules, and HTML/Tailwind mappings. Sourced from Figma; values describe design intent and may diverge from current code implementation.
 when_to_use: When designing or implementing UI that involves text styling — choosing a heading level, applying a type token, picking a font family, building a section that pairs multiple type styles, or reasoning about typographic hierarchy. Reference design intent first; verify token names against current code before relying on them.
+make_kit:
+  include: true
+  category: foundations
+  order: 30
 ---
 
 # Kiva Typography

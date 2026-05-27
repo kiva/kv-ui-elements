@@ -2,6 +2,10 @@
 name: color
 description: Semantic color system from the Kiva design system — primitive palettes (eco-green, marigold, desert-rose, stone, gray, neutral), the five themes (Default, Green Light, Green Dark, Marigold, Stone Light), the role/slot/state token grammar, accessibility levels per pairing, and rules for picking a token by purpose rather than hex value. Sourced from Figma; values describe design intent and may diverge from current code implementation.
 when_to_use: When designing or implementing anything that has color — backgrounds, text, borders, button surfaces, alert states, themed sections — or when picking between two tokens that look similar. Use it before reaching for a hex value, before applying a theme to a section, and any time a color decision crosses a semantic line (action vs. caution, primary vs. secondary, default vs. inverse). Reference design intent first; verify token names against current code before relying on them.
+make_kit:
+  include: true
+  category: foundations
+  order: 20
 ---
 
 # Kiva Color

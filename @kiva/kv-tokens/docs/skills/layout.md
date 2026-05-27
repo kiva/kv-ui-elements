@@ -2,6 +2,10 @@
 name: layout
 description: Layout grid system from the Kiva design system — breakpoint tiers (XS/SM/MD/LG/XL), columns, gutters, margins, nested grids, and rules for aligning content within the grid. Sourced from Figma; values describe design intent and may diverge from current code implementation.
 when_to_use: When designing or implementing any page layout, responsive composition, or component that places content into columns — choosing a breakpoint, deciding a column span, reasoning about gutter vs. margin, nesting a grid inside a component, or handing off a multi-tier design to development. Reference design intent first; verify breakpoint and gap values against current code before relying on them.
+make_kit:
+  include: true
+  category: foundations
+  order: 50
 ---
 
 # Kiva Layout

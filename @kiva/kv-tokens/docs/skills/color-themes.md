@@ -2,6 +2,10 @@
 name: color-themes
 description: Per-theme semantic color token tables from the Kiva design system — every token in Default, Green Light, Green Dark, Marigold, and Stone Light, with hex value, primitive source, and Figma-authored description. Plus the shadow color tokens. The reference companion to the conceptual `color` skill.
 when_to_use: When implementing or designing in a specific theme and you need the full token list for that theme — every text, background, border, and underline slot with its hex, primitive token, and intended usage description. Load this alongside the `color` skill whenever you need the canonical data, not just the framework. Sourced from Figma; values describe design intent and may diverge from current code implementation.
+make_kit:
+  include: true
+  category: foundations
+  order: 25
 ---
 
 # Kiva Color — Theme Token Tables
