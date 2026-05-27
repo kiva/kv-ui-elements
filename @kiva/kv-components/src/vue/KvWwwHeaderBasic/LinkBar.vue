@@ -13,6 +13,20 @@
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
+		<!-- logo: in-flow on the far left at md+ (Figma desktop), absolutely centered on mobile -->
+		<a
+			href="/"
+			aria-label="Kiva home"
+			class="
+				tw-px-1 tw-py-2 tw-cursor-pointer
+				tw-absolute tw-top-1/2 tw-left-1/2 tw--translate-x-1/2 tw--translate-y-1/2
+				md:tw-static md:tw-translate-x-0 md:tw-translate-y-0
+				tw-transition-all tw-duration-300
+			"
+			@click="onLogoClick"
+		>
+			<kv-header-logo />
+		</a>
 		<!-- Lend dropdown -->
 		<kv-header-dropdown-link
 			ref-name="lendButton"
@@ -20,7 +34,7 @@
 			:menu-component="KvLendMenu"
 			:open-menu-item="openMenuItem"
 			:dropdown-icon="mdiChevronDown"
-			base-class="tw-inline-flex tw-px-1.5 tw-py-0.5 md:tw-border md:tw-rounded-md"
+			base-class="tw-py-1"
 			@on-hover="handleOnHover"
 			@mouseleave="handleMouseOut('lendButton')"
 			@user-tap="handleTouchStart"
@@ -124,6 +138,7 @@ import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import KvIconBag from '#components/KvIconBag.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
 import KvButton from '#components/KvButton.vue';
+import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import KvHeaderDropdownLink from '#components/KvWwwHeader/KvHeaderDropdownLink.vue';
 import SearchBar from './SearchBar.vue';
 import { PRIMARY_LINKS, type NavLink } from './utils/navLinks';
@@ -142,7 +157,7 @@ const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
 export default {
 	name: 'LinkBar',
 	components: {
-		KvMaterialIcon, KvIconBag, KvUserAvatar, KvButton, KvHeaderDropdownLink, SearchBar,
+		KvMaterialIcon, KvIconBag, KvUserAvatar, KvButton, KvHeaderLogo, KvHeaderDropdownLink, SearchBar,
 	},
 	props: {
 		loggedIn: { type: Boolean, default: false },
@@ -225,6 +240,10 @@ export default {
 			$kvTrackEvent('TopNav', 'click-Support-Kiva');
 		}
 
+		function onLogoClick(): void {
+			$kvTrackEvent('TopNav', 'click-Logo');
+		}
+
 		return {
 			mdiMenu,
 			mdiChevronDown,
@@ -243,6 +262,7 @@ export default {
 			onLoginClick,
 			onBasketClick,
 			onSupportKivaClick,
+			onLogoClick,
 		};
 	},
 };

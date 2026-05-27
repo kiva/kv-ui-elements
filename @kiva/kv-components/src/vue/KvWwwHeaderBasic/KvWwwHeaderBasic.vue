@@ -34,18 +34,6 @@
 						@search-submit="$emit('search-submit', $event)"
 					/>
 				</transition>
-				<a
-					href="/"
-					aria-label="Kiva home"
-					class="
-						tw-px-1 tw-py-2 tw-cursor-pointer tw-absolute
-						tw-top-1/2 tw-left-1/2 tw--translate-y-1/2 tw--translate-x-1/2
-						tw-transition-all tw-duration-300
-					"
-					@click="onLogoClick"
-				>
-					<kv-header-logo />
-				</a>
 			</kv-page-container>
 		</nav>
 		<transition name="header-fade">
@@ -93,21 +81,15 @@
 
 <script lang="ts">
 import {
-	ref, computed, onMounted, inject,
+	ref, computed, onMounted,
 } from 'vue';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
 import KvPageContainer from '#components/KvPageContainer.vue';
-import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import LinkBar from './LinkBar.vue';
 import { useHeaderBasicBreakpoint } from './composables/useHeaderBasicBreakpoint';
 import { useHeaderBasicMenuState } from './composables/useHeaderBasicMenuState';
 
 const HEADER_HEIGHT = '4rem';
-
-interface TrackEvent {
-	// eslint-disable-next-line no-unused-vars
-	(category: string, action: string, label?: string, value?: number): void;
-}
 
 // Public instance shape of the active drawer menu (e.g. KvLendMenu exposes onLoad).
 interface MenuInstance {
@@ -118,12 +100,12 @@ interface MenuInstance {
 
 /**
  * Presentational global site header (Q4 2026 Figma desktop + KvWwwHeader mobile drawer paradigm).
- * Props in, events out: `load-lend-menu-data`, `load-search-data`, `search-submit`. Injects `$kvTrackEvent`.
+ * Props in, events out: `load-lend-menu-data`, `load-search-data`, `search-submit`.
  */
 export default {
 	name: 'KvWwwHeaderBasic',
 	components: {
-		KvThemeProvider, KvPageContainer, KvHeaderLogo, LinkBar,
+		KvThemeProvider, KvPageContainer, LinkBar,
 	},
 	props: {
 		loggedIn: { type: Boolean, default: false },
@@ -145,7 +127,6 @@ export default {
 	},
 	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit'],
 	setup(_props, { emit }) {
-		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
 		const { isMobile, checkIsMobile } = useHeaderBasicBreakpoint();
 		const {
 			menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted,
@@ -171,10 +152,6 @@ export default {
 			}
 		}
 
-		function onLogoClick(): void {
-			$kvTrackEvent('TopNav', 'click-Logo');
-		}
-
 		onMounted(() => {
 			checkIsMobile();
 			markMounted();
@@ -194,7 +171,6 @@ export default {
 			handleOverlayClick,
 			emitLendMenuEvent,
 			loadMenuData,
-			onLogoClick,
 		};
 	},
 };

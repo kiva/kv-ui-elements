@@ -29,4 +29,11 @@ describe('LinkBar', () => {
 		const { getByText } = render(LinkBar, { props: { loggedIn: true }, global });
 		expect(getByText(/partner/i)).toBeTruthy();
 	});
+
+	it('renders the Kiva home logo link in the bar', () => {
+		const { getByLabelText } = render(LinkBar, { props: { loggedIn: false }, global });
+		const logo = getByLabelText('Kiva home');
+		expect(logo).toBeTruthy();
+		expect(logo.getAttribute('href')).toBe('/');
+	});
 });

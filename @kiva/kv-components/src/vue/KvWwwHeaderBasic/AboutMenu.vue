@@ -29,10 +29,9 @@ interface AboutLink {
 	action: string;
 }
 
-// Link set ported verbatim from KvWwwHeader/KvHeaderAboutMenu.vue.
+// Ported from KvWwwHeader/KvHeaderAboutMenu.vue, minus "Partner with us" — that is now a top-level nav link.
 const ABOUT_LINKS: AboutLink[] = [
 	{ label: 'About us', href: '/about', action: 'click-About-About us' },
-	{ label: 'Partner with us', href: '/about/partner-with-us', action: 'click-About-Partner with us' },
 	{ label: 'How Kiva works', href: '/about/how', action: 'click-About-How Kiva works' },
 	{ label: 'Where Kiva works', href: '/about/where-kiva-works', action: 'click-About-Where Kiva works' },
 	{ label: 'Impact', href: '/impact', action: 'click-About-Impact' },

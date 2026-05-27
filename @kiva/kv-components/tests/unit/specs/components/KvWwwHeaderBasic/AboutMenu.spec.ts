@@ -15,4 +15,9 @@ describe('AboutMenu', () => {
 		const { getAllByRole } = render(AboutMenu, { global });
 		expect(getAllByRole('link').length).toBeGreaterThan(0);
 	});
+
+	it('does not include "Partner with us" (now a top-level nav link)', () => {
+		const { queryByText } = render(AboutMenu, { global });
+		expect(queryByText('Partner with us')).toBeNull();
+	});
 });
