@@ -77,7 +77,7 @@ import { mdiMagnify } from '@mdi/js';
 import KvTextInput from '#components/KvTextInput.vue';
 import markMatches from '#utils/markMatches';
 import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
-import { useHeaderBasicSearch } from './composables/useHeaderBasicSearch';
+import { useTypeaheadSearch } from '#utils/useTypeaheadSearch';
 
 interface TrackEvent {
 	// eslint-disable-next-line no-unused-vars
@@ -110,7 +110,7 @@ export default {
 
 		const {
 			term, groupedResults, activeIndex, resolveSubmit,
-		} = useHeaderBasicSearch(toRef(props, 'searchSuggestions'), props.appOrigin);
+		} = useTypeaheadSearch(toRef(props, 'searchSuggestions'), props.appOrigin);
 
 		// Flattened list across all groups, used for keyboard navigation and highlighting.
 		const flatItems = computed(() => groupedResults.value.flatMap((g) => g.items));

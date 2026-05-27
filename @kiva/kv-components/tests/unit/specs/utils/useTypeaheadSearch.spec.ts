@@ -1,5 +1,5 @@
 import { ref, nextTick } from 'vue';
-import { useHeaderBasicSearch } from '#components/KvWwwHeaderBasic/composables/useHeaderBasicSearch';
+import { useTypeaheadSearch } from '#utils/useTypeaheadSearch';
 import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
 
 const suggestions: SearchSuggestion[] = [
@@ -7,10 +7,10 @@ const suggestions: SearchSuggestion[] = [
 	{ group: 'Sectors', label: 'Personal Use', query: 'sector=11' },
 ];
 
-describe('useHeaderBasicSearch', () => {
+describe('useTypeaheadSearch', () => {
 	it('produces grouped results in SECTION_ORDER after a matching term', async () => {
 		const source = ref(suggestions);
-		const { term, groupedResults } = useHeaderBasicSearch(source, '');
+		const { term, groupedResults } = useTypeaheadSearch(source, '');
 		term.value = 'pe';
 		await nextTick();
 		await new Promise((r) => { setTimeout(r, 0); });
@@ -20,7 +20,7 @@ describe('useHeaderBasicSearch', () => {
 
 	it('resolves a suggestion with a query into a /lend/filter payload', () => {
 		const source = ref(suggestions);
-		const { resolveSubmit } = useHeaderBasicSearch(source, 'https://www.kiva.org');
+		const { resolveSubmit } = useTypeaheadSearch(source, 'https://www.kiva.org');
 		const payload = resolveSubmit(suggestions[0]);
 		expect(payload.query).toEqual({ country: '70' });
 		expect(payload.url).toContain('/lend');
@@ -29,7 +29,7 @@ describe('useHeaderBasicSearch', () => {
 
 	it('resolves a free-text term into a queryString payload', () => {
 		const source = ref(suggestions);
-		const { resolveSubmit } = useHeaderBasicSearch(source, '');
+		const { resolveSubmit } = useTypeaheadSearch(source, '');
 		const payload = resolveSubmit('coffee');
 		expect(payload.query).toEqual({ queryString: 'coffee' });
 		expect(payload.term).toBe('coffee');
@@ -37,7 +37,7 @@ describe('useHeaderBasicSearch', () => {
 
 	it('uses a suggestion url directly when present (Gifts)', () => {
 		const source = ref<SearchSuggestion[]>([]);
-		const { resolveSubmit } = useHeaderBasicSearch(source, '');
+		const { resolveSubmit } = useTypeaheadSearch(source, '');
 		const gift = { group: 'Gifts', label: 'Kiva Cards', url: 'https://www.kiva.org/gifts/kiva-cards' };
 		const payload = resolveSubmit(gift);
 		expect(payload.url).toBe('https://www.kiva.org/gifts/kiva-cards');

@@ -2,8 +2,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import tokens from '@kiva/kv-tokens';
 import { throttle } from '#utils/throttle';
 
-// Extracted from KvWwwHeader.vue: tracks whether the viewport is below the `md` breakpoint (734px).
-export function useHeaderBasicBreakpoint() {
+// Tracks whether the viewport is below the `md` breakpoint (734px), throttling resize handling.
+export function useBreakpoints() {
 	const isMobile = ref(false);
 
 	function checkIsMobile(): void {

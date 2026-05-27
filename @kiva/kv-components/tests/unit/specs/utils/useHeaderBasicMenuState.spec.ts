@@ -1,4 +1,4 @@
-import { useHeaderBasicMenuState } from '#components/KvWwwHeaderBasic/composables/useHeaderBasicMenuState';
+import { useHeaderBasicMenuState } from '#utils/useHeaderBasicMenuState';
 
 jest.useFakeTimers();
 

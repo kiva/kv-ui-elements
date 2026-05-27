@@ -28,7 +28,7 @@ function lendPath(query: Record<string, string> | null): string {
 	return query && hasExcludedQueryParams(query) ? '/lend' : '/lend/filter';
 }
 
-export function useHeaderBasicSearch(source: Ref<SearchSuggestion[]>, appOrigin: string) {
+export function useTypeaheadSearch(source: Ref<SearchSuggestion[]>, appOrigin: string) {
 	const engine = new SearchEngine();
 	const term = ref('');
 	const rawResults = ref<SearchSuggestion[]>([]);

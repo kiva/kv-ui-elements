@@ -84,9 +84,9 @@ import {
 } from 'vue';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
 import KvPageContainer from '#components/KvPageContainer.vue';
+import { useBreakpoints } from '#utils/useBreakpoints';
+import { useHeaderBasicMenuState } from '#utils/useHeaderBasicMenuState';
 import LinkBar from './LinkBar.vue';
-import { useHeaderBasicBreakpoint } from './composables/useHeaderBasicBreakpoint';
-import { useHeaderBasicMenuState } from './composables/useHeaderBasicMenuState';
 
 const HEADER_HEIGHT = '4rem';
 
@@ -126,7 +126,7 @@ export default {
 	},
 	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit'],
 	setup(_props, { emit }) {
-		const { isMobile, checkIsMobile } = useHeaderBasicBreakpoint();
+		const { isMobile, checkIsMobile } = useBreakpoints();
 		const {
 			menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted,
 		} = useHeaderBasicMenuState();
