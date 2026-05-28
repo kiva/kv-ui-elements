@@ -25,14 +25,17 @@
 			@keydown.down.prevent="listDown"
 			@keydown.enter.prevent="onSubmit"
 		/>
+		<!--
+			Desktop dropdown context: results overlay the page as an absolute popover.
+			Mobile drawer context (is-mobile): results flow inline below the input so they don't
+			extend past the drawer's viewport; the input stays anchored at the top of the panel.
+		-->
 		<ol
 			v-show="showResults"
-			class="
-				tw-w-full tw-bg-primary tw-p-2.5
-				tw-border tw-border-tertiary
-				tw-absolute tw-z-popover tw-inset-x-0
-				tw-overflow-auto md:tw-rounded-b
-			"
+			class="tw-w-full tw-bg-primary tw-p-2.5 tw-border tw-border-tertiary tw-overflow-auto"
+			:class="isMobile
+				? 'tw-mt-2'
+				: 'tw-absolute tw-z-popover tw-inset-x-0 md:tw-rounded-b'"
 		>
 			<li
 				v-for="section in groupedResults"

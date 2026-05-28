@@ -68,7 +68,12 @@
 						:show-m-g-upsell-link="showMGUpsellLink"
 						:is-mobile="isMobile"
 						:countries-not-lent-to-url="countriesNotLentToUrl"
+						:use-mobile-mega-menu="true"
+						:app-origin="appOrigin"
+						:search-suggestions="searchSuggestions"
 						@load-lend-menu-data="emitLendMenuEvent"
+						@load-search-data="$emit('load-search-data')"
+						@search-submit="$emit('search-submit', $event)"
 						@closing-menu="setMenu()"
 						@touchstart.stop
 					/>

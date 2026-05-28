@@ -1,6 +1,28 @@
 <template>
 	<kv-page-container class="tw-pt-2 lg:tw-pt-0">
+		<!--
+			useMobileMegaMenu swaps the below-lg list view for the new KvWwwHeaderBasic mobile tabbed
+			menu (Categories / Regions / MyKiva / Search), gated to the basic header's md breakpoint.
+			Mega menu at md+ in that mode; legacy lg split when the flag is off.
+		-->
+		<mobile-lend-menu
+			v-if="useMobileMegaMenu"
+			class="md:tw-hidden"
+			:categories="computedCategories"
+			:regions="regions"
+			:user-id="userId"
+			:favorites="favoritesCount"
+			:searches="savedSearches"
+			:is-regions-loading="isRegionsLoading"
+			:is-channels-loading="isChannelsLoading"
+			:countries-not-lent-to-url="countriesNotLentToUrl"
+			:search-suggestions="searchSuggestions"
+			:app-origin="appOrigin"
+			@load-search-data="$emit('load-search-data')"
+			@search-submit="$emit('search-submit', $event)"
+		/>
 		<kv-lend-list-menu
+			v-else
 			class="lg:tw-hidden"
 			:categories="computedCategories"
 			:regions="regions"
@@ -13,7 +35,7 @@
 			:countries-not-lent-to-url="countriesNotLentToUrl"
 		/>
 		<kv-lend-mega-menu
-			class="tw-hidden lg:tw-block"
+			:class="useMobileMegaMenu ? 'tw-hidden md:tw-block' : 'tw-hidden lg:tw-block'"
 			:categories="computedCategories"
 			:regions="regions"
 			:user-id="userId"
@@ -30,18 +52,21 @@
 <script lang="ts">
 import { gql } from '@apollo/client/core';
 import {
-	computed, onMounted, ref, toRefs,
+	computed, onMounted, ref, toRefs, type PropType,
 } from 'vue';
 import KvLendListMenu from './KvLendListMenu.vue';
 import KvLendMegaMenu from './KvLendMegaMenu.vue';
+import MobileLendMenu from '../../KvWwwHeaderBasic/MobileLendMenu/MobileLendMenu.vue';
 import { indexIn } from '../../../utils/comparators';
 import { groupBy, sortBy } from '../../../utils/arrayUtils';
 import KvPageContainer from '../../KvPageContainer.vue';
+import type { SearchSuggestion } from '../../../utils/typeaheadSearchEngine';
 
 export default {
 	components: {
 		KvLendListMenu,
 		KvLendMegaMenu,
+		MobileLendMenu,
 		KvPageContainer,
 	},
 	props: {
@@ -57,8 +82,32 @@ export default {
 			type: String,
 			default: '/lend/countries-not-lent',
 		},
+		/**
+		 * Render the new KvWwwHeaderBasic mobile tabbed menu (Categories / Regions / MyKiva / Search)
+		 * below the md breakpoint instead of the legacy KvLendListMenu. Mega menu still renders at
+		 * md+ in this mode. Default off preserves the legacy KvWwwHeader behavior.
+		 */
+		useMobileMegaMenu: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Search suggestion dataset for the mobile Search tab. Only used when useMobileMegaMenu is on.
+		 */
+		searchSuggestions: {
+			type: Array as PropType<SearchSuggestion[]>,
+			default: () => [],
+		},
+		/**
+		 * App origin used to build /lend/filter URLs on Search-tab submit. Only used when
+		 * useMobileMegaMenu is on.
+		 */
+		appOrigin: {
+			type: String,
+			default: '',
+		},
 	},
-	emits: ['load-lend-menu-data'],
+	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit'],
 	setup(props, { emit }) {
 		const {
 			userId,
