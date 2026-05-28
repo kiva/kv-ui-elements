@@ -1,6 +1,6 @@
 <template>
 	<nav
-		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw--mt-0.5 tw-pb-0.5 tw-px-2.5"
+		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1 tw-px-2"
 	>
 		<kv-header-menu-link
 			:href="myDashboardUrl"
@@ -109,3 +109,14 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+/*
+ * Match the cms-page-server / ui dropdown rhythm: KvHeaderMenuLink defaults to tw-py-1.5 which
+ * reads cramped in this panel. Bumping to tw-py-2 gives each row the breathing room of the live
+ * navigation. Scoped :deep beats the utility class on the anchor by attribute-selector specificity.
+ */
+:deep(a) {
+	@apply tw-py-1;
+}
+</style>

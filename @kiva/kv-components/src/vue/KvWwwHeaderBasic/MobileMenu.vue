@@ -1,23 +1,13 @@
 <template>
 	<div class="tw-flex tw-flex-col tw-items-stretch tw-font-medium tw-p-2.5 md:tw-hidden">
-		<div class="tw-flex tw-justify-end">
-			<button
-				type="button"
-				aria-label="Close menu"
-				class="tw-cursor-pointer tw-p-0.5"
-				@click="onClose"
-			>
-				<kv-material-icon :icon="mdiClose" />
-			</button>
-		</div>
 		<kv-accordion-item
 			id="kv-www-header-basic-about"
 			class="tw-w-full tw-border-b-0"
 		>
 			<template #header>
-				<h3 class="tw-pb-0.5">
+				<span class="tw-text-button tw-pb-0.5">
 					About
-				</h3>
+				</span>
 			</template>
 			<about-menu
 				is-mobile
@@ -49,9 +39,7 @@
 
 <script lang="ts">
 import { inject } from 'vue';
-import { mdiClose } from '@mdi/js';
 import KvAccordionItem from '#components/KvAccordionItem.vue';
-import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import AboutMenu from './AboutMenu.vue';
 
 interface TrackEvent {
@@ -61,7 +49,7 @@ interface TrackEvent {
 
 export default {
 	name: 'MobileMenu',
-	components: { KvAccordionItem, KvMaterialIcon, AboutMenu },
+	components: { KvAccordionItem, AboutMenu },
 	props: {
 		loggedIn: {
 			type: Boolean,
@@ -89,9 +77,7 @@ export default {
 			emit('closing-menu');
 		}
 
-		return {
-			mdiClose, onClose, onLinkClick,
-		};
+		return { onClose, onLinkClick };
 	},
 };
 </script>

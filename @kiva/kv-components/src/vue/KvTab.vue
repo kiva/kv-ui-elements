@@ -25,12 +25,12 @@ import {
 	getCurrentInstance,
 } from 'vue';
 
-interface NavItem {
+export interface NavItem {
 	forPanel?: string;
 	[key: string]: any;
 }
 
-interface KvTabContext {
+export interface KvTabContext {
 	navItems: NavItem[];
 	selectedIndex: number;
 	// eslint-disable-next-line no-unused-vars

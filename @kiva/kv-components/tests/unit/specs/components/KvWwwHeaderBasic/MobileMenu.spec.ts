@@ -19,9 +19,9 @@ describe('MobileMenu', () => {
 		expect(getByText('Borrow').getAttribute('href')).toBe('/borrow');
 	});
 
-	it('emits closing-menu when the close button is clicked', async () => {
-		const { emitted, getByRole } = render(MobileMenu, { global });
-		await fireEvent.click(getByRole('button', { name: /close/i }));
+	it('emits closing-menu when a mobile nav link is clicked', async () => {
+		const { emitted, getByText } = render(MobileMenu, { global });
+		await fireEvent.click(getByText('Borrow'));
 		expect(emitted()['closing-menu']).toBeTruthy();
 	});
 });

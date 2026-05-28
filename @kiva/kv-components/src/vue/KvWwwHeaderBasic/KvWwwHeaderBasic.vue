@@ -4,7 +4,7 @@
 		class="tw-bg-primary"
 	>
 		<nav
-			class="tw-font-medium tw-relative"
+			class="tw-font-medium tw-relative tw-border-b tw-border-tertiary"
 			:style="{ height: HEADER_HEIGHT }"
 		>
 			<kv-page-container class="tw-h-full">
@@ -29,7 +29,7 @@
 						:search-suggestions="searchSuggestions"
 						:is-mobile="isMobile"
 						:open-menu-item="menuComponent"
-						@item-hover="setMenu"
+						@item-hover="onItemHover"
 						@load-search-data="$emit('load-search-data')"
 						@search-submit="$emit('search-submit', $event)"
 					/>
@@ -47,6 +47,7 @@
 				@touchstart="handleOverlayClick"
 			>
 				<div
+					ref="menuPanelRef"
 					class="tw-bg-primary tw-overflow-y-auto"
 					:class="menuPanelClass"
 					:style="{
@@ -85,8 +86,9 @@
 
 <script lang="ts">
 import {
-	ref, computed, onMounted,
+	ref, computed, onMounted, watch, nextTick,
 } from 'vue';
+import type { CSSProperties } from 'vue';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
 import KvPageContainer from '#components/KvPageContainer.vue';
 import { useBreakpoints } from '#utils/useBreakpoints';
@@ -137,17 +139,53 @@ export default {
 		} = useHeaderBasicMenuState();
 
 		const menuComponentInstance = ref<MenuInstance | null>(null);
+		const menuPanelRef = ref<HTMLElement | null>(null);
+		const avatarTriggerCenterX = ref<number | null>(null);
 		const linksVisible = ref(true);
 
 		const isMobileMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MobileMenu');
 		const isMyKivaMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MyKivaMenu');
+		const isAboutMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'AboutMenu');
 
-		// Hamburger = full-screen drawer; MyKiva = constrained dropdown on every breakpoint
-		// (right-aligned to its trigger via menuPosition); Lend/About stay full-width on mobile, auto at md+.
+		// Hamburger = full-screen drawer; MyKiva/About = constrained dropdowns that get a tertiary
+		// border at md+ so the panel reads as a contained card flush with the nav-bar bottom border
+		// (matches the legacy KvWwwHeader). Lend mega menu stays borderless.
 		const menuPanelClass = computed(() => {
 			if (isMobileMenuActive.value) return 'tw-w-full tw-min-h-dvh tw-rounded-none';
-			if (isMyKivaMenuActive.value) return 'tw-w-auto tw-rounded-b-sm';
-			return 'tw-w-full md:tw-w-auto tw-rounded-none md:tw-rounded-b-sm';
+			if (isMyKivaMenuActive.value) return 'tw-w-auto tw-rounded-b tw-border tw-border-t-0 tw-border-tertiary';
+			if (isAboutMenuActive.value) {
+				return 'tw-w-full md:tw-w-auto tw-rounded-none !tw-rounded-b '
+					+ 'md:tw-border md:tw-border-t-0 md:tw-border-tertiary';
+			}
+			return 'tw-w-full md:tw-w-auto tw-rounded-none !md:tw-rounded-b';
+		});
+
+		// LinkBar forwards the avatar's center-x as a 4th arg when opening MyKiva so we can
+		// re-anchor the dropdown directly under the trigger once the panel renders. For every
+		// other menu, triggerCenterX is null and the position passes through unchanged.
+		function onItemHover(
+			item?: string,
+			menu?: unknown,
+			position?: CSSProperties,
+			triggerCenterX: number | null = null,
+		): void {
+			avatarTriggerCenterX.value = triggerCenterX;
+			setMenu(item, menu, position);
+		}
+
+		// Once MyKiva mounts, measure the rendered panel and recompute `right` so the panel's
+		// center sits under the avatar's center. `Math.max(0, …)` keeps the right edge inside
+		// the viewport when the avatar is so close to the right that strict centering would
+		// overflow — in that case the panel right-aligns to the viewport like the mobile drawer.
+		watch(isMyKivaMenuActive, async (active) => {
+			if (!active || avatarTriggerCenterX.value == null) return;
+			await nextTick();
+			const panel = menuPanelRef.value;
+			if (!panel) return;
+			const panelWidth = panel.offsetWidth;
+			const center = avatarTriggerCenterX.value;
+			const rightPx = Math.max(0, window.innerWidth - (center + panelWidth / 2));
+			menuPosition.value = { right: `${rightPx}px`, position: 'absolute' };
 		});
 
 		function emitLendMenuEvent(): void {
@@ -181,7 +219,9 @@ export default {
 			isMobileMenuActive,
 			menuPanelClass,
 			menuComponentInstance,
+			menuPanelRef,
 			setMenu,
+			onItemHover,
 			handleOverlayClick,
 			emitLendMenuEvent,
 			loadMenuData,

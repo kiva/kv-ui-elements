@@ -33,7 +33,7 @@
 			ref-name="lendButton"
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
-			:open-menu-item="openMenuItem"
+			:open-menu-item="dropdownOpenItem"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-py-1"
 			@on-hover="handleOnHover"
@@ -67,7 +67,7 @@
 			ref-name="aboutLink"
 			class="tw-hidden md:tw-block"
 			:menu-component="AboutMenu"
-			:open-menu-item="openMenuItem"
+			:open-menu-item="dropdownOpenItem"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-py-1"
 			send-link-position
@@ -127,9 +127,13 @@
 			v-if="loggedIn"
 			ref="avatarMenu"
 			class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
-			@mouseenter="handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition())"
+			@mouseenter="
+				handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
+			"
 			@mouseleave="handleMouseOut('avatarMenu')"
-			@touchstart.stop="handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition())"
+			@touchstart.stop="
+				handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
+			"
 		>
 			<!-- balance: loader while user data is in flight -->
 			<div
@@ -226,13 +230,26 @@ export default {
 		// Untyped ref (like KvHeaderLinkBar): keeps the heavy HTMLElement type out of the emitted .d.ts.
 		const avatarMenu = ref(null);
 
-		// Right-align the MyKiva dropdown to the trigger's right edge on every breakpoint, so the
-		// constrained panel always opens on-screen (the orchestrator sizes it w-auto for MyKiva).
+		// Initial position for the MyKiva dropdown. Mobile pins to the viewport's right edge
+		// (matches the legacy KvWwwHeader drawer). Desktop seeds the position with the avatar's
+		// right edge — the orchestrator then re-centers the panel under the avatar after it
+		// measures the rendered panel width (see KvWwwHeaderBasic.vue).
 		function getAvatarMenuPosition(): { right: string } | null {
 			const el = avatarMenu.value as HTMLElement | null;
 			const rect = el?.getBoundingClientRect();
 			if (!rect) return null;
+			if (props.isMobile) return { right: '0' };
 			return { right: `${window.innerWidth - rect.right}px` };
+		}
+
+		// Center-x of the avatar trigger in viewport coordinates. The orchestrator pairs this with
+		// the rendered panel width to compute a `right` offset that anchors the panel directly
+		// under the avatar. Returns null on mobile (mobile uses right:0 flush, no centering).
+		function getAvatarTriggerCenterX(): number | null {
+			if (props.isMobile) return null;
+			const el = avatarMenu.value as HTMLElement | null;
+			const rect = el?.getBoundingClientRect();
+			return rect ? rect.left + rect.width / 2 : null;
 		}
 
 		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
@@ -244,11 +261,25 @@ export default {
 		const lendUrl = computed(() => (!props.isMobile ? '/lend-by-category' : undefined));
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
-		function handleOnHover(item: string, menu: unknown, position: unknown = null): void {
+		// Only dim the Lend/About dropdown links when the open menu is a *peer* dropdown — opening
+		// the hamburger drawer or MyKiva menu should not visually mute the in-bar Lend/About links.
+		const dropdownOpenItem = computed(() => {
+			if (props.openMenuItem === KvLendMenu || props.openMenuItem === AboutMenu) {
+				return props.openMenuItem;
+			}
+			return null;
+		});
+
+		function handleOnHover(
+			item: string,
+			menu: unknown,
+			position: unknown = null,
+			triggerCenterX: number | null = null,
+		): void {
 			// Touch devices open via tap (handleTouchStart) rather than hover.
 			if (navigator.maxTouchPoints) return;
 			openItem.value = item;
-			emit('item-hover', item, menu, position);
+			emit('item-hover', item, menu, position, triggerCenterX);
 		}
 
 		function handleMouseOut(item: string): void {
@@ -259,13 +290,18 @@ export default {
 			}
 		}
 
-		function handleTouchStart(item: string, menu: unknown, position: unknown = null): void {
+		function handleTouchStart(
+			item: string,
+			menu: unknown,
+			position: unknown = null,
+			triggerCenterX: number | null = null,
+		): void {
 			if (openItem.value === item) {
 				openItem.value = null;
 				emit('item-hover');
 			} else {
 				openItem.value = item;
-				emit('item-hover', item, menu, position);
+				emit('item-hover', item, menu, position, triggerCenterX);
 			}
 		}
 
@@ -304,9 +340,11 @@ export default {
 			MobileMenu,
 			avatarMenu,
 			getAvatarMenuPosition,
+			getAvatarTriggerCenterX,
 			visiblePrimaryLinks,
 			lendUrl,
 			formattedBalance,
+			dropdownOpenItem,
 			handleOnHover,
 			handleMouseOut,
 			handleTouchStart,

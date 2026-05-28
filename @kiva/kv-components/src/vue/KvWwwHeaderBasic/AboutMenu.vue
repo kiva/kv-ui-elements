@@ -1,7 +1,6 @@
 <template>
 	<nav
-		class="tw-flex tw-flex-col tw-items-start tw-font-medium"
-		:class="isMobile ? 'tw-px-0' : 'tw--mt-0.5 tw-pb-0.5 tw-px-2.5'"
+		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1 tw-px-2"
 	>
 		<kv-header-menu-link
 			v-for="link in links"
@@ -18,12 +17,12 @@
 import { inject } from 'vue';
 import KvHeaderMenuLink from '#components/KvWwwHeader/KvHeaderMenuLink.vue';
 
-interface TrackEvent {
+export interface TrackEvent {
 	// eslint-disable-next-line no-unused-vars
 	(category: string, action: string, label?: string, value?: number): void;
 }
 
-interface AboutLink {
+export interface AboutLink {
 	label: string;
 	href: string;
 	action: string;
@@ -63,3 +62,13 @@ export default {
 	},
 };
 </script>
+
+<style lang="postcss" scoped>
+/*
+ * Only bump the per-link vertical padding in the desktop/tablet dropdown context — the mobile
+ * accordion uses the same component but wants the tighter rhythm of the surrounding drawer links.
+ */
+:deep(a) {
+	@apply tw-py-1;
+}
+</style>

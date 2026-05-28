@@ -248,3 +248,12 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+/* Suppress Chrome's native clear button on type="search" so it doesn't overlap our can-clear button. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+	appearance: none;
+}
+</style>
