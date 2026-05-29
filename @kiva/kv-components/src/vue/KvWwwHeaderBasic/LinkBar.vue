@@ -1,39 +1,34 @@
 <template>
 	<div
-		class="tw-h-full tw-min-h-[4rem] tw-font-medium
-			tw-flex tw-items-center tw-gap-1 md:tw-gap-2 lg:tw-gap-2.5"
+		class="link-bar tw-min-h-[4rem] tw-font-medium tw-relative"
 		@touchstart="handleEmptySpaceClick"
 	>
 		<!-- hamburger (mobile only) -->
 		<button
 			type="button"
 			aria-label="Open menu"
-			class="header-link tw-inline-flex md:tw-hidden"
+			class="header-link link-bar__hamburger tw-inline-flex md:tw-hidden"
 			@mouseover="handleOnHover('menuButton', MobileMenu)"
 			@touchstart.stop.prevent="handleTouchStart('menuButton', MobileMenu)"
 		>
 			<kv-material-icon :icon="mdiMenu" />
 		</button>
-		<!-- logo: in-flow on the far left at md+ (Figma desktop), absolutely centered on mobile -->
+		<!-- logo: absolutely centered on mobile; in-flow grid item at md+. -->
 		<a
 			href="/"
 			aria-label="Kiva home"
-			class="
-				tw-px-1 tw-py-2 tw-cursor-pointer
-				tw-absolute tw-top-1/2 tw-left-1/2 tw--translate-x-1/2 tw--translate-y-1/2
-				md:tw-static md:tw-translate-x-0 md:tw-translate-y-0
-				tw-transition-all tw-duration-300
-			"
+			class="link-bar__logo tw-px-1 tw-py-2 tw-cursor-pointer"
 			@click="onLogoClick"
 		>
 			<kv-header-logo />
 		</a>
 		<!-- Lend dropdown -->
 		<kv-header-dropdown-link
+			class="link-bar__lend"
 			ref-name="lendButton"
 			:href="lendUrl"
 			:menu-component="KvLendMenu"
-			:open-menu-item="dropdownOpenItem"
+			:open-menu-item="lendOpenItem"
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-py-1"
 			@on-hover="handleOnHover"
@@ -42,124 +37,125 @@
 		>
 			Lend
 		</kv-header-dropdown-link>
-		<!-- search (inline) -->
+		<!-- search: hidden at mobile; own full-width row at md; inline at lg+. -->
 		<search-bar
-			class="tw-flex-1 tw-min-w-0 tw-hidden md:tw-block"
+			class="link-bar__search tw-min-w-0 tw-hidden md:tw-block"
 			:search-suggestions="searchSuggestions"
 			:app-origin="appOrigin"
 			:is-mobile="isMobile"
 			@load-search-data="$emit('load-search-data')"
 			@search-submit="$emit('search-submit', $event)"
 		/>
-		<!-- spacer keeps the right-side cluster pinned right -->
-		<div class="md:tw-hidden tw-flex-1"></div>
-		<!-- primary text links: Partner (always), Borrow (visitor) — desktop only; mobile shows them in the drawer -->
-		<a
-			v-for="link in visiblePrimaryLinks"
-			:key="link.id"
-			:href="link.href"
-			class="header-link tw-hidden md:tw-block"
-			:data-testid="`header-link-${link.id}`"
-			@click="onPrimaryClick(link)"
-		>{{ link.label }}</a>
-		<!-- About dropdown (desktop only; mobile shows About in the drawer) -->
-		<kv-header-dropdown-link
-			ref-name="aboutLink"
-			class="tw-hidden md:tw-block"
-			:menu-component="AboutMenu"
-			:open-menu-item="dropdownOpenItem"
-			:dropdown-icon="mdiChevronDown"
-			base-class="tw-py-1"
-			send-link-position
-			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('aboutLink')"
-			@user-tap="handleTouchStart"
-		>
-			About
-		</kv-header-dropdown-link>
-		<!-- Log in (visitor) -->
-		<a
-			v-if="!loggedIn"
-			:href="loginUrl"
-			class="header-link"
-			data-testid="header-login"
-			@click="onLoginClick"
-		>Log in</a>
-		<!-- basket (logged-in, when items present): count panel + label at md+, bag icon + count on mobile -->
-		<a
-			v-if="loggedIn"
-			v-show="basketCount > 0 || isBasketDataLoading"
-			href="/basket"
-			class="header-link tw-flex tw-items-center"
-			data-testid="header-basket"
-			@click="onBasketClick"
-		>
-			<!-- tablet/desktop: light-green count panel + "Basket" (matches the live www header) -->
-			<span class="tw-hidden md:tw-flex tw-items-center">
-				<span
-					class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
-				>{{ basketCount }}</span>
-				Basket
-			</span>
-			<!-- mobile: bag icon with count -->
-			<span class="tw-flex md:tw-hidden tw-items-center">
-				<kv-icon-bag
-					class="tw-w-3 tw-h-3 tw-text-action tw-pointer-events-none"
-					:count="isBasketDataLoading ? 0 : basketCount"
-				/>
-				<span class="tw-sr-only">Basket</span>
-			</span>
-		</a>
-		<!-- Support Kiva (desktop only; mobile shows it in the drawer) -->
-		<div class="tw-hidden md:tw-block">
-			<kv-button
-				variant="secondary"
-				href="/donate/supportus"
-				class="tw-whitespace-nowrap"
-				data-testid="header-support-kiva"
-				@click="onSupportKivaClick"
-			>
-				Support Kiva
-			</kv-button>
-		</div>
-		<!-- balance + avatar → MyKiva menu (logged-in); anchored dropdown at md+, full-width drawer on mobile -->
+		<!-- right cluster: every right-of-center nav item (no changes to per-item visibility). -->
 		<div
-			v-if="loggedIn"
-			ref="avatarMenu"
-			class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
-			@mouseenter="
-				handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
-			"
-			@mouseleave="handleMouseOut('avatarMenu')"
-			@touchstart.stop="
-				handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
-			"
+			class="link-bar__right tw-flex tw-items-center tw-justify-end
+				tw-ml-auto md:tw-ml-0
+				tw-gap-1 md:tw-gap-2 lg:tw-gap-2.5"
 		>
-			<!-- balance: loader while user data is in flight -->
-			<div
-				v-if="isUserDataLoading"
-				class="tw-w-4 tw-h-3"
+			<!-- primary text links: Partner (always), Borrow (visitor) — desktop only -->
+			<a
+				v-for="link in visiblePrimaryLinks"
+				:key="link.id"
+				:href="link.href"
+				class="header-link tw-hidden md:tw-block"
+				:data-testid="`header-link-${link.id}`"
+				@click="onPrimaryClick(link)"
+			>{{ link.label }}</a>
+			<!-- About dropdown (md+) -->
+			<kv-header-dropdown-link
+				ref-name="aboutLink"
+				class="tw-hidden md:tw-block"
+				:menu-component="AboutMenu"
+				:open-menu-item="aboutOpenItem"
+				:dropdown-icon="mdiChevronDown"
+				base-class="tw-py-1"
+				send-link-position
+				@on-hover="handleOnHover"
+				@mouseleave="handleMouseOut('aboutLink')"
+				@user-tap="handleTouchStart"
 			>
-				<kv-loading-placeholder />
-			</div>
-			<span
-				v-else
-				class="tw-text-eco-green-4"
-			>{{ formattedBalance }}</span>
-			<!-- avatar: loader while user data is in flight -->
-			<div
-				v-if="isUserDataLoading"
-				class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+				About
+			</kv-header-dropdown-link>
+			<!-- Log in (visitor) -->
+			<a
+				v-if="!loggedIn"
+				:href="loginUrl"
+				class="header-link"
+				data-testid="header-login"
+				@click="onLoginClick"
+			>Log in</a>
+			<!-- basket (logged-in, when items present): count panel + label at md+, bag icon on mobile -->
+			<a
+				v-if="loggedIn"
+				v-show="basketCount > 0 || isBasketDataLoading"
+				href="/basket"
+				class="header-link tw-flex tw-items-center"
+				data-testid="header-basket"
+				@click="onBasketClick"
 			>
-				<kv-loading-placeholder />
+				<span class="tw-hidden md:tw-flex tw-items-center">
+					<span
+						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
+					>{{ basketCount }}</span>
+					Basket
+				</span>
+				<span class="tw-flex md:tw-hidden tw-items-center">
+					<kv-icon-bag
+						class="tw-w-3 tw-h-3 tw-text-action tw-pointer-events-none"
+						:count="isBasketDataLoading ? 0 : basketCount"
+					/>
+					<span class="tw-sr-only">Basket</span>
+				</span>
+			</a>
+			<!-- Support Kiva (md+) -->
+			<div class="tw-hidden md:tw-block">
+				<kv-button
+					variant="secondary"
+					href="/donate/supportus"
+					class="tw-whitespace-nowrap"
+					data-testid="header-support-kiva"
+					@click="onSupportKivaClick"
+				>
+					Support Kiva
+				</kv-button>
 			</div>
-			<kv-user-avatar
-				v-else
-				class="tw-w-3 tw-h-3"
-				:lender-name="lenderName"
-				:lender-image-url="lenderImageUrl"
-				is-small
-			/>
+			<!-- balance + avatar → MyKiva menu (logged-in) -->
+			<div
+				v-if="loggedIn"
+				ref="avatarMenu"
+				class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
+				@mouseenter="
+					handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
+				"
+				@mouseleave="handleMouseOut('avatarMenu')"
+				@touchstart.stop="
+					handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
+				"
+			>
+				<div
+					v-if="isUserDataLoading"
+					class="tw-w-4 tw-h-3"
+				>
+					<kv-loading-placeholder />
+				</div>
+				<span
+					v-else
+					class="tw-text-eco-green-4"
+				>{{ formattedBalance }}</span>
+				<div
+					v-if="isUserDataLoading"
+					class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+				>
+					<kv-loading-placeholder />
+				</div>
+				<kv-user-avatar
+					v-else
+					class="tw-w-3 tw-h-3"
+					:lender-name="lenderName"
+					:lender-image-url="lenderImageUrl"
+					is-small
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -261,14 +257,13 @@ export default {
 		const lendUrl = computed(() => (!props.isMobile ? '/lend-by-category' : undefined));
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
-		// Only dim the Lend/About dropdown links when the open menu is a *peer* dropdown — opening
-		// the hamburger drawer or MyKiva menu should not visually mute the in-bar Lend/About links.
-		const dropdownOpenItem = computed(() => {
-			if (props.openMenuItem === KvLendMenu || props.openMenuItem === AboutMenu) {
-				return props.openMenuItem;
-			}
-			return null;
-		});
+		// Disable sibling-link dimming entirely: each dropdown only ever sees its own
+		// menuComponent as the open item. The dim path in KvHeaderDropdownLink fires when
+		// `openMenuItem && openMenuItem !== menuComponent`, so by feeding each dropdown a
+		// value that's either its own menu (when active) or null (otherwise), we keep the
+		// chevron-rotate-when-active behavior while never tripping the dim class.
+		const lendOpenItem = computed(() => (props.openMenuItem === KvLendMenu ? props.openMenuItem : null));
+		const aboutOpenItem = computed(() => (props.openMenuItem === AboutMenu ? props.openMenuItem : null));
 
 		function handleOnHover(
 			item: string,
@@ -344,7 +339,8 @@ export default {
 			visiblePrimaryLinks,
 			lendUrl,
 			formattedBalance,
-			dropdownOpenItem,
+			lendOpenItem,
+			aboutOpenItem,
 			handleOnHover,
 			handleMouseOut,
 			handleTouchStart,
@@ -360,6 +356,56 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+/*
+ * Layout — CSS Grid named template areas (matches cms-page-server/header/Full.vue and
+ * ui/WwwFrame/TheHeader.vue). One layout DOM, three responsive states:
+ *  - Mobile (< md): hamburger + absolutely-centered logo + right cluster. Search is hidden
+ *    here (lives inside the mobile Lend Search tab).
+ *  - Tablet (md ≤ vw < lg): logo (left) + Lend + right cluster on the top row, full-width
+ *    search row beneath. Logo uses 1fr to push Lend + right cluster to the right.
+ *  - Desktop (≥ lg): single row with inline search (auto auto 1fr auto).
+ */
+.link-bar {
+	@apply tw-flex tw-items-center tw-gap-1;
+}
+.link-bar__logo {
+	@apply tw-absolute tw-top-1/2 tw-left-1/2 tw--translate-x-1/2 tw--translate-y-1/2
+		tw-transition-all tw-duration-300;
+}
+
+@screen md {
+	.link-bar {
+		@apply tw-grid tw-gap-x-2;
+		grid-template-areas: "logo lend right" "search search search";
+		grid-template-columns: 1fr auto auto;
+		grid-template-rows: 4rem auto;
+		row-gap: theme('spacing.1');
+	}
+	.link-bar__logo {
+		@apply tw-static tw-translate-x-0 tw-translate-y-0;
+		grid-area: logo;
+		justify-self: start;
+	}
+	.link-bar__lend { grid-area: lend; }
+	.link-bar__search {
+		grid-area: search;
+		@apply tw-mb-1;
+	}
+	.link-bar__right { grid-area: right; }
+}
+
+@screen lg {
+	.link-bar {
+		@apply tw-gap-x-2.5;
+		grid-template-areas: "logo lend search right";
+		grid-template-columns: auto auto 1fr auto;
+		grid-template-rows: 4rem;
+	}
+	.link-bar__search {
+		@apply tw-mb-0;
+	}
+}
+
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;

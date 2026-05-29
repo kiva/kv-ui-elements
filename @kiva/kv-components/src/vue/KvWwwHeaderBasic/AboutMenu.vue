@@ -1,6 +1,7 @@
 <template>
 	<nav
-		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1 tw-px-2"
+		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1"
+		:class="isMobile ? 'tw-px-0' : 'tw-px-2'"
 	>
 		<kv-header-menu-link
 			v-for="link in links"

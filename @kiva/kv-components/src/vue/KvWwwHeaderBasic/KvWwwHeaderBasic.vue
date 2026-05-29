@@ -4,10 +4,11 @@
 		class="tw-bg-primary"
 	>
 		<nav
+			ref="navRef"
 			class="tw-font-medium tw-relative tw-border-b tw-border-tertiary"
-			:style="{ height: HEADER_HEIGHT }"
+			:style="{ minHeight: MIN_HEADER_HEIGHT }"
 		>
-			<kv-page-container class="tw-h-full">
+			<kv-page-container>
 				<transition name="header-fade">
 					<link-bar
 						v-show="linksVisible"
@@ -43,7 +44,7 @@
 					tw-absolute tw-z-modal tw-h-full tw-inset-x-0
 					tw-bg-eco-green-4 bg-opacity-50 tw-min-h-screen
 				"
-				:style="{ top: HEADER_HEIGHT }"
+				:style="{ top: navHeight }"
 				@touchstart="handleOverlayClick"
 			>
 				<div
@@ -52,7 +53,7 @@
 					:class="menuPanelClass"
 					:style="{
 						...menuPosition,
-						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${HEADER_HEIGHT})` : 'auto',
+						maxHeight: !isMobileMenuActive ? `calc(100dvh - ${navHeight})` : 'auto',
 					}"
 					@mouseenter="setMenu(menuItem, menuComponent)"
 					@mouseleave="setMenu()"
@@ -86,7 +87,7 @@
 
 <script lang="ts">
 import {
-	ref, computed, onMounted, watch, nextTick,
+	ref, computed, onMounted, onBeforeUnmount, watch, nextTick,
 } from 'vue';
 import type { CSSProperties } from 'vue';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
@@ -95,7 +96,10 @@ import { useBreakpoints } from '#utils/useBreakpoints';
 import { useHeaderBasicMenuState } from '#utils/useHeaderBasicMenuState';
 import LinkBar from './LinkBar.vue';
 
-const HEADER_HEIGHT = '4rem';
+// `min-height` initial — the tablet two-row layout grows the nav vertically, so the actual
+// rendered height is measured at runtime (see navHeight + ResizeObserver below). Used to size
+// the dropdown overlay's `top` and the panel's `max-height`.
+const MIN_HEADER_HEIGHT = '4rem';
 
 // Public instance shape of the active drawer menu (e.g. KvLendMenu exposes onLoad).
 interface MenuInstance {
@@ -140,8 +144,11 @@ export default {
 
 		const menuComponentInstance = ref<MenuInstance | null>(null);
 		const menuPanelRef = ref<HTMLElement | null>(null);
+		const navRef = ref<HTMLElement | null>(null);
+		const navHeight = ref<string>(MIN_HEADER_HEIGHT);
 		const avatarTriggerCenterX = ref<number | null>(null);
 		const linksVisible = ref(true);
+		let navResizeObserver: ResizeObserver | null = null;
 
 		const isMobileMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MobileMenu');
 		const isMyKivaMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MyKivaMenu');
@@ -206,10 +213,27 @@ export default {
 		onMounted(() => {
 			checkIsMobile();
 			markMounted();
+			// Track the rendered nav height so the dropdown overlay drops below the actual nav
+			// (4rem at mobile/desktop, ≈7rem at tablet because of the wrapped search row).
+			if (navRef.value && typeof ResizeObserver !== 'undefined') {
+				navResizeObserver = new ResizeObserver(() => {
+					if (navRef.value) {
+						navHeight.value = `${navRef.value.offsetHeight}px`;
+					}
+				});
+				navResizeObserver.observe(navRef.value);
+			}
+		});
+
+		onBeforeUnmount(() => {
+			navResizeObserver?.disconnect();
+			navResizeObserver = null;
 		});
 
 		return {
-			HEADER_HEIGHT,
+			MIN_HEADER_HEIGHT,
+			navHeight,
+			navRef,
 			linksVisible,
 			isMobile,
 			menuOpen,

@@ -1,9 +1,10 @@
 <template>
 	<kv-page-container class="tw-pt-2 lg:tw-pt-0">
 		<!--
-			useMobileMegaMenu swaps the below-lg list view for the new KvWwwHeaderBasic mobile tabbed
-			menu (Categories / Regions / MyKiva / Search), gated to the basic header's md breakpoint.
-			Mega menu at md+ in that mode; legacy lg split when the flag is off.
+			Three-tier responsive Lend menu when useMobileMegaMenu is on (KvWwwHeaderBasic): the
+			tabbed mobile mega below md, KvLendListMenu through tablet (matches cms-page-server /
+			ui), and KvLendMegaMenu at lg+. Legacy false-branch keeps its two-tier list-then-mega
+			split for KvWwwHeader.
 		-->
 		<mobile-lend-menu
 			v-if="useMobileMegaMenu"
@@ -22,8 +23,7 @@
 			@search-submit="$emit('search-submit', $event)"
 		/>
 		<kv-lend-list-menu
-			v-else
-			class="lg:tw-hidden"
+			:class="useMobileMegaMenu ? 'tw-hidden md:tw-block lg:tw-hidden' : 'lg:tw-hidden'"
 			:categories="computedCategories"
 			:regions="regions"
 			:user-id="userId"
@@ -35,7 +35,7 @@
 			:countries-not-lent-to-url="countriesNotLentToUrl"
 		/>
 		<kv-lend-mega-menu
-			:class="useMobileMegaMenu ? 'tw-hidden md:tw-block' : 'tw-hidden lg:tw-block'"
+			class="tw-hidden lg:tw-block"
 			:categories="computedCategories"
 			:regions="regions"
 			:user-id="userId"

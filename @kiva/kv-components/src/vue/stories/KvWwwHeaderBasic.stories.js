@@ -150,8 +150,11 @@ const story = (args) => {
 					@load-lend-menu-data="onLoadLendMenuData"
 				/>
 				<kv-page-container>
-					<p class="tw-py-2">Scroll content sits beneath the header. Hover Lend/About to open menus,
-						focus search to trigger load-search-data, and resize below 734px for the mobile drawer.</p>
+					<p class="tw-py-2">Scroll content sits beneath the header. Three breakpoint states to exercise:
+						mobile (&lt; 734px) shows the hamburger drawer and tabbed Lend mega menu;
+						tablet (734–991px) shows a two-row layout with search on its own full-width row and
+						the legacy KvLendListMenu;
+						desktop (≥ 992px) is a single row with inline search and the KvLendMegaMenu.</p>
 				</kv-page-container>
 
 				<kv-page-container>
