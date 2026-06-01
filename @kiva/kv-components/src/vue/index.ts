@@ -89,3 +89,4 @@ export * from './KvWideLoanCard.vue';
 export { default as KvAtbModal } from './KvAtbModal.vue';
 export { default as KvSecondaryNav } from './KvSecondaryNav.vue';
 export { default as KvWwwHeader } from './KvWwwHeader.vue';
+export { default as KvWwwHeaderBasic } from './KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
