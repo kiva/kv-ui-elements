@@ -13,6 +13,11 @@ export function useHeaderBasicMenuState() {
 	const menuItem = ref<string | null>(null);
 	const menuPosition = ref<CSSProperties>({ left: 0, position: 'relative' });
 	const isComponentMount = ref(false);
+	// Debug/inspection escape hatch. When true, close requests are ignored so the active
+	// dropdown/drawer stays mounted while you inspect or restyle it in dev tools (otherwise the
+	// mouseleave/overlay-tap handlers close it the moment the cursor leaves the panel). Toggle it
+	// live from the Vue DevTools "setup" state on KvWwwHeaderBasic. Not wired to any UI — dev only.
+	const pinMenuOpen = ref(false);
 
 	const setMenu = debounce((item?: string, menu?: unknown, targetPosition?: CSSProperties) => {
 		// Defer until the host component has mounted.
@@ -29,6 +34,8 @@ export function useHeaderBasicMenuState() {
 				menuPosition.value = { ...targetPosition, position: 'absolute' };
 			}
 		} else if (menuOpen.value) {
+			// Pinned for inspection — swallow the close so the panel can't disappear mid-inspect.
+			if (pinMenuOpen.value) return;
 			menuOpen.value = false;
 			menuComponent.value = null;
 		}
@@ -39,6 +46,6 @@ export function useHeaderBasicMenuState() {
 	}
 
 	return {
-		activeHeaderItem, menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted,
+		activeHeaderItem, menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted, pinMenuOpen,
 	};
 }

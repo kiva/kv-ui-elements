@@ -139,7 +139,7 @@ export default {
 	setup(_props, { emit }) {
 		const { isMobile, checkIsMobile } = useBreakpoints();
 		const {
-			menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted,
+			menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted, pinMenuOpen,
 		} = useHeaderBasicMenuState();
 
 		const menuComponentInstance = ref<MenuInstance | null>(null);
@@ -244,6 +244,7 @@ export default {
 			menuPanelClass,
 			menuComponentInstance,
 			menuPanelRef,
+			pinMenuOpen,
 			setMenu,
 			onItemHover,
 			handleOverlayClick,

@@ -99,10 +99,15 @@
 					>{{ basketCount }}</span>
 					Basket
 				</span>
-				<span class="tw-flex md:tw-hidden tw-items-center">
-					<kv-icon-bag
-						class="tw-w-3 tw-h-3 tw-text-action tw-pointer-events-none"
-						:count="isBasketDataLoading ? 0 : basketCount"
+				<span class="tw-relative tw-flex md:tw-hidden tw-items-center tw-text-eco-green-4">
+					<span
+						v-if="!isBasketDataLoading"
+						class="tw-absolute tw-w-4 tw-h-4 tw-pt-0.5 tw-flex tw-items-center tw-justify-center
+							tw-text-white tw-text-small tw-font-medium tw-pointer-events-none"
+					>{{ basketCount }}</span>
+					<kv-material-icon
+						:icon="mdiBriefcase"
+						class="tw-w-4 tw-h-4 tw-pointer-events-none"
 					/>
 					<span class="tw-sr-only">Basket</span>
 				</span>
@@ -164,10 +169,9 @@
 import {
 	ref, computed, inject, defineAsyncComponent,
 } from 'vue';
-import { mdiMenu, mdiChevronDown } from '@mdi/js';
+import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
 import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
-import KvIconBag from '#components/KvIconBag.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
 import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
@@ -191,7 +195,6 @@ export default {
 	name: 'LinkBar',
 	components: {
 		KvMaterialIcon,
-		KvIconBag,
 		KvUserAvatar,
 		KvLoadingPlaceholder,
 		KvButton,
@@ -329,6 +332,7 @@ export default {
 		return {
 			mdiMenu,
 			mdiChevronDown,
+			mdiBriefcase,
 			KvLendMenu,
 			AboutMenu,
 			MyKivaMenu,

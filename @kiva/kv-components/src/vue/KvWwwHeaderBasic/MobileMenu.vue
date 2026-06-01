@@ -1,5 +1,8 @@
 <template>
-	<div class="tw-flex tw-flex-col tw-items-stretch tw-font-medium tw-p-2.5 md:tw-hidden">
+	<div
+		id="header-basic-mobile-about-container"
+		class="tw-flex tw-flex-col tw-items-stretch tw-font-medium tw-p-2.5 md:tw-hidden"
+	>
 		<kv-accordion-item
 			id="kv-www-header-basic-about"
 			class="tw-w-full tw-border-b-0"
@@ -85,5 +88,12 @@ export default {
 <style lang="postcss" scoped>
 .mobile-link {
 	@apply tw-text-primary hover:tw-text-action tw-no-underline hover:tw-underline;
+}
+
+#header-basic-mobile-about-container :deep(button) {
+	@apply tw-py-0;
+}
+#header-basic-mobile-about-container :deep(nav) {
+	@apply tw-pb-0;
 }
 </style>
