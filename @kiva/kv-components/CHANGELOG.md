@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.15.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.14.2...@kiva/kv-components@8.15.0) (2026-06-01)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** align desktop bar to Figma ([b222e16](https://github.com/kiva/kv-ui-elements/commit/b222e1627d249260cfded7a11a3c583ca232f4cc))
+* **KvWwwHeaderBasic:** collapse desktop bar items on mobile ([5f484f2](https://github.com/kiva/kv-ui-elements/commit/5f484f23d045fb5304a712fee7c6c51b0da2fb70))
+* **KvWwwHeaderBasic:** constrain MyKiva dropdown on mobile ([a9700ad](https://github.com/kiva/kv-ui-elements/commit/a9700adbec29a1ca2188064cb63640c1f32f3315))
+* **KvWwwHeaderBasic:** polish dropdowns, borders, and MyKiva anchoring ([ad86513](https://github.com/kiva/kv-ui-elements/commit/ad865133db0e94f9152b09c9cbcb0c7ddbb7dadf))
+* **KvWwwHeaderBasic:** refine logged-in avatar menu and basket ([14494aa](https://github.com/kiva/kv-ui-elements/commit/14494aac1723cc70d332949f97d2b78fd5b5f223))
+* **KvWwwHeaderBasic:** stable bar height + LinkBar font weight ([7f942a8](https://github.com/kiva/kv-ui-elements/commit/7f942a812e1c6f04eaaf2222a6a9e367b7056667))
+* **KvWwwHeaderBasic:** use KvButton for Support Kiva (valid design-system styling) ([143371c](https://github.com/kiva/kv-ui-elements/commit/143371cdb7f23a14c1649934e2813d4d28738789))
+* replicate ui/cps briefcase basket icon, tighten mobile about menu styles ([0b8cfeb](https://github.com/kiva/kv-ui-elements/commit/0b8cfebc4935253a7ec13dafde5c40eaccebcb1c))
+
+
+### Features
+
+* **KvWwwHeaderBasic:** add AboutMenu ([cf8574f](https://github.com/kiva/kv-ui-elements/commit/cf8574f51b03117f13ec87483701b0cce9265667))
+* **KvWwwHeaderBasic:** add desktop LinkBar to Figma layout ([e9e5db2](https://github.com/kiva/kv-ui-elements/commit/e9e5db2ecd7e40c402c3d4be33e90bc719383498))
+* **KvWwwHeaderBasic:** add MobileMenu hamburger drawer ([5e4d96c](https://github.com/kiva/kv-ui-elements/commit/5e4d96ce2c03e46f43528c677bafb349298bd06c))
+* **KvWwwHeaderBasic:** add MyKivaMenu ([abc245c](https://github.com/kiva/kv-ui-elements/commit/abc245c28172f5653aa922e3b69c96d356035f6e))
+* **KvWwwHeaderBasic:** add search section config and gift suggestions ([e91e82e](https://github.com/kiva/kv-ui-elements/commit/e91e82ee6ac738ac12cd963e97130ab4eca6564a))
+* **KvWwwHeaderBasic:** add self-contained SearchBar ([fa3442b](https://github.com/kiva/kv-ui-elements/commit/fa3442b40af027d6f7849acd1d18531e8c749c06))
+* **KvWwwHeaderBasic:** add useHeaderBasicBreakpoint composable ([1dfb86e](https://github.com/kiva/kv-ui-elements/commit/1dfb86eb84d65803e0011946e7f050920e44c11b))
+* **KvWwwHeaderBasic:** add useHeaderBasicMenuState composable ([4ce178c](https://github.com/kiva/kv-ui-elements/commit/4ce178cf18e8aca0ad4a3f2dc00f4b26e060b9ff))
+* **KvWwwHeaderBasic:** add useHeaderBasicSearch composable ([b72f6ab](https://github.com/kiva/kv-ui-elements/commit/b72f6aba827212026d259c3347a8bcfd52335999))
+* **KvWwwHeaderBasic:** assemble orchestrator with composables and drawer ([e38e7a8](https://github.com/kiva/kv-ui-elements/commit/e38e7a82541b72fb019e4d5056ec82110e2848ca))
+* **KvWwwHeaderBasic:** loading loaders, MyKiva padding, LinkBar story ([7283a53](https://github.com/kiva/kv-ui-elements/commit/7283a538a4161b6406f3e90ea8ecb510bec868db))
+* **KvWwwHeaderBasic:** port SearchEngine util with fuse.js ([28b6793](https://github.com/kiva/kv-ui-elements/commit/28b6793338bdaf3295b76384c301081382ae707f))
+* **KvWwwHeaderBasic:** scaffold component folder and barrel export ([c3ab70b](https://github.com/kiva/kv-ui-elements/commit/c3ab70bdc76ffc5c847b342218cce7a9a2bedb42))
+* **KvWwwHeaderBasic:** tabbed mobile Lend menu (Categories/Regions/MyKiva/Search) ([c2151bf](https://github.com/kiva/kv-ui-elements/commit/c2151bfd988bd497ec2492cdf4de24fa2d62cae8))
+* **KvWwwHeaderBasic:** tablet two-row layout with list-view Lend menu ([8733eac](https://github.com/kiva/kv-ui-elements/commit/8733eac79957886a8b6d82b1cee6383dfc7dc03e))
+
+
+
+
+
 ## [8.14.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.14.1...@kiva/kv-components@8.14.2) (2026-05-27)
 
 **Note:** Version bump only for package @kiva/kv-components
