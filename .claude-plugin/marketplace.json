@@ -1,0 +1,10 @@
+{
+  "name": "kv-ui-elements",
+  "owner": { "name": "Kiva" },
+  "plugins": [
+    {
+      "name": "kiva-design-system",
+      "source": "./@kiva/kv-skills/design-system"
+    }
+  ]
+}
