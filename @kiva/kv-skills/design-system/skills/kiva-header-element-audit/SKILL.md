@@ -15,7 +15,7 @@ This skill audits every header usage in the target repo and applies pre-emptive 
 ## Prerequisites
 
 - Confirm the consuming repo uses `@kiva/kv-tokens` and the `tw-` prefix.
-- Read the current `typography.md` skill in `kv-tokens` (`@kiva/kv-tokens/docs/skills/typography.md`) — it's the source of truth for the new mapping.
+- Read the current `typography.md` skill in `kv-tokens` (`@kiva/kv-skills/design-system/skills/kiva-design-system/typography.md`) — it's the source of truth for the new mapping.
 - Identify which packages / source roots contain `.vue` (or `.tsx`/`.jsx` if extended later) component files in scope.
 - Have ripgrep installed.
 

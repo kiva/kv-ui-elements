@@ -1,6 +1,6 @@
 ---
 name: figma-design-system-to-skill
-description: Process skill for extracting a section of the Kiva design system from Figma into a portable agent skill file in @kiva/kv-tokens/docs/skills. Codifies the artifact-gathering, code-verification, structure, voice, and index-update steps proven out across typography, layout, spacing, and radius.
+description: Process skill for extracting a section of the Kiva design system from Figma into a portable agent skill file in @kiva/kv-skills/design-system/skills/kiva-design-system. Codifies the artifact-gathering, code-verification, structure, voice, and index-update steps proven out across typography, layout, spacing, and radius.
 when_to_use: Whenever starting a new skill that extracts a Figma design-system section (e.g., color, elevation, motion, iconography, components). Trigger phrases — "extract the X section of our design system into a skill", "create a new skill from these Figma panels", "let's build a skill for X".
 ---
 
@@ -8,7 +8,7 @@ when_to_use: Whenever starting a new skill that extracts a Figma design-system s
 
 ## What this skill produces
 
-A single self-contained Markdown skill file in `@kiva/kv-tokens/docs/skills/<name>.md`, plus a one-line entry in `@kiva/kv-tokens/SKILLS.md`. The skill captures *design intent* from Figma (canonical), then ends with two code-facing sections: **Using with Tailwind** (how to express that intent with the Kiva Tailwind preset, hybrid so it works with or without the preset) and **Outstanding discrepancies** (the real Figma-vs-code sync gaps consumers should verify before depending on a token name).
+A single self-contained Markdown skill file in `@kiva/kv-skills/design-system/skills/kiva-design-system/<name>.md`, plus a one-line entry in `@kiva/kv-skills/design-system/skills/kiva-design-system/SKILL.md`. The skill captures *design intent* from Figma (canonical), then ends with two code-facing sections: **Using with Tailwind** (how to express that intent with the Kiva Tailwind preset, hybrid so it works with or without the preset) and **Outstanding discrepancies** (the real Figma-vs-code sync gaps consumers should verify before depending on a token name).
 
 Existing exemplars in this repo:
 
@@ -48,8 +48,8 @@ The color skill round of this process missed ~5 tokens per theme and invented in
 
 ## File and index locations
 
-- **New skill:** `@kiva/kv-tokens/docs/skills/<kebab-name>.md`
-- **Index to update:** `@kiva/kv-tokens/SKILLS.md` (add one line under `## Skills`, format: `- [name](docs/skills/name.md) — one-line hook`)
+- **New skill:** `@kiva/kv-skills/design-system/skills/kiva-design-system/<kebab-name>.md`
+- **Index to update:** `@kiva/kv-skills/design-system/skills/kiva-design-system/SKILL.md` (add one line under `## Skills`, format: `- [name](docs/skills/name.md) — one-line hook`)
 
 ## Code verification — before writing the code-facing sections
 
@@ -199,8 +199,8 @@ Add **both** files to `SKILLS.md`. The companion's index entry should explicitly
 3. **Decide on the data source per panel.** Screenshots for conceptual panels; `get_design_context` (and a parser) for dense token tables. See "When to start with screenshots vs. the Figma MCP" above.
 4. **Decide whether to split** into an umbrella + reference companion before drafting. The split shape is hard to retrofit after the fact. See "When to split into a companion reference file."
 5. **Verify code state.** Open the relevant token JSON, the Tailwind config block, and any wrapper components. Note the shipped utilities (for "Using with Tailwind"), the real gaps (for "Outstanding discrepancies"), and intentional differences; list concrete missing tokens by name.
-6. **Draft the skill(s)** using the standard structure. Write into `@kiva/kv-tokens/docs/skills/<name>.md`. Use the `Write` tool for new files; use `Edit` if revising.
-7. **Update the index.** Add one entry per file to `@kiva/kv-tokens/SKILLS.md` under `## Skills`.
+6. **Draft the skill(s)** using the standard structure. Write into `@kiva/kv-skills/design-system/skills/kiva-design-system/<name>.md`. Use the `Write` tool for new files; use `Edit` if revising.
+7. **Update the index.** Add one entry per file to `@kiva/kv-skills/design-system/skills/kiva-design-system/SKILL.md` under `## Skills`.
 8. **Self-verify against canonical Figma data.** Before declaring done, pull every panel you summarized from screenshots and spot-check at least: (a) primitive / token values that drive other claims, (b) every callout in the accessibility or "do not use" sections, (c) every Do/Don't headline. Stale Figma labels and copy-paste errors are common enough that this step regularly catches real factual mistakes — treat it as required, not optional.
 9. **Brief the user.** End with a short summary listing what's in the new skill and any divergences from Figma you flagged. Don't re-list the full table of contents — call out structural choices and surprises only.
 
