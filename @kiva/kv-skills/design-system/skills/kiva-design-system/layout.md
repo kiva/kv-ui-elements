@@ -174,15 +174,15 @@ Match the style to the frame width and to whether the frame represents a page or
 
 ## Using with Tailwind
 
-The layout primitives come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
+The layout primitives come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-Breakpoints are **mobile-first min-width screens: `md`, `lg`, `xl`** (plus a `print` screen) — there is **no `sm` and no `2xl`**. Unprefixed utilities are the base tier, so the design system's XS and SM tiers both fall under "no prefix" in Tailwind; layer `md:` / `lg:` / `xl:` on top. See [tailwind → Breakpoints are `md` / `lg` / `xl`](tailwind.md#breakpoints-are-md--lg--xl-mobile-first-no-sm). Build grids with `tw-grid` and the column/gap utilities, or use `KvGrid` (with the gutter caveat below).
+Breakpoints are **mobile-first min-width screens: `md`, `lg`, `xl`** (plus a `print` screen) — there is **no `sm` and no `2xl`**. Unprefixed utilities are the base tier, so the design system's XS and SM tiers both fall under "no prefix" in Tailwind; layer `md:` / `lg:` / `xl:` on top. See [tailwind → Breakpoints are `md` / `lg` / `xl`](../kiva-tailwind-css/SKILL.md#breakpoints-are-md--lg--xl-mobile-first-no-sm). Build grids with `tw-grid` and the column/gap utilities, or use `KvGrid` (with the gutter caveat below).
 
 **Shipped breakpoint values** (verify against `@kiva/kv-tokens/configs/tailwind.config.js` / `tokens/core/size.json`): `md: 734`, `lg: 1024`, `xl: 1440`.
 
 ### Without the preset
 
-- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset).
 - **Stock-Tailwind / non-Kiva project:** define `md` / `lg` / `xl` screens at the values above in your own config (or use arbitrary min-width media), and set gutters/margins explicitly from the [grid specs](#breakpoint-tiers--page-grid-specs). Copied values are point-in-time.
 
 ## Outstanding discrepancies

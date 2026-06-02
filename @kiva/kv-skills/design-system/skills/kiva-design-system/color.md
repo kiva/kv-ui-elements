@@ -188,9 +188,9 @@ Walk the file and check fills, strokes, and text colors for raw hex values. **Re
 
 ## Using with Tailwind
 
-The color utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
+The color utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-**Themable colors** are exposed as `tw-text-{slot}`, `tw-bg-{slot}`, `tw-border-{slot}`, `tw-divide-{slot}`, and `tw-ring-{slot}` — e.g. `tw-bg-primary`, `tw-text-action`, `tw-border-danger-highlight`. The slot names match the semantic token names in [color-themes.md](color-themes.md) (with `background/` → `bg-`). They compile to `rgb(var(--token))` and resolve at runtime from CSS custom properties, so they follow the active theme — reach for them by default. See [tailwind → Color is semantic, themable, and runtime-resolved](tailwind.md#color-is-semantic-themable-and-runtime-resolved), and [tailwind → Make themable colors resolve](tailwind.md#3-make-themable-colors-resolve-required-for-color-to-render) for how the custom properties get onto the page (`KvThemeProvider` does this in components).
+**Themable colors** are exposed as `tw-text-{slot}`, `tw-bg-{slot}`, `tw-border-{slot}`, `tw-divide-{slot}`, and `tw-ring-{slot}` — e.g. `tw-bg-primary`, `tw-text-action`, `tw-border-danger-highlight`. The slot names match the semantic token names in [color-themes.md](color-themes.md) (with `background/` → `bg-`). They compile to `rgb(var(--token))` and resolve at runtime from CSS custom properties, so they follow the active theme — reach for them by default. See [tailwind → Color is semantic, themable, and runtime-resolved](../kiva-tailwind-css/SKILL.md#color-is-semantic-themable-and-runtime-resolved), and [tailwind → Make themable colors resolve](../kiva-tailwind-css/SKILL.md#3-make-themable-colors-resolve-required-for-color-to-render) for how the custom properties get onto the page (`KvThemeProvider` does this in components).
 
 **Primitive (non-themed) utilities** — `tw-bg-eco-green-3`, `tw-text-marigold-DEFAULT`, `tw-bg-gray-100`, etc. — resolve directly to primitive values and do **not** change with theme. Use sparingly; components should consume semantic tokens, not primitives.
 
@@ -216,7 +216,7 @@ Legacy themes still exported in code (`dark`, `dark-green`, `dark-mint`, `dark-s
 
 ### Without the preset
 
-- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset).
 - **Stock-Tailwind / non-Kiva project:** the themable utilities won't exist. Either import the shipped custom properties from `@kiva/kv-tokens/css` ([`dist/css/tokens.css`](../../dist/css/tokens.css), which ships a `:root` block plus `[data-theme="…"]` blocks) and reference `var(--token)` yourself, or use the static hex values from [color-themes.md](color-themes.md). The hex route loses runtime theming and the values are point-in-time.
 
 ## Outstanding discrepancies

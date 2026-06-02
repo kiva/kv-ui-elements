@@ -237,20 +237,20 @@ All tokens are published as text styles in the Kiva Ecosystem library.
 
 ## Using with Tailwind
 
-The typography utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
+The typography utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
 Type styles ship as **semantic, whole-style utilities** (e.g. `tw-text-base`, `tw-text-headline`, `tw-text-caption`) — each bundles font-family, size, line-height, and letter-spacing together. Pick one from [How to apply type styles](#how-to-apply-type-styles) or the [HTML + Tailwind mapping](#heading-hierarchy--semantic-html-mapping) tables above; don't assemble a style from individual utilities.
 
 Two stock-Tailwind habits won't work here, by design:
 
-- **No `tw-text-lg` / `tw-text-2xl` / `tw-leading-*` / `tw-tracking-*`.** The preset disables the `fontSize`, `lineHeight`, and `letterSpacing` core plugins, so those utilities aren't generated — use a semantic text style instead. (`tw-text-{color}` like `tw-text-primary` still works; that's color, a separate concern.) See [tailwind → Text sizing utilities don't exist](tailwind.md#text-sizing-utilities-dont-exist--use-semantic-text-styles).
-- **No `tw-font-bold` / `tw-font-semibold`.** The heaviest weight is `medium` (500), and the base layer resets `strong` / `b` to normal (400). See [tailwind → Font weight tops out at `medium`](tailwind.md#font-weight-tops-out-at-medium-500).
+- **No `tw-text-lg` / `tw-text-2xl` / `tw-leading-*` / `tw-tracking-*`.** The preset disables the `fontSize`, `lineHeight`, and `letterSpacing` core plugins, so those utilities aren't generated — use a semantic text style instead. (`tw-text-{color}` like `tw-text-primary` still works; that's color, a separate concern.) See [tailwind → Text sizing utilities don't exist](../kiva-tailwind-css/SKILL.md#text-sizing-utilities-dont-exist--use-semantic-text-styles).
+- **No `tw-font-bold` / `tw-font-semibold`.** The heaviest weight is `medium` (500), and the base layer resets `strong` / `b` to normal (400). See [tailwind → Font weight tops out at `medium`](../kiva-tailwind-css/SKILL.md#font-weight-tops-out-at-medium-500).
 
 These utilities are defined in `@kiva/kv-tokens/configs/tailwind.config.js` (via `kivaTypography.js`) — verify a class name against the current config before depending on it.
 
 ### Without the preset
 
-- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset).
 - **Stock-Tailwind / non-Kiva project:** the semantic `tw-text-*` styles won't exist. Replicate a style by reading its font-family, size, and line-height from the [type scale](#type-scale) and the mapping tables, and load the web fonts with the `@font-face` rules the package ships. Copied values are point-in-time.
 
 > The in-progress `<h1>`–`<h6>` / `tw-text-h1`–`tw-text-h6` semantic remap is tracked separately — see the `header-element-audit` skill before doing heading cleanup.

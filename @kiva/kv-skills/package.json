@@ -6,8 +6,9 @@
     "access": "public"
   },
   "files": [
-    "*/skills/",
-    "*/README.md"
+    "*/skills/**",
+    "*/README.md",
+    "README.md"
   ],
   "keywords": ["kiva", "design-system", "agent-skills", "claude", "codex", "tailwind", "figma"],
   "repository": {

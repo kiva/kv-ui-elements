@@ -185,9 +185,9 @@ Open a request with the design system team. Include the use case, the component,
 
 ## Using with Tailwind
 
-The spacing utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](tailwind.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
+The spacing utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered it yet? See [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Not using the preset? See [Without the preset](#without-the-preset) below.
 
-The preset wires every value on [the raw spacing ramp](#the-raw-spacing-ramp) into the standard spacing utilities — `tw-p-*`, `tw-m-*`, `tw-gap-*`, `tw-space-*`, etc. all flow from the `space` scale. The thing to internalize: this is an **8px scale with 4px half-steps**, so the same number means a different size than stock Tailwind — `tw-p-4` is **32px** here, not 16px. See [tailwind → Spacing is an 8px scale](tailwind.md#spacing-is-an-8px-scale-with-4px-half-steps).
+The preset wires every value on [the raw spacing ramp](#the-raw-spacing-ramp) into the standard spacing utilities — `tw-p-*`, `tw-m-*`, `tw-gap-*`, `tw-space-*`, etc. all flow from the `space` scale. The thing to internalize: this is an **8px scale with 4px half-steps**, so the same number means a different size than stock Tailwind — `tw-p-4` is **32px** here, not 16px. See [tailwind → Spacing is an 8px scale](../kiva-tailwind-css/SKILL.md#spacing-is-an-8px-scale-with-4px-half-steps).
 
 Three key-naming conventions describe the same tokens — don't get tripped up:
 
@@ -199,7 +199,7 @@ The shipped code exposes this **raw numeric ramp**, not the semantic categories 
 
 ### Without the preset
 
-- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](tailwind.md#consuming-the-preset).
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset).
 - **Stock-Tailwind / non-Kiva project:** the ramp is plain px, so the values in [the raw spacing ramp](#the-raw-spacing-ramp) table can be applied as arbitrary values (`p-[20px]`) or used to define your own scale. These are point-in-time copies.
 
 ## Outstanding discrepancies

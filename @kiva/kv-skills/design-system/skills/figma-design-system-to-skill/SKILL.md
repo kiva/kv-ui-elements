@@ -20,7 +20,7 @@ Existing exemplars in this repo:
 
 Read at least one before starting a new extraction; mirror voice, headings, and table conventions.
 
-A different kind of skill also lives here: [`tailwind`](tailwind.md) documents the **shipped mechanics** of the Kiva Tailwind preset and is *code-canonical* (not Figma-canonical). You don't author skills like it with this process, but every design-intent skill's "Using with Tailwind" section links into it — treat it as the canonical reference for preset mechanics rather than re-explaining them.
+A different kind of skill also lives here: [`tailwind`](../kiva-tailwind-css/SKILL.md) documents the **shipped mechanics** of the Kiva Tailwind preset and is *code-canonical* (not Figma-canonical). You don't author skills like it with this process, but every design-intent skill's "Using with Tailwind" section links into it — treat it as the canonical reference for preset mechanics rather than re-explaining them.
 
 ## Inputs to gather from the user
 
@@ -135,13 +135,13 @@ File: `TPmBUB4olYPMF6glEhBGDG` (Ecosystem 2026 — WIP)
 
 ## Writing the code-facing sections
 
-These two sections are where an otherwise Figma-canonical skill becomes **code-canonical**. They sit where the old single "Current code state" section used to — right before "Figma source references" — and they defer to the [`tailwind`](tailwind.md) skill, the canonical shipped-mechanics guide to the Kiva preset. Don't regenerate `tailwind`'s content here; link into it.
+These two sections are where an otherwise Figma-canonical skill becomes **code-canonical**. They sit where the old single "Current code state" section used to — right before "Figma source references" — and they defer to the [`tailwind`](../kiva-tailwind-css/SKILL.md) skill, the canonical shipped-mechanics guide to the Kiva preset. Don't regenerate `tailwind`'s content here; link into it.
 
 ### `## Using with Tailwind`
 
 Teach how to express *this section's* intent in code. It must be **hybrid**: encourage setting up and using the Kiva Tailwind preset, but still help a reader whose project doesn't have it. Use this four-part backbone:
 
-1. **Hybrid setup line.** State that the utilities come from the `@kiva/kv-tokens` preset, link to [tailwind → Consuming the preset](tailwind.md#consuming-the-preset) for projects not yet wired up, and point to the "Without the preset" subsection for projects that won't adopt it.
+1. **Hybrid setup line.** State that the utilities come from the `@kiva/kv-tokens` preset, link to [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset) for projects not yet wired up, and point to the "Without the preset" subsection for projects that won't adopt it.
 2. **Authoring guidance (topic-specific).** How to pick/apply the class for this concern, plus the one key gotcha (e.g. `tw-rounded` = 16px, no `tw-text-lg`, the 8px spacing scale). **Link to the matching `tailwind.md` subsection** for the mechanics rationale instead of re-explaining it, and **point to any in-body mapping table** already in the skill instead of reprinting it.
 3. **Shipped-state details.** What actually ships today, with the authoritative source pointer (`tokens/core/*.json`, the relevant `configs/tailwind.config.js → theme.*` block). Put the "verify against the current config before depending" caveat on these lines — it replaces the old hedged section header.
 4. **`### Without the preset`.** Two clearly-separated fallbacks:
