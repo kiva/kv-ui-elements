@@ -47,3 +47,18 @@ npm unlink --no-save @kiva/kv-shop
 The Kiva UI project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).
 
 Kiva welcomes outside contributions to our UI repository. If you have any ideas for a feature or improvement, create an issue and we can discuss whether it makes sense to create a pull request. Thanks for the help!
+
+## Agent Skills
+
+This repo doubles as a public Claude Code and Codex plugin marketplace for
+Kiva's [Agent Skills](https://agentskills.io), organized as installable plugin
+categories under [`@kiva/kv-skills`](./@kiva/kv-skills). See
+[`SKILLS.md`](./SKILLS.md) for the full install matrix and contribution guide.
+
+```bash
+# Claude Code
+/plugin marketplace add kiva/kv-ui-elements
+
+# Codex
+codex plugin marketplace add kiva/kv-ui-elements
+```
