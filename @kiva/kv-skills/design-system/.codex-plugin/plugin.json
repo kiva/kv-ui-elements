@@ -1,0 +1,18 @@
+{
+  "name": "kiva-design-system",
+  "version": "0.1.0",
+  "description": "Kiva design-system skills: design tokens, Tailwind preset, typography, color, spacing, radius, layout, header audits, and Figma-to-skill extraction.",
+  "author": {
+    "name": "Kiva"
+  },
+  "keywords": ["kiva", "design-system", "design-tokens", "tailwind", "figma"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kiva Design System",
+    "shortDescription": "Kiva design-system skills for tokens, Tailwind, and Figma",
+    "longDescription": "Kiva design-system conventions and workflows: design tokens, the Kiva Tailwind preset, typography/color/spacing/radius/layout guidance, header-element audits, and Figma-to-skill extraction.",
+    "developerName": "Kiva",
+    "category": "Development",
+    "capabilities": ["Read", "Write"]
+  }
+}

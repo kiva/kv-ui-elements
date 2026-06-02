@@ -1,0 +1,19 @@
+{
+  "name": "@kiva/kv-skills",
+  "version": "0.1.0",
+  "description": "Kiva agent skills (Claude Code + Codex), organized as installable plugin categories. v1 ships the design-system category.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "*/skills/",
+    "*/README.md"
+  ],
+  "keywords": ["kiva", "design-system", "agent-skills", "claude", "codex", "tailwind", "figma"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiva/kv-ui-elements.git",
+    "directory": "@kiva/kv-skills"
+  },
+  "license": "ISC"
+}
