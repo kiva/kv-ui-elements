@@ -1,0 +1,20 @@
+{
+  "name": "kv-ui-elements",
+  "interface": {
+    "displayName": "Kiva UI Elements"
+  },
+  "plugins": [
+    {
+      "name": "kiva-design-system",
+      "source": {
+        "source": "local",
+        "path": "./@kiva/kv-skills/design-system"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    }
+  ]
+}
