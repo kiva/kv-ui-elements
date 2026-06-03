@@ -382,7 +382,7 @@ export const ModifiersShowcase = (args, { argTypes }) => ({
 				<div class="tw-space-y-6">
 					<!-- Custom padding modifier -->
 					<div>
-						<h4 class="tw-font-medium tw-mb-2">Custom Padding (20px from edges)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Custom Padding (20px from edges)</h4>
 						<kv-button id="padding-btn" class="tw-bg-green-500 tw-text-white tw-px-4 tw-py-2 tw-rounded">
 							Custom Padding
 						</kv-button>
@@ -399,7 +399,7 @@ export const ModifiersShowcase = (args, { argTypes }) => ({
 
 					<!-- Offset modifier -->
 					<div>
-						<h4 class="tw-font-medium tw-mb-2">Custom Offset (shifted 20px)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Custom Offset (shifted 20px)</h4>
 						<kv-button id="offset-btn" class="tw-bg-purple-500 tw-text-white tw-px-4 tw-py-2 tw-rounded">
 							Custom Offset
 						</kv-button>
@@ -416,7 +416,7 @@ export const ModifiersShowcase = (args, { argTypes }) => ({
 
 					<!-- Multiple modifiers -->
 					<div>
-						<h4 class="tw-font-medium tw-mb-2">Multiple Modifiers (custom padding + offset)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Multiple Modifiers (custom padding + offset)</h4>
 						<kv-button id="multiple-btn" class="tw-bg-red-500 tw-text-white tw-px-4 tw-py-2 tw-rounded">
 							Multiple Modifiers
 						</kv-button>

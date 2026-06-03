@@ -440,7 +440,7 @@ export const ThemeComparison = {
 				<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
 					<kv-card-frame theme="default">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2">Default Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2">Default Theme</h4>
 							<p class="tw-text-small tw-mb-3">Standard theme for general use.</p>
 							<kv-button variant="primary" size="small">Learn More</kv-button>
 						</div>
@@ -448,7 +448,7 @@ export const ThemeComparison = {
 
 					<kv-card-frame theme="greenLight">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2">Green Light Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2">Green Light Theme</h4>
 							<p class="tw-text-small tw-mb-3">For positive actions or confirmations.</p>
 							<kv-button variant="primary" size="small">Confirm</kv-button>
 						</div>
@@ -456,7 +456,7 @@ export const ThemeComparison = {
 
 					<kv-card-frame theme="greenDark">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2 tw-text-primary">Green Dark Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2 tw-text-primary">Green Dark Theme</h4>
 							<p class="tw-text-small tw-mb-3 tw-text-primary">Dark variant with light text.</p>
 							<kv-button variant="primary" size="small">Continue</kv-button>
 						</div>
@@ -464,7 +464,7 @@ export const ThemeComparison = {
 
 					<kv-card-frame theme="marigoldLight">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2">Marigold Light Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2">Marigold Light Theme</h4>
 							<p class="tw-text-small tw-mb-3">For attention or highlights.</p>
 							<kv-button variant="primary" size="small">View Details</kv-button>
 						</div>
@@ -472,7 +472,7 @@ export const ThemeComparison = {
 
 					<kv-card-frame theme="stoneLight">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2">Stone Light Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2">Stone Light Theme</h4>
 							<p class="tw-text-small tw-mb-3">Neutral theme for secondary content.</p>
 							<kv-button variant="secondary" size="small">More Info</kv-button>
 						</div>
@@ -480,7 +480,7 @@ export const ThemeComparison = {
 
 					<kv-card-frame theme="stoneDark">
 						<div class="tw-p-4">
-							<h4 class="tw-mb-2 tw-text-primary">Stone Dark Theme</h4>
+							<h4 class="tw-text-upper tw-mb-2 tw-text-primary">Stone Dark Theme</h4>
 							<p class="tw-text-small tw-mb-3 tw-text-primary">Dark neutral variant.</p>
 							<kv-button variant="primary" size="small">Explore</kv-button>
 						</div>

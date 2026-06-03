@@ -37,7 +37,7 @@ export const EmailAddress = (args, { argTypes }) => ({
 	template: `
 			<kv-chip
 			>
-			<h4> @BankofAmerica.com </h4>
+			<h4 class="tw-text-upper"> @BankofAmerica.com </h4>
 			</kv-chip>
 		`,
 });

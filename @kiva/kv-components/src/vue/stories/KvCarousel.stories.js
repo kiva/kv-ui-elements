@@ -38,7 +38,7 @@ const generateLoanCardTemplate = (index) => {
 		<div style="width: 336px">
 			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
 			<h3>Card Title</h3>
-			<h4 class="tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
+			<h4 class="tw-text-upper tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
 			<p class="tw-mt-1 tw-mb-9">${cardCopy?.[index] || cardCopy?.[1]}</p>
 			<kv-button
 				variant="primary"
