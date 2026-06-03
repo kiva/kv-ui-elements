@@ -19,7 +19,7 @@ const Template = (args, {
 		<div>
 			<label
 				for="example-id"
-				class="tw-text-h4 tw-block"
+				class="tw-text-upper tw-block"
 			>
 				Choose an example
 			</label>
@@ -63,7 +63,7 @@ export const LabelHidden = (args, {
 		<div>
 			<label
 				for="example-id"
-				class="tw-text-h4 tw-block tw-sr-only"
+				class="tw-text-upper tw-block tw-sr-only"
 			>
 				Choose an example
 			</label>
@@ -100,7 +100,7 @@ export const WidthSet = (args, {
 		<div class="w-full">
 			<label
 				for="example-id"
-				class="tw-text-h4 tw-block"
+				class="tw-text-upper tw-block"
 			>
 				Choose an example
 			</label>

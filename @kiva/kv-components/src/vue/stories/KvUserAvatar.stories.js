@@ -87,7 +87,7 @@ export const AllVariations = {
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
 				<!-- Size Variations -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Size Variations</h3>
+					<h3 class="tw-text-upper tw-mb-4">Size Variations</h3>
 					<div class="tw-flex tw-gap-6 tw-items-end">
 						<div class="tw-text-center">
 							<KvUserAvatar
@@ -127,7 +127,7 @@ export const AllVariations = {
 
 				<!-- Display Types -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Display Types</h3>
+					<h3 class="tw-text-upper tw-mb-4">Display Types</h3>
 					<div class="tw-flex tw-gap-6 tw-items-end">
 						<div class="tw-text-center">
 							<KvUserAvatar
@@ -165,7 +165,7 @@ export const AllVariations = {
 
 				<!-- Theme Variations -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Theme Variations (Anonymous)</h3>
+					<h3 class="tw-text-upper tw-mb-4">Theme Variations (Anonymous)</h3>
 					<div class="tw-flex tw-gap-6 tw-items-end">
 						<div class="tw-text-center">
 							<KvUserAvatar
@@ -188,7 +188,7 @@ export const AllVariations = {
 
 				<!-- Initial Letter Color Variations -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Initial Letter Colors (Randomized by Name)</h3>
+					<h3 class="tw-text-upper tw-mb-4">Initial Letter Colors (Randomized by Name)</h3>
 					<div class="tw-flex tw-gap-4 tw-items-end tw-flex-wrap">
 						<div class="tw-text-center">
 							<KvUserAvatar lender-name="Alice" class="tw-w-6 tw-h-6" />

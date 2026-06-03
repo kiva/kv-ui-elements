@@ -224,7 +224,7 @@ export const AllVariations = {
 		template: `
 			<div class="tw-space-y-8">
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Unit Formats</h3>
+					<h3 class="tw-text-upper tw-mb-4">Unit Formats</h3>
 					<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div style="width: 262px;">
 							<KvPieChartV2 :values="sampleValues" unit="percent" />
@@ -242,7 +242,7 @@ export const AllVariations = {
 				</div>
 
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Ring Thickness</h3>
+					<h3 class="tw-text-upper tw-mb-4">Ring Thickness</h3>
 					<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div style="width: 262px;">
 							<KvPieChartV2 :values="sampleValues" :stroke-width="24" />
@@ -260,7 +260,7 @@ export const AllVariations = {
 				</div>
 
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Segment Gap</h3>
+					<h3 class="tw-text-upper tw-mb-4">Segment Gap</h3>
 					<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div style="width: 262px;">
 							<KvPieChartV2 :values="sampleValues" :segment-gap="0" />
@@ -278,7 +278,7 @@ export const AllVariations = {
 				</div>
 
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Data Density</h3>
+					<h3 class="tw-text-upper tw-mb-4">Data Density</h3>
 					<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div style="width: 262px;">
 							<KvPieChartV2 :values="[{ label: 'Total', value: 100 }]" />

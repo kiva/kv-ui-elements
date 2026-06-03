@@ -138,7 +138,7 @@ export const AllVariations = {
 				<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-8">
 					<!-- Bare (no background, no border) -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Bare</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Bare</h3>
 						<div class="tw-flex tw-gap-4 tw-items-center">
 							<div class="tw-text-center">
 								<kv-icon-button
@@ -166,7 +166,7 @@ export const AllVariations = {
 
 					<!-- With Background -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Background</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Background</h3>
 						<div class="tw-flex tw-gap-4 tw-items-center">
 							<div class="tw-text-center">
 								<kv-icon-button
@@ -197,7 +197,7 @@ export const AllVariations = {
 
 					<!-- With Background and Border -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Border</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Border</h3>
 						<div class="tw-flex tw-gap-4 tw-items-center">
 							<div class="tw-text-center">
 								<kv-icon-button
@@ -234,7 +234,7 @@ export const AllVariations = {
 
 					<!-- Toggle -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Toggle</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Toggle</h3>
 						<div class="tw-flex tw-gap-4 tw-items-center">
 							<div class="tw-text-center">
 								<kv-icon-button

@@ -131,7 +131,7 @@ export const InlineWithText = (templateArgs, { argTypes }) => ({
 	setup() { return { args: { ...templateArgs } }; },
 	template: `
 		<a href="#" class="tw-inline-flex">
-			<span class="tw-text-h4">He went thataway</span>
+			<span class="tw-text-upper">He went thataway</span>
 			<kv-material-icon class="tw-w-2.5" :icon="mdiChevronRight" />
 		</a>`,
 	data() {

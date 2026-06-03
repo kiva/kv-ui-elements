@@ -22,7 +22,7 @@ const Template = (args, {
 	template: `
 		<div>
 			<fieldset>
-				<legend class="tw-text-h4 tw-mb-2">Choose a Radio</legend>
+				<legend class="tw-text-upper tw-mb-2">Choose a Radio</legend>
 				<div class="tw-flex tw-flex-col tw-gap-2 tw-mb-2">
 					<kv-radio
 						:disabled="disabled"
@@ -94,7 +94,7 @@ export const WithoutVModel = (args, {
 	template: `
 		<div>
 			<fieldset>
-				<legend class="tw-text-h4 tw-mb-2">Choose a Radio</legend>
+				<legend class="tw-text-upper tw-mb-2">Choose a Radio</legend>
 				<div class="tw-flex tw-flex-col tw-gap-2 tw-mb-2">
 					<kv-radio
 						:disabled="disabled"

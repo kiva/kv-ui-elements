@@ -129,7 +129,7 @@ export const AllVariations = {
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8" style="min-height: 500px;">
 				<!-- Size Variations -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Button Sizes</h3>
+					<h3 class="tw-text-upper tw-mb-4">Button Sizes</h3>
 					<div class="tw-flex tw-gap-8 tw-items-start">
 						<div class="tw-text-center">
 							<p class="tw-text-small tw-text-secondary tw-mb-2">Small</p>
@@ -172,7 +172,7 @@ export const AllVariations = {
 
 				<!-- Button Radius Variations -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Button Radius</h3>
+					<h3 class="tw-text-upper tw-mb-4">Button Radius</h3>
 					<div class="tw-flex tw-gap-8 tw-items-start">
 						<div class="tw-text-center">
 							<p class="tw-text-small tw-text-secondary tw-mb-2">Rounded Full</p>
@@ -215,7 +215,7 @@ export const AllVariations = {
 
 				<!-- Menu Position -->
 				<div class="tw-mb-8">
-					<h3 class="tw-text-h4 tw-mb-4">Menu Position</h3>
+					<h3 class="tw-text-upper tw-mb-4">Menu Position</h3>
 					<div class="tw-flex tw-gap-16 tw-items-start">
 						<div class="tw-text-center">
 							<p class="tw-text-small tw-text-secondary tw-mb-2">Left Aligned (default)</p>
@@ -246,7 +246,7 @@ export const AllVariations = {
 
 				<!-- Custom Icons -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Custom Icons</h3>
+					<h3 class="tw-text-upper tw-mb-4">Custom Icons</h3>
 					<div class="tw-flex tw-gap-8 tw-items-start">
 						<div class="tw-text-center">
 							<p class="tw-text-small tw-text-secondary tw-mb-2">Dots (default)</p>
