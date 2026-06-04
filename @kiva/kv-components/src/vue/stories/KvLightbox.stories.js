@@ -221,7 +221,7 @@ export const CustomHeader = (args, { argTypes }) => ({
 							class="tw-h-2"
 							:icon="mdiLightningBolt"
 						/>
-						<p class="tw-text-h4">Special subhead text</p>
+						<p class="tw-text-upper">Special subhead text</p>
 					</div>
 				</template>
 				<p>Lorem ipsum aliquip labore commodo anim elit amet cupidatat do ex ipsum. Consectetur excepteur ea anim velit reprehenderit qui aliquip ullamco aliquip irure dolor ex. Occaecat excepteur enim eu incididunt ut consectetur aliqua magna et. Reprehenderit duis ex excepteur sit et cupidatat cillum cillum adipisicing ut adipisicing minim ad.</p>

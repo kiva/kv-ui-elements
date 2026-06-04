@@ -307,7 +307,7 @@ export const AllVariations = {
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
 				<div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-8">
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Loan-count tiers</h4>
+						<h4 class="tw-text-upper tw-mb-2">Loan-count tiers</h4>
 						<p class="tw-text-small tw-mb-3">
 							Countries fill by loan count: tier 1 (1–3), tier 2 (4–8), tier 3 (9–14), tier 4 (15+).
 							Hover lifts loan-bearing countries to eco-green; loan-less countries hover gray-300.
@@ -315,14 +315,14 @@ export const AllVariations = {
 						<kv-simple-map :countries="TIERED_MARKETS" class="tw-rounded tw-overflow-hidden" />
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Popup placement: top (default)</h4>
+						<h4 class="tw-text-upper tw-mb-2">Popup placement: top (default)</h4>
 						<p class="tw-text-small tw-mb-3">
 							Popup sits centred above the country and auto-flips below if it would clip the top edge.
 						</p>
 						<kv-simple-map :countries="TIERED_MARKETS" popup-placement="top" class="tw-rounded tw-overflow-hidden" />
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Popup placement: bottom-right</h4>
+						<h4 class="tw-text-upper tw-mb-2">Popup placement: bottom-right</h4>
 						<p class="tw-text-small tw-mb-3">
 							Top-left of the popup hugs the country's bottom-right bbox corner.
 						</p>
@@ -334,14 +334,14 @@ export const AllVariations = {
 						/>
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Autoplay (looping)</h4>
+						<h4 class="tw-text-upper tw-mb-2">Autoplay (looping)</h4>
 						<p class="tw-text-small tw-mb-3">
 							Scripted tour cycles indefinitely. Click or drag the map to exit; resume with the play button.
 						</p>
 						<kv-simple-map :countries="TIERED_MARKETS" :autoplay="true" class="tw-rounded tw-overflow-hidden" />
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Autoplay (one-shot)</h4>
+						<h4 class="tw-text-upper tw-mb-2">Autoplay (one-shot)</h4>
 						<p class="tw-text-small tw-mb-3">
 							Tour runs once and stops on the overview. Manual pan/zoom and the play button become available.
 						</p>
@@ -353,7 +353,7 @@ export const AllVariations = {
 						/>
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Narrow / mobile container</h4>
+						<h4 class="tw-text-upper tw-mb-2">Narrow / mobile container</h4>
 						<p class="tw-text-small tw-mb-3">
 							Responsive container with a higher zoomFactor for small viewports.
 						</p>
@@ -367,7 +367,7 @@ export const AllVariations = {
 						/>
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Static / non-interactive</h4>
+						<h4 class="tw-text-upper tw-mb-2">Static / non-interactive</h4>
 						<p class="tw-text-small tw-mb-3">
 							Drag and zoom controls disabled. Hover popups still work.
 						</p>
@@ -379,7 +379,7 @@ export const AllVariations = {
 						/>
 					</div>
 					<div>
-						<h4 class="tw-text-h4 tw-mb-2">Name-only countries</h4>
+						<h4 class="tw-text-upper tw-mb-2">Name-only countries</h4>
 						<p class="tw-text-small tw-mb-3">
 							Country entries without a loanCount fall back to gray base fill; popup shows the name only.
 						</p>

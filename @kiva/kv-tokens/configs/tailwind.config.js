@@ -215,7 +215,9 @@ export default {
 					fontSize: '0.875em',
 				},
 				blockquote: textStyles.textBlockquote,
-				'figure figcaption': textStyles.textBase,
+				'figure figcaption': textStyles.textCaption,
+				caption: textStyles.textCaption,
+				label: textStyles.textLabel,
 				'button:focus': {
 					outline: 'revert', // undo tailwind button focus styling
 				},

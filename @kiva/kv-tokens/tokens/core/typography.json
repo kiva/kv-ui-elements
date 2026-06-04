@@ -42,7 +42,7 @@
 		"150":         { "$type": "number", "$value": 1.5 }
 	},
 	"line-height-absolute": {
-		"jumbo":   { "sm": { "$type": "number", "$value": 47 }, "md": { "$type": "number", "$value": 52 }, "lg": { "$type": "number", "$value": 57 } },
+		"jumbo":   { "sm": { "$type": "number", "$value": 52 }, "md": { "$type": "number", "$value": 52 }, "lg": { "$type": "number", "$value": 57 } },
 		"h1":      { "sm": { "$type": "number", "$value": 31 }, "md": { "$type": "number", "$value": 31 }, "lg": { "$type": "number", "$value": 36 } },
 		"h2":      { "sm": { "$type": "number", "$value": 26 }, "md": { "$type": "number", "$value": 26 }, "lg": { "$type": "number", "$value": 31 } },
 		"h3":      { "sm": { "$type": "number", "$value": 23 }, "md": { "$type": "number", "$value": 23 }, "lg": { "$type": "number", "$value": 26 } },

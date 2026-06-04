@@ -156,7 +156,7 @@ export const AllVariations = {
 			<div class="tw-space-y-8">
 				<!-- Color Variations -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Color Variations</h3>
+					<h3 class="tw-text-upper tw-mb-4">Color Variations</h3>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="65" color="brand" style="width: 80px;" />
@@ -187,7 +187,7 @@ export const AllVariations = {
 
 				<!-- Stroke Width Variations -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Stroke Width Variations</h3>
+					<h3 class="tw-text-upper tw-mb-4">Stroke Width Variations</h3>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="65" :strokeWidth="4" style="width: 80px;" />
@@ -210,7 +210,7 @@ export const AllVariations = {
 
 				<!-- With Number Display -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">With Number Display</h3>
+					<h3 class="tw-text-upper tw-mb-4">With Number Display</h3>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="25" :showNumber="true" style="width: 120px;" />
@@ -233,7 +233,7 @@ export const AllVariations = {
 
 				<!-- Arc Scale Variations -->
 				<div>
-					<h3 class="tw-text-h4 tw-mb-4">Arc Scale Variations</h3>
+					<h3 class="tw-text-upper tw-mb-4">Arc Scale Variations</h3>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="65" :arcScale="1" style="width: 80px;" />
@@ -296,7 +296,7 @@ export const ArcConfigurations = {
 		template: `
 			<div class="tw-space-y-6">
 				<div>
-					<h4 class="tw-text-h4 tw-mb-4">Gauge-style Progress</h4>
+					<h4 class="tw-text-upper tw-mb-4">Gauge-style Progress</h4>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="30" :arcScale="0.5" :rotate="90" style="width: 120px;" />
@@ -313,7 +313,7 @@ export const ArcConfigurations = {
 					</div>
 				</div>
 				<div>
-					<h4 class="tw-text-h4 tw-mb-4">Different Rotations</h4>
+					<h4 class="tw-text-upper tw-mb-4">Different Rotations</h4>
 					<div class="tw-flex tw-items-center tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
 						<div class="tw-text-center">
 							<KvProgressCircle :value="50" :arcScale="0.75" :rotate="0" style="width: 100px;" />

@@ -97,7 +97,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 	},
 	template: `
 		<div>
-			<label class="tw-text-h4 tw-block tw-pb-1">
+			<label class="tw-text-upper tw-block tw-pb-1">
 				Select Date
 			</label>
 			<kv-date-picker
@@ -187,7 +187,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 	<div>
 			<div class="tw-space-y-4">
 				<div>
-					<label class="tw-text-h4 tw-block tw-pb-1">
+					<label class="tw-text-upper tw-block tw-pb-1">
 						With Icon (Default)
 					</label>
 					<kv-date-picker
@@ -207,7 +207,7 @@ export const HiddenIcon = (args, { argTypes }) => ({
 				</div>
 
 				<div>
-					<label class="tw-text-h4 tw-block tw-pb-1">
+					<label class="tw-text-upper tw-block tw-pb-1">
 						Without Icon (Hidden)
 					</label>
 					<kv-date-picker
@@ -283,7 +283,7 @@ export const WithDisabledField = (args, { argTypes }) => ({
 	template: `
 	<div>
 			<div class="tw-space-y-4 tw-mb-4">
-				<label class="tw-text-h4 tw-block">
+				<label class="tw-text-upper tw-block">
 					Disabled Field
 				</label>
 				<kv-date-picker
@@ -302,7 +302,7 @@ export const WithDisabledField = (args, { argTypes }) => ({
 				/>
 			</div>
 			<div class="tw-space-y-4">
-				<label class="tw-text-h4 tw-block">
+				<label class="tw-text-upper tw-block">
 					Enabled Field
 				</label>
 				<kv-date-picker
@@ -358,7 +358,7 @@ export const DifferentFormats = (args, { argTypes }) => ({
 				:key="format.name"
 				class="tw-border tw-border-gray-200 tw-p-4 tw-rounded"
 			>
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					{{ format.name }}
 				</label>
 				<kv-date-picker
@@ -402,7 +402,7 @@ export const DifferentLocales = (args, { argTypes }) => ({
 				:key="locale.name"
 				class="tw-border tw-border-gray-200 tw-p-4 tw-rounded"
 			>
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					{{ locale.name }}
 				</label>
 				<kv-date-picker
@@ -438,7 +438,7 @@ export const States = (args, { argTypes }) => ({
 	template: `
 		<div class="tw-space-y-4">
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					Normal
 				</label>
 				<kv-date-picker
@@ -450,7 +450,7 @@ export const States = (args, { argTypes }) => ({
 			</div>
 
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					Disabled
 				</label>
 				<kv-date-picker
@@ -463,7 +463,7 @@ export const States = (args, { argTypes }) => ({
 			</div>
 
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					Readonly
 				</label>
 				<kv-date-picker
@@ -496,7 +496,7 @@ export const ModelTypes = (args, { argTypes }) => ({
 	template: `
 		<div class="tw-space-y-4">
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					Timestamp
 				</label>
 				<kv-date-picker
@@ -511,7 +511,7 @@ export const ModelTypes = (args, { argTypes }) => ({
 			</div>
 
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					Format
 				</label>
 				<kv-date-picker
@@ -527,7 +527,7 @@ export const ModelTypes = (args, { argTypes }) => ({
 			</div>
 
 			<div class="tw-border tw-border-gray-200 tw-p-4 tw-rounded">
-				<label class="tw-text-h4 tw-block tw-pb-1">
+				<label class="tw-text-upper tw-block tw-pb-1">
 					ISO
 				</label>
 				<kv-date-picker

@@ -22,7 +22,7 @@ const DefaultTemplate = (args, {
 		<div>
 			<label
 				:for="uuid"
-				class="tw-text-h4 tw-block tw-pb-1"
+				class="tw-text-upper tw-block tw-pb-1"
 			>
 				Street Address
 			</label>
@@ -61,7 +61,7 @@ export const WithoutVModelTemplate = (args, {
 		<div>
 			<label
 				for="without-v-model-id"
-				class="tw-text-h4 tw-block tw-pb-1"
+				class="tw-text-upper tw-block tw-pb-1"
 			>
 				Street Address
 			</label>
@@ -88,7 +88,7 @@ export const Invalid = (args, {
 		<div>
 			<label
 				for="text-input-error-id"
-				class="tw-text-h4 tw-block tw-pb-1"
+				class="tw-text-upper tw-block tw-pb-1"
 			>
 				Street Address
 			</label>
@@ -143,7 +143,7 @@ export const WidthSet = (args, {
 		<div class="w-full">
 			<label
 				for="width-set-id"
-				class="tw-text-h4 tw-block tw-pb-1"
+				class="tw-text-upper tw-block tw-pb-1"
 			>
 				Street Address
 			</label>
@@ -181,7 +181,7 @@ export const PlaceholderText = (args, {
 		<div>
 			<label
 				for="placeholder-example"
-				class="tw-text-h4 tw-block tw-pb-1"
+				class="tw-text-upper tw-block tw-pb-1"
 			>
 				Telephone Number
 			</label>

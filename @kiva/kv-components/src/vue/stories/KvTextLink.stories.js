@@ -112,7 +112,7 @@ export const AllVariations = {
 				<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-8">
 					<!-- Link Types -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Link Types</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Link Types</h3>
 						<div class="tw-space-y-4">
 							<div class="tw-flex tw-items-center tw-gap-4">
 								<kv-text-link @click="onClick">
@@ -137,7 +137,7 @@ export const AllVariations = {
 
 					<!-- With Icons -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">With Icons</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">With Icons</h3>
 						<div class="tw-space-y-4">
 							<div class="tw-flex tw-items-center tw-gap-4">
 								<kv-text-link :icon="mdiArrowRight" @click="onClick">
@@ -162,7 +162,7 @@ export const AllVariations = {
 
 					<!-- States -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">States</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">States</h3>
 						<div class="tw-space-y-4">
 							<div class="tw-flex tw-items-center tw-gap-4">
 								<kv-text-link @click="onClick">
@@ -187,7 +187,7 @@ export const AllVariations = {
 
 					<!-- Usage Examples -->
 					<div>
-						<h3 class="tw-text-h4 tw-mb-4 tw-font-medium">Common Use Cases</h3>
+						<h3 class="tw-text-upper tw-mb-4 tw-font-medium">Common Use Cases</h3>
 						<div class="tw-space-y-4">
 							<div class="tw-flex tw-items-center tw-gap-4">
 								<kv-text-link :icon="mdiArrowRight" @click="onClick">
@@ -266,7 +266,7 @@ export const LinkRendering = {
 				</p>
 				<div class="tw-space-y-6">
 					<div class="tw-p-4 tw-bg-white tw-rounded tw-border tw-border-tertiary">
-						<h4 class="tw-text-h4 tw-font-medium tw-mb-2">Button (no to or href)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Button (no to or href)</h4>
 						<kv-text-link @click="onClick">
 							Click me
 						</kv-text-link>
@@ -275,7 +275,7 @@ export const LinkRendering = {
 						</p>
 					</div>
 					<div class="tw-p-4 tw-bg-white tw-rounded tw-border tw-border-tertiary">
-						<h4 class="tw-text-h4 tw-font-medium tw-mb-2">Anchor (with href)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Anchor (with href)</h4>
 						<kv-text-link href="https://www.kiva.org">
 							Visit Kiva
 						</kv-text-link>
@@ -284,7 +284,7 @@ export const LinkRendering = {
 						</p>
 					</div>
 					<div class="tw-p-4 tw-bg-white tw-rounded tw-border tw-border-tertiary">
-						<h4 class="tw-text-h4 tw-font-medium tw-mb-2">Router Link (with to)</h4>
+						<h4 class="tw-text-upper tw-font-medium tw-mb-2">Router Link (with to)</h4>
 						<kv-text-link to="/lend">
 							Browse loans
 						</kv-text-link>
