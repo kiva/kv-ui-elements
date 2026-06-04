@@ -119,7 +119,7 @@ Quick formula: `N` = `N × 8px`, and `N-5` = `N × 8px + 4px` — both of which 
 
 The raw ramp is the layer the **Tailwind config** ships today (e.g., `tw-p-2.5` = 20px). The semantic categories above are not yet exposed in code — see "Outstanding discrepancies."
 
-> **Caveat about the Figma table:** the Spacing Scales & Tokens panel in Figma has typos in the `rem` column from row `10-5` onward (the values appear to have wrapped), and the panel labels the bottom two rows as `16 = 124px` and `16-5 = 128px` when they are actually `15-5` and `16` on the ramp. The shipped `tokens/core/size.json` is authoritative — trust it (and the formula above) over the rendered Figma table.
+> **Authoritative source:** the shipped `tokens/core/size.json` is the canonical source for ramp values — trust it (and the formula above) if the rendered Figma table ever drifts.
 
 ## Best practices
 

@@ -46,8 +46,6 @@ The canonical reference for all five breakpoint tiers:
 | **LG** | 1024px – 1439px | 12 | 32px | 64px |
 | **XL** | 1440px – up | 12 | 32px | 120px |
 
-> **Figma label note (SM columns):** the SM *breakpoint diagram* in Figma is tagged `col: 8`, but that label is stale — the spec table above, the diagram's own drawn columns, and the "Building Layouts" SM example all show **4** columns for SM. Use **4**; the `col: 8` tag is a Figma typo flagged to the design system team.
-
 ### What XS is for
 
 XS exists as a **boundary tier only**. There is no XS Figma frame to design in — SM at 390px is the practical mobile design frame. XS guarantees the grid still resolves below 320px if a viewport ever lands there.
