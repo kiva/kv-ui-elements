@@ -1,29 +1,7 @@
-
 ---
 name: kiva-design-system
-description: >
-  Index and router for the Kiva design system skills — typography, layout,
-  spacing, radius, color, and color-themes. Use this as the entry point for any
-  task that touches Kiva's visual language: auditing existing code for
-  design-system compliance, generating new UI that uses correct tokens and
-  Tailwind utilities, answering design token questions, or performing a
-  Figma-to-code handoff. This skill routes to the relevant sub-skill(s); do
-  not load all sub-skills at once — load only what the task requires.
-when_to_use: >
-  Invoke when any of the following apply:
-  — Auditing a component, page, or PR for design-system compliance (wrong token,
-    missing class, incorrect radius, hardcoded color, etc.).
-  — Generating new Vue/HTML/Tailwind code and need to know the correct token
-    name, utility class, or component pattern for color, type, spacing, radius,
-    or layout.
-  — Answering a question about which design token to use for a given purpose
-    (e.g. "what's the right text color for a disabled button in the Marigold
-    theme?").
-  — Handing off a Figma design to code (mapping Figma token names and theme
-    values to `@kiva/kv-tokens` utilities).
-  Trigger phrases: "design system", "kiva token", "tw- class", "which token",
-  "audit", "design compliance", "Figma handoff", "color theme", "type style",
-  "spacing token", "border radius", "layout grid", "breakpoint".
+description: Index and router for the Kiva design-system sub-skills — typography, layout, spacing, radius, color, and color-themes. Entry point for any task touching Kiva's visual language — auditing existing code for design-system compliance, generating new UI with correct tokens and Tailwind utilities, answering design-token questions, or performing a Figma-to-code handoff. Routes to the relevant sub-skill(s); load only what the task requires, never all at once.
+when_to_use: Invoke when — auditing a component, page, or PR for design-system compliance (wrong token, missing class, incorrect radius, hardcoded color); generating new Vue/HTML/Tailwind code and needing the correct token name, utility class, or component pattern for color, type, spacing, radius, or layout; answering which-token questions (e.g. "right text color for a disabled button in the Marigold theme?"); or handing a Figma design off to code (mapping Figma token and theme names to @kiva/kv-tokens utilities). Trigger phrases — "design system", "kiva token", "tw- class", "which token", "audit", "design compliance", "Figma handoff", "color theme", "type style", "spacing token", "border radius", "layout grid", "breakpoint".
 ---
 
 # Kiva Design System — Index Skill

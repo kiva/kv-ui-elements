@@ -1,6 +1,6 @@
 {
   "name": "kiva-design-system",
   "description": "Kiva design-system skills: design tokens, Tailwind preset, typography, color, spacing, radius, layout, header audits, and Figma-to-skill extraction.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["kiva", "design-system", "design-tokens", "tailwind", "figma"]
 }
