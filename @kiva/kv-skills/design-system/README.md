@@ -26,6 +26,46 @@ codex plugin marketplace add kiva/kv-ui-elements
 See the repo-root [`SKILLS.md`](../../../SKILLS.md) for the full per-audience
 install matrix (including claude.ai / web).
 
+## Install on the Claude app (claude.ai / desktop)
+
+Of these skills, the **`kiva-design-system`** router is the one meant for the
+Claude app and non-developer use. The others (`kiva-tailwind`,
+`kiva-header-element-audit`, `figma-design-system-to-skill`) are
+developer-experience skills aimed at Claude Code / Codex, where a repo is
+present — they assume access to files in the monorepo and aren't useful in the
+app.
+
+The Claude app has no marketplace; you upload a skill as a **folder**. To add
+the design-system skill:
+
+1. **Get the files.** Either download/clone this repo, or download the single
+   skill folder. Keep the folder structure intact — the router `SKILL.md` and
+   its supporting files must stay together in one folder:
+
+   ```
+   kiva-design-system/
+     SKILL.md          ← the router (entry point)
+     color.md
+     color-themes.md
+     typography.md
+     layout.md
+     spacing.md
+     radius.md
+   ```
+
+   The simplest path: clone the repo and copy just
+   `@kiva/kv-skills/design-system/skills/kiva-design-system/` — that one folder
+   is the whole skill.
+
+2. **Upload it.** In the Claude app, go to **Settings → Capabilities → Skills**
+   and add the `kiva-design-system` folder. The app reads `SKILL.md` and loads
+   the supporting `.md` files on demand, so the folder must be uploaded whole —
+   don't flatten or split it.
+
+> The folder structure is load-bearing: the router reads its sibling `.md`
+> files by relative name. Uploading `SKILL.md` alone, or renaming/moving the
+> supporting files, breaks routing.
+
 ## Updating
 
 Installed plugins are served from a local **clone of the GitHub remote**, not
