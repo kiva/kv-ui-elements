@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.1.0...@kiva/kv-tokens@4.2.0) (2026-06-04)
+
+
+### Bug Fixes
+
+* set global caption, figcaption and label styles ([dd166fe](https://github.com/kiva/kv-ui-elements/commit/dd166fe674708ac7bf0082ebe4152b0e6b234069))
+
+
+### Features
+
+* map header element + classes to new semantic type styles in kivaTypography + tailwind config ([c6aaf12](https://github.com/kiva/kv-ui-elements/commit/c6aaf12a77b6177f6086148e5d11ed0c1ee13b17))
+
+
+
+
+
 # [4.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.0.3...@kiva/kv-tokens@4.1.0) (2026-05-27)
 
 
