@@ -131,6 +131,7 @@
 								'tw-mb-1 !tw-font-medium': isPostGoalVariant,
 							}"
 							:loan="loan"
+							:enable-multi-matching="enableMultiMatching"
 						/>
 					</component>
 					<template v-if="isPostGoalVariant">
@@ -184,7 +185,7 @@
 						<div
 							v-else
 							class="loan-card-use-text tw-w-full tw-overflow-hidden"
-							:class="{ '!tw--mt-1': showTags && loan.matchingText && showLightView }"
+							:class="{ '!tw--mt-1': showTags && hasMatchingInfo && showLightView }"
 						>
 							<kv-loan-use
 								:use="loanUse"
@@ -595,6 +596,10 @@ export default {
 			type: String,
 			default: '25',
 		},
+		enableMultiMatching: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: [
 		'refresh-button',
@@ -800,6 +805,10 @@ export default {
 			return this.basketItems
 			// eslint-disable-next-line no-underscore-dangle
 				?.some((item) => item.__typename === 'LoanReservation' && item.id === this.loanId) ?? false;
+		},
+		hasMatchingInfo() {
+			return !!this.loan?.matchingText
+				|| (this.enableMultiMatching && (this.loan?.multiMatching?.length ?? 0) > 0);
 		},
 	},
 };

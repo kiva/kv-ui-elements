@@ -100,6 +100,7 @@
 					<kv-loan-tag
 						v-if="showTags && !isLoading"
 						:loan="loan"
+						:enable-multi-matching="enableMultiMatching"
 					/>
 				</component>
 
@@ -475,6 +476,10 @@ export default {
 		customHref: {
 			type: String,
 			default: '',
+		},
+		enableMultiMatching: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props, { emit }) {
