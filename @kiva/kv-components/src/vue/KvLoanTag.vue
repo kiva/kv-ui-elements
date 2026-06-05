@@ -1,14 +1,35 @@
 <template>
 	<div
 		v-if="!!variation"
-		class="tw-text-small tw-font-medium tw-pt-0.5 tw-line-clamp-1"
+		class="tw-text-small tw-font-medium tw-pt-0.5"
+		:class="{ 'tw-line-clamp-1': !isMultipleMatch }"
 		:style="{ color: tagColor }"
 	>
-		{{ tagText }}
-		<kv-countdown-timer
-			v-if="variation === 'ending-soon'"
-			:deadline="deadline"
-		/>
+		<template v-if="isMultipleMatch">
+			{{ totalMatchRatio }}x match by&#160;<span
+				:id="`matching-orgs-${loan.id}`"
+				class="tw-underline tw-decoration-dotted tw-cursor-pointer"
+			>{{ multiMatchingOrgs.length }} organizations</span>
+			<kv-tooltip
+				:controller="`matching-orgs-${loan.id}`"
+				theme="default"
+			>
+				<p
+					v-for="org in multiMatchingOrgs"
+					:key="org.matchingText"
+					class="tw-m-0"
+				>
+					{{ org.matchRatio + 1 }}x matching by {{ org.matchingText }}
+				</p>
+			</kv-tooltip>
+		</template>
+		<template v-else>
+			{{ tagText }}
+			<kv-countdown-timer
+				v-if="variation === 'ending-soon'"
+				:deadline="deadline"
+			/>
+		</template>
 	</div>
 </template>
 
@@ -17,6 +38,7 @@ import { differenceInDays, parseISO } from 'date-fns';
 import gql from 'graphql-tag';
 import numeral from 'numeral';
 import KvCountdownTimer from './KvCountdownTimer.vue';
+import KvTooltip from './KvTooltip.vue';
 
 const LSE_LOAN_KEY = 'N/A';
 
@@ -38,6 +60,10 @@ export const KV_LOAN_TAG_FRAGMENT = gql`
 		loanAmount
 		matchRatio
 		matchingText
+		multiMatching {
+			matchRatio
+			matchingText
+		}
 		plannedExpirationDate
 		... on LoanPartner {
 			partnerName
@@ -49,6 +75,7 @@ export default {
 	name: 'KvLoanTag',
 	components: {
 		KvCountdownTimer,
+		KvTooltip,
 	},
 	props: {
 		loan: {
@@ -56,6 +83,10 @@ export default {
 			required: true,
 		},
 		useExpandedStyles: {
+			type: Boolean,
+			default: false,
+		},
+		enableMultiMatching: {
 			type: Boolean,
 			default: false,
 		},
@@ -72,8 +103,19 @@ export default {
 			const { fundedAmount, reservedAmount } = loanFundraisingInfo;
 			return numeral(this.loan?.loanAmount).subtract(fundedAmount).subtract(reservedAmount).value();
 		},
+		multiMatchingOrgs() {
+			return this.loan?.multiMatching ?? [];
+		},
+		isMultipleMatch() {
+			return this.enableMultiMatching && this.multiMatchingOrgs.length > 1;
+		},
+		totalMatchRatio() {
+			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.matchRatio + 1, 0);
+		},
 		variation() {
-			if (this.loan?.matchingText) {
+			const hasLegacyMatch = !!this.loan?.matchingText;
+			const hasMultiMatch = this.enableMultiMatching && this.multiMatchingOrgs.length > 0;
+			if (hasLegacyMatch || hasMultiMatch) {
 				return VARIATION.matchedLoan;
 			} if (this.isLseLoan) {
 				return VARIATION.lseLoan;
@@ -88,8 +130,15 @@ export default {
 			switch (this.variation) {
 				case VARIATION.lseLoan: return `${this.useExpandedStyles ? '⚡ ' : ''}High community impact`;
 				case VARIATION.almostFunded: return `${this.useExpandedStyles ? '💸 ' : ''}Almost funded`;
-				// eslint-disable-next-line max-len
-				case VARIATION.matchedLoan: return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
+				case VARIATION.matchedLoan: {
+					if (this.enableMultiMatching && this.multiMatchingOrgs.length === 1) {
+						const org = this.multiMatchingOrgs[0];
+						// eslint-disable-next-line max-len
+						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.matchRatio + 1}x matching by ${org.matchingText}`;
+					}
+					// eslint-disable-next-line max-len
+					return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
+				}
 				default: return `${this.useExpandedStyles ? '⏰ ' : ''}Ending soon: `;
 			}
 		},

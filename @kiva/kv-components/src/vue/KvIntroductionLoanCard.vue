@@ -257,6 +257,7 @@
 				v-else
 				:loan="loan"
 				:use-expanded-styles="true"
+				:enable-multi-matching="enableMultiMatching"
 				style="font-size: 15px;"
 				class="tw-text-center tw-pt-2"
 			/>
@@ -394,6 +395,10 @@ export default {
 		customHref: {
 			type: String,
 			default: '',
+		},
+		enableMultiMatching: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	setup(props, { emit }) {

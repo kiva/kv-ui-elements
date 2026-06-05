@@ -127,6 +127,27 @@ export const Matched = story({
 	showTags: true,
 });
 
+export const MultiMatching = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		multiMatching: [
+			{ matchRatio: 1, matchingText: 'PG&E' },
+			{ matchRatio: 1, matchingText: 'US Bank' },
+		],
+		loanFundraisingInfo: {
+			id: loan.id,
+			fundedAmount: '200.00',
+			isExpiringSoon: false,
+			reservedAmount: '0.00',
+		},
+	},
+	kvTrackFunction,
+	photoPath,
+	showTags: true,
+	enableMultiMatching: true,
+});
+
 export const AlmostFunded = story({
 	loanId: loan.id,
 	loan: {

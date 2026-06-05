@@ -50,6 +50,33 @@ export const Matched = story({
 	},
 });
 
+export const MultiMatching = story({
+	loan: {
+		id: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		multiMatching: [
+			{ matchRatio: 1, matchingText: 'PG&E' },
+			{ matchRatio: 1, matchingText: 'US Bank' },
+		],
+	},
+	enableMultiMatching: true,
+});
+
+export const MultiMatching1Org = story({
+	loan: {
+		id: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		multiMatching: [
+			{ matchRatio: 1, matchingText: 'Bank Of America' },
+		],
+	},
+	enableMultiMatching: true,
+});
+
 export const LseLoan = story({
 	loan: {
 		matchingText: 'Ebay',
