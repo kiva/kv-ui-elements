@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.15.1...@kiva/kv-components@8.16.0) (2026-06-05)
+
+
+### Features
+
+* add multi matching support ([c8d893f](https://github.com/kiva/kv-ui-elements/commit/c8d893fad8ce6e31d8b8d5e62322b5fa96f1a774))
+
+
+
+
+
 ## [8.15.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.15.0...@kiva/kv-components@8.15.1) (2026-06-04)
 
 **Note:** Version bump only for package @kiva/kv-components
