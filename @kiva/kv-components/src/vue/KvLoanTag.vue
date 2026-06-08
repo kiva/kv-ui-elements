@@ -16,10 +16,10 @@
 			>
 				<p
 					v-for="org in multiMatchingOrgs"
-					:key="org.displayName"
+					:key="org.managedAccountId"
 					class="tw-m-0"
 				>
-					{{ org.ratio + 1 }}x matching by {{ org.displayName }}
+					{{ org.ratio + 1 }}x matching by {{ org.displayName || 'a Kiva supporter' }}
 				</p>
 			</kv-tooltip>
 		</template>
@@ -61,6 +61,7 @@ export const KV_LOAN_TAG_FRAGMENT = gql`
 		matchRatio
 		matchingText
 		simultaneousMatching {
+			managedAccountId
 			displayName
 			ratio
 		}
@@ -134,7 +135,7 @@ export default {
 					if (this.enableMultiMatching && this.multiMatchingOrgs.length === 1) {
 						const org = this.multiMatchingOrgs[0];
 						// eslint-disable-next-line max-len
-						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${org.displayName}`;
+						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${org.displayName || 'a Kiva supporter'}`;
 					}
 					// eslint-disable-next-line max-len
 					return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;

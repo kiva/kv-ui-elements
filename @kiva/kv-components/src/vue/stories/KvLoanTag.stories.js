@@ -57,8 +57,8 @@ export const MultiMatching = story({
 		loanAmount: 199,
 		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
 		simultaneousMatching: [
-			{ ratio: 1, displayName: 'PG&E' },
-			{ ratio: 1, displayName: 'US Bank' },
+			{ managedAccountId: 1, ratio: 1, displayName: 'PG&E' },
+			{ managedAccountId: 2, ratio: 1, displayName: 'US Bank' },
 		],
 	},
 	enableMultiMatching: true,
@@ -71,7 +71,21 @@ export const MultiMatching1Org = story({
 		loanAmount: 199,
 		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
 		simultaneousMatching: [
-			{ ratio: 1, displayName: 'Bank Of America' },
+			{ managedAccountId: 1, ratio: 1, displayName: 'Bank Of America' },
+		],
+	},
+	enableMultiMatching: true,
+});
+
+export const MultiMatchingAnonymous = story({
+	loan: {
+		id: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		simultaneousMatching: [
+			{ managedAccountId: 1, ratio: 1, displayName: null },
+			{ managedAccountId: 2, ratio: 1, displayName: 'US Bank' },
 		],
 	},
 	enableMultiMatching: true,
