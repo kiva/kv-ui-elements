@@ -16,10 +16,10 @@
 			>
 				<p
 					v-for="org in multiMatchingOrgs"
-					:key="org.matchingText"
+					:key="org.displayName"
 					class="tw-m-0"
 				>
-					{{ org.matchRatio + 1 }}x matching by {{ org.matchingText }}
+					{{ org.ratio + 1 }}x matching by {{ org.displayName }}
 				</p>
 			</kv-tooltip>
 		</template>
@@ -60,9 +60,9 @@ export const KV_LOAN_TAG_FRAGMENT = gql`
 		loanAmount
 		matchRatio
 		matchingText
-		multiMatching {
-			matchRatio
-			matchingText
+		simultaneousMatching {
+			displayName
+			ratio
 		}
 		plannedExpirationDate
 		... on LoanPartner {
@@ -104,13 +104,13 @@ export default {
 			return numeral(this.loan?.loanAmount).subtract(fundedAmount).subtract(reservedAmount).value();
 		},
 		multiMatchingOrgs() {
-			return this.loan?.multiMatching ?? [];
+			return this.loan?.simultaneousMatching ?? [];
 		},
 		isMultipleMatch() {
 			return this.enableMultiMatching && this.multiMatchingOrgs.length > 1;
 		},
 		totalMatchRatio() {
-			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.matchRatio + 1, 0);
+			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.ratio + 1, 0);
 		},
 		variation() {
 			const hasLegacyMatch = !!this.loan?.matchingText;
@@ -134,7 +134,7 @@ export default {
 					if (this.enableMultiMatching && this.multiMatchingOrgs.length === 1) {
 						const org = this.multiMatchingOrgs[0];
 						// eslint-disable-next-line max-len
-						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.matchRatio + 1}x matching by ${org.matchingText}`;
+						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${org.displayName}`;
 					}
 					// eslint-disable-next-line max-len
 					return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
