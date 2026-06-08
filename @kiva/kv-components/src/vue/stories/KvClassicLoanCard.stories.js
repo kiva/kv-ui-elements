@@ -179,9 +179,9 @@ export const MultiMatching = story({
 	loanId: loan.id,
 	loan: {
 		...loan,
-		multiMatching: [
-			{ matchRatio: 1, matchingText: 'PG&E' },
-			{ matchRatio: 1, matchingText: 'US Bank' },
+		simultaneousMatching: [
+			{ ratio: 1, displayName: 'PG&E' },
+			{ ratio: 1, displayName: 'US Bank' },
 		],
 		loanFundraisingInfo: {
 			id: loan.id,

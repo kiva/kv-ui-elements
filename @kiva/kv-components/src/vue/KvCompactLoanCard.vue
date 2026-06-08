@@ -808,7 +808,7 @@ export default {
 		},
 		hasMatchingInfo() {
 			return !!this.loan?.matchingText
-				|| (this.enableMultiMatching && (this.loan?.multiMatching?.length ?? 0) > 0);
+				|| (this.enableMultiMatching && (this.loan?.simultaneousMatching?.length ?? 0) > 0);
 		},
 	},
 };
