@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.16.0...@kiva/kv-components@8.16.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* change field name for multi matching ([83f56b3](https://github.com/kiva/kv-ui-elements/commit/83f56b3177d0fb68e912b7cb4f9bf5d30fb99dd6))
+
+
+
+
+
 # [8.16.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.15.1...@kiva/kv-components@8.16.0) (2026-06-05)
 
 
