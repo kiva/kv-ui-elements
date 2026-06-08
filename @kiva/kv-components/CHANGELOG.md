@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.16.1...@kiva/kv-components@8.17.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* add managedAccount id to story params ([ab8010e](https://github.com/kiva/kv-ui-elements/commit/ab8010e365e528b102ddc5ee9cefafc2f661764a))
+
+
+### Features
+
+* allow for anonymous matching organizations ([f155c35](https://github.com/kiva/kv-ui-elements/commit/f155c352d5aae40355915aa0e50f315b9ed12fed))
+
+
+
+
+
 ## [8.16.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.16.0...@kiva/kv-components@8.16.1) (2026-06-08)
 
 
