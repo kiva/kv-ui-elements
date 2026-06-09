@@ -1,0 +1,18 @@
+{
+  "name": "kiva-skill-builder-utils",
+  "version": "0.1.0",
+  "description": "Meta-tooling for building and maintaining Kiva agent skills, starting with extracting design-system sections from Figma into skill files.",
+  "author": {
+    "name": "Kiva"
+  },
+  "keywords": ["kiva", "skills", "authoring", "figma", "tooling"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kiva Skill Builder Utils",
+    "shortDescription": "Meta-tooling for authoring and maintaining Kiva agent skills",
+    "longDescription": "Utilities for the people who build Kiva's agent skills. Ships the Figma-to-skill extraction process, and is the home for future skill-authoring and maintenance helpers.",
+    "developerName": "Kiva",
+    "category": "Development",
+    "capabilities": ["Read", "Write"]
+  }
+}

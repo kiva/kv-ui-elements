@@ -14,13 +14,14 @@ make_kit:
 
 The canonical definition of Kiva's Tailwind setup is the **preset itself** — [`@kiva/kv-tokens/configs/tailwind.config.js`](../../configs/tailwind.config.js) — and the design tokens it compiles from. Unlike the design-intent skills (color, spacing, etc.), which describe Figma intent that code may temporarily lag, this skill describes **shipped mechanics**: how the preset reshapes Tailwind and how to author against it.
 
-This skill deliberately **does not enumerate class values**. Exact scales drift as tokens change, and listing them here would duplicate the per-topic skills and the config. For specific values, read the config or the relevant skill:
+This skill deliberately **does not enumerate class values**. Exact scales drift as tokens change, and listing them here would duplicate the per-topic skills and the config. For specific values, read the config or the relevant sub-skill of the
+**kiva-design-system** skill (in the kiva-design-system plugin):
 
-- **[color](color.md)** / **[color-themes](color-themes.md)** — which color token, what the themes are.
-- **[spacing](spacing.md)** — which spacing token for a given relationship.
-- **[radius](radius.md)** — which corner radius per component.
-- **[typography](typography.md)** — which text style, the type scale.
-- **[layout](layout.md)** — the breakpoint/grid system and content placement.
+- **color** / **color-themes** — which color token, what the themes are.
+- **spacing** — which spacing token for a given relationship.
+- **radius** — which corner radius per component.
+- **typography** — which text style, the type scale.
+- **layout** — the breakpoint/grid system and content placement.
 
 Verify any specific class or value against the current config before depending on it.
 
@@ -85,7 +86,7 @@ Use either. **You own `content`** — Tailwind purges any class it can't find in
 
 Themable color utilities (`tw-bg-primary`, `tw-text-primary`, …) emit `rgb(var(--bg-primary))`-style values. Those custom properties must exist on the page. The preset already injects the **default theme** onto `:root` via its base layer, so a project that registers the preset gets working colors out of the box.
 
-To switch themes, swap the custom-property values for a subtree. In `@kiva/kv-components` this is done by `KvThemeProvider`; at the token layer, `@kiva/kv-tokens/css` ([`dist/css/tokens.css`](../../dist/css/tokens.css)) ships a `:root` block plus `[data-theme="…"]` blocks you can apply directly. See [color](color.md) for the theme catalog.
+To switch themes, swap the custom-property values for a subtree. In `@kiva/kv-components` this is done by `KvThemeProvider`; at the token layer, `@kiva/kv-tokens/css` ([`dist/css/tokens.css`](../../dist/css/tokens.css)) ships a `:root` block plus `[data-theme="…"]` blocks you can apply directly. See the **kiva-design-system** skill's color sub-skill for the theme catalog.
 
 ### 4. Safelist dynamically generated classes (only if you need it)
 
@@ -122,11 +123,11 @@ The preset replaces Tailwind's default color palette. There are two families:
 - **Themable (semantic) colors** — role-based names like `primary`, `secondary`, `action`, etc., available on text, background, border, ring, divide, placeholder, and gradient-stop utilities: `tw-text-primary`, `tw-bg-secondary`, `tw-border-primary`. These compile to `rgb(var(--…))` and change with the active theme. **This is what you should reach for by default.**
 - **Static colors** — fixed palettes that do *not* change with theme: `brand`, `eco-green`, `marigold`, `desert-rose`, `stone`, `gray`, `social`, plus `black` / `white` / `transparent` / `current`. Use these only when a color must stay constant regardless of theme.
 
-Opacity modifiers work on both: `tw-bg-primary/50` resolves to `rgba(var(--bg-primary), 0.5)`. Do **not** assume stock Tailwind color names exist — `tw-bg-gray-500` works (gray is a static palette) but `tw-bg-slate-500`, `tw-text-red-600`, etc. do not. For *which* token, see **[color](color.md)**.
+Opacity modifiers work on both: `tw-bg-primary/50` resolves to `rgba(var(--bg-primary), 0.5)`. Do **not** assume stock Tailwind color names exist — `tw-bg-gray-500` works (gray is a static palette) but `tw-bg-slate-500`, `tw-text-red-600`, etc. do not. For *which* token, see the **kiva-design-system** skill's color sub-skill.
 
 ### Spacing is an 8px scale with 4px half-steps
 
-The spacing scale is token-driven: each whole step is **8px** (`tw-p-1` = 8px, `tw-m-2` = 16px), with `.5` half-steps at **4px** granularity (`tw-p-0.5` = 4px, `tw-gap-1.5` = 12px), running up to `16` (128px). This differs from stock Tailwind's 4px-per-step scale, so the *same number means a different size* — `tw-p-4` is 32px here, not 16px. Apply a scale token, never a raw pixel value; see **[spacing](spacing.md)**.
+The spacing scale is token-driven: each whole step is **8px** (`tw-p-1` = 8px, `tw-m-2` = 16px), with `.5` half-steps at **4px** granularity (`tw-p-0.5` = 4px, `tw-gap-1.5` = 12px), running up to `16` (128px). This differs from stock Tailwind's 4px-per-step scale, so the *same number means a different size* — `tw-p-4` is 32px here, not 16px. Apply a scale token, never a raw pixel value; see the **kiva-design-system** skill's spacing sub-skill.
 
 ### Text sizing utilities don't exist — use semantic text styles
 
@@ -136,7 +137,7 @@ The preset **disables the `fontSize`, `lineHeight`, and `letterSpacing` core plu
 - No `tw-leading-*` (line-height)
 - No `tw-tracking-*` (letter-spacing)
 
-Size, line-height, and letter-spacing are bundled into **semantic text-style utilities** instead — `tw-text-h1`, `tw-text-body`, `tw-text-caption`, and the 2026 styles (`tw-text-display`, `tw-text-headline`, `tw-text-title`, …). Note `tw-text-{color}` still works (color is a separate concern); only the *sizing* `tw-text-*` utilities are gone. So `tw-text-primary` (color) is valid; `tw-text-lg` (size) is not. Reach for a semantic style; see **[typography](typography.md)**.
+Size, line-height, and letter-spacing are bundled into **semantic text-style utilities** instead — `tw-text-h1`, `tw-text-body`, `tw-text-caption`, and the 2026 styles (`tw-text-display`, `tw-text-headline`, `tw-text-title`, …). Note `tw-text-{color}` still works (color is a separate concern); only the *sizing* `tw-text-*` utilities are gone. So `tw-text-primary` (color) is valid; `tw-text-lg` (size) is not. Reach for a semantic style; see the **kiva-design-system** skill's typography sub-skill.
 
 ### Font weight tops out at `medium` (500)
 
@@ -144,11 +145,11 @@ Available weights are `light` (300), `normal` (400), and `medium` (500) — plus
 
 ### Border-radius is token-driven and `tw-rounded` ≠ pill
 
-`tw-rounded` (the unsuffixed utility) resolves to **16px**, not a small radius, and `tw-rounded-full` is the pill/circle. This is a frequent porting bug from stock Tailwind. See **[radius](radius.md)** for the full scale and the concentric-corner rules.
+`tw-rounded` (the unsuffixed utility) resolves to **16px**, not a small radius, and `tw-rounded-full` is the pill/circle. This is a frequent porting bug from stock Tailwind. See the **kiva-design-system** skill's radius sub-skill for the full scale and the concentric-corner rules.
 
 ### Breakpoints are `md` / `lg` / `xl` (mobile-first, no `sm`)
 
-The preset defines only three min-width screens — `md`, `lg`, `xl` — plus a `print` screen. There is **no `sm:` and no `2xl:`**. Unprefixed utilities are the mobile/base tier; the design system's smaller tiers (XS, SM in the layout skill) both fall under "no prefix" in Tailwind. Use `print:` to target print styles. For the grid and tier semantics, see **[layout](layout.md)**.
+The preset defines only three min-width screens — `md`, `lg`, `xl` — plus a `print` screen. There is **no `sm:` and no `2xl:`**. Unprefixed utilities are the mobile/base tier; the design system's smaller tiers (XS, SM in the layout skill) both fall under "no prefix" in Tailwind. Use `print:` to target print styles. For the grid and tier semantics, see the **kiva-design-system** skill's layout sub-skill.
 
 ### Z-index, shadow, and opacity are small named scales
 
@@ -229,6 +230,6 @@ This skill describes shipped mechanics, but specifics still change as tokens and
 
 - **The preset is authoritative:** [`configs/tailwind.config.js`](../../configs/tailwind.config.js) defines exactly which utilities exist and what they resolve to. The token values feeding it live in [`tokens/`](../../tokens/) and the generated [`dist/js/tokens.js`](../../dist/js/tokens.js).
 - **Disabled core plugins** (`container`, `fontSize`, `letterSpacing`, `lineHeight`) are the source of the "missing utility" surprises above — confirm the list in the config if a utility you expect is absent.
-- **Semantic color and text-style names** are the categories most likely to gain or rename entries over time; treat [color](color.md) and [typography](typography.md) as companions and cross-check the config.
+- **Semantic color and text-style names** are the categories most likely to gain or rename entries over time; treat the **kiva-design-system** skill's color and typography sub-skills as companions and cross-check the config.
 
 When you find a divergence between this skill and the shipped preset, flag it — each instance is a data point for the design-system team.

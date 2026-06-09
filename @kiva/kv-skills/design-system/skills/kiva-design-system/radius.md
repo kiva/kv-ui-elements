@@ -147,9 +147,9 @@ All radius tokens are published as variables in the Kiva Ecosystem library. When
 
 ## Using with Tailwind
 
-The radius utilities below come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered the preset yet? See [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Not using the preset at all? See [Without the preset](#without-the-preset) below.
+The radius utilities below come from the `@kiva/kv-tokens` Tailwind preset. Haven't registered the preset yet? See the **kiva-tailwind-css** skill (kiva-design-to-code plugin) → "Consuming the preset". Not using the preset at all? See [Without the preset](#without-the-preset) below.
 
-Pick the class straight from the [scale table](#the-scale) above — each token's `tw-rounded-*` utility is listed there. The one trap carried over from stock Tailwind: **`tw-rounded` (no suffix) is 16px here**, not a small radius; use `tw-rounded-full` for a pill or circle. See [The `tw-rounded` gotcha](#the-tw-rounded-gotcha) above, and [tailwind](../kiva-tailwind-css/SKILL.md#border-radius-is-token-driven-and-tw-rounded--pill) for why.
+Pick the class straight from the [scale table](#the-scale) above — each token's `tw-rounded-*` utility is listed there. The one trap carried over from stock Tailwind: **`tw-rounded` (no suffix) is 16px here**, not a small radius; use `tw-rounded-full` for a pill or circle. See [The `tw-rounded` gotcha](#the-tw-rounded-gotcha) above, and the **kiva-tailwind-css** skill → "Border radius is token-driven" for why.
 
 **Shipped today** (verify against `@kiva/kv-tokens/configs/tailwind.config.js → theme.borderRadius` before depending):
 
@@ -166,7 +166,7 @@ The 16px token is **`default` in code** and **`base` in Figma** — Tailwind's `
 
 ### Without the preset
 
-- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — [tailwind → Consuming the preset](../kiva-tailwind-css/SKILL.md#consuming-the-preset). Until then, arbitrary values (`rounded-[16px]`) are a stopgap.
+- **Kiva (or Kiva-adjacent) repo, preset not registered yet:** install and register it — the **kiva-tailwind-css** skill (kiva-design-to-code plugin) → "Consuming the preset". Until then, arbitrary values (`rounded-[16px]`) are a stopgap.
 - **Stock-Tailwind / non-Kiva project:** use arbitrary values from the [scale table](#the-scale) (`rounded-[16px]`, `rounded-[20px]`). These are point-in-time copies of the token values, so re-check them if the scale changes.
 
 ## Outstanding discrepancies

@@ -1,0 +1,6 @@
+{
+  "name": "kiva-skill-builder-utils",
+  "description": "Meta-tooling for building and maintaining Kiva agent skills, starting with extracting design-system sections from Figma into skill files.",
+  "version": "0.1.0",
+  "keywords": ["kiva", "skills", "authoring", "figma", "tooling"]
+}

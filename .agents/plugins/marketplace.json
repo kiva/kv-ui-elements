@@ -15,6 +15,30 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Development"
+    },
+    {
+      "name": "kiva-design-to-code",
+      "source": {
+        "source": "local",
+        "path": "./@kiva/kv-skills/design-to-code"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    },
+    {
+      "name": "kiva-skill-builder-utils",
+      "source": {
+        "source": "local",
+        "path": "./@kiva/kv-skills/skill-builder-utils"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
     }
   ]
 }

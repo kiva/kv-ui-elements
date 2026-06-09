@@ -2,14 +2,16 @@
 
 The design-system plugin category of [`@kiva/kv-skills`](../README.md).
 
+The entry point for **using** Kiva's design system. For the styling mechanics
+and code migrations see [`kiva-design-to-code`](../design-to-code/README.md);
+for skill-authoring tooling see
+[`kiva-skill-builder-utils`](../skill-builder-utils/README.md).
+
 ## Skills
 
 | Skill | What it does |
 |-------|--------------|
 | `kiva-design-system` | Router/index for the design system, with token sub-skills: color, typography, spacing, radius, layout, color-themes. |
-| `kiva-tailwind-css` | How the `@kiva/kv-tokens` Tailwind preset changes stock Tailwind. |
-| `kiva-header-element-audit` | Audit/cleanup of `<h1>`–`<h6>` usage ahead of the semantic typography remap. |
-| `figma-design-system-to-skill` | Process for extracting a design-system section from Figma into a skill. |
 
 ## Install
 
@@ -28,9 +30,8 @@ install matrix (including claude.ai / web).
 
 ## Install on the Claude app (claude.ai / desktop)
 
-Of these skills, the **`kiva-design-system`** router is the one meant for the
-Claude app and non-developer use. The others (`kiva-tailwind`,
-`kiva-header-element-audit`, `figma-design-system-to-skill`) are
+This is the one Kiva skill meant for the Claude app and non-developer use. The
+other categories (`kiva-design-to-code`, `kiva-skill-builder-utils`) are
 developer-experience skills aimed at Claude Code / Codex, where a repo is
 present — they assume access to files in the monorepo and aren't useful in the
 app.
@@ -77,8 +78,8 @@ runs until those edits are committed and pushed, then re-pulled. The flow:
    marketplace tracks — `main`).
 2. **Bump the patch version** in both
    [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) and
-   [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) (e.g. `0.1.1` →
-   `0.1.2`). The install cache is keyed by version, so a bump is what reliably
+   [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) (e.g. `0.2.0` →
+   `0.2.1`). The install cache is keyed by version, so a bump is what reliably
    signals consumers' clients to refresh.
 3. **Refresh and reinstall** on each client:
 

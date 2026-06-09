@@ -10,12 +10,17 @@ Each subfolder is an independently-installable **plugin category**:
 
 ```
 @kiva/kv-skills/
-└── design-system/        ← plugin "kiva-design-system"
-    ├── .claude-plugin/plugin.json
-    ├── .codex-plugin/plugin.json
-    ├── README.md
-    └── skills/<skill-name>/SKILL.md
+├── design-system/          ← plugin "kiva-design-system"
+│   ├── .claude-plugin/plugin.json
+│   ├── .codex-plugin/plugin.json
+│   ├── README.md
+│   └── skills/<skill-name>/SKILL.md
+├── design-to-code/         ← plugin "kiva-design-to-code"
+└── skill-builder-utils/    ← plugin "kiva-skill-builder-utils"
 ```
+
+Each category folder has the same shape (`.claude-plugin/`, `.codex-plugin/`,
+`README.md`, `skills/`).
 
 The repo-root marketplace files (`.claude-plugin/marketplace.json`,
 `.agents/plugins/marketplace.json`) expose each category as a plugin. Install
@@ -26,7 +31,9 @@ instructions for every audience live in the repo-root
 
 | Category (folder) | Plugin name | Description |
 |---|---|---|
-| `design-system` | `kiva-design-system` | Design tokens, the Kiva Tailwind preset, typography/color/spacing/radius/layout, header audits, and Figma-to-skill extraction. |
+| `design-system` | `kiva-design-system` | Using the design system: the router skill over design tokens — typography, color, spacing, radius, layout, color-themes. |
+| `design-to-code` | `kiva-design-to-code` | Turning designs into compliant code: the Kiva Tailwind preset, plus a page-design audit (typography & spacing) with before/after screenshots. |
+| `skill-builder-utils` | `kiva-skill-builder-utils` | Meta-tooling for building Kiva skills, starting with Figma-to-skill extraction. |
 
 ## Adding a skill (to an existing category)
 
