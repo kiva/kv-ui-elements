@@ -67,6 +67,13 @@ Each style is responsive across three device tiers: **Large** (desktop), **Mediu
 
 Expressive, large-scale text reserved for the single most important headline on a marketing page (homepage hero, campaign title). Limit to one per page; marketing pages only.
 
+> [!IMPORTANT]
+> **Display is primarily for marketing.** Use `tw-text-display` on marketing
+> pages (homepage hero, campaign landing); avoid it on product/app pages unless a
+> designer explicitly asks to preserve it. For the largest heading on a product
+> page, default to **Headline 1** (`<h1>` / `tw-text-headline`). Limit to one
+> Display per page.
+
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
 | Large (desktop) | 44px | 57px (1.3) | -0.88px (-0.02em) | Homepage hero, campaign hero |

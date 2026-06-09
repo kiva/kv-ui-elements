@@ -31,6 +31,27 @@ Do **not** keep a private copy of the class list here; verify any class name
 against current `@kiva/kv-tokens` before applying. If that skill isn't
 installed, see SKILL.md → "Load the right knowledge" for how to get it.
 
+## Context-dependent — `tw-text-display` is marketing-only
+
+`tw-text-display` (the Display style) is **reserved for marketing pages**: a
+single hero headline per page (homepage hero, campaign title). On a **product**
+page it is a finding; on a **marketing** page it is allowed (still flag a second
+Display on the same page — the design-system limit is one per page).
+
+This **cannot be judged mechanically** — the verdict depends on the page type:
+
+- **If the page type is clear** — a Contentful/CMS-rendered marketing route, or a
+  plainly product/app route — judge against it directly.
+- **If it's ambiguous, stop and ask the operator "Is this a marketing page?"**
+  before recording the finding. Don't guess, and don't silently skip it.
+
+Resolution:
+
+- **Product page** → finding. Recommend the largest non-Display heading instead:
+  `<h1>` / `tw-text-headline` (Headline 1). **Never auto-swap** — record it as a
+  proposal in `audit.md` with the reason "Display is marketing-only."
+- **Marketing page** → allowed. Note it, and confirm the one-per-page limit.
+
 ## Fix rule
 
 Replace the off-spec styling with the correct **whole** semantic utility class or

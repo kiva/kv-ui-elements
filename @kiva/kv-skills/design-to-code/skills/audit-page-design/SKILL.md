@@ -28,6 +28,11 @@ shareable run folder. (Jira push is a planned later phase.)
 - **Viewports** — optional; default `mobile,tablet,desktop`.
 - **baseUrl** — optional; default `http://localhost:8080`. The app must already
   be running locally.
+- **Page type** — `marketing` or `product`. Optional; usually inferable from the
+  route and entry component. Only matters when a marketing-only style (e.g.
+  `tw-text-display`) is found — if the type is ambiguous at that point, the
+  typography dimension stops and asks the operator. Supply it up front to skip
+  the question.
 - **Logged-in mode** — optional; **off by default**. Only enable when the prompt
   explicitly asks to audit the page in a signed-in state. See "Logged-in mode"
   below and `references/capturing-screenshots.md`.
@@ -80,7 +85,10 @@ out of scope by default.
    in-scope local component set; scan for the dimension's off-spec signals across
    all four detection surfaces. **Skip the global header and footer subtrees**
    (see "Always skip the global header and footer"). For each finding, classify
-   local vs external by source path.
+   local vs external by source path. If a finding is **context-dependent** — e.g.
+   `tw-text-display`, which is marketing-only (see the typography dimension) —
+   resolve it against the page type, asking the operator "Is this a marketing
+   page?" when that isn't obvious.
 4. **Apply** — make local-fixable edits per the dimension's apply policy
    (typography: mechanical swaps; spacing: confidence-graded). Record
    external-only and design-system-gap items in `audit.md` — never edit those.
