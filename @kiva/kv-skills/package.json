@@ -1,7 +1,7 @@
 {
   "name": "@kiva/kv-skills",
   "version": "0.1.0",
-  "description": "Kiva agent skills (Claude Code + Codex), organized as installable plugin categories. v1 ships the design-system category.",
+  "description": "Kiva agent skills (Claude Code + Codex), organized as installable plugin categories: design-system, design-to-code, and skill-builder-utils.",
   "publishConfig": {
     "access": "public"
   },

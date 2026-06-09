@@ -5,6 +5,14 @@
     {
       "name": "kiva-design-system",
       "source": "./@kiva/kv-skills/design-system"
+    },
+    {
+      "name": "kiva-design-to-code",
+      "source": "./@kiva/kv-skills/design-to-code"
+    },
+    {
+      "name": "kiva-skill-builder-utils",
+      "source": "./@kiva/kv-skills/skill-builder-utils"
     }
   ]
 }

@@ -4,16 +4,17 @@ Public [Agent Skills](https://agentskills.io) for Kiva, shipped from this repo a
 installable plugin categories. Usable in Claude Code, Codex, and — by download —
 on claude.ai / the web. No GitHub org membership required.
 
-Canonical source: [`@kiva/kv-skills/`](./@kiva/kv-skills). v1 ships one category,
-the `kiva-design-system` plugin.
+Canonical source: [`@kiva/kv-skills/`](./@kiva/kv-skills). Three independently
+installable plugins: `kiva-design-system`, `kiva-design-to-code`, and
+`kiva-skill-builder-utils`.
 
 ## Install
 
 | Audience | How |
 |----------|-----|
-| **Claude Code CLI** | `/plugin marketplace add kiva/kv-ui-elements` then `/plugin install kiva-design-system@kv-ui-elements`. No clone needed. |
-| **Codex CLI** | `codex plugin marketplace add kiva/kv-ui-elements`, then open `codex`, run `/plugins`, and install **Kiva Design System**. Restart Codex after installing. No clone needed. |
-| **claude.ai / web (no CLI)** | On GitHub, use **Code → Download ZIP** (or clone). Open `@kiva/kv-skills/design-system/skills/`, pick the skill folder you want, and upload it to a Project / Capability. |
+| **Claude Code CLI** | `/plugin marketplace add kiva/kv-ui-elements` then `/plugin install <plugin>@kv-ui-elements` for each plugin you want. No clone needed. |
+| **Codex CLI** | `codex plugin marketplace add kiva/kv-ui-elements`, then open `codex`, run `/plugins`, and install the plugins you want. Restart Codex after installing. No clone needed. |
+| **claude.ai / web (no CLI)** | On GitHub, use **Code → Download ZIP** (or clone). Open `@kiva/kv-skills/<category>/skills/`, pick the skill folder you want, and upload it to a Project / Capability. The `kiva-design-system` router is the one suited to the app; the developer-tooling plugins assume a repo. |
 
 ### Claude Code
 
@@ -24,8 +25,10 @@ the `kiva-design-system` plugin.
 # Browse and install from the interactive UI
 /plugin
 
-# Or install directly
+# Or install directly (one per plugin you want)
 /plugin install kiva-design-system@kv-ui-elements
+/plugin install kiva-design-to-code@kv-ui-elements
+/plugin install kiva-skill-builder-utils@kv-ui-elements
 ```
 
 Installing a plugin gives you all skills in that category. You cannot install
@@ -42,14 +45,15 @@ codex
 /plugins
 ```
 
-Install **Kiva Design System** from the `Kiva UI Elements` marketplace, then
+Install the plugins you want (**Kiva Design System**, **Kiva Design to Code**,
+**Kiva Skill Builder Utils**) from the `Kiva UI Elements` marketplace, then
 restart Codex (or reload the session) so it picks up the updated plugin cache.
 
 ### claude.ai / web
 
 1. On <https://github.com/kiva/kv-ui-elements>, click **Code → Download ZIP** (or clone the repo).
-2. Open `@kiva/kv-skills/design-system/skills/` and choose the skill folder you
-   need (e.g. `kiva-design-system`).
+2. Open `@kiva/kv-skills/<category>/skills/` and choose the skill folder you
+   need (e.g. `design-system/skills/kiva-design-system`).
 3. Upload that folder to your claude.ai Project or Capability per the
    [claude.ai skills docs](https://support.anthropic.com/).
 
@@ -57,7 +61,9 @@ restart Codex (or reload the session) so it picks up the updated plugin cache.
 
 | Category (folder) | Plugin | Skills |
 |---|---|---|
-| `@kiva/kv-skills/design-system` | `kiva-design-system` | `kiva-design-system` (router + color, typography, spacing, radius, layout, color-themes), `kiva-tailwind-css`, `kiva-header-element-audit`, `figma-design-system-to-skill` |
+| `@kiva/kv-skills/design-system` | `kiva-design-system` | `kiva-design-system` (router + color, typography, spacing, radius, layout, color-themes) |
+| `@kiva/kv-skills/design-to-code` | `kiva-design-to-code` | `kiva-tailwind-css`, `audit-page-design` |
+| `@kiva/kv-skills/skill-builder-utils` | `kiva-skill-builder-utils` | `figma-design-system-to-skill` |
 
 ## Adding a skill (to an existing category)
 
