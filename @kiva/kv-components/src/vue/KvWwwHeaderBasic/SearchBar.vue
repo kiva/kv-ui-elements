@@ -113,7 +113,7 @@ export default {
 
 		const {
 			term, groupedResults, activeIndex, resolveSubmit,
-		} = useTypeaheadSearch(toRef(props, 'searchSuggestions'), props.appOrigin);
+		} = useTypeaheadSearch(toRef(props, 'searchSuggestions'), toRef(props, 'appOrigin'));
 
 		// Flattened list across all groups, used for keyboard navigation and highlighting.
 		const flatItems = computed(() => groupedResults.value.flatMap((g) => g.items));

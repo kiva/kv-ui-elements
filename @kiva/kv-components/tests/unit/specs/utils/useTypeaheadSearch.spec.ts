@@ -35,6 +35,15 @@ describe('useTypeaheadSearch', () => {
 		expect(payload.term).toBe('coffee');
 	});
 
+	it('reads a reactive appOrigin ref at submit time (not just at setup)', () => {
+		const source = ref<SearchSuggestion[]>([]);
+		const origin = ref('');
+		const { resolveSubmit } = useTypeaheadSearch(source, origin);
+		// Origin resolved after setup (mirrors the header deriving window.location.origin onMounted).
+		origin.value = 'https://www.kiva.org';
+		expect(resolveSubmit('coffee').url).toBe('https://www.kiva.org/lend/filter');
+	});
+
 	it('uses a suggestion url directly when present (Gifts)', () => {
 		const source = ref<SearchSuggestion[]>([]);
 		const { resolveSubmit } = useTypeaheadSearch(source, '');
