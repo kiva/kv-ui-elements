@@ -1,5 +1,5 @@
 import {
-	ref, watch, computed, type Ref,
+	ref, watch, computed, unref, type Ref,
 } from 'vue';
 import SearchEngine, { type SearchSuggestion } from '#utils/typeaheadSearchEngine';
 import { SECTION_ORDER, MAX_PER_GROUP, GIFT_SUGGESTIONS } from '#utils/typeaheadSearchConfig';
@@ -28,7 +28,7 @@ function lendPath(query: Record<string, string> | null): string {
 	return query && hasExcludedQueryParams(query) ? '/lend' : '/lend/filter';
 }
 
-export function useTypeaheadSearch(source: Ref<SearchSuggestion[]>, appOrigin: string) {
+export function useTypeaheadSearch(source: Ref<SearchSuggestion[]>, appOrigin: Ref<string> | string) {
 	const engine = new SearchEngine();
 	const term = ref('');
 	const rawResults = ref<SearchSuggestion[]>([]);
@@ -65,11 +65,14 @@ export function useTypeaheadSearch(source: Ref<SearchSuggestion[]>, appOrigin: s
 
 	// Builds the /lend navigation payload for a selected suggestion or free-text term, mirroring the app SearchBar.
 	function resolveSubmit(selection: SearchSuggestion | string): SubmitPayload {
+		// Read the origin at submit time (not setup) so a post-setup value (e.g. the header's
+		// window-derived origin resolved onMounted) is picked up; unref leaves a plain string unchanged.
+		const origin = unref(appOrigin);
 		// Free-text submit.
 		if (typeof selection === 'string') {
 			const query = { queryString: selection };
 			return {
-				url: `${appOrigin}${lendPath(query)}`,
+				url: `${origin}${lendPath(query)}`,
 				query,
 				suggestion: null,
 				term: selection,
@@ -85,7 +88,7 @@ export function useTypeaheadSearch(source: Ref<SearchSuggestion[]>, appOrigin: s
 		const [key, value] = (selection.query ?? '').split('=');
 		const query = key ? { [key]: value } : null;
 		return {
-			url: `${appOrigin}${lendPath(query)}`,
+			url: `${origin}${lendPath(query)}`,
 			query,
 			suggestion: selection,
 			term: term.value,

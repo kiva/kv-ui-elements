@@ -87,12 +87,20 @@ function createMockApollo({ favoritesTotal = 8, savedSearches = sampleSavedSearc
 				},
 			};
 		},
-		query: () => Promise.resolve({
-			data: {
-				lend: { loans: { totalCount: favoritesTotal } },
-				my: { savedSearches: { values: savedSearches } },
-			},
-		}),
+		query: ({ query } = {}) => {
+			const body = query?.loc?.source?.body ?? '';
+			if (body.includes('loanSearchSuggestions')) {
+				return Promise.resolve({
+					data: { lend: { loanSearchSuggestions: sampleSearchSuggestions } },
+				});
+			}
+			return Promise.resolve({
+				data: {
+					lend: { loans: { totalCount: favoritesTotal } },
+					my: { savedSearches: { values: savedSearches } },
+				},
+			});
+		},
 	};
 }
 
@@ -109,6 +117,8 @@ export default {
 		userId: { control: { type: 'number' } },
 		isBorrower: { control: { type: 'boolean' } },
 		isTrustee: { control: { type: 'boolean' } },
+		trusteeId: { control: { type: 'number' } },
+		mostRecentBorrowedLoanId: { control: { type: 'number' } },
 		lenderName: { control: { type: 'text' } },
 		lenderImageUrl: { control: { type: 'text' } },
 		isBasketDataLoading: { control: { type: 'boolean' } },
@@ -132,8 +142,12 @@ const story = (args) => {
 			function onLoadLendMenuData() {
 				headerRef.value?.loadMenuData?.(apollo);
 			}
+			function onLoadSearchData() {
+				// apollo comes from the story's own scope; the load-search-data event carries no payload.
+				headerRef.value?.loadSearchSuggestions?.(apollo);
+			}
 			return {
-				args: { ..._args }, headerRef, onLoadLendMenuData,
+				args: { ..._args }, headerRef, onLoadLendMenuData, onLoadSearchData,
 			};
 		},
 		provide: {
@@ -148,6 +162,7 @@ const story = (args) => {
 					ref="headerRef"
 					v-bind="args"
 					@load-lend-menu-data="onLoadLendMenuData"
+					@load-search-data="onLoadSearchData"
 				/>
 				<kv-page-container>
 					<p class="tw-py-2">Scroll content sits beneath the header. Three breakpoint states to exercise:
@@ -210,4 +225,52 @@ export const LoadingUserData = story({
 export const WithSearchSuggestions = story({
 	searchSuggestions: sampleSearchSuggestions,
 	appOrigin: 'https://www.kiva.org',
+});
+
+export const Borrower = story({
+	loggedIn: true,
+	balance: 7,
+	userId: 12345,
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	isBorrower: true,
+	mostRecentBorrowedLoanId: 2599133,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+export const Trustee = story({
+	loggedIn: true,
+	balance: 7,
+	userId: 12345,
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	isTrustee: true,
+	trusteeId: 4321,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+export const TrusteeAndBorrower = story({
+	loggedIn: true,
+	balance: 7,
+	userId: 12345,
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	isBorrower: true,
+	mostRecentBorrowedLoanId: 2599133,
+	isTrustee: true,
+	trusteeId: 4321,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+// appOrigin intentionally omitted: the header derives it from window.location.origin on mount.
+export const WindowDerivedOrigin = story({
+	loggedIn: true,
+	balance: 7,
+	userId: 12345,
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	searchSuggestions: sampleSearchSuggestions,
 });

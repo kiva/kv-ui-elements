@@ -5,7 +5,7 @@
 	>
 		<nav
 			ref="navRef"
-			class="tw-font-medium tw-relative tw-border-b tw-border-tertiary"
+			class="tw-font-medium tw-relative"
 			:style="{ minHeight: MIN_HEADER_HEIGHT }"
 		>
 			<kv-page-container>
@@ -26,8 +26,8 @@
 						:login-url="loginUrl"
 						:my-dashboard-url="myDashboardUrl"
 						:countries-not-lent-to-url="countriesNotLentToUrl"
-						:app-origin="appOrigin"
-						:search-suggestions="searchSuggestions"
+						:app-origin="resolvedAppOrigin"
+						:search-suggestions="effectiveSuggestions"
 						:is-mobile="isMobile"
 						:open-menu-item="menuComponent"
 						@item-hover="onItemHover"
@@ -66,13 +66,15 @@
 						:user-id="userId"
 						:is-borrower="isBorrower"
 						:is-trustee="isTrustee"
+						:trustee-id="trusteeId"
+						:most-recent-borrowed-loan-id="mostRecentBorrowedLoanId"
 						:my-dashboard-url="myDashboardUrl"
 						:show-m-g-upsell-link="showMGUpsellLink"
 						:is-mobile="isMobile"
 						:countries-not-lent-to-url="countriesNotLentToUrl"
 						:use-mobile-mega-menu="true"
-						:app-origin="appOrigin"
-						:search-suggestions="searchSuggestions"
+						:app-origin="resolvedAppOrigin"
+						:search-suggestions="effectiveSuggestions"
 						@load-lend-menu-data="emitLendMenuEvent"
 						@load-search-data="$emit('load-search-data')"
 						@search-submit="$emit('search-submit', $event)"
@@ -90,10 +92,12 @@ import {
 	ref, computed, onMounted, onBeforeUnmount, watch, nextTick,
 } from 'vue';
 import type { CSSProperties } from 'vue';
+import { gql } from '@apollo/client/core';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
 import KvPageContainer from '#components/KvPageContainer.vue';
 import { useBreakpoints } from '#utils/useBreakpoints';
 import { useHeaderBasicMenuState } from '#utils/useHeaderBasicMenuState';
+import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
 import LinkBar from './LinkBar.vue';
 
 // `min-height` initial — the tablet two-row layout grows the nav vertically, so the actual
@@ -101,11 +105,32 @@ import LinkBar from './LinkBar.vue';
 // the dropdown overlay's `top` and the panel's `max-height`.
 const MIN_HEADER_HEIGHT = '4rem';
 
+// Loan search-suggestion dataset for the header search bar. Fetched on demand via the exposed
+// loadSearchSuggestions(apollo) method (mirrors KvLendMenu's loadMenuData paradigm); the host
+// wires it to @load-search-data and still owns navigation on @search-submit.
+const LOAN_SEARCH_SUGGESTIONS_QUERY = gql`
+	query loanSearchSuggestions {
+		lend {
+			loanSearchSuggestions {
+				group
+				label
+				query
+			}
+		}
+	}
+`;
+
 // Public instance shape of the active drawer menu (e.g. KvLendMenu exposes onLoad).
 interface MenuInstance {
 	$options?: { name?: string };
 	// eslint-disable-next-line no-unused-vars
 	onLoad?(apollo: unknown): void;
+}
+
+// Minimal shape of the Apollo client the host passes in; only `query` is used here.
+interface ApolloClientLike {
+	// eslint-disable-next-line no-unused-vars
+	query(options: unknown): Promise<{ data?: unknown }>;
 }
 
 /**
@@ -133,10 +158,12 @@ export default {
 		myDashboardUrl: { type: String, default: '/mykiva' },
 		countriesNotLentToUrl: { type: String, default: '/lend/countries-not-lent' },
 		appOrigin: { type: String, default: '' },
-		searchSuggestions: { type: Array, default: () => [] },
+		searchSuggestions: { type: Array as () => SearchSuggestion[], default: () => [] },
+		trusteeId: { type: Number, default: null },
+		mostRecentBorrowedLoanId: { type: Number, default: null },
 	},
 	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit'],
-	setup(_props, { emit }) {
+	setup(props, { emit }) {
 		const { isMobile, checkIsMobile } = useBreakpoints();
 		const {
 			menuOpen, menuComponent, menuItem, menuPosition, setMenu, markMounted, pinMenuOpen,
@@ -148,15 +175,27 @@ export default {
 		const navHeight = ref<string>(MIN_HEADER_HEIGHT);
 		const avatarTriggerCenterX = ref<number | null>(null);
 		const linksVisible = ref(true);
+		// appOrigin override falls back to the page origin (resolved after mount; SSR-safe because
+		// search navigation is client-side). Hosts may stop passing :app-origin with no behavior change.
+		const resolvedAppOrigin = ref(props.appOrigin);
 		let navResizeObserver: ResizeObserver | null = null;
+
+		const fetchedSuggestions = ref<SearchSuggestion[]>([]);
+		let searchDataRequested = false;
+
+		// Prefer fetched suggestions once loaded; otherwise fall back to the host-passed prop so
+		// the header keeps working for hosts that haven't moved to loadSearchSuggestions yet.
+		const effectiveSuggestions = computed<SearchSuggestion[]>(
+			() => (fetchedSuggestions.value.length ? fetchedSuggestions.value : props.searchSuggestions),
+		);
 
 		const isMobileMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MobileMenu');
 		const isMyKivaMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'MyKivaMenu');
 		const isAboutMenuActive = computed(() => menuComponentInstance.value?.$options?.name === 'AboutMenu');
 
 		// Hamburger = full-screen drawer; MyKiva/About = constrained dropdowns that get a tertiary
-		// border at md+ so the panel reads as a contained card flush with the nav-bar bottom border
-		// (matches the legacy KvWwwHeader). Lend mega menu stays borderless.
+		// border at md+ so the panel reads as a contained card; the nav itself no longer draws a
+		// bottom border (the host owns it). Lend mega menu stays borderless.
 		const menuPanelClass = computed(() => {
 			if (isMobileMenuActive.value) return 'tw-w-full tw-min-h-dvh tw-rounded-none';
 			if (isMyKivaMenuActive.value) return 'tw-w-auto tw-rounded-b tw-border tw-border-t-0 tw-border-tertiary';
@@ -200,8 +239,28 @@ export default {
 		}
 
 		// Exposed so hosts can trigger the active menu's data fetch (matches KvWwwHeader's loadMenuData).
+		// apollo stays `unknown` here: loadMenuData only forwards the opaque client to the active
+		// menu's onLoad; unlike loadSearchSuggestions it never calls query() on it directly.
 		function loadMenuData(apollo: unknown): void {
 			menuComponentInstance.value?.onLoad?.(apollo);
+		}
+
+		// Exposed so hosts can trigger the search-suggestion fetch (matches loadMenuData). Run-once.
+		async function loadSearchSuggestions(apollo: ApolloClientLike): Promise<void> {
+			if (searchDataRequested) return;
+			searchDataRequested = true;
+			try {
+				const { data } = await apollo.query({ query: LOAN_SEARCH_SUGGESTIONS_QUERY });
+				const raw = (data as { lend?: { loanSearchSuggestions?: Array<SearchSuggestion | null> } })
+					?.lend?.loanSearchSuggestions ?? [];
+				fetchedSuggestions.value = raw
+					.filter((s): s is SearchSuggestion => !!s)
+					.map((s) => ({ group: s.group ?? '', label: s.label ?? '', query: s.query ?? undefined }));
+			} catch {
+				// Reset the run-once guard so a later focus can retry; the searchSuggestions prop
+				// fallback keeps the search bar working in the meantime.
+				searchDataRequested = false;
+			}
 		}
 
 		function handleOverlayClick(): void {
@@ -211,6 +270,9 @@ export default {
 		}
 
 		onMounted(() => {
+			if (!props.appOrigin && typeof window !== 'undefined') {
+				resolvedAppOrigin.value = window.location.origin;
+			}
 			checkIsMobile();
 			markMounted();
 			// Track the rendered nav height so the dropdown overlay drops below the actual nav
@@ -235,6 +297,8 @@ export default {
 			navHeight,
 			navRef,
 			linksVisible,
+			resolvedAppOrigin,
+			effectiveSuggestions,
 			isMobile,
 			menuOpen,
 			menuComponent,
@@ -250,6 +314,7 @@ export default {
 			handleOverlayClick,
 			emitLendMenuEvent,
 			loadMenuData,
+			loadSearchSuggestions,
 		};
 	},
 };

@@ -9,6 +9,50 @@
 		>
 			My Dashboard
 		</kv-header-menu-link>
+		<template v-if="isBorrower">
+			<kv-header-menu-link
+				href="/my/borrower"
+				@click="onLinkClick('click-Portfolio-My borrower dashboard')"
+			>
+				My borrower dashboard
+			</kv-header-menu-link>
+			<template v-if="mostRecentBorrowedLoanId !== null">
+				<kv-header-menu-link
+					:href="`/lend/${mostRecentBorrowedLoanId}`"
+					@click="onLinkClick('click-Portfolio-My loan page')"
+				>
+					My loan page
+				</kv-header-menu-link>
+				<kv-header-menu-link
+					:href="`/lend-classic/${mostRecentBorrowedLoanId}#loanComments`"
+					@click="onLinkClick('click-Portfolio-My Conversations')"
+				>
+					My conversations
+				</kv-header-menu-link>
+			</template>
+		</template>
+		<template v-if="isTrustee">
+			<template v-if="!isBorrower">
+				<kv-header-menu-link
+					:href="trusteeLoansUrl"
+					@click="onLinkClick('click-Portfolio-My Trustee loans')"
+				>
+					My Trustee loans
+				</kv-header-menu-link>
+				<kv-header-menu-link
+					:href="`/trustees/${trusteeId}`"
+					@click="onLinkClick('click-Portfolio-My public Trustee page')"
+				>
+					My public Trustee page
+				</kv-header-menu-link>
+			</template>
+			<kv-header-menu-link
+				href="/my/trustee"
+				@click="onLinkClick('click-Portfolio-My Trustee dashboard')"
+			>
+				My Trustee dashboard
+			</kv-header-menu-link>
+		</template>
 		<kv-header-menu-link
 			href="/portfolio"
 			@click="onLinkClick('click-Portfolio-Portfolio')"
@@ -34,20 +78,6 @@
 			Settings
 		</kv-header-menu-link>
 		<kv-header-menu-link
-			v-if="isBorrower"
-			href="/my/borrower"
-			@click="onLinkClick('click-Portfolio-My borrower dashboard')"
-		>
-			Borrower Dashboard
-		</kv-header-menu-link>
-		<kv-header-menu-link
-			v-if="isTrustee"
-			href="/my/trustee"
-			@click="onLinkClick('click-Portfolio-My Trustee dashboard')"
-		>
-			Trustee Dashboard
-		</kv-header-menu-link>
-		<kv-header-menu-link
 			href="/ui-logout"
 			class="tw-border-t tw-border-secondary tw-w-full"
 			@click="onLinkClick('click-Portfolio-Sign out')"
@@ -58,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue';
+import { computed, inject } from 'vue';
 import KvHeaderMenuLink from '#components/KvWwwHeader/KvHeaderMenuLink.vue';
 
 interface TrackEvent {
@@ -87,6 +117,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		trusteeId: {
+			type: Number,
+			default: null,
+		},
+		mostRecentBorrowedLoanId: {
+			type: Number,
+			default: null,
+		},
 		myDashboardUrl: {
 			type: String,
 			default: '/mykiva',
@@ -97,24 +135,28 @@ export default {
 		},
 	},
 	emits: ['closing-menu'],
-	setup(_props, { emit }) {
+	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
+
+		// Matches the legacy ui/TheHeader trusteeLoansUrl: fundraising loans for this trustee, newest first.
+		const trusteeLoansUrl = computed(
+			() => `/lend?trustee=${props.trusteeId}&status=fundraising&sortBy=newest`,
+		);
 
 		function onLinkClick(action: string): void {
 			$kvTrackEvent('TopNav', action);
 			emit('closing-menu');
 		}
 
-		return { onLinkClick };
+		return { trusteeLoansUrl, onLinkClick };
 	},
 };
 </script>
 
 <style lang="postcss" scoped>
 /*
- * Match the cms-page-server / ui dropdown rhythm: KvHeaderMenuLink defaults to tw-py-1.5 which
- * reads cramped in this panel. Bumping to tw-py-2 gives each row the breathing room of the live
- * navigation. Scoped :deep beats the utility class on the anchor by attribute-selector specificity.
+ * Apply tw-py-1 to anchors to match the cms-page-server / ui dropdown rhythm.
+ * Scoped :deep beats the utility class on the anchor by attribute-selector specificity.
  */
 :deep(a) {
 	@apply tw-py-1;
