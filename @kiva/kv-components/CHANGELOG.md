@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.17.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.17.0...@kiva/kv-components@8.17.1) (2026-06-10)
+
+
+### Bug Fixes
+
+* **kv-components:** update logged imenu, centralize search suggestion query, minor fixes ([0a19726](https://github.com/kiva/kv-ui-elements/commit/0a19726f664d52cb90c9862d1d781c51ae446b9d))
+
+
+
+
+
 # [8.17.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.16.1...@kiva/kv-components@8.17.0) (2026-06-08)
 
 
