@@ -2,6 +2,8 @@ import {
 	getKivaImageUrl,
 	isLegacyPlaceholderAvatar,
 	randomizedUserAvatarClass,
+	validateImageFile,
+	cropResizeImageToDataUrl,
 } from '#utils/imageUtils';
 
 describe('imageUtils.ts', () => {
@@ -92,5 +94,141 @@ describe('imageUtils.ts', () => {
 			expect(randomizedUserAvatarClass('test2')).toBe(randomizedUserAvatarClass('test2'));
 			expect(randomizedUserAvatarClass('Lender')).toBe(randomizedUserAvatarClass('Lender'));
 		});
+	});
+});
+
+describe('validateImageFile', () => {
+	it('accepts a valid file within the size and type limits', () => {
+		const file = new File(['x'], 'photo.png', { type: 'image/png' });
+		expect(validateImageFile(file, { maxSizeMb: 1 })).toEqual({ valid: true });
+	});
+
+	it('rejects a file larger than maxSizeMb with a size error', () => {
+		const big = new File([new ArrayBuffer(2 * 1024 * 1024)], 'big.png', { type: 'image/png' });
+		expect(validateImageFile(big, { maxSizeMb: 1 })).toEqual({
+			valid: false,
+			error: { type: 'size', message: 'File size must be less than 1MB' },
+		});
+	});
+
+	it('rejects a disallowed file type with a format error', () => {
+		const file = new File(['x'], 'notes.txt', { type: 'text/plain' });
+		expect(validateImageFile(file)).toEqual({
+			valid: false,
+			error: { type: 'format', message: 'File format not supported' },
+		});
+	});
+
+	it('honors a custom acceptedFileTypes list', () => {
+		const gif = new File(['x'], 'a.gif', { type: 'image/gif' });
+		expect(validateImageFile(gif, { acceptedFileTypes: ['image/png'] }).valid).toBe(false);
+		expect(validateImageFile(gif, { acceptedFileTypes: ['image/gif'] }).valid).toBe(true);
+	});
+});
+
+describe('cropResizeImageToDataUrl', () => {
+	let originalImage;
+	let drawImageMock;
+	let mockNaturalWidth;
+	let mockNaturalHeight;
+
+	beforeEach(() => {
+		mockNaturalWidth = 200;
+		mockNaturalHeight = 100;
+
+		originalImage = global.Image;
+		// An image whose `onload` fires as soon as `src` is set.
+		// naturalWidth/naturalHeight are set from module-level variables in the constructor so
+		// each test can configure them before the Promise resolves.
+		global.Image = class {
+			constructor() {
+				this.naturalWidth = mockNaturalWidth;
+				this.naturalHeight = mockNaturalHeight;
+				this.onload = null;
+				this.onerror = null;
+			}
+
+			set src(_value) {
+				Promise.resolve().then(() => { if (this.onload) this.onload(); });
+			}
+		};
+
+		drawImageMock = jest.fn();
+		jest.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: drawImageMock });
+		jest.spyOn(HTMLCanvasElement.prototype, 'toDataURL').mockReturnValue('data:image/png;base64,cropped');
+	});
+
+	afterEach(() => {
+		global.Image = originalImage;
+		jest.restoreAllMocks();
+	});
+
+	it('resolves with the canvas data URL', async () => {
+		const file = new File(['x'], 'a.png', { type: 'image/png' });
+		await expect(cropResizeImageToDataUrl(file, { aspectRatio: 1, maxDimension: 100 }))
+			.resolves.toBe('data:image/png;base64,cropped');
+	});
+
+	it('center-crops a wide image to the target square and sizes the canvas from maxDimension', async () => {
+		const file = new File(['x'], 'a.png', { type: 'image/png' });
+		await cropResizeImageToDataUrl(file, { aspectRatio: 1, maxDimension: 100 });
+		// 200x100 source, square target => sourceWidth=100, sourceX=50; canvas = 200x200
+		expect(drawImageMock).toHaveBeenCalledWith(
+			expect.anything(),
+			50,
+			0,
+			100,
+			100,
+			0,
+			0,
+			200,
+			200,
+		);
+	});
+
+	it('center-crops a tall/portrait image to the target square', async () => {
+		mockNaturalWidth = 100;
+		mockNaturalHeight = 200;
+
+		const file = new File(['x'], 'a.png', { type: 'image/png' });
+		await cropResizeImageToDataUrl(file, { aspectRatio: 1, maxDimension: 100 });
+		// 100x200 source, square target => sourceHeight=100, sourceY=50, sourceX=0, sourceWidth=100; canvas=200x200
+		expect(drawImageMock).toHaveBeenCalledWith(
+			expect.anything(),
+			0,
+			50,
+			100,
+			100,
+			0,
+			0,
+			200,
+			200,
+		);
+	});
+
+	it('does not crop when source already matches the target aspect ratio', async () => {
+		mockNaturalWidth = 200;
+		mockNaturalHeight = 200;
+
+		const file = new File(['x'], 'a.png', { type: 'image/png' });
+		await cropResizeImageToDataUrl(file, { aspectRatio: 1, maxDimension: 100 });
+		// 200x200 source, square target => no crop; canvas=200x200
+		expect(drawImageMock).toHaveBeenCalledWith(
+			expect.anything(),
+			0,
+			0,
+			200,
+			200,
+			0,
+			0,
+			200,
+			200,
+		);
+	});
+
+	it('rejects when a 2d context cannot be obtained', async () => {
+		HTMLCanvasElement.prototype.getContext.mockReturnValue(null);
+		const file = new File(['x'], 'a.png', { type: 'image/png' });
+		await expect(cropResizeImageToDataUrl(file)).rejects.toThrow('Failed to process image');
 	});
 });
