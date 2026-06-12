@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.17.1...@kiva/kv-components@8.18.0) (2026-06-12)
+
+
+### Bug Fixes
+
+* **KvImageUpload:** remove internal error display, tweak styles for circle visualaztions ([c9251f8](https://github.com/kiva/kv-ui-elements/commit/c9251f8c504ad66be0a3057f49a52752074efb9c))
+
+
+### Features
+
+* **KvImageUpload:** new global component for image upload element and file handler ([e17702f](https://github.com/kiva/kv-ui-elements/commit/e17702fa2f5d0d6d95448a94d285aa04df2cfcd2))
+
+
+
+
+
 ## [8.17.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.17.0...@kiva/kv-components@8.17.1) (2026-06-10)
 
 
