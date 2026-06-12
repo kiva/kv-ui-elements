@@ -64,7 +64,7 @@ describe('KvImageUpload', () => {
 	});
 
 	it('emits a size error and does not process an oversized file', async () => {
-		const { container, emitted, getByRole } = renderUploader({ maxSizeMb: 1 });
+		const { container, emitted } = renderUploader({ maxSizeMb: 1 });
 		const big = new File([new ArrayBuffer(2 * 1024 * 1024)], 'big.png', { type: 'image/png' });
 		await fireEvent.change(getFileInput(container), { target: { files: [big] } });
 		expect(emitted()['file-error'][0][0]).toEqual({
@@ -73,20 +73,16 @@ describe('KvImageUpload', () => {
 		});
 		expect(cropResizeImageToDataUrl).not.toHaveBeenCalled();
 		expect(emitted()['file-uploaded']).toBeUndefined();
-		const alert = getByRole('alert');
-		expect(alert.textContent).toContain('File size must be less than 1MB');
 	});
 
 	it('emits a format error for a disallowed type', async () => {
-		const { container, emitted, getByRole } = renderUploader();
+		const { container, emitted } = renderUploader();
 		const txt = new File(['x'], 'a.txt', { type: 'text/plain' });
 		await fireEvent.change(getFileInput(container), { target: { files: [txt] } });
 		expect(emitted()['file-error'][0][0]).toEqual({
 			type: 'format',
 			message: 'File format not supported',
 		});
-		const alert = getByRole('alert');
-		expect(alert.textContent).toContain('File format not supported');
 	});
 
 	it('emits an "other" error when processing fails', async () => {
@@ -126,13 +122,6 @@ describe('KvImageUpload', () => {
 		await fireEvent.click(getByLabelText('Remove Image'));
 		expect(emitted()['file-removed']).toBeTruthy();
 		expect(container.querySelector('img')).toBeNull();
-	});
-
-	it('displays an externally-provided error message', async () => {
-		const { getByRole, rerender } = renderUploader({ errorMessage: '' });
-		await rerender({ errorMessage: 'Something went wrong' });
-		const alert = getByRole('alert');
-		expect(alert.textContent).toContain('Something went wrong');
 	});
 
 	it('renders a preview image on mount when imageUrl is provided', () => {

@@ -50,7 +50,6 @@ const Template = (args, { argTypes }) => ({
 				:preview-size="args.previewSize"
 				:show-edit-icon="args.showEditIcon"
 				:image-alt="args.imageAlt"
-				:error-message="args.errorMessage"
 				@file-uploaded="onUploaded"
 				@file-removed="onRemoved"
 				@file-error="onError"
@@ -87,12 +86,6 @@ export const WithImage = Template.bind({});
 WithImage.args = {
 	...Default.args,
 	imageUrl: 'https://picsum.photos/seed/kiva/400/400',
-};
-
-export const ErrorState = Template.bind({});
-ErrorState.args = {
-	...Default.args,
-	errorMessage: 'File format not supported',
 };
 
 // `showEditIcon` toggles the pencil in the BLANK state (before an image is selected).

@@ -57,6 +57,7 @@
 			<button
 				v-if="previewImage || showEditIcon"
 				class="image-upload-icon edit-icon tw-absolute tw-bottom-1 tw-right-1 tw-p-1 tw-z-10"
+				:class="{ 'image-upload-icon--circle': isCircle }"
 				type="button"
 				aria-hidden="true"
 				tabindex="-1"
@@ -70,6 +71,7 @@
 			<button
 				v-if="previewImage"
 				class="image-upload-icon remove-icon tw-absolute tw-top-1 tw-right-1 tw-p-1 tw-z-10"
+				:class="{ 'image-upload-icon--circle': isCircle }"
 				type="button"
 				aria-label="Remove Image"
 				@click.stop="removeImage"
@@ -79,14 +81,6 @@
 					class="tw-w-2"
 				/>
 			</button>
-		</div>
-
-		<div
-			v-if="localErrorMessage"
-			class="error-message tw-text-danger-highlight tw-mt-1 tw-text-small"
-			role="alert"
-		>
-			{{ localErrorMessage }}
 		</div>
 	</div>
 </template>
@@ -181,13 +175,6 @@ export default {
 			type: String,
 			default: 'Image preview',
 		},
-		/**
-		 * Externally-driven error message to display.
-		 */
-		errorMessage: {
-			type: String,
-			default: '',
-		},
 	},
 	emits: [
 		/**
@@ -204,25 +191,17 @@ export default {
 		'file-error',
 	],
 	setup(props, { emit }) {
-		const {
-			imageUrl,
-			errorMessage,
-		} = toRefs(props);
+		const { imageUrl } = toRefs(props);
 
 		const previewImage = ref<string>(imageUrl.value || '');
-		const localErrorMessage = ref<string>('');
 		const fileInput = ref<HTMLInputElement | null>(null);
 
 		watch(imageUrl, (newValue) => {
 			previewImage.value = newValue || '';
-			localErrorMessage.value = '';
 		});
 
-		watch(errorMessage, (newValue) => {
-			localErrorMessage.value = newValue;
-		});
-
-		const shapeClass = computed(() => (props.shape === 'circle' ? 'tw-rounded-full' : 'tw-rounded'));
+		const isCircle = computed(() => props.shape === 'circle');
+		const shapeClass = computed(() => (isCircle.value ? 'tw-rounded-full' : 'tw-rounded'));
 		const acceptAttr = computed(() => (props.acceptedFileTypes as string[]).join(','));
 		const inputLabel = computed(() => (previewImage.value ? 'Change image' : 'Upload image'));
 		const containerStyle = computed(() => ({
@@ -237,7 +216,6 @@ export default {
 
 		const removeImage = () => {
 			previewImage.value = '';
-			localErrorMessage.value = '';
 			emit('file-removed');
 		};
 
@@ -247,7 +225,6 @@ export default {
 				acceptedFileTypes: props.acceptedFileTypes as string[],
 			});
 			if (!valid && error) {
-				localErrorMessage.value = error.message;
 				emit('file-error', error);
 				return;
 			}
@@ -256,11 +233,9 @@ export default {
 					aspectRatio: props.aspectRatio,
 					maxDimension: props.maxDimension,
 				});
-				localErrorMessage.value = '';
 				emit('file-uploaded', { file });
 			} catch {
 				const message = 'Failed to read file';
-				localErrorMessage.value = message;
 				emit('file-error', { type: 'other', message });
 			}
 		};
@@ -281,11 +256,11 @@ export default {
 			mdiCameraPlusOutline,
 			fileInput,
 			previewImage,
+			isCircle,
 			shapeClass,
 			acceptAttr,
 			inputLabel,
 			containerStyle,
-			localErrorMessage,
 			openFileInput,
 			removeImage,
 			handleFileChange,
@@ -299,5 +274,10 @@ export default {
 	background-color: rgba(255, 255, 255, 0.75);
 	border-radius: 9px;
 	@apply tw-rounded-sm tw-flex tw-justify-center tw-items-center;
+}
+
+/* Circle variant: opaque white background with a small drop shadow. */
+.image-upload-icon--circle {
+	@apply tw-bg-white tw-shadow;
 }
 </style>
