@@ -98,3 +98,131 @@ export function getKivaImageUrl({
 
 	return `${base}${w}${h}${s}${fz}/${hash}.${format}`;
 }
+
+export const DEFAULT_ACCEPTED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+
+export interface ImageFileValidationOptions {
+	maxSizeMb?: number;
+	acceptedFileTypes?: string[];
+}
+
+export interface ImageFileValidationError {
+	type: 'size' | 'format';
+	message: string;
+}
+
+export interface ImageFileValidationResult {
+	valid: boolean;
+	error?: ImageFileValidationError;
+}
+
+/**
+ * Validates an image File against a maximum size and an allow-list of MIME types.
+ *
+ * @param file The file to validate
+ * @param options.maxSizeMb Maximum allowed size in megabytes (default 1)
+ * @param options.acceptedFileTypes Allowed MIME types (default png/jpeg/jpg/gif)
+ * @returns `{ valid: true }` or `{ valid: false, error: { type, message } }`
+ */
+export function validateImageFile(
+	file: File,
+	{
+		maxSizeMb = 1,
+		acceptedFileTypes = DEFAULT_ACCEPTED_IMAGE_TYPES,
+	}: ImageFileValidationOptions = {},
+): ImageFileValidationResult {
+	if (file.size > maxSizeMb * 1024 * 1024) {
+		return {
+			valid: false,
+			error: { type: 'size', message: `File size must be less than ${maxSizeMb}MB` },
+		};
+	}
+	if (!acceptedFileTypes.includes(file.type)) {
+		return {
+			valid: false,
+			error: { type: 'format', message: 'File format not supported' },
+		};
+	}
+	return { valid: true };
+}
+
+export interface CropResizeOptions {
+	aspectRatio?: number;
+	maxDimension?: number;
+}
+
+/**
+ * Reads an image File, center-crops it to the target aspect ratio, and resizes it onto a
+ * canvas, returning the result as a data URL. Used to generate a preview thumbnail.
+ *
+ * @param file The image file
+ * @param options.aspectRatio Target width / height (default 1 = square)
+ * @param options.maxDimension Drives the canvas output resolution (default 1000); the output
+ *   canvas is `2 * maxDimension` px wide (e.g. default 1000 → 2000px) for crisp HiDPI previews
+ * @returns A Promise resolving to a data URL string
+ */
+export function cropResizeImageToDataUrl(
+	file: File,
+	{ aspectRatio = 1, maxDimension = 1000 }: CropResizeOptions = {},
+): Promise<string> {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+
+		reader.onerror = () => reject(new Error('Failed to read file'));
+
+		reader.onload = () => {
+			const img = new Image();
+
+			img.onerror = () => reject(new Error('Failed to read file'));
+
+			img.onload = () => {
+				const imageAspectRatio = img.naturalWidth / img.naturalHeight;
+
+				let sourceX = 0;
+				let sourceY = 0;
+				let sourceWidth = img.naturalWidth;
+				let sourceHeight = img.naturalHeight;
+
+				if (imageAspectRatio > aspectRatio) {
+					// Wider than target: crop horizontally, centered
+					sourceWidth = img.naturalHeight * aspectRatio;
+					sourceX = (img.naturalWidth - sourceWidth) / 2;
+				} else if (imageAspectRatio < aspectRatio) {
+					// Taller than target: crop vertically, centered
+					sourceHeight = img.naturalWidth / aspectRatio;
+					sourceY = (img.naturalHeight - sourceHeight) / 2;
+				}
+
+				const canvas = document.createElement('canvas');
+				// 2x output for crisp HiDPI/retina previews (mirrors the original ImageUpload behavior)
+				canvas.width = maxDimension * 2;
+				canvas.height = canvas.width / aspectRatio;
+
+				const ctx = canvas.getContext('2d');
+				if (!ctx) {
+					reject(new Error('Failed to process image'));
+					return;
+				}
+
+				ctx.drawImage(
+					img,
+					sourceX,
+					sourceY,
+					sourceWidth,
+					sourceHeight,
+					0,
+					0,
+					canvas.width,
+					canvas.height,
+				);
+
+				// Canvas can't encode GIF, so GIF previews resolve as PNG. Cosmetic only — the original File is what callers emit/upload.
+				resolve(canvas.toDataURL(file.type));
+			};
+
+			img.src = reader.result as string;
+		};
+
+		reader.readAsDataURL(file);
+	});
+}
