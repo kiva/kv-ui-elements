@@ -7,7 +7,7 @@ export default {
 
 const activity = {
 	lenderName: 'Stephanie',
-	lenderImage: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	lenderImage: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	text: 'Stephanie lent $25',
 };
 

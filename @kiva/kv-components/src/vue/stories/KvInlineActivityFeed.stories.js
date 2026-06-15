@@ -6,7 +6,7 @@ const activities = [
 			id: 723174,
 			name: 'TonyB',
 			image: {
-				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
+				url: 'https://www.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
 		amountLent: '25.00',
@@ -26,7 +26,7 @@ const activities = [
 			id: 723174,
 			name: 'Anonymous',
 			image: {
-				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
+				url: 'https://www.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
 		amountLent: '25.00',
@@ -36,7 +36,7 @@ const activities = [
 			id: 723174,
 			name: 'Default user',
 			image: {
-				url: 'https://www-0.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
+				url: 'https://www.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 			},
 		},
 		amountLent: '25.00',
@@ -46,7 +46,7 @@ const activities = [
 			id: 723174,
 			name: 'Jessica',
 			image: {
-				url: 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
+				url: 'https://www.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg',
 			},
 		},
 		amountLent: '25.00',

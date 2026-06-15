@@ -24,7 +24,7 @@ export const Default = story({
 	activity: {
 		lender: {
 			image: {
-				url: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+				url: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 			},
 			name: 'Roger',
 		},
@@ -48,7 +48,7 @@ export const Anonymous = story({
 	activity: {
 		lender: {
 			image: {
-				url: 'https://www.development.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+				url: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 			},
 			name: 'Anonymous',
 		},
@@ -60,7 +60,7 @@ export const DefaultProfile = story({
 	activity: {
 		lender: {
 			image: {
-				url: 'https://www.development.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
+				url: 'https://www.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 			},
 			name: 'Default Profile',
 		},
