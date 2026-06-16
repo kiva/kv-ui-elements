@@ -84,9 +84,8 @@
 				data-testid="header-login"
 				@click="onLoginClick"
 			>Log in</a>
-			<!-- basket (logged-in, when items present): count panel + label at md+, bag icon on mobile -->
+			<!-- basket (when items present, logged in or out): count panel + label at md+, bag icon on mobile -->
 			<a
-				v-if="loggedIn"
 				v-show="basketCount > 0 || isBasketDataLoading"
 				href="/basket"
 				class="header-link tw-flex tw-items-center"
@@ -128,6 +127,7 @@
 			<div
 				v-if="loggedIn"
 				ref="avatarMenu"
+				data-testid="header-avatar-menu"
 				class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
 				@mouseenter="
 					handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
@@ -268,6 +268,33 @@ export default {
 		const lendOpenItem = computed(() => (props.openMenuItem === KvLendMenu ? props.openMenuItem : null));
 		const aboutOpenItem = computed(() => (props.openMenuItem === AboutMenu ? props.openMenuItem : null));
 
+		// One TopNav analytics event per menu, mirroring KvWwwHeader/KvHeaderLinkBar's menuTrackingMap.
+		// Fired on the open transition (hover or tap) of each dropdown/drawer. Keys are the item ids
+		// emitted by KvHeaderDropdownLink (its ref-name) and the hamburger/avatar handlers. The Lend
+		// entry reproduces the legacy host's onLendMenuShow event ('hover-Lend-menu', 'Lend').
+		const menuOpenTracking: Record<string, { action: string; label: string }> = {
+			menuButton: { action: 'hover-Mobile-menu', label: 'Mobile' },
+			lendButton: { action: 'hover-Lend-menu', label: 'Lend' },
+			aboutLink: { action: 'hover-About-menu', label: 'About' },
+			avatarMenu: { action: 'hover-User-menu', label: 'User' },
+		};
+
+		// Close-side counterpart. Only the mobile drawer tracks an explicit close today; the hover
+		// dropdowns close implicitly on mouseleave and have no close event in the legacy header.
+		const menuCloseTracking: Record<string, { action: string; label: string }> = {
+			menuButton: { action: 'close-Mobile-menu', label: 'Mobile' },
+		};
+
+		function trackMenuOpen(item: string): void {
+			const tracking = menuOpenTracking[item];
+			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
+		}
+
+		function trackMenuClose(item: string): void {
+			const tracking = menuCloseTracking[item];
+			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
+		}
+
 		function handleOnHover(
 			item: string,
 			menu: unknown,
@@ -276,6 +303,8 @@ export default {
 		): void {
 			// Touch devices open via tap (handleTouchStart) rather than hover.
 			if (navigator.maxTouchPoints) return;
+			// Track only the open transition so re-entering an already-open menu doesn't re-fire.
+			if (openItem.value !== item) trackMenuOpen(item);
 			openItem.value = item;
 			emit('item-hover', item, menu, position, triggerCenterX);
 		}
@@ -283,6 +312,7 @@ export default {
 		function handleMouseOut(item: string): void {
 			if (navigator.maxTouchPoints) return;
 			if (openItem.value === item) {
+				trackMenuClose(item);
 				openItem.value = null;
 				emit('item-hover');
 			}
@@ -295,9 +325,11 @@ export default {
 			triggerCenterX: number | null = null,
 		): void {
 			if (openItem.value === item) {
+				trackMenuClose(item);
 				openItem.value = null;
 				emit('item-hover');
 			} else {
+				trackMenuOpen(item);
 				openItem.value = item;
 				emit('item-hover', item, menu, position, triggerCenterX);
 			}
