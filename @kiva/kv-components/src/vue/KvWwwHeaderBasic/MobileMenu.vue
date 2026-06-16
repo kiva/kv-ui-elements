@@ -6,6 +6,7 @@
 		<kv-accordion-item
 			id="kv-www-header-basic-about"
 			class="tw-w-full tw-border-b-0"
+			@toggle="onAboutToggle"
 		>
 			<template #header>
 				<span class="tw-text-button tw-pb-0.5">
@@ -75,12 +76,18 @@ export default {
 			emit('closing-menu');
 		}
 
+		// Track only the expand (not collapse), mirroring the desktop About dropdown's hover-About-menu
+		// event so "About opened" is captured consistently across viewports.
+		function onAboutToggle({ open }: { open: boolean }): void {
+			if (open) $kvTrackEvent('TopNav', 'hover-About-menu', 'About');
+		}
+
 		function onLinkClick(action: string): void {
 			$kvTrackEvent('TopNav', action);
 			emit('closing-menu');
 		}
 
-		return { onClose, onLinkClick };
+		return { onClose, onAboutToggle, onLinkClick };
 	},
 };
 </script>

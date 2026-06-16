@@ -24,4 +24,14 @@ describe('MobileMenu', () => {
 		await fireEvent.click(getByText('Borrow'));
 		expect(emitted()['closing-menu']).toBeTruthy();
 	});
+
+	it('tracks an event when the About expandable is opened (but not when collapsed again)', async () => {
+		const track = jest.fn();
+		const { getByRole } = render(MobileMenu, { global: { provide: { $kvTrackEvent: track } } });
+		const aboutToggle = getByRole('button', { name: 'About' });
+		await fireEvent.click(aboutToggle); // expand
+		expect(track).toHaveBeenCalledWith('TopNav', 'hover-About-menu', 'About');
+		await fireEvent.click(aboutToggle); // collapse — no second event
+		expect(track).toHaveBeenCalledTimes(1);
+	});
 });
