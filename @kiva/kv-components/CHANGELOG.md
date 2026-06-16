@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.18.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.0...@kiva/kv-components@8.18.1) (2026-06-16)
+
+
+### Bug Fixes
+
+* ensure basket when not logged in, add hover and interaction events to KvWwwHeaderBasic ([cf6317e](https://github.com/kiva/kv-ui-elements/commit/cf6317e0be9f923fcff92604d0d5d65e801dd5da))
+
+
+
+
+
 # [8.18.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.17.1...@kiva/kv-components@8.18.0) (2026-06-12)
 
 
