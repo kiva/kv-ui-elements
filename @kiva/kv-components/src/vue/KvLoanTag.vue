@@ -19,7 +19,7 @@
 					:key="org.managedAccountId"
 					class="tw-m-0"
 				>
-					{{ org.ratio + 1 }}x matching by {{ org.displayName || 'a Kiva supporter' }}
+					{{ org.ratio + 1 }}x matching by {{ orgDisplayName(org) }}
 				</p>
 			</kv-tooltip>
 		</template>
@@ -135,7 +135,7 @@ export default {
 					if (this.enableMultiMatching && this.multiMatchingOrgs.length === 1) {
 						const org = this.multiMatchingOrgs[0];
 						// eslint-disable-next-line max-len
-						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${org.displayName || 'a Kiva supporter'}`;
+						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${this.orgDisplayName(org)}`;
 					}
 					// eslint-disable-next-line max-len
 					return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
@@ -155,6 +155,11 @@ export default {
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;
+		},
+	},
+	methods: {
+		orgDisplayName(org: { displayName?: string | null }) {
+			return org.displayName && org.displayName !== 'Anonymous' ? org.displayName : 'a Kiva supporter';
 		},
 	},
 };
