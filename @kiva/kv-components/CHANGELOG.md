@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.18.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.1...@kiva/kv-components@8.18.2) (2026-06-17)
+
+
+### Bug Fixes
+
+* display a kiva supporter when display name is Anonymous for contributin partner ([8aa3b65](https://github.com/kiva/kv-ui-elements/commit/8aa3b65a76b32cdf0137e0b83ef7bda6af801b3b))
+
+
+
+
+
 ## [8.18.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.0...@kiva/kv-components@8.18.1) (2026-06-16)
 
 
