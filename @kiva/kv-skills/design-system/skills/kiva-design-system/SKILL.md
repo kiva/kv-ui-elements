@@ -1,6 +1,6 @@
 ---
 name: kiva-design-system
-description: Index and router for the Kiva design-system sub-skills — typography, layout, spacing, radius, color, and color-themes. Entry point for any task touching Kiva's visual language — auditing existing code for design-system compliance, generating new UI with correct tokens and Tailwind utilities, answering design-token questions, or performing a Figma-to-code handoff. Routes to the relevant sub-skill(s); load only what the task requires, never all at once.
+description: Index and router for the Kiva design-system sub-skills — typography, layout, spacing, radius, border, elevation, color, and color-themes. Entry point for any task touching Kiva's visual language — auditing existing code for design-system compliance, generating new UI with correct tokens and Tailwind utilities, answering design-token questions, or performing a Figma-to-code handoff. Routes to the relevant sub-skill(s); load only what the task requires, never all at once.
 when_to_use: Invoke when — auditing a component, page, or PR for design-system compliance (wrong token, missing class, incorrect radius, hardcoded color); generating new Vue/HTML/Tailwind code and needing the correct token name, utility class, or component pattern for color, type, spacing, radius, or layout; answering which-token questions (e.g. "right text color for a disabled button in the Marigold theme?"); or handing a Figma design off to code (mapping Figma token and theme names to @kiva/kv-tokens utilities). Trigger phrases — "design system", "kiva token", "tw- class", "which token", "audit", "design compliance", "Figma handoff", "color theme", "type style", "spacing token", "border radius", "layout grid", "breakpoint".
 ---
 
@@ -16,7 +16,7 @@ This file is the **entry point and router** for the Kiva design system knowledge
 
 ## Sub-skills
 
-Load only the sub-skill(s) relevant to the current task. Do not load all six unless the task genuinely spans all categories.
+Load only the sub-skill(s) relevant to the current task. Do not load all of them unless the task genuinely spans all categories.
 
 | Sub-skill | File | What it covers |
 |---|---|---|
@@ -26,6 +26,8 @@ Load only the sub-skill(s) relevant to the current task. Do not load all six unl
 | **layout** | [layout.md](layout.md) | Breakpoint tiers (XS/SM/MD/LG/XL), column/gutter/margin specs, content max-width rules, nested grids, and rules for aligning content on the grid. |
 | **spacing** | [spacing.md](spacing.md) | Semantic spacing categories (Structure, Component Gap, Component Inset, Micro), the 4px-grain ramp, responsive per-tier values, and the "between vs. inside" decision for picking a token. |
 | **radius** | [radius.md](radius.md) | Border-radius token scale (`none` → `full`), per-component use cases, the `inner = outer − gap` concentric formula, and the `tw-rounded` = 16px gotcha. |
+| **border** | [border.md](border.md) | Border stroke-weight scale (1px resting → 2px emphasis → dashed → none), the weight-as-signal model, width + color pairing for states, per-component usage recommendations, and `tw-border-*` mappings. |
+| **elevation** | [elevation.md](elevation.md) | Interaction-state shadow tokens (`elevation/default` / `hover` / `click-active`), their exact shadow values, the rest → lift → settle flow, Do/Don't rules, and `tw-shadow-*` mappings. Elevation = interaction state, not depth. |
 
 ---
 
@@ -35,13 +37,15 @@ Load only the sub-skill(s) relevant to the current task. Do not load all six unl
 
 | Task | Load these sub-skills |
 |---|---|
-| Audit component for design compliance | color + typography + spacing + radius (the four most commonly violated) |
+| Audit component for design compliance | color + typography + spacing + radius (the four most commonly violated); add border when the component has strokes/states |
 | Audit layout / responsive breakpoints | layout |
 | Generate a new component | Load the sub-skills that match the component's visual categories (color + typography is almost always needed; add spacing, radius, layout as the component requires) |
 | Answer a token question about color | color (+ color-themes if a specific theme's values are needed) |
 | Answer a token question about type | typography |
 | Answer a token question about space | spacing |
 | Answer a token question about corners | radius |
+| Answer a token question about borders / strokes | border (+ color for the border-color slot) |
+| Answer a token question about shadows / elevation | elevation |
 | Answer a question about the grid / breakpoints | layout |
 | Figma-to-code handoff involving color | color + color-themes |
 | Figma-to-code handoff involving a full component | All sub-skills that the component's design touches |
@@ -52,6 +56,8 @@ Load only the sub-skill(s) relevant to the current task. Do not load all six unl
 - **"font", "heading", "type style", "text size", "tw-text-"** → typography
 - **"spacing", "padding", "gap", "margin between"** → spacing
 - **"radius", "rounded", "corner"** → radius
+- **"border", "stroke", "outline", "border width", "tw-border-"** → border (+ color for the border-color slot)
+- **"elevation", "shadow", "drop shadow", "box-shadow", "tw-shadow-", "hover lift"** → elevation
 - **"grid", "column", "breakpoint", "responsive", "layout"** → layout
 
 ---
