@@ -93,12 +93,13 @@ describe('Default Button', () => {
 	it('renders the default size by default', () => {
 		const { getByText } = renderTestButton();
 		const innerEl = getByText('Test Button');
-		// horizontal padding lives on the inner label span, no vertical padding
+		// padding lives on the inner label span
 		expect(innerEl).toHaveClass('tw-px-3');
+		expect(innerEl).toHaveClass('tw-py-1');
 		expect(innerEl).not.toHaveClass('tw-px-2');
-		expect(innerEl).not.toHaveClass('tw-py-1');
-		// default uses the button-link text style
-		expect(innerEl).toHaveClass('tw-text-button-link');
+		expect(innerEl).not.toHaveClass('tw-py-0.5');
+		// default sets no explicit text style — it inherits
+		expect(innerEl).not.toHaveClass('tw-text-button-link');
 		expect(innerEl).not.toHaveClass('tw-text-label');
 		// min-height and corner radius live on the outer span wrapper
 		expect(innerEl.parentElement).toHaveClass('tw-min-h-6');
@@ -117,8 +118,9 @@ describe('Default Button', () => {
 	it('renders the small size (32px tall, 16px horizontal padding, smaller radius) when size is "small"', () => {
 		const { getByText } = renderTestButton({ props: { size: 'small' } });
 		const innerEl = getByText('Test Button');
-		// 16px horizontal padding, no vertical padding
+		// 16px horizontal padding, smaller vertical padding
 		expect(innerEl).toHaveClass('tw-px-2');
+		expect(innerEl).toHaveClass('tw-py-0.5');
 		expect(innerEl).not.toHaveClass('tw-px-3');
 		expect(innerEl).not.toHaveClass('tw-py-1');
 		// small uses the label text style

@@ -103,12 +103,12 @@ export default {
 		 * `default, small`
 		 *
 		 * `default` renders a 48px tall button (`tw-min-h-6`) with 24px of
-		 * horizontal padding (`tw-px-3`), a 16px corner radius (`tw-rounded`),
-		 * and the button-link text style (`tw-text-button-link`). `small`
-		 * renders a 32px tall button (`tw-min-h-4`) with 16px of horizontal
-		 * padding (`tw-px-2`), a smaller 8px corner radius (`tw-rounded-sm`),
-		 * and the label text style (`tw-text-label`). Height is controlled by
-		 * the min-height and vertical centering rather than vertical padding.
+		 * horizontal and vertical padding (`tw-py-1 tw-px-3`), a 16px corner
+		 * radius (`tw-rounded`), and inherits the surrounding text style.
+		 * `small` renders a 32px tall button (`tw-min-h-4`) with 16px of
+		 * horizontal padding and smaller vertical padding (`tw-py-0.5 tw-px-2`),
+		 * a smaller 8px corner radius (`tw-rounded-sm`), and the label text
+		 * style (`tw-text-label`).
 		 */
 		size: {
 			type: String,
