@@ -1,0 +1,205 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvButtonStories from './KvButton.stories.js';
+
+<Meta title="Forms/KvButton" component={KvButtonStories.Component} />
+
+# KvButton
+
+An accessible, themeable button for triggering actions and navigation, available in multiple visual variants and two sizes.
+
+## Component Overview
+
+KvButton is the primary call-to-action element across Kiva's interfaces. It renders as a `<button>`, an `<a>`, or a `router-link` depending on the props provided, and supports a range of visual variants, interaction states, and two sizes (`default` and `small`).
+
+<Story of={KvButtonStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+KvButton supports six visual variants — `primary`, `secondary`, `link`, `danger`, `ghost`, and `caution` — each available in the `default` (48px tall) and `small` (32px tall) sizes.
+
+<Story of={KvButtonStories.AllVariations} />
+
+## Usage Information
+
+Use KvButton for the primary and secondary actions in a view, such as submitting a form, advancing a flow, or navigating to a key destination. Choose the variant that matches the action's emphasis, and the size that fits the surrounding density.
+
+### When to Use
+
+- For primary and secondary actions that need clear emphasis
+- To submit forms or trigger an in-page action
+- For prominent navigation links styled as buttons
+- When you need a compact action (`small`) inside dense UI such as cards, table rows, or toolbars
+
+### When Not to Use
+
+- For icon-only actions — use `KvIconButton` instead
+- For inline, text-style links within body copy — use `KvTextLink`
+- For low-emphasis, tertiary actions where a full button would be visually heavy
+
+---
+
+## Behavior
+
+KvButton communicates interaction through its `state` prop and adapts its footprint through its `size` prop.
+
+### Button States
+
+The `state` prop controls the button's appearance and interactivity: the default empty state, `active`, `disabled`, and `loading`. In the `loading` state the label is hidden, a spinner is shown, and the button is non-interactive.
+
+<Story of={KvButtonStories.StateLoading} />
+
+### Button Sizes
+
+The `size` prop offers two options. `default` renders the original 48px-tall button with 24px of horizontal padding, a 16px corner radius, and the button-link text style (`tw-min-h-6` / `tw-px-3` / `tw-rounded` / `tw-text-button-link`). `small` renders a 32px-tall button with 16px of horizontal padding, a smaller 8px corner radius, and the label text style (`tw-min-h-4` / `tw-px-2` / `tw-rounded-sm` / `tw-text-label`), for use in denser layouts. Height comes from the min-height and vertical centering, so the two sizes stay pixel-accurate without vertical padding.
+
+<Story of={KvButtonStories.ButtonSizes} />
+
+### With Icons
+
+A `KvMaterialIcon` can be rendered alongside the label for both sizes. Wrap the label and icon in a flex container (`tw-inline-flex tw-items-center tw-gap-1`) to keep them aligned and evenly spaced, and size the icon with width/height utilities (e.g. `tw-w-2.5 tw-h-2.5`).
+
+<Story of={KvButtonStories.WithIcons} />
+
+## Anatomy
+
+KvButton is composed of the following parts:
+
+- **Button container**: The rendered element (`button`, `a`, or `router-link`) that handles clicks and focus
+- **Inner label wrapper**: A bordered, rounded span that controls height, background, border, and centering
+- **Label**: The default slot content (text and/or inline elements)
+- **Loading spinner**: Shown in place of the label when `state` is `loading`
+- **Ripple**: A pointer/keyboard-triggered animation that provides click feedback
+
+---
+
+## Specs
+
+### Dimensions
+
+KvButton ships in two sizes. The `default` size is 48px tall with 24px of horizontal padding, a 16px corner radius (`tw-rounded`), and the button-link text style (`tw-text-button-link`); the `small` size is 32px tall with 16px of horizontal padding, a smaller 8px corner radius (`tw-rounded-sm`), and the label text style (`tw-text-label`). Both sizes are available across every variant.
+
+<Story of={KvButtonStories.AllVariations} />
+
+### Spacing
+
+- Horizontal padding is driven by the `size` prop (`tw-px-3` for `default`, `tw-px-2` for `small`); avoid overriding it manually
+- Maintain consistent spacing between adjacent buttons (at least 8px) so touch targets don't overlap
+- Buttons stretch to fill their container when given a full-width utility class (e.g. `tw-w-full`)
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvButton/do-use-size-prop.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use the <code>size</code> prop to switch between the default and small button heights so dimensions stay consistent with the design system.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvButton/dont-override-dimensions.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Manually override the height or horizontal padding with custom classes to fake a different size.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvButton/do-match-variant-to-emphasis.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Match the variant to the action's emphasis — one primary button per view, with secondary actions in lower-emphasis variants.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvButton/dont-stack-primaries.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Place multiple competing primary buttons next to each other, which dilutes the call to action.</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Size icons to match the button — use <code>tw-w-2 tw-h-2</code> (16px) in <code>small</code> buttons and <code>tw-w-2.5 tw-h-2.5</code> (20px) in default buttons. For large buttons you may step up to <code>tw-w-3 tw-h-3</code> (24px) when it looks good.</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Reuse the 20px default icon size inside a small button, which makes the icon look oversized next to the smaller label.</p>
+	</div>
+</div>
+
+---
+
+## Accessibility
+
+- Renders semantic, focusable elements (`button`, `a`, or `router-link`) with appropriate keyboard support (Enter and Space)
+- The `disabled` and `loading` states set the native `disabled` attribute and disable pointer events so the control cannot be activated
+- Provide a clear, descriptive label via the default slot so the accessible name communicates the action
+- Color variants meet WCAG contrast requirements within the supported themes
+- The ripple animation respects `prefers-reduced-motion` and is suppressed for users who request reduced motion
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvButtonStories.Default} />
+<Controls of={KvButtonStories.Default} />
+
+---
+
+## Code Examples
+
+### Default Button
+
+```vue
+<kv-button variant="primary" @click="onSubmit">
+  Find a borrower
+</kv-button>
+```
+
+### Small Button
+
+```vue
+<kv-button variant="secondary" size="small" @click="onFilter">
+  Filter
+</kv-button>
+```
+
+### Button as a Link
+
+```vue
+<kv-button variant="primary" to="/lend">
+  Start lending
+</kv-button>
+```
+
+### Button with an Icon
+
+```vue
+<kv-button variant="primary" @click="onShare">
+  <span class="tw-inline-flex tw-items-center tw-gap-1">
+    Share
+    <kv-material-icon :icon="mdiExportVariant" class="tw-w-2.5 tw-h-2.5" />
+  </span>
+</kv-button>
+```

@@ -15,9 +15,9 @@
 		<!-- eslint-disable max-len -->
 		<span
 			ref="buttonInnerRef"
-			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-rounded
-				tw-min-h-6 tw-relative tw-overflow-hidden tw-border tw-font-medium tw-text-center"
-			:class="computedClass"
+			class="tw-inline-flex tw-w-full tw-justify-center tw-items-center
+				tw-relative tw-overflow-hidden tw-border tw-font-medium tw-text-center"
+			:class="[computedClass, heightClass, roundedClass]"
 		>
 			<!-- eslint-enable max-len -->
 			<template v-if="state === 'loading'">
@@ -27,8 +27,8 @@
 				/>
 			</template>
 			<span
-				class="tw-py-1 tw-px-3 tw-z-10"
-				:class="{ 'tw-invisible': state === 'loading' }"
+				class="tw-z-10"
+				:class="[paddingClass, textClass, { 'tw-invisible': state === 'loading' }]"
 			>
 				<slot></slot>
 			</span>
@@ -98,6 +98,25 @@ export default {
 				return ['', 'active', 'disabled', 'loading'].includes(value);
 			},
 		},
+		/**
+		 * Size of the button
+		 * `default, small`
+		 *
+		 * `default` renders a 48px tall button (`tw-min-h-6`) with 24px of
+		 * horizontal and vertical padding (`tw-py-1 tw-px-3`), a 16px corner
+		 * radius (`tw-rounded`), and inherits the surrounding text style.
+		 * `small` renders a 32px tall button (`tw-min-h-4`) with 16px of
+		 * horizontal padding and smaller vertical padding (`tw-py-0.5 tw-px-2`),
+		 * a smaller 8px corner radius (`tw-rounded-sm`), and the label text
+		 * style (`tw-text-label`).
+		 */
+		size: {
+			type: String,
+			default: 'default',
+			validator(value: string) {
+				return ['default', 'small'].includes(value);
+			},
+		},
 	},
 	emits: [
 		'click',
@@ -109,7 +128,15 @@ export default {
 			type,
 			variant,
 			state,
+			size,
 		} = toRefs(props);
+
+		// `default` keeps the original 48px height / 24px horizontal padding / 16px radius,
+		// `small` renders a 32px tall button with 16px horizontal padding and an 8px radius.
+		const heightClass = computed(() => (size.value === 'small' ? 'tw-min-h-4' : 'tw-min-h-6'));
+		const paddingClass = computed(() => (size.value === 'small' ? 'tw-py-0.5 tw-px-2' : 'tw-py-1 tw-px-3'));
+		const roundedClass = computed(() => (size.value === 'small' ? 'tw-rounded-sm' : 'tw-rounded'));
+		const textClass = computed(() => (size.value === 'small' ? 'tw-text-label' : ''));
 
 		const loadingColor = computed(() => {
 			switch (variant.value) {
@@ -278,10 +305,14 @@ export default {
 			buttonInnerRef,
 			computedClass,
 			computedType,
+			heightClass,
 			isDisabled,
 			loadingColor,
 			onClick,
+			paddingClass,
+			roundedClass,
 			tag,
+			textClass,
 		};
 	},
 };
