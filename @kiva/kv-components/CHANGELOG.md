@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.2...@kiva/kv-components@8.19.0) (2026-06-25)
+
+
+### Bug Fixes
+
+* update KvButton icon sizing guidelines and examples ([e083a21](https://github.com/kiva/kv-ui-elements/commit/e083a21ecca1b15f7e4eaee8e4275adbee09b2a9))
+
+
+### Features
+
+* **kv-components:** add size prop to KvButton ([dd51c41](https://github.com/kiva/kv-ui-elements/commit/dd51c4192e7bd8ddaffd21865a70d8c7d0ef5c75))
+
+
+
+
+
 ## [8.18.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.1...@kiva/kv-components@8.18.2) (2026-06-17)
 
 
