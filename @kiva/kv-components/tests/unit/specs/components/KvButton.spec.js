@@ -89,4 +89,52 @@ describe('Default Button', () => {
 		const results = await axe(container);
 		expect(results).toHaveNoViolations();
 	});
+
+	it('renders the default size by default', () => {
+		const { getByText } = renderTestButton();
+		const innerEl = getByText('Test Button');
+		// horizontal padding lives on the inner label span, no vertical padding
+		expect(innerEl).toHaveClass('tw-px-3');
+		expect(innerEl).not.toHaveClass('tw-px-2');
+		expect(innerEl).not.toHaveClass('tw-py-1');
+		// default uses the button-link text style
+		expect(innerEl).toHaveClass('tw-text-button-link');
+		expect(innerEl).not.toHaveClass('tw-text-label');
+		// min-height and corner radius live on the outer span wrapper
+		expect(innerEl.parentElement).toHaveClass('tw-min-h-6');
+		expect(innerEl.parentElement).not.toHaveClass('tw-min-h-4');
+		expect(innerEl.parentElement).toHaveClass('tw-rounded');
+		expect(innerEl.parentElement).not.toHaveClass('tw-rounded-sm');
+	});
+
+	it('renders the default size when size is explicitly "default"', () => {
+		const { getByText } = renderTestButton({ props: { size: 'default' } });
+		const innerEl = getByText('Test Button');
+		expect(innerEl).toHaveClass('tw-px-3');
+		expect(innerEl.parentElement).toHaveClass('tw-min-h-6');
+	});
+
+	it('renders the small size (32px tall, 16px horizontal padding, smaller radius) when size is "small"', () => {
+		const { getByText } = renderTestButton({ props: { size: 'small' } });
+		const innerEl = getByText('Test Button');
+		// 16px horizontal padding, no vertical padding
+		expect(innerEl).toHaveClass('tw-px-2');
+		expect(innerEl).not.toHaveClass('tw-px-3');
+		expect(innerEl).not.toHaveClass('tw-py-1');
+		// small uses the label text style
+		expect(innerEl).toHaveClass('tw-text-label');
+		expect(innerEl).not.toHaveClass('tw-text-button-link');
+		// 32px min-height
+		expect(innerEl.parentElement).toHaveClass('tw-min-h-4');
+		expect(innerEl.parentElement).not.toHaveClass('tw-min-h-6');
+		// smaller corner radius
+		expect(innerEl.parentElement).toHaveClass('tw-rounded-sm');
+		expect(innerEl.parentElement).not.toHaveClass('tw-rounded');
+	});
+
+	it('has no automated accessibility violations in the small size', async () => {
+		const { container } = renderTestButton({ props: { size: 'small' } });
+		const results = await axe(container);
+		expect(results).toHaveNoViolations();
+	});
 });
