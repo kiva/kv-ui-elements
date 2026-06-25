@@ -134,9 +134,9 @@ export default {
 		// `default` keeps the original 48px height / 24px horizontal padding / 16px radius,
 		// `small` renders a 32px tall button with 16px horizontal padding and an 8px radius.
 		const heightClass = computed(() => (size.value === 'small' ? 'tw-min-h-4' : 'tw-min-h-6'));
-		const paddingClass = computed(() => (size.value === 'small' ? 'tw-px-2' : 'tw-px-3'));
+		const paddingClass = computed(() => (size.value === 'small' ? 'tw-py-0.5 tw-px-2' : 'tw-py-1 tw-px-3'));
 		const roundedClass = computed(() => (size.value === 'small' ? 'tw-rounded-sm' : 'tw-rounded'));
-		const textClass = computed(() => (size.value === 'small' ? 'tw-text-label' : 'tw-text-button-link'));
+		const textClass = computed(() => (size.value === 'small' ? 'tw-text-label' : ''));
 
 		const loadingColor = computed(() => {
 			switch (variant.value) {

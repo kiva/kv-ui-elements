@@ -282,7 +282,10 @@ export const WithIcons = {
 						>
 							<span class="tw-inline-flex tw-items-center tw-justify-center tw-gap-1">
 								{{ item.name }}
-								<kv-material-icon :icon="item.icon" class="tw-w-2.5 tw-h-2.5" />
+								<kv-material-icon
+									:icon="item.icon"
+									:class="size === 'small' ? 'tw-w-2 tw-h-2' : 'tw-w-2.5 tw-h-2.5'"
+								/>
 							</span>
 						</kv-button>
 					</div>
