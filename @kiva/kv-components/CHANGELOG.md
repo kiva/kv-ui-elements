@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.0...@kiva/kv-components@8.19.1) (2026-06-26)
+
+
+### Bug Fixes
+
+* matching calculation on loan tag matching line for simultaneous matching ([b2b1cb4](https://github.com/kiva/kv-ui-elements/commit/b2b1cb4f00cb07ee1e86333503b7e689cf2af639))
+
+
+
+
+
 # [8.19.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.18.2...@kiva/kv-components@8.19.0) (2026-06-25)
 
 
