@@ -64,6 +64,39 @@ export const MultiMatching = story({
 	enableMultiMatching: true,
 });
 
+// 3 organizations each with a match ratio of 1 => "4x match by 3 organizations"
+// (1 base match + 1 + 1 + 1). The tooltip shows "2x matching by ..." per organization.
+export const MultiMatching3Orgs = story({
+	loan: {
+		id: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		simultaneousMatching: [
+			{ managedAccountId: 1, ratio: 1, displayName: 'PG&E' },
+			{ managedAccountId: 2, ratio: 1, displayName: 'US Bank' },
+			{ managedAccountId: 3, ratio: 1, displayName: 'Bank Of America' },
+		],
+	},
+	enableMultiMatching: true,
+});
+
+// Organizations with match ratios above 1 => "5x match by 2 organizations"
+// (1 base match + 2 + 2). The tooltip shows "3x matching by ..." per organization.
+export const MultiMatchingHigherRatio = story({
+	loan: {
+		id: 1,
+		plannedExpirationDate: nextWeek.toISOString(),
+		loanAmount: 199,
+		loanFundraisingInfo: { fundedAmount: 0, reservedAmount: 0 },
+		simultaneousMatching: [
+			{ managedAccountId: 1, ratio: 2, displayName: 'PG&E' },
+			{ managedAccountId: 2, ratio: 2, displayName: 'US Bank' },
+		],
+	},
+	enableMultiMatching: true,
+});
+
 export const MultiMatching1Org = story({
 	loan: {
 		id: 1,

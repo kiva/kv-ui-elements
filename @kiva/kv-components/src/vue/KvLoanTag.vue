@@ -111,7 +111,9 @@ export default {
 			return this.enableMultiMatching && this.multiMatchingOrgs.length > 1;
 		},
 		totalMatchRatio() {
-			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.ratio + 1, 0);
+			// Base match of 1x plus each organization's individual match ratio.
+			// e.g. 3 orgs each with ratio 1 => 1 + (1 + 1 + 1) = 4x
+			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.ratio, 1);
 		},
 		variation() {
 			const hasLegacyMatch = !!this.loan?.matchingText;
