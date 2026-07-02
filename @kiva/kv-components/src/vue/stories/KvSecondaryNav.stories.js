@@ -13,12 +13,6 @@ export default {
 				'greenDark',
 				'marigoldLight',
 				'stoneLight',
-				'stoneDark',
-				'mint',
-				'darkGreen',
-				'darkMint',
-				'darkStone',
-				'classicDark',
 			],
 		},
 	},
@@ -100,36 +94,6 @@ MarigoldLight.args = {
 export const StoneLight = Template.bind({});
 StoneLight.args = {
 	theme: 'stoneLight',
-};
-
-export const StoneDark = Template.bind({});
-StoneDark.args = {
-	theme: 'stoneDark',
-};
-
-export const Mint = Template.bind({});
-Mint.args = {
-	theme: 'mint',
-};
-
-export const DarkGreen = Template.bind({});
-DarkGreen.args = {
-	theme: 'darkGreen',
-};
-
-export const DarkMint = Template.bind({});
-DarkMint.args = {
-	theme: 'darkMint',
-};
-
-export const DarkStone = Template.bind({});
-DarkStone.args = {
-	theme: 'darkStone',
-};
-
-export const ClassicDark = Template.bind({});
-ClassicDark.args = {
-	theme: 'classicDark',
 };
 
 export const Centered = Template.bind({});

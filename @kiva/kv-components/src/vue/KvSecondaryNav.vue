@@ -117,12 +117,6 @@ import {
 	greenDarkTheme,
 	marigoldLightTheme,
 	stoneLightTheme,
-	stoneDarkTheme,
-	darkTheme,
-	mintTheme,
-	darkGreenTheme,
-	darkMintTheme,
-	darkStoneTheme,
 } from '@kiva/kv-tokens';
 
 // Components
@@ -193,12 +187,6 @@ export default {
 					'greenDark',
 					'marigoldLight',
 					'stoneLight',
-					'stoneDark',
-					'mint',
-					'darkGreen',
-					'darkMint',
-					'darkStone',
-					'classicDark',
 				].includes(value);
 			},
 		},
@@ -239,12 +227,6 @@ export default {
 			greenDark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
 			marigoldLight: { style: marigoldLightTheme, bgClass: 'tw-bg-secondary' },
 			stoneLight: { style: stoneLightTheme, bgClass: 'tw-bg-secondary' },
-			stoneDark: { style: stoneDarkTheme, bgClass: 'tw-bg-primary' },
-			mint: { style: mintTheme, bgClass: 'tw-bg-secondary' },
-			darkGreen: { style: darkGreenTheme, bgClass: 'tw-bg-primary' },
-			darkMint: { style: darkMintTheme, bgClass: 'tw-bg-primary' },
-			darkStone: { style: darkStoneTheme, bgClass: 'tw-bg-primary' },
-			classicDark: { style: darkTheme, bgClass: 'tw-bg-primary' },
 		};
 		const themeStyle = computed(() => themeConfig[theme.value]?.style);
 		const bgClass = computed(() => themeConfig[theme.value]?.bgClass ?? 'tw-bg-primary');
