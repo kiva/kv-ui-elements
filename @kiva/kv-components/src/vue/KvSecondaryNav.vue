@@ -7,13 +7,13 @@
 			class="
 				tw-z-1 tw-w-full kv-secondary-nav-holder relative
 				tw-text-primary"
-			:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
+			:class="bgClass"
 		>
 			<div
 				class="
 				tw-w-full tw-overflow-x-auto kv-secondary-nav
 				tw-absolute tw-top-0 tw-left-0 tw-right-0"
-				:class="theme === 'default' ? 'tw-bg-secondary' : 'tw-bg-primary'"
+				:class="bgClass"
 			>
 				<kv-page-container>
 					<div
@@ -111,7 +111,19 @@ import {
 } from 'vue';
 
 // Theme
-import { defaultTheme, greenDarkTheme } from '@kiva/kv-tokens';
+import {
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+	stoneDarkTheme,
+	darkTheme,
+	mintTheme,
+	darkGreenTheme,
+	darkMintTheme,
+	darkStoneTheme,
+} from '@kiva/kv-tokens';
 
 // Components
 import { mdiChevronUp, mdiChevronDown } from '@mdi/js';
@@ -174,7 +186,20 @@ export default {
 			type: String,
 			default: 'default',
 			validator(value: string) {
-				return ['default', 'dark'].includes(value);
+				return [
+					'default',
+					'dark',
+					'greenLight',
+					'greenDark',
+					'marigoldLight',
+					'stoneLight',
+					'stoneDark',
+					'mint',
+					'darkGreen',
+					'darkMint',
+					'darkStone',
+					'classicDark',
+				].includes(value);
 			},
 		},
 	},
@@ -207,14 +232,22 @@ export default {
 			}
 			return '';
 		});
-
-		const themeStyle = computed(() => {
-			const themeMapper = {
-				default: defaultTheme,
-				dark: greenDarkTheme,
-			};
-			return themeMapper[theme.value];
-		});
+		const themeConfig: Record<string, { style: object; bgClass: string }> = {
+			default: { style: defaultTheme, bgClass: 'tw-bg-secondary' },
+			dark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
+			greenLight: { style: greenLightTheme, bgClass: 'tw-bg-secondary' },
+			greenDark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
+			marigoldLight: { style: marigoldLightTheme, bgClass: 'tw-bg-secondary' },
+			stoneLight: { style: stoneLightTheme, bgClass: 'tw-bg-secondary' },
+			stoneDark: { style: stoneDarkTheme, bgClass: 'tw-bg-primary' },
+			mint: { style: mintTheme, bgClass: 'tw-bg-secondary' },
+			darkGreen: { style: darkGreenTheme, bgClass: 'tw-bg-primary' },
+			darkMint: { style: darkMintTheme, bgClass: 'tw-bg-primary' },
+			darkStone: { style: darkStoneTheme, bgClass: 'tw-bg-primary' },
+			classicDark: { style: darkTheme, bgClass: 'tw-bg-primary' },
+		};
+		const themeStyle = computed(() => themeConfig[theme.value]?.style);
+		const bgClass = computed(() => themeConfig[theme.value]?.bgClass ?? 'tw-bg-primary');
 
 		const toggleSubNavigation = () => {
 			subNavigationOpen.value = !subNavigationOpen.value;
@@ -233,6 +266,7 @@ export default {
 			mdiChevronDown,
 			subNavigation,
 			themeStyle,
+			bgClass,
 			handleLinkClick,
 		};
 	},
