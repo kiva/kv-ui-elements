@@ -2,38 +2,40 @@
 // source=src/vue/KvButton.vue
 // component=KvButton
 //
-// NOTE (CIT-4435, Code-Connect-only): authored from the code component while the
-// design team finalizes the Figma component. Before `figma connect publish`, confirm
-// the Figma property NAMES/VALUES below against the real component via
-// `get_context_for_code_connect` and fill in the url above. The emitted snippet
-// (the <KvButton …> output) is code-derived and does not change on reconciliation.
+// Reconciled against the published "KvButton (WIP)" component (CIT-4435) via
+// get_context_for_code_connect: Figma property names AND enum values are lowercase,
+// `label` is a nested TEXT layer (read with findText, not a component property), and
+// Figma's `hover` state has no KvButton prop value so it maps to the default (no attr).
 import figma from 'figma';
 
 const instance = figma.selectedInstance;
 
-// Figma property names assumed; confirm on reconcile. Values are exhaustive per KvButton.vue.
-const variant = instance.getEnum('Variant', {
-	Primary: 'primary',
-	Secondary: 'secondary',
-	Link: 'link',
-	Danger: 'danger',
-	Ghost: 'ghost',
-	Caution: 'caution',
+// Figma variant values are lowercase and match the code prop values 1:1.
+const variant = instance.getEnum('variant', {
+	primary: 'primary',
+	secondary: 'secondary',
+	danger: 'danger',
+	link: 'link',
+	ghost: 'ghost',
+	caution: 'caution',
 });
 
-const state = instance.getEnum('State', {
-	Default: '',
-	Active: 'active',
-	Disabled: 'disabled',
-	Loading: 'loading',
+// `hover` is a visual-only Figma state with no KvButton equivalent -> render as default ('').
+const state = instance.getEnum('state', {
+	default: '',
+	active: 'active',
+	disabled: 'disabled',
+	loading: 'loading',
+	hover: '',
 });
 
-const size = instance.getEnum('Size', {
-	Default: 'default',
-	Small: 'small',
+const size = instance.getEnum('size', {
+	default: 'default',
+	small: 'small',
 });
 
-const label = instance.getString('Label');
+// `label` is a nested TEXT layer, not a component property — read its text content.
+const label = instance.findText('label').textContent;
 
 export default {
 	example: figma.code`
