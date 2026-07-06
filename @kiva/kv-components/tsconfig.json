@@ -12,12 +12,14 @@
 	  "allowSyntheticDefaultImports": true,
 	  "esModuleInterop": true,
 	  "sourceMap": true,
+	  "skipLibCheck": true,
 	  "lib": [
 		"es2020",
 		"dom"
 	  ],
 	  "types": [
-		"vite/client"
+		"vite/client",
+		"@figma/code-connect/figma-types"
 	  ],
 	},
 	"include": [
@@ -27,6 +29,7 @@
 	"exclude": [
 	  "**/*/node_modules",
 	  "**/*/tests",
-	  "**/*/dist"
+	  "**/*/dist",
+	  "src/vue/code-connect/**"
 	]
 }

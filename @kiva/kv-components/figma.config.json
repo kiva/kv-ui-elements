@@ -1,0 +1,9 @@
+{
+	"codeConnect": {
+		"parser": "html",
+		"include": ["src/vue/code-connect/**/*.figma.ts"],
+		"importPaths": {
+			"src/vue/*": "@kiva/kv-components"
+		}
+	}
+}
