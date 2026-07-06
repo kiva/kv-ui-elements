@@ -12,14 +12,12 @@
 	  "allowSyntheticDefaultImports": true,
 	  "esModuleInterop": true,
 	  "sourceMap": true,
-	  "skipLibCheck": true,
 	  "lib": [
 		"es2020",
 		"dom"
 	  ],
 	  "types": [
-		"vite/client",
-		"@figma/code-connect/figma-types"
+		"vite/client"
 	  ],
 	},
 	"include": [
