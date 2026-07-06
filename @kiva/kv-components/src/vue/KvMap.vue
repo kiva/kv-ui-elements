@@ -192,6 +192,9 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'country-lend-filter',
+	],
 	data() {
 		return {
 			hasWebGL: false,
@@ -298,7 +301,7 @@ export default {
 			this.initializeMap();
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.mapInstance) {
 			if (!this.hasWebGL && !this.leafletReady) {
 				// turn off the leaflet instance

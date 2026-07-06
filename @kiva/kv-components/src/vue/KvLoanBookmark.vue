@@ -40,6 +40,9 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'toggle-bookmark',
+	],
 	data() {
 		return {
 			mdiBookmarkOutline,

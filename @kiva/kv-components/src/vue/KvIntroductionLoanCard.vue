@@ -25,7 +25,7 @@
 						:href="readMorePath"
 						class="tw-flex"
 						aria-label="Borrower image"
-						@click.native="clickReadMore('Photo', $event)"
+						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
 							class="
@@ -102,7 +102,7 @@
 					:href="readMorePath"
 					aria-label="Borrower name"
 					class="!tw-text-primary tw-no-underline"
-					@click.native="clickReadMore('Name', $event)"
+					@click="clickReadMore('Name', $event)"
 				>
 					<h3
 						class="loan-card-name tw-text-title"
@@ -143,7 +143,7 @@
 					:href="readMorePath"
 					class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline tw-justify-center"
 					aria-label="Loan tag"
-					@click.native="clickReadMore('Tag', $event)"
+					@click="clickReadMore('Tag', $event)"
 				>
 					<kv-loan-callouts
 						:callouts="loanCallouts"
@@ -158,7 +158,7 @@
 					:href="readMorePath"
 					class="loan-card-use tw-text-primary tw-no-underline"
 					aria-label="Loan use"
-					@click.native="clickReadMore('Use', $event)"
+					@click="clickReadMore('Use', $event)"
 				>
 					<!-- Loan use  -->
 					<div
@@ -226,7 +226,7 @@
 					:href="readMorePath"
 					class="loan-card-progress tw-mt-1"
 					aria-label="Loan progress"
-					@click.native="clickReadMore('Progress', $event)"
+					@click="clickReadMore('Progress', $event)"
 				>
 					<kv-loan-progress-group
 						id="loanProgress"
@@ -401,6 +401,9 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'toggle-bookmark',
+	],
 	setup(props, { emit }) {
 		const {
 			allDataLoaded,

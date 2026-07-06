@@ -267,7 +267,7 @@
 						aria-label="Lend amount"
 						:disabled="!amountOptions.length || isInBasket"
 						class="amount-dropdown"
-						@update:modelValue="handleSelectedAmount"
+						@update:model-value="handleSelectedAmount"
 					>
 						<option
 							v-for="amount in amountOptions"

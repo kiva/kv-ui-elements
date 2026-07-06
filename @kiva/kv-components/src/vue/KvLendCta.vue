@@ -100,7 +100,7 @@
 									'selected-dropdown': selectedDropdown,
 								}"
 								aria-label="Lend amount"
-								@update:modelValue="trackLendAmountSelection"
+								@update:model-value="trackLendAmountSelection"
 								@click.stop="clickDropdown"
 							>
 								<option
@@ -126,7 +126,7 @@
 									'selected-dropdown': selectedDropdown,
 								}"
 								aria-label="Lend amount"
-								@update:modelValue="trackLendAmountSelection"
+								@update:model-value="trackLendAmountSelection"
 								@click.stop="clickDropdown"
 							>
 								<option
@@ -191,7 +191,7 @@
 									'selected-dropdown': selectedDropdown,
 								}"
 								aria-label="Lend amount"
-								@update:modelValue="trackLendAmountSelection"
+								@update:model-value="trackLendAmountSelection"
 								@click.stop="clickDropdown"
 							>
 								<option
@@ -217,7 +217,7 @@
 									'selected-dropdown': selectedDropdown,
 								}"
 								aria-label="Lend amount"
-								@update:modelValue="trackLendAmountSelection"
+								@update:model-value="trackLendAmountSelection"
 								@click.stop="clickDropdown"
 							>
 								<option
@@ -281,7 +281,7 @@
 							'selected-dropdown': selectedDropdown,
 						}"
 						aria-label="Lend amount"
-						@update:modelValue="trackLendAmountSelection"
+						@update:model-value="trackLendAmountSelection"
 						@click.stop="clickDropdown"
 					>
 						<option
@@ -305,7 +305,7 @@
 						class="tw-min-w-12"
 						style="border-radius: 14px 0 0 14px;"
 						aria-label="Lend amount"
-						@update:modelValue="trackLendAmountSelection"
+						@update:model-value="trackLendAmountSelection"
 						@click.stop="clickDropdown"
 					>
 						<option
@@ -539,6 +539,10 @@ export default {
 			default: NARROW_SIDEBAR_DROPDOWN_BREAKPOINT,
 		},
 	},
+	emits: [
+		'show-loan-details',
+		'add-to-basket',
+	],
 	data() {
 		return {
 			mdiChevronRight,
@@ -793,7 +797,7 @@ export default {
 			}
 		}
 	},
-	beforeDestroy() {
+	beforeUnmount() {
 		if (this.resizeHandler && typeof window !== 'undefined') {
 			window.removeEventListener('resize', this.resizeHandler);
 		}

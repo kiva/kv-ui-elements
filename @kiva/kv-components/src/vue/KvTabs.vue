@@ -91,6 +91,9 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'tab-changed',
+	],
 	setup(props, { emit }) {
 		const tabContext: TabContext = reactive({
 			selectedIndex: 0,
