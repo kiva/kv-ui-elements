@@ -56,15 +56,6 @@ module.exports = {
 		// a per-package .eslintignore is not enough since it's only honored by the workspace
 		// whose directory is the ESLint process's cwd.
 		'**/src/vue/code-connect/**',
-		// @kiva/kv-components/vite.config.ts imports ESM-only packages (e.g.
-		// vite-plugin-no-bundle) that ESLint's import resolver cannot resolve
-		// (ERR_PACKAGE_PATH_NOT_EXPORTED) regardless of which workspace lints it - it was
-		// already excluded via the package's own .eslintignore, but that file is only
-		// honored when ESLint's cwd is kv-components itself. This needs to be here too so
-		// the cross-workspace lint-staged invocation (see above) doesn't fail on it. No
-		// other workspace's own lint script globs its vite.config.ts (they scope to
-		// ./src), so this doesn't reduce lint coverage elsewhere in practice.
-		'vite.config.ts',
 	],
 	root: true,
 };

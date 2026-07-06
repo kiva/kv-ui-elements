@@ -18,7 +18,7 @@ module.exports = {
 	],
 	ignorePatterns: [
 		'dist/*',
-		'vite.config.js',
+		'vite.config.ts',
 	],
 	plugins: [
 		'vue',
