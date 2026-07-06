@@ -1,4 +1,4 @@
-// url=TODO-RECONCILE: paste the published KvButton Figma URL (with node-id) here before publishing
+// url=https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/Ecosystem-2026--WIP-?node-id=20280-98&m=dev
 // source=src/vue/KvButton.vue
 // component=KvButton
 //
