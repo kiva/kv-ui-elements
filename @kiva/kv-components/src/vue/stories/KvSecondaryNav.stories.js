@@ -3,6 +3,19 @@ import KvSecondaryNav from '../KvSecondaryNav.vue';
 export default {
 	title: 'Page Frame/KvSecondaryNav',
 	component: KvSecondaryNav,
+	argTypes: {
+		theme: {
+			control: 'select',
+			options: [
+				'default',
+				'dark',
+				'greenLight',
+				'greenDark',
+				'marigoldLight',
+				'stoneLight',
+			],
+		},
+	},
 	args: {
 		heading: 'Due Diligence',
 		headingLink: {
@@ -61,6 +74,26 @@ Default.args = {
 export const Dark = Template.bind({});
 Dark.args = {
 	theme: 'dark',
+};
+
+export const GreenLight = Template.bind({});
+GreenLight.args = {
+	theme: 'greenLight',
+};
+
+export const GreenDark = Template.bind({});
+GreenDark.args = {
+	theme: 'greenDark',
+};
+
+export const MarigoldLight = Template.bind({});
+MarigoldLight.args = {
+	theme: 'marigoldLight',
+};
+
+export const StoneLight = Template.bind({});
+StoneLight.args = {
+	theme: 'stoneLight',
 };
 
 export const Centered = Template.bind({});
