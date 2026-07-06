@@ -3,3 +3,7 @@ dist/
 *.config.ts
 *.config.js
 vite.config.ts
+
+# Figma Code Connect mappings use the ambient `figma` module and are
+# validated by `codeconnect:parse`, not ESLint.
+src/vue/code-connect/**
