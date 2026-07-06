@@ -8,7 +8,7 @@ Figma Dev Mode.
 
 This guide covers the repo-side setup, how to map a new component, and how to publish.
 See the design doc for background and decisions:
-[`~/kiva/docs/kv-ui-elements-docs/specs/2026-07-02-figma-code-connect-kv-button-design.md`](../../../docs/kv-ui-elements-docs/specs/2026-07-02-figma-code-connect-kv-button-design.md).
+`~/kiva/docs/kv-ui-elements-docs/specs/2026-07-02-figma-code-connect-kv-button-design.md`.
 
 ## 1. What Code Connect gives us
 
@@ -61,7 +61,11 @@ All of this is scoped to `@kiva/kv-components` and already in place:
   live) so mapping files are easy to find and easy to exclude from the build.
 
 - **Types**: `.figma.ts` files get the ambient `figma` module (`import figma from
-  'figma'`) via a scoped `tsconfig.json` at `src/vue/code-connect/tsconfig.json`:
+  'figma'`) via a scoped `tsconfig.json` at `src/vue/code-connect/tsconfig.json`. This
+  config is consumed only by the editor/IDE for type-checking `.figma.ts` files — it is
+  **not** read by `codeconnect:parse` (which reads `figma.config.json`), nor by the
+  Vite/`dts` build (which uses the package's main `tsconfig.json`, and that config
+  excludes this directory):
   ```json
   {
   	"extends": "../../../tsconfig.json",
