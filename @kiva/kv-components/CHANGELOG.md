@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.1...@kiva/kv-components@8.19.2) (2026-07-06)
+
+
+### Bug Fixes
+
+* remove deprecated color themes ([13a38ca](https://github.com/kiva/kv-ui-elements/commit/13a38cae305652d684f9f3d22676ae5611b2fced))
+
+
+
+
+
 ## [8.19.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.0...@kiva/kv-components@8.19.1) (2026-06-26)
 
 
