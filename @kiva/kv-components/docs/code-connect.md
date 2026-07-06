@@ -19,62 +19,89 @@ file. Start here; setup internals and tooling reference are at the bottom.
 1. **Get the component's Figma URL, including its `node-id`** — from the published
    component in the team library. (The component must already be published to a Figma
    team library; Code Connect maps to a published node, not a local frame.)
-2. **Confirm the real property names/values.** Run the Figma MCP tools
-   `get_context_for_code_connect` (and `get_code_connect_suggestions`) against that
-   URL/node. Use their output — not guesses — for the Figma property names in the next
-   step.
+2. **Confirm the real property names/values** against the published node — never guess.
+   Every `getEnum`/`getString`/`findText` name and enum value must match Figma **exactly,
+   including case**, or Figma shows "Property not found" on that prop. See
+   [Reading the real Figma property names](#reading-the-real-figma-property-names) for how
+   (Figma MCP preferred; CLI/manual fallbacks).
 3. **Add `src/vue/code-connect/<Name>.figma.ts`**, following the KvButton worked example
    below. Map every Figma variant value; omit code props that have no Figma equivalent.
 4. **Validate locally** — no network write:
    ```bash
    npm run codeconnect:parse --workspace @kiva/kv-components
    ```
-   Expect a clean JSON array and exit code 0.
+   Expect a clean JSON array and exit code 0. Note: `parse` is structural only — it has no
+   live component, so it does **not** catch name/case mismatches. Those surface only when
+   Figma renders the published mapping, so verify in Dev Mode after publishing.
 5. **Publish** — a deliberate, manual step (see [Publishing](#publishing)).
 
 No config changes are needed per component — `figma.config.json`'s `include` glob, the
 scoped `tsconfig.json`, and the ESLint/`dts` guards already cover any file added to
 `src/vue/code-connect/`. Prioritize components by Dev Mode usage/visibility.
 
+### Reading the real Figma property names
+
+Steps 1–2 need the component's actual property names, enum values, and nested layer names.
+These must match your mapping **exactly, including case** — a mismatch renders "Property
+not found" on that prop in Dev Mode. Get them one of these ways, best first:
+
+- **Figma MCP server (preferred).** With the Figma Dev Mode MCP server connected, call
+  `get_context_for_code_connect` against the node (it takes the `fileKey` + `node-id` from
+  the component URL). It returns each property's name, type, and variant options, plus the
+  descendant tree — including nested `TEXT` layers like a button's `label`, which are read
+  with `findText`, not `getString`. `get_code_connect_suggestions` can propose a starting
+  template. This is how the `KvButton` mapping was reconciled.
+- **CLI fallback — `figma connect create <figma-node-url>`.** If MCP isn't available, this
+  scaffolds a mapping file from the node via the Figma REST API (needs `FIGMA_ACCESS_TOKEN`
+  with read scope). You don't keep the generated file — diff it against yours to read the
+  real names/values, then discard it.
+- **Manual fallback — Figma Dev Mode.** Open the component in Dev Mode and read the
+  Properties panel: each variant property's name and its options appear there verbatim. For
+  nested content (e.g. a text label mapped with `findText`), copy the exact layer name from
+  the Layers panel. Slowest and easiest to get casing wrong — always confirm against a
+  publish.
+
 ### Worked example: `KvButton.figma.ts`
 
 ```ts
-// url=TODO-RECONCILE: paste the published KvButton Figma URL (with node-id) here before publishing
+// url=https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/Ecosystem-2026--WIP-?node-id=20280-98&m=dev
 // source=src/vue/KvButton.vue
 // component=KvButton
 //
-// NOTE (CIT-4435, Code-Connect-only): authored from the code component while the
-// design team finalizes the Figma component. Before `figma connect publish`, confirm
-// the Figma property NAMES/VALUES below against the real component via
-// `get_context_for_code_connect` and fill in the url above. The emitted snippet
-// (the <KvButton …> output) is code-derived and does not change on reconciliation.
+// Reconciled against the published "KvButton (WIP)" component (CIT-4435) via
+// get_context_for_code_connect: Figma property names AND enum values are lowercase,
+// `label` is a nested TEXT layer (read with findText, not a component property), and
+// Figma's `hover` state has no KvButton prop value so it maps to the default (no attr).
 import figma from 'figma';
 
 const instance = figma.selectedInstance;
 
-// Figma property names assumed; confirm on reconcile. Values are exhaustive per KvButton.vue.
-const variant = instance.getEnum('Variant', {
-	Primary: 'primary',
-	Secondary: 'secondary',
-	Link: 'link',
-	Danger: 'danger',
-	Ghost: 'ghost',
-	Caution: 'caution',
+// Property name and enum values must match Figma exactly (all lowercase here).
+const variant = instance.getEnum('variant', {
+	primary: 'primary',
+	secondary: 'secondary',
+	danger: 'danger',
+	link: 'link',
+	ghost: 'ghost',
+	caution: 'caution',
 });
 
-const state = instance.getEnum('State', {
-	Default: '',
-	Active: 'active',
-	Disabled: 'disabled',
-	Loading: 'loading',
+// `hover` is a visual-only Figma state with no KvButton equivalent -> render as default ('').
+const state = instance.getEnum('state', {
+	default: '',
+	active: 'active',
+	disabled: 'disabled',
+	loading: 'loading',
+	hover: '',
 });
 
-const size = instance.getEnum('Size', {
-	Default: 'default',
-	Small: 'small',
+const size = instance.getEnum('size', {
+	default: 'default',
+	small: 'small',
 });
 
-const label = instance.getString('Label');
+// `label` is a nested TEXT layer, not a component property — read its text content.
+const label = instance.findText('label').textContent;
 
 export default {
 	example: figma.code`
@@ -92,8 +119,10 @@ export default {
 };
 ```
 
-This specific file is authored code-first and is **not yet published** — see
-[KvButton reconciliation status](#kvbutton-reconciliation-status-pending).
+Note the two things that trip people up here, both confirmed from the real component
+(never assumed): **property names and enum values are lowercase** and must match Figma's
+case exactly, and the **`label` is a nested TEXT layer** read with `findText(...).textContent`
+— not a component text property, so `getString('label')` would render "Property not found".
 
 ### Best practices
 
@@ -132,32 +161,29 @@ against the real published node.
 fixing a build issue, etc.) — only when a mapping has been reconciled against a real
 published Figma node and is ready to go live for the whole org.
 
-## KvButton reconciliation status (pending)
+## KvButton reconciliation status (published)
 
-`src/vue/code-connect/KvButton.figma.ts` is authored **code-first** and is **not yet
-published**. It was written directly from `src/vue/KvButton.vue` while the design team
-separately finalizes an updated Figma component, so two things in the file are
-placeholders/assumptions, not confirmed facts:
+`src/vue/code-connect/KvButton.figma.ts` was authored **code-first** from
+`src/vue/KvButton.vue`, then **reconciled against the published "KvButton (WIP)" component
+and published** (CIT-4435). Its `url=` points at the real node and its property names/values
+are confirmed via `get_context_for_code_connect`, not assumed.
 
-- The `url=` comment line is a literal `TODO-RECONCILE` placeholder — there is no real
-  Figma URL/`node-id` in it yet.
-- The Figma property names (`Variant`, `State`, `Size`, `Label`) are **assumed** to match
-  what the published component will expose; they have not been confirmed against a real
-  node.
+It doubles as the reference for what reconciliation actually caught — the mapping was first
+written with assumed names and every prop showed "Property not found" in Dev Mode until:
 
-**Before publishing this mapping**, whoever picks it up once the design team publishes the
-updated `KvButton` component should:
+- Property names **and** enum values were lowercased to match Figma exactly (`Variant` →
+  `variant`, `Primary` → `primary`, …).
+- The `label` was switched from `getString('Label')` to `findText('label').textContent`,
+  because it's a nested TEXT layer, not a component text property.
+- Figma's extra `hover` state (no KvButton equivalent) was mapped to `''` rather than left
+  unmapped (which would render `undefined`).
 
-1. Get the published component's Figma URL, including its `node-id`.
-2. Run `get_context_for_code_connect` (Figma MCP) against that node to confirm the real
-   property names/values.
-3. Update the `url=` line and fix any property-name mismatches in `KvButton.figma.ts`.
-4. Re-validate: `npm run codeconnect:parse --workspace @kiva/kv-components`.
-5. Publish deliberately: `npm run codeconnect:publish --workspace @kiva/kv-components`.
-
-The emitted `<KvButton ...>` snippet itself is **code-derived** — it comes from
-`KvButton.vue`'s actual props/slot, not from the Figma component — so reconciling the
-Figma-side property names does not change what Dev Mode shows once published.
+If the design team later changes the component, re-reconcile with the same loop: get the
+node URL → confirm names/values (see
+[Reading the real Figma property names](#reading-the-real-figma-property-names)) → update
+the file → `npm run codeconnect:parse` → `npm run codeconnect:publish`. The emitted
+`<KvButton ...>` snippet is **code-derived** (from `KvButton.vue`'s props/slot), so
+reconciling Figma-side names changes whether props resolve, not the snippet's shape.
 
 ---
 
@@ -174,9 +200,11 @@ to touch it to map a component — it's here for maintenance.
 - **`FIGMA_ACCESS_TOKEN`** with Code Connect write scope, as a local/CI environment
   variable. **Never commit this token.** It's only required for `publish`; `parse` needs
   no token.
-- **Figma MCP server connected**, to call `get_context_for_code_connect` /
-  `get_code_connect_suggestions` against a real node before writing or reconciling a
-  mapping.
+- **A way to read the component's real property names/values** before writing or
+  reconciling a mapping — the **Figma MCP server** (`get_context_for_code_connect` /
+  `get_code_connect_suggestions`) preferred, or the `figma connect create <node-url>` CLI
+  / Figma Dev Mode as fallbacks. See
+  [Reading the real Figma property names](#reading-the-real-figma-property-names).
 
 ### Repo config & guards
 
