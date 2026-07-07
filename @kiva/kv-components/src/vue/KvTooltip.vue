@@ -108,7 +108,7 @@ export default {
 			},
 		},
 	},
-	defineEmits: ['tool-tip-visible'],
+	emits: ['tool-tip-visible'],
 	setup(props, { emit }) {
 		const {
 			modifiers,

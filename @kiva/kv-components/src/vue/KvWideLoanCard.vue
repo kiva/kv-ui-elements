@@ -35,7 +35,7 @@
 					:href="readMorePath"
 					class="tw-flex"
 					aria-label="Borrower image"
-					@click.native="clickReadMore('Photo', $event)"
+					@click="clickReadMore('Photo', $event)"
 				>
 					<kv-borrower-image
 						class="
@@ -104,7 +104,7 @@
 				:href="readMorePath"
 				class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline"
 				aria-label="Loan tag"
-				@click.native="clickReadMore('Tag', $event)"
+				@click="clickReadMore('Tag', $event)"
 			>
 				<kv-loan-tag
 					v-if="showTags && !isLoading"
@@ -184,7 +184,7 @@
 					:href="readMorePath"
 					class="loan-card-progress tw-mt-1 tw-flex-grow"
 					aria-label="Loan progress"
-					@click.native="clickReadMore('Progress', $event)"
+					@click="clickReadMore('Progress', $event)"
 				>
 					<kv-loan-progress-group
 						id="loanProgress"
@@ -388,6 +388,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'toggle-bookmark',
+		'add-to-basket',
+	],
 	setup(props, { emit }) {
 		const {
 			allDataLoaded,

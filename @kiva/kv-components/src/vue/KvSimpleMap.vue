@@ -168,6 +168,7 @@ const props = defineProps({
 	 */
 	aspectRatio: {
 		type: Number,
+		// eslint-disable-next-line vue/valid-define-props -- SVG_W/SVG_H are plain numeric consts; verified the compiled output inlines them correctly
 		default: SVG_W / SVG_H,
 	},
 	/**

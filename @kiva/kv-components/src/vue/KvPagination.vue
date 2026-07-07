@@ -101,6 +101,9 @@ export default {
 			default: '',
 		},
 	},
+	emits: [
+		'page-changed',
+	],
 	data() {
 		return {
 			mdiChevronLeft,

@@ -54,6 +54,10 @@ export default {
 			},
 		},
 	},
+	emits: [
+		'update:model-value',
+		'change',
+	],
 	setup(props) {
 		const themeStyle = computed(() => {
 			switch (props.theme) {

@@ -78,7 +78,7 @@
 					tw-h-4 tw-w-4
 					tw-flex tw-items-center tw-justify-center
 					disabled:tw-opacity-low disabled:tw-cursor-default"
-				@click.native.prevent="toggleAutoPlay()"
+				@click.prevent="toggleAutoPlay()"
 			>
 				<kv-material-icon
 					v-if="isAutoplaying"

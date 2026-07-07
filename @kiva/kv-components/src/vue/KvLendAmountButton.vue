@@ -30,6 +30,9 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'add-to-basket',
+	],
 	computed: {
 		amountValue() {
 			return parseFloat(this.amountLeft).toFixed();

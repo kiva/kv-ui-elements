@@ -25,7 +25,7 @@
 						:href="readMorePath"
 						class="tw-flex"
 						aria-label="Borrower image"
-						@click.native="clickReadMore('Photo', $event)"
+						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
 							class="
@@ -77,7 +77,7 @@
 					:href="readMorePath"
 					class="loan-card-use tw-no-underline tw-text-primary"
 					aria-label="Loan use"
-					@click.native="clickReadMore('Use', $event)"
+					@click="clickReadMore('Use', $event)"
 				>
 					<!-- Loan use  -->
 					<div class="tw-mb-1.5 tw-pt-1">
@@ -121,7 +121,7 @@
 						tw-mt-auto
 					"
 					:aria-label="primaryLinkText"
-					@click.native="clickReadMore(primaryLinkText, $event)"
+					@click="clickReadMore(primaryLinkText, $event)"
 				>
 					<!-- Learn More link  -->
 					<div class="tw-mt-1">

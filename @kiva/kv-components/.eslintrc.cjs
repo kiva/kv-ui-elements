@@ -13,7 +13,7 @@ module.exports = {
 	},
 	extends: [
 		'../../.eslintrc.cjs',
-		'plugin:vue/recommended',
+		'plugin:vue/vue3-recommended',
 		'@vue/eslint-config-typescript',
 	],
 	ignorePatterns: [

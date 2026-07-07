@@ -131,6 +131,10 @@ export default {
 			default: false,
 		},
 	},
+	emits: [
+		'vote',
+		'info-click',
+	],
 	setup() {
 		const infoIcon = computed(() => mdiInformation);
 		return {
