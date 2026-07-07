@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.3...@kiva/kv-components@8.20.0) (2026-07-07)
+
+
+### Bug Fixes
+
+* **kv-components:** scope vite.config.ts eslint ignore to the package config ([5312a13](https://github.com/kiva/kv-ui-elements/commit/5312a139311a958040ba9074096a1a523e338873))
+* set initial KvButton figma url for code connect ([d6b5ede](https://github.com/kiva/kv-ui-elements/commit/d6b5ede06eb25ebed6723cb39c1a33ecc1677720))
+* update KvButton code connect mappings ([6eda1cc](https://github.com/kiva/kv-ui-elements/commit/6eda1ccf92a700640dee974e54d9fc2a32f52711))
+
+
+### Features
+
+* **kv-components:** add code-first Figma Code Connect mapping for KvButton ([96ecb2a](https://github.com/kiva/kv-ui-elements/commit/96ecb2a7eac7c4ea397f1021bd77fd34e43f11cf))
+
+
+
+
+
 ## [8.19.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.2...@kiva/kv-components@8.19.3) (2026-07-07)
 
 
