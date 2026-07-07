@@ -5,6 +5,7 @@ dist/
 npm-debug.log*
 .eslintcache
 @kiva/kv-components/src/vue/flags/
+storybook-static/
 
 # Editor directories and files
 .idea
