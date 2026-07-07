@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.2...@kiva/kv-components@8.19.3) (2026-07-07)
+
+
+### Bug Fixes
+
+* **eslint:** use the vue3 lint preset instead of vue2 ([99245f2](https://github.com/kiva/kv-ui-elements/commit/99245f2016bc64af2384242208ce3b9dcfad7e0f))
+* **kv-components:** resolve vue3 lint violations surfaced by the corrected preset ([cc7a835](https://github.com/kiva/kv-ui-elements/commit/cc7a835ac5769e627bff30e764c2d6fd2a2b081b))
+
+
+
+
+
 ## [8.19.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.1...@kiva/kv-components@8.19.2) (2026-07-06)
 
 
