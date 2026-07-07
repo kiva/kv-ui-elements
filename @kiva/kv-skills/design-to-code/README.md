@@ -13,6 +13,7 @@ Code / Codex, not the Claude app.
 |-------|--------------|
 | `kiva-tailwind-css` | How the `@kiva/kv-tokens` Tailwind preset changes stock Tailwind. |
 | `audit-page-design` | Audit a page against the design system one dimension at a time (typography, then spacing), apply in-repo fixes, and capture before/after screenshots. |
+| `publish-code-connect` | Detect changed Code Connect mappings in `@kiva/kv-components` and publish them to Figma — validate, reconcile, publish, verify. |
 
 > **Depends on `kiva-design-system`.** `audit-page-design` judges against the
 > design-system token sub-skills, so install the

@@ -1,6 +1,6 @@
 {
   "name": "kiva-design-to-code",
   "description": "Turning Kiva designs into compliant code: the Kiva Tailwind preset, plus audits/migrations that bring consuming repos into design-system alignment.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["kiva", "tailwind", "css", "migration", "audit", "design-to-code"]
 }
