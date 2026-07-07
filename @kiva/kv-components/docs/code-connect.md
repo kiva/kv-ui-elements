@@ -202,9 +202,7 @@ to touch it to map a component — it's here for maintenance.
 - **Figma plan**: Org or Enterprise (Code Connect publish is gated on this).
 - **A published component** in a Figma team library — Code Connect maps to a published
   component's `node-id`, not a local/unpublished frame.
-- **`FIGMA_ACCESS_TOKEN`** with Code Connect write scope, as a local/CI environment
-  variable. **Never commit this token.** It's only required for `publish`; `parse` needs
-  no token.
+- **`FIGMA_ACCESS_TOKEN`** with Code Connect write scope, as a local environment variable (Code Connect write can't run in CI — see the `publish-code-connect` skill for why). **Never commit this token.** It's only required for `publish`; `parse` needs no token.
 - **A way to read the component's real property names/values** before writing or
   reconciling a mapping — the **Figma MCP server** (`get_context_for_code_connect` /
   `get_code_connect_suggestions`) preferred, or the `figma connect create <node-url>` CLI

@@ -10,7 +10,7 @@
   "interface": {
     "displayName": "Kiva Design to Code",
     "shortDescription": "Kiva Tailwind preset plus design-system audits and migrations",
-    "longDescription": "Developer tooling for translating Kiva's design system into compliant code: how the @kiva/kv-tokens Tailwind preset changes stock Tailwind, and a page-design audit that brings a route's typography and spacing into design-system alignment with before/after screenshots.",
+    "longDescription": "Developer tooling for translating Kiva's design system into compliant code: how the @kiva/kv-tokens Tailwind preset changes stock Tailwind, a page-design audit that brings a route's typography and spacing into design-system alignment with before/after screenshots, and a workflow to publish @kiva/kv-components Figma Code Connect mappings to Figma.",
     "developerName": "Kiva",
     "category": "Development",
     "capabilities": ["Read", "Write"]
