@@ -48,5 +48,14 @@ module.exports = {
 			},
 		},
 	},
+	ignorePatterns: [
+		// Figma Code Connect mappings (@kiva/kv-components/src/vue/code-connect/**) use the
+		// ambient `figma` module and are validated by `figma connect parse`, not ESLint.
+		// The root husky pre-commit hook runs `npm run lint --workspaces` on every staged
+		// file via lint-staged, so every workspace's ESLint invocation needs this ignore -
+		// a per-package .eslintignore is not enough since it's only honored by the workspace
+		// whose directory is the ESLint process's cwd.
+		'**/src/vue/code-connect/**',
+	],
 	root: true,
 };

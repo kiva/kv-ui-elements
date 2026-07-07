@@ -32,6 +32,7 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
+    "@figma/code-connect": "^1.4.9",
     "@kiva/kv-tokens": "^4.2.0",
     "@kiva/vite-plugin-vue-lib-css": "^2.0.0",
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
@@ -84,7 +85,9 @@
     "test": "npm run lint && jest",
     "prebuild": "node build/copyFlags.js",
     "build": "rimraf dist && vite build",
-    "postbuild": "mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/"
+    "postbuild": "mkdir -p ../../dist/kvui && mv -v dist/kvui/* ../../dist/kvui/",
+    "codeconnect:parse": "figma connect parse",
+    "codeconnect:publish": "figma connect publish"
   },
   "peerDependencies": {
     "@apollo/client": "3.x",

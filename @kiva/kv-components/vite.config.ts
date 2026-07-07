@@ -79,6 +79,9 @@ export default defineConfig({
 			},
 			// Disable rollup types for now to avoid Vue file resolution issues
 			rollupTypes: false,
+			// Figma Code Connect mappings are not part of the public API surface; exclude them
+			// from type declaration generation.
+			exclude: ['src/vue/code-connect/**'],
 		}),
 	],
 });

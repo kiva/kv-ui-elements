@@ -27,6 +27,7 @@
 	"exclude": [
 	  "**/*/node_modules",
 	  "**/*/tests",
-	  "**/*/dist"
+	  "**/*/dist",
+	  "src/vue/code-connect/**"
 	]
 }

@@ -167,6 +167,10 @@ Import design primitives from [@kiva/kv-tokens](../kv-tokens/):
 - **Spacing**: Consistent spacing scale
 - **Shadows, radii, opacity, z-index**: Component tokens
 
+### Figma Code Connect
+
+- **Figma Code Connect**: See [docs/code-connect.md](docs/code-connect.md) for mapping components to Figma Dev Mode snippets.
+
 ## Accessibility Standards
 
 All components MUST:
