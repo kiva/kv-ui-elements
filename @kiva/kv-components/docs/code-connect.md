@@ -144,6 +144,11 @@ case exactly, and the **`label` is a nested TEXT layer** read with `findText(...
 
 ## Publishing
 
+> **Publishing workflow (agents & humans):** for the step-by-step detect →
+> validate → reconcile → publish → verify flow, plus token setup, use the
+> **`publish-code-connect`** skill in `@kiva/kv-skills` (`kiva-design-to-code`
+> plugin). This section is the reference it defers to for authoring/reconciling.
+
 Publish writes the mapping to the **shared Figma org library** — every designer and
 engineer with access to that library sees the result. Do this deliberately, not as a
 side effect of another task:
