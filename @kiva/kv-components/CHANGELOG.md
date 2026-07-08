@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.21.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.20.0...@kiva/kv-components@8.21.0) (2026-07-08)
+
+
+### Bug Fixes
+
+* unit tests ([a5a7a59](https://github.com/kiva/kv-ui-elements/commit/a5a7a59e27b143e3e970683ce7ea0d985897d565))
+
+
+### Features
+
+* change multi match tooltip to ratio ([2fe4c34](https://github.com/kiva/kv-ui-elements/commit/2fe4c3419c79f311c11f8757e5075b5ddeda325a))
+
+
+
+
+
 # [8.20.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.19.3...@kiva/kv-components@8.20.0) (2026-07-07)
 
 
