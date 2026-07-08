@@ -40,7 +40,7 @@ describe('KvLoanTag', () => {
 			getByText('3 organizations');
 		});
 
-		it('renders one "2x matching by <org>" tooltip line per organization', () => {
+		it('renders one "1:1 matching by <org>" tooltip line per organization', () => {
 			const { getByText, getAllByText } = renderTag({
 				enableMultiMatching: true,
 				loan: {
@@ -53,10 +53,10 @@ describe('KvLoanTag', () => {
 				},
 			});
 
-			expect(getAllByText(/2x matching by/)).toHaveLength(3);
-			getByText('2x matching by PG&E');
-			getByText('2x matching by US Bank');
-			getByText('2x matching by Bank Of America');
+			expect(getAllByText(/1:1 matching by/)).toHaveLength(3);
+			getByText('1:1 matching by PG&E');
+			getByText('1:1 matching by US Bank');
+			getByText('1:1 matching by Bank Of America');
 		});
 
 		it('scales the total ratio with each org ratio (2 orgs at ratio 1 => 3x by 2 organizations)', () => {
