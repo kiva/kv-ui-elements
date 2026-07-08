@@ -12,14 +12,19 @@
 			>{{ multiMatchingOrgs.length }} organizations</span>
 			<kv-tooltip
 				:controller="`matching-orgs-${loan.id}`"
+				max-width="320px"
 				theme="default"
 			>
+				<p class="tw-whitespace-nowrap tw-pb-0.5">
+					Your contribution is matched by {{ multiMatchingOrgs.length }} partners
+				</p>
+				<hr class="tw-border-caution-highlight tw-py-0.5">
 				<p
 					v-for="org in multiMatchingOrgs"
 					:key="org.managedAccountId"
 					class="tw-m-0"
 				>
-					{{ org.ratio + 1 }}x matching by {{ orgDisplayName(org) }}
+					{{ org.ratio }}:1 matching by {{ orgDisplayName(org) }}
 				</p>
 			</kv-tooltip>
 		</template>
