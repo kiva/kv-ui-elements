@@ -62,7 +62,7 @@ restart Codex (or reload the session) so it picks up the updated plugin cache.
 | Category (folder) | Plugin | Skills |
 |---|---|---|
 | `@kiva/kv-skills/design-system` | `kiva-design-system` | `kiva-design-system` (router + color, typography, spacing, radius, layout, color-themes) |
-| `@kiva/kv-skills/design-to-code` | `kiva-design-to-code` | `kiva-tailwind-css`, `audit-page-design` |
+| `@kiva/kv-skills/design-to-code` | `kiva-design-to-code` | `kiva-tailwind-css`, `audit-page-design`, `publish-code-connect` |
 | `@kiva/kv-skills/skill-builder-utils` | `kiva-skill-builder-utils` | `figma-design-system-to-skill` |
 
 ## Adding a skill (to an existing category)
