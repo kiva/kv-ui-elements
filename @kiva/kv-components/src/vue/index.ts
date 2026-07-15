@@ -70,6 +70,7 @@ export { default as KvPulsingDot } from './KvPulsingDot.vue';
 export { default as KvRadio } from './KvRadio.vue';
 export { default as KvSelect } from './KvSelect.vue';
 export { default as KvSideSheet } from './KvSideSheet.vue';
+export { default as KvStackedBarGraph } from './KvStackedBarGraph.vue';
 export { default as KvSwitch } from './KvSwitch.vue';
 export { default as KvTab } from './KvTab.vue';
 export { default as KvTabPanel } from './KvTabPanel.vue';

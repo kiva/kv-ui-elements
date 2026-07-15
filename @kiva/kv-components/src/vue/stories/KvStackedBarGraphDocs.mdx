@@ -1,0 +1,280 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvStackedBarGraphStories from './KvStackedBarGraph.stories.js';
+import KvStackedBarGraph from '../KvStackedBarGraph.vue';
+
+<Meta title="Charts/KvStackedBarGraph" component={KvStackedBarGraph} />
+
+# KvStackedBarGraph
+
+A dependency-free, inline-SVG stacked bar chart for comparing period-over-period totals broken down into a fixed set of series.
+
+## Component Overview
+
+KvStackedBarGraph renders one vertical bar per data point, each stacked from a fixed, ordered set of series. It draws a recessive "nice" y-axis (evenly-spaced, rounded gridlines with headroom above the tallest bar), a direct total label above every bar, and a legend that names each series so identity is never conveyed by color alone. Each bar is a focusable control that emits a `bar-click` event, letting a page wire the chart to a detail view. Series colors come from the shared design-system palette and can be overridden per series; text and axis colors are theme-aware via `KvThemeProvider`.
+
+<Story of={KvStackedBarGraphStories.CurrencyFormatted} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The chart adapts to the data and formatting you supply:
+
+- **Explicit series colors**: Each series may set an optional `color`; the design-system palette fills in any series that omits it.
+- **Palette fallback**: Omit `color` on every series to let the shared chart palette assign colors by series index (stable regardless of stacking order).
+- **Value formatting**: A `formatValue` function controls how numbers render in the axis labels, the per-bar totals, and the accessible text (e.g. currency).
+- **Series count**: Works with a single series (a plain bar chart) or several stacked series per bar.
+- **Long ranges**: When there are more bars than fit, the plot scrolls horizontally while the legend and caption stay put.
+
+<Story of={KvStackedBarGraphStories.WithExplicitColors} />
+
+<Story of={KvStackedBarGraphStories.PaletteColors} />
+
+<Story of={KvStackedBarGraphStories.SingleSeries} />
+
+<Story of={KvStackedBarGraphStories.ThreeSeries} />
+
+## Usage Information
+
+KvStackedBarGraph is intended for period-over-period breakdowns — money, counts, or any additive quantity — where each period splits into the same small, ordered set of categories. It favors a lightweight, brand-agnostic SVG render over a full charting library, so it drops cleanly into portfolio pages, dashboards, and detail panels.
+
+### When to Use
+
+- To show how a total per period (month, quarter, year) divides into a fixed set of series
+- When the series set is small and stable (typically 1–4), so colors and legend stay legible
+- When each bar should be selectable to drive a linked detail view (via `bar-click`)
+- When you want direct total labels above each bar rather than requiring a tooltip
+
+### When Not to Use
+
+- For continuous trends over time — use [KvLineGraph](/?path=/docs/charts-kvlinegraph--docs)
+- For a single period's share-of-whole breakdown — use [KvPieChartV2](/?path=/docs/charts-kvpiechartv2--docs)
+- For many (dozens of) series per bar, where stacked segments become unreadable
+- For negative values — segments render only positive contributions
+
+---
+
+## Behavior
+
+The chart is interactive per bar and scrolls when the range is long.
+
+### Selecting a Bar
+
+Every bar is a focusable control (`role="button"`, keyboard-operable) with a visible focus ring. Clicking a bar — or activating it with Enter/Space — emits `bar-click` with the zero-based bar index, so a page can select that period and load related detail. The optional `barActionLabel` prop appends a call-to-action sentence (e.g. "Select to view repayments for this month.") to each bar's accessible label.
+
+<Story of={KvStackedBarGraphStories.Interactive} />
+
+### Horizontal Scrolling
+
+The plot sizes itself to the number of bars. When it exceeds the container width, the SVG scrolls horizontally inside its own scroll region while the legend and axis caption remain fixed above and below.
+
+<Story of={KvStackedBarGraphStories.ManyBars} />
+
+## Anatomy
+
+The component is composed of:
+
+- **Legend**: One entry per series (a color swatch plus its label), always present so series identity is never color-only
+- **Y-axis**: Rounded, evenly-spaced gridlines and value labels, with headroom above the tallest bar
+- **Bars**: One stacked bar per data point; each segment is a series contribution, drawn in fixed series order
+- **Total labels**: A direct value label above every bar
+- **Hit targets**: One focusable, labelled button per bar carrying the whole-bar summary
+- **Caption**: A visually-hidden `<figcaption>` summarizing the chart, plus an optional visible `axisLabel` below the plot
+
+---
+
+## Specs
+
+### Nice Y-Axis Ticks
+
+The y-axis targets roughly five evenly-spaced ticks. The raw step is rounded up to a readable `1 / 2 / 5 × 10ⁿ` value, and the axis maximum rounds up past the tallest bar — so labels land on round numbers (…, 100, 200, 500, …) and bars keep headroom below the top line. This mirrors the auto-tick behavior of the legacy chart.
+
+<Story of={KvStackedBarGraphStories.CurrencyFormatted} />
+
+### Empty State
+
+With no data points the component renders only the figure shell (legend and a single baseline tick) and no bars, so it degrades gracefully while a page fetches data.
+
+<Story of={KvStackedBarGraphStories.Empty} />
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvStackedBarGraph/do-few-stable-series.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Keep the series set small (1–4) and in a fixed order, so colors, the legend, and stacked segments stay legible.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvStackedBarGraph/dont-too-many-series.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Stack many series per bar. Thin, near-identical segments become unreadable and the legend balloons.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvStackedBarGraph/do-match-formatvalue.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pass a `formatValue` that matches the data (currency, counts) so axis labels, totals, and accessible text all read consistently.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvStackedBarGraph/dont-color-only.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Rely on color alone to distinguish series. Always supply a clear `label` per series so the legend carries the meaning.</p>
+	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The chart `<figure>` carries a visually-hidden `<figcaption>` summarizing what the chart shows (the `title` prop, or a generated fallback), so it is announced to assistive tech
+- The SVG has no `role="img"`; instead each bar is a real `role="button"` control, keyboard-operable via Enter/Space with a visible `:focus-visible` outline
+- Each bar's `aria-label` carries the full whole-bar summary — period, total, and per-series breakdown — plus the optional `barActionLabel` call to action
+- Decorative nodes (segments, gridlines, axis and total labels) are `aria-hidden="true"` so screen-reader output is just the labelled bar controls
+- Series identity is conveyed by the legend labels, never by color alone
+- Segment colors default to the design-system palette for WCAG-friendly contrast against the page; custom `color` overrides are the consumer's responsibility
+- Text and axis colors use theme tokens, so they adapt to light/dark via [KvThemeProvider](/?path=/docs/interface-elements-kvthemeprovider--docs)
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvStackedBarGraphStories.Default} />
+<Controls of={KvStackedBarGraphStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Stacked Bars (Palette Colors)
+
+```vue
+<template>
+	<KvStackedBarGraph :points="points" :series="series" />
+</template>
+
+<script>
+import { KvStackedBarGraph } from '@kiva/kv-components';
+
+export default {
+	components: { KvStackedBarGraph },
+	setup() {
+		const series = [
+			{ key: 'principal', label: 'Principal' },
+			{ key: 'interest', label: 'Interest' },
+		];
+		const points = [
+			{ label: 'Q1', segments: [{ seriesKey: 'principal', value: 200 }, { seriesKey: 'interest', value: 60 }] },
+			{ label: 'Q2', segments: [{ seriesKey: 'principal', value: 240 }, { seriesKey: 'interest', value: 72 }] },
+		];
+		return { points, series };
+	},
+};
+</script>
+```
+
+### Currency Chart Wired to a Detail View
+
+```vue
+<template>
+	<KvStackedBarGraph
+		:points="chartPoints"
+		:series="series"
+		:format-value="(value) => `$${value.toLocaleString()}`"
+		title="Estimated repayments by month, split by where each repayment is returned"
+		axis-label="Estimated repayments by month"
+		bar-action-label="Select to view repayments for this month."
+		@bar-click="onBarClick"
+	/>
+</template>
+
+<script>
+import { KvStackedBarGraph } from '@kiva/kv-components';
+
+export default {
+	components: { KvStackedBarGraph },
+	data() {
+		return {
+			series: [
+				{ key: 'user', label: 'Repaid to your account', color: '#26985D' },
+				{ key: 'promo', label: 'Repaid to Kiva or sponsor', color: '#996210' },
+			],
+			months: [
+				{ chartLabel: "Jul '26", user: 300, promo: 100 },
+				{ chartLabel: "Aug '26", user: 220, promo: 60 },
+			],
+		};
+	},
+	computed: {
+		chartPoints() {
+			return this.months.map((m) => ({
+				label: m.chartLabel,
+				segments: [
+					{ seriesKey: 'user', value: m.user },
+					{ seriesKey: 'promo', value: m.promo },
+				],
+			}));
+		},
+	},
+	methods: {
+		onBarClick(index) {
+			const month = this.months[index];
+			// select the month / load its detail…
+		},
+	},
+};
+</script>
+```
+
+### Single Series with a Caption
+
+```vue
+<template>
+	<KvStackedBarGraph
+		:points="points"
+		:series="series"
+		axis-label="People supported per year"
+	/>
+</template>
+
+<script>
+import { KvStackedBarGraph } from '@kiva/kv-components';
+
+export default {
+	components: { KvStackedBarGraph },
+	setup() {
+		const series = [{ key: 'people', label: 'People supported' }];
+		const points = [
+			{ label: '2023', segments: [{ seriesKey: 'people', value: 120 }] },
+			{ label: '2024', segments: [{ seriesKey: 'people', value: 180 }] },
+			{ label: '2025', segments: [{ seriesKey: 'people', value: 90 }] },
+		];
+		return { points, series };
+	},
+};
+</script>
+```
