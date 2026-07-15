@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.21.1...@kiva/kv-components@8.22.0) (2026-07-15)
+
+
+### Features
+
+* introduce a stacked bar graph component ([#846](https://github.com/kiva/kv-ui-elements/issues/846)) ([849fba7](https://github.com/kiva/kv-ui-elements/commit/849fba74fd966a7760c8ff9a8bec4b83fc43918f))
+
+
+
+
+
 ## [8.21.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.21.0...@kiva/kv-components@8.21.1) (2026-07-09)
 
 **Note:** Version bump only for package @kiva/kv-components
