@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.2.0...@kiva/kv-tokens@4.3.0) (2026-07-16)
+
+
+### Features
+
+* revert json format ([0b445b9](https://github.com/kiva/kv-ui-elements/commit/0b445b918b4ff31aa56ae70d4b18de21a68d0b1d))
+* sync button token font-size with ecosystem 26 ([0cb4ec0](https://github.com/kiva/kv-ui-elements/commit/0cb4ec0e90880f932c8ef9db715fbe96e01ac336))
+
+
+
+
+
 # [4.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.1.0...@kiva/kv-tokens@4.2.0) (2026-06-04)
 
 
