@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.22.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.22.0...@kiva/kv-components@8.22.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* slightly larger graph labels ([#847](https://github.com/kiva/kv-ui-elements/issues/847)) ([dfae9ee](https://github.com/kiva/kv-ui-elements/commit/dfae9ee73f1e09dce741a9b8fe02666305a8feb0))
+
+
+
+
+
 # [8.22.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.21.1...@kiva/kv-components@8.22.0) (2026-07-15)
 
 
