@@ -25,7 +25,7 @@
 		"h2":      { "sm": { "$type": "number", "$value": 20 }, "md": { "$type": "number", "$value": 20 }, "lg": { "$type": "number", "$value": 22 } },
 		"h3":      { "sm": { "$type": "number", "$value": 18 }, "md": { "$type": "number", "$value": 18 }, "lg": { "$type": "number", "$value": 20 } },
 		"base":    { "base":   { "$type": "number", "$value": 16 } },
-		"button":  { "button": { "$type": "number", "$value": 17 } },
+		"button":  { "button": { "$type": "number", "$value": 16 } },
 		"caption": { "small":  { "$type": "number", "$value": 14 } },
 		"label":   { "small":  { "$type": "number", "$value": 14 } },
 		"small":   { "small":  { "$type": "number", "$value": 14 } },
