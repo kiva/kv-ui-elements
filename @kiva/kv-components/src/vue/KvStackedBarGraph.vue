@@ -382,7 +382,7 @@ export default {
  * Tailwind (@apply) is used for everything the kv-tokens preset exposes a
  * utility for. A few SVG-paint properties have no token and stay raw CSS:
  * the recessive gridline/hover opacities (0.25 / 0.85 aren't on the opacity
- * scale), stroke + stroke-width, the 11px axis type (the preset disables the
+ * scale), stroke + stroke-width, the 13px axis type (the preset disables the
  * default font-size scale), and the 600 total-label weight.
  */
 .kv-stacked-bar-graph__svg {
@@ -429,13 +429,13 @@ export default {
 .kv-stacked-bar-graph__axis-label {
 	@apply tw-fill-current tw-text-tertiary;
 
-	font-size: 11px;
+	font-size: 13px;
 }
 
 .kv-stacked-bar-graph__total-label {
 	@apply tw-fill-current tw-text-secondary;
 
-	font-size: 11px;
+	font-size: 13px;
 	font-weight: 600;
 }
 </style>
