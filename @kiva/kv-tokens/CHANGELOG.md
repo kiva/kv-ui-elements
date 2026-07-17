@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.3.0...@kiva/kv-tokens@4.4.0) (2026-07-17)
+
+
+### Features
+
+* sync tokens with last ecosystem version ([d63cd7b](https://github.com/kiva/kv-ui-elements/commit/d63cd7ba22484aa3df2bd410a1afc136cc40ec6d))
+
+
+
+
+
 # [4.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.2.0...@kiva/kv-tokens@4.3.0) (2026-07-16)
 
 
