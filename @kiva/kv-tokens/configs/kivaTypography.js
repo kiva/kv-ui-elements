@@ -403,7 +403,7 @@ export const textStyles = (() => {
 
 	const textTitle = {
 		fontFamily: fonts.sans,
-		fontWeight: fontWeights.normal,
+		fontWeight: fontWeights.medium,
 		fontSize: rem(semanticFontSizes.h3.sm),
 		letterSpacing: em(letterSpacings.normal, semanticFontSizes.h3.sm),
 		lineHeight: em(lineHeightsAbsolute.h3.sm, semanticFontSizes.h3.sm),
