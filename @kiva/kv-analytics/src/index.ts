@@ -104,12 +104,12 @@ export function trackAddToCart(contentCategory: string, value?: number | string 
 	}
 }
 
-// User segmentation for the Meta PageView `user_type` param.
-// "transactor" = the visitor has ever lent or deposited before.
+// User segmentation for the Meta PageView `user_type` param. Maps a transactor flag to the Meta
+// vocabulary; the caller owns what counts as a transactor (at Kiva: has ever lent or deposited).
 export type UserType = 'transactor' | 'non-transactor';
 
-export function getUserType(hasLentBefore: boolean, hasDepositBefore: boolean): UserType {
-	return hasLentBefore || hasDepositBefore ? 'transactor' : 'non-transactor';
+export function getUserType(isTransactor: boolean): UserType {
+	return isTransactor ? 'transactor' : 'non-transactor';
 }
 
 function trackSnowplowEvent(eventData) {

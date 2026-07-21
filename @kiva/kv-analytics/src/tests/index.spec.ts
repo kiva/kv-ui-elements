@@ -53,16 +53,12 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 	});
 
 	describe('getUserType', () => {
-		it('returns non-transactor when the user has neither lent nor deposited', () => {
-			expect(getUserType(false, false)).toBe('non-transactor');
+		it('returns transactor when the flag is true', () => {
+			expect(getUserType(true)).toBe('transactor');
 		});
 
-		it('returns transactor when the user has lent before', () => {
-			expect(getUserType(true, false)).toBe('transactor');
-		});
-
-		it('returns transactor when the user has deposited before', () => {
-			expect(getUserType(false, true)).toBe('transactor');
+		it('returns non-transactor when the flag is false', () => {
+			expect(getUserType(false)).toBe('non-transactor');
 		});
 	});
 
