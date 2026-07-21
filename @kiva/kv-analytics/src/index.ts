@@ -34,6 +34,9 @@ let gtagLoaded = false;
 let fbLoaded = false;
 let optimizelyLoaded = false;
 const queue = new SimpleQueue<() => void>();
+// Transaction ids already tracked this session — guards against a Purchase (and its GA/Optimizely
+// counterparts) firing twice for one order via a double-submit, retry, or component re-mount.
+const trackedTransactionIds = new Set<string>();
 
 function inBrowser() {
 	return typeof window !== 'undefined';
@@ -80,11 +83,33 @@ export function trackFBCustomEvent(eventName: string, params?: Record<string, un
 	}
 }
 
-// https://developers.facebook.com/docs/meta-pixel/reference#standard-events
-export function trackAddToCart(contentCategory: string) {
+// Fire a Meta *standard* event (https://developers.facebook.com/docs/meta-pixel/reference#standard-events).
+// Use for named Meta events (Purchase, Lead, CompleteRegistration, Donate, …); use trackFBCustomEvent for custom names.
+export function trackFBEvent(eventName: string, params?: Record<string, unknown>) {
 	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-		window.fbq('track', 'AddToCart', { content_category: contentCategory });
+		window.fbq('track', eventName, params);
 	}
+}
+
+// https://developers.facebook.com/docs/meta-pixel/reference#standard-events
+export function trackAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
+	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+		const numericValue = Number(value);
+		// Only attach value/currency for a positive amount — a missing/zero value would send
+		// value: 0 and dilute value-based optimization, so fall back to a bare AddToCart.
+		const params = Number.isFinite(numericValue) && numericValue > 0
+			? { content_category: contentCategory, value: numericValue, currency }
+			: { content_category: contentCategory };
+		window.fbq('track', 'AddToCart', params);
+	}
+}
+
+// User segmentation for the Meta PageView `user_type` param. Maps a transactor flag to the Meta
+// vocabulary; the caller owns what counts as a transactor (at Kiva: has ever lent or deposited).
+export type UserType = 'transactor' | 'non-transactor';
+
+export function getUserType(isTransactor: boolean): UserType {
+	return isTransactor ? 'transactor' : 'non-transactor';
 }
 
 function trackSnowplowEvent(eventData) {
@@ -125,17 +150,24 @@ function trackSnowplowEvent(eventData) {
 	);
 }
 
-function trackFBTransaction(transactionData: TransactionData) {
+// Meta-only transaction tracking. Exported for completion paths (e.g. express checkout) that need
+// the Purchase pixel without the GA/Optimizely channels the full trackTransaction fires.
+export function trackFBTransaction(transactionData: TransactionData) {
 	const itemTotal = Number(transactionData.itemTotal) || 0;
 	// Skip Purchase when there's no valid amount — better to omit than report a $0/invalid-value
 	// purchase that would dilute value-based optimization. (The FTD/Kiva-Card events below are
 	// count signals, so they still fire.)
 	if (typeof window.fbq === 'function' && itemTotal > 0) {
-		window.fbq('track', 'Purchase', {
+		const purchase: Record<string, unknown> = {
 			currency: 'USD',
 			value: itemTotal,
-			content_type: transactionData.isFTD ? 'FirstTimeDepositor' : 'ReturningLender',
-		});
+		};
+		// Only assert content_type when FTD status is actually known. For guest checkouts the
+		// FTD lookup returns no value, and defaulting to 'ReturningLender' would be a false claim.
+		if (typeof transactionData.isFTD === 'boolean') {
+			purchase.content_type = transactionData.isFTD ? 'FirstTimeDepositor' : 'ReturningLender';
+		}
+		window.fbq('track', 'Purchase', purchase);
 	}
 
 	// signify transaction has kiva cards — send standard value + currency.
@@ -353,7 +385,7 @@ export function trackSelfDescribingEvent(eventData) {
 	return true;
 }
 
-export function trackPageView(to: any, from: any, userType?: string) {
+export function trackPageView(to: any, from: any, userType?: UserType) {
 	if (!inBrowser()) return false;
 	checkLibrariesLoaded();
 
@@ -406,6 +438,13 @@ export function trackTransaction(transactionData: TransactionData) {
 	if (!transactionData.transactionId) {
 		return false;
 	}
+
+	// Only track a given transaction once
+	const transactionKey = String(transactionData.transactionId);
+	if (trackedTransactionIds.has(transactionKey)) {
+		return false;
+	}
+	trackedTransactionIds.add(transactionKey);
 
 	if (fbLoaded) {
 		trackFBTransaction(transactionData);

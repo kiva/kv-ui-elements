@@ -1,6 +1,9 @@
 import {
+	getUserType,
 	trackAddToCart,
 	trackFBCustomEvent,
+	trackFBEvent,
+	trackFBTransaction,
 	trackPageView,
 	trackTransaction,
 	type TransactionData,
@@ -36,6 +39,29 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
+	describe('trackFBEvent', () => {
+		it('fires a standard event with params', () => {
+			trackFBEvent('Donate', { value: 10, currency: 'USD' });
+			expect(fbq).toHaveBeenCalledWith('track', 'Donate', { value: 10, currency: 'USD' });
+		});
+
+		it('does not throw and does not fire when fbq is unavailable', () => {
+			delete (window as any).fbq;
+			expect(() => trackFBEvent('Donate')).not.toThrow();
+			expect(fbq).not.toHaveBeenCalled();
+		});
+	});
+
+	describe('getUserType', () => {
+		it('returns transactor when the flag is true', () => {
+			expect(getUserType(true)).toBe('transactor');
+		});
+
+		it('returns non-transactor when the flag is false', () => {
+			expect(getUserType(false)).toBe('non-transactor');
+		});
+	});
+
 	describe('trackAddToCart', () => {
 		it('fires AddToCart with the given content_category', () => {
 			trackAddToCart('Kiva Card');
@@ -47,10 +73,38 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			expect(() => trackAddToCart('Loan')).not.toThrow();
 			expect(fbq).not.toHaveBeenCalled();
 		});
+
+		it('includes value + currency when a positive value is provided', () => {
+			trackAddToCart('Loan', 25);
+			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', {
+				content_category: 'Loan',
+				value: 25,
+				currency: 'USD',
+			});
+		});
+
+		it('coerces a numeric-string value and omits the value when it is not positive', () => {
+			trackAddToCart('Kiva Card', '50');
+			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', {
+				content_category: 'Kiva Card',
+				value: 50,
+				currency: 'USD',
+			});
+			fbq.mockClear();
+			// zero / invalid amounts fall back to a bare AddToCart rather than value: 0
+			trackAddToCart('Loan', 0);
+			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', { content_category: 'Loan' });
+		});
 	});
 
+	let txCounter = 0;
+	// unique id per call so the once-per-transaction dedup guard doesn't bleed across tests
+	const nextTxId = () => {
+		txCounter += 1;
+		return `tx-${txCounter}`;
+	};
 	const baseTransaction = (overrides: Partial<TransactionData> = {}): TransactionData => ({
-		transactionId: 'tx-1',
+		transactionId: nextTxId(),
 		loans: [],
 		loanCount: 0,
 		loanTotal: '0',
@@ -103,6 +157,49 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		it('fires nothing when transactionId is empty', () => {
 			trackTransaction(baseTransaction({ transactionId: '' }));
 			expect(fbq).not.toHaveBeenCalled();
+		});
+
+		it('tracks a given transactionId only once (no duplicate Purchase on re-invocation)', () => {
+			const tx = baseTransaction({ itemTotal: '25.00' });
+			trackTransaction(tx);
+			trackTransaction(tx);
+			const purchaseCalls = fbq.mock.calls.filter(
+				(call) => call[0] === 'track' && call[1] === 'Purchase',
+			);
+			expect(purchaseCalls).toHaveLength(1);
+		});
+	});
+
+	describe('trackFBTransaction (direct, Meta-only)', () => {
+		it('fires a Meta Purchase from transaction data without the trackTransaction orchestrator', () => {
+			trackFBTransaction(baseTransaction({ itemTotal: '30', isFTD: false }));
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', {
+				currency: 'USD',
+				value: 30,
+				content_type: 'ReturningLender',
+			});
+		});
+	});
+
+	describe('Purchase content_type', () => {
+		it('marks a known returning lender', () => {
+			trackTransaction(baseTransaction({ isFTD: false, itemTotal: '25' }));
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', {
+				currency: 'USD',
+				value: 25,
+				content_type: 'ReturningLender',
+			});
+		});
+
+		it('omits content_type when FTD status is unknown (e.g. guest checkout)', () => {
+			trackTransaction(baseTransaction({
+				isFTD: undefined as unknown as boolean,
+				itemTotal: '25',
+			}));
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', {
+				currency: 'USD',
+				value: 25,
+			});
 		});
 	});
 
