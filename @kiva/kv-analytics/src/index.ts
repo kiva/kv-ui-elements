@@ -74,9 +74,16 @@ async function waitOnLibraries() {
 }
 
 // https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#tracking-custom-events
-function trackFBCustomEvent(eventName: string, eventData?: any) {
-	if (fbLoaded) {
-		window.fbq('trackCustom', eventName, eventData);
+export function trackFBCustomEvent(eventName: string, params?: Record<string, unknown>) {
+	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+		window.fbq('trackCustom', eventName, params);
+	}
+}
+
+// https://developers.facebook.com/docs/meta-pixel/reference#standard-events
+export function trackAddToCart(contentCategory: string) {
+	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+		window.fbq('track', 'AddToCart', { content_category: contentCategory });
 	}
 }
 
@@ -119,8 +126,11 @@ function trackSnowplowEvent(eventData) {
 }
 
 function trackFBTransaction(transactionData: TransactionData) {
-	const itemTotal = transactionData.itemTotal || '';
-	if (typeof window.fbq !== 'undefined' && typeof itemTotal !== 'undefined') {
+	const itemTotal = Number(transactionData.itemTotal) || 0;
+	// Skip Purchase when there's no valid amount — better to omit than report a $0/invalid-value
+	// purchase that would dilute value-based optimization. (The FTD/Kiva-Card events below are
+	// count signals, so they still fire.)
+	if (typeof window.fbq === 'function' && itemTotal > 0) {
 		window.fbq('track', 'Purchase', {
 			currency: 'USD',
 			value: itemTotal,
@@ -128,21 +138,27 @@ function trackFBTransaction(transactionData: TransactionData) {
 		});
 	}
 
-	// signify transaction has kiva cards
+	// signify transaction has kiva cards — send standard value + currency.
+	// The `kivaCardTotal`/`itemTotal` keys are kept alongside for backward compatibility
+	// (Meta ignores them for value).
 	if (transactionData.kivaCards && transactionData.kivaCards.length) {
 		trackFBCustomEvent(
 			'transactionContainsKivaCards',
 			{
 				kivaCardTotal: transactionData.kivaCardTotal,
+				value: Number(transactionData.kivaCardTotal) || 0,
+				currency: 'USD',
 			},
 		);
 	}
-	// signifiy transaction ftd status
-	if (transactionData.isFTD && typeof itemTotal !== 'undefined') {
+	// signify transaction ftd status — send standard value + currency
+	if (transactionData.isFTD) {
 		trackFBCustomEvent(
 			'firstTimeDepositorTransaction',
 			{
 				itemTotal,
+				value: itemTotal,
+				currency: 'USD',
 			},
 		);
 	}
@@ -337,7 +353,7 @@ export function trackSelfDescribingEvent(eventData) {
 	return true;
 }
 
-export function trackPageView(to: any, from: any) {
+export function trackPageView(to: any, from: any, userType?: string) {
 	if (!inBrowser()) return false;
 	checkLibrariesLoaded();
 
@@ -376,9 +392,11 @@ export function trackPageView(to: any, from: any) {
 
 	// facebook pixel pageview
 	if (fbLoaded) {
-		// we used to pass a user_type but it's always empty across the site
-		// { user_type: '???'}
-		window.fbq('track', 'PageView');
+		if (userType) {
+			window.fbq('track', 'PageView', { user_type: userType });
+		} else {
+			window.fbq('track', 'PageView');
+		}
 	}
 }
 
