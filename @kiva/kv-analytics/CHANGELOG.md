@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.3...@kiva/kv-analytics@1.3.4) (2026-07-21)
+
+
+### Bug Fixes
+
+* more meta/fb event cleanup ([#852](https://github.com/kiva/kv-ui-elements/issues/852)) ([49be260](https://github.com/kiva/kv-ui-elements/commit/49be260ec4b3b9a61ba3ee9ba646a96d34a0c773))
+
+
+
+
+
 ## [1.3.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.2...@kiva/kv-analytics@1.3.3) (2026-07-21)
 
 
