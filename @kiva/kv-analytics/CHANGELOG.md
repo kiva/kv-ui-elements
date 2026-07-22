@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.4...@kiva/kv-analytics@1.3.5) (2026-07-22)
+
+
+### Bug Fixes
+
+* rename fb event and add some call safety centralized here ([#853](https://github.com/kiva/kv-ui-elements/issues/853)) ([5402b88](https://github.com/kiva/kv-ui-elements/commit/5402b8820feb959ab26a17c665fe9ee7e66a8992))
+
+
+
+
+
 ## [1.3.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.3...@kiva/kv-analytics@1.3.4) (2026-07-21)
 
 
