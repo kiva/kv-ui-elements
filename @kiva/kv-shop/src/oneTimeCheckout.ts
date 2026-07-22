@@ -10,7 +10,7 @@ import { wait } from './util/poll';
 import { getVisitorID } from './util/visitorId';
 import { redirectTo } from './util/redirect';
 import { getCheckoutTrackingData } from './receipt';
-import { addGivingFund } from './givingFunds';
+import { addGivingFund, addCustomGivingFund } from './givingFunds';
 import { setTipDonation } from './basketItems';
 import { removeKivaCredit } from './basketCredits';
 
@@ -261,16 +261,22 @@ export interface OneTimeCheckoutForGivingFundResult {
 	errors?: any,
 }
 
-export interface OneTimeCheckoutForGivingFundOptions {
+interface OneTimeCheckoutForGivingFundBaseOptions {
 	amount: string,
 	apollo: ApolloClient<any>,
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
-	fundTarget: string,
 	userId?: string,
 	useKivaCredit?: boolean,
 }
+
+// `fundTarget` (standard giving fund) and `savedSearchId` (custom category fund) are
+// mutually exclusive discriminators — exactly one identifies which fund to create.
+export type OneTimeCheckoutForGivingFundOptions = OneTimeCheckoutForGivingFundBaseOptions & (
+	| { fundTarget: string, savedSearchId?: never, name?: never }
+	| { savedSearchId: string, name?: string, fundTarget?: never }
+);
 
 // Execute a one-time checkout for a giving fund
 // This function handles the creation of a giving fund, pre-checkout validation, and the checkout process for a donation to that fund.
@@ -283,6 +289,8 @@ export async function executeOneTimeCheckoutForGivingFund({
 	emailAddress,
 	emailOptIn,
 	fundTarget,
+	savedSearchId,
+	name,
 	userId,
 	useKivaCredit = true,
 }: OneTimeCheckoutForGivingFundOptions): Promise<OneTimeCheckoutForGivingFundResult> {
@@ -293,12 +301,22 @@ export async function executeOneTimeCheckoutForGivingFund({
 		emailOptIn,
 	});
 
-	// Create giving fund
-	const givingFundResult = await addGivingFund({
-		apollo,
-		fundTarget,
-		userId: userId ? `${userId}` : undefined,
-	});
+	// Create giving fund — custom category fund when a saved search is supplied,
+	// otherwise a standard giving fund. Both return `{ id }`, so everything downstream
+	// keys off `givingFundResult.id` and stays unchanged.
+	const givingFundResult = savedSearchId
+		? await addCustomGivingFund({
+			apollo,
+			savedSearchId,
+			name,
+			userId: userId ? `${userId}` : undefined,
+		})
+		: await addGivingFund({
+			apollo,
+			// guaranteed present by the options union when savedSearchId is absent
+			fundTarget: fundTarget as string,
+			userId: userId ? `${userId}` : undefined,
+		});
 
 	const metadata = `campaignId: ${givingFundResult.id}`;
 
