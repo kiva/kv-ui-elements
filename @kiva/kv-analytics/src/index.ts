@@ -391,7 +391,21 @@ export function trackSelfDescribingEvent(eventData) {
 	return true;
 }
 
-export function trackPageView(to: any, from: any, userType?: UserType) {
+/**
+ * Fires a page view to Snowplow, Google Analytics, and the Meta (Facebook) pixel.
+ *
+ * @param to Destination — a route object (uses `fullPath`) or a URL string. Falls back to
+ *   `window.location.href` when omitted.
+ * @param from Referrer — a route object or a URL string. Falls back to `document.referrer`; the
+ *   Snowplow referrer is only set for matched route transitions.
+ * @param userType Optional Meta `user_type` segment (`transactor` / `non-transactor`) attached to
+ *   the fb PageView. See {@link getUserType}.
+ * @param skipFb When `true`, sends the Snowplow + GA page views but skips the fb PageView, so the
+ *   caller can fire it separately (e.g. after resolving `userType`) without blocking the primary
+ *   Snowplow page view. Defaults to `false`.
+ * @returns `false` when called outside the browser; otherwise `undefined`.
+ */
+export function trackPageView(to: any, from: any, userType?: UserType, skipFb = false) {
 	if (!inBrowser()) return false;
 	checkLibrariesLoaded();
 
@@ -428,11 +442,14 @@ export function trackPageView(to: any, from: any, userType?: UserType) {
 		});
 	}
 
-	// facebook pixel pageview
-	if (userType) {
-		fireFbq('track', 'PageView', { user_type: userType });
-	} else {
-		fireFbq('track', 'PageView');
+	// Facebook pixel pageview — skippable so callers can fire it separately
+	// (e.g. after resolving user_type) without blocking the snowplow pageview above
+	if (!skipFb) {
+		if (userType) {
+			fireFbq('track', 'PageView', { user_type: userType });
+		} else {
+			fireFbq('track', 'PageView');
+		}
 	}
 }
 

@@ -254,5 +254,10 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			trackPageView('https://www.kiva.org/', '');
 			expect(fbq).toHaveBeenCalledWith('track', 'PageView');
 		});
+
+		it('does not fire the fb PageView when skipFb is set', () => {
+			trackPageView('https://www.kiva.org/', '', 'transactor', true);
+			expect(fbq).not.toHaveBeenCalled();
+		});
 	});
 });
