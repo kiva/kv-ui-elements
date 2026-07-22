@@ -92,7 +92,7 @@ export function trackFBEvent(eventName: string, params?: Record<string, unknown>
 }
 
 // https://developers.facebook.com/docs/meta-pixel/reference#standard-events
-export function trackAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
+export function trackFBAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
 	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
 		const numericValue = Number(value);
 		// Only attach value/currency for a positive amount — a missing/zero value would send
@@ -100,7 +100,11 @@ export function trackAddToCart(contentCategory: string, value?: number | string 
 		const params = Number.isFinite(numericValue) && numericValue > 0
 			? { content_category: contentCategory, value: numericValue, currency }
 			: { content_category: contentCategory };
-		window.fbq('track', 'AddToCart', params);
+		try {
+			window.fbq('track', 'AddToCart', params);
+		} catch {
+			// Best-effort analytics: never let a broken/throwing fbq shim break the caller's flow.
+		}
 	}
 }
 
