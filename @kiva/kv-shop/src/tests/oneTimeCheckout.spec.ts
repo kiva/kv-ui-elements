@@ -18,7 +18,15 @@ jest.mock('../validatePreCheckout', () => ({ validatePreCheckout: jest.fn() }));
 jest.mock('../shopQueries', () => ({ callShopMutation: jest.fn(), callShopQuery: jest.fn() }));
 jest.mock('../receipt', () => ({ getCheckoutTrackingData: jest.fn() }));
 jest.mock('../shopError', () => ({
-	ShopError: class ShopError extends Error {},
+	ShopError: class ShopError extends Error {
+		code: string;
+
+		constructor({ code }: { code: string }, message?: string) {
+			super(message);
+			this.name = 'ShopError';
+			this.code = code;
+		}
+	},
 	parseShopError: jest.fn((e) => e),
 }));
 jest.mock('@kiva/kv-analytics', () => ({ trackTransaction: jest.fn() }));
@@ -95,6 +103,16 @@ describe('oneTimeCheckout.ts', () => {
 			});
 			expect(mockedAddCustomGivingFund).not.toHaveBeenCalled();
 			expect(result.data?.givingFund.id).toBe('fund-1');
+		});
+
+		it('throws when neither fundTarget nor savedSearchId is provided', async () => {
+			await expect(executeOneTimeCheckoutForGivingFund({
+				amount: '25',
+				apollo,
+			})).rejects.toThrow('requires either fundTarget or savedSearchId');
+
+			expect(mockedAddGivingFund).not.toHaveBeenCalled();
+			expect(mockedAddCustomGivingFund).not.toHaveBeenCalled();
 		});
 	});
 });

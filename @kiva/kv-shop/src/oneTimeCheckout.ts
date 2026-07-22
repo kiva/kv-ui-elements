@@ -261,22 +261,20 @@ export interface OneTimeCheckoutForGivingFundResult {
 	errors?: any,
 }
 
-interface OneTimeCheckoutForGivingFundBaseOptions {
+export interface OneTimeCheckoutForGivingFundOptions {
 	amount: string,
 	apollo: ApolloClient<any>,
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
+	// Exactly one of `fundTarget` (standard giving fund) or `savedSearchId` (custom
+	// category fund) identifies which fund to create; enforced at runtime below.
+	fundTarget?: string,
+	savedSearchId?: string,
+	name?: string,
 	userId?: string,
 	useKivaCredit?: boolean,
 }
-
-// `fundTarget` (standard giving fund) and `savedSearchId` (custom category fund) are
-// mutually exclusive discriminators — exactly one identifies which fund to create.
-export type OneTimeCheckoutForGivingFundOptions = OneTimeCheckoutForGivingFundBaseOptions & (
-	| { fundTarget: string, savedSearchId?: never, name?: never }
-	| { savedSearchId: string, name?: string, fundTarget?: never }
-);
 
 // Execute a one-time checkout for a giving fund
 // This function handles the creation of a giving fund, pre-checkout validation, and the checkout process for a donation to that fund.
@@ -301,6 +299,14 @@ export async function executeOneTimeCheckoutForGivingFund({
 		emailOptIn,
 	});
 
+	// Exactly one of fundTarget / savedSearchId is required to identify the fund.
+	if (!fundTarget && !savedSearchId) {
+		throw new ShopError(
+			{ code: 'shop.givingFundIdentifierRequired' },
+			'executeOneTimeCheckoutForGivingFund requires either fundTarget or savedSearchId',
+		);
+	}
+
 	// Create giving fund — custom category fund when a saved search is supplied,
 	// otherwise a standard giving fund. Both return `{ id }`, so everything downstream
 	// keys off `givingFundResult.id` and stays unchanged.
@@ -313,7 +319,7 @@ export async function executeOneTimeCheckoutForGivingFund({
 		})
 		: await addGivingFund({
 			apollo,
-			// guaranteed present by the options union when savedSearchId is absent
+			// guaranteed present by the runtime guard above when savedSearchId is absent
 			fundTarget: fundTarget as string,
 			userId: userId ? `${userId}` : undefined,
 		});
