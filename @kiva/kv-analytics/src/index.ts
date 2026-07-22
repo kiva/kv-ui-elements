@@ -76,32 +76,38 @@ async function waitOnLibraries() {
 	});
 }
 
+// Best-effort Meta pixel call: no-ops when fbq is absent (SSR, ad-blocked, consent-gated) and never
+// throws into the caller even if a broken/blocked fbq shim throws when invoked.
+function fireFbq(...args: unknown[]) {
+	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+		try {
+			window.fbq(...args);
+		} catch {
+			// Swallow — analytics must never break the caller's flow
+		}
+	}
+}
+
 // https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#tracking-custom-events
 export function trackFBCustomEvent(eventName: string, params?: Record<string, unknown>) {
-	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-		window.fbq('trackCustom', eventName, params);
-	}
+	fireFbq('trackCustom', eventName, params);
 }
 
 // Fire a Meta *standard* event (https://developers.facebook.com/docs/meta-pixel/reference#standard-events).
 // Use for named Meta events (Purchase, Lead, CompleteRegistration, Donate, …); use trackFBCustomEvent for custom names.
 export function trackFBEvent(eventName: string, params?: Record<string, unknown>) {
-	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-		window.fbq('track', eventName, params);
-	}
+	fireFbq('track', eventName, params);
 }
 
 // https://developers.facebook.com/docs/meta-pixel/reference#standard-events
-export function trackAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
-	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-		const numericValue = Number(value);
-		// Only attach value/currency for a positive amount — a missing/zero value would send
-		// value: 0 and dilute value-based optimization, so fall back to a bare AddToCart.
-		const params = Number.isFinite(numericValue) && numericValue > 0
-			? { content_category: contentCategory, value: numericValue, currency }
-			: { content_category: contentCategory };
-		window.fbq('track', 'AddToCart', params);
-	}
+export function trackFBAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
+	const numericValue = Number(value);
+	// Only attach value/currency for a positive amount — a missing/zero value would send
+	// value: 0 and dilute value-based optimization, so fall back to a bare AddToCart.
+	const params = Number.isFinite(numericValue) && numericValue > 0
+		? { content_category: contentCategory, value: numericValue, currency }
+		: { content_category: contentCategory };
+	fireFbq('track', 'AddToCart', params);
 }
 
 // User segmentation for the Meta PageView `user_type` param. Maps a transactor flag to the Meta
@@ -157,7 +163,7 @@ export function trackFBTransaction(transactionData: TransactionData) {
 	// Skip Purchase when there's no valid amount — better to omit than report a $0/invalid-value
 	// purchase that would dilute value-based optimization. (The FTD/Kiva-Card events below are
 	// count signals, so they still fire.)
-	if (typeof window.fbq === 'function' && itemTotal > 0) {
+	if (itemTotal > 0) {
 		const purchase: Record<string, unknown> = {
 			currency: 'USD',
 			value: itemTotal,
@@ -167,7 +173,7 @@ export function trackFBTransaction(transactionData: TransactionData) {
 		if (typeof transactionData.isFTD === 'boolean') {
 			purchase.content_type = transactionData.isFTD ? 'FirstTimeDepositor' : 'ReturningLender';
 		}
-		window.fbq('track', 'Purchase', purchase);
+		fireFbq('track', 'Purchase', purchase);
 	}
 
 	// signify transaction has kiva cards — send standard value + currency.
@@ -423,12 +429,10 @@ export function trackPageView(to: any, from: any, userType?: UserType) {
 	}
 
 	// facebook pixel pageview
-	if (fbLoaded) {
-		if (userType) {
-			window.fbq('track', 'PageView', { user_type: userType });
-		} else {
-			window.fbq('track', 'PageView');
-		}
+	if (userType) {
+		fireFbq('track', 'PageView', { user_type: userType });
+	} else {
+		fireFbq('track', 'PageView');
 	}
 }
 

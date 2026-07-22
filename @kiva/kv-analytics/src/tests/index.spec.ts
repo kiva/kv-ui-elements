@@ -1,6 +1,6 @@
 import {
 	getUserType,
-	trackAddToCart,
+	trackFBAddToCart,
 	trackFBCustomEvent,
 	trackFBEvent,
 	trackFBTransaction,
@@ -62,20 +62,20 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
-	describe('trackAddToCart', () => {
+	describe('trackFBAddToCart', () => {
 		it('fires AddToCart with the given content_category', () => {
-			trackAddToCart('Kiva Card');
+			trackFBAddToCart('Kiva Card');
 			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', { content_category: 'Kiva Card' });
 		});
 
 		it('does not throw and does not fire when fbq is unavailable', () => {
 			delete (window as any).fbq;
-			expect(() => trackAddToCart('Loan')).not.toThrow();
+			expect(() => trackFBAddToCart('Loan')).not.toThrow();
 			expect(fbq).not.toHaveBeenCalled();
 		});
 
 		it('includes value + currency when a positive value is provided', () => {
-			trackAddToCart('Loan', 25);
+			trackFBAddToCart('Loan', 25);
 			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', {
 				content_category: 'Loan',
 				value: 25,
@@ -84,7 +84,7 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 
 		it('coerces a numeric-string value and omits the value when it is not positive', () => {
-			trackAddToCart('Kiva Card', '50');
+			trackFBAddToCart('Kiva Card', '50');
 			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', {
 				content_category: 'Kiva Card',
 				value: 50,
@@ -92,8 +92,13 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			});
 			fbq.mockClear();
 			// zero / invalid amounts fall back to a bare AddToCart rather than value: 0
-			trackAddToCart('Loan', 0);
+			trackFBAddToCart('Loan', 0);
 			expect(fbq).toHaveBeenCalledWith('track', 'AddToCart', { content_category: 'Loan' });
+		});
+
+		it('does not throw when fbq itself throws', () => {
+			(window as any).fbq = () => { throw new Error('boom'); };
+			expect(() => trackFBAddToCart('Loan', 25)).not.toThrow();
 		});
 	});
 
