@@ -118,6 +118,46 @@ export function getUserType(isTransactor: boolean): UserType {
 	return isTransactor ? 'transactor' : 'non-transactor';
 }
 
+/**
+ * Names of the session cookies tracking whether a user has ever lent (`kvu_lb`) or deposited
+ * (`kvu_db`). Written elsewhere as the raw string `'true'`/`'false'`.
+ */
+export const HAS_LENT_BEFORE_COOKIE = 'kvu_lb';
+export const HAS_DEPOSIT_BEFORE_COOKIE = 'kvu_db';
+
+/**
+ * Reads the transactor-signal cookies and returns them as booleans.
+ *
+ * The caller passes a cookie getter, for example:
+ * - cms-page-server `useCookie(name).value`
+ * - ui `cookieStore.get(name)`
+ *
+ * @param getCookie Returns a cookie's raw string value (or nullish when unset).
+ * @returns `hasLentBefore` / `hasDepositBefore`, each `true` only when the cookie is exactly `'true'`.
+ */
+export function getTransactorFlagsFromCookies(
+	getCookie: (name: string) => string | null | undefined,
+): { hasLentBefore: boolean; hasDepositBefore: boolean } {
+	return {
+		hasLentBefore: getCookie(HAS_LENT_BEFORE_COOKIE) === 'true',
+		hasDepositBefore: getCookie(HAS_DEPOSIT_BEFORE_COOKIE) === 'true',
+	};
+}
+
+/**
+ * Resolves the Meta `user_type` segment straight from the transactor cookies — a transactor has
+ * ever lent OR deposited.
+ *
+ * @param getCookie Returns a cookie's raw string value (or nullish when unset).
+ * @returns `transactor` / `non-transactor`. See {@link getUserType}.
+ */
+export function getUserTypeFromCookies(
+	getCookie: (name: string) => string | null | undefined,
+): UserType {
+	const { hasLentBefore, hasDepositBefore } = getTransactorFlagsFromCookies(getCookie);
+	return getUserType(hasLentBefore || hasDepositBefore);
+}
+
 function trackSnowplowEvent(eventData) {
 	checkLibrariesLoaded();
 	if (!snowplowLoaded) return false;
