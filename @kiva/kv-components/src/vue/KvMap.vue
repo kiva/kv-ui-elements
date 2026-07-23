@@ -396,8 +396,8 @@ export default {
 			if (this.checkWebGL()) {
 				mapScript.setAttribute('vmid', `maplibregljs${this.mapId}`);
 				mapStyle.setAttribute('vmid', `maplibreglcss${this.mapId}`);
-				mapScript.setAttribute('src', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js');
-				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css');
+				mapScript.setAttribute('src', 'https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js');
+				mapStyle.setAttribute('href', 'https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css');
 
 				this.testDelayedGlobalLibrary('maplibregl').then((response) => {
 					if (response.loaded && !this.mapLoaded && !this.useLeaflet

@@ -10,7 +10,7 @@ import { wait } from './util/poll';
 import { getVisitorID } from './util/visitorId';
 import { redirectTo } from './util/redirect';
 import { getCheckoutTrackingData } from './receipt';
-import { addGivingFund } from './givingFunds';
+import { addGivingFund, addCustomGivingFund } from './givingFunds';
 import { setTipDonation } from './basketItems';
 import { removeKivaCredit } from './basketCredits';
 
@@ -267,7 +267,11 @@ export interface OneTimeCheckoutForGivingFundOptions {
 	braintree?: DropInWrapper,
 	emailAddress?: string,
 	emailOptIn?: boolean,
-	fundTarget: string,
+	// Exactly one of `fundTarget` (standard giving fund) or `savedSearchId` (custom
+	// category fund) identifies which fund to create; enforced at runtime below.
+	fundTarget?: string,
+	savedSearchId?: string,
+	name?: string,
 	userId?: string,
 	useKivaCredit?: boolean,
 }
@@ -283,6 +287,8 @@ export async function executeOneTimeCheckoutForGivingFund({
 	emailAddress,
 	emailOptIn,
 	fundTarget,
+	savedSearchId,
+	name,
 	userId,
 	useKivaCredit = true,
 }: OneTimeCheckoutForGivingFundOptions): Promise<OneTimeCheckoutForGivingFundResult> {
@@ -293,12 +299,30 @@ export async function executeOneTimeCheckoutForGivingFund({
 		emailOptIn,
 	});
 
-	// Create giving fund
-	const givingFundResult = await addGivingFund({
-		apollo,
-		fundTarget,
-		userId: userId ? `${userId}` : undefined,
-	});
+	// Exactly one of fundTarget / savedSearchId is required to identify the fund.
+	if (!fundTarget && !savedSearchId) {
+		throw new ShopError(
+			{ code: 'shop.givingFundIdentifierRequired' },
+			'executeOneTimeCheckoutForGivingFund requires either fundTarget or savedSearchId',
+		);
+	}
+
+	// Create giving fund — custom category fund when a saved search is supplied,
+	// otherwise a standard giving fund. Both return `{ id }`, so everything downstream
+	// keys off `givingFundResult.id` and stays unchanged.
+	const givingFundResult = savedSearchId
+		? await addCustomGivingFund({
+			apollo,
+			savedSearchId,
+			name,
+			userId: userId ? `${userId}` : undefined,
+		})
+		: await addGivingFund({
+			apollo,
+			// guaranteed present by the runtime guard above when savedSearchId is absent
+			fundTarget: fundTarget as string,
+			userId: userId ? `${userId}` : undefined,
+		});
 
 	const metadata = `campaignId: ${givingFundResult.id}`;
 

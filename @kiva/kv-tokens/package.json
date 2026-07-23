@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-tokens",
-    "version": "4.4.0",
+    "version": "4.4.1",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -33,7 +33,7 @@
         "build:tokens": "style-dictionary build --config ./build/style-dictionary.config.js",
         "build:dtcg": "node ./build/build-dtcg.js",
         "build:make-kit": "node ./build/build-make-kit.js",
-        "build": "rimraf dist && npm run build:tokens && npm run build:dtcg && npm run build:make-kit && node ./build/build",
+        "build": "rimraf dist && npm run build:tokens && npm run build:dtcg && node ./build/build",
         "prepare": "npm run build"
     },
     "repository": {
