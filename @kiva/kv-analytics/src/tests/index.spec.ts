@@ -1,5 +1,7 @@
 import {
+	getTransactorFlagsFromCookies,
 	getUserType,
+	getUserTypeFromCookies,
 	trackFBAddToCart,
 	trackFBCustomEvent,
 	trackFBEvent,
@@ -59,6 +61,33 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 
 		it('returns non-transactor when the flag is false', () => {
 			expect(getUserType(false)).toBe('non-transactor');
+		});
+	});
+
+	describe('getTransactorFlagsFromCookies', () => {
+		it('reads both cookies, treating only the exact string "true" as true', () => {
+			const cookies: Record<string, string> = { kvu_lb: 'true', kvu_db: 'false' };
+			expect(getTransactorFlagsFromCookies((name) => cookies[name])).toEqual({
+				hasLentBefore: true,
+				hasDepositBefore: false,
+			});
+		});
+
+		it('defaults to false when a cookie is unset', () => {
+			expect(getTransactorFlagsFromCookies(() => undefined)).toEqual({
+				hasLentBefore: false,
+				hasDepositBefore: false,
+			});
+		});
+	});
+
+	describe('getUserTypeFromCookies', () => {
+		it('returns transactor when either cookie is "true"', () => {
+			expect(getUserTypeFromCookies((name) => (name === 'kvu_db' ? 'true' : 'false'))).toBe('transactor');
+		});
+
+		it('returns non-transactor when neither cookie is "true"', () => {
+			expect(getUserTypeFromCookies(() => 'false')).toBe('non-transactor');
 		});
 	});
 
