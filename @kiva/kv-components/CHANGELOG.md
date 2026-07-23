@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.22.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.22.3...@kiva/kv-components@8.22.4) (2026-07-23)
+
+
+### Bug Fixes
+
+* pin maplibre-gl script include, latest v6 needs a mirgration ([7cc4018](https://github.com/kiva/kv-ui-elements/commit/7cc4018716769fb2e00c59e508dd892530ce891e))
+
+
+
+
+
 ## [8.22.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.22.2...@kiva/kv-components@8.22.3) (2026-07-17)
 
 **Note:** Version bump only for package @kiva/kv-components
