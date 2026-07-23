@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.105...@kiva/kv-shop@3.8.0) (2026-07-23)
+
+
+### Features
+
+* **kv-shop:** add addCustomGivingFund method ([780e56f](https://github.com/kiva/kv-ui-elements/commit/780e56f5c304b04b72ddaab67925556f96494ddf))
+* **kv-shop:** custom-fund branch in executeOneTimeCheckoutForGivingFund ([1529097](https://github.com/kiva/kv-ui-elements/commit/1529097efb31a858ef5296b4c1e0219369f05b01))
+
+
+
+
+
 ## [3.7.105](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.7.104...@kiva/kv-shop@3.7.105) (2026-07-23)
 
 **Note:** Version bump only for package @kiva/kv-shop
