@@ -51,3 +51,56 @@ export async function addGivingFund({
 
 	return result.data?.addGivingFund;
 }
+
+export const addCustomGivingFundMutation = gql`
+	mutation AddCustomGivingFund($fund: CustomGivingFundInput!) {
+		addCustomGivingFund(fund: $fund) {
+			id
+		}
+	}
+`;
+
+export interface AddCustomGivingFundData {
+	addCustomGivingFund: {
+		id: string,
+	} | null,
+}
+
+export interface AddCustomGivingFundOptions {
+	apollo: ApolloClient<any>,
+	savedSearchId: string,
+	name?: string,
+	userId?: string,
+	organizationId?: string,
+}
+
+export async function addCustomGivingFund({
+	apollo,
+	savedSearchId,
+	name,
+	userId,
+	organizationId,
+}: AddCustomGivingFundOptions) {
+	const fund = {
+		userId,
+		savedSearchId,
+		visitorId: getVisitorID(),
+		...(name ? { name } : {}),
+		...(organizationId ? { organizationId } : {}),
+	};
+
+	// call mutation, return AddCustomGivingFundData type
+	const result = await apollo.mutate({
+		mutation: addCustomGivingFundMutation,
+		variables: {
+			fund,
+		},
+	});
+	if (result.errors) {
+		const errors = result.errors.map((error) => parseShopError(error));
+		// return the first error
+		throw errors[0];
+	}
+
+	return result.data?.addCustomGivingFund;
+}

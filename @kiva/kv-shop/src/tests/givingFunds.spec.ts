@@ -1,4 +1,9 @@
-import { addGivingFund, addGivingFundMutation } from '../givingFunds';
+import {
+	addGivingFund,
+	addGivingFundMutation,
+	addCustomGivingFund,
+	addCustomGivingFundMutation,
+} from '../givingFunds';
 import { getVisitorID } from '../util/visitorId';
 import { parseShopError } from '../shopError';
 
@@ -99,6 +104,104 @@ describe('givingFunds.ts', () => {
 			await expect(addGivingFund({
 				apollo: apollo as any,
 				fundTarget: 'education',
+			})).rejects.toBe(parsedError1);
+
+			expect(mockedParseShopError).toHaveBeenCalledTimes(2);
+			expect(mockedParseShopError).toHaveBeenNthCalledWith(1, apolloError1);
+			expect(mockedParseShopError).toHaveBeenNthCalledWith(2, apolloError2);
+		});
+	});
+
+	describe('addCustomGivingFund', () => {
+		const mockedGetVisitorID = getVisitorID as jest.MockedFunction<typeof getVisitorID>;
+		const mockedParseShopError = parseShopError as jest.MockedFunction<typeof parseShopError>;
+
+		beforeEach(() => {
+			jest.clearAllMocks();
+			mockedGetVisitorID.mockReturnValue('visitor-123');
+		});
+
+		it('should call mutation and return addCustomGivingFund data', async () => {
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue({
+					data: {
+						addCustomGivingFund: {
+							id: 'fund-1',
+						},
+					},
+				}),
+			};
+
+			const result = await addCustomGivingFund({
+				apollo: apollo as any,
+				userId: 'user-123',
+				savedSearchId: 'saved-search-1',
+			});
+
+			expect(apollo.mutate).toHaveBeenCalledWith({
+				mutation: addCustomGivingFundMutation,
+				variables: {
+					fund: {
+						userId: 'user-123',
+						savedSearchId: 'saved-search-1',
+						visitorId: 'visitor-123',
+					},
+				},
+			});
+			expect(result).toStrictEqual({ id: 'fund-1' });
+		});
+
+		it('should include name and organizationId only when populated', async () => {
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue({
+					data: {
+						addCustomGivingFund: {
+							id: 'fund-2',
+						},
+					},
+				}),
+			};
+
+			await addCustomGivingFund({
+				apollo: apollo as any,
+				userId: 'user-456',
+				organizationId: 'org-123',
+				savedSearchId: 'saved-search-2',
+				name: 'My Custom Fund',
+			});
+
+			expect(apollo.mutate).toHaveBeenCalledWith({
+				mutation: addCustomGivingFundMutation,
+				variables: {
+					fund: {
+						userId: 'user-456',
+						organizationId: 'org-123',
+						savedSearchId: 'saved-search-2',
+						name: 'My Custom Fund',
+						visitorId: 'visitor-123',
+					},
+				},
+			});
+		});
+
+		it('should parse and throw the first error when mutation returns errors', async () => {
+			const apolloError1 = { message: 'first error' };
+			const apolloError2 = { message: 'second error' };
+			const parsedError1 = new Error('parsed first');
+			const parsedError2 = new Error('parsed second');
+			const apollo = {
+				mutate: jest.fn().mockResolvedValue({
+					errors: [apolloError1, apolloError2],
+				}),
+			};
+
+			mockedParseShopError
+				.mockReturnValueOnce(parsedError1 as any)
+				.mockReturnValueOnce(parsedError2 as any);
+
+			await expect(addCustomGivingFund({
+				apollo: apollo as any,
+				savedSearchId: 'saved-search-3',
 			})).rejects.toBe(parsedError1);
 
 			expect(mockedParseShopError).toHaveBeenCalledTimes(2);
