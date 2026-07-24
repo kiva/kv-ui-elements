@@ -1,8 +1,11 @@
 import {
+	getTransactorFlagsFromCookies,
 	getUserType,
+	getUserTypeFromCookies,
 	trackFBAddToCart,
 	trackFBCustomEvent,
 	trackFBEvent,
+	trackFBPageView,
 	trackFBTransaction,
 	trackPageView,
 	trackTransaction,
@@ -52,6 +55,24 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
+	describe('trackFBPageView', () => {
+		it('fires a PageView segmented by user_type when given', () => {
+			trackFBPageView('transactor');
+			expect(fbq).toHaveBeenCalledWith('track', 'PageView', { user_type: 'transactor' });
+		});
+
+		it('fires a bare PageView when no user_type is given', () => {
+			trackFBPageView();
+			expect(fbq).toHaveBeenCalledWith('track', 'PageView', undefined);
+		});
+
+		it('does not throw and does not fire when fbq is unavailable', () => {
+			delete (window as any).fbq;
+			expect(() => trackFBPageView('non-transactor')).not.toThrow();
+			expect(fbq).not.toHaveBeenCalled();
+		});
+	});
+
 	describe('getUserType', () => {
 		it('returns transactor when the flag is true', () => {
 			expect(getUserType(true)).toBe('transactor');
@@ -59,6 +80,33 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 
 		it('returns non-transactor when the flag is false', () => {
 			expect(getUserType(false)).toBe('non-transactor');
+		});
+	});
+
+	describe('getTransactorFlagsFromCookies', () => {
+		it('reads both cookies, treating only the exact string "true" as true', () => {
+			const cookies: Record<string, string> = { kvu_lb: 'true', kvu_db: 'false' };
+			expect(getTransactorFlagsFromCookies((name) => cookies[name])).toEqual({
+				hasLentBefore: true,
+				hasDepositBefore: false,
+			});
+		});
+
+		it('defaults to false when a cookie is unset', () => {
+			expect(getTransactorFlagsFromCookies(() => undefined)).toEqual({
+				hasLentBefore: false,
+				hasDepositBefore: false,
+			});
+		});
+	});
+
+	describe('getUserTypeFromCookies', () => {
+		it('returns transactor when either cookie is "true"', () => {
+			expect(getUserTypeFromCookies((name) => (name === 'kvu_db' ? 'true' : 'false'))).toBe('transactor');
+		});
+
+		it('returns non-transactor when neither cookie is "true"', () => {
+			expect(getUserTypeFromCookies(() => 'false')).toBe('non-transactor');
 		});
 	});
 
@@ -244,15 +292,10 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
-	describe('trackPageView user_type', () => {
-		it('includes user_type when provided', () => {
-			trackPageView('https://www.kiva.org/', '', 'transactor');
-			expect(fbq).toHaveBeenCalledWith('track', 'PageView', { user_type: 'transactor' });
-		});
-
-		it('sends a bare PageView when user_type is omitted', () => {
+	describe('trackPageView', () => {
+		it('never fires a fb PageView — the Meta pixel is fired separately by callers', () => {
 			trackPageView('https://www.kiva.org/', '');
-			expect(fbq).toHaveBeenCalledWith('track', 'PageView');
+			expect(fbq).not.toHaveBeenCalled();
 		});
 	});
 });
