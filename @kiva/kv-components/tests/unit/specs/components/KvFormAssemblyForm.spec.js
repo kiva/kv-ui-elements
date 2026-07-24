@@ -116,6 +116,23 @@ describe('KvFormAssemblyForm', () => {
 
 	// A consumer in cms-page-server sizes its lightbox by passing a class down to this
 	// wrapper. That works only while the template has a single root, so pin the fallthrough.
+	// mcstover on PR #861: automation hooks, distinct per form so several embeds on one
+	// page are individually addressable.
+	it('exposes a stable wrapper class and a form-specific data-testid', async () => {
+		const { container } = await renderForm();
+		const root = container.firstElementChild;
+
+		expect(root.classList.contains('kv-form-assembly-form')).toBe(true);
+		expect(root.getAttribute('data-testid')).toBe('kv-form-assembly-form-594');
+	});
+
+	it('falls back to an unsuffixed data-testid when there is no form id', async () => {
+		const { container } = render(KvFormAssemblyForm);
+		await new Promise((resolve) => { setTimeout(resolve, 0); });
+
+		expect(container.firstElementChild.getAttribute('data-testid')).toBe('kv-form-assembly-form');
+	});
+
 	it('merges a consumer-supplied class onto the root element', () => {
 		const { container } = render(KvFormAssemblyForm, {
 			props: { formAssemblyId: 594 },
@@ -128,8 +145,15 @@ describe('KvFormAssemblyForm', () => {
 	});
 });
 
-function postFaMessage(data, origin = 'https://kiva.tfaforms.net') {
-	window.dispatchEvent(new MessageEvent('message', { origin, data }));
+// A real browser always sets `source` to the posting window, so default it to the
+// component's own frame. Pass an explicit `source` to simulate a different embed.
+function postFaMessage(container, data, { origin = 'https://kiva.tfaforms.net', source } = {}) {
+	const iframe = container.querySelector('iframe');
+	window.dispatchEvent(new MessageEvent('message', {
+		origin,
+		data,
+		source: source === undefined ? iframe?.contentWindow : source,
+	}));
 }
 
 describe('KvFormAssemblyForm postMessage handling', () => {
@@ -138,7 +162,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		// the spinner is the only svg the component renders
 		expect(container.querySelector('svg')).not.toBeNull();
 
-		postFaMessage({ type: 'fa_frame_loaded' });
+		postFaMessage(container, { type: 'fa_frame_loaded' });
 
 		await waitFor(() => expect(emitted()['fa-form-loaded']).toBeTruthy());
 		await waitFor(() => expect(container.querySelector('svg')).toBeNull());
@@ -149,7 +173,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		const root = container.firstElementChild;
 		expect(root.getAttribute('aria-busy')).toBe('true');
 
-		postFaMessage({ type: 'fa_frame_loaded' });
+		postFaMessage(container, { type: 'fa_frame_loaded' });
 
 		await waitFor(() => expect(root.getAttribute('aria-busy')).toBe('false'));
 	});
@@ -157,7 +181,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	it('resizes the iframe to the reported height plus 30px body margin', async () => {
 		const { container, emitted } = await renderForm();
 
-		postFaMessage({ type: 'fa_frame_data', frameHeight: 800 });
+		postFaMessage(container, { type: 'fa_frame_data', frameHeight: 800 });
 
 		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('830'));
 		expect(emitted()['fa-form-submitted']).toBeFalsy();
@@ -166,15 +190,15 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	it('falls back to a 300px height when frameHeight is absent', async () => {
 		const { container } = await renderForm();
 
-		postFaMessage({ type: 'fa_form_page_change' });
+		postFaMessage(container, { type: 'fa_form_page_change' });
 
 		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('330'));
 	});
 
 	it('emits fa-form-submitted with valid true for a well-formed analytics payload', async () => {
-		const { emitted } = await renderForm();
+		const { container, emitted } = await renderForm();
 
-		postFaMessage({
+		postFaMessage(container, {
 			type: 'fa_form_submitted',
 			frameHeight: 400,
 			analytics: ['category', 'action', 'label', 'property', 'value'],
@@ -188,9 +212,9 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	});
 
 	it('emits valid false when the analytics payload is missing', async () => {
-		const { emitted } = await renderForm();
+		const { container, emitted } = await renderForm();
 
-		postFaMessage({ type: 'fa_form_submitted', frameHeight: 400 });
+		postFaMessage(container, { type: 'fa_form_submitted', frameHeight: 400 });
 
 		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
 		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
@@ -200,9 +224,9 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	});
 
 	it('emits valid false when the analytics payload is malformed', async () => {
-		const { emitted } = await renderForm();
+		const { container, emitted } = await renderForm();
 
-		postFaMessage({
+		postFaMessage(container, {
 			type: 'fa_form_submitted',
 			frameHeight: 400,
 			analytics: ['only-one-string', 42],
@@ -218,18 +242,18 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	// A later, stronger signal than fa_form_submitted — kiva/ui's CampaignVerificationForm
 	// uses it to dismiss its lightbox once the form reaches its thanks view.
 	it('emits fa-form-closed when the form reaches its thanks view', async () => {
-		const { emitted } = await renderForm();
+		const { container, emitted } = await renderForm();
 
-		postFaMessage({ type: 'fa_form_closed' });
+		postFaMessage(container, { type: 'fa_form_closed' });
 
 		await waitFor(() => expect(emitted()['fa-form-closed']).toBeTruthy());
 		expect(emitted()['fa-form-submitted']).toBeFalsy();
 	});
 
 	it('does not emit fa-form-closed on a plain submit', async () => {
-		const { emitted } = await renderForm();
+		const { container, emitted } = await renderForm();
 
-		postFaMessage({ type: 'fa_form_submitted', frameHeight: 400 });
+		postFaMessage(container, { type: 'fa_form_submitted', frameHeight: 400 });
 
 		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
 		expect(emitted()['fa-form-closed']).toBeFalsy();
@@ -238,8 +262,8 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	it('ignores messages from any other origin', async () => {
 		const { container, emitted } = await renderForm();
 
-		postFaMessage({ type: 'fa_form_submitted', frameHeight: 900 }, 'https://evil.example.com');
-		postFaMessage({ type: 'fa_frame_loaded' }, 'https://evil.example.com');
+		postFaMessage(container, { type: 'fa_form_submitted', frameHeight: 900 }, { origin: 'https://evil.example.com' });
+		postFaMessage(container, { type: 'fa_frame_loaded' }, { origin: 'https://evil.example.com' });
 
 		// nothing should change, so settle the queue before asserting the negatives
 		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('500'));
@@ -250,6 +274,22 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 	// Asserting behaviour after unmount is vacuous — there is nothing observable left to
 	// check, so the test passes whether or not the listener was removed. Pin the removal
 	// itself, and pin that it removes the *same* handler it registered.
+	// mcstover on PR #861: guard against collisions when several embeds share a page.
+	// Origin alone is not enough — every embed hears every FormAssembly frame.
+	it('ignores a message from a different FormAssembly frame on the same page', async () => {
+		const { container, emitted } = await renderForm();
+		const otherFrame = document.createElement('iframe');
+		document.body.appendChild(otherFrame);
+
+		postFaMessage(container, { type: 'fa_form_submitted', frameHeight: 900 }, {
+			source: otherFrame.contentWindow,
+		});
+
+		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('500'));
+		expect(emitted()['fa-form-submitted']).toBeFalsy();
+		document.body.removeChild(otherFrame);
+	});
+
 	it('removes its message listener on unmount', async () => {
 		const addSpy = jest.spyOn(window, 'addEventListener');
 		const removeSpy = jest.spyOn(window, 'removeEventListener');

@@ -1,7 +1,8 @@
 <template>
 	<div
 		ref="formContainerRef"
-		class="tw-w-full"
+		class="kv-form-assembly-form tw-w-full"
+		:data-testid="dataTestId"
 		:aria-busy="isLoading"
 	>
 		<div
@@ -13,6 +14,7 @@
 		</div>
 		<iframe
 			v-if="iFrameSrc"
+			ref="iFrameRef"
 			class="tw-mx-auto tw-w-full"
 			:src="iFrameSrc"
 			:height="iFrameHeight"
@@ -24,6 +26,7 @@
 
 <script setup lang="ts">
 import {
+	computed,
 	onMounted,
 	onUnmounted,
 	ref,
@@ -99,6 +102,14 @@ const emit = defineEmits<FaFormEmits>();
 
 const isLoading = ref(true);
 const formContainerRef = ref<HTMLElement | null>(null);
+const iFrameRef = ref<HTMLIFrameElement | null>(null);
+
+// Suffixed with the form id so a page embedding several forms gives automation a
+// distinct handle for each. Template refs are per-instance and cannot collide, but
+// these attributes are global to the document.
+const dataTestId = computed(() => (props.formAssemblyId
+	? `kv-form-assembly-form-${props.formAssemblyId}`
+	: 'kv-form-assembly-form'));
 
 const iFrameSrc = ref('');
 const iFrameHeight = ref(500);
@@ -142,6 +153,13 @@ const handleIFrameMessage = (message: MessageEvent<{
 	analytics?: unknown[]
 }>) => {
 	if (message.origin !== FA_ORIGIN) return;
+	// Every embed on the page hears every FormAssembly frame's messages, so origin alone
+	// would let one form resize its neighbour or fire its neighbour's submit. Match the
+	// sender against our own frame. Skipped while contentWindow is unavailable, which
+	// leaves the origin check as the floor rather than dropping messages outright.
+	const frameWindow = iFrameRef.value?.contentWindow;
+	if (frameWindow && message.source !== frameWindow) return;
+
 	const messageDataType = message?.data?.type;
 
 	if (messageDataType === 'fa_frame_loaded') {
