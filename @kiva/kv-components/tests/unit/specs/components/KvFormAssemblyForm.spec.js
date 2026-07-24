@@ -290,6 +290,42 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		document.body.removeChild(otherFrame);
 	});
 
+	// The definitive answer to "should the container ref be dynamic?" — it does not need to
+	// be. Template refs are per component instance, so two embeds each resolve their own
+	// element and build their own src. Only document-global attributes needed disambiguating.
+	it('keeps two embeds on the same page fully independent', async () => {
+		const TwoEmbeds = {
+			components: { KvFormAssemblyForm },
+			template: `
+				<div>
+					<KvFormAssemblyForm :form-assembly-id="594" title="First" />
+					<KvFormAssemblyForm :form-assembly-id="601" title="Second" />
+				</div>
+			`,
+		};
+		const { container } = render(TwoEmbeds);
+		await waitFor(() => expect(container.querySelectorAll('iframe')).toHaveLength(2));
+		const [first, second] = container.querySelectorAll('iframe');
+
+		// each instance resolved its own container ref and built its own url
+		expect(first.getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(second.getAttribute('src')).toBe('https://kiva.tfaforms.net/601');
+
+		// and each is separately addressable by automation
+		expect(container.querySelector('[data-testid="kv-form-assembly-form-594"]')).not.toBeNull();
+		expect(container.querySelector('[data-testid="kv-form-assembly-form-601"]')).not.toBeNull();
+
+		// a resize from the first frame must leave the second at its default height
+		window.dispatchEvent(new MessageEvent('message', {
+			origin: 'https://kiva.tfaforms.net',
+			data: { type: 'fa_frame_data', frameHeight: 800 },
+			source: first.contentWindow,
+		}));
+
+		await waitFor(() => expect(first.getAttribute('height')).toBe('830'));
+		expect(second.getAttribute('height')).toBe('500');
+	});
+
 	it('removes its message listener on unmount', async () => {
 		const addSpy = jest.spyOn(window, 'addEventListener');
 		const removeSpy = jest.spyOn(window, 'removeEventListener');
