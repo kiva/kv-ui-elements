@@ -5,6 +5,7 @@ import {
 	trackFBAddToCart,
 	trackFBCustomEvent,
 	trackFBEvent,
+	trackFBPageView,
 	trackFBTransaction,
 	trackPageView,
 	trackTransaction,
@@ -50,6 +51,24 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		it('does not throw and does not fire when fbq is unavailable', () => {
 			delete (window as any).fbq;
 			expect(() => trackFBEvent('Donate')).not.toThrow();
+			expect(fbq).not.toHaveBeenCalled();
+		});
+	});
+
+	describe('trackFBPageView', () => {
+		it('fires a PageView segmented by user_type when given', () => {
+			trackFBPageView('transactor');
+			expect(fbq).toHaveBeenCalledWith('track', 'PageView', { user_type: 'transactor' });
+		});
+
+		it('fires a bare PageView when no user_type is given', () => {
+			trackFBPageView();
+			expect(fbq).toHaveBeenCalledWith('track', 'PageView', undefined);
+		});
+
+		it('does not throw and does not fire when fbq is unavailable', () => {
+			delete (window as any).fbq;
+			expect(() => trackFBPageView('non-transactor')).not.toThrow();
 			expect(fbq).not.toHaveBeenCalled();
 		});
 	});
@@ -273,19 +292,9 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
-	describe('trackPageView user_type', () => {
-		it('includes user_type when provided', () => {
-			trackPageView('https://www.kiva.org/', '', 'transactor');
-			expect(fbq).toHaveBeenCalledWith('track', 'PageView', { user_type: 'transactor' });
-		});
-
-		it('sends a bare PageView when user_type is omitted', () => {
+	describe('trackPageView', () => {
+		it('never fires a fb PageView — the Meta pixel is fired separately by callers', () => {
 			trackPageView('https://www.kiva.org/', '');
-			expect(fbq).toHaveBeenCalledWith('track', 'PageView');
-		});
-
-		it('does not fire the fb PageView when skipFb is set', () => {
-			trackPageView('https://www.kiva.org/', '', 'transactor', true);
 			expect(fbq).not.toHaveBeenCalled();
 		});
 	});

@@ -119,6 +119,15 @@ export function getUserType(isTransactor: boolean): UserType {
 }
 
 /**
+ * Fires the Meta (Facebook) PageView pixel, optionally segmented by `user_type`.
+ *
+ * @param userType Optional Meta `user_type` segment (`transactor` / `non-transactor`).
+ */
+export function trackFBPageView(userType?: UserType) {
+	fireFbq('track', 'PageView', userType ? { user_type: userType } : undefined);
+}
+
+/**
  * Names of the session cookies tracking whether a user has ever lent (`kvu_lb`) or deposited
  * (`kvu_db`). Written elsewhere as the raw string `'true'`/`'false'`.
  */
@@ -432,20 +441,15 @@ export function trackSelfDescribingEvent(eventData) {
 }
 
 /**
- * Fires a page view to Snowplow, Google Analytics, and the Meta (Facebook) pixel.
+ * Fires a page view to Snowplow and Google Analytics.
  *
  * @param to Destination — a route object (uses `fullPath`) or a URL string. Falls back to
  *   `window.location.href` when omitted.
  * @param from Referrer — a route object or a URL string. Falls back to `document.referrer`; the
  *   Snowplow referrer is only set for matched route transitions.
- * @param userType Optional Meta `user_type` segment (`transactor` / `non-transactor`) attached to
- *   the fb PageView. See {@link getUserType}.
- * @param skipFb When `true`, sends the Snowplow + GA page views but skips the fb PageView, so the
- *   caller can fire it separately (e.g. after resolving `userType`) without blocking the primary
- *   Snowplow page view. Defaults to `false`.
  * @returns `false` when called outside the browser; otherwise `undefined`.
  */
-export function trackPageView(to: any, from: any, userType?: UserType, skipFb = false) {
+export function trackPageView(to: any, from: any) {
 	if (!inBrowser()) return false;
 	checkLibrariesLoaded();
 
@@ -480,16 +484,6 @@ export function trackPageView(to: any, from: any, userType?: UserType, skipFb = 
 		window.gtag('event', 'page_view', {
 			page_path: gaPath,
 		});
-	}
-
-	// Facebook pixel pageview — skippable so callers can fire it separately
-	// (e.g. after resolving user_type) without blocking the snowplow pageview above
-	if (!skipFb) {
-		if (userType) {
-			fireFbq('track', 'PageView', { user_type: userType });
-		} else {
-			fireFbq('track', 'PageView');
-		}
 	}
 }
 
