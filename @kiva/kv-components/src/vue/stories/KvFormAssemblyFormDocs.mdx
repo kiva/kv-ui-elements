@@ -1,0 +1,284 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvFormAssemblyFormStories from './KvFormAssemblyForm.stories.js';
+
+<Meta title="Forms/KvFormAssemblyForm" component={KvFormAssemblyFormStories.Component} />
+
+# KvFormAssemblyForm
+
+Embeds a FormAssembly form by id and relays its lifecycle events to the host application.
+
+## Component Overview
+
+The component renders an iframe pointing at `https://kiva.tfaforms.net/<formAssemblyId>`, shows a loading spinner until the form reports that it is ready, and resizes itself as the user moves through the form. It owns no form fields of its own — FormAssembly renders and validates those. Its job is to place a third-party form inside a Kiva page and hand the surrounding application a clean set of events to react to.
+
+<Story of={KvFormAssemblyFormStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component has no visual variants — there are no sizes, styles, or themes to choose from. What changes between uses is which form is embedded and what data is passed into it: a plain embed with only a form id, and an embed that prefills the form's fields through `additionalQueryParams`. Both render identically; the difference is in the url the iframe loads.
+
+<Story of={KvFormAssemblyFormStories.AllVariations} />
+
+## Usage Information
+
+Use this component wherever a FormAssembly form needs to appear inside a Kiva page rather than sending users off to a hosted FormAssembly URL. Marketing and operations teams author these forms in FormAssembly and connect them to Salesforce; this component is the bridge that puts one on a page without the engineering team rebuilding it.
+
+### When to Use
+
+- Embedding a marketing, survey, or lead-capture form that is authored and maintained in FormAssembly.
+- Prefilling a FormAssembly form's hidden fields from page or route context, such as a campaign id or the signed-in user's email.
+- Passing tracking identifiers the host application has already resolved into the form, so FormAssembly and Salesforce records can be joined back to analytics data in the warehouse.
+- Reacting to a submission in the host application — recording that a user completed a form, or firing an analytics event.
+
+### When Not to Use
+
+- Building a form out of Kiva's own inputs. Use `KvTextInput`, `KvSelect`, `KvCheckbox`, and `KvButton` instead, which are themed, validated, and tested as part of this library.
+- Embedding anything that is not a FormAssembly form. The origin is hardcoded to `https://kiva.tfaforms.net` and messages from any other origin are ignored.
+- Situations where the submitted values are needed in the client. FormAssembly posts data to its own backend; this component never sees field values.
+- Forms that must work without JavaScript or third-party frames. If the user's browser blocks the iframe, no fallback is rendered.
+
+---
+
+## Behavior
+
+The component communicates with the embedded form over `postMessage`. Messages originating anywhere other than `https://kiva.tfaforms.net` are discarded before they are inspected, so a hostile frame cannot resize the embed or fake a submission. The JavaScript that emits these messages lives in the FormAssembly form itself, under Properties > Custom Code — a form without that code still renders, but never reports loading, resizing, or submission.
+
+### Prefilling form fields
+
+`additionalQueryParams` is appended to the form url, which is how FormAssembly prefills fields. The string is expected to carry its own leading `?`, and is normalized with `URLSearchParams` before use, so values are encoded correctly and a stray or empty query string does not produce a trailing `?`.
+
+The component deliberately knows nothing about what the params mean. Resolving a `tfa_*` field id, or fetching a tracking identifier from a cookie, belongs to the consuming application — which already owns that mapping and, in Kiva's apps, already has the cookie readers to go with it. Keeping that knowledge out of this library means adding tracking to a new form never requires a release of `@kiva/kv-components`.
+
+<Story of={KvFormAssemblyFormStories.PrefilledFields} />
+
+### Loading and resizing
+
+A loading spinner occupies at least 200px until the form posts `fa_frame_loaded`, at which point `fa-form-loaded` is emitted and the spinner is removed. From then on, `fa_frame_data`, `fa_form_page_change`, and `fa_form_submitted` messages each carry the height the form currently needs, and the iframe is resized to that height plus 30px. Multi-page forms therefore grow and shrink as the user pages through them, with no scrollbar inside the frame.
+
+On submission the component emits `fa-form-submitted` with the raw analytics payload the form supplied and a `valid` flag reporting whether that payload is usable as an event tuple. Both outcomes emit — the consumer decides whether to track the event or report the malformed payload.
+
+`fa-form-submitted` fires on submit, which may or may not be a successful one. If the form later transitions to its thanks view it posts `fa_form_closed` and the component emits `fa-form-closed`. That is the stronger completion signal, and the one to dismiss a modal or lightbox on. A form that never reaches a thanks view emits only the submit event.
+
+<Story of={KvFormAssemblyFormStories.LoadingAndResize} />
+
+## Anatomy
+
+The component is made of two parts. They stack rather than alternate — the iframe appears as soon as the url is built, while the spinner stays above it until the form reports that it loaded:
+
+- **Loading spinner**: a `KvLoadingSpinner` centered in a container with a 200px minimum height. Shown from mount until the embedded form reports that it finished loading.
+- **Iframe**: the embedded FormAssembly form. Its `src` is built from `formAssemblyId` and `additionalQueryParams`; its `height` is driven by the form's own `postMessage` events; its accessible name comes from the `title` prop.
+
+---
+
+## Specs
+
+### Dimensions
+
+The loading container reserves a minimum height of 200px. Because it sits above the iframe rather than replacing it, the embed is 200px taller while loading and collapses by that much once the form reports ready — reserve room for that shift if the surrounding layout is sensitive to it. The iframe starts at 500px tall and is then set to whatever height the form reports plus a 30px allowance for the body margin applied inside the frame. When a resize message arrives without a height, 300px is assumed and 330px is applied. Width is always 100% of the containing element.
+
+<Story of={KvFormAssemblyFormStories.LoadingAndResize} />
+
+### Form url
+
+The url is `https://kiva.tfaforms.net/<formAssemblyId>` plus a query string. `additionalQueryParams` is parsed with `URLSearchParams`, so reserved characters are encoded. Duplicate keys are preserved rather than collapsed, so passing the same `tfa_*` key twice sends both values to FormAssembly — de-duplicate before passing it in. When the string contributes no params the url carries no query string at all, and until `formAssemblyId` is set no iframe is rendered.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-descriptive-iframe-title.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pass a title that names the specific form, such as "Newsletter signup form", so screen reader users can tell embedded frames apart.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-not-default-iframe-title.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Don't leave the default title in place when a page embeds more than one form — every frame announces itself identically.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-encode-query-params.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Build additionalQueryParams with URLSearchParams and include the leading question mark, so values with spaces or ampersands survive.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-not-send-empty-params.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't append a key when its value is missing — an empty param overwrites good data in Salesforce. Omit the key instead.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-check-valid-flag.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Check the valid flag on fa-form-submitted before treating the analytics array as an event tuple.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvFormAssemblyForm/Do-not-assume-analytics-payload.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't assume every submission carries analytics — forms without the custom code emit a null payload.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The iframe always carries a `title` attribute, supplied by the `title` prop, so assistive technology can announce the embedded frame and list it among page landmarks. This satisfies the axe `frame-title` rule and WCAG 2.4.1 Bypass Blocks.
+- The `title` should name the specific form. The default, "FormAssembly form", is only adequate when a page contains a single embed.
+- Keyboard focus moves into and out of the iframe natively. The component adds no focus trap, no autofocus, and no tab index management.
+- The container carries `aria-busy` while the form is loading. On a plain container this is advisory rather than something every screen reader acts on, so treat it as a hint, not as a loading announcement.
+- The content inside the iframe is authored in FormAssembly. Field labels, required-field messaging, error text, and color contrast within the form are the form author's responsibility and are outside the reach of this component's automated accessibility tests.
+- The spinner itself has no text alternative. `aria-busy` signals that the region is settling, but consumers who need loading actively announced should render their own live region alongside the component.
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvFormAssemblyFormStories.Default} />
+<Controls of={KvFormAssemblyFormStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic embed
+
+```vue
+<template>
+	<KvFormAssemblyForm
+		:form-assembly-id="594"
+		title="Newsletter signup form"
+	/>
+</template>
+
+<script setup>
+import { KvFormAssemblyForm } from '@kiva/kv-components';
+</script>
+```
+
+### Embed with prefilled fields
+
+```vue
+<template>
+	<KvFormAssemblyForm
+		:form-assembly-id="594"
+		:additional-query-params="additionalQueryParams"
+		title="Lead capture form"
+	/>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+import { KvFormAssemblyForm } from '@kiva/kv-components';
+
+const props = defineProps({
+	email: {
+		type: String,
+		default: '',
+	},
+});
+
+// the prop expects its own leading ?
+const additionalQueryParams = computed(() => {
+	const params = new URLSearchParams();
+	if (props.email) params.set('tfa_4211', props.email);
+	return params.toString() ? `?${params}` : '';
+});
+</script>
+```
+
+### cms-page-server: tracking ids, analytics, and closing a modal
+
+The component has no analytics awareness of its own. The host application resolves tracking
+identifiers, maps them onto the form's hidden field ids, and hands them over as query params.
+
+Two things are specific to cms-page-server. There is **no import statement** — `nuxt.config.ts`
+adds `node_modules/@kiva/kv-components/dist/vue` to the Nuxt components dirs, so the component
+auto-registers by name. And the Snowplow field map stays in the app: `getSnowplowFieldsForForm`
+resolves which `tfa_*` hidden fields a given form exposes, so adding tracking to a new form never
+requires a release of this library.
+
+```vue
+<template>
+	<KvFormAssemblyForm
+		:form-assembly-id="formAssemblyId"
+		:additional-query-params="additionalQueryParams"
+		title="Borrower survey form"
+		@fa-form-submitted="onSubmitted"
+		@fa-form-closed="onClosed"
+	/>
+</template>
+
+<script setup>
+// no import for KvFormAssemblyForm — Nuxt auto-registers it from @kiva/kv-components
+import * as Sentry from '@sentry/vue';
+import { getSnowplowDomainUserId, getSnowplowSessionId } from '@/util/snowplowCookie';
+import getSnowplowFieldsForForm from '@/util/formAssemblySnowplowFields';
+
+const emit = defineEmits(['complete']);
+
+const { $kvTrackEvent } = useNuxtApp();
+
+const formAssemblyId = 594;
+
+const additionalQueryParams = computed(() => {
+	const params = new URLSearchParams();
+	const fields = getSnowplowFieldsForForm(formAssemblyId);
+	// omit a key entirely when its cookie value is missing
+	const domainUserId = fields?.domainUserId ? getSnowplowDomainUserId() : null;
+	const sessionId = fields?.sessionId ? getSnowplowSessionId() : null;
+	if (domainUserId) params.set(fields.domainUserId, domainUserId);
+	if (sessionId) params.set(fields.sessionId, sessionId);
+	return params.toString() ? `?${params}` : '';
+});
+
+const onSubmitted = ({ analytics, valid }) => {
+	if (valid) {
+		// analytics is [category, action, label, property, value]
+		$kvTrackEvent(...analytics.slice(0, 5));
+	} else {
+		Sentry.captureMessage('fa_form_submitted: analytics payload missing or malformed', {
+			level: 'warning',
+			extra: { analytics },
+		});
+	}
+};
+
+// fa-form-submitted fires on submit, successful or not. Wait for the thanks view before
+// tearing down the surrounding modal, or the user loses the confirmation screen.
+const onClosed = () => {
+	emit('complete');
+};
+</script>
+```

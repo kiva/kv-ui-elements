@@ -1,0 +1,268 @@
+import { render, waitFor } from '@testing-library/vue';
+import { axe } from 'jest-axe';
+import KvFormAssemblyForm from '#components/KvFormAssemblyForm.vue';
+
+// KvLoadingSpinner is a dependency-free SVG, so it is rendered for real rather than
+// stubbed — no spec in this repo stubs child components, and the a11y check is more
+// meaningful against the real markup.
+//
+// The component only builds its src once the container ref is populated, which is one
+// reactivity flush after mount — so every helper that needs the iframe awaits it.
+async function renderForm(props = {}) {
+	const utils = render(KvFormAssemblyForm, {
+		props: { formAssemblyId: 594, ...props },
+	});
+	await waitFor(() => expect(utils.container.querySelector('iframe')).not.toBeNull());
+	return utils;
+}
+
+function getIframe(container) {
+	const iframe = container.querySelector('iframe');
+	expect(iframe).not.toBeNull();
+	return iframe;
+}
+
+function getIframeQuery(container) {
+	const src = getIframe(container).getAttribute('src');
+	return new URLSearchParams(src.split('?')[1] ?? '');
+}
+
+describe('KvFormAssemblyForm', () => {
+	// awaited so the iframe is present — otherwise axe never exercises frame-title,
+	// which is the rule the title prop exists to satisfy
+	it('has no automated accessibility violations', async () => {
+		const { container } = await renderForm();
+		const results = await axe(container);
+		expect(results).toHaveNoViolations();
+	});
+
+	it('renders an iframe pointing at the FA form URL', async () => {
+		const { container } = await renderForm();
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+	});
+
+	it('gives the iframe an accessible name from the title prop', async () => {
+		const { container } = await renderForm({ title: 'Newsletter signup' });
+		expect(getIframe(container).getAttribute('title')).toBe('Newsletter signup');
+	});
+
+	it('falls back to a generic iframe title when none is supplied', async () => {
+		const { container } = await renderForm();
+		expect(getIframe(container).getAttribute('title')).toBe('FormAssembly form');
+	});
+
+	// In cms-page-server the id is often not known at first render — it arrives from
+	// Contentful or a computed — so the src has to rebuild when the prop settles.
+	it('rebuilds the src when formAssemblyId changes', async () => {
+		const { container, rerender } = await renderForm();
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+
+		await rerender({ formAssemblyId: 601 });
+
+		await waitFor(() => expect(getIframe(container).getAttribute('src'))
+			.toBe('https://kiva.tfaforms.net/601'));
+	});
+
+	// The src is built one flush after mount, so asserting synchronously here would pass
+	// even if the id guard were removed. Drain the queue first, then assert the negative.
+	it('renders no iframe when formAssemblyId is not supplied', async () => {
+		const { container } = render(KvFormAssemblyForm);
+
+		await new Promise((resolve) => { setTimeout(resolve, 0); });
+
+		expect(container.querySelector('iframe')).toBeNull();
+	});
+
+	it('still renders when additionalQueryParams is null rather than undefined', async () => {
+		const { container } = await renderForm({ additionalQueryParams: null });
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+	});
+
+	// deliberately a different id from the default used everywhere else, so this also
+	// pins that the prop is interpolated into the url rather than hardcoded
+	it('appends additionalQueryParams to the form url', async () => {
+		const { container } = await renderForm({
+			formAssemblyId: 999,
+			additionalQueryParams: '?foo=bar',
+		});
+
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/999?foo=bar');
+	});
+
+	it('preserves every key in a multi-param query string', async () => {
+		const { container } = await renderForm({
+			additionalQueryParams: '?tfa_4211=user@example.com&tfa_4264=12345',
+		});
+
+		const query = getIframeQuery(container);
+		expect(query.get('tfa_4211')).toBe('user@example.com');
+		expect(query.get('tfa_4264')).toBe('12345');
+	});
+
+	it('tolerates additionalQueryParams without a leading question mark', async () => {
+		const { container } = await renderForm({ additionalQueryParams: 'foo=bar' });
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594?foo=bar');
+	});
+
+	it('emits no query string when additionalQueryParams is empty', async () => {
+		const { container } = await renderForm({ additionalQueryParams: '' });
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+	});
+
+	it('emits no query string when additionalQueryParams is only a question mark', async () => {
+		const { container } = await renderForm({ additionalQueryParams: '?' });
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+	});
+
+	// A consumer in cms-page-server sizes its lightbox by passing a class down to this
+	// wrapper. That works only while the template has a single root, so pin the fallthrough.
+	it('merges a consumer-supplied class onto the root element', () => {
+		const { container } = render(KvFormAssemblyForm, {
+			props: { formAssemblyId: 594 },
+			attrs: { class: 'lightbox-max-height' },
+		});
+
+		const root = container.firstElementChild;
+		expect(root.classList.contains('lightbox-max-height')).toBe(true);
+		expect(root.classList.contains('tw-w-full')).toBe(true);
+	});
+});
+
+function postFaMessage(data, origin = 'https://kiva.tfaforms.net') {
+	window.dispatchEvent(new MessageEvent('message', { origin, data }));
+}
+
+describe('KvFormAssemblyForm postMessage handling', () => {
+	it('emits fa-form-loaded and hides the spinner on fa_frame_loaded', async () => {
+		const { container, emitted } = await renderForm();
+		// the spinner is the only svg the component renders
+		expect(container.querySelector('svg')).not.toBeNull();
+
+		postFaMessage({ type: 'fa_frame_loaded' });
+
+		await waitFor(() => expect(emitted()['fa-form-loaded']).toBeTruthy());
+		await waitFor(() => expect(container.querySelector('svg')).toBeNull());
+	});
+
+	it('marks the container busy until the form reports loaded', async () => {
+		const { container } = await renderForm();
+		const root = container.firstElementChild;
+		expect(root.getAttribute('aria-busy')).toBe('true');
+
+		postFaMessage({ type: 'fa_frame_loaded' });
+
+		await waitFor(() => expect(root.getAttribute('aria-busy')).toBe('false'));
+	});
+
+	it('resizes the iframe to the reported height plus 30px body margin', async () => {
+		const { container, emitted } = await renderForm();
+
+		postFaMessage({ type: 'fa_frame_data', frameHeight: 800 });
+
+		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('830'));
+		expect(emitted()['fa-form-submitted']).toBeFalsy();
+	});
+
+	it('falls back to a 300px height when frameHeight is absent', async () => {
+		const { container } = await renderForm();
+
+		postFaMessage({ type: 'fa_form_page_change' });
+
+		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('330'));
+	});
+
+	it('emits fa-form-submitted with valid true for a well-formed analytics payload', async () => {
+		const { emitted } = await renderForm();
+
+		postFaMessage({
+			type: 'fa_form_submitted',
+			frameHeight: 400,
+			analytics: ['category', 'action', 'label', 'property', 'value'],
+		});
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
+			analytics: ['category', 'action', 'label', 'property', 'value'],
+			valid: true,
+		});
+	});
+
+	it('emits valid false when the analytics payload is missing', async () => {
+		const { emitted } = await renderForm();
+
+		postFaMessage({ type: 'fa_form_submitted', frameHeight: 400 });
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
+			analytics: null,
+			valid: false,
+		});
+	});
+
+	it('emits valid false when the analytics payload is malformed', async () => {
+		const { emitted } = await renderForm();
+
+		postFaMessage({
+			type: 'fa_form_submitted',
+			frameHeight: 400,
+			analytics: ['only-one-string', 42],
+		});
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
+			analytics: ['only-one-string', 42],
+			valid: false,
+		});
+	});
+
+	// A later, stronger signal than fa_form_submitted — kiva/ui's CampaignVerificationForm
+	// uses it to dismiss its lightbox once the form reaches its thanks view.
+	it('emits fa-form-closed when the form reaches its thanks view', async () => {
+		const { emitted } = await renderForm();
+
+		postFaMessage({ type: 'fa_form_closed' });
+
+		await waitFor(() => expect(emitted()['fa-form-closed']).toBeTruthy());
+		expect(emitted()['fa-form-submitted']).toBeFalsy();
+	});
+
+	it('does not emit fa-form-closed on a plain submit', async () => {
+		const { emitted } = await renderForm();
+
+		postFaMessage({ type: 'fa_form_submitted', frameHeight: 400 });
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-closed']).toBeFalsy();
+	});
+
+	it('ignores messages from any other origin', async () => {
+		const { container, emitted } = await renderForm();
+
+		postFaMessage({ type: 'fa_form_submitted', frameHeight: 900 }, 'https://evil.example.com');
+		postFaMessage({ type: 'fa_frame_loaded' }, 'https://evil.example.com');
+
+		// nothing should change, so settle the queue before asserting the negatives
+		await waitFor(() => expect(getIframe(container).getAttribute('height')).toBe('500'));
+		expect(emitted()['fa-form-submitted']).toBeFalsy();
+		expect(emitted()['fa-form-loaded']).toBeFalsy();
+	});
+
+	// Asserting behaviour after unmount is vacuous — there is nothing observable left to
+	// check, so the test passes whether or not the listener was removed. Pin the removal
+	// itself, and pin that it removes the *same* handler it registered.
+	it('removes its message listener on unmount', async () => {
+		const addSpy = jest.spyOn(window, 'addEventListener');
+		const removeSpy = jest.spyOn(window, 'removeEventListener');
+
+		const { unmount } = await renderForm();
+		const registered = addSpy.mock.calls.find(([type]) => type === 'message');
+		expect(registered).toBeDefined();
+
+		unmount();
+
+		expect(removeSpy).toHaveBeenCalledWith('message', registered[1]);
+
+		addSpy.mockRestore();
+		removeSpy.mockRestore();
+	});
+});
