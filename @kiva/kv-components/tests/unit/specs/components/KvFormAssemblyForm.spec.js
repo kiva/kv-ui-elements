@@ -261,8 +261,8 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		});
 	});
 
-	// Kiva's forms raise fa_form_closed from a beforeunload handler, so it means the form's
-	// page went away — not that the user finished. It is the weaker of the two signals.
+	// fa_form_closed is sent by a beforeunload handler inside the FormAssembly form's own
+	// Custom Code, so it means the form's page went away — not that the user finished.
 	it('emits fa-form-closed when the form page is torn down', async () => {
 		const { container, emitted } = await renderForm();
 

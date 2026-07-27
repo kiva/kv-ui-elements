@@ -91,8 +91,9 @@ const props = defineProps({
  * @event fa-form-submitted
  */
 /**
- * Emitted when the form's page is torn down. Kiva's FormAssembly forms raise this from a
- * `beforeunload` handler, so despite the name it is the weaker signal: it also fires when the
+ * Emitted when the form's page is torn down. The `beforeunload` handler that sends this lives in
+ * the FormAssembly form's own Custom Code, not in this component — we only receive the resulting
+ * message. That makes it the weaker signal despite the name: it also fires when the
  * user navigates away or a containing modal closes, and it does not fire at all when the form
  * shows an in-page thank you message instead of navigating to a dedicated thank you page.
  * Use it for teardown, not to confirm the user finished.

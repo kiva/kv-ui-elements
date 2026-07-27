@@ -157,7 +157,8 @@ export const Default = {
 				console.log('fa-form-submitted', payload);
 			},
 			onClosed() {
-				// rides on beforeunload, so it also fires on navigation or modal close
+				// sent from a beforeunload handler in the form's Custom Code, so it also
+				// fires on navigation or modal close
 				console.log('fa-form-closed');
 			},
 		},
