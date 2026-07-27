@@ -239,9 +239,9 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		});
 	});
 
-	// A later, stronger signal than fa_form_submitted — kiva/ui's CampaignVerificationForm
-	// uses it to dismiss its lightbox once the form reaches its thanks view.
-	it('emits fa-form-closed when the form reaches its thanks view', async () => {
+	// Kiva's forms raise fa_form_closed from a beforeunload handler, so it means the form's
+	// page went away — not that the user finished. It is the weaker of the two signals.
+	it('emits fa-form-closed when the form page is torn down', async () => {
 		const { container, emitted } = await renderForm();
 
 		postFaMessage(container, { type: 'fa_form_closed' });
@@ -250,6 +250,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		expect(emitted()['fa-form-submitted']).toBeFalsy();
 	});
 
+	// the two are independent: a submit does not imply teardown, and vice versa
 	it('does not emit fa-form-closed on a plain submit', async () => {
 		const { container, emitted } = await renderForm();
 

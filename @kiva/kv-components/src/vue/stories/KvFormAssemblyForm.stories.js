@@ -143,6 +143,7 @@ export const Default = {
 					v-bind="args"
 					@fa-form-loaded="onLoaded"
 					@fa-form-submitted="onSubmitted"
+					@fa-form-closed="onClosed"
 				/>
 			</div>
 		`,
@@ -151,7 +152,12 @@ export const Default = {
 				console.log('fa-form-loaded');
 			},
 			onSubmitted(payload) {
+				// only fires once validation passes — the reliable completion signal
 				console.log('fa-form-submitted', payload);
+			},
+			onClosed() {
+				// rides on beforeunload, so it also fires on navigation or modal close
+				console.log('fa-form-closed');
 			},
 		},
 	}),
