@@ -25,6 +25,7 @@ export { default as KvDatePicker } from './KvDatePicker.vue';
 export { default as KvExpandable } from './KvExpandable.vue';
 export { default as KvExpandableQuestion } from './KvExpandableQuestion.vue';
 export { default as KvFlag } from './KvFlag.vue';
+export { default as KvFormAssemblyForm } from './KvFormAssemblyForm.vue';
 export { default as KvGrid } from './KvGrid.vue';
 export { default as KvIconButton } from './KvIconButton.vue';
 export { default as KvImageUpload } from './KvImageUpload.vue';
