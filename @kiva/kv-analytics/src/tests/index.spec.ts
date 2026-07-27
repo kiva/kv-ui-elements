@@ -2,6 +2,9 @@ import {
 	getTransactorFlagsFromCookies,
 	getUserType,
 	getUserTypeFromCookies,
+	recordTransactorSignals,
+	HAS_LENT_BEFORE_COOKIE,
+	HAS_DEPOSIT_BEFORE_COOKIE,
 	trackFBAddToCart,
 	trackFBCustomEvent,
 	trackFBEvent,
@@ -110,6 +113,94 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 	});
 
+	describe('recordTransactorSignals', () => {
+		const cookieAccess = (initial: Record<string, string> = {}) => {
+			const store: Record<string, string> = { ...initial };
+			return {
+				store,
+				get: (name: string) => store[name],
+				set: jest.fn((name: string, value: string) => { store[name] = value; }),
+			};
+		};
+
+		it('sets both flags from a receipt that proves them', () => {
+			const cookies = cookieAccess();
+			const result = recordTransactorSignals(cookies, { hasLoans: true, hasDeposit: true });
+
+			expect(result).toEqual({ hasLentBefore: true, hasDepositBefore: true });
+			expect(cookies.set).toHaveBeenCalledWith(HAS_LENT_BEFORE_COOKIE, 'true');
+			expect(cookies.set).toHaveBeenCalledWith(HAS_DEPOSIT_BEFORE_COOKIE, 'true');
+		});
+
+		it('never clears a flag an earlier transaction already set', () => {
+			// established lender makes a credit-funded, donation-only checkout: this receipt has no
+			// loans and no deposit, but that says nothing about their history
+			const cookies = cookieAccess({
+				[HAS_LENT_BEFORE_COOKIE]: 'true',
+				[HAS_DEPOSIT_BEFORE_COOKIE]: 'true',
+			});
+			const result = recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: false });
+
+			expect(result).toEqual({ hasLentBefore: true, hasDepositBefore: true });
+			expect(cookies.set).toHaveBeenCalledWith(HAS_LENT_BEFORE_COOKIE, 'true');
+		});
+
+		it('leaves both false for a visitor whose receipt proves neither', () => {
+			const cookies = cookieAccess();
+			const result = recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: false });
+
+			expect(result).toEqual({ hasLentBefore: false, hasDepositBefore: false });
+		});
+
+		it('writes no cookie at all when the receipt proves neither flag', () => {
+			// a receipt-derived 'false' is a *present* value, so it would satisfy the consumer fast
+			// path that skips the authoritative lifetime query and pin a new donation-only visitor
+			// to non-transactor for the cookie's whole life. Absent means "ask again".
+			const cookies = cookieAccess();
+			recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: false });
+
+			expect(cookies.set).not.toHaveBeenCalled();
+			expect(cookies.store).toEqual({});
+		});
+
+		it('does not overwrite an authoritative false with nothing, nor promote it', () => {
+			// the lifetime query legitimately writes 'false'; a receipt proving nothing must leave it
+			const cookies = cookieAccess({
+				[HAS_LENT_BEFORE_COOKIE]: 'false',
+				[HAS_DEPOSIT_BEFORE_COOKIE]: 'false',
+			});
+			recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: false });
+
+			expect(cookies.set).not.toHaveBeenCalled();
+			expect(cookies.store[HAS_LENT_BEFORE_COOKIE]).toBe('false');
+		});
+
+		it('only writes the flag the receipt actually proves', () => {
+			const cookies = cookieAccess();
+			recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: true });
+
+			expect(cookies.set).toHaveBeenCalledWith(HAS_DEPOSIT_BEFORE_COOKIE, 'true');
+			expect(cookies.set).not.toHaveBeenCalledWith(HAS_LENT_BEFORE_COOKIE, expect.anything());
+		});
+
+		it('merges each flag independently', () => {
+			const cookies = cookieAccess({ [HAS_LENT_BEFORE_COOKIE]: 'true' });
+			const result = recordTransactorSignals(cookies, { hasLoans: false, hasDeposit: true });
+
+			expect(result).toEqual({ hasLentBefore: true, hasDepositBefore: true });
+		});
+
+		it('writes a format getTransactorFlagsFromCookies reads back', () => {
+			const cookies = cookieAccess();
+			recordTransactorSignals(cookies, { hasLoans: true, hasDeposit: false });
+
+			expect(getTransactorFlagsFromCookies(cookies.get)).toEqual({
+				hasLentBefore: true,
+				hasDepositBefore: false,
+			});
+		});
+	});
+
 	describe('trackFBAddToCart', () => {
 		it('fires AddToCart with the given content_category', () => {
 			trackFBAddToCart('Kiva Card');
@@ -151,7 +242,7 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 	});
 
 	let txCounter = 0;
-	// unique id per call so the once-per-transaction dedup guard doesn't bleed across tests
+	// unique id per call so each test's transaction data is distinct
 	const nextTxId = () => {
 		txCounter += 1;
 		return `tx-${txCounter}`;
@@ -196,13 +287,24 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			expect(fbq).not.toHaveBeenCalledWith('track', 'Purchase', expect.anything());
 		});
 
-		it('still fires firstTimeDepositorTransaction when Purchase is skipped for an empty amount', () => {
+		it('still fires firstTimeDepositorTransaction when Purchase is skipped, without a 0 value', () => {
 			trackTransaction(baseTransaction({ isFTD: true, itemTotal: '' }));
 			expect(fbq).not.toHaveBeenCalledWith('track', 'Purchase', expect.anything());
-			expect(fbq).toHaveBeenCalledWith('trackCustom', 'firstTimeDepositorTransaction', expect.objectContaining({
-				value: 0,
-				currency: 'USD',
+			// the count signal still fires, but omitting value/currency is the whole point of
+			// skipping Purchase — sending value: 0 here would dilute it just the same
+			expect(fbq).toHaveBeenCalledWith('trackCustom', 'firstTimeDepositorTransaction', {
+				itemTotal: 0,
+			});
+		});
+
+		it('omits value/currency on transactionContainsKivaCards when the card total is unusable', () => {
+			trackTransaction(baseTransaction({
+				kivaCards: [{ id: '1' }],
+				kivaCardTotal: null as unknown as string,
 			}));
+			expect(fbq).toHaveBeenCalledWith('trackCustom', 'transactionContainsKivaCards', {
+				kivaCardTotal: null,
+			});
 		});
 	});
 
@@ -212,14 +314,10 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			expect(fbq).not.toHaveBeenCalled();
 		});
 
-		it('tracks a given transactionId only once (no duplicate Purchase on re-invocation)', () => {
-			const tx = baseTransaction({ itemTotal: '25.00' });
-			trackTransaction(tx);
-			trackTransaction(tx);
-			const purchaseCalls = fbq.mock.calls.filter(
-				(call) => call[0] === 'track' && call[1] === 'Purchase',
-			);
-			expect(purchaseCalls).toHaveLength(1);
+		it('still sends a transaction with a blank transactionId', () => {
+			// a missing transactionId must not suppress the conversion
+			trackFBTransaction(baseTransaction({ transactionId: '', itemTotal: '15.00' }));
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', expect.objectContaining({ value: 15 }));
 		});
 	});
 
@@ -296,6 +394,45 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		it('never fires a fb PageView — the Meta pixel is fired separately by callers', () => {
 			trackPageView('https://www.kiva.org/', '');
 			expect(fbq).not.toHaveBeenCalled();
+		});
+	});
+
+	describe('Meta pixel availability', () => {
+		it('does not throw when the pixel is unavailable, and sends once it arrives', () => {
+			const tx = baseTransaction({ itemTotal: '25.00' });
+			delete (window as any).fbq;
+
+			// Ad-blocked / consent-gated / pixel not yet loaded: nothing to send to
+			expect(() => trackFBTransaction(tx)).not.toThrow();
+
+			// Pixel arrives later — the same transaction is still sendable
+			(window as any).fbq = fbq;
+			trackFBTransaction(tx);
+			expect(fbq.mock.calls.filter((call) => call[0] === 'track' && call[1] === 'Purchase'))
+				.toHaveLength(1);
+		});
+
+		it('does not throw when window.optimizely is null', () => {
+			// typeof null === 'object', so a naive guard would treat this as loaded and throw on .push
+			(window as any).optimizely = null;
+			(window as any).gtag = jest.fn();
+			expect(() => trackTransaction(baseTransaction({ itemTotal: '25.00', loanTotal: '25.00' })))
+				.not.toThrow();
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', expect.anything());
+		});
+
+		it('fires GA and Optimizely alongside Meta', () => {
+			// loanTotal drives the Optimizely revenue event; itemTotal alone would push nothing
+			const tx = baseTransaction({ itemTotal: '25.00', loanTotal: '25.00' });
+			const gtag = jest.fn();
+			(window as any).gtag = gtag;
+			(window as any).optimizely = { push: jest.fn() };
+
+			trackTransaction(tx);
+
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', expect.anything());
+			expect(gtag).toHaveBeenCalled();
+			expect((window as any).optimizely.push).toHaveBeenCalled();
 		});
 	});
 });
