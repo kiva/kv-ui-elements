@@ -76,7 +76,9 @@ const props = defineProps({
 });
 
 /**
- * Emitted when the embedded form reports that it has finished loading.
+ * Emitted once the embed is ready to show — either when the form posts `fa_frame_loaded`, or,
+ * for a form whose Custom Code never sends that, when the iframe itself finishes loading.
+ * Fires exactly once, whichever arrives first.
  *
  * @event fa-form-loaded
  */

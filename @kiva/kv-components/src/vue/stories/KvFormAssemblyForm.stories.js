@@ -38,7 +38,7 @@ export const ComponentOverview = {
 		template: `
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
 				<p class="tw-text-small tw-mb-3">
-					A FormAssembly form embedded by id. The spinner shows until the form reports that it loaded.
+					A FormAssembly form embedded by id. The spinner shows until the embed is ready.
 				</p>
 				<kv-form-assembly-form
 					:form-assembly-id="658"
@@ -107,7 +107,8 @@ export const LoadingAndResize = {
 		template: `
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6">
 				<p class="tw-text-small tw-mb-3">
-					A loading spinner occupies at least 200px until the form posts fa_frame_loaded.
+					A loading spinner occupies at least 200px until the embed is ready — either the form posts
+					fa_frame_loaded, or the iframe's own load event acts as the fallback.
 					The iframe then resizes to each reported height as the user pages through the form.
 				</p>
 				<kv-form-assembly-form
