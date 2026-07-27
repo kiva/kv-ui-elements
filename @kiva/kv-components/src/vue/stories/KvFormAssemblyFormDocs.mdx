@@ -59,7 +59,9 @@ The component communicates with the embedded form over `postMessage`, and accept
 
 First, `event.origin` must be `https://kiva.tfaforms.net`, so a hostile frame cannot resize the embed or fake a submission. Second, `event.source` must be that instance's own `iframe.contentWindow`. The origin check alone is not enough, because every embed on a page hears every FormAssembly frame and they all share that one origin — without the sender check, one form could resize its neighbour or fire its neighbour's submit event. This is what the template ref on the iframe is for. The check is skipped while `contentWindow` is unavailable, which leaves the origin check as the floor rather than dropping messages outright.
 
-The JavaScript that emits these messages lives in the FormAssembly form itself, under Properties > Custom Code — a form without that code still renders, but never reports loading, resizing, or submission.
+Every one of these messages comes from JavaScript in the form itself, under Properties → Custom Code. FormAssembly does not provide them. That code is authored per form, so coverage varies in practice: some Kiva forms post loading, resizing and submission, others post only `fa_frame_loaded` and so never resize, and a form with no Custom Code posts nothing at all.
+
+A form that posts nothing still renders and submits normally, but the component never hears back — so the loading spinner stays above it indefinitely. A permanent spinner over a working form means that form is missing its Custom Code.
 
 ### Prefilling form fields
 
@@ -75,7 +77,9 @@ A loading spinner occupies at least 200px until the form posts `fa_frame_loaded`
 
 On submission the component emits `fa-form-submitted` with the raw analytics payload the form supplied and a `valid` flag reporting whether that payload is usable as an event tuple. Both outcomes emit — the consumer decides whether to track the event or report the malformed payload.
 
-`fa-form-submitted` fires on submit, which may or may not be a successful one. If the form later transitions to its thanks view it posts `fa_form_closed` and the component emits `fa-form-closed`. That is the stronger completion signal, and the one to dismiss a modal or lightbox on. A form that never reaches a thanks view emits only the submit event.
+`fa-form-submitted` is the strongest completion signal the embed offers. It does not fire while validation is still failing, so it means the response really was submitted. Dismiss a modal or lightbox on this one.
+
+`fa-form-closed` is the weaker of the two, despite the name. Kiva's forms raise it from a `beforeunload` handler, so it also fires when the user navigates away or a containing modal is closed, and it does not fire at all when the form is configured to show an in-page thank you message rather than navigating to a dedicated thank you page. Read it as "the form's page went away", not "the user finished".
 
 <Story of={KvFormAssemblyFormStories.LoadingAndResize} />
 
@@ -269,7 +273,9 @@ const additionalQueryParams = computed(() => {
 	return params.toString() ? `?${params}` : '';
 });
 
+// only fires once validation passes, so this is the reliable point to record completion
 const onSubmitted = ({ analytics, valid }) => {
+	emit('complete');
 	if (valid) {
 		// analytics is [category, action, label, property, value]
 		$kvTrackEvent(...analytics.slice(0, 5));
@@ -281,10 +287,10 @@ const onSubmitted = ({ analytics, valid }) => {
 	}
 };
 
-// fa-form-submitted fires on submit, successful or not. Wait for the thanks view before
-// tearing down the surrounding modal, or the user loses the confirmation screen.
+// fa-form-closed rides on beforeunload, so it also fires on navigation or when a
+// containing modal closes. Use it for teardown only — completion is onSubmitted above.
 const onClosed = () => {
-	emit('complete');
+	cleanUp();
 };
 </script>
 ```

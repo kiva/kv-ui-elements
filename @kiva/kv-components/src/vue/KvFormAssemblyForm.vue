@@ -80,15 +80,19 @@ const props = defineProps({
  * @event fa-form-loaded
  */
 /**
- * Emitted when the embedded form is submitted. `analytics` is the raw array the FA form
- * supplied (or null); `valid` reports whether it is usable as an analytics event tuple.
- * Fires on submit, which may or may not be a successful one.
+ * Emitted when the embedded form is actually submitted. It does not fire while validation is
+ * still failing, which makes it the strongest completion signal available — dismiss a modal on
+ * this one. `analytics` is the raw array the FA form supplied (or null); `valid` reports whether
+ * it is usable as an analytics event tuple.
  *
  * @event fa-form-submitted
  */
 /**
- * Emitted when the form has completed and transitioned to its thanks view. This is a later,
- * stronger signal than `fa-form-submitted` — use it to dismiss a modal or lightbox.
+ * Emitted when the form's page is torn down. Kiva's FormAssembly forms raise this from a
+ * `beforeunload` handler, so despite the name it is the weaker signal: it also fires when the
+ * user navigates away or a containing modal closes, and it does not fire at all when the form
+ * shows an in-page thank you message instead of navigating to a dedicated thank you page.
+ * Use it for teardown, not to confirm the user finished.
  *
  * @event fa-form-closed
  */
