@@ -55,9 +55,11 @@ Use this component wherever a FormAssembly form needs to appear inside a Kiva pa
 
 ## Behavior
 
-The component communicates with the embedded form over `postMessage`. Messages originating anywhere other than `https://kiva.tfaforms.net` are discarded before they are inspected, so a hostile frame cannot resize the embed or fake a submission.
+The component communicates with the embedded form over `postMessage`, and accepts a message only if it clears two checks.
 
-Origin alone is not enough when a page carries more than one embed — every instance hears every FormAssembly frame. Each instance therefore also matches the message against its own iframe, so one form cannot resize its neighbour or fire its neighbour's submit event. The JavaScript that emits these messages lives in the FormAssembly form itself, under Properties > Custom Code — a form without that code still renders, but never reports loading, resizing, or submission.
+First, `event.origin` must be `https://kiva.tfaforms.net`, so a hostile frame cannot resize the embed or fake a submission. Second, `event.source` must be that instance's own `iframe.contentWindow`. The origin check alone is not enough, because every embed on a page hears every FormAssembly frame and they all share that one origin — without the sender check, one form could resize its neighbour or fire its neighbour's submit event. This is what the template ref on the iframe is for. The check is skipped while `contentWindow` is unavailable, which leaves the origin check as the floor rather than dropping messages outright.
+
+The JavaScript that emits these messages lives in the FormAssembly form itself, under Properties > Custom Code — a form without that code still renders, but never reports loading, resizing, or submission.
 
 ### Prefilling form fields
 
