@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.22.5...@kiva/kv-components@8.23.0) (2026-07-27)
+
+
+### Features
+
+* **kv-components:** add KvFormAssemblyForm for embedding FormAssembly forms ([#861](https://github.com/kiva/kv-ui-elements/issues/861)) ([cc45acc](https://github.com/kiva/kv-ui-elements/commit/cc45accaec8c9a1b0a29f8265683876f10ce86ac))
+
+
+
+
+
 ## [8.22.5](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.22.4...@kiva/kv-components@8.22.5) (2026-07-23)
 
 **Note:** Version bump only for package @kiva/kv-components
