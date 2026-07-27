@@ -61,7 +61,7 @@ First, `event.origin` must be `https://kiva.tfaforms.net`, so a hostile frame ca
 
 Every one of these messages comes from JavaScript in the form itself, under Properties → Custom Code. FormAssembly does not provide them. That code is authored per form, so coverage varies in practice: some Kiva forms post loading, resizing and submission, others post only `fa_frame_loaded` and so never resize, and a form with no Custom Code posts nothing at all.
 
-A form that posts nothing still renders and submits normally, but the component never hears back — so the loading spinner stays above it indefinitely. A permanent spinner over a working form means that form is missing its Custom Code.
+A form that posts nothing still renders and submits normally, the component just never hears back. The spinner is guarded against that — the iframe's own `load` event clears it and reports `fa-form-loaded` if the form's message never arrives — but nothing else can be: resizing and submission are only observable through those messages, so such an embed stays fixed at its initial height and never reports a submission. If a form is not resizing to its content, it is missing its Custom Code.
 
 ### Prefilling form fields
 
@@ -73,7 +73,7 @@ The component deliberately knows nothing about what the params mean. Resolving a
 
 ### Loading and resizing
 
-A loading spinner occupies at least 200px until the form posts `fa_frame_loaded`, at which point `fa-form-loaded` is emitted and the spinner is removed. From then on, `fa_frame_data`, `fa_form_page_change`, and `fa_form_submitted` messages each carry the height the form currently needs, and the iframe is resized to that height plus 30px. Multi-page forms therefore grow and shrink as the user pages through them, with no scrollbar inside the frame.
+A loading spinner occupies at least 200px until the form posts `fa_frame_loaded`, at which point `fa-form-loaded` is emitted and the spinner is removed. If that message never comes, the iframe's own `load` event does the same job as a fallback, so the spinner cannot get stuck. Whichever arrives first wins and `fa-form-loaded` fires exactly once. From then on, `fa_frame_data`, `fa_form_page_change`, and `fa_form_submitted` messages each carry the height the form currently needs, and the iframe is resized to that height plus 30px. Multi-page forms therefore grow and shrink as the user pages through them, with no scrollbar inside the frame.
 
 On submission the component emits `fa-form-submitted` with the raw analytics payload the form supplied and a `valid` flag reporting whether that payload is usable as an event tuple. Both outcomes emit — the consumer decides whether to track the event or report the malformed payload.
 

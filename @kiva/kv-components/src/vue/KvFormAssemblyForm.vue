@@ -20,6 +20,7 @@
 			:height="iFrameHeight"
 			:title="title"
 			frameborder="0"
+			@load="markLoaded"
 		></iframe>
 	</div>
 </template>
@@ -146,6 +147,21 @@ watchEffect(() => {
 });
 
 /**
+ * Reports the embed ready, at most once. `isLoading` doubles as the "not yet reported" flag.
+ *
+ * A form whose Custom Code is missing never posts `fa_frame_loaded`, which would otherwise
+ * leave the spinner sitting over a perfectly usable form forever. The iframe's own load event
+ * fires even cross-origin, so it acts as the floor: whichever signal arrives first wins. The
+ * form's own message is still preferred when present, since it means the form is interactive
+ * rather than merely fetched.
+ */
+const markLoaded = () => {
+	if (!isLoading.value) return;
+	isLoading.value = false;
+	emit('fa-form-loaded');
+};
+
+/**
  * Events emitted via 'postMessage' embedded in form assembly
  * The js that emits these events is found in form assembly under the
  * form Properties > Custom Code
@@ -167,8 +183,7 @@ const handleIFrameMessage = (message: MessageEvent<{
 	const messageDataType = message?.data?.type;
 
 	if (messageDataType === 'fa_frame_loaded') {
-		emit('fa-form-loaded');
-		isLoading.value = false;
+		markLoaded();
 	}
 
 	if (

@@ -168,6 +168,28 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		await waitFor(() => expect(container.querySelector('svg')).toBeNull());
 	});
 
+	// A form missing its Custom Code never posts fa_frame_loaded. Without a floor the spinner
+	// would sit over a working form forever, so the iframe's own load event has to clear it.
+	it('clears the spinner on the iframe load event when the form posts nothing', async () => {
+		const { container, emitted } = await renderForm();
+		expect(container.querySelector('svg')).not.toBeNull();
+
+		getIframe(container).dispatchEvent(new Event('load'));
+
+		await waitFor(() => expect(container.querySelector('svg')).toBeNull());
+		expect(emitted()['fa-form-loaded']).toHaveLength(1);
+	});
+
+	it('reports loaded only once when both the load event and fa_frame_loaded arrive', async () => {
+		const { container, emitted } = await renderForm();
+
+		getIframe(container).dispatchEvent(new Event('load'));
+		postFaMessage(container, { type: 'fa_frame_loaded' });
+
+		await waitFor(() => expect(emitted()['fa-form-loaded']).toBeTruthy());
+		expect(emitted()['fa-form-loaded']).toHaveLength(1);
+	});
+
 	it('marks the container busy until the form reports loaded', async () => {
 		const { container } = await renderForm();
 		const root = container.firstElementChild;
