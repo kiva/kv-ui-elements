@@ -10,7 +10,7 @@ import KvFormAssemblyForm from '#components/KvFormAssemblyForm.vue';
 // reactivity flush after mount — so every helper that needs the iframe awaits it.
 async function renderForm(props = {}) {
 	const utils = render(KvFormAssemblyForm, {
-		props: { formAssemblyId: 594, ...props },
+		props: { formAssemblyId: 658, ...props },
 	});
 	await waitFor(() => expect(utils.container.querySelector('iframe')).not.toBeNull());
 	return utils;
@@ -38,7 +38,7 @@ describe('KvFormAssemblyForm', () => {
 
 	it('renders an iframe pointing at the FA form URL', async () => {
 		const { container } = await renderForm();
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 	});
 
 	it('gives the iframe an accessible name from the title prop', async () => {
@@ -55,7 +55,7 @@ describe('KvFormAssemblyForm', () => {
 	// Contentful or a computed — so the src has to rebuild when the prop settles.
 	it('rebuilds the src when formAssemblyId changes', async () => {
 		const { container, rerender } = await renderForm();
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 
 		await rerender({ formAssemblyId: 601 });
 
@@ -75,7 +75,7 @@ describe('KvFormAssemblyForm', () => {
 
 	it('still renders when additionalQueryParams is null rather than undefined', async () => {
 		const { container } = await renderForm({ additionalQueryParams: null });
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 	});
 
 	// deliberately a different id from the default used everywhere else, so this also
@@ -101,21 +101,19 @@ describe('KvFormAssemblyForm', () => {
 
 	it('tolerates additionalQueryParams without a leading question mark', async () => {
 		const { container } = await renderForm({ additionalQueryParams: 'foo=bar' });
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594?foo=bar');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658?foo=bar');
 	});
 
 	it('emits no query string when additionalQueryParams is empty', async () => {
 		const { container } = await renderForm({ additionalQueryParams: '' });
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 	});
 
 	it('emits no query string when additionalQueryParams is only a question mark', async () => {
 		const { container } = await renderForm({ additionalQueryParams: '?' });
-		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 	});
 
-	// A consumer in cms-page-server sizes its lightbox by passing a class down to this
-	// wrapper. That works only while the template has a single root, so pin the fallthrough.
 	// mcstover on PR #861: automation hooks, distinct per form so several embeds on one
 	// page are individually addressable.
 	it('exposes a stable wrapper class and a form-specific data-testid', async () => {
@@ -123,7 +121,7 @@ describe('KvFormAssemblyForm', () => {
 		const root = container.firstElementChild;
 
 		expect(root.classList.contains('kv-form-assembly-form')).toBe(true);
-		expect(root.getAttribute('data-testid')).toBe('kv-form-assembly-form-594');
+		expect(root.getAttribute('data-testid')).toBe('kv-form-assembly-form-658');
 	});
 
 	it('falls back to an unsuffixed data-testid when there is no form id', async () => {
@@ -133,9 +131,11 @@ describe('KvFormAssemblyForm', () => {
 		expect(container.firstElementChild.getAttribute('data-testid')).toBe('kv-form-assembly-form');
 	});
 
+	// A consumer in cms-page-server sizes its lightbox by passing a class down to this
+	// wrapper. That works only while the template has a single root, so pin the fallthrough.
 	it('merges a consumer-supplied class onto the root element', () => {
 		const { container } = render(KvFormAssemblyForm, {
-			props: { formAssemblyId: 594 },
+			props: { formAssemblyId: 658 },
 			attrs: { class: 'lightbox-max-height' },
 		});
 
@@ -298,7 +298,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 			components: { KvFormAssemblyForm },
 			template: `
 				<div>
-					<KvFormAssemblyForm :form-assembly-id="594" title="First" />
+					<KvFormAssemblyForm :form-assembly-id="658" title="First" />
 					<KvFormAssemblyForm :form-assembly-id="601" title="Second" />
 				</div>
 			`,
@@ -308,11 +308,11 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		const [first, second] = container.querySelectorAll('iframe');
 
 		// each instance resolved its own container ref and built its own url
-		expect(first.getAttribute('src')).toBe('https://kiva.tfaforms.net/594');
+		expect(first.getAttribute('src')).toBe('https://kiva.tfaforms.net/658');
 		expect(second.getAttribute('src')).toBe('https://kiva.tfaforms.net/601');
 
 		// and each is separately addressable by automation
-		expect(container.querySelector('[data-testid="kv-form-assembly-form-594"]')).not.toBeNull();
+		expect(container.querySelector('[data-testid="kv-form-assembly-form-658"]')).not.toBeNull();
 		expect(container.querySelector('[data-testid="kv-form-assembly-form-601"]')).not.toBeNull();
 
 		// a resize from the first frame must leave the second at its default height

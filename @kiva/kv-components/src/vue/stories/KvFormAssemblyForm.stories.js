@@ -41,7 +41,7 @@ export const ComponentOverview = {
 					A FormAssembly form embedded by id. The spinner shows until the form reports that it loaded.
 				</p>
 				<kv-form-assembly-form
-					:form-assembly-id="594"
+					:form-assembly-id="658"
 					title="Example FormAssembly form"
 				/>
 			</div>
@@ -60,7 +60,7 @@ export const AllVariations = {
 						<h3 class="tw-text-h4 tw-mb-2">Plain embed</h3>
 						<p class="tw-text-small tw-mb-3">Only a form id is supplied.</p>
 						<kv-form-assembly-form
-							:form-assembly-id="594"
+							:form-assembly-id="658"
 							title="Plain FormAssembly form"
 						/>
 					</div>
@@ -70,7 +70,7 @@ export const AllVariations = {
 							additionalQueryParams prefills fields, and must include the leading ?.
 						</p>
 						<kv-form-assembly-form
-							:form-assembly-id="594"
+							:form-assembly-id="658"
 							additional-query-params="?tfa_4211=user@example.com"
 							title="Prefilled FormAssembly form"
 						/>
@@ -92,7 +92,7 @@ export const PrefilledFields = {
 					it only normalizes the string and appends it to the form url.
 				</p>
 				<kv-form-assembly-form
-					:form-assembly-id="594"
+					:form-assembly-id="658"
 					additional-query-params="?tfa_4211=user@example.com&tfa_4264=12345"
 					title="Prefilled FormAssembly form"
 				/>
@@ -111,7 +111,7 @@ export const LoadingAndResize = {
 					The iframe then resizes to each reported height as the user pages through the form.
 				</p>
 				<kv-form-assembly-form
-					:form-assembly-id="594"
+					:form-assembly-id="658"
 					title="Resizing FormAssembly form"
 					@fa-form-loaded="onLoaded"
 				/>
@@ -128,7 +128,7 @@ export const LoadingAndResize = {
 // Default story - interactive playground
 export const Default = {
 	args: {
-		formAssemblyId: 594,
+		formAssemblyId: 658,
 		additionalQueryParams: '',
 		title: 'FormAssembly form',
 	},
