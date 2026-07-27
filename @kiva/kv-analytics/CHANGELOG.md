@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.6...@kiva/kv-analytics@1.3.7) (2026-07-27)
+
+
+### Bug Fixes
+
+* further improve meta shared utils ([#862](https://github.com/kiva/kv-ui-elements/issues/862)) ([764369b](https://github.com/kiva/kv-ui-elements/commit/764369be6854b7a0b408d288ec4524b6b794fe73))
+
+
+
+
+
 ## [1.3.6](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.5...@kiva/kv-analytics@1.3.6) (2026-07-24)
 
 
