@@ -31,8 +31,8 @@ export interface TransactionData {
 
 /**
  * Read/write access to the transactor cookies, supplied by the consuming app:
- * - ui: `{ get: (n) => cookieStore.get(n), set: (n, v) => cookieStore.set(n, v, { path: '/' }) }`
- * - cms-page-server: `{ get: (n) => useCookie(n).value, set: (n, v) => { useCookie(n).value = v; } }`
+ * - cookieStore: `{ get: (n) => cookieStore.get(n), set: (n, v) => cookieStore.set(n, v, { path: '/' }) }`
+ * - Nuxt: `{ get: (n) => useCookie(n).value, set: (n, v) => { useCookie(n).value = v; } }`
  */
 export interface TransactorCookieAccess {
 	get: (name: string) => string | null | undefined;
