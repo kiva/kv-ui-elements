@@ -29,14 +29,34 @@ export interface TransactionData {
 	isFTD: boolean,
 }
 
+/**
+ * Read/write access to the transactor cookies, supplied by the consuming app:
+ * - cookieStore: `{ get: (n) => cookieStore.get(n), set: (n, v) => cookieStore.set(n, v, { path: '/' }) }`
+ * - Nuxt: `{ get: (n) => useCookie(n).value, set: (n, v) => { useCookie(n).value = v; } }`
+ */
+export interface TransactorCookieAccess {
+	get: (name: string) => string | null | undefined;
+	set: (name: string, value: string) => void;
+}
+
+/**
+ * Values for Meta Pixel's `content_category` param on the AddToCart event — the `contentCategory`
+ * argument passed to {@link trackFBAddToCart}.
+ */
+export const FB_CONTENT_CATEGORY_LOAN = 'Loan';
+export const FB_CONTENT_CATEGORY_KIVA_CARD = 'Kiva Card';
+
+/**
+ * Names of the session cookies tracking whether a user has ever lent (`kvu_lb`) or deposited
+ * (`kvu_db`). Written elsewhere as the raw string `'true'`/`'false'`.
+ */
+export const HAS_LENT_BEFORE_COOKIE = 'kvu_lb';
+export const HAS_DEPOSIT_BEFORE_COOKIE = 'kvu_db';
+
 let snowplowLoaded = false;
 let gtagLoaded = false;
-let fbLoaded = false;
 let optimizelyLoaded = false;
 const queue = new SimpleQueue<() => void>();
-// Transaction ids already tracked this session — guards against a Purchase (and its GA/Optimizely
-// counterparts) firing twice for one order via a double-submit, retry, or component re-mount.
-const trackedTransactionIds = new Set<string>();
 
 function inBrowser() {
 	return typeof window !== 'undefined';
@@ -48,8 +68,7 @@ function checkLibrariesLoaded() {
 	}
 	gtagLoaded = typeof window.gtag === 'function';
 	snowplowLoaded = typeof window.snowplow === 'function';
-	fbLoaded = typeof window.fbq === 'function';
-	optimizelyLoaded = typeof window.optimizely === 'object';
+	optimizelyLoaded = typeof window.optimizely?.push === 'function';
 
 	if (gtagLoaded && snowplowLoaded) {
 		return true;
@@ -76,10 +95,16 @@ async function waitOnLibraries() {
 	});
 }
 
+// Whether the Meta pixel is actually there to receive an event. False under SSR, ad blockers, and
+// consent gating, and before the pixel snippet has finished loading.
+function fbqAvailable() {
+	return typeof window !== 'undefined' && typeof window.fbq === 'function';
+}
+
 // Best-effort Meta pixel call: no-ops when fbq is absent (SSR, ad-blocked, consent-gated) and never
 // throws into the caller even if a broken/blocked fbq shim throws when invoked.
 function fireFbq(...args: unknown[]) {
-	if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+	if (fbqAvailable()) {
 		try {
 			window.fbq(...args);
 		} catch {
@@ -99,15 +124,21 @@ export function trackFBEvent(eventName: string, params?: Record<string, unknown>
 	fireFbq('track', eventName, params);
 }
 
+// Meta's value-based optimization is diluted by `value: 0`, so attach value/currency only for a
+// positive amount and let the event stand as a bare count signal otherwise.
+function valueParams(amount?: number | string | null, currency = 'USD') {
+	const numericValue = Number(amount);
+	return Number.isFinite(numericValue) && numericValue > 0
+		? { value: numericValue, currency }
+		: {};
+}
+
 // https://developers.facebook.com/docs/meta-pixel/reference#standard-events
 export function trackFBAddToCart(contentCategory: string, value?: number | string | null, currency = 'USD') {
-	const numericValue = Number(value);
-	// Only attach value/currency for a positive amount — a missing/zero value would send
-	// value: 0 and dilute value-based optimization, so fall back to a bare AddToCart.
-	const params = Number.isFinite(numericValue) && numericValue > 0
-		? { content_category: contentCategory, value: numericValue, currency }
-		: { content_category: contentCategory };
-	fireFbq('track', 'AddToCart', params);
+	fireFbq('track', 'AddToCart', {
+		content_category: contentCategory,
+		...valueParams(value, currency),
+	});
 }
 
 // User segmentation for the Meta PageView `user_type` param. Maps a transactor flag to the Meta
@@ -126,13 +157,6 @@ export function getUserType(isTransactor: boolean): UserType {
 export function trackFBPageView(userType?: UserType) {
 	fireFbq('track', 'PageView', userType ? { user_type: userType } : undefined);
 }
-
-/**
- * Names of the session cookies tracking whether a user has ever lent (`kvu_lb`) or deposited
- * (`kvu_db`). Written elsewhere as the raw string `'true'`/`'false'`.
- */
-export const HAS_LENT_BEFORE_COOKIE = 'kvu_lb';
-export const HAS_DEPOSIT_BEFORE_COOKIE = 'kvu_db';
 
 /**
  * Reads the transactor-signal cookies and returns them as booleans.
@@ -167,6 +191,33 @@ export function getUserTypeFromCookies(
 	return getUserType(hasLentBefore || hasDepositBefore);
 }
 
+/**
+ * The two cookies track whether the user has EVER lent or deposited, and feed the Meta `user_type`
+ * segment. This function only ever turns a flag ON: it writes `'true'` when either the existing
+ * cookie or this transaction says so, and otherwise leaves the cookie alone. It never writes `'false'`.
+ *
+ * @param cookies Read/write access to the two cookies. See {@link TransactorCookieAccess}.
+ * @param signals What THIS transaction proves — `hasLoans`, `hasDeposit`.
+ * @returns The updated flags, so callers need not re-read the cookies on the same tick.
+ */
+export function recordTransactorSignals(
+	cookies: TransactorCookieAccess,
+	{ hasLoans, hasDeposit }: { hasLoans: boolean; hasDeposit: boolean },
+): { hasLentBefore: boolean; hasDepositBefore: boolean } {
+	const existing = getTransactorFlagsFromCookies(cookies.get);
+	const hasLentBefore = existing.hasLentBefore || hasLoans;
+	const hasDepositBefore = existing.hasDepositBefore || hasDeposit;
+
+	if (hasLentBefore) {
+		cookies.set(HAS_LENT_BEFORE_COOKIE, 'true');
+	}
+	if (hasDepositBefore) {
+		cookies.set(HAS_DEPOSIT_BEFORE_COOKIE, 'true');
+	}
+
+	return { hasLentBefore, hasDepositBefore };
+}
+
 function trackSnowplowEvent(eventData) {
 	checkLibrariesLoaded();
 	if (!snowplowLoaded) return false;
@@ -184,7 +235,7 @@ function trackSnowplowEvent(eventData) {
 	/* eslint-disable max-len */
 	// https://docs.snowplowanalytics.com/docs/collecting-data/collecting-from-own-applications/javascript-tracker/tracking-specific-events/#tracking-custom-structured-events
 	// https://docs.snowplowanalytics.com/docs/collecting-data/collecting-from-own-applications/javascript-tracker/tracking-specific-events/#callback-after-track-2-15-0
-	/* eslint-eable max-len */
+	/* eslint-enable max-len */
 	// snowplow('trackStructEvent', 'category', 'action', 'label', 'property', 'value', context, timestamp, afterTrack);
 	window.snowplow(
 		'trackStructEvent',
@@ -205,9 +256,17 @@ function trackSnowplowEvent(eventData) {
 	);
 }
 
-// Meta-only transaction tracking. Exported for completion paths (e.g. express checkout) that need
-// the Purchase pixel without the GA/Optimizely channels the full trackTransaction fires.
+/**
+ * Meta transaction tracking. Called by {@link trackTransaction}, and exported for completion paths
+ * (e.g. express checkout) that need the Purchase pixel without the GA/Optimizely channels.
+ *
+ * @param transactionData The completed transaction.
+ */
 export function trackFBTransaction(transactionData: TransactionData) {
+	if (!fbqAvailable()) {
+		return;
+	}
+
 	const itemTotal = Number(transactionData.itemTotal) || 0;
 	// Skip Purchase when there's no valid amount — better to omit than report a $0/invalid-value
 	// purchase that would dilute value-based optimization. (The FTD/Kiva-Card events below are
@@ -225,7 +284,7 @@ export function trackFBTransaction(transactionData: TransactionData) {
 		fireFbq('track', 'Purchase', purchase);
 	}
 
-	// signify transaction has kiva cards — send standard value + currency.
+	// Signify transaction has kiva cards — send standard value + currency when the amount is usable.
 	// The `kivaCardTotal`/`itemTotal` keys are kept alongside for backward compatibility
 	// (Meta ignores them for value).
 	if (transactionData.kivaCards && transactionData.kivaCards.length) {
@@ -233,19 +292,17 @@ export function trackFBTransaction(transactionData: TransactionData) {
 			'transactionContainsKivaCards',
 			{
 				kivaCardTotal: transactionData.kivaCardTotal,
-				value: Number(transactionData.kivaCardTotal) || 0,
-				currency: 'USD',
+				...valueParams(transactionData.kivaCardTotal),
 			},
 		);
 	}
-	// signify transaction ftd status — send standard value + currency
+	// signify transaction ftd status — send standard value + currency when the amount is usable
 	if (transactionData.isFTD) {
 		trackFBCustomEvent(
 			'firstTimeDepositorTransaction',
 			{
 				itemTotal,
-				value: itemTotal,
-				currency: 'USD',
+				...valueParams(itemTotal),
 			},
 		);
 	}
@@ -494,16 +551,7 @@ export function trackTransaction(transactionData: TransactionData) {
 		return false;
 	}
 
-	// Only track a given transaction once
-	const transactionKey = String(transactionData.transactionId);
-	if (trackedTransactionIds.has(transactionKey)) {
-		return false;
-	}
-	trackedTransactionIds.add(transactionKey);
-
-	if (fbLoaded) {
-		trackFBTransaction(transactionData);
-	}
+	trackFBTransaction(transactionData);
 	if (gtagLoaded) {
 		trackGATransaction(transactionData);
 	}
