@@ -10,7 +10,37 @@
 					v-bind="$attrs"
 					:auto-apply="true"
 					@update:model-value="handleDateChange"
-				/>
+				>
+					<!--
+						Render the calendar icon ourselves so it carries intrinsic width/height.
+						VueDatePicker's built-in icon <svg> has a viewBox but no dimensions, so it is
+						sized only by `.dp__input_icons` in the library's main.css. A consumer that
+						lazily loads this component (e.g. a client-rendered route with code-split CSS)
+						paints the markup before that CSS arrives, so the display:block SVG balloons to
+						the full input width for a frame, then snaps to 16px. Inline dimensions apply
+						with the DOM regardless of when CSS loads, eliminating that flash. Consumers can
+						still override the icon via the same `input-icon` slot.
+					-->
+					<template #input-icon>
+						<slot name="input-icon">
+							<svg
+								class="dp__icon"
+								viewBox="0 0 32 32"
+								fill="currentColor"
+								stroke-width="0"
+								aria-hidden="true"
+								style="box-sizing: content-box; width: 1rem; height: 1rem; padding: 6px 12px;"
+							>
+								<!-- eslint-disable max-len -->
+								<path d="M29.333 8c0-2.208-1.792-4-4-4h-18.667c-2.208 0-4 1.792-4 4v18.667c0 2.208 1.792 4 4 4h18.667c2.208 0 4-1.792 4-4v-18.667zM26.667 8v18.667c0 0.736-0.597 1.333-1.333 1.333 0 0-18.667 0-18.667 0-0.736 0-1.333-0.597-1.333-1.333 0 0 0-18.667 0-18.667 0-0.736 0.597-1.333 1.333-1.333 0 0 18.667 0 18.667 0 0.736 0 1.333 0.597 1.333 1.333z" />
+								<path d="M20 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z" />
+								<path d="M9.333 2.667v5.333c0 0.736 0.597 1.333 1.333 1.333s1.333-0.597 1.333-1.333v-5.333c0-0.736-0.597-1.333-1.333-1.333s-1.333 0.597-1.333 1.333z" />
+								<path d="M4 14.667h24c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-24c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333z" />
+								<!-- eslint-enable max-len -->
+							</svg>
+						</slot>
+					</template>
+				</vue-date-picker>
 			</div>
 		</div>
 	</kv-theme-provider>
