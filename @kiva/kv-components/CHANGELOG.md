@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.23.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.23.1...@kiva/kv-components@8.23.2) (2026-07-29)
+
+
+### Bug Fixes
+
+* update the header basic partner link to be partner with us ([e5e7992](https://github.com/kiva/kv-ui-elements/commit/e5e7992e244f7ba661cb1172f0d89e298e32ea49))
+
+
+
+
+
 ## [8.23.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.23.0...@kiva/kv-components@8.23.1) (2026-07-28)
 
 
