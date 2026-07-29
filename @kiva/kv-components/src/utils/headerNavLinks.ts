@@ -11,7 +11,7 @@ export interface NavLink {
 export const PRIMARY_LINKS: NavLink[] = [
 	{
 		id: 'partner',
-		label: 'Partner',
+		label: 'Partner with us',
 		href: '/about/partner-with-us',
 		track: ['TopNav', 'click-Partner'],
 		visibility: 'always',
