@@ -32,9 +32,9 @@ describe('LinkBar', () => {
 		expect(getByText(/\$7/)).toBeTruthy();
 	});
 
-	it('always shows Partner', () => {
+	it('always shows Partner with us', () => {
 		const { getByText } = render(LinkBar, { props: { loggedIn: true }, global });
-		expect(getByText(/partner/i)).toBeTruthy();
+		expect(getByText(/partner with us/i)).toBeTruthy();
 	});
 
 	it('renders the basket as a count panel with the word "Basket" for logged-in users', () => {

@@ -11,10 +11,10 @@ describe('MobileMenu', () => {
 		expect(await axe(container)).toHaveNoViolations();
 	});
 
-	it('renders Partner, Support Kiva and Borrow links', () => {
+	it('renders Partner with us, Support Kiva and Borrow links', () => {
 		// Exact text: the reused AboutMenu also contains a "Partner with us" link, so /partner/i is ambiguous.
 		const { getByText } = render(MobileMenu, { global });
-		expect(getByText('Partner').getAttribute('href')).toBe('/about/partner-with-us');
+		expect(getByText('Partner with us').getAttribute('href')).toBe('/about/partner-with-us');
 		expect(getByText('Support Kiva').getAttribute('href')).toBe('/donate/supportus');
 		expect(getByText('Borrow').getAttribute('href')).toBe('/borrow');
 	});

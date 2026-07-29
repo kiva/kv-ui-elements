@@ -26,7 +26,7 @@
 				href="/about/partner-with-us"
 				class="mobile-link"
 				@click="onLinkClick('click-Partner')"
-			>Partner</a>
+			>Partner with us</a>
 			<a
 				href="/donate/supportus"
 				class="mobile-link"
