@@ -225,8 +225,8 @@ export default {
 			dark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
 			greenLight: { style: greenLightTheme, bgClass: 'tw-bg-secondary' },
 			greenDark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
-			marigoldLight: { style: marigoldLightTheme, bgClass: 'tw-bg-secondary' },
-			stoneLight: { style: stoneLightTheme, bgClass: 'tw-bg-secondary' },
+			marigoldLight: { style: marigoldLightTheme, bgClass: 'tw-bg-primary' },
+			stoneLight: { style: stoneLightTheme, bgClass: 'tw-bg-primary' },
 		};
 		const themeStyle = computed(() => themeConfig[theme.value]?.style);
 		const bgClass = computed(() => themeConfig[theme.value]?.bgClass ?? 'tw-bg-primary');
