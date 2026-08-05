@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.23.3...@kiva/kv-components@8.24.0) (2026-08-05)
+
+
+### Features
+
+* [MP-3065] - add an extra validation form form assembly ([4444af1](https://github.com/kiva/kv-ui-elements/commit/4444af13b078c5428a226c0619c5c9b31cf7c0ff))
+* [MP-3065] - new storybook with form 659 ([c5cb8a9](https://github.com/kiva/kv-ui-elements/commit/c5cb8a9fa41b05afcfac9dfa94a96b126c037ba7))
+* [MP-3065] - update story and doc with test form 661 ([ba526ac](https://github.com/kiva/kv-ui-elements/commit/ba526ac0db5605bb2d9fa27bae7d2ea2e566f83a))
+
+
+
+
+
 ## [8.23.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.23.2...@kiva/kv-components@8.23.3) (2026-07-31)
 
 **Note:** Version bump only for package @kiva/kv-components
