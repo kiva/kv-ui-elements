@@ -18,6 +18,9 @@ The component renders an iframe pointing at `https://kiva.tfaforms.net/<formAsse
 - [Variations](#variations)
 - [Usage Information](#usage-information)
 - [Behavior](#behavior)
+	- [Prefilling form fields](#prefilling-form-fields)
+	- [Loading and resizing](#loading-and-resizing)
+	- [Reading the submission](#reading-the-submission)
 - [Anatomy](#anatomy)
 - [Specs](#specs)
 - [Best Practices](#best-practices)
@@ -75,13 +78,29 @@ The component deliberately knows nothing about what the params mean. Resolving a
 
 A loading spinner occupies at least 200px until the form posts `fa_frame_loaded`, at which point `fa-form-loaded` is emitted and the spinner is removed. If that message never comes, the iframe's own `load` event does the same job as a fallback, so the spinner cannot get stuck. Whichever arrives first wins and `fa-form-loaded` fires exactly once. From then on, `fa_frame_data`, `fa_form_page_change`, and `fa_form_submitted` messages each carry the height the form currently needs, and the iframe is resized to that height plus 30px. Multi-page forms therefore grow and shrink as the user pages through them, with no scrollbar inside the frame.
 
-On submission the component emits `fa-form-submitted` with the raw analytics payload the form supplied and a `valid` flag reporting whether that payload is usable as an event tuple. Both outcomes emit — the consumer decides whether to track the event or report the malformed payload.
+On submission the component emits `fa-form-submitted` with a payload of `{ valid, analytics, selectedValues }`. `valid` reports whether the submission succeeded: it uses the form's explicit `isValid` flag when the Custom Code sends one, and otherwise falls back to whether `analytics` is a usable event tuple (the legacy contract). `analytics` is the raw array the form supplied (or `null`); `selectedValues` is whatever values the form reported for this submission (or `null`) — for a survey, the options the user chose. The event fires on every reported submission — the consumer reads `valid` to decide whether to act.
 
 `fa-form-submitted` is the strongest completion signal the embed offers. It does not fire while validation is still failing, so it means the response really was submitted. Dismiss a modal or lightbox on this one.
 
 `fa-form-closed` is the weaker of the two, despite the name. Nothing in this component listens for `beforeunload` — that handler lives on the FormAssembly side, in the form's own Custom Code, which posts the message as its page unloads. The component only receives it. Because it is an unload signal rather than a completion one, it also fires when the user navigates away or a containing modal is closed, and it does not fire at all when the form is configured to show an in-page thank you message rather than navigating to a dedicated thank you page. Read it as "the form's page went away", not "the user finished".
 
 <Story of={KvFormAssemblyFormStories.LoadingAndResize} />
+
+### Reading the submission
+
+`fa-form-submitted` carries everything the form chose to report about a submission. Prefer the `valid` flag to decide whether to act on it, and read `selectedValues` when the form sends the user's choices — a survey's selected options, for example. Newer forms post an explicit `isValid` flag alongside `selectedValues`; older forms send only an `analytics` tuple, which the component still folds into `valid` for backward compatibility.
+
+```vue
+const onSubmitted = ({ valid, selectedValues }) => {
+	if (!valid) return;
+	// selectedValues holds the values the form reported, e.g. survey answers
+	recordSubmission(selectedValues);
+};
+```
+
+The demo below embeds a survey form whose Custom Code posts `isValid` and `selectedValues`; submit it to see the parsed payload the component emits.
+
+<Story of={KvFormAssemblyFormStories.SubmissionPayload} />
 
 ## Anatomy
 

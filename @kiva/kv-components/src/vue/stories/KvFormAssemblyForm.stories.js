@@ -128,7 +128,7 @@ export const LoadingAndResize = {
 };
 
 // Submission payload - shows how the component reports a submit.
-// Form 659's Custom Code posts an `isValid` flag plus the `selectedValues` the
+// Form 661's Custom Code posts an `isValid` flag plus the `selectedValues` the
 // user chose; the component derives `valid` from `isValid` (falling back to the
 // analytics tuple for legacy forms) and passes `selectedValues` through.
 export const SubmissionPayload = {
@@ -150,7 +150,7 @@ export const SubmissionPayload = {
 					the values the form reported.
 				</p>
 				<kv-form-assembly-form
-					:form-assembly-id="659"
+					:form-assembly-id="661"
 					title="Annual lender goal feedback"
 					@fa-form-submitted="onSubmitted"
 				/>
