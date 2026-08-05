@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.24.0...@kiva/kv-components@8.25.0) (2026-08-05)
+
+
+### Features
+
+* [MP-000] - try to force npm refresh with last version ([3c9eca8](https://github.com/kiva/kv-ui-elements/commit/3c9eca82485b950c09f72b4f09583962126f6be4))
+
+
+
+
+
 # [8.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.23.3...@kiva/kv-components@8.24.0) (2026-08-05)
 
 
