@@ -50,7 +50,7 @@
     },
     "devDependencies": {
         "postcss": "^8.5.15",
-        "style-dictionary": "^4.4.0",
+        "style-dictionary": "^5.5.0",
         "yaml": "^2.9.0"
     }
 }
