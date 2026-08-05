@@ -25,7 +25,7 @@ jobs:
       - name: Configure Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
 
       # Configure git user access token and fetch latest changes
