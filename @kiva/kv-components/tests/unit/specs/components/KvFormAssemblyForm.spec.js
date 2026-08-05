@@ -229,6 +229,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
 		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
 			analytics: ['category', 'action', 'label', 'property', 'value'],
+			selectedValues: null,
 			valid: true,
 		});
 	});
@@ -241,6 +242,7 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
 		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
 			analytics: null,
+			selectedValues: null,
 			valid: false,
 		});
 	});
@@ -257,6 +259,43 @@ describe('KvFormAssemblyForm postMessage handling', () => {
 		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
 		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
 			analytics: ['only-one-string', 42],
+			selectedValues: null,
+			valid: false,
+		});
+	});
+
+	it('prefers the form\'s isValid flag and passes selectedValues through', async () => {
+		const { container, emitted } = await renderForm();
+
+		postFaMessage(container, {
+			type: 'fa_form_submitted',
+			frameHeight: 400,
+			isValid: true,
+			selectedValues: ['More impact information', 'Nothing - it worked well for me'],
+		});
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
+			analytics: null,
+			selectedValues: ['More impact information', 'Nothing - it worked well for me'],
+			valid: true,
+		});
+	});
+
+	it('emits valid false when the form reports isValid false', async () => {
+		const { container, emitted } = await renderForm();
+
+		postFaMessage(container, {
+			type: 'fa_form_submitted',
+			frameHeight: 400,
+			isValid: false,
+			selectedValues: [],
+		});
+
+		await waitFor(() => expect(emitted()['fa-form-submitted']).toBeTruthy());
+		expect(emitted()['fa-form-submitted'][0][0]).toEqual({
+			analytics: null,
+			selectedValues: [],
 			valid: false,
 		});
 	});

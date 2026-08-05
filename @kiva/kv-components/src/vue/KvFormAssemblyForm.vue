@@ -85,8 +85,10 @@ const props = defineProps({
 /**
  * Emitted when the embedded form is actually submitted. It does not fire while validation is
  * still failing, which makes it the strongest completion signal available — dismiss a modal on
- * this one. `analytics` is the raw array the FA form supplied (or null); `valid` reports whether
- * it is usable as an analytics event tuple.
+ * this one. `valid` reports whether the submission succeeded: it uses the form's explicit
+ * `isValid` flag when present, otherwise falls back to whether `analytics` is a usable event
+ * tuple (legacy forms). `analytics` is the raw array the form supplied (or null); `selectedValues`
+ * is the array of values the form reported (or null).
  *
  * @event fa-form-submitted
  */
@@ -102,7 +104,11 @@ const props = defineProps({
  */
 type FaFormEmits = {
 	(e: 'fa-form-loaded'): void,
-	(e: 'fa-form-submitted', payload: { analytics: unknown[] | null, valid: boolean }): void,
+	(e: 'fa-form-submitted', payload: {
+		analytics: unknown[] | null,
+		selectedValues: unknown[] | null,
+		valid: boolean,
+	}): void,
 	(e: 'fa-form-closed'): void,
 };
 
@@ -173,7 +179,9 @@ const handleIFrameMessage = (message: MessageEvent<{
 	type: string,
 	frameHeight: number,
 	frameWidth: number,
-	analytics?: unknown[]
+	analytics?: unknown[],
+	isValid?: boolean,
+	selectedValues?: unknown[]
 }>) => {
 	if (message.origin !== FA_ORIGIN) return;
 	// Every embed on the page hears every FormAssembly frame's messages, so origin alone
@@ -207,9 +215,18 @@ const handleIFrameMessage = (message: MessageEvent<{
 		// Optional array defined in the FA form for analytics purposes,
 		// e.g. ['category', 'action', 'label', 'property', 'value']
 		const messageDataAnalytics = message?.data?.analytics ?? null;
+		// Newer forms post an explicit `isValid` flag (did the submission pass
+		// validation) plus the `selectedValues` the user chose. Prefer that flag;
+		// fall back to treating a usable analytics tuple as valid for legacy forms.
+		const messageIsValid = message?.data?.isValid;
+		const selectedValues = message?.data?.selectedValues ?? null;
+		const valid = typeof messageIsValid === 'boolean'
+			? messageIsValid
+			: isValidAnalytics(messageDataAnalytics);
 		emit('fa-form-submitted', {
 			analytics: messageDataAnalytics,
-			valid: isValidAnalytics(messageDataAnalytics),
+			selectedValues,
+			valid,
 		});
 	}
 };
