@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import KvFormAssemblyForm from '../KvFormAssemblyForm.vue';
 import KvFormAssemblyFormDocsMdx from './KvFormAssemblyFormDocs.mdx';
 
@@ -123,6 +124,42 @@ export const LoadingAndResize = {
 				console.log('fa-form-loaded');
 			},
 		},
+	}),
+};
+
+// Submission payload - shows how the component reports a submit.
+// Form 659's Custom Code posts an `isValid` flag plus the `selectedValues` the
+// user chose; the component derives `valid` from `isValid` (falling back to the
+// analytics tuple for legacy forms) and passes `selectedValues` through.
+export const SubmissionPayload = {
+	render: () => ({
+		components: { KvFormAssemblyForm },
+		setup() {
+			const lastSubmission = ref(null);
+			const onSubmitted = (payload) => {
+				lastSubmission.value = payload;
+			};
+			return { lastSubmission, onSubmitted };
+		},
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6">
+				<p class="tw-text-small tw-mb-3">
+					Submit the form to see the parsed <code>fa-form-submitted</code> payload.
+					<code>valid</code> comes from the form's <code>isValid</code> flag (falling back
+					to the analytics tuple for legacy forms) and <code>selectedValues</code> carries
+					the values the form reported.
+				</p>
+				<kv-form-assembly-form
+					:form-assembly-id="659"
+					title="Annual lender goal feedback"
+					@fa-form-submitted="onSubmitted"
+				/>
+				<pre
+					v-if="lastSubmission"
+					class="tw-mt-3 tw-bg-white tw-rounded tw-p-2 tw-text-small tw-whitespace-pre-wrap"
+				>{{ JSON.stringify(lastSubmission, null, 2) }}</pre>
+			</div>
+		`,
 	}),
 };
 
