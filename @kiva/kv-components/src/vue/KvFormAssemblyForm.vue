@@ -192,7 +192,6 @@ const handleIFrameMessage = (message: MessageEvent<{
 	if (frameWindow && message.source !== frameWindow) return;
 
 	const messageDataType = message?.data?.type;
-
 	if (messageDataType === 'fa_frame_loaded') {
 		markLoaded();
 	}
