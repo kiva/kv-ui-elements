@@ -27,6 +27,11 @@ export interface TransactionData {
 	kivaCreditAppliedTotal: string,
 	paymentType: string,
 	isFTD: boolean,
+	// Lifecycle data resolved by the consuming app before the transaction completes, since the
+	// purchase itself is what moves a lender out of an idle or lapsed stage.
+	lifecycleStage?: string | null,
+	daysSinceLastLoan?: number | null,
+	reEngagementEvent?: string | null,
 }
 
 /**
@@ -115,6 +120,11 @@ function fireFbq(...args: unknown[]) {
 
 // https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#tracking-custom-events
 export function trackFBCustomEvent(eventName: string, params?: Record<string, unknown>) {
+	// Omit the params argument entirely when absent so fbq never receives an explicit undefined
+	if (params === undefined) {
+		fireFbq('trackCustom', eventName);
+		return;
+	}
 	fireFbq('trackCustom', eventName, params);
 }
 
@@ -139,6 +149,130 @@ export function trackFBAddToCart(contentCategory: string, value?: number | strin
 		content_category: contentCategory,
 		...valueParams(value, currency),
 	});
+}
+
+/**
+ * Custom Meta pixel event names for key lender actions. Fire these through {@link trackMetaEvent}
+ * so every consuming app emits the same names.
+ */
+export const META_EVENTS = {
+	ACCOUNT_CREATED: 'accountCreated',
+	DONATION: 'donation',
+	EMAIL_SIGN_UP: 'emailSignUp',
+	GIVING_FUND_CREATED: 'givingFundCreated',
+	GIVING_FUND_STARTED: 'givingFundStarted',
+	KIVA_CARD_REDEMPTION: 'kivaCardRedemption',
+} as const;
+
+/**
+ * Fires a custom Meta pixel event (see {@link META_EVENTS}). When there is no event data the
+ * params argument is omitted entirely rather than passed as undefined.
+ */
+export function trackMetaEvent(eventName: string, eventData?: Record<string, unknown> | null) {
+	if (eventData == null) {
+		trackFBCustomEvent(eventName);
+		return;
+	}
+	trackFBCustomEvent(eventName, eventData);
+}
+
+/**
+ * Fires the {@link META_EVENTS} DONATION event for a completed donation.
+ *
+ * @param donationTotal The donation amount; the event only fires for a finite, positive amount.
+ * @returns Whether the event fired.
+ */
+export function trackDonationMetaEvent(donationTotal?: number | string | null): boolean {
+	const params = valueParams(donationTotal);
+	if (!('value' in params)) {
+		return false;
+	}
+	trackMetaEvent(META_EVENTS.DONATION, {
+		donationTotal,
+		...params,
+	});
+	return true;
+}
+
+/**
+ * Lender lifecycle stages, fired as the `lifecycleStage` param on Meta events.
+ *
+ * Mirrored from the internal "Lifecycle stages" doc, which is owned by analytics and is the
+ * source of truth. If the stages change there, they must be changed here too.
+ */
+export const LIFECYCLE_STAGES = {
+	REGISTERED: 'registered',
+	UNCONVERTED_90: 'unconverted90',
+	UNCONVERTED_180: 'unconverted180',
+	NEW: 'new',
+	ENGAGED: 'engaged',
+	IDLE_90: 'idle90',
+	IDLE_180: 'idle180',
+	IDLE_365: 'idle365',
+	LAPSED_CHURNED: 'lapsedChurned',
+} as const;
+
+/**
+ * Custom Meta events fired when a disengaged lender completes a checkout containing a loan
+ * purchase. Fired through {@link trackReEngagementEvent}.
+ */
+export const RE_ENGAGEMENT_EVENTS = {
+	IDLE: 'idleLenderReEngaged',
+	LAPSED: 'lapsedLenderReEngaged',
+} as const;
+
+/**
+ * The re-engagement event a stage qualifies for, if any.
+ *
+ * IDLE_90 sits in the "Active" lifecycle phase while IDLE_180 and IDLE_365 sit in "Idle". The
+ * requirement says stages containing "idle", so all three are included. Drop the IDLE_90 entry
+ * if marketing scopes it to the Idle phase.
+ */
+const RE_ENGAGEMENT_BY_STAGE: Record<string, string> = {
+	[LIFECYCLE_STAGES.LAPSED_CHURNED]: RE_ENGAGEMENT_EVENTS.LAPSED,
+	[LIFECYCLE_STAGES.IDLE_365]: RE_ENGAGEMENT_EVENTS.IDLE,
+	[LIFECYCLE_STAGES.IDLE_180]: RE_ENGAGEMENT_EVENTS.IDLE,
+	[LIFECYCLE_STAGES.IDLE_90]: RE_ENGAGEMENT_EVENTS.IDLE,
+};
+
+/**
+ * @param stage A {@link LIFECYCLE_STAGES} value
+ * @returns The re-engagement event name for this stage, if any
+ */
+export function getReEngagementEvent(stage?: string | null): string | null {
+	return (stage && RE_ENGAGEMENT_BY_STAGE[stage]) || null;
+}
+
+/**
+ * Fires the re-engagement Meta event for a completed transaction, if it qualifies. Only a loan
+ * purchase moves a lender out of an idle or lapsed stage, so the event fires only when the
+ * transaction contains loans and the consuming app resolved a `reEngagementEvent` (from the
+ * lifecycle stage measured immediately before the transaction — see {@link getReEngagementEvent}).
+ *
+ * Kept separate from {@link trackFBTransaction} so consumers control when this fires and apps
+ * with an existing inline firing block cannot double-fire while migrating.
+ *
+ * @returns Whether the event fired.
+ */
+export function trackReEngagementEvent(transactionData: TransactionData): boolean {
+	const {
+		reEngagementEvent,
+		lifecycleStage,
+		daysSinceLastLoan,
+		loanTotal,
+		itemTotal,
+		loans,
+	} = transactionData;
+	if (!reEngagementEvent || !loans?.length) {
+		return false;
+	}
+	trackFBCustomEvent(reEngagementEvent, {
+		loanTotal,
+		itemTotal,
+		lifecycleStage,
+		daysSinceLastLoan,
+	});
+	return true;
 }
 
 // User segmentation for the Meta PageView `user_type` param. Maps a transactor flag to the Meta
