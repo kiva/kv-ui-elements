@@ -197,9 +197,8 @@ export function trackDonationMetaEvent(donationTotal?: number | string | null): 
 /**
  * Lender lifecycle stages, fired as the `lifecycleStage` param on Meta events.
  *
- * Mirrored from the Lifecycle Stages doc, which is owned by analytics and is the source of truth.
- * If the stages change there, they must be changed here too.
- * https://kiva.atlassian.net/wiki/spaces/ANA/pages/2472640597/Lifecycle+stages
+ * Mirrored from the internal "Lifecycle stages" doc, which is owned by analytics and is the
+ * source of truth. If the stages change there, they must be changed here too.
  */
 export const LIFECYCLE_STAGES = {
 	REGISTERED: 'registered',
