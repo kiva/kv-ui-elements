@@ -55,6 +55,7 @@ export { default as KvLoanUse } from './KvLoanUse.vue';
 export * from './KvLoanUse.vue';
 export { default as KvLoadingPlaceholder } from './KvLoadingPlaceholder.vue';
 export { default as KvLoadingSpinner } from './KvLoadingSpinner.vue';
+export { default as KvLoadingText } from './KvLoadingText.vue';
 export { default as KvMap } from './KvMap.vue';
 export { default as KvMaterialIcon } from './KvMaterialIcon.vue';
 export { default as KvSimpleMap } from './KvSimpleMap.vue';
