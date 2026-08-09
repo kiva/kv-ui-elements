@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.7...@kiva/kv-analytics@1.4.0) (2026-08-09)
+
+
+### Features
+
+* mp-3058-meta-new-events ([ad1fb6d](https://github.com/kiva/kv-ui-elements/commit/ad1fb6d32b9df8500a89de76b383a22cfcc351b1))
+* mp-3058-meta-new-events ([6db3b88](https://github.com/kiva/kv-ui-elements/commit/6db3b88637e7eb1c8fc940db40c1e619782fb91b))
+
+
+
+
+
 ## [1.3.7](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.3.6...@kiva/kv-analytics@1.3.7) (2026-07-27)
 
 
