@@ -1,0 +1,163 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvLoadingTextStories from './KvLoadingText.stories.js';
+
+<Meta title="Interface Elements/KvLoadingText" component={KvLoadingTextStories.Component} />
+
+# KvLoadingText
+
+A skeleton loading placeholder that renders one or more shimmering bars to indicate that text content is still loading.
+
+## Component Overview
+
+KvLoadingText mimics the shape of text while real content is being fetched, using the same shimmer animation as `KvLoadingPlaceholder`.
+
+<Story of={KvLoadingTextStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The only variation is the number of lines rendered, controlled by the `lines` prop.
+
+<Story of={KvLoadingTextStories.AllVariations} />
+
+## Usage Information
+
+Use `KvLoadingText` anywhere text content loads asynchronously and you want to preserve the approximate shape and rhythm of that content while it's unavailable.
+
+### When to Use
+
+- Loading titles, labels, captions, or paragraph copy before the real text is available
+- Loan cards, activity feeds, or profile summaries while data is being fetched
+- Any layout where reserving line-shaped space prevents content from jumping once it loads
+
+### When Not to Use
+
+- For non-text content such as images or avatars — use `KvLoadingPlaceholder` directly instead
+- For indeterminate loading with no implied content shape — use `KvLoadingSpinner`
+- When the number of lines the real content will occupy is unknown or highly variable, since the placeholder's line count could mislead the user
+
+---
+
+## Behavior
+
+`KvLoadingText` renders `lines` stacked bars, each animated by the same shimmer effect used elsewhere in the design system.
+
+### Single-Line Usage
+
+With the default `lines` value of 1, a single full-width bar is rendered, suitable for a title or label placeholder.
+
+<Story of={KvLoadingTextStories.SingleLineUsage} />
+
+### Multi-Line Paragraph
+
+When `lines` is greater than 1, every line renders at full width except the final line, which narrows to 70% width to mimic the ragged right edge of a naturally wrapped paragraph.
+
+<Story of={KvLoadingTextStories.MultiLineParagraph} />
+
+## Anatomy
+
+`KvLoadingText` is made up of:
+
+- **Root**: A single wrapping `<div>`, so any `class` set on the component applies to the whole skeleton
+- **Line container**: One `<div>` per line inside the root, repeated according to the `lines` prop
+- **Placeholder shimmer**: A `KvLoadingPlaceholder` inside each line container, providing the animated shimmer effect
+- **Shortened last line**: When `lines` is greater than 1, the final line's placeholder narrows to 70% width
+
+---
+
+## Specs
+
+### Sizing
+
+Each bar is `1cap` tall — the height of a capital letter in the surrounding font — rather than a fixed pixel value, and sits on the text baseline via `vertical-align: baseline`. Each line takes its height from the inherited `line-height`, so the component scales automatically with the font size of its surrounding context.
+
+<Story of={KvLoadingTextStories.FontSizeScaling} />
+
+### Line Box Across the Type Scale
+
+Every type style in the scale, shown twice: once holding the text it stands in for, once holding `KvLoadingText` at the same width and style. The box hugs each block, so the space the skeleton reserves can be read against the space the text occupies, leading included.
+
+Each specimen fixes its own width so the sample text wraps to a known number of lines, and the serif styles that change size at `md`/`lg` are given enough room that their wrap holds across breakpoints.
+
+<Story of={KvLoadingTextStories.ComparedWithRealText} />
+
+### Width
+
+Each line fills 100% of its container's width, except the final line when `lines` is greater than 1, which renders at 70% width. Constrain the container's width to match the real content the placeholder is standing in for.
+
+---
+
+## Best Practices
+
+**Line Count**
+
+- ✓ Set `lines` to match the number of lines the real content is expected to occupy once loaded
+- ✗ Don't stack many `KvLoadingText` lines to represent unrelated blocks of content — compose separate placeholders instead
+
+**Lifecycle**
+
+- ✓ Swap the placeholder for the real text as soon as data has loaded, keeping the layout's dimensions stable
+- ✗ Don't leave `KvLoadingText` visible once content has loaded — it should only appear during the loading state
+
+---
+
+## Accessibility
+
+- `KvLoadingText` is a purely visual placeholder and carries no built-in ARIA roles or labels
+- Wrap the loading region in a parent with `aria-busy="true"` (and a `role="status"` or `aria-live` region with visually-hidden loading text) so assistive technology is informed that content is loading
+- The shimmer animation does not currently honor the user's `prefers-reduced-motion` preference
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvLoadingTextStories.Default} />
+<Controls of={KvLoadingTextStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Single-Line Placeholder
+
+```vue
+<kv-loading-text />
+```
+
+### Multi-Line Paragraph Placeholder
+
+```vue
+<kv-loading-text :lines="3" />
+```
+
+### Matching a Text Style
+
+`KvLoadingText` sizes itself from the type style in effect where it renders, so a placeholder standing in for anything other than base text needs that style applied. Pass the text class to the component:
+
+```vue
+<kv-loading-text class="tw-text-h2" :lines="2" />
+```
+
+Without it, the skeleton inherits the surrounding style — usually base text — and reserves a line box too short for the heading it replaces, which reintroduces the layout shift the component exists to prevent.
+
+### Conditional Loading State
+
+```vue
+<template>
+  <kv-loading-text v-if="isLoading" :lines="4" />
+  <p v-else>{{ borrower.description }}</p>
+</template>
+```
