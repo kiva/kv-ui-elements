@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.25.0...@kiva/kv-components@8.26.0) (2026-08-10)
+
+
+### Features
+
+* **KvLoadingText:** add shared text skeleton component ([c4379e9](https://github.com/kiva/kv-ui-elements/commit/c4379e9694a19456157288bee487006b7a4d7641))
+
+
+
+
+
 # [8.25.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.24.0...@kiva/kv-components@8.25.0) (2026-08-05)
 
 
