@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.26.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.26.0...@kiva/kv-components@8.26.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* **KvLoanCard:** truncate long location text with ellipsis and tooltip ([8bda3e7](https://github.com/kiva/kv-ui-elements/commit/8bda3e74fd6aba6710bb5a674fa08888cfd78a33))
+* **KvLoanInfoCard:** truncate long location text with ellipsis and tooltip ([ab8ba15](https://github.com/kiva/kv-ui-elements/commit/ab8ba15d53b2f4fa82a1e03c413160bef6d79fa2))
+
+
+
+
+
 # [8.26.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.25.0...@kiva/kv-components@8.26.0) (2026-08-10)
 
 
