@@ -300,6 +300,27 @@ export const LendAgain = story({
 	photoPath,
 });
 
+export const LongLocationName = story({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		geocode: {
+			city: 'North Fort Lauderdale Beach Estates Village Greens',
+			state: 'Massachusetts',
+			country: {
+				isoCode: 'US',
+				name: 'United States',
+				region: 'North America',
+				__typename: 'Country',
+			},
+			__typename: 'Geocode',
+		},
+		distributionModel: 'direct',
+	},
+	kvTrackFunction,
+	photoPath,
+});
+
 export const HugeLentAmount = story({
 	loanId: loan.id,
 	loan: {

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, waitFor } from '@testing-library/vue';
 import { axe } from 'jest-axe';
 import KvClassicLoanCard from '#components/KvClassicLoanCard.vue';
 
@@ -170,6 +170,54 @@ describe('KvClassicLoanCard', () => {
 
 		const countryTagElement = getByText('Uganda');
 		expect(countryTagElement).toBeDefined();
+	});
+
+	it('does not show a location tooltip when the location text is not truncated', async () => {
+		const { getByText, queryByText } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan: {
+						...loan,
+						distributionModel: 'direct',
+					},
+					kvTrackFunction,
+					photoPath,
+				},
+			});
+
+		await waitFor(() => expect(getByText('Lyantonde, Central Region, Uganda')).toBeDefined());
+		expect(queryByText('Lyantonde, Central Region, Uganda', { selector: '.tooltip-pane *' })).toBeNull();
+	});
+
+	it('shows a tooltip with the full location when the location text is truncated', async () => {
+		const scrollWidthSpy = jest.spyOn(HTMLElement.prototype, 'scrollWidth', 'get').mockReturnValue(200);
+		const clientWidthSpy = jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(100);
+
+		const { getAllByText } = render(KvClassicLoanCard,
+			{
+				props: {
+					loanId: loan.id,
+					loan: {
+						...loan,
+						distributionModel: 'direct',
+						geocode: {
+							city: 'Truth or Consequences',
+							state: 'New Mexico',
+							country: { name: 'United States' },
+						},
+					},
+					kvTrackFunction,
+					photoPath,
+				},
+			});
+
+		await waitFor(() => {
+			expect(getAllByText('Truth or Consequences, New Mexico, United States')).toHaveLength(2);
+		});
+
+		scrollWidthSpy.mockRestore();
+		clientWidthSpy.mockRestore();
 	});
 
 	it('activity feed should be showed correctly', () => {

@@ -55,25 +55,36 @@
 									tw-rounded
 									tw-p-1
 									tw-mb-0
-									tw-mr-2
 									tw-text-label
 									tw-flex
 									tw-items-center
 									tw-h-3
 									!tw-capitalize
 								"
-								style="padding: 2px 6px;"
+								style="padding: 2px 6px; max-width: calc(100% - 1rem);"
 							>
 								<suspense>
 									<kv-flag
-										class="tw-ml-0.5 tw-mr-1"
+										class="tw-ml-0.5 tw-mr-1 tw-flex-shrink-0"
 										:country="countryCode"
 										:name="countryName"
 										width-override="16px"
 										hide-border
 									/>
 								</suspense>
-								<span style="margin-top: 0.125rem;">{{ formattedLocation }}</span>
+								<span
+									:id="`loan-location-${loanId}`"
+									ref="locationRef"
+									class="tw-truncate tw-min-w-0"
+									style="margin-top: 0.125rem;"
+								>{{ formattedLocation }}</span>
+								<kv-tooltip
+									v-if="isLocationTruncated"
+									:controller="`loan-location-${loanId}`"
+									max-width="250px"
+								>
+									{{ formattedLocation }}
+								</kv-tooltip>
 							</p>
 						</div>
 					</component>
@@ -271,6 +282,7 @@ import numeral from 'numeral';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
+	useLocationTruncation,
 	LOAN_CALLOUTS_FRAGMENT,
 	LOAN_GEOCODE_FRAGMENT,
 	LOAN_PROGRESS_FRAGMENT,
@@ -284,6 +296,7 @@ import KvLoanTag, { KV_LOAN_TAG_FRAGMENT } from './KvLoanTag.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
 import KvFlag from './KvFlag.vue';
+import KvTooltip from './KvTooltip.vue';
 
 // Use this fragment to get the necessary public data for this loan card
 export const KV_INTRODUCTION_LOAN_CARD_FRAGMENT = gql`
@@ -338,6 +351,7 @@ export default {
 		KvLoanCallouts,
 		KvFlag,
 		KvLoanBookmark,
+		KvTooltip,
 	},
 	props: {
 		loanId: {
@@ -434,6 +448,11 @@ export default {
 			clickReadMore,
 		} = loanCardMethods(props, emit);
 
+		const {
+			locationRef,
+			isLocationTruncated,
+		} = useLocationTruncation();
+
 		return {
 			allDataLoaded,
 			borrowerName,
@@ -458,6 +477,8 @@ export default {
 			unreservedAmount,
 			sharesAvailable,
 			clickReadMore,
+			locationRef,
+			isLocationTruncated,
 		};
 	},
 	computed: {

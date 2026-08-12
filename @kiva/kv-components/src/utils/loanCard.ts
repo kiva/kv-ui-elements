@@ -2,6 +2,10 @@ import gql from 'graphql-tag';
 import numeral from 'numeral';
 import {
 	computed,
+	nextTick,
+	onBeforeUnmount,
+	onMounted,
+	ref,
 	toRefs,
 } from 'vue';
 import { mdiMapMarker } from '@mdi/js';
@@ -250,6 +254,33 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		loanBorrowerCount,
 		mdiMapMarker,
 		loanCallouts,
+	};
+}
+
+// Detects when the location badge text is clipped by CSS truncation so a
+// tooltip revealing the full text can be shown only when it's actually needed.
+export function useLocationTruncation() {
+	const locationRef = ref<HTMLElement | null>(null);
+	const isLocationTruncated = ref(false);
+
+	const checkLocationTruncation = () => {
+		const el = locationRef.value;
+		isLocationTruncated.value = !!el && el.scrollWidth > el.clientWidth;
+	};
+
+	onMounted(() => {
+		nextTick(checkLocationTruncation);
+		window.addEventListener('resize', checkLocationTruncation);
+	});
+
+	onBeforeUnmount(() => {
+		window.removeEventListener('resize', checkLocationTruncation);
+	});
+
+	return {
+		locationRef,
+		isLocationTruncated,
+		checkLocationTruncation,
 	};
 }
 
