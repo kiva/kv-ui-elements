@@ -54,18 +54,29 @@
 									tw-rounded
 									tw-p-1
 									tw-mb-0
-									tw-mr-2
 									tw-text-label
 									tw-flex
 									tw-items-center
 									tw-h-3"
-								style="padding: 2px 6px; text-transform: capitalize;"
+								style="padding: 2px 6px; text-transform: capitalize; max-width: calc(100% - 1rem);"
 							>
 								<kv-material-icon
-									class="tw-h-2 tw-w-2"
+									class="tw-h-2 tw-w-2 tw-flex-shrink-0"
 									:icon="mdiMapMarker"
 								/>
-								<span style="margin-top: 0.125rem;">{{ formattedLocation }}</span>
+								<span
+									:id="`loan-location-${loanId}`"
+									ref="locationRef"
+									class="tw-truncate tw-min-w-0"
+									style="margin-top: 0.125rem;"
+								>{{ formattedLocation }}</span>
+								<kv-tooltip
+									v-if="isLocationTruncated"
+									:controller="`loan-location-${loanId}`"
+									max-width="250px"
+								>
+									{{ formattedLocation }}
+								</kv-tooltip>
 							</p>
 						</div>
 					</component>
@@ -150,12 +161,14 @@ import gql from 'graphql-tag';
 import {
 	loanCardComputedProperties,
 	loanCardMethods,
+	useLocationTruncation,
 	LOAN_GEOCODE_FRAGMENT,
 } from '../utils/loanCard';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvTooltip from './KvTooltip.vue';
 
 // Use this fragment to get the necessary public data for this loan card
 export const KV_LOAN_INFO_CARD_FRAGMENT = gql`
@@ -181,6 +194,7 @@ export default {
 		KvLoadingPlaceholder,
 		KvLoanUse,
 		KvMaterialIcon,
+		KvTooltip,
 	},
 	props: {
 		loanId: {
@@ -254,6 +268,11 @@ export default {
 			clickReadMore,
 		} = loanCardMethods(props, emit);
 
+		const {
+			locationRef,
+			isLocationTruncated,
+		} = useLocationTruncation();
+
 		return {
 			allDataLoaded,
 			borrowerName,
@@ -274,6 +293,8 @@ export default {
 			unreservedAmount,
 			sharesAvailable,
 			clickReadMore,
+			locationRef,
+			isLocationTruncated,
 		};
 	},
 	computed: {
