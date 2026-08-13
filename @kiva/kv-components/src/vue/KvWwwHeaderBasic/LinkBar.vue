@@ -191,6 +191,10 @@ const AboutMenu = defineAsyncComponent(() => import('./AboutMenu.vue'));
 const MyKivaMenu = defineAsyncComponent(() => import('./MyKivaMenu.vue'));
 const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
 
+// Window (ms) after a touchstart during which hover handlers are ignored, so the synthetic
+// compatibility mouseenter/mouseover browsers fire after a real tap doesn't re-toggle the menu.
+const TOUCH_SUPPRESS_WINDOW_MS = 500;
+
 export default {
 	name: 'LinkBar',
 	components: {
@@ -228,6 +232,8 @@ export default {
 		const openItem = ref<string | null>(null);
 		// Untyped ref (like KvHeaderLinkBar): keeps the heavy HTMLElement type out of the emitted .d.ts.
 		const avatarMenu = ref(null);
+		// Plain (non-reactive) timestamp: only read/written inside hover/touch handlers, never rendered.
+		let lastTouchTimestamp = 0;
 
 		// Initial position for the MyKiva dropdown. Mobile pins to the viewport's right edge
 		// (matches the legacy KvWwwHeader drawer). Desktop seeds the position with the avatar's
@@ -301,8 +307,12 @@ export default {
 			position: unknown = null,
 			triggerCenterX: number | null = null,
 		): void {
-			// Touch devices open via tap (handleTouchStart) rather than hover.
-			if (navigator.maxTouchPoints) return;
+			// Touch devices open via tap (handleTouchStart); a real touch also fires a synthetic
+			// compatibility mouseenter right after, so suppress hover briefly following a touch
+			// rather than gating on navigator.maxTouchPoints — Chrome and Firefox report wildly
+			// different touch-point counts for identical hardware, which made this menu silently
+			// stop opening on hover in Firefox.
+			if (Date.now() - lastTouchTimestamp < TOUCH_SUPPRESS_WINDOW_MS) return;
 			// Track only the open transition so re-entering an already-open menu doesn't re-fire.
 			if (openItem.value !== item) trackMenuOpen(item);
 			openItem.value = item;
@@ -310,7 +320,7 @@ export default {
 		}
 
 		function handleMouseOut(item: string): void {
-			if (navigator.maxTouchPoints) return;
+			if (Date.now() - lastTouchTimestamp < TOUCH_SUPPRESS_WINDOW_MS) return;
 			if (openItem.value === item) {
 				trackMenuClose(item);
 				openItem.value = null;
@@ -324,6 +334,7 @@ export default {
 			position: unknown = null,
 			triggerCenterX: number | null = null,
 		): void {
+			lastTouchTimestamp = Date.now();
 			if (openItem.value === item) {
 				trackMenuClose(item);
 				openItem.value = null;

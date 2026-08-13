@@ -92,6 +92,19 @@ describe('LinkBar', () => {
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-User-menu', 'User');
 	});
 
+	// Regression test: this menu used to gate hover on navigator.maxTouchPoints, which Chrome and
+	// Firefox report inconsistently for identical hardware, silently breaking hover in whichever
+	// browser reports a nonzero value. Suppression is now based on recent touch activity instead.
+	it('suppresses the synthetic mouseenter that follows a touch tap so it does not re-toggle the menu', async () => {
+		const { track, getByTestId } = renderWithTracking({ loggedIn: true, balance: 7 });
+		const avatar = getByTestId('header-avatar-menu');
+		await fireEvent.touchStart(avatar);
+		expect(track).toHaveBeenCalledWith('TopNav', 'hover-User-menu', 'User');
+		track.mockClear();
+		await fireEvent.mouseEnter(avatar);
+		expect(track).not.toHaveBeenCalled();
+	});
+
 	it('tracks open then close events for the mobile menu', async () => {
 		const { track, getByLabelText } = renderWithTracking({ loggedIn: false });
 		const hamburger = getByLabelText('Open menu');
