@@ -9,6 +9,8 @@
 			v-kv-track-event="openMenuItem === KvHeaderMobileMenu
 				? ['TopNav', 'click-Hamburger-menu']
 				: null"
+			type="button"
+			aria-label="Open menu"
 			class="header-link tw-inline-flex md:tw-hidden"
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
@@ -102,6 +104,7 @@
 		</a>
 		<div
 			class="md:tw-py-1"
+			data-testid="header-avatar-menu"
 			@mouseenter="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
 			@mouseleave="handleMouseOut(AVATAR_MENU_ID)"
 			@touchstart.stop="handleTouchStart(AVATAR_MENU_ID)"
@@ -189,6 +192,10 @@ const KvLendMenu = defineAsyncComponent(() => import('./LendMenu/KvLendMenu.vue'
 const KvHeaderTakeActionMenu = defineAsyncComponent(() => import('./KvHeaderTakeActionMenu.vue'));
 const KvHeaderAboutMenu = defineAsyncComponent(() => import('./KvHeaderAboutMenu.vue'));
 
+// Window (ms) after a touchstart during which hover handlers are ignored, so the synthetic
+// compatibility mouseenter/mouseover browsers fire after a real tap doesn't re-toggle a menu.
+const TOUCH_SUPPRESS_WINDOW_MS = 500;
+
 const AVATAR_MENU_WIDTH = 150;
 const AVATAR_MENU_ID = 'avatar-menu';
 const MOBILE_MENU_ITEM = 'menuButton';
@@ -266,6 +273,8 @@ export default {
 		const signInLink = ref(null);
 		const menuButton = ref(null);
 		const openMenuId = ref(null);
+		// Plain (non-reactive) timestamp: only read/written inside hover/touch handlers, never rendered.
+		let lastTouchTimestamp = 0;
 
 		interface TrackEventFn {
 			// eslint-disable-next-line no-unused-vars
@@ -286,31 +295,36 @@ export default {
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			// Detect input method (mouse vs touch) instead of relying only on screen size
-			if (!navigator.maxTouchPoints) {
-				// Track hover for each menu type
-				if (item && openMenuId.value !== item) {
-					const tracking = menuTrackingMap[item];
-					if (tracking) {
-						$kvTrackEvent(
-							'TopNav',
-							tracking.action,
-							tracking.label,
-						);
-					}
-				}
-				openMenuId.value = item;
+			// Touch devices open via tap (handleTouchStart); a real touch also fires a synthetic
+			// compatibility mouseover right after, so suppress hover briefly following a touch
+			// rather than gating on navigator.maxTouchPoints — Chrome and Firefox report wildly
+			// different touch-point counts for identical hardware, which made this menu silently
+			// stop opening on hover in Firefox.
+			if (Date.now() - lastTouchTimestamp < TOUCH_SUPPRESS_WINDOW_MS) return;
 
-				onHover(
-					item,
-					menu,
-					item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition,
-				);
+			// Track hover for each menu type
+			if (item && openMenuId.value !== item) {
+				const tracking = menuTrackingMap[item];
+				if (tracking) {
+					$kvTrackEvent(
+						'TopNav',
+						tracking.action,
+						tracking.label,
+					);
+				}
 			}
+			openMenuId.value = item;
+
+			onHover(
+				item,
+				menu,
+				item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition,
+			);
 		};
 
 		const handleMouseOut = (item) => {
-			if (!navigator.maxTouchPoints && openMenuId.value === item) {
+			if (Date.now() - lastTouchTimestamp < TOUCH_SUPPRESS_WINDOW_MS) return;
+			if (openMenuId.value === item) {
 				openMenuId.value = null;
 				onHover();
 			}
@@ -336,6 +350,7 @@ export default {
 		};
 
 		const handleTouchStart = (item: string, menu?: any, targetPosition?: any) => {
+			lastTouchTimestamp = Date.now();
 			// Track touch start for each menu type
 			if (item && openMenuId.value !== item) {
 				const tracking = menuTrackingMap[item];
