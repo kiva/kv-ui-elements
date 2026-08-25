@@ -136,6 +136,20 @@ export default {
 			},
 		},
 		/**
+		 * Duration (ms) of each segment's grow animation; also the stagger between segments
+		 * and the count-up pacing. Lower it to speed up the whole ring in sync.
+		 */
+		growDuration: {
+			control: {
+				type: 'range', min: 100, max: 1000, step: 50,
+			},
+			description: 'Duration (ms) of each segment grow; drives the stagger and count-up too.',
+			table: {
+				type: { summary: 'number' },
+				defaultValue: { summary: '500' },
+			},
+		},
+		/**
 		 * Reverses the entrance animation (segments shrink back to 0).
 		 */
 		animateOut: {
@@ -161,6 +175,7 @@ export const Default = {
 		strokeWidth: 56,
 		segmentGap: 2,
 		initialDelay: 1000,
+		growDuration: 500,
 		animateOut: false,
 	},
 	render: (args) => ({
@@ -476,6 +491,35 @@ export const AnimationTiming = {
 				<div style="width: 262px;">
 					<KvPieChartV2 :values="sampleValues" :initial-delay="2500" />
 					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">initialDelay: 2500</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * Draw Speed - growDuration drives the whole sweep together (segment draw + stagger +
+ * count-up), so lowering it speeds the ring up in sync. Shown with initialDelay: 0.
+ */
+export const DrawSpeed = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { manyValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="manyValues" :shown-segments="6" :initial-delay="0" :grow-duration="500" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">growDuration: 500 (default)</p>
+				</div>
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="manyValues" :shown-segments="6" :initial-delay="0" :grow-duration="250" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">growDuration: 250 (2x faster)</p>
+				</div>
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="manyValues" :shown-segments="6" :initial-delay="0" :grow-duration="120" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">growDuration: 120 (snappy)</p>
 				</div>
 			</div>
 		`,
