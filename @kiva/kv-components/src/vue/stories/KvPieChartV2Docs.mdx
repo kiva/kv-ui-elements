@@ -36,7 +36,7 @@ The component exposes several axes of customization:
 - **Segment Gap**: `segmentGap` adds visual breathing room between adjacent segments
 - **Segment Cap**: `shownSegments` caps the number of distinct segments before the rest collapse into "Other"
 - **Custom Colors**: Each item can override its assigned palette color via an optional `color` field
-- **Animation Timing**: `initialDelay` postpones the entrance animation; `animateOut` reverses it
+- **Animation Timing**: `initialDelay` postpones the entrance animation; `growDuration` sets how fast each segment draws — and the stagger and count-up, kept in sync; `animateOut` reverses it
 
 <Story of={KvPieChartV2Stories.AllVariations} />
 
@@ -109,10 +109,12 @@ The `segmentGap` prop subtracts visual length (in SVG user units along the circu
 The entrance animation runs in three coordinated phases:
 
 - **Initial delay** (`initialDelay`, default `1000ms`): Wait before any segment animates
-- **Per-segment grow** (500ms): Each segment expands clockwise from its starting angle
-- **Stagger** (500ms): Each segment begins as the previous one completes
+- **Per-segment grow** (`growDuration`, default `500ms`): Each segment expands clockwise from its starting angle
+- **Stagger** (`growDuration`): Each segment begins as the previous one completes, so the sweep stays continuous
 
-Count-up animations on legend pill values run in parallel with their corresponding segment animations using cubic ease-in-out.
+Count-up animations on legend pill values run in parallel with their corresponding segment animations, paced by the same `growDuration`, using cubic ease-in-out. Because one value drives the draw, the stagger, and the count-up together, lowering `growDuration` speeds up the entire sweep in sync — useful in compact, fast-moving contexts. Leaving it unset preserves the original `500ms` timing.
+
+<Story of={KvPieChartV2Stories.DrawSpeed} />
 
 ---
 
