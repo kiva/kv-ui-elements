@@ -100,4 +100,52 @@ describe('LinkBar', () => {
 		await fireEvent.touchStart(hamburger);
 		expect(track).toHaveBeenCalledWith('TopNav', 'close-Mobile-menu', 'Mobile');
 	});
+
+	it('emits login-click with the native MouseEvent when the login link is clicked', async () => {
+		const { emitted, getByTestId } = render(LinkBar, { props: { loggedIn: false }, global });
+		await fireEvent.click(getByTestId('header-login'));
+		expect(emitted()['login-click']).toHaveLength(1);
+		expect(emitted()['login-click'][0][0]).toBeInstanceOf(MouseEvent);
+	});
+
+	it('tracks the login click exactly once', async () => {
+		const { track, getByTestId } = renderWithTracking({ loggedIn: false });
+		await fireEvent.click(getByTestId('header-login'));
+		expect(track).toHaveBeenCalledTimes(1);
+		expect(track).toHaveBeenCalledWith('TopNav', 'click-Log-in');
+	});
+
+	it('tracks the login click even when a host intercepts the navigation', async () => {
+		const { track, getByTestId } = renderWithTracking({
+			loggedIn: false,
+			onLoginClick: (event: MouseEvent) => event.preventDefault(),
+		});
+		await fireEvent.click(getByTestId('header-login'));
+		expect(track).toHaveBeenCalledTimes(1);
+		expect(track).toHaveBeenCalledWith('TopNav', 'click-Log-in');
+	});
+
+	// Dispatching an event we own is what proves the host receives the *native* event rather than a
+	// copy: only then does the host's preventDefault() actually cancel the anchor's navigation.
+	it('lets a host cancel the navigation by calling preventDefault on the emitted event', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, onLoginClick: (event: MouseEvent) => event.preventDefault() },
+			global,
+		});
+		const event = new MouseEvent('click', { bubbles: true, cancelable: true });
+		getByTestId('header-login').dispatchEvent(event);
+		expect(event.defaultPrevented).toBe(true);
+	});
+
+	it('leaves the login navigation intact when the host does not intercept the click', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, loginUrl: '/custom-login' },
+			global,
+		});
+		const link = getByTestId('header-login');
+		expect(link.getAttribute('href')).toBe('/custom-login');
+		const event = new MouseEvent('click', { bubbles: true, cancelable: true });
+		link.dispatchEvent(event);
+		expect(event.defaultPrevented).toBe(false);
+	});
 });

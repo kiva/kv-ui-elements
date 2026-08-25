@@ -33,6 +33,7 @@
 						@item-hover="onItemHover"
 						@load-search-data="$emit('load-search-data')"
 						@search-submit="$emit('search-submit', $event)"
+						@login-click="$emit('login-click', $event)"
 					/>
 				</transition>
 			</kv-page-container>
@@ -135,7 +136,11 @@ interface ApolloClientLike {
 
 /**
  * Presentational global site header (Q4 2026 Figma desktop + KvWwwHeader mobile drawer paradigm).
- * Props in, events out: `load-lend-menu-data`, `load-search-data`, `search-submit`.
+ * Props in, events out: `load-lend-menu-data`, `load-search-data`, `search-submit`, `login-click`.
+ *
+ * `login-click` carries the native MouseEvent from the Log in link. Hosts whose login is not a plain
+ * navigation can call preventDefault() on it and run their own flow; hosts that ignore the event
+ * navigate to `loginUrl` unchanged.
  */
 export default {
 	name: 'KvWwwHeaderBasic',
@@ -162,7 +167,7 @@ export default {
 		trusteeId: { type: Number, default: null },
 		mostRecentBorrowedLoanId: { type: Number, default: null },
 	},
-	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit'],
+	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit', 'login-click'],
 	setup(props, { emit }) {
 		const { isMobile, checkIsMobile } = useBreakpoints();
 		const {

@@ -222,7 +222,7 @@ export default {
 		isMobile: { type: Boolean, default: false },
 		openMenuItem: { type: [Object, Function], default: null },
 	},
-	emits: ['item-hover', 'load-search-data', 'search-submit'],
+	emits: ['item-hover', 'load-search-data', 'search-submit', 'login-click'],
 	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
 		const openItem = ref<string | null>(null);
@@ -345,8 +345,12 @@ export default {
 			$kvTrackEvent(link.track[0], link.track[1]);
 		}
 
-		function onLoginClick(): void {
+		// The anchor keeps its href so no-JS, middle-click and open-in-new-tab still work. Hosts whose
+		// login is not a plain navigation (e.g. an Auth0 SPA flow) listen for `login-click` and call
+		// preventDefault() on the native event; hosts that don't listen navigate to loginUrl as before.
+		function onLoginClick(event: MouseEvent): void {
 			$kvTrackEvent('TopNav', 'click-Log-in');
+			emit('login-click', event);
 		}
 
 		function onBasketClick(): void {
