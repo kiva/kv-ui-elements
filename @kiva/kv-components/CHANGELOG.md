@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.27.0...@kiva/kv-components@8.28.0) (2026-08-25)
+
+
+### Features
+
+* [MP-3140] - speed-up kvPieChartV2 rings animation ([c9f4ad4](https://github.com/kiva/kv-ui-elements/commit/c9f4ad424f52d320b412520073fc4c1849e7d1f9))
+* [MP-3140] - update mdx doc ([23ff8f2](https://github.com/kiva/kv-ui-elements/commit/23ff8f22578754494740f8ea2a7980699718473b))
+
+
+
+
+
 # [8.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.26.1...@kiva/kv-components@8.27.0) (2026-08-25)
 
 
