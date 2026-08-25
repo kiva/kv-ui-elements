@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.27.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.26.1...@kiva/kv-components@8.27.0) (2026-08-25)
+
+
+### Features
+
+* **KvWwwHeaderBasic:** emit login-click so hosts can intercept login ([1885649](https://github.com/kiva/kv-ui-elements/commit/18856499e259806988d0a8932c56c2d4d4d3c273))
+
+
+
+
+
 ## [8.26.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.26.0...@kiva/kv-components@8.26.1) (2026-08-12)
 
 
