@@ -126,4 +126,11 @@ describe('KvWwwHeaderBasic', () => {
 		await fireEvent.update(input, 'educ');
 		expect(await findByText(resultText('Education'))).toBeTruthy();
 	});
+
+	it('forwards login-click from the link bar to the host', async () => {
+		const { emitted, getByTestId } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+		await fireEvent.click(getByTestId('header-login'));
+		expect(emitted()['login-click']).toHaveLength(1);
+		expect(emitted()['login-click'][0][0]).toBeInstanceOf(MouseEvent);
+	});
 });
