@@ -175,4 +175,30 @@ describe('KvPieChartV2', () => {
 		const segments = container.querySelectorAll('.segment-circle');
 		expect(segments.length).toBe(0);
 	});
+
+	it('defaults growDuration to 500ms and staggers segments by it', () => {
+		const { container } = render(KvPieChartV2, {
+			props: {
+				values: defaultValues, loading: false, shownSegments: 6, initialDelay: 0,
+			},
+		});
+		const root = container.querySelector('.kv-pie-chart-v2') as HTMLElement;
+		expect(root.style.getPropertyValue('--segment-grow-duration')).toBe('500ms');
+		const segments = container.querySelectorAll<SVGElement>('.segment-circle');
+		expect(segments[0].style.transitionDelay).toBe('0ms');
+		expect(segments[1].style.transitionDelay).toBe('500ms');
+	});
+
+	it('growDuration drives the CSS draw duration and the segment stagger together', () => {
+		const { container } = render(KvPieChartV2, {
+			props: {
+				values: defaultValues, loading: false, shownSegments: 6, initialDelay: 0, growDuration: 250,
+			},
+		});
+		const root = container.querySelector('.kv-pie-chart-v2') as HTMLElement;
+		expect(root.style.getPropertyValue('--segment-grow-duration')).toBe('250ms');
+		const segments = container.querySelectorAll<SVGElement>('.segment-circle');
+		expect(segments[1].style.transitionDelay).toBe('250ms');
+		expect(segments[2].style.transitionDelay).toBe('500ms');
+	});
 });

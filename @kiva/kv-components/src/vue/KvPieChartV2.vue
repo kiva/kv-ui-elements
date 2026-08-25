@@ -1,6 +1,7 @@
 <template>
 	<figure
 		class="kv-pie-chart-v2 tw-flex tw-flex-col tw-items-center tw-gap-1"
+		:style="{ '--segment-grow-duration': `${growDuration}ms` }"
 		aria-label="Pie chart"
 	>
 		<!-- Donut chart SVG -->
@@ -233,11 +234,12 @@ const CX = VIEWBOX / 2;
 const CY = VIEWBOX / 2;
 
 // ── Animation timing ──
-// STAGGER and GROW_DURATION are intentionally equal so each segment finishes
-// as the next one begins. CSS .segment-circle transition (500ms) must match
-// GROW_DURATION; update both together if you change one.
-const STAGGER = 500;
-const GROW_DURATION = 500;
+// The `growDuration` prop (ms) drives three things kept in lockstep so the sweep stays
+// continuous and the ring stays in sync with its count-up numbers:
+//   1. the stagger between segments (each starts as the previous finishes),
+//   2. the JS count-up duration, and
+//   3. the CSS segment-draw transition — bound via the --segment-grow-duration custom
+//      property set on the root element (see the template + style block below).
 
 interface ComputedSegment {
 	label: string;
@@ -311,6 +313,15 @@ export default {
 			default: 1000,
 		},
 		/**
+		 * Duration in milliseconds of each segment's grow animation. The stagger between
+		 * segments and the count-up pacing use this same value, so lowering it speeds up
+		 * the whole ring — draw and numbers — in sync. Default keeps the original timing.
+		 */
+		growDuration: {
+			type: Number,
+			default: 500,
+		},
+		/**
 		 * When changed from false to true, plays the reverse sweep-out animation.
 		 */
 		animateOut: {
@@ -327,6 +338,7 @@ export default {
 			strokeWidth,
 			segmentGap,
 			initialDelay,
+			growDuration,
 			animateOut,
 		} = toRefs(props);
 
@@ -395,7 +407,7 @@ export default {
 					color: getPieChartColor(i, item.color),
 					dashLength,
 					startDeg,
-					delay: initialDelay.value + i * STAGGER,
+					delay: initialDelay.value + i * growDuration.value,
 					isVisible: animatedIn.value && !animateOut.value,
 				};
 			});
@@ -421,7 +433,7 @@ export default {
 				color: '#C4C4C4',
 				dashLength,
 				startDeg,
-				delay: initialDelay.value + segIndex * STAGGER,
+				delay: initialDelay.value + segIndex * growDuration.value,
 				isVisible: animatedIn.value && !animateOut.value,
 			};
 		});
@@ -446,7 +458,7 @@ export default {
 			function step(timestamp: number) {
 				if (startTime === null) startTime = timestamp;
 				const elapsed = timestamp - startTime;
-				const progress = Math.min(elapsed / GROW_DURATION, 1);
+				const progress = Math.min(elapsed / growDuration.value, 1);
 				const eased = easeInOutCubic(progress);
 				const current = Math.round(startVal + (endVal - startVal) * eased);
 				displayValues.value[index] = current;
@@ -614,7 +626,7 @@ export default {
 
 <style lang="postcss" scoped>
 .segment-circle {
-	transition: stroke-dashoffset 500ms ease-in-out;
+	transition: stroke-dashoffset var(--segment-grow-duration, 500ms) ease-in-out;
 }
 
 .skeleton-ring {
