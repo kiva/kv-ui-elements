@@ -130,6 +130,7 @@
 				ref="avatarMenu"
 				data-testid="header-avatar-menu"
 				class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
+				:style="isUserDataLoading ? { display: 'var(--user-loading-display, flex)' } : undefined"
 				@mouseenter="
 					handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
 				"

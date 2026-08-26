@@ -162,4 +162,28 @@ describe('LinkBar', () => {
 		});
 		expect(getByTestId('header-basket').style.display).toBe('');
 	});
+
+	it('hooks the logged-in cluster to --user-loading-display while user data is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		expect(getByTestId('header-avatar-menu').style.display)
+			.toBe('var(--user-loading-display, flex)');
+	});
+
+	it('leaves the logged-in cluster without an inline display once user data has loaded', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: false, balance: 25 }, global,
+		});
+		expect(getByTestId('header-avatar-menu').style.display).toBe('');
+	});
+
+	it('does not bind the avatar variables to the generic loading placeholder', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		const cluster = getByTestId('header-avatar-menu');
+		expect(cluster.outerHTML).not.toContain('--user-avatar-display');
+		expect(cluster.outerHTML).not.toContain('--user-avatar-legacy-display');
+	});
 });
