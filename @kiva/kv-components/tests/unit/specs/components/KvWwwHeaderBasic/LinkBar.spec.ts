@@ -74,7 +74,7 @@ describe('LinkBar', () => {
 	it('tracks a hover event when the Lend dropdown opens', async () => {
 		const { track, container } = renderWithTracking({ loggedIn: false });
 		const lend = container.querySelector('a.link-bar__lend') as HTMLElement;
-		await fireEvent.mouseEnter(lend);
+		await fireEvent.pointerEnter(lend, { pointerType: 'mouse' });
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-Lend-menu', 'Lend');
 	});
 
@@ -82,14 +82,36 @@ describe('LinkBar', () => {
 		const { track, container } = renderWithTracking({ loggedIn: false });
 		const about = Array.from(container.querySelectorAll('a'))
 			.find((a) => a.textContent?.trim() === 'About') as HTMLElement;
-		await fireEvent.mouseEnter(about);
+		await fireEvent.pointerEnter(about, { pointerType: 'mouse' });
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-About-menu', 'About');
 	});
 
 	it('tracks a hover event when the logged-in user menu opens', async () => {
 		const { track, getByTestId } = renderWithTracking({ loggedIn: true, balance: 7 });
-		await fireEvent.mouseEnter(getByTestId('header-avatar-menu'));
+		await fireEvent.pointerEnter(getByTestId('header-avatar-menu'), { pointerType: 'mouse' });
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-User-menu', 'User');
+	});
+
+	// After a tap, browsers fire a compatibility mouseenter — a plain MouseEvent with no
+	// pointerType. Listening on pointerenter means it never reaches the handler, so a tap that
+	// closed a menu cannot be immediately reopened by the synthetic event that follows it.
+	it('ignores the compatibility mouseenter a browser fires after a tap', async () => {
+		const { track, getByTestId } = renderWithTracking({ loggedIn: true, balance: 7 });
+		await fireEvent.mouseEnter(getByTestId('header-avatar-menu'));
+		expect(track).not.toHaveBeenCalled();
+	});
+
+	it('does not open the user menu when the pointer is a touch rather than a mouse', async () => {
+		const { track, getByTestId } = renderWithTracking({ loggedIn: true, balance: 7 });
+		await fireEvent.pointerEnter(getByTestId('header-avatar-menu'), { pointerType: 'touch' });
+		expect(track).not.toHaveBeenCalled();
+	});
+
+	it('does not open the Lend dropdown when the pointer is a touch rather than a mouse', async () => {
+		const { track, container } = renderWithTracking({ loggedIn: false });
+		const lend = container.querySelector('a.link-bar__lend') as HTMLElement;
+		await fireEvent.pointerEnter(lend, { pointerType: 'touch' });
+		expect(track).not.toHaveBeenCalled();
 	});
 
 	it('tracks open then close events for the mobile menu', async () => {

@@ -13,8 +13,8 @@
 			:class="{
 				'tw-text-tertiary': openMenuItem && openMenuItem !== KvHeaderMobileMenu
 			}"
-			@mouseover="handleOnHover('menuButton', KvHeaderMobileMenu)"
-			@mouseout="handleMouseOut('menuButton')"
+			@pointerover="handlePointerHover($event, 'menuButton', KvHeaderMobileMenu)"
+			@pointerout="handlePointerOut($event, 'menuButton')"
 			@touchstart.stop="handleTouchStart('menuButton', KvHeaderMobileMenu)"
 		>
 			<kv-material-icon :icon="mdiMenu" />
@@ -30,7 +30,7 @@
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-inline-flex md:tw-border md:tw-rounded-md tw-px-1.5 tw-py-0.5"
 			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('lendButton')"
+			@pointerleave="handlePointerOut($event, 'lendButton')"
 			@touchstart.stop="handleTouchStart('lendButton', KvLendMenu)"
 		>
 			Lend
@@ -45,7 +45,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('takeActionButton')"
+			@pointerleave="handlePointerOut($event, 'takeActionButton')"
 			@user-tap="handleTouchStart"
 		>
 			Take action
@@ -60,7 +60,7 @@
 			:dropdown-icon="mdiChevronDown"
 			send-link-position
 			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('aboutUsLink')"
+			@pointerleave="handlePointerOut($event, 'aboutUsLink')"
 			@user-tap="handleTouchStart"
 		>
 			About
@@ -102,8 +102,9 @@
 		</a>
 		<div
 			class="md:tw-py-1"
-			@mouseenter="handleOnHover(AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
-			@mouseleave="handleMouseOut(AVATAR_MENU_ID)"
+			data-testid="header-avatar-menu"
+			@pointerenter="handlePointerHover($event, AVATAR_MENU_ID, KvHeaderMyKivaMenu, getAvatarMenuPosition())"
+			@pointerleave="handlePointerOut($event, AVATAR_MENU_ID)"
 			@touchstart.stop="handleTouchStart(AVATAR_MENU_ID)"
 		>
 			<div
@@ -286,34 +287,45 @@ export default {
 		};
 
 		const handleOnHover = (item, menu, targetPosition = null) => {
-			// Detect input method (mouse vs touch) instead of relying only on screen size
-			if (!navigator.maxTouchPoints) {
-				// Track hover for each menu type
-				if (item && openMenuId.value !== item) {
-					const tracking = menuTrackingMap[item];
-					if (tracking) {
-						$kvTrackEvent(
-							'TopNav',
-							tracking.action,
-							tracking.label,
-						);
-					}
+			// Track hover for each menu type
+			if (item && openMenuId.value !== item) {
+				const tracking = menuTrackingMap[item];
+				if (tracking) {
+					$kvTrackEvent(
+						'TopNav',
+						tracking.action,
+						tracking.label,
+					);
 				}
-				openMenuId.value = item;
-
-				onHover(
-					item,
-					menu,
-					item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition,
-				);
 			}
+			openMenuId.value = item;
+
+			onHover(
+				item,
+				menu,
+				item === MOBILE_MENU_ITEM && props.isMobile ? MOBILE_MENU_BASE_POS : targetPosition,
+			);
 		};
 
 		const handleMouseOut = (item) => {
-			if (!navigator.maxTouchPoints && openMenuId.value === item) {
+			if (openMenuId.value === item) {
 				openMenuId.value = null;
 				onHover();
 			}
+		};
+
+		// Hover triggers wired straight to the DOM (hamburger, avatar) filter on pointerType here;
+		// KvHeaderDropdownLink does its own filtering before emitting `on-hover`. Only a real mouse
+		// opens a menu — the compatibility mouseenter a browser fires after a tap is a plain
+		// MouseEvent, so it never reaches a pointerenter listener and can't reopen a just-closed menu.
+		const handlePointerHover = (event: PointerEvent, item, menu, targetPosition = null) => {
+			if (event.pointerType !== 'mouse') return;
+			handleOnHover(item, menu, targetPosition);
+		};
+
+		const handlePointerOut = (event: PointerEvent, item) => {
+			if (event.pointerType !== 'mouse') return;
+			handleMouseOut(item);
 		};
 
 		const getAvatarMenuPosition = () => {
@@ -448,6 +460,8 @@ export default {
 			lendUrl,
 			avatarFilename,
 			handleOnHover,
+			handlePointerHover,
+			handlePointerOut,
 			handleTouchStart,
 			handleMouseOut,
 			handleAvatarMenuPosition,
