@@ -87,6 +87,7 @@
 			<!-- basket (when items present, logged in or out): count panel + label at md+, bag icon on mobile -->
 			<a
 				v-show="basketCount > 0 || isBasketDataLoading"
+				:style="isBasketDataLoading ? { display: 'var(--basket-display, flex)' } : undefined"
 				href="/basket"
 				class="header-link tw-flex tw-items-center"
 				data-testid="header-basket"

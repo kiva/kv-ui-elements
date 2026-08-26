@@ -148,4 +148,18 @@ describe('LinkBar', () => {
 		link.dispatchEvent(event);
 		expect(event.defaultPrevented).toBe(false);
 	});
+
+	it('hooks the basket link to --basket-display while the basket is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 0, isBasketDataLoading: true }, global,
+		});
+		expect(getByTestId('header-basket').style.display).toBe('var(--basket-display, flex)');
+	});
+
+	it('leaves the basket link without an inline display once the basket has loaded', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 2, isBasketDataLoading: false }, global,
+		});
+		expect(getByTestId('header-basket').style.display).toBe('');
+	});
 });
