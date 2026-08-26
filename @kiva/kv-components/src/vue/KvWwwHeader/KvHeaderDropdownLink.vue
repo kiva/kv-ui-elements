@@ -7,7 +7,7 @@
 			tw-items-center tw-cursor-pointer
 		"
 		:href="href"
-		@mouseenter="handleMouseOver"
+		@pointerenter="handlePointerEnter"
 		@touchstart.prevent="handleTouchStart"
 	>
 		<div
@@ -92,14 +92,19 @@ export default {
 			emit('user-tap', props.refName, props.menuComponent, linkPos);
 		};
 
-		const handleMouseOver = () => {
+		// Only a real mouse opens a dropdown on hover. Browsers fire a compatibility mouseenter after
+		// a tap, but that is a plain MouseEvent, so it never reaches a pointerenter listener — a tap
+		// that just closed a menu can't be reopened by the synthetic event trailing it. Filtering
+		// here keeps the emitted `on-hover` contract unchanged for both header hosts.
+		const handlePointerEnter = (event: PointerEvent) => {
+			if (event.pointerType !== 'mouse') return;
 			const linkPos = getLinkPosition();
 			emit('on-hover', props.refName, props.menuComponent, linkPos);
 		};
 
 		return {
 			computedClass,
-			handleMouseOver,
+			handlePointerEnter,
 			handleTouchStart,
 		};
 	},

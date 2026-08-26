@@ -8,7 +8,7 @@
 			type="button"
 			aria-label="Open menu"
 			class="header-link link-bar__hamburger tw-inline-flex md:tw-hidden"
-			@mouseover="handleOnHover('menuButton', MobileMenu)"
+			@pointerover="handlePointerHover($event, 'menuButton', MobileMenu)"
 			@touchstart.stop.prevent="handleTouchStart('menuButton', MobileMenu)"
 		>
 			<kv-material-icon :icon="mdiMenu" />
@@ -32,7 +32,7 @@
 			:dropdown-icon="mdiChevronDown"
 			base-class="tw-py-1"
 			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('lendButton')"
+			@pointerleave="handlePointerOut($event, 'lendButton')"
 			@user-tap="handleTouchStart"
 		>
 			Lend
@@ -71,7 +71,7 @@
 				base-class="tw-py-1"
 				send-link-position
 				@on-hover="handleOnHover"
-				@mouseleave="handleMouseOut('aboutLink')"
+				@pointerleave="handlePointerOut($event, 'aboutLink')"
 				@user-tap="handleTouchStart"
 			>
 				About
@@ -129,10 +129,10 @@
 				ref="avatarMenu"
 				data-testid="header-avatar-menu"
 				class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
-				@mouseenter="
-					handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
-				"
-				@mouseleave="handleMouseOut('avatarMenu')"
+				@pointerenter="handlePointerHover(
+					$event, 'avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX()
+				)"
+				@pointerleave="handlePointerOut($event, 'avatarMenu')"
 				@touchstart.stop="
 					handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
 				"
@@ -301,8 +301,6 @@ export default {
 			position: unknown = null,
 			triggerCenterX: number | null = null,
 		): void {
-			// Touch devices open via tap (handleTouchStart) rather than hover.
-			if (navigator.maxTouchPoints) return;
 			// Track only the open transition so re-entering an already-open menu doesn't re-fire.
 			if (openItem.value !== item) trackMenuOpen(item);
 			openItem.value = item;
@@ -310,12 +308,31 @@ export default {
 		}
 
 		function handleMouseOut(item: string): void {
-			if (navigator.maxTouchPoints) return;
 			if (openItem.value === item) {
 				trackMenuClose(item);
 				openItem.value = null;
 				emit('item-hover');
 			}
+		}
+
+		// Hover triggers wired straight to the DOM (hamburger, avatar) filter on pointerType here;
+		// KvHeaderDropdownLink does its own filtering before emitting `on-hover`. Only a real mouse
+		// opens a menu — the compatibility mouseenter a browser fires after a tap is a plain
+		// MouseEvent, so it never reaches a pointerenter listener and can't reopen a just-closed menu.
+		function handlePointerHover(
+			event: PointerEvent,
+			item: string,
+			menu: unknown,
+			position: unknown = null,
+			triggerCenterX: number | null = null,
+		): void {
+			if (event.pointerType !== 'mouse') return;
+			handleOnHover(item, menu, position, triggerCenterX);
+		}
+
+		function handlePointerOut(event: PointerEvent, item: string): void {
+			if (event.pointerType !== 'mouse') return;
+			handleMouseOut(item);
 		}
 
 		function handleTouchStart(
@@ -383,6 +400,8 @@ export default {
 			aboutOpenItem,
 			handleOnHover,
 			handleMouseOut,
+			handlePointerHover,
+			handlePointerOut,
 			handleTouchStart,
 			handleEmptySpaceClick,
 			onPrimaryClick,
