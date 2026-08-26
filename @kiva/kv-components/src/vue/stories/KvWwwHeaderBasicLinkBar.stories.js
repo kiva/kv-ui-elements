@@ -13,6 +13,7 @@ export default {
 		lenderImageUrl: { control: { type: 'text' } },
 		isUserDataLoading: { control: { type: 'boolean' } },
 		isBasketDataLoading: { control: { type: 'boolean' } },
+		useEsiAvatar: { control: { type: 'boolean' } },
 	},
 };
 
@@ -77,4 +78,37 @@ AllDataLoading.args = {
 	loggedIn: true,
 	isUserDataLoading: true,
 	isBasketDataLoading: true,
+};
+
+export const EsiEmptyBasketSuppressed = Template.bind({});
+EsiEmptyBasketSuppressed.args = {
+	loggedIn: false,
+	isBasketDataLoading: true,
+	cssVars: { '--basket-display': 'none' },
+};
+
+export const EsiLoggedOutOnStaleShell = Template.bind({});
+EsiLoggedOutOnStaleShell.args = {
+	loggedIn: true,
+	isUserDataLoading: true,
+	cssVars: { '--user-loading-display': 'none' },
+};
+
+export const EsiAvatarReal = Template.bind({});
+EsiAvatarReal.args = {
+	loggedIn: true,
+	isUserDataLoading: true,
+	useEsiAvatar: true,
+	cssVars: {
+		'--user-avatar-legacy-display': 'none',
+		'--user-avatar': 'url(https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.webp) / "Lender avatar via CSS"',
+	},
+};
+
+export const EsiAvatarIcon = Template.bind({});
+EsiAvatarIcon.args = {
+	loggedIn: true,
+	isUserDataLoading: true,
+	useEsiAvatar: true,
+	cssVars: { '--user-avatar-display': 'none' },
 };
