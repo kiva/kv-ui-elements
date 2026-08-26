@@ -149,35 +149,28 @@
 					v-else
 					class="tw-text-eco-green-4"
 				>{{ formattedBalance }}</span>
-				<template v-if="isUserDataLoading && useEsiAvatar">
-					<kv-material-icon
-						:icon="mdiAccountCircle"
-						class="tw-w-3 tw-h-3"
-						data-testid="header-avatar-legacy"
-						:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
-					/>
-					<kv-user-avatar
-						class="tw-w-3 tw-h-3"
-						data-testid="header-avatar-esi"
-						:style="{ display: 'var(--user-avatar-display, block)' }"
-						:lender-name="lenderName"
-						:lender-image-url="lenderImageUrl"
-						show-css-placeholder
-						is-small
-					/>
-				</template>
+				<kv-material-icon
+					v-if="avatarMode === 'esi'"
+					:icon="mdiAccountCircle"
+					class="tw-w-3 tw-h-3"
+					data-testid="header-avatar-legacy"
+					:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
+				/>
 				<div
-					v-else-if="isUserDataLoading"
+					v-if="avatarMode === 'skeleton'"
 					class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
 					data-testid="header-avatar-skeleton"
 				>
 					<kv-loading-placeholder />
 				</div>
 				<kv-user-avatar
-					v-else
+					v-if="avatarMode !== 'skeleton'"
 					class="tw-w-3 tw-h-3"
+					:data-testid="avatarMode === 'esi' ? 'header-avatar-esi' : null"
+					:style="avatarMode === 'esi' ? { display: 'var(--user-avatar-display, block)' } : undefined"
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
+					:show-css-placeholder="avatarMode === 'esi'"
 					is-small
 				/>
 			</div>
@@ -282,6 +275,14 @@ export default {
 
 		const lendUrl = computed(() => (!props.isMobile ? '/lend-by-category' : undefined));
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
+
+		// Three mutually exclusive avatar states: the real avatar once data lands, the ESI pair for
+		// hosts that emit the image URL, a plain skeleton for those that don't. Both ESI elements
+		// must be in the DOM for CSS to pick between them before hydration.
+		const avatarMode = computed(() => {
+			if (!props.isUserDataLoading) return 'loaded';
+			return props.useEsiAvatar ? 'esi' : 'skeleton';
+		});
 
 		// Disable sibling-link dimming entirely: each dropdown only ever sees its own
 		// menuComponent as the open item. The dim path in KvHeaderDropdownLink fires when
@@ -403,6 +404,7 @@ export default {
 			visiblePrimaryLinks,
 			lendUrl,
 			formattedBalance,
+			avatarMode,
 			lendOpenItem,
 			aboutOpenItem,
 			handleOnHover,
