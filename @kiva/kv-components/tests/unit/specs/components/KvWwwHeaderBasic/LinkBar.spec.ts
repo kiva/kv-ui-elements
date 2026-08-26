@@ -186,4 +186,46 @@ describe('LinkBar', () => {
 		expect(cluster.outerHTML).not.toContain('--user-avatar-display');
 		expect(cluster.outerHTML).not.toContain('--user-avatar-legacy-display');
 	});
+
+	it('shows the generic placeholder while user data loads by default', () => {
+		const { getByTestId, queryByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		expect(getByTestId('header-avatar-skeleton')).toBeTruthy();
+		expect(queryByTestId('header-avatar-esi')).toBeNull();
+		expect(queryByTestId('header-avatar-legacy')).toBeNull();
+	});
+
+	it('swaps in the ESI avatar pair when useEsiAvatar is set', () => {
+		const { getByTestId, queryByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
+		});
+		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
+		expect(getByTestId('header-avatar-legacy').style.display)
+			.toBe('var(--user-avatar-legacy-display, inline-block)');
+		expect(getByTestId('header-avatar-esi').style.display)
+			.toBe('var(--user-avatar-display, block)');
+	});
+
+	it('renders the real avatar once user data has loaded, whatever useEsiAvatar says', () => {
+		const { queryByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				useEsiAvatar: true,
+				lenderName: 'Ada Lovelace',
+			},
+			global,
+		});
+		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
+		expect(queryByTestId('header-avatar-legacy')).toBeNull();
+		expect(queryByTestId('header-avatar-esi')).toBeNull();
+	});
+
+	it('has no accessibility violations with the ESI avatar enabled', async () => {
+		const { container } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
+		});
+		expect(await axe(container)).toHaveNoViolations();
+	});
 });

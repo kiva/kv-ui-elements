@@ -149,9 +149,27 @@
 					v-else
 					class="tw-text-eco-green-4"
 				>{{ formattedBalance }}</span>
+				<template v-if="isUserDataLoading && useEsiAvatar">
+					<kv-material-icon
+						:icon="mdiAccountCircle"
+						class="tw-w-3 tw-h-3"
+						data-testid="header-avatar-legacy"
+						:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
+					/>
+					<kv-user-avatar
+						class="tw-w-3 tw-h-3"
+						data-testid="header-avatar-esi"
+						:style="{ display: 'var(--user-avatar-display, block)' }"
+						:lender-name="lenderName"
+						:lender-image-url="lenderImageUrl"
+						show-css-placeholder
+						is-small
+					/>
+				</template>
 				<div
-					v-if="isUserDataLoading"
+					v-else-if="isUserDataLoading"
 					class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+					data-testid="header-avatar-skeleton"
 				>
 					<kv-loading-placeholder />
 				</div>
@@ -171,7 +189,9 @@
 import {
 	ref, computed, inject, defineAsyncComponent,
 } from 'vue';
-import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
+import {
+	mdiMenu, mdiChevronDown, mdiBriefcase, mdiAccountCircle,
+} from '@mdi/js';
 import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
@@ -215,6 +235,7 @@ export default {
 		lenderImageUrl: { type: String, default: '' },
 		isUserDataLoading: { type: Boolean, default: false },
 		isBasketDataLoading: { type: Boolean, default: false },
+		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },
@@ -371,6 +392,7 @@ export default {
 			mdiMenu,
 			mdiChevronDown,
 			mdiBriefcase,
+			mdiAccountCircle,
 			KvLendMenu,
 			AboutMenu,
 			MyKivaMenu,
