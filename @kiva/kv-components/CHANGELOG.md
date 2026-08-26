@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.29.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.28.0...@kiva/kv-components@8.29.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** hook the basket link to --basket-display ([0b4c3d7](https://github.com/kiva/kv-ui-elements/commit/0b4c3d736920c3a6fcc3a4b1cbe325d4d38d5e7a))
+* **KvWwwHeaderBasic:** suppress the logged-in cluster via --user-loading-display ([5116689](https://github.com/kiva/kv-ui-elements/commit/51166895c44af77f27c6201a406654f20644eba3))
+
+
+### Features
+
+* **KvWwwHeaderBasic:** add useEsiAvatar for pre-hydration avatars ([3115d32](https://github.com/kiva/kv-ui-elements/commit/3115d32fcb74aab2841637f3756fa5d79b516d99))
+
+
+
+
+
 # [8.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.27.0...@kiva/kv-components@8.28.0) (2026-08-25)
 
 
