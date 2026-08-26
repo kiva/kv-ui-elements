@@ -193,7 +193,7 @@ describe('LinkBar', () => {
 		});
 		expect(getByTestId('header-avatar-skeleton')).toBeTruthy();
 		expect(queryByTestId('header-avatar-esi')).toBeNull();
-		expect(queryByTestId('header-avatar-legacy')).toBeNull();
+		expect(queryByTestId('header-avatar-icon')).toBeNull();
 	});
 
 	it('swaps in the ESI avatar pair when useEsiAvatar is set', () => {
@@ -201,7 +201,7 @@ describe('LinkBar', () => {
 			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
 		});
 		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
-		expect(getByTestId('header-avatar-legacy').style.display)
+		expect(getByTestId('header-avatar-icon').style.display)
 			.toBe('var(--user-avatar-legacy-display, inline-block)');
 		expect(getByTestId('header-avatar-esi').style.display)
 			.toBe('var(--user-avatar-display, block)');
@@ -218,7 +218,7 @@ describe('LinkBar', () => {
 			global,
 		});
 		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
-		expect(queryByTestId('header-avatar-legacy')).toBeNull();
+		expect(queryByTestId('header-avatar-icon')).toBeNull();
 		expect(queryByTestId('header-avatar-esi')).toBeNull();
 	});
 

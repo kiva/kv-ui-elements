@@ -105,8 +105,8 @@ EsiAvatarReal.args = {
 	},
 };
 
-export const EsiAvatarLegacy = Template.bind({});
-EsiAvatarLegacy.args = {
+export const EsiAvatarIcon = Template.bind({});
+EsiAvatarIcon.args = {
 	loggedIn: true,
 	isUserDataLoading: true,
 	useEsiAvatar: true,
