@@ -7,7 +7,7 @@ export default {
 };
 
 const TEST_USER_NAME = 'Jess';
-const TEST_USER_IMAGE = 'https://www-0.development.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg';
+const TEST_USER_IMAGE = 'https://www.kiva.org/img/s100/6b1a24092be3aaa22216874e644a4acf.jpg';
 
 const story = (args) => {
 	const template = (templateArgs, { argTypes }) => ({

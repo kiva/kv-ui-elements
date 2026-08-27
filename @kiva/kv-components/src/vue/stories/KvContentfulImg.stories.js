@@ -246,3 +246,9 @@ GiantGif.args = {
 	height: 1000,
 	sourceSizes: [],
 };
+// The GIF loops forever with no settled frame, so every Chromatic capture lands
+// on a different frame. There's nothing stable to baseline, and a static frame
+// would defeat the purpose of this story, so we skip the snapshot here.
+GiantGif.parameters = {
+	chromatic: { disableSnapshot: true },
+};
