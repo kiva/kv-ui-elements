@@ -95,7 +95,8 @@
 			>
 				<span class="tw-hidden md:tw-flex tw-items-center">
 					<span
-						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
+						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none
+							tw-flex tw-items-center tw-justify-center"
 					>
 						<span
 							v-if="isBasketDataLoading"
@@ -487,7 +488,6 @@ export default {
 /* Font-relative so the skeleton fills the count's line box: 1.5ch ≈ a digit and a half wide,
  * 1em keeps the panel the same height it is once the count renders. */
 .link-bar__basket-count-loader {
-	display: inline-block;
 	width: 1.5ch;
 	height: 1em;
 }
