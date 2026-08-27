@@ -163,6 +163,22 @@ describe('LinkBar', () => {
 		expect(getByTestId('header-basket').style.display).toBe('');
 	});
 
+	it('shows a placeholder in place of the basket count while the basket is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 0, isBasketDataLoading: true }, global,
+		});
+		expect(getByTestId('header-basket-skeleton')).toBeTruthy();
+		expect(getByTestId('header-basket').textContent).not.toContain('0');
+	});
+
+	it('shows the basket count instead of the placeholder once the basket has loaded', () => {
+		const { queryByTestId, getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 2, isBasketDataLoading: false }, global,
+		});
+		expect(queryByTestId('header-basket-skeleton')).toBeNull();
+		expect(getByTestId('header-basket').textContent).toContain('2');
+	});
+
 	it('hooks the logged-in cluster to --user-loading-display while user data is loading', () => {
 		const { getByTestId } = render(LinkBar, {
 			props: { loggedIn: true, isUserDataLoading: true }, global,

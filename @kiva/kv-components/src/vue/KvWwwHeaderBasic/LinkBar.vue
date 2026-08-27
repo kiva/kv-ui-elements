@@ -95,8 +95,16 @@
 			>
 				<span class="tw-hidden md:tw-flex tw-items-center">
 					<span
-						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
-					>{{ basketCount }}</span>
+						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none
+							tw-flex tw-items-center tw-justify-center"
+					>
+						<span
+							v-if="isBasketDataLoading"
+							class="link-bar__basket-count-loader"
+							data-testid="header-basket-skeleton"
+						><kv-loading-placeholder /></span>
+						<template v-else>{{ basketCount }}</template>
+					</span>
 					Basket
 				</span>
 				<span class="tw-relative tw-flex md:tw-hidden tw-items-center tw-text-eco-green-4">
@@ -475,5 +483,13 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
+}
+
+/* Font-relative so the panel is the size it will be once the count renders: 1.5ch ≈ a digit and
+ * a half wide, and one line box tall — the base layer's line-height wins over tw-leading-none. */
+.link-bar__basket-count-loader {
+	width: 1.5ch;
+	height: 1.375em;
+	height: 1lh;
 }
 </style>
