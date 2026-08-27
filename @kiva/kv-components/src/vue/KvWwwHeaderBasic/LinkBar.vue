@@ -99,11 +99,9 @@
 					>
 						<span
 							v-if="isBasketDataLoading"
-							class="link-bar__basket-count-loader tw-block"
+							class="link-bar__basket-count-loader"
 							data-testid="header-basket-skeleton"
-						>
-							<kv-loading-placeholder />
-						</span>
+						><kv-loading-placeholder /></span>
 						<template v-else>{{ basketCount }}</template>
 					</span>
 					Basket
@@ -486,9 +484,11 @@ export default {
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
 }
 
-/* Sized to a single digit's line box so the count panel doesn't resize once the basket resolves. */
+/* Font-relative so the skeleton fills the count's line box: 1.5ch ≈ a digit and a half wide,
+ * 1em keeps the panel the same height it is once the count renders. */
 .link-bar__basket-count-loader {
-	@apply tw-w-2;
+	display: inline-block;
+	width: 1.5ch;
 	height: 1em;
 }
 </style>
