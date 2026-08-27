@@ -485,10 +485,11 @@ export default {
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
 }
 
-/* Font-relative so the skeleton fills the count's line box: 1.5ch ≈ a digit and a half wide,
- * 1em keeps the panel the same height it is once the count renders. */
+/* Font-relative so the panel is the size it will be once the count renders: 1.5ch ≈ a digit and
+ * a half wide, and one line box tall — the base layer's line-height wins over tw-leading-none. */
 .link-bar__basket-count-loader {
 	width: 1.5ch;
-	height: 1em;
+	height: 1.375em;
+	height: 1lh;
 }
 </style>
