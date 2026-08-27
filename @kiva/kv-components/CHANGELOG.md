@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.29.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.1...@kiva/kv-components@8.29.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** center the basket count panel's contents ([4cd2d61](https://github.com/kiva/kv-ui-elements/commit/4cd2d61e6d8ddad3e7de9fed12212064a322b964))
+* **KvWwwHeaderBasic:** fill the basket count panel with the loading skeleton ([876dc3c](https://github.com/kiva/kv-ui-elements/commit/876dc3c42b64c85a61e2c8eeba01045b1946863d))
+* **KvWwwHeaderBasic:** show a loading placeholder in place of the basket count ([d9a75f9](https://github.com/kiva/kv-ui-elements/commit/d9a75f9604be3a365f46e1357bd0abdd28a51844))
+* **KvWwwHeaderBasic:** size the basket skeleton to the count's line box ([65fd86f](https://github.com/kiva/kv-ui-elements/commit/65fd86f198e8d9d0ee997b21b09e431aca5d47d1))
+
+
+
+
+
 ## [8.29.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.0...@kiva/kv-components@8.29.1) (2026-08-27)
 
 **Note:** Version bump only for package @kiva/kv-components
