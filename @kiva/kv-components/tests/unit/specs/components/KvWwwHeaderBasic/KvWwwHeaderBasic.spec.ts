@@ -127,6 +127,14 @@ describe('KvWwwHeaderBasic', () => {
 		expect(await findByText(resultText('Education'))).toBeTruthy();
 	});
 
+	it('opens a menu through the full header when its trigger is tapped', async () => {
+		const { getByRole, findByText } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.touchStart(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		expect(await findByText('How Kiva works')).toBeTruthy();
+	});
+
 	it('forwards login-click from the link bar to the host', async () => {
 		const { emitted, getByTestId } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
 		await fireEvent.click(getByTestId('header-login'));

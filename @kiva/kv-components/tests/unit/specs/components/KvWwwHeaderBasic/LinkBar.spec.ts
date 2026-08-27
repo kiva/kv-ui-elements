@@ -1,20 +1,62 @@
-import { render, fireEvent } from '@testing-library/vue';
+import { render, fireEvent, createEvent } from '@testing-library/vue';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import LinkBar from '#components/KvWwwHeaderBasic/LinkBar.vue';
 
 expect.extend(toHaveNoViolations);
-const global = { provide: { $kvTrackEvent: () => {} } };
 
-// Renders LinkBar with a spy wired to the injected $kvTrackEvent so hover/tap tracking can be asserted.
+// Stubs the DOM APIs the Lend menu's KvTabs calls that jsdom does not implement.
+Element.prototype.scrollIntoView = jest.fn();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).ResizeObserver = jest.fn().mockImplementation(() => ({
+	observe: jest.fn(),
+	unobserve: jest.fn(),
+	disconnect: jest.fn(),
+}));
+
+// Stubs the globally-registered kv-track-event directive.
+const global = {
+	provide: { $kvTrackEvent: () => {} },
+	directives: { 'kv-track-event': {} },
+};
+
+type RenderResult = ReturnType<typeof render>;
+
+// Renders LinkBar with a spy wired to the injected $kvTrackEvent so menu tracking can be asserted.
 function renderWithTracking(props = {}) {
 	const track = jest.fn();
-	const utils = render(LinkBar, { props, global: { provide: { $kvTrackEvent: track } } });
+	const utils = render(LinkBar, {
+		props,
+		global: { ...global, provide: { $kvTrackEvent: track } },
+	});
 	return { track, ...utils };
 }
 
+// One entry per menu trigger button; getTrigger locates the button carrying aria-expanded.
+const TRIGGER_CASES: Array<{
+	name: string;
+	props: Record<string, unknown>;
+	getTrigger: (utils: RenderResult) => HTMLElement;
+}> = [
+	{ name: 'hamburger', props: {}, getTrigger: (utils) => utils.getByLabelText('Open menu') },
+	{ name: 'Lend chevron', props: {}, getTrigger: (utils) => utils.getByLabelText('Lend menu') },
+	{ name: 'About', props: {}, getTrigger: (utils) => utils.getByRole('button', { name: /about/i }) },
+	{ name: 'avatar', props: { loggedIn: true }, getTrigger: (utils) => utils.getByTestId('header-avatar-menu') },
+];
+
 describe('LinkBar', () => {
+	afterEach(() => {
+		jest.useRealTimers();
+	});
+
 	it('has no accessibility violations (visitor)', async () => {
 		const { container } = render(LinkBar, { props: { loggedIn: false }, global });
+		expect(await axe(container)).toHaveNoViolations();
+	});
+
+	it('has no accessibility violations with a menu open', async () => {
+		const { container, getByRole, findByText } = render(LinkBar, { props: { loggedIn: false }, global });
+		await fireEvent.touchStart(getByRole('button', { name: /about/i }));
+		await findByText('How Kiva works');
 		expect(await axe(container)).toHaveNoViolations();
 	});
 
@@ -71,24 +113,137 @@ describe('LinkBar', () => {
 		expect(getByTestId('header-basket').style.display).toBe('none');
 	});
 
-	it('tracks a hover event when the Lend dropdown opens', async () => {
-		const { track, container } = renderWithTracking({ loggedIn: false });
-		const lend = container.querySelector('a.link-bar__lend') as HTMLElement;
-		await fireEvent.mouseEnter(lend);
-		expect(track).toHaveBeenCalledWith('TopNav', 'hover-Lend-menu', 'Lend');
+	it.each(TRIGGER_CASES)('toggles the $name menu open and closed with repeated taps', async ({ props, getTrigger }) => {
+		const utils = render(LinkBar, { props, global });
+		const trigger = getTrigger(utils);
+		await fireEvent.touchStart(trigger);
+		expect(trigger.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.touchStart(trigger);
+		expect(trigger.getAttribute('aria-expanded')).toBe('false');
 	});
 
-	it('tracks a hover event when the About dropdown opens', async () => {
-		const { track, container } = renderWithTracking({ loggedIn: false });
-		const about = Array.from(container.querySelectorAll('a'))
-			.find((a) => a.textContent?.trim() === 'About') as HTMLElement;
-		await fireEvent.mouseEnter(about);
+	it.each(TRIGGER_CASES)('toggles the $name menu with clicks and keyboard activation', async ({ props, getTrigger }) => {
+		const utils = render(LinkBar, { props, global });
+		const trigger = getTrigger(utils);
+		await fireEvent.click(trigger);
+		expect(trigger.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.click(trigger);
+		expect(trigger.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('toggles a menu with real mouse clicks', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent(about, new MouseEvent('click', { bubbles: true, cancelable: true, detail: 1 }));
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent(about, new MouseEvent('click', { bubbles: true, cancelable: true, detail: 1 }));
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('closes the open menu when a different trigger is tapped', async () => {
+		const { getByRole, getByLabelText } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		const hamburger = getByLabelText('Open menu');
+		await fireEvent.touchStart(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.touchStart(hamburger);
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+		expect(hamburger.getAttribute('aria-expanded')).toBe('true');
+	});
+
+	it('keeps Lend as a real link to /lend-by-category', () => {
+		const { getByText } = render(LinkBar, { props: { loggedIn: false }, global });
+		expect(getByText('Lend').getAttribute('href')).toBe('/lend-by-category');
+	});
+
+	it('toggles the Lend menu with taps on the Lend link and never lets a tap navigate', async () => {
+		const { getByText, getByLabelText } = render(LinkBar, { props: { loggedIn: false }, global });
+		const lendLink = getByText('Lend');
+		const chevron = getByLabelText('Lend menu');
+		const firstTap = createEvent.touchStart(lendLink);
+		await fireEvent(lendLink, firstTap);
+		expect(firstTap.defaultPrevented).toBe(true);
+		expect(chevron.getAttribute('aria-expanded')).toBe('true');
+		const secondTap = createEvent.touchStart(lendLink);
+		await fireEvent(lendLink, secondTap);
+		expect(secondTap.defaultPrevented).toBe(true);
+		expect(chevron.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('mounts a menu panel only on first approach of its group', async () => {
+		const { queryByText, findByText, getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		expect(queryByText('How Kiva works')).toBeNull();
+		await fireEvent.touchStart(getByRole('button', { name: /about/i }));
+		expect(await findByText('How Kiva works')).toBeTruthy();
+	});
+
+	it('closes the menu on Escape and returns focus to the trigger', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.click(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.keyDown(about, { key: 'Escape' });
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+		expect(document.activeElement).toBe(about);
+	});
+
+	it('closes the menu when focus leaves its group', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.click(about);
+		const group = about.closest('.menu-group') as HTMLElement;
+		await fireEvent.focusOut(group, { relatedTarget: document.body });
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('keeps the menu open while focus moves within its group', async () => {
+		const { getByRole, findByText } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		// focusin mounts the panel; the keyboard click then opens it.
+		await fireEvent.focusIn(about);
+		await fireEvent.click(about);
+		const insideLink = await findByText('How Kiva works');
+		const group = about.closest('.menu-group') as HTMLElement;
+		await fireEvent.focusOut(group, { relatedTarget: insideLink });
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+	});
+
+	it('clears the open menu when the backdrop is tapped', async () => {
+		const { container, getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.touchStart(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.touchStart(container.querySelector('.backdrop') as HTMLElement);
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('clears the open menu when empty bar space is tapped', async () => {
+		const { container, getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.touchStart(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.touchStart(container.querySelector('.link-bar') as HTMLElement);
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('clears the open menu when anything outside a menu panel is tapped, including the search bar', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.touchStart(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.touchStart(getByRole('searchbox'));
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('tracks explicit opens for each menu', async () => {
+		const {
+			track, getByRole, getByLabelText, getByTestId,
+		} = renderWithTracking({ loggedIn: true });
+		await fireEvent.touchStart(getByRole('button', { name: /about/i }));
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-About-menu', 'About');
-	});
-
-	it('tracks a hover event when the logged-in user menu opens', async () => {
-		const { track, getByTestId } = renderWithTracking({ loggedIn: true, balance: 7 });
-		await fireEvent.mouseEnter(getByTestId('header-avatar-menu'));
+		await fireEvent.touchStart(getByLabelText('Lend menu'));
+		expect(track).toHaveBeenCalledWith('TopNav', 'hover-Lend-menu', 'Lend');
+		await fireEvent.touchStart(getByTestId('header-avatar-menu'));
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-User-menu', 'User');
 	});
 
@@ -99,6 +254,25 @@ describe('LinkBar', () => {
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-Mobile-menu', 'Mobile');
 		await fireEvent.touchStart(hamburger);
 		expect(track).toHaveBeenCalledWith('TopNav', 'close-Mobile-menu', 'Mobile');
+	});
+
+	it('tracks a hover open once the intent delay elapses', async () => {
+		jest.useFakeTimers();
+		const { track, getByRole } = renderWithTracking({ loggedIn: false });
+		const group = getByRole('button', { name: /about/i }).closest('.menu-group') as HTMLElement;
+		await fireEvent.mouseEnter(group);
+		jest.advanceTimersByTime(100);
+		expect(track).toHaveBeenCalledWith('TopNav', 'hover-About-menu', 'About');
+	});
+
+	it('does not track a hover open when the pointer leaves before the delay', async () => {
+		jest.useFakeTimers();
+		const { track, getByRole } = renderWithTracking({ loggedIn: false });
+		const group = getByRole('button', { name: /about/i }).closest('.menu-group') as HTMLElement;
+		await fireEvent.mouseEnter(group);
+		await fireEvent.mouseLeave(group);
+		jest.advanceTimersByTime(200);
+		expect(track).not.toHaveBeenCalled();
 	});
 
 	it('emits login-click with the native MouseEvent when the login link is clicked', async () => {
