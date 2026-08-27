@@ -96,7 +96,16 @@
 				<span class="tw-hidden md:tw-flex tw-items-center">
 					<span
 						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
-					>{{ basketCount }}</span>
+					>
+						<span
+							v-if="isBasketDataLoading"
+							class="link-bar__basket-count-loader tw-block"
+							data-testid="header-basket-skeleton"
+						>
+							<kv-loading-placeholder />
+						</span>
+						<template v-else>{{ basketCount }}</template>
+					</span>
 					Basket
 				</span>
 				<span class="tw-relative tw-flex md:tw-hidden tw-items-center tw-text-eco-green-4">
@@ -475,5 +484,11 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
+}
+
+/* Sized to a single digit's line box so the count panel doesn't resize once the basket resolves. */
+.link-bar__basket-count-loader {
+	@apply tw-w-2;
+	height: 1em;
 }
 </style>
