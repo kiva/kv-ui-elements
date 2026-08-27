@@ -103,11 +103,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Id for the search input and its label's `for` attribute. Must be unique per instance.
+		 */
+		inputId: {
+			type: String,
+			default: 'kv-www-header-basic-search',
+		},
 	},
 	emits: ['load-search-data', 'search-submit'],
 	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
-		const inputId = 'kv-www-header-basic-search';
 		const hasFocus = ref(false);
 		const hasRequested = ref(false);
 
@@ -178,7 +184,6 @@ export default {
 
 		return {
 			mdiMagnify,
-			inputId,
 			term,
 			displayTerm,
 			groupedResults,
