@@ -57,7 +57,7 @@ export default {
 		},
 		theme: {
 			control: 'select',
-			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark'],
+			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'],
 			description: 'Predefined theme from @kiva/kv-tokens',
 			table: {
 				type: { summary: 'string' },
@@ -174,14 +174,6 @@ export const AllVariations = {
 							<kv-card-frame theme="stoneLight">
 								<div class="tw-p-3 tw-text-center">
 									<p class="tw-text-small">Stone Light</p>
-								</div>
-							</kv-card-frame>
-						</div>
-						<div>
-							<p class="tw-text-small tw-mb-2">stoneDark</p>
-							<kv-card-frame theme="stoneDark">
-								<div class="tw-p-3 tw-text-center">
-									<p class="tw-text-small tw-text-primary">Stone Dark</p>
 								</div>
 							</kv-card-frame>
 						</div>
@@ -478,13 +470,6 @@ export const ThemeComparison = {
 						</div>
 					</kv-card-frame>
 
-					<kv-card-frame theme="stoneDark">
-						<div class="tw-p-4">
-							<h4 class="tw-text-upper tw-mb-2 tw-text-primary">Stone Dark Theme</h4>
-							<p class="tw-text-small tw-mb-3 tw-text-primary">Dark neutral variant.</p>
-							<kv-button variant="primary" size="small">Explore</kv-button>
-						</div>
-					</kv-card-frame>
 				</div>
 			</div>
 		`,

@@ -8,7 +8,6 @@ export default {
 			control: 'select',
 			options: [
 				'default',
-				'dark',
 				'greenLight',
 				'greenDark',
 				'marigoldLight',
@@ -69,11 +68,6 @@ const Template = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
 	theme: 'default',
-};
-
-export const Dark = Template.bind({});
-Dark.args = {
-	theme: 'dark',
 };
 
 export const GreenLight = Template.bind({});

@@ -83,13 +83,12 @@ The KvCardFrame component consists of two main layers:
 
 ### Theme Options
 
-The component supports six predefined themes from `@kiva/kv-tokens`:
+The component supports five predefined themes from `@kiva/kv-tokens`:
 - `default` - Standard theme for general use
 - `greenLight` - Light green theme for positive actions
 - `greenDark` - Dark green theme with light text
 - `marigoldLight` - Warm yellow theme for attention
 - `stoneLight` - Light neutral theme
-- `stoneDark` - Dark neutral theme
 
 <Story of={KvCardFrameStories.ThemeComparison} />
 
@@ -115,7 +114,7 @@ All styling props accept Tailwind CSS classes, providing complete control over t
 
 **Additional Guidelines:**
 
-- **Theme Selection**: Choose themes that align with your content's purpose - greenLight/greenDark for positive actions, marigoldLight for attention, stone variants for neutral content
+- **Theme Selection**: Choose themes that align with your content's purpose - greenLight/greenDark for positive actions, marigoldLight for attention, stoneLight for neutral content
 - **Consistency**: Use consistent shadow and radius classes across similar card types in your application
 - **Hierarchy**: Use shadow depth to establish visual hierarchy - reserve `tw-shadow-lg` for primary cards
 - **Border Usage**: Use borders sparingly; shadows often provide better visual separation. Borders work well for subtle delineation without depth
@@ -129,7 +128,7 @@ All styling props accept Tailwind CSS classes, providing complete control over t
 - Ensure sufficient color contrast between card backgrounds and text content
 - When using cards as interactive elements, ensure they have proper focus states and keyboard navigation
 - Use semantic HTML within card content (proper heading hierarchy, landmarks, etc.)
-- For dark themes (greenDark, stoneDark), ensure text colors provide adequate contrast
+- For the dark theme (greenDark), ensure text colors provide adequate contrast
 
 ---
 
