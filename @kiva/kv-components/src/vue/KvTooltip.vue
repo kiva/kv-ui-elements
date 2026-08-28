@@ -44,14 +44,11 @@ import {
 	PropType,
 } from 'vue';
 import {
-	darkTheme,
 	defaultTheme,
 	greenLightTheme,
 	greenDarkTheme,
 	marigoldLightTheme,
 	stoneLightTheme,
-	stoneDarkTheme,
-	mintTheme,
 } from '@kiva/kv-tokens';
 import KvPopper from './KvPopper.vue';
 import KvThemeProvider from './KvThemeProvider.vue';
@@ -101,9 +98,6 @@ export default {
 					'ecoGreenDark',
 					'ecoLightMarigold',
 					'ecoStoneLight',
-					'ecoStoneDark',
-					'mint',
-					'dark',
 				].indexOf(value) !== -1;
 			},
 		},
@@ -152,9 +146,6 @@ export default {
 				ecoGreenDark: greenDarkTheme,
 				ecoLightMarigold: marigoldLightTheme,
 				ecoStoneLight: stoneLightTheme,
-				ecoStoneDark: stoneDarkTheme,
-				mint: mintTheme,
-				dark: darkTheme,
 			};
 			return themeMapper[theme.value];
 		});
@@ -173,9 +164,6 @@ export default {
 			greenDarkTheme,
 			marigoldLightTheme,
 			stoneLightTheme,
-			stoneDarkTheme,
-			mintTheme,
-			darkTheme,
 			handleKvPopperVisibility,
 			popperModifiers,
 			popperRef,

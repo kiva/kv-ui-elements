@@ -182,7 +182,6 @@ export default {
 			validator(value: string) {
 				return [
 					'default',
-					'dark',
 					'greenLight',
 					'greenDark',
 					'marigoldLight',
@@ -222,7 +221,6 @@ export default {
 		});
 		const themeConfig: Record<string, { style: object; bgClass: string }> = {
 			default: { style: defaultTheme, bgClass: 'tw-bg-secondary' },
-			dark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
 			greenLight: { style: greenLightTheme, bgClass: 'tw-bg-secondary' },
 			greenDark: { style: greenDarkTheme, bgClass: 'tw-bg-primary' },
 			marigoldLight: { style: marigoldLightTheme, bgClass: 'tw-bg-primary' },

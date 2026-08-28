@@ -4,12 +4,6 @@ import {
 	greenDarkTheme,
 	marigoldLightTheme,
 	stoneLightTheme,
-	stoneDarkTheme,
-	darkTheme,
-	darkGreenTheme,
-	mintTheme,
-	darkMintTheme,
-	darkStoneTheme,
 } from '@kiva/kv-tokens';
 import KvGrid from '../KvGrid.vue';
 import KvPageContainer from '../KvPageContainer.vue';
@@ -24,7 +18,7 @@ export default {
 			control: {
 				type: 'select',
 			},
-			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark', 'dark', 'darkGreen', 'mint', 'darkMint', 'darkStone'],
+			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'],
 		},
 	},
 };
@@ -43,18 +37,6 @@ export const ProseDemo = (args, { argTypes }) => ({
 					return marigoldLightTheme;
 				case 'stoneLight':
 					return stoneLightTheme;
-				case 'stoneDark':
-					return stoneDarkTheme;
-				case 'dark':
-					return darkTheme;
-				case 'darkGreen':
-					return darkGreenTheme;
-				case 'mint':
-					return mintTheme;
-				case 'darkMint':
-					return darkMintTheme;
-				case 'darkStone':
-					return darkStoneTheme;
 				default:
 					return defaultTheme;
 			}

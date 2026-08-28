@@ -4,12 +4,6 @@ import primitives, {
 	greenDarkTheme,
 	marigoldLightTheme,
 	stoneLightTheme,
-	stoneDarkTheme,
-	darkTheme,
-	darkGreenTheme,
-	mintTheme,
-	darkMintTheme,
-	darkStoneTheme,
 } from '@kiva/kv-tokens';
 import KvButton from '../KvButton.vue';
 import KvGrid from '../KvGrid.vue';
@@ -37,7 +31,7 @@ export default {
 	argTypes: {
 		theme: {
 			control: 'select',
-			options: ['', 'dark', 'darkGreen', 'mint'],
+			options: ['', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'],
 		},
 	},
 };
@@ -132,10 +126,6 @@ const Template = (templateArgs, {
 			textVariables: buildTailwindClasses('text'),
 			borderVariables: buildTailwindClasses('border'),
 			defaultTheme,
-			darkTheme,
-			mintTheme,
-			darkMintTheme,
-			darkStoneTheme,
 		};
 	},
 	template: `
@@ -166,31 +156,6 @@ StoneLight.args = {
 	theme: stoneLightTheme,
 };
 
-export const StoneDark = Template.bind({});
-StoneDark.args = {
-	theme: stoneDarkTheme,
-};
-
-export const Dark = Template.bind({});
-Dark.args = {
-	theme: darkTheme,
-};
-
-export const Mint = Template.bind({});
-Mint.args = {
-	theme: mintTheme,
-};
-
-export const DarkGreen = Template.bind({});
-DarkGreen.args = {
-	theme: darkGreenTheme,
-};
-
-export const DarkMint = Template.bind({});
-DarkMint.args = {
-	theme: darkMintTheme,
-};
-
 export const Custom = Template.bind({});
 Custom.args = {
 	theme: {
@@ -203,9 +168,4 @@ Custom.args = {
 		'--bg-action': '0, 0, 100',
 		'--bg-action-highlight': '0, 0, 150',
 	},
-};
-
-export const DarkStone = Template.bind({});
-DarkStone.args = {
-	theme: darkStoneTheme,
 };
