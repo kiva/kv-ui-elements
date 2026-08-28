@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.2...@kiva/kv-components@9.0.0) (2026-08-28)
+
+
+* refactor!: remove deprecated themes from kv-components ([bcf4451](https://github.com/kiva/kv-ui-elements/commit/bcf44513a440c6db6427f83899330a101613efb7))
+
+
+### BREAKING CHANGES
+
+* the theme props no longer accept stoneDark, mint, or
+dark. KvCardFrame and KvDatePicker drop stoneDark; KvTooltip drops
+ecoStoneDark, mint, and dark; KvSecondaryNav drops dark. Use greenDark
+in place of any dark variant and greenLight in place of mint.
+
+
+
+
+
 ## [8.29.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.1...@kiva/kv-components@8.29.2) (2026-08-27)
 
 
