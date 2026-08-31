@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.0...@kiva/kv-components@9.0.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* allow kv-tokens 5.x as a kv-components peer ([a55a02e](https://github.com/kiva/kv-ui-elements/commit/a55a02e76b23c0915f8616b8bda2a9288131a76e))
+
+
+
+
+
 # [9.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.2...@kiva/kv-components@9.0.0) (2026-08-28)
 
 
