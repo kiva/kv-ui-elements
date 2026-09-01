@@ -4,8 +4,11 @@
 		class="link-bar tw-min-h-[4rem] tw-font-medium"
 	>
 		<!-- hamburger → full-screen drawer (mobile only) -->
-		<div
-			class="menu-group tw-flex tw-items-center md:tw-hidden"
+		<header-menu-group
+			class="md:tw-hidden"
+			panel-id="header-basic-menu-drawer"
+			variant="drawer"
+			:approached="approached.menuButton"
 			v-on="menuGroupEvents('menuButton')"
 		>
 			<button
@@ -20,19 +23,15 @@
 			>
 				<kv-material-icon :icon="mdiMenu" />
 			</button>
-			<div
-				v-if="approached.menuButton"
-				id="header-basic-menu-drawer"
-				class="menu-panel menu-panel--full menu-panel--drawer"
-			>
+			<template #panel>
 				<mobile-menu
 					:logged-in="loggedIn"
 					:login-url="loginUrl"
 					:is-mobile="isMobile"
 					@closing-menu="clearExpanded"
 				/>
-			</div>
-		</div>
+			</template>
+		</header-menu-group>
 		<!-- logo: absolutely centered on mobile; in-flow grid item at md+. -->
 		<a
 			href="/"
@@ -43,8 +42,11 @@
 			<kv-header-logo />
 		</a>
 		<!-- Lend link + disclosure chevron + mega menu -->
-		<div
-			class="menu-group link-bar__lend tw-flex tw-items-center"
+		<header-menu-group
+			class="link-bar__lend"
+			panel-id="header-basic-menu-lend"
+			variant="full"
+			:approached="approached.lendButton"
 			v-on="menuGroupEvents('lendButton')"
 		>
 			<a
@@ -67,11 +69,7 @@
 					:icon="mdiChevronDown"
 				/>
 			</button>
-			<div
-				v-if="approached.lendButton"
-				id="header-basic-menu-lend"
-				class="menu-panel menu-panel--full"
-			>
+			<template #panel>
 				<kv-lend-menu
 					ref="lendMenuInstance"
 					:user-id="userId"
@@ -84,8 +82,8 @@
 					@load-search-data="$emit('load-search-data')"
 					@search-submit="$emit('search-submit', $event)"
 				/>
-			</div>
-		</div>
+			</template>
+		</header-menu-group>
 		<!-- search: hidden at mobile; own full-width row at md; inline at lg+. -->
 		<search-bar
 			class="link-bar__search tw-min-w-0 tw-hidden md:tw-block"
@@ -111,8 +109,11 @@
 				@click="onPrimaryClick(link)"
 			>{{ link.label }}</a>
 			<!-- About dropdown (md+) -->
-			<div
-				class="menu-group tw-hidden md:tw-flex md:tw-items-center"
+			<header-menu-group
+				class="tw-hidden md:tw-flex"
+				panel-id="header-basic-menu-about"
+				variant="card"
+				:approached="approached.aboutLink"
 				v-on="menuGroupEvents('aboutLink')"
 			>
 				<button
@@ -130,17 +131,13 @@
 						:icon="mdiChevronDown"
 					/>
 				</button>
-				<div
-					v-if="approached.aboutLink"
-					id="header-basic-menu-about"
-					class="menu-panel menu-panel--card"
-				>
+				<template #panel>
 					<about-menu
 						:is-mobile="isMobile"
 						@closing-menu="clearExpanded"
 					/>
-				</div>
-			</div>
+				</template>
+			</header-menu-group>
 			<!-- Log in (visitor) -->
 			<a
 				v-if="!loggedIn"
@@ -189,9 +186,11 @@
 				</kv-button>
 			</div>
 			<!-- balance + avatar → MyKiva menu (logged-in) -->
-			<div
+			<header-menu-group
 				v-if="loggedIn"
-				class="menu-group tw-flex tw-items-center"
+				panel-id="header-basic-menu-my-kiva"
+				variant="card"
+				:approached="approached.avatarMenu"
 				v-on="menuGroupEvents('avatarMenu')"
 			>
 				<button
@@ -229,11 +228,7 @@
 						is-small
 					/>
 				</button>
-				<div
-					v-if="approached.avatarMenu"
-					id="header-basic-menu-my-kiva"
-					class="menu-panel menu-panel--card"
-				>
+				<template #panel>
 					<my-kiva-menu
 						:logged-in="loggedIn"
 						:user-id="userId"
@@ -245,8 +240,8 @@
 						:is-mobile="isMobile"
 						@closing-menu="clearExpanded"
 					/>
-				</div>
-			</div>
+				</template>
+			</header-menu-group>
 		</div>
 		<!-- page-dimming backdrop -->
 		<div
@@ -258,9 +253,8 @@
 
 <script lang="ts">
 import {
-	ref, reactive, computed, inject, watch, nextTick, onMounted, onBeforeUnmount, defineAsyncComponent,
+	ref, computed, inject, watch, nextTick, defineAsyncComponent,
 } from 'vue';
-import type { Ref } from 'vue';
 import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
 import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
@@ -269,6 +263,11 @@ import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
+import {
+	useHeaderMenuState, MENU_OPEN_DELAY_MS, MENU_CLOSE_FADE_MS,
+} from '#utils/useHeaderMenuState';
+import { useHeaderMenuPlacement } from '#utils/useHeaderMenuPlacement';
+import HeaderMenuGroup from './HeaderMenuGroup.vue';
 import SearchBar from './SearchBar.vue';
 
 interface TrackEvent {
@@ -288,11 +287,7 @@ const AboutMenu = defineAsyncComponent(() => import('./AboutMenu.vue'));
 const MyKivaMenu = defineAsyncComponent(() => import('./MyKivaMenu.vue'));
 const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
 
-// Shared by the CSS transition delays (via v-bind below) and the hover-intent analytics timer:
-// hover opens after this delay, and closing holds through the same grace before fading.
-const MENU_OPEN_DELAY_MS = 100;
-// Duration of the closing fade; the panels hide once the close grace plus this fade have elapsed.
-const MENU_CLOSE_FADE_MS = 100;
+const MENU_GROUP_IDS = ['menuButton', 'lendButton', 'aboutLink', 'avatarMenu'];
 
 export default {
 	name: 'LinkBar',
@@ -302,6 +297,7 @@ export default {
 		KvLoadingPlaceholder,
 		KvButton,
 		KvHeaderLogo,
+		HeaderMenuGroup,
 		SearchBar,
 		KvLendMenu,
 		AboutMenu,
@@ -336,39 +332,8 @@ export default {
 		const rootRef = ref<HTMLElement | null>(null);
 		const lendMenuInstance = ref<LendMenuInstance | null>(null);
 
-		// Which trigger, if any, is explicitly open. Its only rendered form is the aria-expanded
-		// binding on the trigger buttons; the stylesheet selects on that attribute to show panels.
-		const expandedItem = ref<string | null>(null);
-
-		// Menu groups whose panel has been mounted (first pointerenter/focusin/touchstart on the group).
-		const approached = reactive<Record<string, boolean>>({
-			menuButton: false,
-			lendButton: false,
-			aboutLink: false,
-			avatarMenu: false,
-		});
-
-		const menuButtonTrigger = ref<HTMLElement | null>(null);
-		const lendButtonTrigger = ref<HTMLElement | null>(null);
-		const aboutLinkTrigger = ref<HTMLElement | null>(null);
-		const avatarMenuTrigger = ref<HTMLElement | null>(null);
-		const triggerRefs: Record<string, Ref<HTMLElement | null>> = {
-			menuButton: menuButtonTrigger,
-			lendButton: lendButtonTrigger,
-			aboutLink: aboutLinkTrigger,
-			avatarMenu: avatarMenuTrigger,
-		};
-
 		const menuOpenDelay = `${MENU_OPEN_DELAY_MS}ms`;
 		const menuCloseFade = `${MENU_CLOSE_FADE_MS}ms`;
-
-		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
-			if (link.visibility === 'visitor') return !props.loggedIn;
-			if (link.visibility === 'loggedIn') return props.loggedIn;
-			return true;
-		}));
-
-		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
 		// One TopNav analytics event per menu, mirroring KvWwwHeader/KvHeaderLinkBar's menuTrackingMap.
 		// Fired on the open transition (hover or explicit toggle) of each dropdown/drawer. The Lend
@@ -386,159 +351,37 @@ export default {
 			menuButton: { action: 'close-Mobile-menu', label: 'Mobile' },
 		};
 
-		// Open-tracking dedupe flags: set when a group's open has been counted, cleared on hover-out
-		// and on every close path.
-		const counted: Record<string, boolean> = {
-			menuButton: false,
-			lendButton: false,
-			aboutLink: false,
-			avatarMenu: false,
-		};
-		const hoverTimers: Record<string, ReturnType<typeof setTimeout> | undefined> = {};
+		const {
+			approached, triggerRefs, isExpanded, clearExpanded, toggleExpanded, menuGroupEvents,
+		} = useHeaderMenuState({
+			groupIds: MENU_GROUP_IDS,
+			rootRef,
+			trackOpen: (id) => {
+				const tracking = menuOpenTracking[id];
+				if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
+			},
+			trackClose: (id) => {
+				const tracking = menuCloseTracking[id];
+				if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
+			},
+		});
 
-		function trackMenuOpenOnce(id: string): void {
-			if (counted[id]) return;
-			counted[id] = true;
-			const tracking = menuOpenTracking[id];
-			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-		}
-
-		function trackMenuClose(id: string): void {
-			const tracking = menuCloseTracking[id];
-			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-		}
-
-		function isExpanded(id: string): 'true' | 'false' {
-			return expandedItem.value === id ? 'true' : 'false';
-		}
-
-		function clearExpanded(): void {
-			if (!expandedItem.value) return;
-			counted[expandedItem.value] = false;
-			expandedItem.value = null;
-		}
-
-		function toggleExpanded(id: string): void {
-			if (expandedItem.value === id) {
-				trackMenuClose(id);
-				clearExpanded();
-			} else {
-				if (expandedItem.value) counted[expandedItem.value] = false;
-				trackMenuOpenOnce(id);
-				expandedItem.value = id;
-			}
-		}
-
-		// Taps anywhere but a menu panel dismiss the open menu; taps inside a menu group are left
-		// to that group's trigger toggle.
-		function onDocumentTouchStart(event: Event): void {
-			if (!expandedItem.value) return;
-			const target = event.target instanceof Element ? event.target : null;
-			const within = target?.closest('.menu-panel, .menu-group');
-			if (within && rootRef.value?.contains(within)) return;
-			clearExpanded();
-		}
-
-		function approachGroup(id: string): void {
-			approached[id] = true;
-		}
-
-		// Hover opens are counted by a per-group timer matching the CSS open delay; leaving the
-		// group before it fires cancels the count, and leaving at all re-arms it. Hovering a group
-		// also clears any other group's explicitly-expanded state.
-		function onGroupMouseEnter(id: string): void {
-			if (expandedItem.value && expandedItem.value !== id) clearExpanded();
-			clearTimeout(hoverTimers[id]);
-			hoverTimers[id] = setTimeout(() => {
-				if (expandedItem.value !== id) trackMenuOpenOnce(id);
-			}, MENU_OPEN_DELAY_MS);
-		}
-
-		function onGroupMouseLeave(id: string): void {
-			clearTimeout(hoverTimers[id]);
-			hoverTimers[id] = undefined;
-			if (expandedItem.value !== id) counted[id] = false;
-		}
-
-		function onGroupKeydown(id: string, event: KeyboardEvent): void {
-			if (event.key !== 'Escape' || expandedItem.value !== id) return;
-			clearExpanded();
-			triggerRefs[id]?.value?.focus();
-		}
-
-		function onGroupFocusOut(id: string, event: FocusEvent): void {
-			const group = event.currentTarget as HTMLElement;
-			if (event.relatedTarget instanceof Node && group.contains(event.relatedTarget)) return;
-			if (expandedItem.value === id) clearExpanded();
-		}
-
-		function menuGroupEvents(id: string) {
-			return {
-				pointerenter: () => approachGroup(id),
-				focusin: () => approachGroup(id),
-				touchstart: () => approachGroup(id),
-				mouseenter: () => onGroupMouseEnter(id),
-				mouseleave: () => onGroupMouseLeave(id),
-				keydown: (event: KeyboardEvent) => onGroupKeydown(id, event),
-				focusout: (event: FocusEvent) => onGroupFocusOut(id, event),
-			};
-		}
-
-		// Placement pass: writes --nav-height on the bar and --trigger-gap-left/right plus
-		// --trigger-width on each menu group, measured against the nav (the bar's offset parent).
-		// The stylesheet's panel placement and hover-bridge rules consume these.
-		let placementObserver: ResizeObserver | null = null;
-
-		function measurePlacement(): void {
-			const root = rootRef.value;
-			const nav = root?.offsetParent;
-			if (!root || !(nav instanceof HTMLElement)) return;
-			const navRect = nav.getBoundingClientRect();
-			root.style.setProperty('--nav-height', `${navRect.height}px`);
-			root.querySelectorAll<HTMLElement>('.menu-group').forEach((group) => {
-				const rect = group.getBoundingClientRect();
-				const centerX = rect.left + rect.width / 2;
-				group.style.setProperty('--trigger-gap-left', `${centerX - navRect.left}px`);
-				group.style.setProperty('--trigger-gap-right', `${navRect.right - centerX}px`);
-				group.style.setProperty('--trigger-width', `${rect.width}px`);
-			});
-		}
-
-		function observePlacement(): void {
-			if (!placementObserver) return;
-			const root = rootRef.value;
-			const nav = root?.offsetParent;
-			if (!root || !(nav instanceof HTMLElement)) return;
-			placementObserver.disconnect();
-			placementObserver.observe(nav);
-			const rightCluster = root.querySelector('.link-bar__right');
-			if (rightCluster) placementObserver.observe(rightCluster);
-			root.querySelectorAll('.menu-group').forEach((group) => placementObserver?.observe(group));
-		}
+		const { refreshPlacement } = useHeaderMenuPlacement(rootRef);
 
 		// loggedIn toggles the avatar group in and out of the DOM; re-collect the observed groups
 		// when it changes.
 		watch(() => props.loggedIn, async () => {
 			await nextTick();
-			observePlacement();
-			measurePlacement();
+			refreshPlacement();
 		});
 
-		onMounted(() => {
-			if (typeof ResizeObserver !== 'undefined') {
-				placementObserver = new ResizeObserver(measurePlacement);
-				observePlacement();
-			}
-			measurePlacement();
-			document.addEventListener('touchstart', onDocumentTouchStart);
-		});
+		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
+			if (link.visibility === 'visitor') return !props.loggedIn;
+			if (link.visibility === 'loggedIn') return props.loggedIn;
+			return true;
+		}));
 
-		onBeforeUnmount(() => {
-			placementObserver?.disconnect();
-			placementObserver = null;
-			document.removeEventListener('touchstart', onDocumentTouchStart);
-			Object.values(hoverTimers).forEach((timer) => clearTimeout(timer));
-		});
+		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
 		// Exposed for the orchestrator's loadMenuData: forwards the opaque apollo client to the
 		// mounted Lend menu's onLoad. No-ops until the Lend panel has been approached.
@@ -576,10 +419,10 @@ export default {
 			mdiBriefcase,
 			rootRef,
 			lendMenuInstance,
-			menuButtonTrigger,
-			lendButtonTrigger,
-			aboutLinkTrigger,
-			avatarMenuTrigger,
+			menuButtonTrigger: triggerRefs.menuButton,
+			lendButtonTrigger: triggerRefs.lendButton,
+			aboutLinkTrigger: triggerRefs.aboutLink,
+			avatarMenuTrigger: triggerRefs.avatarMenu,
 			approached,
 			menuOpenDelay,
 			menuCloseFade,
@@ -630,19 +473,6 @@ export default {
 		grid-template-rows: 4rem auto;
 		row-gap: theme('spacing.1');
 	}
-	.link-bar__right,
-	.menu-group {
-		align-self: stretch;
-	}
-	/* Hover bridge: an invisible strip, the trigger's width, from the trigger row's bottom edge to the nav's. */
-	.menu-group:hover::after {
-		content: '';
-		@apply tw-absolute;
-		top: 4rem;
-		height: calc(var(--nav-height, 4rem) - 4rem);
-		left: calc(var(--trigger-gap-left, 0px) - var(--trigger-width, 0px) / 2);
-		width: var(--trigger-width, 0px);
-	}
 	.link-bar__logo {
 		@apply tw-static tw-translate-x-0 tw-translate-y-0;
 		grid-area: logo;
@@ -653,7 +483,10 @@ export default {
 		grid-area: search;
 		@apply tw-mb-1;
 	}
-	.link-bar__right { grid-area: right; }
+	.link-bar__right {
+		grid-area: right;
+		align-self: stretch;
+	}
 }
 
 @screen lg {
@@ -681,91 +514,39 @@ export default {
 }
 
 /*
- * Menu open state: a panel and the backdrop show while a group is hovered or while a trigger
- * carries aria-expanded="true". Opening waits out the shared delay, then fades in; closing holds
- * through the same delay, fades over the close-fade duration, then hides and collapses. The
- * :hover and :has() open conditions live in separate rules: an engine that cannot parse one
- * selector list drops only that rule.
+ * The backdrop opens and closes on the same conditions and schedule as the menu panels
+ * (see HeaderMenuGroup.vue); closed, it collapses to zero height.
  */
-.menu-panel,
 .backdrop {
-	@apply tw-absolute;
+	@apply tw-absolute tw-z-overlay;
 	top: var(--nav-height, 4rem);
+	inset-inline: 0;
+	height: 0;
+	background-color: rgba(var(--bg-action-highlight), 0.5);
 	visibility: hidden;
 	opacity: 0;
 	transition:
 		opacity v-bind(menuCloseFade) ease v-bind(menuOpenDelay),
 		visibility 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade)),
-		height 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade)),
-		max-height 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade)),
-		min-height 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade));
+		height 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade));
 }
-.menu-group:hover > .menu-panel,
 .link-bar:has(.menu-group:hover) > .backdrop {
 	visibility: visible;
 	opacity: 1;
+	height: 100vh;
 	transition:
 		opacity 300ms ease v-bind(menuOpenDelay),
 		visibility 0s v-bind(menuOpenDelay),
-		height 0s v-bind(menuOpenDelay),
-		max-height 0s v-bind(menuOpenDelay),
-		min-height 0s v-bind(menuOpenDelay);
+		height 0s v-bind(menuOpenDelay);
 }
-.menu-group:has(> [aria-expanded="true"]) > .menu-panel,
 .link-bar:has(.menu-group > [aria-expanded="true"]) > .backdrop {
 	visibility: visible;
 	opacity: 1;
+	height: 100vh;
 	transition:
 		opacity 300ms ease v-bind(menuOpenDelay),
 		visibility 0s v-bind(menuOpenDelay),
-		height 0s v-bind(menuOpenDelay),
-		max-height 0s v-bind(menuOpenDelay),
-		min-height 0s v-bind(menuOpenDelay);
-}
-
-/*
- * Closed panels and the closed backdrop collapse to zero height, keeping them out of the page's
- * scrollable overflow; the open rules below restore their sizes.
- */
-.menu-panel {
-	@apply tw-bg-primary tw-overflow-y-auto tw-z-modal;
-	max-height: 0;
-}
-.menu-group:hover > .menu-panel,
-.menu-group:has(> [aria-expanded="true"]) > .menu-panel {
-	max-height: calc(100dvh - var(--nav-height, 4rem));
-}
-.menu-panel--full {
-	inset-inline: 0;
-}
-/*
- * Card panels center under their trigger and clamp flush to whichever nav edge centering would
- * cross; the 50% resolves against the panel's own width.
- */
-.menu-panel--card {
-	@apply tw-rounded-b tw-border tw-border-t-0 tw-border-tertiary;
-	right: var(--trigger-gap-right, 0px);
-	translate: clamp(calc(100% - var(--trigger-gap-left, 0px)), 50%, var(--trigger-gap-right, 0px)) 0;
-	max-width: 100%;
-}
-.menu-panel--drawer {
-	@apply tw-rounded-none;
-}
-.menu-group:hover > .menu-panel--drawer,
-.menu-group:has(> [aria-expanded="true"]) > .menu-panel--drawer {
-	max-height: none;
-	min-height: 100dvh;
-}
-
-.backdrop {
-	@apply tw-z-overlay;
-	inset-inline: 0;
-	height: 0;
-	background-color: rgba(var(--bg-action-highlight), 0.5);
-}
-.link-bar:has(.menu-group:hover) > .backdrop,
-.link-bar:has(.menu-group > [aria-expanded="true"]) > .backdrop {
-	height: 100vh;
+		height 0s v-bind(menuOpenDelay);
 }
 
 .chevron {
