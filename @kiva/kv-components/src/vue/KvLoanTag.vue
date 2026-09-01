@@ -13,7 +13,6 @@
 			<kv-tooltip
 				:controller="`matching-orgs-${loan.id}`"
 				max-width="320px"
-				theme="default"
 			>
 				<p class="tw-whitespace-nowrap tw-pb-0.5">
 					Your contribution is matched by {{ multiMatchingOrgs.length }} partners

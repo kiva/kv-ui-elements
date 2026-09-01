@@ -5,17 +5,20 @@ import * as KvTooltipStories from './KvTooltip.stories.js';
 
 # KvTooltip
 
-A flexible, accessible tooltip component that displays helpful information when users hover over or focus on an element. Built on top of KvPopper, it provides consistent positioning, theming, and interaction patterns.
+A flexible, accessible tooltip component that displays helpful information when users hover over or focus on an element. Built on top of KvPopper, it provides consistent positioning and interaction patterns.
+
+Tooltips are functional rather than a brand surface, and a single page can run two or three themes at once. So the tooltip does not follow the page theme: it has two fixed neutral variants that look the same everywhere and stay legible over any surface.
 
 ## Component Overview
 
-Tooltips provide contextual information when users hover over or focus on an element. They support multiple themes, flexible positioning, and programmatic control.
+Use `variant="dark"` over light surfaces and `variant="light"` over dark ones. Both pass AAA contrast at small sizes.
 
-<Story of={KvTooltipStories.ComponentOverview} />
+<Story of={KvTooltipStories.Variants} />
 
 ## Table of Contents
 
 - [Variations](#variations)
+- [Action](#action)
 - [Usage Information](#usage-information)
 - [Behavior](#behavior)
 - [Anatomy](#anatomy)
@@ -29,13 +32,26 @@ Tooltips provide contextual information when users hover over or focus on an ele
 
 ## Variations
 
-The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+Every content combination — action and title, on both chips — matching the Figma component set.
 
-## Variations
+<Story of={KvTooltipStories.ContentMatrix} />
 
-The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+All four placements on both chips.
 
-<Story of={KvTooltipStories.AllVariations} />
+<Story of={KvTooltipStories.PlacementMatrix} />
+
+## Action
+
+The optional `action` slot holds a single button or text link. Pick the button variant that matches the chip:
+
+| Chip | Button | Text link |
+| --- | --- | --- |
+| `light` | `<kv-button>` (primary) | `<kv-text-link>` |
+| `dark` | `<kv-button variant="secondary">` | `<kv-text-link>` |
+
+Buttons inside the slot render against a pinned default theme, so they stay the same regardless of the page theme surrounding the tooltip. Use `size="small"` for the compact treatment.
+
+Every action treatment on both chips is in the [Variations](#variations) matrix above.
 
 ## Usage Information
 
@@ -79,12 +95,13 @@ Tooltips can be controlled programmatically using the `showTooltip` prop and `@t
 
 ## Anatomy
 
-The tooltip consists of four main parts:
+The tooltip consists of six parts:
 
 - **Controller**: The target element (button, icon, text) that triggers the tooltip
 - **Container**: The tooltip popup with background, padding, and rounded corners
 - **Title** (optional): Bold text at the top of the tooltip for emphasis
 - **Content**: The main descriptive text in the default slot
+- **Action** (optional): A single button or text link in the `action` slot
 - **Arrow**: A small triangular pointer connecting the tooltip to its controller
 
 ---
@@ -102,16 +119,20 @@ Tooltips intelligently position themselves using Popper.js:
 
 <Story of={KvTooltipStories.ModifiersShowcase} />
 
-### Theming
+### Color
 
-Five pre-defined themes provide visual variety:
+Two fixed neutral variants, set with the `variant` prop:
 
-- **default**: Standard Kiva branding
-- **ecoGreenLight** / **ecoGreenDark**: Green tones for eco-related content (ecoGreenDark is most commonly used)
-- **ecoLightMarigold**: Warm marigold theme
-- **ecoStoneLight**: Neutral stone tone
+- **light** (current default): white chip with `gray-800` text, for dark surfaces
+- **dark**: `gray-800` chip with white text, for light surfaces
 
-<Story of={KvTooltipStories.ThemeShowcase} />
+Darkest gray is used rather than pure black to avoid harsh halation on small copy.
+
+`light` is the default so that call sites which pass no variant stay on a light chip rather than flipping to dark. Most Kiva surfaces are light, so new usages should reach for `dark`.
+
+### Deprecated `theme` prop
+
+The `theme` prop is deprecated and will be removed. It still renders, mapped onto the two variants. `ecoGreenDark` maps to `dark`; `default`, `ecoGreenLight`, `ecoLightMarigold`, and `ecoStoneLight` all map to `light`. If both are passed, an explicit `variant` wins.
 
 ---
 
@@ -186,7 +207,7 @@ Five pre-defined themes provide visual variety:
 </template>
 ```
 
-### Tooltip with Custom Theme and Placement
+### Tooltip with a Variant and Placement
 
 ```vue
 <template>
@@ -194,13 +215,31 @@ Five pre-defined themes provide visual variety:
 
   <kv-tooltip
     controller="info-btn"
-    theme="ecoGreenDark"
+    variant="dark"
     placement="bottom"
     max-width="300px"
   >
     <template #title>Extended Information</template>
-    This tooltip uses a custom theme, placement, and wider max-width
-    for more detailed explanations.
+    This tooltip uses the dark chip, a custom placement, and a wider
+    max-width for more detailed explanations.
+  </kv-tooltip>
+</template>
+```
+
+### Tooltip with an Action
+
+```vue
+<template>
+  <button id="onboarding-btn">What's new?</button>
+
+  <kv-tooltip controller="onboarding-btn" variant="dark">
+    <template #title>Annual goals</template>
+    Set a goal to stay accountable and watch your impact grow.
+    <template #action>
+      <kv-button variant="secondary" size="small" @click="dismiss">
+        Got it
+      </kv-button>
+    </template>
   </kv-tooltip>
 </template>
 ```
