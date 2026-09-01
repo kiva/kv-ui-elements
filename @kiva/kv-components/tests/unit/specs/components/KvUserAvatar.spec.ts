@@ -10,6 +10,12 @@ const DEFAULT_AVATAR_IMAGE = 'https://www.kiva.org/img/s100/4d844ac2c0b77a8a5227
 
 const KIVA_K = 'svg[viewBox="0 0 25 37"]';
 
+// The shimmer is v-show'd, so "not rendered" and "rendered but hidden" both count as not shown.
+function shimmerIsShown(container: Element): boolean {
+	const el = container.querySelector('.loading-placeholder') as HTMLElement | null;
+	return !!el && el.style.display !== 'none';
+}
+
 describe('KvUserAvatar', () => {
 	describe('by default', () => {
 		it('renders the initial letter for a lender with no image', () => {
@@ -30,6 +36,36 @@ describe('KvUserAvatar', () => {
 			});
 			expect(getByText('R')).toBeTruthy();
 			expect(queryByTestId('user-avatar-icon')).toBeNull();
+		});
+	});
+
+	describe('with showCssPlaceholder', () => {
+		// The ESI case: the CSS variable carries the image because the prop cannot. An <img> with an
+		// empty src never fires load, so isImageLoading would otherwise stay true forever and the
+		// shimmer would sit beside the ESI avatar rather than ahead of it.
+		it('does not show its own shimmer beside the ESI avatar', () => {
+			const { container } = render(KvUserAvatar, {
+				props: { showCssPlaceholder: true, lenderImageUrl: '' },
+			});
+			expect(shimmerIsShown(container)).toBe(false);
+		});
+
+		it('still binds the ESI variables so CSS can paint the avatar before hydration', () => {
+			const { container, getByAltText } = render(KvUserAvatar, {
+				props: { showCssPlaceholder: true, lenderImageUrl: '' },
+			});
+			const wrapper = getByAltText('Image of lender').parentElement as HTMLElement;
+			expect(wrapper.style.display).toBe('var(--user-avatar-display, block)');
+			expect(container.innerHTML).toContain('var(--user-avatar)');
+		});
+	});
+
+	describe('without showCssPlaceholder', () => {
+		it('shows the shimmer while a real image is still loading', () => {
+			const { container } = render(KvUserAvatar, {
+				props: { lenderName: 'Roger', lenderImageUrl: CUSTOM_IMAGE },
+			});
+			expect(shimmerIsShown(container)).toBe(true);
 		});
 	});
 

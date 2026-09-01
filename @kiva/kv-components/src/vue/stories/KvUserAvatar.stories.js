@@ -365,6 +365,41 @@ export const NoImageCssPlaceholder = cssPlaceholderStory({
 	showCssPlaceholder: true,
 });
 
+// The combination the app actually produces, and the one CssPlaceholder does not model: ESI supplies
+// the image through --user-avatar precisely because the prop is still empty. An <img> with no src
+// never fires load, so the component must not wait on it before hiding its own shimmer.
+const ESI_AVATAR_URL = 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg';
+
+export const CssPlaceholderBeforeHydration = {
+	render: () => ({
+		components: { KvUserAvatar },
+		setup() {
+			return {
+				style: [
+					`--user-avatar: url(${ESI_AVATAR_URL}) / "Lender avatar via CSS"`,
+					'--user-avatar-legacy-display: none',
+				],
+			};
+		},
+		template: `
+			<div class="tw-relative" :style="style">
+				<KvUserAvatar
+					lender-image-url=""
+					class="tw-w-6 tw-h-6"
+					show-css-placeholder
+				/>
+				<br/>
+				<KvUserAvatar
+					lender-image-url=""
+					class="tw-w-3 tw-h-3"
+					is-small
+					show-css-placeholder
+				/>
+			</div>
+		`,
+	}),
+};
+
 export const Anonymous = story({
 	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	lenderName: 'Anonymous',

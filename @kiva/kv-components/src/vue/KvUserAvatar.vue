@@ -41,8 +41,10 @@
 		</svg>
 		<!-- eslint-enable max-len -->
 		<!-- User is not anonymous and image is loading -->
+		<!-- Never under showCssPlaceholder: the <img> has no src there, so `load` cannot fire and
+		isImageLoading would pin the shimmer beside the ESI avatar instead of ahead of it. -->
 		<kv-loading-placeholder
-			v-show="!isAnonymousUser && userHasImage && isImageLoading"
+			v-show="!isAnonymousUser && userHasImage && isImageLoading && !showCssPlaceholder"
 		/>
 		<!-- User is not anonymous and has an image -->
 		<div
