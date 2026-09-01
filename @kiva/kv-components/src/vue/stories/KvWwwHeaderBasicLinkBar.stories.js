@@ -101,6 +101,31 @@ EsiLoggedOutOnStaleShell.args = {
 	isUserDataLoading: true,
 	cssVars: { '--user-loading-display': 'none' },
 };
+EsiLoggedOutOnStaleShell.parameters = {
+	docs: {
+		description: {
+			story: `A CDN shell filled by a logged-in visitor, served to someone ESI knows is logged out.
+			\`--user-loading-display: none\` suppresses the balance and avatar cluster, which is what this
+			story exists to prove.
+
+			**Expect no auth affordance at all here — no cluster, and no Log in link.** That is correct,
+			not a gap in the story. Log in is \`v-if="!loggedIn"\`, and \`loggedIn\` is the stale cache hint,
+			still true; Borrow drops out for the same reason. Hydration corrects it a moment later, when
+			\`headerData\` returns \`my: null\`.
+
+			Revealing Log in here would mean always rendering it and gating it on a variable, inverting the
+			emit-only-\`none\` convention: default it visible and every genuinely logged-in visitor sees Log
+			in until hydration. Considered and rejected as decision D4 — a stale-true login hint would
+			withhold the login affordance from someone who needs it. The alternative to suppressing the
+			cluster is showing this visitor a stranger's balance, so an empty moment is the better of the
+			two states available before hydration.
+
+			Mostly a cms-page-server state: CPS bridges \`--user-loading-display\` from
+			\`--header-balance-display\`, emitted only in its logged-out branch. In \`ui\` the bridge is live
+			on \`/ui-site-map\` alone.`,
+		},
+	},
+};
 
 export const EsiAvatarReal = Template.bind({});
 EsiAvatarReal.args = {
