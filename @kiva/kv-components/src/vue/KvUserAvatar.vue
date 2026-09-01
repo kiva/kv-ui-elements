@@ -4,7 +4,7 @@
 		class="data-hj-suppress tw-flex tw-items-center tw-justify-center tw-rounded-full tw-overflow-hidden"
 		:class="{
 			'tw-bg-brand': isAnonymousUser && theme === 'default' && !showIconFallback,
-			'tw-bg-brand-100': showIconFallback || (isAnonymousUser && theme === 'ecoGreenLight'),
+			'tw-bg-brand-100': !showIconFallback && isAnonymousUser && theme === 'ecoGreenLight',
 			[avatarClass]: !isAnonymousUser && !showIconFallback,
 		}"
 	>
