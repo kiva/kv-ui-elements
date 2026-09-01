@@ -2,33 +2,32 @@
 	<div
 		ref="rootRef"
 		class="link-bar tw-min-h-[4rem] tw-font-medium"
+		:style="menuTimingVars"
 	>
 		<!-- hamburger → full-screen drawer (mobile only) -->
 		<header-menu-group
 			class="md:tw-hidden"
 			panel-id="header-basic-menu-drawer"
 			variant="drawer"
-			:approached="approached.menuButton"
-			v-on="menuGroupEvents('menuButton')"
+			@open="track('hover-Mobile-menu', 'Mobile')"
+			@close="track('close-Mobile-menu', 'Mobile')"
 		>
-			<button
-				ref="menuButtonTrigger"
-				type="button"
-				aria-label="Open menu"
-				:aria-expanded="isExpanded('menuButton')"
-				:aria-controls="approached.menuButton ? 'header-basic-menu-drawer' : undefined"
-				class="header-link menu-trigger link-bar__hamburger tw-inline-flex tw-p-0"
-				@click="toggleExpanded('menuButton')"
-				@touchstart.prevent="toggleExpanded('menuButton')"
-			>
-				<kv-material-icon :icon="mdiMenu" />
-			</button>
-			<template #panel>
+			<template #default="{ trigger }">
+				<button
+					v-bind="trigger"
+					type="button"
+					aria-label="Open menu"
+					class="header-link menu-trigger link-bar__hamburger tw-inline-flex tw-p-0"
+				>
+					<kv-material-icon :icon="mdiMenu" />
+				</button>
+			</template>
+			<template #panel="{ close }">
 				<mobile-menu
 					:logged-in="loggedIn"
 					:login-url="loginUrl"
 					:is-mobile="isMobile"
-					@closing-menu="clearExpanded"
+					@closing-menu="close"
 				/>
 			</template>
 		</header-menu-group>
@@ -46,29 +45,26 @@
 			class="link-bar__lend"
 			panel-id="header-basic-menu-lend"
 			variant="full"
-			:approached="approached.lendButton"
-			v-on="menuGroupEvents('lendButton')"
+			@open="track('hover-Lend-menu', 'Lend')"
 		>
-			<a
-				href="/lend-by-category"
-				class="header-link tw-py-1"
-				@touchstart.prevent="toggleExpanded('lendButton')"
-			>Lend</a>
-			<button
-				ref="lendButtonTrigger"
-				type="button"
-				aria-label="Lend menu"
-				:aria-expanded="isExpanded('lendButton')"
-				:aria-controls="approached.lendButton ? 'header-basic-menu-lend' : undefined"
-				class="menu-trigger tw-p-0 tw-py-1 tw-text-primary hover:tw-text-action"
-				@click="toggleExpanded('lendButton')"
-				@touchstart.prevent="toggleExpanded('lendButton')"
-			>
-				<kv-material-icon
-					class="chevron tw-block tw-w-3"
-					:icon="mdiChevronDown"
-				/>
-			</button>
+			<template #default="{ trigger, toggle }">
+				<a
+					href="/lend-by-category"
+					class="header-link tw-py-1"
+					@touchstart.prevent="toggle"
+				>Lend</a>
+				<button
+					v-bind="trigger"
+					type="button"
+					aria-label="Lend menu"
+					class="menu-trigger tw-p-0 tw-py-1 tw-text-primary hover:tw-text-action"
+				>
+					<kv-material-icon
+						class="chevron tw-block tw-w-3"
+						:icon="mdiChevronDown"
+					/>
+				</button>
+			</template>
 			<template #panel>
 				<kv-lend-menu
 					ref="lendMenuInstance"
@@ -113,28 +109,25 @@
 				class="tw-hidden md:tw-flex"
 				panel-id="header-basic-menu-about"
 				variant="card"
-				:approached="approached.aboutLink"
-				v-on="menuGroupEvents('aboutLink')"
+				@open="track('hover-About-menu', 'About')"
 			>
-				<button
-					ref="aboutLinkTrigger"
-					type="button"
-					:aria-expanded="isExpanded('aboutLink')"
-					:aria-controls="approached.aboutLink ? 'header-basic-menu-about' : undefined"
-					class="header-link menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center"
-					@click="toggleExpanded('aboutLink')"
-					@touchstart.prevent="toggleExpanded('aboutLink')"
-				>
-					About
-					<kv-material-icon
-						class="chevron tw-inline tw-w-3 tw-ml-0.5"
-						:icon="mdiChevronDown"
-					/>
-				</button>
-				<template #panel>
+				<template #default="{ trigger }">
+					<button
+						v-bind="trigger"
+						type="button"
+						class="header-link menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center"
+					>
+						About
+						<kv-material-icon
+							class="chevron tw-inline tw-w-3 tw-ml-0.5"
+							:icon="mdiChevronDown"
+						/>
+					</button>
+				</template>
+				<template #panel="{ close }">
 					<about-menu
 						:is-mobile="isMobile"
-						@closing-menu="clearExpanded"
+						@closing-menu="close"
 					/>
 				</template>
 			</header-menu-group>
@@ -190,45 +183,42 @@
 				v-if="loggedIn"
 				panel-id="header-basic-menu-my-kiva"
 				variant="card"
-				:approached="approached.avatarMenu"
-				v-on="menuGroupEvents('avatarMenu')"
+				@open="track('hover-User-menu', 'User')"
 			>
-				<button
-					ref="avatarMenuTrigger"
-					type="button"
-					aria-label="My Kiva menu"
-					:aria-expanded="isExpanded('avatarMenu')"
-					:aria-controls="approached.avatarMenu ? 'header-basic-menu-my-kiva' : undefined"
-					data-testid="header-avatar-menu"
-					class="menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center tw-gap-1 tw-cursor-pointer"
-					@click="toggleExpanded('avatarMenu')"
-					@touchstart.prevent="toggleExpanded('avatarMenu')"
-				>
-					<span
-						v-if="isUserDataLoading"
-						class="tw-block tw-w-4 tw-h-3"
+				<template #default="{ trigger }">
+					<button
+						v-bind="trigger"
+						type="button"
+						aria-label="My Kiva menu"
+						data-testid="header-avatar-menu"
+						class="menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center tw-gap-1 tw-cursor-pointer"
 					>
-						<kv-loading-placeholder />
-					</span>
-					<span
-						v-else
-						class="tw-text-eco-green-4"
-					>{{ formattedBalance }}</span>
-					<span
-						v-if="isUserDataLoading"
-						class="tw-block tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
-					>
-						<kv-loading-placeholder />
-					</span>
-					<kv-user-avatar
-						v-else
-						class="tw-w-3 tw-h-3"
-						:lender-name="lenderName"
-						:lender-image-url="lenderImageUrl"
-						is-small
-					/>
-				</button>
-				<template #panel>
+						<span
+							v-if="isUserDataLoading"
+							class="tw-block tw-w-4 tw-h-3"
+						>
+							<kv-loading-placeholder />
+						</span>
+						<span
+							v-else
+							class="tw-text-eco-green-4"
+						>{{ formattedBalance }}</span>
+						<span
+							v-if="isUserDataLoading"
+							class="tw-block tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+						>
+							<kv-loading-placeholder />
+						</span>
+						<kv-user-avatar
+							v-else
+							class="tw-w-3 tw-h-3"
+							:lender-name="lenderName"
+							:lender-image-url="lenderImageUrl"
+							is-small
+						/>
+					</button>
+				</template>
+				<template #panel="{ close }">
 					<my-kiva-menu
 						:logged-in="loggedIn"
 						:user-id="userId"
@@ -238,7 +228,7 @@
 						:most-recent-borrowed-loan-id="mostRecentBorrowedLoanId"
 						:my-dashboard-url="myDashboardUrl"
 						:is-mobile="isMobile"
-						@closing-menu="clearExpanded"
+						@closing-menu="close"
 					/>
 				</template>
 			</header-menu-group>
@@ -253,7 +243,7 @@
 
 <script lang="ts">
 import {
-	ref, computed, inject, watch, nextTick, defineAsyncComponent,
+	ref, computed, inject, provide, defineAsyncComponent,
 } from 'vue';
 import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
 import numeral from 'numeral';
@@ -263,10 +253,9 @@ import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
 import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
-import {
-	useHeaderMenuState, MENU_OPEN_DELAY_MS, MENU_CLOSE_FADE_MS,
-} from '#utils/useHeaderMenuState';
-import { useHeaderMenuPlacement } from '#utils/useHeaderMenuPlacement';
+import { MENU_TIMING_VARS } from '#utils/headerMenuTiming';
+import { useHeaderMenuState, HEADER_MENU_STATE } from '#utils/useHeaderMenuState';
+import { useHeaderMenuPlacement, HEADER_MENU_PLACEMENT } from '#utils/useHeaderMenuPlacement';
 import HeaderMenuGroup from './HeaderMenuGroup.vue';
 import SearchBar from './SearchBar.vue';
 
@@ -286,8 +275,6 @@ const KvLendMenu = defineAsyncComponent(() => import('#components/KvWwwHeader/Le
 const AboutMenu = defineAsyncComponent(() => import('./AboutMenu.vue'));
 const MyKivaMenu = defineAsyncComponent(() => import('./MyKivaMenu.vue'));
 const MobileMenu = defineAsyncComponent(() => import('./MobileMenu.vue'));
-
-const MENU_GROUP_IDS = ['menuButton', 'lendButton', 'aboutLink', 'avatarMenu'];
 
 export default {
 	name: 'LinkBar',
@@ -332,48 +319,14 @@ export default {
 		const rootRef = ref<HTMLElement | null>(null);
 		const lendMenuInstance = ref<LendMenuInstance | null>(null);
 
-		const menuOpenDelay = `${MENU_OPEN_DELAY_MS}ms`;
-		const menuCloseFade = `${MENU_CLOSE_FADE_MS}ms`;
+		provide(HEADER_MENU_STATE, useHeaderMenuState());
+		provide(HEADER_MENU_PLACEMENT, useHeaderMenuPlacement(rootRef));
 
-		// One TopNav analytics event per menu, mirroring KvWwwHeader/KvHeaderLinkBar's menuTrackingMap.
-		// Fired on the open transition (hover or explicit toggle) of each dropdown/drawer. The Lend
-		// entry reproduces the legacy host's onLendMenuShow event ('hover-Lend-menu', 'Lend').
-		const menuOpenTracking: Record<string, { action: string; label: string }> = {
-			menuButton: { action: 'hover-Mobile-menu', label: 'Mobile' },
-			lendButton: { action: 'hover-Lend-menu', label: 'Lend' },
-			aboutLink: { action: 'hover-About-menu', label: 'About' },
-			avatarMenu: { action: 'hover-User-menu', label: 'User' },
-		};
-
-		// Close-side counterpart. Only the mobile drawer tracks an explicit close today; the hover
-		// dropdowns close implicitly on mouseleave and have no close event in the legacy header.
-		const menuCloseTracking: Record<string, { action: string; label: string }> = {
-			menuButton: { action: 'close-Mobile-menu', label: 'Mobile' },
-		};
-
-		const {
-			approached, triggerRefs, isExpanded, clearExpanded, toggleExpanded, menuGroupEvents,
-		} = useHeaderMenuState({
-			groupIds: MENU_GROUP_IDS,
-			rootRef,
-			trackOpen: (id) => {
-				const tracking = menuOpenTracking[id];
-				if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-			},
-			trackClose: (id) => {
-				const tracking = menuCloseTracking[id];
-				if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-			},
-		});
-
-		const { refreshPlacement } = useHeaderMenuPlacement(rootRef);
-
-		// loggedIn toggles the avatar group in and out of the DOM; re-collect the observed groups
-		// when it changes.
-		watch(() => props.loggedIn, async () => {
-			await nextTick();
-			refreshPlacement();
-		});
+		// One TopNav analytics event per menu open (hover or explicit toggle), mirroring
+		// KvWwwHeader/KvHeaderLinkBar's menuTrackingMap; the mobile drawer also tracks its close.
+		function track(action: string, label: string): void {
+			$kvTrackEvent('TopNav', action, label);
+		}
 
 		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
 			if (link.visibility === 'visitor') return !props.loggedIn;
@@ -419,19 +372,10 @@ export default {
 			mdiBriefcase,
 			rootRef,
 			lendMenuInstance,
-			menuButtonTrigger: triggerRefs.menuButton,
-			lendButtonTrigger: triggerRefs.lendButton,
-			aboutLinkTrigger: triggerRefs.aboutLink,
-			avatarMenuTrigger: triggerRefs.avatarMenu,
-			approached,
-			menuOpenDelay,
-			menuCloseFade,
+			menuTimingVars: MENU_TIMING_VARS,
 			visiblePrimaryLinks,
 			formattedBalance,
-			isExpanded,
-			clearExpanded,
-			toggleExpanded,
-			menuGroupEvents,
+			track,
 			loadMenuData,
 			onPrimaryClick,
 			onLoginClick,
@@ -526,36 +470,24 @@ export default {
 	visibility: hidden;
 	opacity: 0;
 	transition:
-		opacity v-bind(menuCloseFade) ease v-bind(menuOpenDelay),
-		visibility 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade)),
-		height 0s calc(v-bind(menuOpenDelay) + v-bind(menuCloseFade));
+		opacity var(--menu-close-fade) ease var(--menu-open-delay),
+		visibility 0s calc(var(--menu-open-delay) + var(--menu-close-fade)),
+		height 0s calc(var(--menu-open-delay) + var(--menu-close-fade));
 }
-.link-bar:has(.menu-group:hover) > .backdrop {
+.link-bar:has(.menu-group:hover, .menu-group > [aria-expanded="true"]) > .backdrop {
 	visibility: visible;
 	opacity: 1;
 	height: 100vh;
 	transition:
-		opacity 300ms ease v-bind(menuOpenDelay),
-		visibility 0s v-bind(menuOpenDelay),
-		height 0s v-bind(menuOpenDelay);
-}
-.link-bar:has(.menu-group > [aria-expanded="true"]) > .backdrop {
-	visibility: visible;
-	opacity: 1;
-	height: 100vh;
-	transition:
-		opacity 300ms ease v-bind(menuOpenDelay),
-		visibility 0s v-bind(menuOpenDelay),
-		height 0s v-bind(menuOpenDelay);
+		opacity 300ms ease var(--menu-open-delay),
+		visibility 0s var(--menu-open-delay),
+		height 0s var(--menu-open-delay);
 }
 
 .chevron {
 	@apply tw-transition-transform tw-duration-300;
 }
-.menu-group:hover .chevron {
-	@apply tw-rotate-180;
-}
-.menu-group:has(> [aria-expanded="true"]) .chevron {
+.menu-group:is(:hover, :has(> [aria-expanded="true"])) .chevron {
 	@apply tw-rotate-180;
 }
 </style>

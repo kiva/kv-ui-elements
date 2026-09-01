@@ -213,7 +213,7 @@ describe('LinkBar', () => {
 		const about = getByRole('button', { name: /about/i });
 		await fireEvent.touchStart(about);
 		expect(about.getAttribute('aria-expanded')).toBe('true');
-		await fireEvent.touchStart(container.querySelector('.backdrop') as HTMLElement);
+		await fireEvent.pointerDown(container.querySelector('.backdrop') as HTMLElement);
 		expect(about.getAttribute('aria-expanded')).toBe('false');
 	});
 
@@ -222,7 +222,7 @@ describe('LinkBar', () => {
 		const about = getByRole('button', { name: /about/i });
 		await fireEvent.touchStart(about);
 		expect(about.getAttribute('aria-expanded')).toBe('true');
-		await fireEvent.touchStart(container.querySelector('.link-bar') as HTMLElement);
+		await fireEvent.pointerDown(container.querySelector('.link-bar') as HTMLElement);
 		expect(about.getAttribute('aria-expanded')).toBe('false');
 	});
 
@@ -231,8 +231,34 @@ describe('LinkBar', () => {
 		const about = getByRole('button', { name: /about/i });
 		await fireEvent.touchStart(about);
 		expect(about.getAttribute('aria-expanded')).toBe('true');
-		await fireEvent.touchStart(getByRole('searchbox'));
+		await fireEvent.pointerDown(getByRole('searchbox'));
 		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('clears a click-opened menu when the mouse presses outside it, without relying on focus', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.click(about);
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+		await fireEvent.pointerDown(document.body);
+		expect(about.getAttribute('aria-expanded')).toBe('false');
+	});
+
+	it('keeps the menu open when the mouse presses inside its panel', async () => {
+		const { getByRole, findByText } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.click(about);
+		await fireEvent.pointerDown(await findByText('How Kiva works'));
+		expect(about.getAttribute('aria-expanded')).toBe('true');
+	});
+
+	it('always references the panel from aria-controls, before and after the panel content mounts', async () => {
+		const { getByRole } = render(LinkBar, { props: { loggedIn: false }, global });
+		const about = getByRole('button', { name: /about/i });
+		const panelId = about.getAttribute('aria-controls') as string;
+		expect(document.getElementById(panelId)).not.toBeNull();
+		await fireEvent.click(about);
+		expect(about.getAttribute('aria-controls')).toBe(panelId);
 	});
 
 	it('tracks explicit opens for each menu', async () => {
@@ -256,11 +282,19 @@ describe('LinkBar', () => {
 		expect(track).toHaveBeenCalledWith('TopNav', 'close-Mobile-menu', 'Mobile');
 	});
 
+	it('tracks the mobile menu close however it closes, including Escape', async () => {
+		const { track, getByLabelText } = renderWithTracking({ loggedIn: false });
+		const hamburger = getByLabelText('Open menu');
+		await fireEvent.click(hamburger);
+		await fireEvent.keyDown(hamburger, { key: 'Escape' });
+		expect(track).toHaveBeenCalledWith('TopNav', 'close-Mobile-menu', 'Mobile');
+	});
+
 	it('tracks a hover open once the intent delay elapses', async () => {
 		jest.useFakeTimers();
 		const { track, getByRole } = renderWithTracking({ loggedIn: false });
 		const group = getByRole('button', { name: /about/i }).closest('.menu-group') as HTMLElement;
-		await fireEvent.mouseEnter(group);
+		await fireEvent.pointerEnter(group);
 		jest.advanceTimersByTime(100);
 		expect(track).toHaveBeenCalledWith('TopNav', 'hover-About-menu', 'About');
 	});
@@ -269,8 +303,29 @@ describe('LinkBar', () => {
 		jest.useFakeTimers();
 		const { track, getByRole } = renderWithTracking({ loggedIn: false });
 		const group = getByRole('button', { name: /about/i }).closest('.menu-group') as HTMLElement;
-		await fireEvent.mouseEnter(group);
-		await fireEvent.mouseLeave(group);
+		await fireEvent.pointerEnter(group);
+		await fireEvent.pointerLeave(group);
+		jest.advanceTimersByTime(200);
+		expect(track).not.toHaveBeenCalled();
+	});
+
+	it('tracks a hover open followed by a click on the same menu only once', async () => {
+		jest.useFakeTimers();
+		const { track, getByRole } = renderWithTracking({ loggedIn: false });
+		const about = getByRole('button', { name: /about/i });
+		await fireEvent.pointerEnter(about.closest('.menu-group') as HTMLElement);
+		jest.advanceTimersByTime(100);
+		await fireEvent.click(about);
+		expect(track).toHaveBeenCalledTimes(1);
+	});
+
+	it('does not arm hover tracking for touch pointers', async () => {
+		jest.useFakeTimers();
+		const { track, getByRole } = renderWithTracking({ loggedIn: false });
+		const group = getByRole('button', { name: /about/i }).closest('.menu-group') as HTMLElement;
+		const touchEnter = new Event('pointerenter');
+		Object.defineProperty(touchEnter, 'pointerType', { value: 'touch' });
+		await fireEvent(group, touchEnter);
 		jest.advanceTimersByTime(200);
 		expect(track).not.toHaveBeenCalled();
 	});
