@@ -160,7 +160,7 @@
 				<kv-material-icon
 					v-if="avatarMode === 'esi'"
 					:icon="mdiAccountCircle"
-					class="tw-w-3 tw-h-3"
+					class="tw-w-3 tw-h-3 tw-text-primary"
 					data-testid="header-avatar-icon"
 					:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
 				/>

@@ -12,7 +12,7 @@
 		<kv-material-icon
 			v-if="showIconFallback"
 			:icon="mdiAccountCircle"
-			class="tw-w-full tw-h-full tw-text-action"
+			class="tw-w-full tw-h-full tw-text-primary"
 			data-testid="user-avatar-icon"
 		/>
 		<!-- User is anonymous or data is missing -->
