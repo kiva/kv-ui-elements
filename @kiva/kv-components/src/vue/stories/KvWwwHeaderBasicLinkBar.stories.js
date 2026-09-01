@@ -43,13 +43,21 @@ LoggedIn.args = {
 	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.webp',
 };
 
+export const LoggedInDefaultAvatarImage = Template.bind({});
+LoggedInDefaultAvatarImage.args = {
+	loggedIn: true,
+	balance: 25.75,
+	lenderName: 'John Doe',
+	// A monolith-era default filename is not a custom image, so the avatar icon wins over it.
+	lenderImageUrl: 'https://www.kiva.org/img/s100/726677.webp',
+};
+
 export const LoggedInNoAvatar = Template.bind({});
 LoggedInNoAvatar.args = {
 	loggedIn: true,
 	balance: 25.75,
 	lenderName: 'John Doe',
-	// Legacy placeholder filename → KvUserAvatar falls back to the lender's initial.
-	lenderImageUrl: 'https://www.kiva.org/img/s100/726677.webp',
+	lenderImageUrl: '',
 };
 
 export const LoggedInWithBasket = Template.bind({});

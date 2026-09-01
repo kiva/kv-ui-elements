@@ -3,16 +3,23 @@
 		ref="userAvatar"
 		class="data-hj-suppress tw-flex tw-items-center tw-justify-center tw-rounded-full tw-overflow-hidden"
 		:class="{
-			'tw-bg-brand': isAnonymousUser && theme === 'default',
-			'tw-bg-brand-100': isAnonymousUser && theme === 'ecoGreenLight',
-			[avatarClass]: !isAnonymousUser,
+			'tw-bg-brand': isAnonymousUser && theme === 'default' && !showIconFallback,
+			'tw-bg-brand-100': showIconFallback || (isAnonymousUser && theme === 'ecoGreenLight'),
+			[avatarClass]: !isAnonymousUser && !showIconFallback,
 		}"
 	>
+		<!-- Opted-in fallback: one icon for every user without a custom image -->
+		<kv-material-icon
+			v-if="showIconFallback"
+			:icon="mdiAccountCircle"
+			class="tw-w-full tw-h-full tw-text-action"
+			data-testid="user-avatar-icon"
+		/>
 		<!-- User is anonymous or data is missing -->
 		<!-- Kiva K logo -->
 		<!-- eslint-disable max-len -->
 		<svg
-			v-if="isAnonymousUser"
+			v-if="isAnonymousUser && !showIconFallback"
 			:class="{
 				'kiva-k__green-light': theme === 'ecoGreenLight',
 				'kiva-k__white': theme === 'default',
@@ -57,7 +64,7 @@
 		<!-- User is not anonymous and does not have an image -->
 		<!-- First Letter of lender name -->
 		<svg
-			v-if="!isAnonymousUser && !userHasImage"
+			v-if="!isAnonymousUser && !userHasImage && !showIconFallback"
 			class="tw-w-full tw-h-full"
 			fill="currentColor"
 			:viewBox="letterViewBox"
@@ -78,13 +85,16 @@
 import {
 	computed, toRefs, ref, onMounted,
 } from 'vue';
+import { mdiAccountCircle } from '@mdi/js';
 import { isLegacyPlaceholderAvatar, randomizedUserAvatarClass } from '../utils/imageUtils';
 import KvLoadingPlaceholder from './KvLoadingPlaceholder.vue';
+import KvMaterialIcon from './KvMaterialIcon.vue';
 
 export default {
 	name: 'KvUserAvatar',
 	components: {
 		KvLoadingPlaceholder,
+		KvMaterialIcon,
 	},
 	props: {
 		/**
@@ -115,6 +125,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Whether to show the avatar icon in place of the initial letter and the Kiva K when the
+		 * lender has no custom image. Opt-in so existing consumers keep the lettered avatar.
+		 */
+		useIconFallback: {
+			type: Boolean,
+			default: false,
+		},
 		theme: {
 			type: String,
 			default: 'default',
@@ -133,6 +151,7 @@ export default {
 			lenderImageUrl,
 			isSmall,
 			showCssPlaceholder,
+			useIconFallback,
 		} = toRefs(props);
 
 		const isImageLoading = ref(true);
@@ -163,6 +182,12 @@ export default {
 
 		const lenderNameFirstLetter = computed(() => {
 			return lenderName?.value?.substring(0, 1).toUpperCase();
+		});
+
+		// Anonymous is folded in deliberately: an anonymous lender may still have a stored image, and
+		// suppressing it is the whole point of the Kiva K this replaces.
+		const showIconFallback = computed(() => {
+			return useIconFallback.value && (isAnonymousUser.value || !userHasImage.value);
 		});
 
 		const onImgLoad = () => {
@@ -197,9 +222,11 @@ export default {
 		});
 
 		return {
+			mdiAccountCircle,
 			isAnonymousUser,
 			avatarClass,
 			userHasImage,
+			showIconFallback,
 			lenderNameFirstLetter,
 			letterViewBox,
 			isLegacyPlaceholderAvatar,

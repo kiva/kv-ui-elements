@@ -238,6 +238,40 @@ describe('LinkBar', () => {
 		expect(queryByTestId('header-avatar-esi')).toBeNull();
 	});
 
+	it('shows the avatar icon once loaded for a lender with no custom image', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: false, lenderName: 'Ada Lovelace' }, global,
+		});
+		expect(getByTestId('user-avatar-icon')).toBeTruthy();
+	});
+
+	it('shows the avatar icon once loaded when the stored image is a Kiva default', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				lenderName: 'Ada Lovelace',
+				lenderImageUrl: 'https://www.kiva.org/img/s100/726677.jpg',
+			},
+			global,
+		});
+		expect(getByTestId('user-avatar-icon')).toBeTruthy();
+	});
+
+	it('shows the lender image once loaded when it is a custom image', () => {
+		const { getByAltText, queryByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				lenderName: 'Ada Lovelace',
+				lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+			},
+			global,
+		});
+		expect(getByAltText('Image of lender')).toBeTruthy();
+		expect(queryByTestId('user-avatar-icon')).toBeNull();
+	});
+
 	it('has no accessibility violations with the ESI avatar enabled', async () => {
 		const { container } = render(LinkBar, {
 			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,

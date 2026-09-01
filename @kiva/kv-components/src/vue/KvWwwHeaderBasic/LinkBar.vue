@@ -179,6 +179,7 @@
 					:lender-name="lenderName"
 					:lender-image-url="lenderImageUrl"
 					:show-css-placeholder="avatarMode === 'esi'"
+					use-icon-fallback
 					is-small
 				/>
 			</div>
