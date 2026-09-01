@@ -110,15 +110,14 @@ describe('KvUserAvatar', () => {
 			expect(queryByTestId('user-avatar-icon')).toBeNull();
 		});
 
-		// tw-font-serif is the half of avatarClass that never collides with the tint, so it is the
-		// reliable marker for "the randomized letter styling was applied".
-		it('swaps the randomized letter styling for the brand tint behind the icon', () => {
-			const { container } = render(KvUserAvatar, {
+		// tw-font-serif is the half of avatarClass that survives the icon swap in the markup, so it is
+		// the reliable marker for "the randomized letter styling was applied".
+		it('swaps the randomized letter styling for the icon', () => {
+			const { container, getByTestId } = render(KvUserAvatar, {
 				props: { lenderName: 'Roger', useIconFallback: true },
 			});
-			const root = container.firstChild as HTMLElement;
-			expect(root).toHaveClass('tw-bg-brand-100');
-			expect(root).not.toHaveClass('tw-font-serif');
+			expect(getByTestId('user-avatar-icon').querySelector('svg')).toBeTruthy();
+			expect(container.firstChild as HTMLElement).not.toHaveClass('tw-font-serif');
 		});
 
 		it('leaves the randomized styling in place when a custom image renders', () => {

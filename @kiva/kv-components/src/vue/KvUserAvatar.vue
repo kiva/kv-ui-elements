@@ -4,7 +4,7 @@
 		class="data-hj-suppress tw-flex tw-items-center tw-justify-center tw-rounded-full tw-overflow-hidden"
 		:class="{
 			'tw-bg-brand': isAnonymousUser && theme === 'default' && !showIconFallback,
-			'tw-bg-brand-100': showIconFallback || (isAnonymousUser && theme === 'ecoGreenLight'),
+			'tw-bg-brand-100': !showIconFallback && isAnonymousUser && theme === 'ecoGreenLight',
 			[avatarClass]: !isAnonymousUser && !showIconFallback,
 		}"
 	>
@@ -12,7 +12,7 @@
 		<kv-material-icon
 			v-if="showIconFallback"
 			:icon="mdiAccountCircle"
-			class="tw-w-full tw-h-full tw-text-action"
+			class="tw-w-full tw-h-full tw-text-primary"
 			data-testid="user-avatar-icon"
 		/>
 		<!-- User is anonymous or data is missing -->
