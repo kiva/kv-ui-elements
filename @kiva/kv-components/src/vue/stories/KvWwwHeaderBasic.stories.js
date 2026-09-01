@@ -123,6 +123,7 @@ export default {
 		lenderImageUrl: { control: { type: 'text' } },
 		isBasketDataLoading: { control: { type: 'boolean' } },
 		isUserDataLoading: { control: { type: 'boolean' } },
+		useEsiAvatar: { control: { type: 'boolean' } },
 		showMGUpsellLink: { control: { type: 'boolean' } },
 		loginUrl: { control: { type: 'text' } },
 		myDashboardUrl: { control: { type: 'text' } },
@@ -218,6 +219,25 @@ export const LoadingUserData = story({
 	userId: 12345,
 	isUserDataLoading: true,
 	isBasketDataLoading: true,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+// Same loading state as LoadingUserData, but opted into the ESI avatar — so the pair is the proof
+// that useEsiAvatar reaches LinkBar through this component. It did not until CIT-5084; the prop was
+// declared on the child only, and the ESI stories all lived on KvWwwHeaderBasicLinkBar, which is why
+// nothing showed the gap. Compare the two: grey circle here, the lender's avatar there.
+const ESI_AVATAR = 'url(https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.webp)';
+
+export const EsiAvatarLoading = story({
+	loggedIn: true,
+	userId: 12345,
+	isUserDataLoading: true,
+	useEsiAvatar: true,
+	cssVars: {
+		'--user-avatar-legacy-display': 'none',
+		'--user-avatar': `${ESI_AVATAR} / "Lender avatar via CSS"`,
+	},
 	searchSuggestions: sampleSearchSuggestions,
 	appOrigin: 'https://www.kiva.org',
 });

@@ -22,6 +22,7 @@
 						:lender-image-url="lenderImageUrl"
 						:is-user-data-loading="isUserDataLoading"
 						:is-basket-data-loading="isBasketDataLoading"
+						:use-esi-avatar="useEsiAvatar"
 						:show-m-g-upsell-link="showMGUpsellLink"
 						:login-url="loginUrl"
 						:my-dashboard-url="myDashboardUrl"
@@ -158,6 +159,8 @@ export default {
 		lenderImageUrl: { type: String, default: '' },
 		isUserDataLoading: { type: Boolean, default: false },
 		isBasketDataLoading: { type: Boolean, default: false },
+		// Only for hosts whose ESI emits --user-avatar; without it the avatar renders an empty image.
+		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },

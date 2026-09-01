@@ -73,6 +73,14 @@ The component automatically detects legacy placeholder images from the Kiva mono
 
 <Story of={KvUserAvatarStories.LegacyPlaceholderHandling} />
 
+### Icon Fallback
+
+With `useIconFallback`, display types 2 and 3 collapse into a single avatar icon: any user without a custom image gets the same `mdiAccountCircle` glyph on a `tw-bg-brand-100` tint, and a stored default avatar image never renders. A real custom image is unaffected. Anonymous users get the icon too, so an anonymous lender's stored image stays hidden.
+
+The prop is opt-in — existing consumers keep the lettered and Kiva-K circles. `KvWwwHeaderBasic`'s link bar sets it.
+
+<Story of={KvUserAvatarStories.IconFallback} />
+
 ## Anatomy
 
 The avatar component consists of these main parts:
@@ -81,6 +89,7 @@ The avatar component consists of these main parts:
 - **Profile Image**: The user's actual avatar image (when available)
 - **Initial Letter**: An SVG text element displaying the first letter of the user's name
 - **Kiva Logo**: The Kiva "K" SVG icon shown for anonymous users
+- **Avatar Icon**: The `mdiAccountCircle` glyph shown in place of the letter and the Kiva logo under `useIconFallback`
 - **Loading Placeholder**: A shimmer effect shown while images are loading
 
 ---
