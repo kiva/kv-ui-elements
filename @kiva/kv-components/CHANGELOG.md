@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.1...@kiva/kv-components@9.0.2) (2026-09-01)
+
+
+### Bug Fixes
+
+* **KvUserAvatar:** stop the loading shimmer rendering beside the ESI avatar ([d6ee868](https://github.com/kiva/kv-ui-elements/commit/d6ee8687be46a466042f970df1b9eb9f3ece90b2))
+* **KvWwwHeaderBasic:** expose useEsiAvatar and show the avatar icon once loaded ([d6ab821](https://github.com/kiva/kv-ui-elements/commit/d6ab82185d9874523e70c74ede3a3547f21b3ddf))
+
+
+
+
+
 ## [9.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.0...@kiva/kv-components@9.0.1) (2026-08-31)
 
 
