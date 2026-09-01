@@ -245,6 +245,56 @@ export const PlacementMatrix = () => ({
 });
 
 /**
+ * Filling the action slot makes a tooltip persistent: hover it, then move the pointer
+ * in and act on the button. It will not close on mouseout the way the transient one
+ * beside it does. `close` unmounts it, so it stays gone on the next hover.
+ */
+export const Dismissal = () => ({
+	components: {
+		KvButton,
+		KvTooltip,
+	},
+	data() {
+		return { dismissedAt: null };
+	},
+	methods: {
+		onDismiss() {
+			this.dismissedAt = 'dismissed — hover the trigger again, it stays gone';
+		},
+	},
+	template: `
+		<div class="tw-p-8">
+			<div class="tw-grid tw-grid-cols-2 tw-gap-x-12" style="min-height: 320px;">
+				<div class="tw-flex tw-flex-col tw-justify-end tw-items-center">
+					<p class="tw-text-label tw-text-gray-600 tw-mb-4">Transient — closes on mouseout</p>
+					<kv-button id="dismissal-transient" size="small">No action</kv-button>
+					<kv-tooltip controller="dismissal-transient" variant="dark">
+						<template #title>Tooltip title</template>
+						Tooltip body copy explains the control in one or two short sentences.
+					</kv-tooltip>
+				</div>
+				<div class="tw-flex tw-flex-col tw-justify-end tw-items-center">
+					<p class="tw-text-label tw-text-gray-600 tw-mb-4">Persistent — the button is the dismissal</p>
+					<kv-button id="dismissal-persistent" size="small">With action</kv-button>
+					<kv-tooltip
+						controller="dismissal-persistent"
+						variant="dark"
+						@dismiss="onDismiss"
+					>
+						<template #title>Annual goals</template>
+						Set a goal to stay accountable and watch your impact grow.
+						<template #action="{ close }">
+							<kv-button variant="secondary" size="small" @click="close">Got it</kv-button>
+						</template>
+					</kv-tooltip>
+				</div>
+			</div>
+			<p v-if="dismissedAt" class="tw-text-small tw-text-gray-600 tw-mt-6">{{ dismissedAt }}</p>
+		</div>
+	`,
+});
+
+/**
  * The two neutral chips shown on the surfaces they are meant for.
  */
 export const Variants = () => ({

@@ -1,9 +1,11 @@
 <template>
 	<kv-popper
+		v-if="!isDismissed"
 		ref="popperRef"
 		:controller="controller"
 		:popper-modifiers="popperModifiers"
 		:popper-placement="placement"
+		:persistent="!!$slots.action"
 		transition-type="kvfastfade"
 		class="tooltip-pane tw-absolute tw-rounded tw-z-popover"
 		:class="paneClass"
@@ -29,7 +31,10 @@
 				:class="{ 'tooltip-action--dark': resolvedVariant === 'dark' }"
 				:style="defaultTheme"
 			>
-				<slot name="action"></slot>
+				<slot
+					name="action"
+					:close="dismiss"
+				></slot>
 			</div>
 		</div>
 		<div
@@ -44,6 +49,7 @@ import {
 	ref,
 	toRefs,
 	computed,
+	nextTick,
 	watch,
 	PropType,
 } from 'vue';
@@ -116,7 +122,7 @@ export default {
 			},
 		},
 	},
-	emits: ['tool-tip-visible'],
+	emits: ['tool-tip-visible', 'dismiss'],
 	setup(props, { emit }) {
 		const {
 			modifiers,
@@ -154,6 +160,20 @@ export default {
 			}
 		};
 
+		const isDismissed = ref(false);
+
+		// Handed to the action slot so whatever the consumer puts there can close the
+		// tooltip. Unmounting it is what makes the dismissal stick: a hidden popper would
+		// reopen on the controller's next hover.
+		const dismiss = async () => {
+			isDismissed.value = true;
+			// Wait for the popper to unmount before restoring focus, or the controller's
+			// focus handler reopens what we just dismissed.
+			await nextTick();
+			getControllerElement()?.focus();
+			emit('dismiss');
+		};
+
 		const resolvedVariant = computed(() => {
 			if (variant.value) return variant.value;
 			if (theme.value) return DEPRECATED_THEMES[theme.value];
@@ -174,7 +194,9 @@ export default {
 
 		return {
 			defaultTheme,
+			dismiss,
 			handleKvPopperVisibility,
+			isDismissed,
 			paneClass,
 			popperModifiers,
 			popperRef,

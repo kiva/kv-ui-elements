@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { fireEvent, render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
 import KvTooltip from '#components/KvTooltip.vue';
 
@@ -103,6 +103,56 @@ describe('KvTooltip', () => {
 			const action = container.querySelector('.tooltip-action');
 			expect(action).toHaveClass('tooltip-action--dark');
 			expect(action.style.getPropertyValue('--bg-action')).toBe('39, 106, 67');
+		});
+	});
+
+	describe('dismissal', () => {
+		// The action slot's content is the dismissal, so it is handed a close function.
+		const dismissibleSlot = {
+			action: `
+				<template #action="{ close }">
+					<button type="button" @click="close">Got it</button>
+				</template>
+			`,
+		};
+
+		it('hands a close function to the action slot', () => {
+			const { getByText } = renderTooltip({}, { slots: dismissibleSlot });
+
+			getByText('Got it');
+		});
+
+		it('unmounts the tooltip when the action slot closes it', async () => {
+			const { container, getByText } = renderTooltip({}, { slots: dismissibleSlot });
+
+			await fireEvent.click(getByText('Got it'));
+
+			expect(container.querySelector('.tooltip-pane')).toBeNull();
+		});
+
+		it('emits dismiss when the action slot closes it', async () => {
+			const { emitted, getByText } = renderTooltip({}, { slots: dismissibleSlot });
+
+			await fireEvent.click(getByText('Got it'));
+
+			expect(emitted().dismiss).toHaveLength(1);
+		});
+
+		it('returns focus to the controller so it is not stranded on removed content', async () => {
+			const { getByText } = renderTooltip({}, { slots: dismissibleSlot });
+
+			await fireEvent.click(getByText('Got it'));
+
+			expect(document.activeElement).toBe(document.getElementById(CONTROLLER_ID));
+		});
+
+		it('does not reopen on a later hover once dismissed', async () => {
+			const { container, getByText } = renderTooltip({}, { slots: dismissibleSlot });
+			await fireEvent.click(getByText('Got it'));
+
+			await fireEvent.mouseOver(document.getElementById(CONTROLLER_ID));
+
+			expect(container.querySelector('.tooltip-pane')).toBeNull();
 		});
 	});
 });

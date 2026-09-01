@@ -51,6 +51,26 @@ The optional `action` slot holds a single button or text link. Pick the button v
 
 Buttons inside the slot render against a pinned default theme, so they stay the same regardless of the page theme surrounding the tooltip. Use `size="small"` for the compact treatment.
 
+Filling this slot also switches the tooltip to **persistent** — see [Behavior](#behavior).
+
+### Dismissing
+
+The slot is given a `close` function, so whatever you put there becomes the dismissal:
+
+```vue
+<kv-tooltip controller="goal-info" variant="dark" @dismiss="rememberSeen">
+  <template #title>Annual goals</template>
+  Set a goal to stay accountable and watch your impact grow.
+  <template #action="{ close }">
+    <kv-button variant="secondary" size="small" @click="close">Got it</kv-button>
+  </template>
+</kv-tooltip>
+```
+
+<Story of={KvTooltipStories.Dismissal} />
+
+`close` unmounts the tooltip, so the dismissal sticks — a merely hidden tooltip would reopen on the controller's next hover. It also returns focus to the controller and emits `dismiss`, which is where you persist the choice if it has to survive a reload.
+
 Every action treatment on both chips is in the [Variations](#variations) matrix above.
 
 ## Usage Information
@@ -77,12 +97,21 @@ Tooltips provide supplementary information without cluttering the interface. The
 
 ## Behavior
 
-### Hover and Focus Interaction
+### Transient and persistent
 
-Tooltips appear when users hover over or focus on the controller element. They automatically hide when the user moves away or removes focus.
+A tooltip's behavior depends on whether it has an action to act on.
+
+**Transient** — no `action` slot. Opens on hover or focus, and closes on mouseout or blur after a short grace period, on Escape, or on a click outside.
+
+**Persistent** — the `action` slot is filled. The action is the dismissal, so the tooltip stays open until the user acts on it and never closes itself on mouseout or blur. Escape and an outside click still close it.
+
+That distinction is what makes the action reachable. Leaving the controller has to not close a persistent tooltip, whether the user is travelling into it with a pointer or tabbing into it from the keyboard.
+
+Both modes stay open while the pointer moves from the controller into the tooltip, as [WCAG 1.4.13](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html) requires, and both can be dismissed with Escape without moving the pointer.
 
 - Tooltips trigger on **mouseover** and **focus** events
-- They hide on **mouseout** and **blur** events
+- Transient tooltips hide on **mouseout** and **blur** events
+- **Escape** and an outside click close either mode
 - There is a subtle fade-in/fade-out transition
 
 <Story of={KvTooltipStories.PlacementShowcase} />
@@ -179,7 +208,7 @@ The `theme` prop is deprecated and will be removed. It still renders, mapped ont
 - ✅ **Keyboard accessible:** Tooltip appears on focus, not just hover
 - ✅ **Semantic HTML:** Uses proper ARIA attributes via KvPopper
 - ✅ **Focus management:** Tooltips appear when trigger element receives focus
-- ✅ **ESC key support:** Inherited from KvPopper for dismissing tooltips
+- ✅ **ESC key support:** Escape closes either mode, returning focus to the controller
 - ✅ **Controller accessibility:** Works with any focusable element
 - ✅ **No mouse-only interaction:** Full keyboard and screen reader support
 

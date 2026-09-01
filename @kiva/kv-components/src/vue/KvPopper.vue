@@ -37,6 +37,12 @@ export default {
 		transitionType: { type: String, default: '' },
 		popperPlacement: { type: String, default: 'bottom-start' },
 		popperModifiers: { type: Object, default: () => {} },
+		/**
+		 * Stay open once shown, rather than closing when the pointer or focus leaves the
+		 * controller. Escape and an outside click still close it. Use for poppers holding
+		 * something interactive, which the user has to be able to reach and act on.
+		 */
+		persistent: { type: Boolean, default: false },
 	},
 	data() {
 		return {
@@ -45,6 +51,7 @@ export default {
 			styles: {},
 			show: false,
 			timeout: null,
+			suppressOpen: false,
 		};
 	},
 	computed: {
@@ -77,6 +84,7 @@ export default {
 	},
 	methods: {
 		open() {
+			if (this.suppressOpen) return;
 			this.initPopper().then(() => {
 				this.setTimeout(() => {
 					this.show = true;
@@ -90,6 +98,30 @@ export default {
 				this.show = false;
 				this.removeBodyEvents();
 			}, this.closeDelay);
+		},
+		// Close now, skipping closeDelay, for dismissals the user asked for directly.
+		hide() {
+			window.clearTimeout(this.timeout);
+			this.show = false;
+			this.removeBodyEvents();
+		},
+		outsideHandler(e) {
+			if (!isTargetElement(e, [this.reference, this.$el])) {
+				this.hide();
+			}
+		},
+		keydownHandler(e) {
+			if (e.key !== 'Escape') return;
+			// Focus would otherwise be stranded on content that just went away.
+			const shouldReturnFocus = this.$el.contains(document.activeElement);
+			this.hide();
+			if (shouldReturnFocus) {
+				// Returning focus fires the controller's focus handler, which would
+				// reopen the popper the user just dismissed.
+				this.suppressOpen = true;
+				this.reference.focus();
+				this.suppressOpen = false;
+			}
 		},
 		toggle() {
 			if (this.show) {
@@ -139,25 +171,35 @@ export default {
 		attachEvents() {
 			this.reference.addEventListener('mouseover', this.open);
 			this.reference.addEventListener('focus', this.open);
-			this.reference.addEventListener('mouseout', this.close);
-			this.reference.addEventListener('blur', this.close);
-			this.$el.addEventListener('mouseover', this.open);
-			this.$el.addEventListener('mouseout', this.close);
 			this.reference.addEventListener('touchstart', this.referenceTapHandler);
+			// A persistent popper holds something the user has to reach, so leaving the
+			// controller must not close it — by pointer or by tabbing into the content.
+			if (!this.persistent) {
+				this.reference.addEventListener('mouseout', this.close);
+				this.reference.addEventListener('blur', this.close);
+				this.$el.addEventListener('mouseover', this.open);
+				this.$el.addEventListener('mouseout', this.close);
+			}
 		},
 		attachBodyEvents() {
 			onBodyTouchstart(this.bodyTouchHandler);
+			document.addEventListener('pointerdown', this.outsideHandler);
+			document.addEventListener('keydown', this.keydownHandler);
 		},
 		removeEvents() {
 			this.removeBodyEvents();
 			this.reference.removeEventListener('touchstart', this.referenceTapHandler);
 			this.reference.removeEventListener('mouseover', this.open);
+			this.reference.removeEventListener('focus', this.open);
 			this.reference.removeEventListener('mouseout', this.close);
+			this.reference.removeEventListener('blur', this.close);
 			this.$el.removeEventListener('mouseover', this.open);
 			this.$el.removeEventListener('mouseout', this.close);
 		},
 		removeBodyEvents() {
 			offBodyTouchstart(this.bodyTouchHandler);
+			document.removeEventListener('pointerdown', this.outsideHandler);
+			document.removeEventListener('keydown', this.keydownHandler);
 		},
 		setAttributes(attrs) {
 			Object.keys(attrs).forEach((attr) => {
