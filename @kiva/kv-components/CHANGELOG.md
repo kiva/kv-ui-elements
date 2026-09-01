@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.2...@kiva/kv-components@9.0.3) (2026-09-01)
+
+
+### Bug Fixes
+
+* **header:** remove light green bg behind fallback account icon ([eee357b](https://github.com/kiva/kv-ui-elements/commit/eee357b5e26814dc10d92cde201d6d134c17a6c9))
+* update test to remove reference to bg color and use the test id instead ([90645f6](https://github.com/kiva/kv-ui-elements/commit/90645f6831363210bf116218618018be5bb9f7b3))
+* use tw-text-primary for user icon ([c89b7a3](https://github.com/kiva/kv-ui-elements/commit/c89b7a38ec77e9350aa262c42a5b0da410c7ba4e))
+
+
+
+
+
 ## [9.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.1...@kiva/kv-components@9.0.2) (2026-09-01)
 
 
