@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.3...@kiva/kv-components@9.1.0) (2026-09-02)
+
+
+### Features
+
+* **CIT-5115:** source the lend menu from browsingCategories ([160e1c3](https://github.com/kiva/kv-ui-elements/commit/160e1c3a60cc4bb72a2dc6be11786a5790d911cc))
+
+
+
+
+
 ## [9.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.2...@kiva/kv-components@9.0.3) (2026-09-01)
 
 
