@@ -89,7 +89,7 @@ The tooltip is persistent either way, so it stays open after that click and the 
 
 <Story of={KvTooltipStories.Dismissal} />
 
-`close` ends the current viewing and returns focus to the controller. The tooltip stays mounted, so hovering the controller shows it again — closing it is not the same as retiring it. For a one-time hint, listen for `dismiss` and stop rendering the tooltip yourself:
+`close` ends the current viewing, and returns focus to the controller when focus was inside the tooltip. It stays mounted, so hovering the controller shows it again — closing it is not the same as retiring it. For a one-time hint, listen for `dismiss` and stop rendering the tooltip yourself:
 
 ```vue
 <kv-tooltip v-if="!hintSeen" @dismiss="hintSeen = true" …>
@@ -232,7 +232,7 @@ The `theme` prop is deprecated and will be removed. It still renders, mapped ont
 - ✅ **Keyboard accessible:** Tooltip appears on focus, not just hover
 - ✅ **Semantic HTML:** Uses proper ARIA attributes via KvPopper
 - ✅ **Focus management:** Tooltips appear when trigger element receives focus
-- ✅ **ESC key support:** Escape closes either mode, returning focus to the controller
+- ✅ **ESC key support:** Escape closes either mode, returning focus to the controller when focus was inside
 - ✅ **Controller accessibility:** Works with any focusable element
 - ✅ **No mouse-only interaction:** Full keyboard and screen reader support
 

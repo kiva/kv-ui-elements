@@ -95,6 +95,10 @@ export const Default = (args, { argTypes }) => ({
  * Every content combination in the Figma component set — action x title, on both chips.
  * Hover or focus a trigger to see its tooltip. Placement is orthogonal and covered by
  * PlacementMatrix rather than crossed with this one.
+ *
+ * Hovering several tooltips with an action leaves them all open, and clicking one then
+ * closes the rest. That is outside-click dismissal working: a click inside one tooltip
+ * is outside every other one. Only this grid shows several at once.
  */
 export const ContentMatrix = () => ({
 	components: {
@@ -128,6 +132,12 @@ export const ContentMatrix = () => ({
 	},
 	template: `
 		<div class="tw-p-8 tw-space-y-8">
+			<p class="tw-text-small tw-text-gray-600 tw-bg-gray-100 tw-rounded-md tw-p-3">
+				Tooltips with an action are persistent, so hovering several here leaves them all
+				open at once. Clicking one then closes the others. That is the outside-click
+				dismissal doing its job rather than a bug: a click inside one tooltip is a click
+				outside every other one. Only this grid shows several at a time.
+			</p>
 			<div
 				v-for="variant in variants"
 				:key="variant"

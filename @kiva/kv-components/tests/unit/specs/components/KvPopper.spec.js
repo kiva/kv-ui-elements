@@ -97,7 +97,7 @@ describe('KvPopper', () => {
 			await fireEvent.mouseOver(controller);
 			await waitForState(container, true);
 
-			await fireEvent.keyDown(document, { key: 'Escape' });
+			await fireEvent.keyUp(document.body, { key: 'Escape' });
 
 			await waitForState(container, false);
 		});
@@ -124,13 +124,48 @@ describe('KvPopper', () => {
 		});
 	});
 
+	it('claims Escape in the capture phase so an enclosing overlay does not also close', async () => {
+		const onOverlayEscape = jest.fn();
+		document.addEventListener('keyup', onOverlayEscape);
+		const { container, controller } = renderPopper();
+		await fireEvent.mouseOver(controller);
+		await waitForState(container, true);
+
+		await fireEvent.keyUp(document.body, { key: 'Escape' });
+
+		await waitForState(container, false);
+		expect(onOverlayEscape).not.toHaveBeenCalled();
+		document.removeEventListener('keyup', onOverlayEscape);
+	});
+
+	it('re-reads persistent when it changes after mount', async () => {
+		const { container, controller, rerender } = renderPopper({ persistent: true });
+		await fireEvent.mouseOver(controller);
+		await waitForState(container, true);
+
+		await rerender({ controller: CONTROLLER_ID, closeDelay: 0, persistent: false });
+		await fireEvent.mouseOut(controller);
+
+		await waitForState(container, false);
+	});
+
+	it('survives a click after its controller has left the DOM', async () => {
+		const { controller } = renderPopper();
+		await fireEvent.mouseOver(controller);
+		controller.remove();
+
+		expect(() => {
+			document.body.dispatchEvent(new Event('pointerdown', { bubbles: true }));
+		}).not.toThrow();
+	});
+
 	it('returns focus to the controller when Escape is pressed from inside the panel', async () => {
 		const { container, controller, getByText } = renderPopper({ persistent: true });
 		await fireEvent.mouseOver(controller);
 		await waitForState(container, true);
 		getByText('Got it').focus();
 
-		await fireEvent.keyDown(document, { key: 'Escape' });
+		await fireEvent.keyUp(document.body, { key: 'Escape' });
 
 		await waitForState(container, false);
 		expect(document.activeElement).toBe(controller);

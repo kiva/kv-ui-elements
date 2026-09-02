@@ -58,6 +58,11 @@ export default {
 		reference() {
 			return typeof this.controller === 'string' ? document.getElementById(this.controller) : this.controller;
 		},
+		// reference resolves by id on every read, so it is null once the controller leaves
+		// the DOM while this popper is still mounted.
+		hitTargets() {
+			return [this.reference, this.$el].filter(Boolean);
+		},
 	},
 	watch: {
 		show(showing) {
@@ -99,6 +104,11 @@ export default {
 				this.removeBodyEvents();
 			}, this.closeDelay);
 		},
+		// Persistent content has to stay reachable, so leaving the controller must not close
+		// it — by pointer or by tabbing in. Checked here so the prop can change after mount.
+		closeOnLeave() {
+			if (!this.persistent) this.close();
+		},
 		// Close now, skipping closeDelay, for dismissals the user asked for directly.
 		hide() {
 			window.clearTimeout(this.timeout);
@@ -106,7 +116,7 @@ export default {
 			this.removeBodyEvents();
 		},
 		outsideHandler(e) {
-			if (!isTargetElement(e, [this.reference, this.$el])) {
+			if (!isTargetElement(e, this.hitTargets)) {
 				this.hide();
 			}
 		},
@@ -115,7 +125,7 @@ export default {
 		dismiss() {
 			const shouldReturnFocus = this.$el.contains(document.activeElement);
 			this.hide();
-			if (shouldReturnFocus) {
+			if (shouldReturnFocus && this.reference) {
 				// Returning focus fires the controller's focus handler, which would
 				// reopen the popper the user just dismissed.
 				this.suppressOpen = true;
@@ -123,8 +133,12 @@ export default {
 				this.suppressOpen = false;
 			}
 		},
-		keydownHandler(e) {
-			if (e.key === 'Escape') this.dismiss();
+		keyupHandler(e) {
+			if (e.key !== 'Escape') return;
+			// Enclosing overlays close on a bubble-phase Escape. Claiming it here stops one
+			// keypress from closing this popper and the lightbox around it.
+			e.stopPropagation();
+			this.dismiss();
 		},
 		toggle() {
 			if (this.show) {
@@ -162,7 +176,7 @@ export default {
 			return this.popperPromise;
 		},
 		bodyTouchHandler(e) {
-			if (!isTargetElement(e, [this.reference, this.$el])) {
+			if (!isTargetElement(e, this.hitTargets)) {
 				this.show = false;
 				this.removeBodyEvents();
 			}
@@ -175,34 +189,30 @@ export default {
 			this.reference.addEventListener('mouseover', this.open);
 			this.reference.addEventListener('focus', this.open);
 			this.reference.addEventListener('touchstart', this.referenceTapHandler);
-			// Persistent content has to stay reachable, so leaving the controller must not
-			// close it — by pointer or by tabbing in.
-			if (!this.persistent) {
-				this.reference.addEventListener('mouseout', this.close);
-				this.reference.addEventListener('blur', this.close);
-				this.$el.addEventListener('mouseover', this.open);
-				this.$el.addEventListener('mouseout', this.close);
-			}
+			this.reference.addEventListener('mouseout', this.closeOnLeave);
+			this.reference.addEventListener('blur', this.closeOnLeave);
+			this.$el.addEventListener('mouseover', this.open);
+			this.$el.addEventListener('mouseout', this.closeOnLeave);
 		},
 		attachBodyEvents() {
 			onBodyTouchstart(this.bodyTouchHandler);
 			document.addEventListener('pointerdown', this.outsideHandler);
-			document.addEventListener('keydown', this.keydownHandler);
+			document.addEventListener('keyup', this.keyupHandler, true);
 		},
 		removeEvents() {
 			this.removeBodyEvents();
 			this.reference.removeEventListener('touchstart', this.referenceTapHandler);
 			this.reference.removeEventListener('mouseover', this.open);
 			this.reference.removeEventListener('focus', this.open);
-			this.reference.removeEventListener('mouseout', this.close);
-			this.reference.removeEventListener('blur', this.close);
+			this.reference.removeEventListener('mouseout', this.closeOnLeave);
+			this.reference.removeEventListener('blur', this.closeOnLeave);
 			this.$el.removeEventListener('mouseover', this.open);
-			this.$el.removeEventListener('mouseout', this.close);
+			this.$el.removeEventListener('mouseout', this.closeOnLeave);
 		},
 		removeBodyEvents() {
 			offBodyTouchstart(this.bodyTouchHandler);
 			document.removeEventListener('pointerdown', this.outsideHandler);
-			document.removeEventListener('keydown', this.keydownHandler);
+			document.removeEventListener('keyup', this.keyupHandler, true);
 		},
 		setAttributes(attrs) {
 			Object.keys(attrs).forEach((attr) => {

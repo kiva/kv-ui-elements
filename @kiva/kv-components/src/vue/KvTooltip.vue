@@ -27,7 +27,6 @@
 			<div
 				v-if="$slots.action"
 				class="tooltip-action tw-mt-1.5"
-				:class="{ 'tooltip-action--dark': resolvedVariant === 'dark' }"
 				:style="defaultTheme"
 			>
 				<slot
@@ -176,10 +175,12 @@ export default {
 			: 'tooltip-pane--light tw-bg-white tw-text-gray-800'));
 
 		watch(showTooltip, (show) => {
+			// Drive the popper directly. Closing used to fake a mouseout on the controller,
+			// which a persistent popper ignores by design.
 			if (show) {
-				triggerHover(true);
+				popperRef.value?.open();
 			} else {
-				triggerHover(false);
+				popperRef.value?.dismiss();
 			}
 		});
 
@@ -215,14 +216,14 @@ export default {
 	border-color: theme('colors.gray.800');
 }
 
-/* KvTextLink resolves against --text-action, which the pinned default theme sets to a
-   green only legible on the light chip. */
-.tooltip-action--dark :deep(.tw-text-link) {
+/* Slot content resolves --text-action against the page theme, whose green is illegible
+   on the dark chip. Covers the title and body, not just the action. */
+.tooltip-pane--dark :deep(.tw-text-link) {
 	color: theme('colors.eco-green.2');
 }
 
-.tooltip-action--dark :deep(.tw-text-link:hover),
-.tooltip-action--dark :deep(.tw-text-link:focus) {
+.tooltip-pane--dark :deep(.tw-text-link:hover),
+.tooltip-pane--dark :deep(.tw-text-link:focus) {
 	color: theme('colors.white');
 }
 

@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/vue';
+import { fireEvent, render, waitFor } from '@testing-library/vue';
 import { axe } from 'jest-axe';
 import KvTooltip from '#components/KvTooltip.vue';
 
@@ -18,6 +18,10 @@ const renderTooltip = (props = {}, options = {}) => {
 };
 
 const pane = (container) => container.querySelector('.tooltip-pane');
+
+// KvPopper emits show/hide as soon as it flips, independent of the CSS transition, which
+// never resolves in jsdom.
+const visibility = (utils) => (utils.emitted()['tool-tip-visible'] ?? []).map(([v]) => v);
 
 describe('KvTooltip', () => {
 	afterEach(() => {
@@ -101,8 +105,23 @@ describe('KvTooltip', () => {
 			});
 
 			const action = container.querySelector('.tooltip-action');
-			expect(action).toHaveClass('tooltip-action--dark');
 			expect(action.style.getPropertyValue('--bg-action')).toBe('39, 106, 67');
+		});
+	});
+
+	describe('showTooltip', () => {
+		it.each([
+			['without an action', {}],
+			['with an action', { action: '<button>Got it</button>' }],
+		])('opens and closes a tooltip %s', async (_label, slots) => {
+			const utils = renderTooltip({ showTooltip: false }, { slots });
+
+			await utils.rerender({ controller: CONTROLLER_ID, showTooltip: true });
+			await waitFor(() => expect(visibility(utils)).toContain(true));
+
+			await utils.rerender({ controller: CONTROLLER_ID, showTooltip: false });
+
+			await waitFor(() => expect(visibility(utils)).toEqual([true, false]));
 		});
 	});
 
@@ -160,6 +179,67 @@ describe('KvTooltip', () => {
 			await fireEvent.click(getByText('Got it'));
 
 			expect(onAcknowledge).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	// KvLightbox, KvCartModal and KvSideSheet all close on a document keyup Escape in the
+	// bubble phase, so a tooltip inside one must not let a single press close both.
+	describe('inside a modal', () => {
+		const overlayClose = jest.fn();
+		const overlayKeyUp = (e) => { if (e.key === 'Escape') overlayClose(); };
+
+		beforeEach(() => document.addEventListener('keyup', overlayKeyUp));
+		afterEach(() => {
+			document.removeEventListener('keyup', overlayKeyUp);
+			overlayClose.mockClear();
+		});
+
+		const openTooltip = async (slots) => {
+			const utils = renderTooltip({}, { slots });
+			await fireEvent.mouseOver(document.getElementById(CONTROLLER_ID));
+			await waitFor(() => expect(visibility(utils)).toContain(true));
+			return utils;
+		};
+
+		it.each([
+			['transient', {}],
+			['persistent', { action: '<button>Got it</button>' }],
+		])('Escape closes an open %s tooltip and leaves the modal open', async (_label, slots) => {
+			const utils = await openTooltip(slots);
+
+			await fireEvent.keyUp(document.body, { key: 'Escape' });
+
+			await waitFor(() => expect(visibility(utils)).toEqual([true, false]));
+			expect(overlayClose).not.toHaveBeenCalled();
+		});
+
+		it('lets a second Escape through to the modal', async () => {
+			const utils = await openTooltip({ action: '<button>Got it</button>' });
+			await fireEvent.keyUp(document.body, { key: 'Escape' });
+			await waitFor(() => expect(visibility(utils)).toEqual([true, false]));
+
+			await fireEvent.keyUp(document.body, { key: 'Escape' });
+
+			expect(overlayClose).toHaveBeenCalledTimes(1);
+		});
+
+		it('does not intercept Escape when no tooltip is open', async () => {
+			renderTooltip();
+
+			await fireEvent.keyUp(document.body, { key: 'Escape' });
+
+			expect(overlayClose).toHaveBeenCalledTimes(1);
+		});
+
+		it('only intercepts Escape, not other keys', async () => {
+			const onOtherKey = jest.fn();
+			document.addEventListener('keyup', onOtherKey);
+			await openTooltip({});
+
+			await fireEvent.keyUp(document.body, { key: 'a' });
+
+			expect(onOtherKey).toHaveBeenCalled();
+			document.removeEventListener('keyup', onOtherKey);
 		});
 	});
 });
