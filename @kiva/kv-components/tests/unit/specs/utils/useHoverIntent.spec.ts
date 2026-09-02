@@ -1,21 +1,5 @@
-import {
-	createApp, defineComponent, h, type App,
-} from 'vue';
 import { useHoverIntent } from '#utils/useHoverIntent';
-
-// Runs the composable inside a real component instance so its lifecycle hooks attach to an
-// active instance instead of warning.
-function withSetup<T>(composable: () => T): { result: T; app: App } {
-	let result!: T;
-	const app = createApp(defineComponent({
-		setup() {
-			result = composable();
-			return () => h('div');
-		},
-	}));
-	app.mount(document.createElement('div'));
-	return { result, app };
-}
+import withSetup from '../../utils/withSetup';
 
 describe('useHoverIntent', () => {
 	afterEach(() => {

@@ -1,26 +1,6 @@
-import {
-	createApp,
-	defineComponent,
-	h,
-	ref,
-	nextTick,
-	type App,
-} from 'vue';
+import { ref, nextTick } from 'vue';
 import { useCountUp } from '#utils/useCountUp';
-
-// Run a composable inside a real component instance so lifecycle hooks
-// (onUnmounted, etc.) attach to an active instance instead of warning.
-function withSetup<T>(composable: () => T): { result: T; app: App } {
-	let result!: T;
-	const app = createApp(defineComponent({
-		setup() {
-			result = composable();
-			return () => h('div');
-		},
-	}));
-	app.mount(document.createElement('div'));
-	return { result, app };
-}
+import withSetup from '../../utils/withSetup';
 
 let rafCallbacks: Array<(ts: number) => void> = [];
 let rafId = 0;
