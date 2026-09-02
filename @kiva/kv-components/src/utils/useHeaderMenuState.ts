@@ -1,9 +1,12 @@
 import { ref, readonly } from 'vue';
 import type { InjectionKey, Ref } from 'vue';
+import type { PointerType } from '#utils/usePointerType';
 
 export interface HeaderMenuState {
-	// Panel id of the group that is explicitly expanded, if any.
-	expandedId: Readonly<Ref<string | null>>;
+	// Panel id of the group the user toggled open, if any.
+	toggledId: Readonly<Ref<string | null>>;
+	// Type of the pointer most recently used over the bar; null before mount.
+	pointerType: Readonly<Ref<PointerType | null>>;
 	// eslint-disable-next-line no-unused-vars
 	toggle(id: string): void;
 	close(): void;
@@ -12,20 +15,24 @@ export interface HeaderMenuState {
 export const HEADER_MENU_STATE: InjectionKey<HeaderMenuState> = Symbol('headerMenuState');
 
 /**
- * The one piece of menu state shared across KvWwwHeaderBasic's menu groups: which group, if any,
- * is explicitly expanded. LinkBar provides it under HEADER_MENU_STATE; each HeaderMenuGroup
- * injects it and derives its own aria-expanded binding from it.
+ * Menu state shared across KvWwwHeaderBasic's menu groups: which group, if any, the user toggled
+ * open, and the current pointer type. LinkBar provides it under HEADER_MENU_STATE; each
+ * HeaderMenuGroup injects it and derives its own toggled state from it.
  */
-export function useHeaderMenuState(): HeaderMenuState {
-	const expandedId = ref<string | null>(null);
+export function useHeaderMenuState(pointerType: Readonly<Ref<PointerType | null>>): HeaderMenuState {
+	const toggledId = ref<string | null>(null);
 
+	// Records `id` as toggled, or clears it when it is already the toggled one.
 	function toggle(id: string): void {
-		expandedId.value = expandedId.value === id ? null : id;
+		toggledId.value = toggledId.value === id ? null : id;
 	}
 
+	// Clears the toggled group.
 	function close(): void {
-		expandedId.value = null;
+		toggledId.value = null;
 	}
 
-	return { expandedId: readonly(expandedId), toggle, close };
+	return {
+		toggledId: readonly(toggledId), pointerType, toggle, close,
+	};
 }

@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import {
-	ref, inject, watch, toRef,
+	inject, watch, toRef, shallowRef,
 } from 'vue';
 import { HEADER_MENU_STATE } from '#utils/useHeaderMenuState';
 import { HEADER_MENU_PLACEMENT } from '#utils/useHeaderMenuPlacement';
@@ -38,19 +38,19 @@ import { useHeaderMenuGroup } from '#utils/useHeaderMenuGroup';
 /**
  * One menu group in KvWwwHeaderBasic's link bar: the trigger(s) in the default slot and a panel
  * whose content mounts on the group's first approach (pointer, focus or explicit open). The panel
- * opens while the group is hovered or while a direct child carries aria-expanded="true"; placement
- * comes from the custom properties the placement pass writes (--nav-height on the bar,
- * --trigger-gap-left/right and --trigger-width on the group).
+ * opens while a direct child carries aria-expanded="true" or, for mouse pointers, while the group
+ * is hovered; placement comes from the custom properties the placement pass writes (--nav-height
+ * on the bar, --trigger-gap-left/right and --trigger-width on the group).
  *
- * Emits `open` once when the menu becomes open (explicit toggle, or a mouse hover that outlasts
- * the intent delay) and `close` once when it is no longer open by either path.
+ * Emits `open` once when the menu becomes expanded (toggled by the user, or a mouse hover that
+ * outlasts the intent delay) and `close` once when it is no longer expanded by either path.
  */
 export default {
 	name: 'HeaderMenuGroup',
 	props: {
 		/**
 		 * Id for the panel element, referenced by the trigger's aria-controls. Also identifies the
-		 * group in the shared expanded state.
+		 * group in the shared toggled state.
 		 */
 		panelId: { type: String, required: true },
 		/**
@@ -68,7 +68,7 @@ export default {
 		if (!menus) throw new Error('HeaderMenuGroup requires a HEADER_MENU_STATE provider');
 		const placement = inject(HEADER_MENU_PLACEMENT, null);
 
-		const root = ref<HTMLElement | null>(null);
+		const root = shallowRef<HTMLElement | null>(null);
 		const group = useHeaderMenuGroup({
 			panelId: toRef(props, 'panelId'),
 			rootRef: root,
@@ -76,7 +76,7 @@ export default {
 			placement,
 		});
 
-		watch(group.opened, (isOpen) => emit(isOpen ? 'open' : 'close'), { flush: 'sync' });
+		watch(group.expanded, (isExpanded) => emit(isExpanded ? 'open' : 'close'), { flush: 'sync' });
 
 		return { root, ...group };
 	},
@@ -100,9 +100,10 @@ export default {
 }
 
 /*
- * Menu open state: the panel shows while the group is hovered or while a direct child carries
- * aria-expanded="true". Opening waits out --menu-open-delay, then fades in; closing holds through
- * the same delay, fades over --menu-close-fade, then hides and collapses.
+ * Menu open state: the panel shows while a direct child carries aria-expanded="true", or while the
+ * group is hovered under a bar whose current pointer is a mouse. Opening waits out
+ * --menu-open-delay, then fades in; closing holds through the same delay, fades over
+ * --menu-close-fade, then hides and collapses.
  */
 .menu-panel {
 	@apply tw-absolute tw-bg-primary tw-overflow-y-auto tw-z-modal;
@@ -116,7 +117,8 @@ export default {
 		max-height 0s calc(var(--menu-open-delay) + var(--menu-close-fade)),
 		min-height 0s calc(var(--menu-open-delay) + var(--menu-close-fade));
 }
-.menu-group:is(:hover, :has(> [aria-expanded="true"])) > .menu-panel {
+.menu-group:has(> [aria-expanded="true"]) > .menu-panel,
+[data-pointer="mouse"] .menu-group:hover > .menu-panel {
 	visibility: visible;
 	opacity: 1;
 	max-height: calc(100dvh - var(--nav-height, 4rem));
@@ -131,10 +133,7 @@ export default {
 .menu-panel--drawer {
 	inset-inline: 0;
 }
-/*
- * Card panels center under their trigger and clamp flush to whichever nav edge centering would
- * cross; the 50% resolves against the panel's own width.
- */
+/* Card panels center under their trigger and clamp to the nav's edges. */
 .menu-panel--card {
 	@apply tw-rounded-b tw-border tw-border-t-0 tw-border-tertiary;
 	right: var(--trigger-gap-right, 0px);
@@ -144,7 +143,8 @@ export default {
 .menu-panel--drawer {
 	@apply tw-rounded-none;
 }
-.menu-group:is(:hover, :has(> [aria-expanded="true"])) > .menu-panel--drawer {
+.menu-group:has(> [aria-expanded="true"]) > .menu-panel--drawer,
+[data-pointer="mouse"] .menu-group:hover > .menu-panel--drawer {
 	max-height: none;
 	min-height: 100dvh;
 }

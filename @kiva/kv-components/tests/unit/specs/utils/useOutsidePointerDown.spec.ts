@@ -1,22 +1,7 @@
-import {
-	createApp, defineComponent, h, ref, nextTick, type App,
-} from 'vue';
-import { fireEvent } from '@testing-library/dom';
+import { ref, shallowRef, nextTick } from 'vue';
+import userEvent from '@testing-library/user-event';
 import { useOutsidePointerDown } from '#utils/useOutsidePointerDown';
-
-// Runs the composable inside a real component instance so its lifecycle hooks attach to an
-// active instance instead of warning.
-function withSetup<T>(composable: () => T): { result: T; app: App } {
-	let result!: T;
-	const app = createApp(defineComponent({
-		setup() {
-			result = composable();
-			return () => h('div');
-		},
-	}));
-	app.mount(document.createElement('div'));
-	return { result, app };
-}
+import withSetup from '../../utils/withSetup';
 
 // Builds a root element with one child, both attached to the document so events reach it.
 function attachRoot(): { root: HTMLElement; inside: HTMLElement } {
@@ -32,27 +17,27 @@ describe('useOutsidePointerDown', () => {
 		document.body.innerHTML = '';
 	});
 
-	it('calls onOutside for a pointerdown outside the root while active', () => {
+	it('calls onOutside for a press outside the root while active', async () => {
 		const { root } = attachRoot();
 		const onOutside = jest.fn();
-		withSetup(() => useOutsidePointerDown(ref(root), ref(true), onOutside));
-		fireEvent.pointerDown(document.body);
+		withSetup(() => useOutsidePointerDown(shallowRef(root), ref(true), onOutside));
+		await userEvent.setup().click(document.body);
 		expect(onOutside).toHaveBeenCalledTimes(1);
 	});
 
-	it('ignores a pointerdown inside the root', () => {
+	it('ignores a press inside the root', async () => {
 		const { root, inside } = attachRoot();
 		const onOutside = jest.fn();
-		withSetup(() => useOutsidePointerDown(ref(root), ref(true), onOutside));
-		fireEvent.pointerDown(inside);
+		withSetup(() => useOutsidePointerDown(shallowRef(root), ref(true), onOutside));
+		await userEvent.setup().click(inside);
 		expect(onOutside).not.toHaveBeenCalled();
 	});
 
-	it('ignores every pointerdown while inactive', () => {
+	it('ignores every press while inactive', async () => {
 		const { root } = attachRoot();
 		const onOutside = jest.fn();
-		withSetup(() => useOutsidePointerDown(ref(root), ref(false), onOutside));
-		fireEvent.pointerDown(document.body);
+		withSetup(() => useOutsidePointerDown(shallowRef(root), ref(false), onOutside));
+		await userEvent.setup().click(document.body);
 		expect(onOutside).not.toHaveBeenCalled();
 	});
 
@@ -60,23 +45,23 @@ describe('useOutsidePointerDown', () => {
 		const { root } = attachRoot();
 		const onOutside = jest.fn();
 		const active = ref(false);
-		withSetup(() => useOutsidePointerDown(ref(root), active, onOutside));
+		withSetup(() => useOutsidePointerDown(shallowRef(root), active, onOutside));
 		active.value = true;
 		await nextTick();
-		fireEvent.pointerDown(document.body);
+		await userEvent.setup().click(document.body);
 		expect(onOutside).toHaveBeenCalledTimes(1);
 		active.value = false;
 		await nextTick();
-		fireEvent.pointerDown(document.body);
+		await userEvent.setup().click(document.body);
 		expect(onOutside).toHaveBeenCalledTimes(1);
 	});
 
-	it('stops listening on unmount', () => {
+	it('stops listening on unmount', async () => {
 		const { root } = attachRoot();
 		const onOutside = jest.fn();
-		const { app } = withSetup(() => useOutsidePointerDown(ref(root), ref(true), onOutside));
+		const { app } = withSetup(() => useOutsidePointerDown(shallowRef(root), ref(true), onOutside));
 		app.unmount();
-		fireEvent.pointerDown(document.body);
+		await userEvent.setup().click(document.body);
 		expect(onOutside).not.toHaveBeenCalled();
 	});
 });

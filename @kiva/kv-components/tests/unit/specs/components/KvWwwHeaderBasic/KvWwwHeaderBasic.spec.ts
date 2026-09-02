@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import { render, fireEvent } from '@testing-library/vue';
+import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvWwwHeaderBasic from '#components/KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
 
@@ -130,7 +131,7 @@ describe('KvWwwHeaderBasic', () => {
 	it('opens a menu through the full header when its trigger is tapped', async () => {
 		const { getByRole, findByText } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
 		const about = getByRole('button', { name: /about/i });
-		await fireEvent.touchStart(about);
+		await userEvent.setup().pointer({ keys: '[TouchA]', target: about });
 		expect(about.getAttribute('aria-expanded')).toBe('true');
 		expect(await findByText('How Kiva works')).toBeTruthy();
 	});

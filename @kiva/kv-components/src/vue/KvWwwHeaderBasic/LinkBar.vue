@@ -3,6 +3,7 @@
 		ref="rootRef"
 		class="link-bar tw-min-h-[4rem] tw-font-medium"
 		:style="menuTimingVars"
+		:data-pointer="pointerType"
 	>
 		<!-- hamburger → full-screen drawer (mobile only) -->
 		<header-menu-group
@@ -51,7 +52,7 @@
 				<a
 					href="/lend-by-category"
 					class="header-link tw-py-1"
-					@touchstart.prevent="toggle"
+					@click="toggle"
 				>Lend</a>
 				<button
 					v-bind="trigger"
@@ -243,7 +244,7 @@
 
 <script lang="ts">
 import {
-	ref, computed, inject, provide, defineAsyncComponent,
+	ref, computed, inject, provide, defineAsyncComponent, shallowRef,
 } from 'vue';
 import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
 import numeral from 'numeral';
@@ -256,6 +257,7 @@ import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
 import { MENU_TIMING_VARS } from '#utils/headerMenuTiming';
 import { useHeaderMenuState, HEADER_MENU_STATE } from '#utils/useHeaderMenuState';
 import { useHeaderMenuPlacement, HEADER_MENU_PLACEMENT } from '#utils/useHeaderMenuPlacement';
+import { usePointerType } from '#utils/usePointerType';
 import HeaderMenuGroup from './HeaderMenuGroup.vue';
 import SearchBar from './SearchBar.vue';
 
@@ -316,14 +318,13 @@ export default {
 	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
 
-		const rootRef = ref<HTMLElement | null>(null);
+		const rootRef = shallowRef<HTMLElement | null>(null);
 		const lendMenuInstance = ref<LendMenuInstance | null>(null);
 
-		provide(HEADER_MENU_STATE, useHeaderMenuState());
+		const { pointerType } = usePointerType(rootRef);
+		provide(HEADER_MENU_STATE, useHeaderMenuState(pointerType));
 		provide(HEADER_MENU_PLACEMENT, useHeaderMenuPlacement(rootRef));
 
-		// One TopNav analytics event per menu open (hover or explicit toggle), mirroring
-		// KvWwwHeader/KvHeaderLinkBar's menuTrackingMap; the mobile drawer also tracks its close.
 		function track(action: string, label: string): void {
 			$kvTrackEvent('TopNav', action, label);
 		}
@@ -336,8 +337,7 @@ export default {
 
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
-		// Exposed for the orchestrator's loadMenuData: forwards the opaque apollo client to the
-		// mounted Lend menu's onLoad. No-ops until the Lend panel has been approached.
+		// Forwards the apollo client to the mounted Lend menu's onLoad.
 		function loadMenuData(apollo: unknown): void {
 			lendMenuInstance.value?.onLoad?.(apollo);
 		}
@@ -373,6 +373,7 @@ export default {
 			rootRef,
 			lendMenuInstance,
 			menuTimingVars: MENU_TIMING_VARS,
+			pointerType,
 			visiblePrimaryLinks,
 			formattedBalance,
 			track,
@@ -459,7 +460,8 @@ export default {
 
 /*
  * The backdrop opens and closes on the same conditions and schedule as the menu panels
- * (see HeaderMenuGroup.vue); closed, it collapses to zero height.
+ * (see HeaderMenuGroup.vue): an aria-expanded trigger, or a hovered group under a mouse pointer.
+ * Closed, it collapses to zero height.
  */
 .backdrop {
 	@apply tw-absolute tw-z-overlay;
@@ -474,7 +476,8 @@ export default {
 		visibility 0s calc(var(--menu-open-delay) + var(--menu-close-fade)),
 		height 0s calc(var(--menu-open-delay) + var(--menu-close-fade));
 }
-.link-bar:has(.menu-group:hover, .menu-group > [aria-expanded="true"]) > .backdrop {
+.link-bar:has(.menu-group > [aria-expanded="true"]) > .backdrop,
+.link-bar[data-pointer="mouse"]:has(.menu-group:hover) > .backdrop {
 	visibility: visible;
 	opacity: 1;
 	height: 100vh;
@@ -487,7 +490,8 @@ export default {
 .chevron {
 	@apply tw-transition-transform tw-duration-300;
 }
-.menu-group:is(:hover, :has(> [aria-expanded="true"])) .chevron {
+.menu-group:has(> [aria-expanded="true"]) .chevron,
+[data-pointer="mouse"] .menu-group:hover .chevron {
 	@apply tw-rotate-180;
 }
 </style>
