@@ -18,15 +18,16 @@
  * @usage
  * ```
  * import {
- *   darkTheme,
- *   darkGreenTheme,
- *   mintTheme,
- *   defaultTheme
+ *   defaultTheme,
+ *   greenLightTheme,
+ *   greenDarkTheme,
+ *   marigoldLightTheme,
+ *   stoneLightTheme
  * } from '@kiva/kv-tokens';
  * ...
- * data() { return { darkTheme }; }
+ * data() { return { greenDarkTheme }; }
  * ...
- * <kv-theme-provider :theme="darkTheme">...</kv-theme-provider>
+ * <kv-theme-provider :theme="greenDarkTheme">...</kv-theme-provider>
  * ```
  *
  * */

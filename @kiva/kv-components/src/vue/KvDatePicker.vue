@@ -57,7 +57,6 @@ import {
 	greenDarkTheme,
 	marigoldLightTheme,
 	stoneLightTheme,
-	stoneDarkTheme,
 } from '@kiva/kv-tokens';
 import KvThemeProvider from './KvThemeProvider.vue';
 
@@ -79,7 +78,7 @@ export default {
 			default: 'default',
 			validator(value: string) {
 				return [
-					'default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight', 'stoneDark',
+					'default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight',
 				].includes(value);
 			},
 		},
@@ -101,8 +100,6 @@ export default {
 					return marigoldLightTheme;
 				case 'stoneLight':
 					return stoneLightTheme;
-				case 'stoneDark':
-					return stoneDarkTheme;
 				default:
 					return defaultTheme;
 			}

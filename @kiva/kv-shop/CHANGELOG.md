@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.22](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.21...@kiva/kv-shop@3.8.22) (2026-09-02)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.21](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.20...@kiva/kv-shop@3.8.21) (2026-09-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.20](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.19...@kiva/kv-shop@3.8.20) (2026-09-01)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.19](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.18...@kiva/kv-shop@3.8.19) (2026-08-31)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.18](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.17...@kiva/kv-shop@3.8.18) (2026-08-28)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.17](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.16...@kiva/kv-shop@3.8.17) (2026-08-27)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.16](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.15...@kiva/kv-shop@3.8.16) (2026-08-27)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+## [3.8.15](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.14...@kiva/kv-shop@3.8.15) (2026-08-26)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.8.14](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.13...@kiva/kv-shop@3.8.14) (2026-08-25)
 
 **Note:** Version bump only for package @kiva/kv-shop

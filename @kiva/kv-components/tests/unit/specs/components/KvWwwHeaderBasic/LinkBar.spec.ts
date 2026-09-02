@@ -464,4 +464,134 @@ describe('LinkBar', () => {
 		link.dispatchEvent(event);
 		expect(event.defaultPrevented).toBe(false);
 	});
+
+	it('hooks the basket link to --basket-display while the basket is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 0, isBasketDataLoading: true }, global,
+		});
+		expect(getByTestId('header-basket').style.display).toBe('var(--basket-display, flex)');
+	});
+
+	it('leaves the basket link without an inline display once the basket has loaded', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 2, isBasketDataLoading: false }, global,
+		});
+		expect(getByTestId('header-basket').style.display).toBe('');
+	});
+
+	it('shows a placeholder in place of the basket count while the basket is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 0, isBasketDataLoading: true }, global,
+		});
+		expect(getByTestId('header-basket-skeleton')).toBeTruthy();
+		expect(getByTestId('header-basket').textContent).not.toContain('0');
+	});
+
+	it('shows the basket count instead of the placeholder once the basket has loaded', () => {
+		const { queryByTestId, getByTestId } = render(LinkBar, {
+			props: { loggedIn: false, basketCount: 2, isBasketDataLoading: false }, global,
+		});
+		expect(queryByTestId('header-basket-skeleton')).toBeNull();
+		expect(getByTestId('header-basket').textContent).toContain('2');
+	});
+
+	it('hooks the logged-in cluster to --user-loading-display while user data is loading', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		expect(getByTestId('header-avatar-menu').style.display)
+			.toBe('var(--user-loading-display, flex)');
+	});
+
+	it('leaves the logged-in cluster without an inline display once user data has loaded', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: false, balance: 25 }, global,
+		});
+		expect(getByTestId('header-avatar-menu').style.display).toBe('');
+	});
+
+	it('does not bind the avatar variables to the generic loading placeholder', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		const cluster = getByTestId('header-avatar-menu');
+		expect(cluster.outerHTML).not.toContain('--user-avatar-display');
+		expect(cluster.outerHTML).not.toContain('--user-avatar-legacy-display');
+	});
+
+	it('shows the generic placeholder while user data loads by default', () => {
+		const { getByTestId, queryByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true }, global,
+		});
+		expect(getByTestId('header-avatar-skeleton')).toBeTruthy();
+		expect(queryByTestId('header-avatar-esi')).toBeNull();
+		expect(queryByTestId('header-avatar-icon')).toBeNull();
+	});
+
+	it('swaps in the ESI avatar pair when useEsiAvatar is set', () => {
+		const { getByTestId, queryByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
+		});
+		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
+		expect(getByTestId('header-avatar-icon').style.display)
+			.toBe('var(--user-avatar-legacy-display, inline-block)');
+		expect(getByTestId('header-avatar-esi').style.display)
+			.toBe('var(--user-avatar-display, block)');
+	});
+
+	it('renders the real avatar once user data has loaded, whatever useEsiAvatar says', () => {
+		const { queryByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				useEsiAvatar: true,
+				lenderName: 'Ada Lovelace',
+			},
+			global,
+		});
+		expect(queryByTestId('header-avatar-skeleton')).toBeNull();
+		expect(queryByTestId('header-avatar-icon')).toBeNull();
+		expect(queryByTestId('header-avatar-esi')).toBeNull();
+	});
+
+	it('shows the avatar icon once loaded for a lender with no custom image', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: false, lenderName: 'Ada Lovelace' }, global,
+		});
+		expect(getByTestId('user-avatar-icon')).toBeTruthy();
+	});
+
+	it('shows the avatar icon once loaded when the stored image is a Kiva default', () => {
+		const { getByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				lenderName: 'Ada Lovelace',
+				lenderImageUrl: 'https://www.kiva.org/img/s100/726677.jpg',
+			},
+			global,
+		});
+		expect(getByTestId('user-avatar-icon')).toBeTruthy();
+	});
+
+	it('shows the lender image once loaded when it is a custom image', () => {
+		const { getByAltText, queryByTestId } = render(LinkBar, {
+			props: {
+				loggedIn: true,
+				isUserDataLoading: false,
+				lenderName: 'Ada Lovelace',
+				lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+			},
+			global,
+		});
+		expect(getByAltText('Image of lender')).toBeTruthy();
+		expect(queryByTestId('user-avatar-icon')).toBeNull();
+	});
+
+	it('has no accessibility violations with the ESI avatar enabled', async () => {
+		const { container } = render(LinkBar, {
+			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
+		});
+		expect(await axe(container)).toHaveNoViolations();
+	});
 });

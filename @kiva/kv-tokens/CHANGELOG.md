@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.4.1...@kiva/kv-tokens@5.0.0) (2026-08-28)
+
+
+* refactor!: delete deprecated theme token files ([da804f9](https://github.com/kiva/kv-ui-elements/commit/da804f926f4ebf11047eb2590400228aece7b504))
+* refactor!: stop exporting deprecated themes from kv-tokens ([34b184e](https://github.com/kiva/kv-ui-elements/commit/34b184ee4718ba2ab8861ac8f219ab0a5f91addb))
+
+
+### BREAKING CHANGES
+
+* the deprecated themes no longer appear in the built
+token output. designTokens.colors.theme loses the mint, dark, dark-green,
+dark-mint, dark-stone, and stone-dark keys, and the compiled CSS no
+longer emits their [data-theme="..."] blocks. Consumers selecting those
+themes via the data-theme attribute lose their styling.
+* kv-tokens no longer exports stoneDarkTheme, darkTheme,
+mintTheme, darkGreenTheme, darkMintTheme, or darkStoneTheme. Importing
+any of them fails to build. Map dark variants to greenDarkTheme and mint
+to greenLightTheme.
+
+
+
+
+
 ## [4.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@4.4.0...@kiva/kv-tokens@4.4.1) (2026-07-23)
 
 **Note:** Version bump only for package @kiva/kv-tokens

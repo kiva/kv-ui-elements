@@ -4,7 +4,7 @@ import {
 } from '@storybook/vue3';
 import { addons } from 'storybook/preview-api';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
-import { defaultTheme, darkTheme } from '@kiva/kv-tokens';
+import { defaultTheme, greenDarkTheme } from '@kiva/kv-tokens';
 
 setup((app) => {
 	// Mock analytics
@@ -47,7 +47,7 @@ export const decorators = [(story) => ({
 	},
 	methods: {
 		setTheme(darkMode) {
-			darkMode ? this.theme = darkTheme : this.theme = defaultTheme
+			darkMode ? this.theme = greenDarkTheme : this.theme = defaultTheme
 		}
 	},
 	mounted() {

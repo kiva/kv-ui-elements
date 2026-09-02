@@ -547,7 +547,7 @@ export const ModelTypes = (args, { argTypes }) => ({
  * Showcase of all available themes for the date picker.
  *
  * This example demonstrates how the datepicker looks across all supported themes:
- * default, greenLight, greenDark, marigoldLight, stoneLight, and stoneDark.
+ * default, greenLight, greenDark, marigoldLight, and stoneLight.
  */
 export const AllThemes = (args, { argTypes }) => ({
 	props: Object.keys(argTypes),
@@ -560,7 +560,6 @@ export const AllThemes = (args, { argTypes }) => ({
 				{ name: 'Green Dark', theme: 'greenDark', value: null },
 				{ name: 'Marigold Light', theme: 'marigoldLight', value: null },
 				{ name: 'Stone Light', theme: 'stoneLight', value: null },
-				{ name: 'Stone Dark', theme: 'stoneDark', value: null },
 			],
 		};
 	},

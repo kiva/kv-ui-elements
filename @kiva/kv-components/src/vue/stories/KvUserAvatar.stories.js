@@ -27,6 +27,11 @@ export default {
 			control: 'boolean',
 			description: 'Whether to use a CSS variable for the avatar URL before data is loaded.',
 		},
+		useIconFallback: {
+			control: 'boolean',
+			description: 'Whether to show the avatar icon, rather than the initial letter or the Kiva K, '
+				+ 'for a lender with no custom image.',
+		},
 		theme: {
 			control: 'select',
 			options: ['default', 'ecoGreenLight'],
@@ -360,6 +365,41 @@ export const NoImageCssPlaceholder = cssPlaceholderStory({
 	showCssPlaceholder: true,
 });
 
+// The combination the app actually produces, and the one CssPlaceholder does not model: ESI supplies
+// the image through --user-avatar precisely because the prop is still empty. An <img> with no src
+// never fires load, so the component must not wait on it before hiding its own shimmer.
+const ESI_AVATAR_URL = 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg';
+
+export const CssPlaceholderBeforeHydration = {
+	render: () => ({
+		components: { KvUserAvatar },
+		setup() {
+			return {
+				style: [
+					`--user-avatar: url(${ESI_AVATAR_URL}) / "Lender avatar via CSS"`,
+					'--user-avatar-legacy-display: none',
+				],
+			};
+		},
+		template: `
+			<div class="tw-relative" :style="style">
+				<KvUserAvatar
+					lender-image-url=""
+					class="tw-w-6 tw-h-6"
+					show-css-placeholder
+				/>
+				<br/>
+				<KvUserAvatar
+					lender-image-url=""
+					class="tw-w-3 tw-h-3"
+					is-small
+					show-css-placeholder
+				/>
+			</div>
+		`,
+	}),
+};
+
 export const Anonymous = story({
 	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	lenderName: 'Anonymous',
@@ -374,6 +414,65 @@ export const LegacyDefaultImage = story({
 	lenderImageUrl: 'https://www.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg',
 	lenderName: 'Default Profile',
 });
+
+// Opt-in fallback: every user without a custom image gets one icon instead of a lettered or
+// Kiva-K circle. KvWwwHeaderBasic's link bar sets this; nothing else does yet.
+export const IconFallback = {
+	render: () => ({
+		components: { KvUserAvatar },
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-8">
+				<div class="tw-flex tw-gap-8 tw-items-center">
+					<div class="tw-text-center">
+						<KvUserAvatar
+							lender-name="Roger"
+							lender-image-url=""
+							use-icon-fallback
+							class="tw-w-6 tw-h-6"
+						/>
+						<p class="tw-text-small tw-text-secondary tw-mt-2">No image</p>
+					</div>
+					<div class="tw-text-center">
+						<KvUserAvatar
+							lender-name="Roger"
+							lender-image-url="https://www.kiva.org/img/s100/4d844ac2c0b77a8a522741b908ea5c32.jpg"
+							use-icon-fallback
+							class="tw-w-6 tw-h-6"
+						/>
+						<p class="tw-text-small tw-text-secondary tw-mt-2">Default avatar image</p>
+					</div>
+					<div class="tw-text-center">
+						<KvUserAvatar
+							lender-name="Anonymous"
+							use-icon-fallback
+							class="tw-w-6 tw-h-6"
+						/>
+						<p class="tw-text-small tw-text-secondary tw-mt-2">Anonymous</p>
+					</div>
+					<div class="tw-text-center">
+						<KvUserAvatar
+							lender-name="Roger"
+							lender-image-url="https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg"
+							use-icon-fallback
+							class="tw-w-6 tw-h-6"
+						/>
+						<p class="tw-text-small tw-text-secondary tw-mt-2">Custom image (unaffected)</p>
+					</div>
+					<div class="tw-text-center">
+						<KvUserAvatar
+							lender-name="Roger"
+							lender-image-url=""
+							use-icon-fallback
+							is-small
+							class="tw-w-3 tw-h-3"
+						/>
+						<p class="tw-text-small tw-text-secondary tw-mt-2">Header size</p>
+					</div>
+				</div>
+			</div>
+		`,
+	}),
+};
 
 const multipleAvatarStory = (args) => {
 	const template = (templateArgs, { argTypes }) => ({

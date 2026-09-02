@@ -136,6 +136,24 @@ describe('KvWwwHeaderBasic', () => {
 		expect(await findByText('How Kiva works')).toBeTruthy();
 	});
 
+	it('forwards useEsiAvatar through to the link bar', () => {
+		const { getByTestId } = render(KvWwwHeaderBasic, {
+			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true },
+			global,
+		});
+		expect(getByTestId('header-avatar-esi')).toBeTruthy();
+		expect(getByTestId('header-avatar-icon')).toBeTruthy();
+	});
+
+	it('leaves the link bar on the grey skeleton when useEsiAvatar is not set', () => {
+		const { getByTestId, queryByTestId } = render(KvWwwHeaderBasic, {
+			props: { loggedIn: true, isUserDataLoading: true },
+			global,
+		});
+		expect(getByTestId('header-avatar-skeleton')).toBeTruthy();
+		expect(queryByTestId('header-avatar-esi')).toBeNull();
+	});
+
 	it('forwards login-click from the link bar to the host', async () => {
 		const { emitted, getByTestId } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
 		await fireEvent.click(getByTestId('header-login'));

@@ -9,17 +9,28 @@ import KvPageContainer from '../KvPageContainer.vue';
 // KvLendMenu touches (watchQuery + query) and return canned data. Lets the mobile Lend menu
 // (Categories / Regions / MyKiva / Search) render with real-looking content.
 
-// loanChannels.url is later rewritten by KvLendMenu's `replace('lend', 'lend-by-category')`, so
-// these urls intentionally start with `/lend/…`.
-const sampleLoanChannels = [
-	'Agriculture', 'Arts', 'Conflict zones', 'Eco-friendly', 'Education', 'Ending soon',
-	'Food', 'Health', 'Kiva U.S.', 'Livestock', 'Matched loans', 'Short-term loans',
-	'Single parents', 'Social Enterprises', 'Water and sanitation', 'Women',
-].map((name, i) => ({
-	id: String(i + 1),
-	name,
-	url: `/lend/${name.toLowerCase().replace(/[^a-z]+/g, '-')}`,
-}));
+// The names, ids and server-side order below mirror what `browsingCategories` returns on dev.
+// Category url is later rewritten by KvLendMenu's `replace('lend', 'lend-by-category')`, so these
+// urls intentionally start with `/lend/…` rather than the absolute urls the real field returns.
+const sampleCategories = [
+	['41062ad7-9584-470c-bcf8-9b9fddc1e783', 'Agriculture', 'agriculture'],
+	['7c25e6b5-8919-4916-ad8a-d624474141ef', 'Education', 'education'],
+	['04d3fe55-280e-487c-92e5-47fdd62d11ed', 'Refugees and IDPs', 'refugees-and-i-d-ps'],
+	['ad99c36e-720f-4b7d-87ac-bc7541f7b63f', 'Eco-friendly', 'eco-friendly'],
+	['18df676d-db88-47db-a733-c346514787d9', 'Kiva U.S.', 'kiva-u-s'],
+	['8506e950-a279-4a00-9649-b68534bec512', 'Livestock', 'livestock'],
+	['e54a756c-b2b0-41e7-919b-aab8ec7e3cc4', 'Arts', 'arts'],
+	['82d2a4cc-e3f3-4d9b-a9da-9ced331bb59b', 'Ending soon', 'ending-soon'],
+	['e57c64a5-2edb-4bd0-8b21-833d9b748e2a', 'Women', 'women'],
+	['b0cad297-4915-4ec2-a9ea-74ce828394e7', 'Single parents', 'single-parents'],
+	['5d0e030b-d5f6-4b8c-bd1c-0df901fb365d', 'Health', 'health'],
+	['8559feb6-44cd-4165-b909-a3652c36ca78', 'Food', 'food'],
+	['b9784bb1-ca9a-4f9a-acb0-2c142ab2ab80', 'Water and sanitation', 'water-and-sanitation'],
+	['e895e77c-dc80-4052-9e92-874e9ebbbd20', 'Conflict zones', 'conflict-zones'],
+	['98c96462-61d9-4c5c-82a1-259c5b4f349c', 'Social Enterprises', 'social-enterprises'],
+	['077c95c1-9381-45f4-9f81-0b5c6180a22c', 'Short-term loans', 'short-term-loans'],
+	['5b43ab35-56ca-483e-8468-4f78a57dfcac', 'Matched loans', 'matched-loans'],
+].map(([id, name, slug]) => ({ id, name, url: `/lend/${slug}` }));
 
 // countryFacets shape: { count, country: { name, region, isoCode } }. KvLendMenu groups by region.
 const sampleCountryFacets = [
@@ -77,8 +88,8 @@ function createMockApollo({ favoritesTotal = 8, savedSearches = sampleSavedSearc
 			let data = {};
 			if (body.includes('countryFacets')) {
 				data = { lend: { countryFacets: sampleCountryFacets } };
-			} else if (body.includes('loanChannels')) {
-				data = { lend: { loanChannels: { values: sampleLoanChannels } } };
+			} else if (body.includes('browsingCategories')) {
+				data = { browsingCategories: { values: sampleCategories } };
 			}
 			return {
 				subscribe: ({ next }) => {
@@ -124,6 +135,7 @@ export default {
 		lenderImageUrl: { control: { type: 'text' } },
 		isBasketDataLoading: { control: { type: 'boolean' } },
 		isUserDataLoading: { control: { type: 'boolean' } },
+		useEsiAvatar: { control: { type: 'boolean' } },
 		showMGUpsellLink: { control: { type: 'boolean' } },
 		loginUrl: { control: { type: 'text' } },
 		myDashboardUrl: { control: { type: 'text' } },
@@ -219,6 +231,25 @@ export const LoadingUserData = story({
 	userId: 12345,
 	isUserDataLoading: true,
 	isBasketDataLoading: true,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+// Same loading state as LoadingUserData, but opted into the ESI avatar — so the pair is the proof
+// that useEsiAvatar reaches LinkBar through this component. It did not until CIT-5084; the prop was
+// declared on the child only, and the ESI stories all lived on KvWwwHeaderBasicLinkBar, which is why
+// nothing showed the gap. Compare the two: grey circle here, the lender's avatar there.
+const ESI_AVATAR = 'url(https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.webp)';
+
+export const EsiAvatarLoading = story({
+	loggedIn: true,
+	userId: 12345,
+	isUserDataLoading: true,
+	useEsiAvatar: true,
+	cssVars: {
+		'--user-avatar-legacy-display': 'none',
+		'--user-avatar': `${ESI_AVATAR} / "Lender avatar via CSS"`,
+	},
 	searchSuggestions: sampleSearchSuggestions,
 	appOrigin: 'https://www.kiva.org',
 });

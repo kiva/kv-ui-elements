@@ -12,7 +12,7 @@ export default {
 		},
 	},
 	args: {
-		theme: 'ecoStoneDark',
+		theme: 'ecoGreenDark',
 		placement: 'top',
 		maxWidth: '250px',
 	},
@@ -24,9 +24,6 @@ export default {
 				'ecoGreenDark',
 				'ecoLightMarigold',
 				'ecoStoneLight',
-				'ecoStoneDark',
-				'mint',
-				'dark',
 			],
 			control: { type: 'select' },
 		},
@@ -73,7 +70,7 @@ export const ComponentOverview = (args, { argTypes }) => ({
 				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Basic Tooltip</p>
 				<div>
 					<kv-button id="basic-tooltip-btn">Hover or Focus</kv-button>
-					<kv-tooltip controller="basic-tooltip-btn" theme="ecoStoneDark">
+					<kv-tooltip controller="basic-tooltip-btn" theme="ecoGreenDark">
 						This is a simple tooltip with just content
 					</kv-tooltip>
 				</div>
@@ -83,7 +80,7 @@ export const ComponentOverview = (args, { argTypes }) => ({
 				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Tooltip with Title</p>
 				<div>
 					<kv-button id="title-tooltip-btn">What is this?</kv-button>
-					<kv-tooltip controller="title-tooltip-btn" theme="ecoStoneDark">
+					<kv-tooltip controller="title-tooltip-btn" theme="ecoGreenDark">
 						<template #title>Tooltip Title</template>
 						This tooltip includes both a title and descriptive content
 					</kv-tooltip>
@@ -94,7 +91,7 @@ export const ComponentOverview = (args, { argTypes }) => ({
 				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Different Placement</p>
 				<div>
 					<kv-button id="placement-tooltip-btn">Bottom Tooltip</kv-button>
-					<kv-tooltip controller="placement-tooltip-btn" theme="ecoStoneDark" placement="bottom">
+					<kv-tooltip controller="placement-tooltip-btn" theme="ecoGreenDark" placement="bottom">
 						<template #title>Bottom Placement</template>
 						This tooltip appears below the button
 					</kv-tooltip>
@@ -105,7 +102,7 @@ export const ComponentOverview = (args, { argTypes }) => ({
 				<p class="tw-text-small tw-text-gray-600 tw-font-medium">Custom Width</p>
 				<div>
 					<kv-button id="width-tooltip-btn">Wide Tooltip</kv-button>
-					<kv-tooltip controller="width-tooltip-btn" theme="ecoStoneDark" max-width="400px">
+					<kv-tooltip controller="width-tooltip-btn" theme="ecoGreenDark" max-width="400px">
 						<template #title>Extended Tooltip Content</template>
 						This tooltip has a custom max-width of 400px, allowing for more detailed
 						explanations without wrapping too tightly. Perfect for longer descriptions.
@@ -133,28 +130,28 @@ export const AllVariations = (args, { argTypes }) => ({
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Top</p>
 						<kv-button id="var-top" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="var-top" placement="top" theme="ecoStoneDark">
+						<kv-tooltip controller="var-top" placement="top" theme="ecoGreenDark">
 							Top placement
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Bottom</p>
 						<kv-button id="var-bottom" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="var-bottom" placement="bottom" theme="ecoStoneDark">
+						<kv-tooltip controller="var-bottom" placement="bottom" theme="ecoGreenDark">
 							Bottom placement
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Left</p>
 						<kv-button id="var-left" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="var-left" placement="left" theme="ecoStoneDark">
+						<kv-tooltip controller="var-left" placement="left" theme="ecoGreenDark">
 							Left placement
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Right</p>
 						<kv-button id="var-right" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="var-right" placement="right" theme="ecoStoneDark">
+						<kv-tooltip controller="var-right" placement="right" theme="ecoGreenDark">
 							Right placement
 						</kv-tooltip>
 					</div>
@@ -173,10 +170,10 @@ export const AllVariations = (args, { argTypes }) => ({
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
-						<p class="tw-text-small tw-mb-2">Eco Stone Dark</p>
-						<kv-button id="theme-stone-dark" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="theme-stone-dark" theme="ecoStoneDark">
-							Stone Dark
+						<p class="tw-text-small tw-mb-2">Eco Green Dark</p>
+						<kv-button id="theme-green-dark" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-green-dark" theme="ecoGreenDark">
+							Green Dark
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
@@ -187,10 +184,10 @@ export const AllVariations = (args, { argTypes }) => ({
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
-						<p class="tw-text-small tw-mb-2">Mint</p>
-						<kv-button id="theme-mint" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="theme-mint" theme="mint">
-							Mint theme
+						<p class="tw-text-small tw-mb-2">Eco Stone Light</p>
+						<kv-button id="theme-stone-light" class="tw-w-full">Hover</kv-button>
+						<kv-tooltip controller="theme-stone-light" theme="ecoStoneLight">
+							Stone Light
 						</kv-tooltip>
 					</div>
 				</div>
@@ -203,14 +200,14 @@ export const AllVariations = (args, { argTypes }) => ({
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Content Only</p>
 						<kv-button id="content-only" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="content-only" theme="ecoStoneDark">
+						<kv-tooltip controller="content-only" theme="ecoGreenDark">
 							Simple tooltip content
 						</kv-tooltip>
 					</div>
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">With Title</p>
 						<kv-button id="with-title" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="with-title" theme="ecoStoneDark">
+						<kv-tooltip controller="with-title" theme="ecoGreenDark">
 							<template #title>Title Here</template>
 							Description content
 						</kv-tooltip>
@@ -218,7 +215,7 @@ export const AllVariations = (args, { argTypes }) => ({
 					<div class="tw-text-center">
 						<p class="tw-text-small tw-mb-2">Long Content</p>
 						<kv-button id="long-content" class="tw-w-full">Hover</kv-button>
-						<kv-tooltip controller="long-content" theme="ecoStoneDark" max-width="300px">
+						<kv-tooltip controller="long-content" theme="ecoGreenDark" max-width="300px">
 							<template #title>Extended Information</template>
 							This is a longer tooltip that demonstrates how content wraps
 							when it exceeds the maximum width constraint.
@@ -265,7 +262,7 @@ export const ThemeShowcase = (args, { argTypes }) => ({
 					<kv-button id="showcase-green-dark" class="tw-w-full">Hover Me</kv-button>
 					<kv-tooltip controller="showcase-green-dark" theme="ecoGreenDark">
 						<template #title>Eco Green Dark</template>
-						Dark green theme
+						Dark green theme (most common)
 					</kv-tooltip>
 				</div>
 
@@ -284,33 +281,6 @@ export const ThemeShowcase = (args, { argTypes }) => ({
 					<kv-tooltip controller="showcase-stone-light" theme="ecoStoneLight">
 						<template #title>Eco Stone Light</template>
 						Light stone theme
-					</kv-tooltip>
-				</div>
-
-				<div class="tw-text-center">
-					<p class="tw-text-small tw-mb-3 tw-font-medium">ecoStoneDark</p>
-					<kv-button id="showcase-stone-dark" class="tw-w-full">Hover Me</kv-button>
-					<kv-tooltip controller="showcase-stone-dark" theme="ecoStoneDark">
-						<template #title>Eco Stone Dark</template>
-						Dark stone theme (default)
-					</kv-tooltip>
-				</div>
-
-				<div class="tw-text-center">
-					<p class="tw-text-small tw-mb-3 tw-font-medium">mint</p>
-					<kv-button id="showcase-mint" class="tw-w-full">Hover Me</kv-button>
-					<kv-tooltip controller="showcase-mint" theme="mint">
-						<template #title>Mint Theme</template>
-						Fresh mint theme
-					</kv-tooltip>
-				</div>
-
-				<div class="tw-text-center">
-					<p class="tw-text-small tw-mb-3 tw-font-medium">dark</p>
-					<kv-button id="showcase-dark" class="tw-w-full">Hover Me</kv-button>
-					<kv-tooltip controller="showcase-dark" theme="dark">
-						<template #title>Dark Theme</template>
-						High contrast dark theme
 					</kv-tooltip>
 				</div>
 			</div>

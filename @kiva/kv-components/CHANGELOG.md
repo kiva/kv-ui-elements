@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.3...@kiva/kv-components@9.1.0) (2026-09-02)
+
+
+### Features
+
+* **CIT-5115:** source the lend menu from browsingCategories ([160e1c3](https://github.com/kiva/kv-ui-elements/commit/160e1c3a60cc4bb72a2dc6be11786a5790d911cc))
+
+
+
+
+
+## [9.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.2...@kiva/kv-components@9.0.3) (2026-09-01)
+
+
+### Bug Fixes
+
+* **header:** remove light green bg behind fallback account icon ([eee357b](https://github.com/kiva/kv-ui-elements/commit/eee357b5e26814dc10d92cde201d6d134c17a6c9))
+* update test to remove reference to bg color and use the test id instead ([90645f6](https://github.com/kiva/kv-ui-elements/commit/90645f6831363210bf116218618018be5bb9f7b3))
+* use tw-text-primary for user icon ([c89b7a3](https://github.com/kiva/kv-ui-elements/commit/c89b7a38ec77e9350aa262c42a5b0da410c7ba4e))
+
+
+
+
+
+## [9.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.1...@kiva/kv-components@9.0.2) (2026-09-01)
+
+
+### Bug Fixes
+
+* **KvUserAvatar:** stop the loading shimmer rendering beside the ESI avatar ([d6ee868](https://github.com/kiva/kv-ui-elements/commit/d6ee8687be46a466042f970df1b9eb9f3ece90b2))
+* **KvWwwHeaderBasic:** expose useEsiAvatar and show the avatar icon once loaded ([d6ab821](https://github.com/kiva/kv-ui-elements/commit/d6ab82185d9874523e70c74ede3a3547f21b3ddf))
+
+
+
+
+
+## [9.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.0...@kiva/kv-components@9.0.1) (2026-08-31)
+
+
+### Bug Fixes
+
+* allow kv-tokens 5.x as a kv-components peer ([a55a02e](https://github.com/kiva/kv-ui-elements/commit/a55a02e76b23c0915f8616b8bda2a9288131a76e))
+
+
+
+
+
+# [9.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.2...@kiva/kv-components@9.0.0) (2026-08-28)
+
+
+* refactor!: remove deprecated themes from kv-components ([bcf4451](https://github.com/kiva/kv-ui-elements/commit/bcf44513a440c6db6427f83899330a101613efb7))
+
+
+### BREAKING CHANGES
+
+* the theme props no longer accept stoneDark, mint, or
+dark. KvCardFrame and KvDatePicker drop stoneDark; KvTooltip drops
+ecoStoneDark, mint, and dark; KvSecondaryNav drops dark. Use greenDark
+in place of any dark variant and greenLight in place of mint.
+
+
+
+
+
+## [8.29.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.1...@kiva/kv-components@8.29.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** center the basket count panel's contents ([4cd2d61](https://github.com/kiva/kv-ui-elements/commit/4cd2d61e6d8ddad3e7de9fed12212064a322b964))
+* **KvWwwHeaderBasic:** fill the basket count panel with the loading skeleton ([876dc3c](https://github.com/kiva/kv-ui-elements/commit/876dc3c42b64c85a61e2c8eeba01045b1946863d))
+* **KvWwwHeaderBasic:** show a loading placeholder in place of the basket count ([d9a75f9](https://github.com/kiva/kv-ui-elements/commit/d9a75f9604be3a365f46e1357bd0abdd28a51844))
+* **KvWwwHeaderBasic:** size the basket skeleton to the count's line box ([65fd86f](https://github.com/kiva/kv-ui-elements/commit/65fd86f198e8d9d0ee997b21b09e431aca5d47d1))
+
+
+
+
+
+## [8.29.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.29.0...@kiva/kv-components@8.29.1) (2026-08-27)
+
+**Note:** Version bump only for package @kiva/kv-components
+
+
+
+
+
+# [8.29.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.28.0...@kiva/kv-components@8.29.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** hook the basket link to --basket-display ([0b4c3d7](https://github.com/kiva/kv-ui-elements/commit/0b4c3d736920c3a6fcc3a4b1cbe325d4d38d5e7a))
+* **KvWwwHeaderBasic:** suppress the logged-in cluster via --user-loading-display ([5116689](https://github.com/kiva/kv-ui-elements/commit/51166895c44af77f27c6201a406654f20644eba3))
+
+
+### Features
+
+* **KvWwwHeaderBasic:** add useEsiAvatar for pre-hydration avatars ([3115d32](https://github.com/kiva/kv-ui-elements/commit/3115d32fcb74aab2841637f3756fa5d79b516d99))
+
+
+
+
+
 # [8.28.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@8.27.0...@kiva/kv-components@8.28.0) (2026-08-25)
 
 

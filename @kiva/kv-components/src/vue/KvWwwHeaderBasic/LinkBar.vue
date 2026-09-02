@@ -143,6 +143,7 @@
 			<!-- basket (when items present, logged in or out): count panel + label at md+, bag icon on mobile -->
 			<a
 				v-show="basketCount > 0 || isBasketDataLoading"
+				:style="isBasketDataLoading ? { display: 'var(--basket-display, flex)' } : undefined"
 				href="/basket"
 				class="header-link tw-flex tw-items-center"
 				data-testid="header-basket"
@@ -150,8 +151,16 @@
 			>
 				<span class="tw-hidden md:tw-flex tw-items-center">
 					<span
-						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none"
-					>{{ basketCount }}</span>
+						class="tw-bg-secondary tw-rounded-xs tw-py-0.5 tw-px-1 tw-mr-1 tw-leading-none
+							tw-flex tw-items-center tw-justify-center"
+					>
+						<span
+							v-if="isBasketDataLoading"
+							class="link-bar__basket-count-loader"
+							data-testid="header-basket-skeleton"
+						><kv-loading-placeholder /></span>
+						<template v-else>{{ basketCount }}</template>
+					</span>
 					Basket
 				</span>
 				<span class="tw-relative tw-flex md:tw-hidden tw-items-center tw-text-eco-green-4">
@@ -193,6 +202,7 @@
 						aria-label="My Kiva menu"
 						data-testid="header-avatar-menu"
 						class="menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center tw-gap-1 tw-cursor-pointer"
+						:style="isUserDataLoading ? { display: 'var(--user-loading-display, flex)' } : undefined"
 					>
 						<span
 							v-if="isUserDataLoading"
@@ -204,17 +214,29 @@
 							v-else
 							class="tw-text-eco-green-4"
 						>{{ formattedBalance }}</span>
+						<kv-material-icon
+							v-if="avatarMode === 'esi'"
+							:icon="mdiAccountCircle"
+							class="tw-w-3 tw-h-3 tw-text-primary"
+							data-testid="header-avatar-icon"
+							:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
+						/>
 						<span
-							v-if="isUserDataLoading"
+							v-if="avatarMode === 'skeleton'"
 							class="tw-block tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+							data-testid="header-avatar-skeleton"
 						>
 							<kv-loading-placeholder />
 						</span>
 						<kv-user-avatar
-							v-else
+							v-if="avatarMode !== 'skeleton'"
 							class="tw-w-3 tw-h-3"
+							:data-testid="avatarMode === 'esi' ? 'header-avatar-esi' : null"
+							:style="avatarMode === 'esi' ? { display: 'var(--user-avatar-display, block)' } : undefined"
 							:lender-name="lenderName"
 							:lender-image-url="lenderImageUrl"
+							:show-css-placeholder="avatarMode === 'esi'"
+							use-icon-fallback
 							is-small
 						/>
 					</button>
@@ -246,7 +268,9 @@
 import {
 	ref, computed, inject, provide, defineAsyncComponent, shallowRef,
 } from 'vue';
-import { mdiMenu, mdiChevronDown, mdiBriefcase } from '@mdi/js';
+import {
+	mdiMenu, mdiChevronDown, mdiBriefcase, mdiAccountCircle,
+} from '@mdi/js';
 import numeral from 'numeral';
 import KvMaterialIcon from '#components/KvMaterialIcon.vue';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
@@ -306,6 +330,7 @@ export default {
 		lenderImageUrl: { type: String, default: '' },
 		isUserDataLoading: { type: Boolean, default: false },
 		isBasketDataLoading: { type: Boolean, default: false },
+		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },
@@ -336,6 +361,14 @@ export default {
 		}));
 
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
+
+		// Three mutually exclusive avatar states: the real avatar once data lands, the ESI pair for
+		// hosts that emit the image URL, a plain skeleton for those that don't. Both ESI elements
+		// must be in the DOM for CSS to pick between them before hydration.
+		const avatarMode = computed(() => {
+			if (!props.isUserDataLoading) return 'loaded';
+			return props.useEsiAvatar ? 'esi' : 'skeleton';
+		});
 
 		// Forwards the apollo client to the mounted Lend menu's onLoad.
 		function loadMenuData(apollo: unknown): void {
@@ -374,10 +407,12 @@ export default {
 			lendMenuInstance,
 			menuTimingVars: MENU_TIMING_VARS,
 			pointerType,
+			mdiAccountCircle,
 			visiblePrimaryLinks,
 			formattedBalance,
 			track,
 			loadMenuData,
+			avatarMode,
 			onPrimaryClick,
 			onLoginClick,
 			onBasketClick,
@@ -493,5 +528,13 @@ export default {
 .menu-group:has(> [aria-expanded="true"]) .chevron,
 [data-pointer="mouse"] .menu-group:hover .chevron {
 	@apply tw-rotate-180;
+}
+
+/* Font-relative so the panel is the size it will be once the count renders: 1.5ch ≈ a digit and
+ * a half wide, and one line box tall — the base layer's line-height wins over tw-leading-none. */
+.link-bar__basket-count-loader {
+	width: 1.5ch;
+	height: 1.375em;
+	height: 1lh;
 }
 </style>

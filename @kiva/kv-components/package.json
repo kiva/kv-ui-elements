@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "8.28.0",
+  "version": "9.1.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -33,7 +33,7 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@figma/code-connect": "^1.4.9",
-    "@kiva/kv-tokens": "^4.4.1",
+    "@kiva/kv-tokens": "^5.0.0",
     "@kiva/vite-plugin-vue-lib-css": "^2.0.0",
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
     "@mdi/js": "^7.4.47",
@@ -90,7 +90,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "3.x",
-    "@kiva/kv-tokens": "4.x",
+    "@kiva/kv-tokens": "4.x || 5.x",
     "@mdi/js": "7.x",
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/integrations": "14.x",
