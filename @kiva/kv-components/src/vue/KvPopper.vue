@@ -196,7 +196,9 @@ export default {
 		},
 		attachBodyEvents() {
 			onBodyTouchstart(this.bodyTouchHandler);
-			document.addEventListener('pointerdown', this.outsideHandler);
+			// click, not pointerdown: a control outside the popper must get to run its own
+			// handler first, or dismissing here corrupts the state it is about to toggle.
+			document.addEventListener('click', this.outsideHandler);
 			document.addEventListener('keyup', this.keyupHandler, true);
 		},
 		removeEvents() {
@@ -211,7 +213,7 @@ export default {
 		},
 		removeBodyEvents() {
 			offBodyTouchstart(this.bodyTouchHandler);
-			document.removeEventListener('pointerdown', this.outsideHandler);
+			document.removeEventListener('click', this.outsideHandler);
 			document.removeEventListener('keyup', this.keyupHandler, true);
 		},
 		setAttributes(attrs) {

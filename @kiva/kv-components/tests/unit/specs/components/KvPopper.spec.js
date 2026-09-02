@@ -107,9 +107,22 @@ describe('KvPopper', () => {
 			await fireEvent.mouseOver(controller);
 			await waitForState(container, true);
 
-			await fireEvent(document.body, new Event('pointerdown', { bubbles: true }));
+			await fireEvent(document.body, new Event('click', { bubbles: true }));
 
 			await waitForState(container, false);
+		});
+
+		// A control outside the popper has to run its own click handler before dismissal
+		// fires, or dismissal corrupts the state that handler is about to toggle.
+		it('ignores pointerdown outside, dismissing only on the click', async () => {
+			const { container, controller } = renderPopper(props);
+			await fireEvent.mouseOver(controller);
+			await waitForState(container, true);
+
+			await fireEvent(document.body, new Event('pointerdown', { bubbles: true }));
+			await settle();
+
+			expect(isOpen(container)).toBe(true);
 		});
 
 		it('stays open when the click is inside itself', async () => {
@@ -117,7 +130,7 @@ describe('KvPopper', () => {
 			await fireEvent.mouseOver(controller);
 			await waitForState(container, true);
 
-			await fireEvent(panel(container), new Event('pointerdown', { bubbles: true }));
+			await fireEvent(panel(container), new Event('click', { bubbles: true }));
 			await settle();
 
 			expect(isOpen(container)).toBe(true);
@@ -155,7 +168,7 @@ describe('KvPopper', () => {
 		controller.remove();
 
 		expect(() => {
-			document.body.dispatchEvent(new Event('pointerdown', { bubbles: true }));
+			document.body.dispatchEvent(new Event('click', { bubbles: true }));
 		}).not.toThrow();
 	});
 
