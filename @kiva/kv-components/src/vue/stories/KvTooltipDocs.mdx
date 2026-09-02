@@ -67,9 +67,33 @@ The slot is given a `close` function, so whatever you put there becomes the dism
 </kv-tooltip>
 ```
 
+`close` is an ordinary function, so the action can do its own work as well as closing:
+
+```vue
+<template #action="{ close }">
+  <kv-button variant="secondary" size="small" @click="acknowledge(); close();">
+    Got it
+  </kv-button>
+</template>
+```
+
+An action that should leave the tooltip open simply never calls `close`, and does not need the slot prop at all:
+
+```vue
+<template #action>
+  <kv-text-link @click="copyLink">Copy link</kv-text-link>
+</template>
+```
+
+The tooltip is persistent either way, so it stays open after that click and the user leaves via Escape or a click outside. Prefer closing as part of the handler unless staying open is the point — an action that leaves the tooltip sitting there with nothing obvious to do next is worse than one that closes.
+
 <Story of={KvTooltipStories.Dismissal} />
 
-`close` unmounts the tooltip, so the dismissal sticks — a merely hidden tooltip would reopen on the controller's next hover. It also returns focus to the controller and emits `dismiss`, which is where you persist the choice if it has to survive a reload.
+`close` ends the current viewing and returns focus to the controller. The tooltip stays mounted, so hovering the controller shows it again — closing it is not the same as retiring it. For a one-time hint, listen for `dismiss` and stop rendering the tooltip yourself:
+
+```vue
+<kv-tooltip v-if="!hintSeen" @dismiss="hintSeen = true" …>
+```
 
 Every action treatment on both chips is in the [Variations](#variations) matrix above.
 
@@ -264,8 +288,8 @@ The `theme` prop is deprecated and will be removed. It still renders, mapped ont
   <kv-tooltip controller="onboarding-btn" variant="dark">
     <template #title>Annual goals</template>
     Set a goal to stay accountable and watch your impact grow.
-    <template #action>
-      <kv-button variant="secondary" size="small" @click="dismiss">
+    <template #action="{ close }">
+      <kv-button variant="secondary" size="small" @click="close">
         Got it
       </kv-button>
     </template>

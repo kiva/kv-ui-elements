@@ -1,6 +1,5 @@
 <template>
 	<kv-popper
-		v-if="!isDismissed"
 		ref="popperRef"
 		:controller="controller"
 		:popper-modifiers="popperModifiers"
@@ -49,7 +48,6 @@ import {
 	ref,
 	toRefs,
 	computed,
-	nextTick,
 	watch,
 	PropType,
 } from 'vue';
@@ -160,17 +158,10 @@ export default {
 			}
 		};
 
-		const isDismissed = ref(false);
-
-		// Handed to the action slot so whatever the consumer puts there can close the
-		// tooltip. Unmounting it is what makes the dismissal stick: a hidden popper would
-		// reopen on the controller's next hover.
-		const dismiss = async () => {
-			isDismissed.value = true;
-			// Wait for the popper to unmount before restoring focus, or the controller's
-			// focus handler reopens what we just dismissed.
-			await nextTick();
-			getControllerElement()?.focus();
+		// Ends the current viewing, not the tooltip: hovering the controller brings it back.
+		// A one-time hint listens for `dismiss` and stops rendering it.
+		const dismiss = () => {
+			popperRef.value?.dismiss();
 			emit('dismiss');
 		};
 
@@ -196,7 +187,6 @@ export default {
 			defaultTheme,
 			dismiss,
 			handleKvPopperVisibility,
-			isDismissed,
 			paneClass,
 			popperModifiers,
 			popperRef,

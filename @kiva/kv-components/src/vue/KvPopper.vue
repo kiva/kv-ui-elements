@@ -110,9 +110,9 @@ export default {
 				this.hide();
 			}
 		},
-		keydownHandler(e) {
-			if (e.key !== 'Escape') return;
-			// Focus would otherwise be stranded on content that just went away.
+		// Ends the current viewing. Returns focus only if it was inside, so it is not
+		// stranded on content that just went away.
+		dismiss() {
 			const shouldReturnFocus = this.$el.contains(document.activeElement);
 			this.hide();
 			if (shouldReturnFocus) {
@@ -122,6 +122,9 @@ export default {
 				this.reference.focus();
 				this.suppressOpen = false;
 			}
+		},
+		keydownHandler(e) {
+			if (e.key === 'Escape') this.dismiss();
 		},
 		toggle() {
 			if (this.show) {
@@ -172,8 +175,8 @@ export default {
 			this.reference.addEventListener('mouseover', this.open);
 			this.reference.addEventListener('focus', this.open);
 			this.reference.addEventListener('touchstart', this.referenceTapHandler);
-			// A persistent popper holds something the user has to reach, so leaving the
-			// controller must not close it — by pointer or by tabbing into the content.
+			// Persistent content has to stay reachable, so leaving the controller must not
+			// close it — by pointer or by tabbing in.
 			if (!this.persistent) {
 				this.reference.addEventListener('mouseout', this.close);
 				this.reference.addEventListener('blur', this.close);

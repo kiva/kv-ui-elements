@@ -107,7 +107,6 @@ describe('KvTooltip', () => {
 	});
 
 	describe('dismissal', () => {
-		// The action slot's content is the dismissal, so it is handed a close function.
 		const dismissibleSlot = {
 			action: `
 				<template #action="{ close }">
@@ -122,14 +121,6 @@ describe('KvTooltip', () => {
 			getByText('Got it');
 		});
 
-		it('unmounts the tooltip when the action slot closes it', async () => {
-			const { container, getByText } = renderTooltip({}, { slots: dismissibleSlot });
-
-			await fireEvent.click(getByText('Got it'));
-
-			expect(container.querySelector('.tooltip-pane')).toBeNull();
-		});
-
 		it('emits dismiss when the action slot closes it', async () => {
 			const { emitted, getByText } = renderTooltip({}, { slots: dismissibleSlot });
 
@@ -138,21 +129,37 @@ describe('KvTooltip', () => {
 			expect(emitted().dismiss).toHaveLength(1);
 		});
 
-		it('returns focus to the controller so it is not stranded on removed content', async () => {
-			const { getByText } = renderTooltip({}, { slots: dismissibleSlot });
+		it('keeps the tooltip mounted so it can be viewed again', async () => {
+			const { container, getByText } = renderTooltip({}, { slots: dismissibleSlot });
 
 			await fireEvent.click(getByText('Got it'));
 
-			expect(document.activeElement).toBe(document.getElementById(CONTROLLER_ID));
+			expect(container.querySelector('.tooltip-pane')).not.toBeNull();
 		});
 
-		it('does not reopen on a later hover once dismissed', async () => {
-			const { container, getByText } = renderTooltip({}, { slots: dismissibleSlot });
+		it('lets the action do its own work alongside closing', async () => {
+			const onAcknowledge = jest.fn();
+			const controller = document.createElement('button');
+			controller.id = CONTROLLER_ID;
+			document.body.appendChild(controller);
+
+			// A wrapper owns the handler, because slot content compiles in the parent scope.
+			const { getByText } = render({
+				components: { KvTooltip },
+				props: { onAcknowledge: { type: Function, required: true } },
+				template: `
+					<kv-tooltip controller="${CONTROLLER_ID}">
+						Tooltip body copy
+						<template #action="{ close }">
+							<button type="button" @click="onAcknowledge(); close();">Got it</button>
+						</template>
+					</kv-tooltip>
+				`,
+			}, { props: { onAcknowledge } });
+
 			await fireEvent.click(getByText('Got it'));
 
-			await fireEvent.mouseOver(document.getElementById(CONTROLLER_ID));
-
-			expect(container.querySelector('.tooltip-pane')).toBeNull();
+			expect(onAcknowledge).toHaveBeenCalledTimes(1);
 		});
 	});
 });

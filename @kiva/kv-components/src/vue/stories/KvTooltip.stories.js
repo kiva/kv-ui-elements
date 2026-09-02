@@ -247,7 +247,8 @@ export const PlacementMatrix = () => ({
 /**
  * Filling the action slot makes a tooltip persistent: hover it, then move the pointer
  * in and act on the button. It will not close on mouseout the way the transient one
- * beside it does. `close` unmounts it, so it stays gone on the next hover.
+ * beside it does. `close` ends that viewing without retiring the tooltip, so hovering
+ * the trigger again brings it back.
  */
 export const Dismissal = () => ({
 	components: {
@@ -255,11 +256,12 @@ export const Dismissal = () => ({
 		KvTooltip,
 	},
 	data() {
-		return { dismissedAt: null };
+		return { status: null, dismissCount: 0 };
 	},
 	methods: {
 		onDismiss() {
-			this.dismissedAt = 'dismissed — hover the trigger again, it stays gone';
+			this.dismissCount += 1;
+			this.status = `dismissed ${this.dismissCount}x — hover the trigger again, it comes back`;
 		},
 	},
 	template: `
@@ -289,7 +291,7 @@ export const Dismissal = () => ({
 					</kv-tooltip>
 				</div>
 			</div>
-			<p v-if="dismissedAt" class="tw-text-small tw-text-gray-600 tw-mt-6">{{ dismissedAt }}</p>
+			<p v-if="status" class="tw-text-small tw-text-gray-600 tw-mt-6">{{ status }}</p>
 		</div>
 	`,
 });

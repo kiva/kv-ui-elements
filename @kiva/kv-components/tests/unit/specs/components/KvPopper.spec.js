@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/vue';
+import { fireEvent, render, waitFor } from '@testing-library/vue';
 import KvPopper from '#components/KvPopper.vue';
 
 const CONTROLLER_ID = 'popper-controller';
@@ -22,9 +22,10 @@ const isOpen = (container) => {
 	return !!el && el.style.display !== 'none';
 };
 
-// open() resolves a dynamic import of popper.js before it shows, so opening and
-// closing both need a turn of the event loop rather than just a tick.
-const settle = () => new Promise((resolve) => { setTimeout(resolve, 30); });
+// open() awaits a dynamic import, so a state change is never same-tick. Fixed waits are
+// only safe for asserting something did NOT change, and must outlast the close delay.
+const waitForState = (container, open) => waitFor(() => expect(isOpen(container)).toBe(open));
+const settle = () => new Promise((resolve) => { setTimeout(resolve, 250); });
 
 describe('KvPopper', () => {
 	afterEach(() => {
@@ -35,27 +36,25 @@ describe('KvPopper', () => {
 		const { container, controller } = renderPopper();
 
 		await fireEvent.mouseOver(controller);
-		await settle();
 
-		expect(isOpen(container)).toBe(true);
+		await waitForState(container, true);
 	});
 
 	describe('transient (default)', () => {
 		it('closes when the pointer leaves the controller', async () => {
 			const { container, controller } = renderPopper();
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent.mouseOut(controller);
-			await settle();
 
-			expect(isOpen(container)).toBe(false);
+			await waitForState(container, false);
 		});
 
 		it('stays open while the pointer travels into the panel (WCAG 1.4.13)', async () => {
 			const { container, controller } = renderPopper();
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent.mouseOut(controller);
 			await fireEvent.mouseOver(panel(container));
@@ -69,7 +68,7 @@ describe('KvPopper', () => {
 		it('does not close when the pointer leaves the controller', async () => {
 			const { container, controller } = renderPopper({ persistent: true });
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent.mouseOut(controller);
 			await settle();
@@ -80,7 +79,7 @@ describe('KvPopper', () => {
 		it('does not close when focus leaves the controller, so the content is reachable by keyboard', async () => {
 			const { container, controller } = renderPopper({ persistent: true });
 			await fireEvent.focus(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent.blur(controller);
 			await settle();
@@ -96,29 +95,27 @@ describe('KvPopper', () => {
 		it('closes on Escape', async () => {
 			const { container, controller } = renderPopper(props);
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent.keyDown(document, { key: 'Escape' });
-			await settle();
 
-			expect(isOpen(container)).toBe(false);
+			await waitForState(container, false);
 		});
 
 		it('closes on a click outside itself', async () => {
 			const { container, controller } = renderPopper(props);
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent(document.body, new Event('pointerdown', { bubbles: true }));
-			await settle();
 
-			expect(isOpen(container)).toBe(false);
+			await waitForState(container, false);
 		});
 
 		it('stays open when the click is inside itself', async () => {
 			const { container, controller } = renderPopper(props);
 			await fireEvent.mouseOver(controller);
-			await settle();
+			await waitForState(container, true);
 
 			await fireEvent(panel(container), new Event('pointerdown', { bubbles: true }));
 			await settle();
@@ -130,13 +127,12 @@ describe('KvPopper', () => {
 	it('returns focus to the controller when Escape is pressed from inside the panel', async () => {
 		const { container, controller, getByText } = renderPopper({ persistent: true });
 		await fireEvent.mouseOver(controller);
-		await settle();
+		await waitForState(container, true);
 		getByText('Got it').focus();
 
 		await fireEvent.keyDown(document, { key: 'Escape' });
-		await settle();
 
-		expect(isOpen(container)).toBe(false);
+		await waitForState(container, false);
 		expect(document.activeElement).toBe(controller);
 	});
 });
