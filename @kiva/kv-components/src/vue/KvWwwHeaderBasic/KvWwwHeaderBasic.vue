@@ -51,8 +51,7 @@ import { useBreakpoints } from '#utils/useBreakpoints';
 import type { SearchSuggestion } from '#utils/typeaheadSearchEngine';
 import LinkBar from './LinkBar.vue';
 
-// `min-height` initial — the tablet two-row layout grows the nav vertically, so the actual
-// rendered height is measured at runtime by LinkBar's placement pass (--nav-height).
+// Initial nav min-height; the rendered height is measured into --nav-height after mount.
 const MIN_HEADER_HEIGHT = '4rem';
 
 // Loan search-suggestion dataset for the header search bar. Fetched on demand via the exposed

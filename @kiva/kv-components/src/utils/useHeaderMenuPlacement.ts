@@ -20,6 +20,7 @@ export function useHeaderMenuPlacement(rootRef: Ref<HTMLElement | null>): Header
 	const groups = new Set<HTMLElement>();
 	let observer: ResizeObserver | null = null;
 
+	// Reads the nav and group rectangles, then writes --nav-height on the bar and the --trigger-* variables on each group.
 	function measure(): void {
 		const root = rootRef.value;
 		const nav = root?.offsetParent;
@@ -35,6 +36,7 @@ export function useHeaderMenuPlacement(rootRef: Ref<HTMLElement | null>): Header
 		});
 	}
 
+	// Adds the group to the measured set and observes it; the returned function reverses both.
 	function registerGroup(el: HTMLElement): () => void {
 		groups.add(el);
 		observer?.observe(el);
@@ -44,6 +46,7 @@ export function useHeaderMenuPlacement(rootRef: Ref<HTMLElement | null>): Header
 		};
 	}
 
+	// Creates the observer over the nav, the bar's direct children and the groups registered so far, then measures once.
 	onMounted(() => {
 		const root = rootRef.value;
 		const nav = root?.offsetParent;
@@ -56,6 +59,7 @@ export function useHeaderMenuPlacement(rootRef: Ref<HTMLElement | null>): Header
 		measure();
 	});
 
+	// Disconnects the observer.
 	onBeforeUnmount(() => {
 		observer?.disconnect();
 		observer = null;
