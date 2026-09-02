@@ -155,20 +155,21 @@ export default {
 			apollo.watchQuery({
 				query: gql`
 					query lendMenuData {
-						lend {
-							loanChannels(popular: true, applyMinLoanCount: true, limit: 50) {
-								values {
-									id
-									name
-									url
-								}
+						browsingCategories(
+							filters: { popularOnly: true, applyMinimumLoanCount: true }
+							limit: 50
+						) {
+							values {
+								id
+								name
+								url
 							}
 						}
 					}
 				`,
 			}).subscribe({
 				next: ({ data }) => {
-					categories.value = data?.lend?.loanChannels?.values ?? [];
+					categories.value = data?.browsingCategories?.values ?? [];
 					isChannelsLoading.value = false;
 				},
 			});
