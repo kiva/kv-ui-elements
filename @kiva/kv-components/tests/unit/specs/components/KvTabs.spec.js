@@ -70,11 +70,11 @@ describe('KvTabs', () => {
 		firstTab.focus();
 
 		// Press arrow right twice and expect the third tab panel to be visible
-		userEvent.keyboard('{ArrowRight}{ArrowRight}');
+		await userEvent.keyboard('{ArrowRight}{ArrowRight}');
 		expect(await findByText('Third Panel')).toBeVisible();
 
 		// Press arrow left once and expect the second tab panel to be visible
-		userEvent.keyboard('{ArrowLeft}');
+		await userEvent.keyboard('{ArrowLeft}');
 		expect(await findByText('Second Panel', { exact: false })).toBeVisible();
 	});
 
@@ -86,15 +86,15 @@ describe('KvTabs', () => {
 		firstTab.focus();
 
 		// Press arrow right once and expect the second tab panel to be visible
-		userEvent.keyboard('{ArrowRight}');
+		await userEvent.keyboard('{ArrowRight}');
 		expect(await findByText('Second Panel', { exact: false })).toBeVisible();
 
 		// Press end key and expect the fourth panel to be visible
-		userEvent.keyboard('{End}');
+		await userEvent.keyboard('{End}');
 		expect(await findByText('Fourth Panel')).toBeVisible();
 
 		// Press home key and expect the first panel to be visible
-		userEvent.keyboard('{Home}');
+		await userEvent.keyboard('{Home}');
 		expect(await findByText('First Panel')).toBeVisible();
 	});
 

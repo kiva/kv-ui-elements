@@ -26,7 +26,7 @@ describe('KvTextInput', () => {
 		const textInputEl = getByRole('textbox');
 
 		expect(textInputEl.value).toEqual('');
-		userEvent.type(textInputEl, 'abc 123');
+		await userEvent.type(textInputEl, 'abc 123');
 		expect(textInputEl.value).toEqual('abc 123');
 	});
 
@@ -128,24 +128,27 @@ describe('KvTextInput', () => {
 	});
 
 	it('clear button cleans the input value', async () => {
-		const { getByRole, findByRole, queryByRole } = render(KvTextInput, {
-			props: {
-				canClear: true,
-				valid: true,
-				id: 'foo',
-			},
-		});
+		const TestComponent = {
+			template:
+				`<div>
+					<label for="text-input">Text input</label>
+					<KvTextInput v-model="textValue" id="text-input" can-clear valid />
+				</div>`,
+			components: { KvTextInput },
+			data: () => ({ textValue: '' }),
+		};
+		const { getByRole, findByRole, queryByRole } = render(TestComponent);
 		const textInputEl = getByRole('textbox');
 
 		expect(textInputEl.value).toEqual('');
 		expect(queryByRole('button')).toBeNull();
 
-		userEvent.type(textInputEl, 'abc 123');
+		await userEvent.type(textInputEl, 'abc 123');
 		expect(textInputEl.value).toEqual('abc 123');
 		const buttonEl = await findByRole('button');
 		expect(buttonEl).toBeDefined();
 
-		await fireEvent.click(buttonEl);
+		await userEvent.click(buttonEl);
 		expect(textInputEl.value).toEqual('');
 	});
 });
