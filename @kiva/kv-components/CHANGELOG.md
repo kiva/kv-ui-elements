@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.1.0...@kiva/kv-components@9.1.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* **HeaderMenuGroup:** gate hover opens on pointer type and activate triggers on click ([0baa4bc](https://github.com/kiva/kv-ui-elements/commit/0baa4bc63c81278c56be087e8d9ed19f5d42720d))
+* **LinkBar:** center the Lend chevron and restore its left margin ([028eb68](https://github.com/kiva/kv-ui-elements/commit/028eb689b81950d141d9c42fef65907bcc1a79f9))
+* **SearchBar:** give the mobile lend menu search input its own id ([5d905ee](https://github.com/kiva/kv-ui-elements/commit/5d905eea6043d058f6a10d82a689c9e2c83b61e3))
+
+
+
+
+
 # [9.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.0.3...@kiva/kv-components@9.1.0) (2026-09-02)
 
 
