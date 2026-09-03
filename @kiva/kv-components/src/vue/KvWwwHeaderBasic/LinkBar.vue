@@ -58,10 +58,13 @@
 					v-bind="trigger"
 					type="button"
 					aria-label="Lend menu"
-					class="menu-trigger tw-p-0 tw-py-1 tw-text-primary hover:tw-text-action"
+					class="
+						menu-trigger tw-p-0 tw-py-1 tw-ml-0.5
+						tw-inline-flex tw-items-center
+						tw-text-primary hover:tw-text-action"
 				>
 					<kv-material-icon
-						class="chevron tw-block tw-w-3"
+						class="chevron tw-w-3"
 						:icon="mdiChevronDown"
 					/>
 				</button>
