@@ -5,17 +5,20 @@ import * as KvTooltipStories from './KvTooltip.stories.js';
 
 # KvTooltip
 
-A flexible, accessible tooltip component that displays helpful information when users hover over or focus on an element. Built on top of KvPopper, it provides consistent positioning, theming, and interaction patterns.
+A flexible, accessible tooltip component that displays helpful information when users hover over or focus on an element. Built on top of KvPopper, it provides consistent positioning and interaction patterns.
+
+Tooltips are functional rather than a brand surface, and a single page can run two or three themes at once. So the tooltip does not follow the page theme: it has two fixed neutral variants that look the same everywhere and stay legible over any surface.
 
 ## Component Overview
 
-Tooltips provide contextual information when users hover over or focus on an element. They support multiple themes, flexible positioning, and programmatic control.
+Use `variant="dark"` over light surfaces and `variant="light"` over dark ones. Both pass AAA contrast at small sizes.
 
-<Story of={KvTooltipStories.ComponentOverview} />
+<Story of={KvTooltipStories.Variants} />
 
 ## Table of Contents
 
 - [Variations](#variations)
+- [Action](#action)
 - [Usage Information](#usage-information)
 - [Behavior](#behavior)
 - [Anatomy](#anatomy)
@@ -29,13 +32,70 @@ Tooltips provide contextual information when users hover over or focus on an ele
 
 ## Variations
 
-The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+Every content combination — action and title, on both chips — matching the Figma component set.
 
-## Variations
+<Story of={KvTooltipStories.ContentMatrix} />
 
-The tooltip component supports multiple placement options, themes, and content configurations to suit different use cases.
+All four placements on both chips.
 
-<Story of={KvTooltipStories.AllVariations} />
+<Story of={KvTooltipStories.PlacementMatrix} />
+
+## Action
+
+The optional `action` slot holds a single button or text link. Pick the button variant that matches the chip:
+
+| Chip | Button | Text link |
+| --- | --- | --- |
+| `light` | `<kv-button>` (primary) | `<kv-text-link>` |
+| `dark` | `<kv-button variant="secondary">` | `<kv-text-link>` |
+
+Buttons inside the slot render against a pinned default theme, so they stay the same regardless of the page theme surrounding the tooltip. Use `size="small"` for the compact treatment.
+
+Filling this slot also switches the tooltip to **persistent** — see [Behavior](#behavior).
+
+### Dismissing
+
+The slot is given a `close` function, so whatever you put there becomes the dismissal:
+
+```vue
+<kv-tooltip controller="goal-info" variant="dark" @dismiss="rememberSeen">
+  <template #title>Annual goals</template>
+  Set a goal to stay accountable and watch your impact grow.
+  <template #action="{ close }">
+    <kv-button variant="secondary" size="small" @click="close">Got it</kv-button>
+  </template>
+</kv-tooltip>
+```
+
+`close` is an ordinary function, so the action can do its own work as well as closing:
+
+```vue
+<template #action="{ close }">
+  <kv-button variant="secondary" size="small" @click="acknowledge(); close();">
+    Got it
+  </kv-button>
+</template>
+```
+
+An action that should leave the tooltip open simply never calls `close`, and does not need the slot prop at all:
+
+```vue
+<template #action>
+  <kv-text-link @click="copyLink">Copy link</kv-text-link>
+</template>
+```
+
+The tooltip is persistent either way, so it stays open after that click and the user leaves via Escape or a click outside. Prefer closing as part of the handler unless staying open is the point — an action that leaves the tooltip sitting there with nothing obvious to do next is worse than one that closes.
+
+<Story of={KvTooltipStories.Dismissal} />
+
+`close` ends the current viewing, and returns focus to the controller when focus was inside the tooltip. It stays mounted, so hovering the controller shows it again — closing it is not the same as retiring it. For a one-time hint, listen for `dismiss` and stop rendering the tooltip yourself:
+
+```vue
+<kv-tooltip v-if="!hintSeen" @dismiss="hintSeen = true" …>
+```
+
+Every action treatment on both chips is in the [Variations](#variations) matrix above.
 
 ## Usage Information
 
@@ -61,12 +121,21 @@ Tooltips provide supplementary information without cluttering the interface. The
 
 ## Behavior
 
-### Hover and Focus Interaction
+### Transient and persistent
 
-Tooltips appear when users hover over or focus on the controller element. They automatically hide when the user moves away or removes focus.
+A tooltip's behavior depends on whether it has an action to act on.
+
+**Transient** — no `action` slot. Opens on hover or focus, and closes on mouseout or blur after a short grace period, on Escape, or on a click outside.
+
+**Persistent** — the `action` slot is filled. The action is the dismissal, so the tooltip stays open until the user acts on it and never closes itself on mouseout or blur. Escape and an outside click still close it.
+
+That distinction is what makes the action reachable. Leaving the controller has to not close a persistent tooltip, whether the user is travelling into it with a pointer or tabbing into it from the keyboard.
+
+Both modes stay open while the pointer moves from the controller into the tooltip, as [WCAG 1.4.13](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html) requires, and both can be dismissed with Escape without moving the pointer.
 
 - Tooltips trigger on **mouseover** and **focus** events
-- They hide on **mouseout** and **blur** events
+- Transient tooltips hide on **mouseout** and **blur** events
+- **Escape** and an outside click close either mode
 - There is a subtle fade-in/fade-out transition
 
 <Story of={KvTooltipStories.PlacementShowcase} />
@@ -79,12 +148,13 @@ Tooltips can be controlled programmatically using the `showTooltip` prop and `@t
 
 ## Anatomy
 
-The tooltip consists of four main parts:
+The tooltip consists of six parts:
 
 - **Controller**: The target element (button, icon, text) that triggers the tooltip
 - **Container**: The tooltip popup with background, padding, and rounded corners
 - **Title** (optional): Bold text at the top of the tooltip for emphasis
 - **Content**: The main descriptive text in the default slot
+- **Action** (optional): A single button or text link in the `action` slot
 - **Arrow**: A small triangular pointer connecting the tooltip to its controller
 
 ---
@@ -102,16 +172,20 @@ Tooltips intelligently position themselves using Popper.js:
 
 <Story of={KvTooltipStories.ModifiersShowcase} />
 
-### Theming
+### Color
 
-Five pre-defined themes provide visual variety:
+Two fixed neutral variants, set with the `variant` prop:
 
-- **default**: Standard Kiva branding
-- **ecoGreenLight** / **ecoGreenDark**: Green tones for eco-related content (ecoGreenDark is most commonly used)
-- **ecoLightMarigold**: Warm marigold theme
-- **ecoStoneLight**: Neutral stone tone
+- **light** (current default): white chip with `gray-800` text, for dark surfaces
+- **dark**: `gray-800` chip with white text, for light surfaces
 
-<Story of={KvTooltipStories.ThemeShowcase} />
+Darkest gray is used rather than pure black to avoid harsh halation on small copy.
+
+`light` is the default so that call sites which pass no variant stay on a light chip rather than flipping to dark. Most Kiva surfaces are light, so new usages should reach for `dark`.
+
+### Deprecated `theme` prop
+
+The `theme` prop is deprecated and will be removed. It still renders, mapped onto the two variants. `ecoGreenDark` maps to `dark`; `default`, `ecoGreenLight`, `ecoLightMarigold`, and `ecoStoneLight` all map to `light`. If both are passed, an explicit `variant` wins.
 
 ---
 
@@ -158,7 +232,7 @@ Five pre-defined themes provide visual variety:
 - ✅ **Keyboard accessible:** Tooltip appears on focus, not just hover
 - ✅ **Semantic HTML:** Uses proper ARIA attributes via KvPopper
 - ✅ **Focus management:** Tooltips appear when trigger element receives focus
-- ✅ **ESC key support:** Inherited from KvPopper for dismissing tooltips
+- ✅ **ESC key support:** Escape closes either mode, returning focus to the controller when focus was inside
 - ✅ **Controller accessibility:** Works with any focusable element
 - ✅ **No mouse-only interaction:** Full keyboard and screen reader support
 
@@ -186,7 +260,7 @@ Five pre-defined themes provide visual variety:
 </template>
 ```
 
-### Tooltip with Custom Theme and Placement
+### Tooltip with a Variant and Placement
 
 ```vue
 <template>
@@ -194,13 +268,31 @@ Five pre-defined themes provide visual variety:
 
   <kv-tooltip
     controller="info-btn"
-    theme="ecoGreenDark"
+    variant="dark"
     placement="bottom"
     max-width="300px"
   >
     <template #title>Extended Information</template>
-    This tooltip uses a custom theme, placement, and wider max-width
-    for more detailed explanations.
+    This tooltip uses the dark chip, a custom placement, and a wider
+    max-width for more detailed explanations.
+  </kv-tooltip>
+</template>
+```
+
+### Tooltip with an Action
+
+```vue
+<template>
+  <button id="onboarding-btn">What's new?</button>
+
+  <kv-tooltip controller="onboarding-btn" variant="dark">
+    <template #title>Annual goals</template>
+    Set a goal to stay accountable and watch your impact grow.
+    <template #action="{ close }">
+      <kv-button variant="secondary" size="small" @click="close">
+        Got it
+      </kv-button>
+    </template>
   </kv-tooltip>
 </template>
 ```

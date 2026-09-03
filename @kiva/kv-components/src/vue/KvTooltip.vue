@@ -1,38 +1,45 @@
 <template>
-	<kv-theme-provider
-		:theme="themeStyle"
-		class="kv-tailwind"
+	<kv-popper
+		ref="popperRef"
+		:controller="controller"
+		:popper-modifiers="popperModifiers"
+		:popper-placement="placement"
+		:persistent="!!$slots.action"
+		transition-type="kvfastfade"
+		class="tooltip-pane tw-absolute tw-rounded tw-z-popover"
+		:class="paneClass"
+		@hide="handleKvPopperVisibility(false)"
+		@show="handleKvPopperVisibility(true)"
 	>
-		<kv-popper
-			ref="popperRef"
-			:controller="controller"
-			:popper-modifiers="popperModifiers"
-			:popper-placement="placement"
-			transition-type="kvfastfade"
-			class="tooltip-pane tw-absolute tw-bg-primary tw-rounded tw-z-popover"
-			@hide="handleKvPopperVisibility(false)"
-			@show="handleKvPopperVisibility(true)"
+		<div
+			class="tw-p-2.5"
+			:style="{ maxWidth }"
 		>
 			<div
-				class="tw-p-2.5"
-				:style="{ maxWidth }"
+				v-if="$slots.title"
+				class="tw-font-medium tw-mb-1.5"
 			>
-				<div
-					v-if="$slots.title"
-					class="tw-text-primary tw-font-medium tw-mb-1.5"
-				>
-					<slot name="title"></slot>
-				</div>
-				<div class="tw-text-primary">
-					<slot></slot>
-				</div>
+				<slot name="title"></slot>
+			</div>
+			<div>
+				<slot></slot>
 			</div>
 			<div
-				class="tooltip-arrow tw-absolute tw-w-0 tw-h-0 tw-border-solid"
-				x-arrow=""
-			></div>
-		</kv-popper>
-	</kv-theme-provider>
+				v-if="$slots.action"
+				class="tooltip-action tw-mt-1.5"
+				:style="defaultTheme"
+			>
+				<slot
+					name="action"
+					:close="dismiss"
+				></slot>
+			</div>
+		</div>
+		<div
+			class="tooltip-arrow tw-absolute tw-w-0 tw-h-0 tw-border-solid"
+			x-arrow=""
+		></div>
+	</kv-popper>
 </template>
 
 <script lang="ts">
@@ -43,21 +50,23 @@ import {
 	watch,
 	PropType,
 } from 'vue';
-import {
-	defaultTheme,
-	greenLightTheme,
-	greenDarkTheme,
-	marigoldLightTheme,
-	stoneLightTheme,
-} from '@kiva/kv-tokens';
+import { defaultTheme } from '@kiva/kv-tokens';
 import KvPopper from './KvPopper.vue';
-import KvThemeProvider from './KvThemeProvider.vue';
+
+const VARIANTS = ['light', 'dark'];
+
+const DEPRECATED_THEMES = {
+	default: 'light',
+	ecoGreenLight: 'light',
+	ecoGreenDark: 'dark',
+	ecoLightMarigold: 'light',
+	ecoStoneLight: 'light',
+};
 
 export default {
 	name: 'KvTooltip',
 	components: {
 		KvPopper,
-		KvThemeProvider,
 	},
 	props: {
 		controller: {
@@ -87,27 +96,36 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Fixed neutral color of the tooltip. Defaults to `light`.
+		 * Use `dark` over light surfaces and `light` over dark surfaces.
+		 */
+		variant: {
+			type: String,
+			default: undefined,
+			validator(value: string) {
+				return value === undefined || VARIANTS.indexOf(value) !== -1;
+			},
+		},
+		/**
+		 * @deprecated Use `variant` instead. Themed tooltips are being removed:
+		 * `ecoGreenDark` maps to `dark`, every other value maps to `light`.
+		 */
 		theme: {
 			type: String,
-			default: 'default',
+			default: undefined,
 			validator(value: string) {
-				// The value must match one of these strings
-				return [
-					'default',
-					'ecoGreenLight',
-					'ecoGreenDark',
-					'ecoLightMarigold',
-					'ecoStoneLight',
-				].indexOf(value) !== -1;
+				return Object.keys(DEPRECATED_THEMES).indexOf(value) !== -1;
 			},
 		},
 	},
-	emits: ['tool-tip-visible'],
+	emits: ['tool-tip-visible', 'dismiss'],
 	setup(props, { emit }) {
 		const {
 			modifiers,
 			showTooltip,
 			theme,
+			variant,
 		} = toRefs(props);
 
 		const popperModifiers = computed(() => ({
@@ -120,7 +138,7 @@ export default {
 
 		const popperRef = ref(null);
 
-		const getControllerElement = (): HTMLElement => {
+		const getControllerElement = (): HTMLElement | null => {
 			if (typeof props.controller === 'string') {
 				return document.getElementById(props.controller);
 			}
@@ -139,35 +157,41 @@ export default {
 			}
 		};
 
-		const themeStyle = computed(() => {
-			const themeMapper = {
-				default: defaultTheme,
-				ecoGreenLight: greenLightTheme,
-				ecoGreenDark: greenDarkTheme,
-				ecoLightMarigold: marigoldLightTheme,
-				ecoStoneLight: stoneLightTheme,
-			};
-			return themeMapper[theme.value];
+		// Ends the current viewing, not the tooltip: hovering the controller brings it back.
+		// A one-time hint listens for `dismiss` and stops rendering it.
+		const dismiss = () => {
+			popperRef.value?.dismiss();
+			emit('dismiss');
+		};
+
+		const resolvedVariant = computed(() => {
+			if (variant.value) return variant.value;
+			if (theme.value) return DEPRECATED_THEMES[theme.value];
+			return 'light';
 		});
 
+		const paneClass = computed(() => (resolvedVariant.value === 'dark'
+			? 'tooltip-pane--dark tw-bg-gray-800 tw-text-white'
+			: 'tooltip-pane--light tw-bg-white tw-text-gray-800'));
+
 		watch(showTooltip, (show) => {
+			// Drive the popper directly. Closing used to fake a mouseout on the controller,
+			// which a persistent popper ignores by design.
 			if (show) {
-				triggerHover(true);
+				popperRef.value?.open();
 			} else {
-				triggerHover(false);
+				popperRef.value?.dismiss();
 			}
 		});
 
 		return {
 			defaultTheme,
-			greenLightTheme,
-			greenDarkTheme,
-			marigoldLightTheme,
-			stoneLightTheme,
+			dismiss,
 			handleKvPopperVisibility,
+			paneClass,
 			popperModifiers,
 			popperRef,
-			themeStyle,
+			resolvedVariant,
 			triggerHover,
 		};
 	},
@@ -182,7 +206,25 @@ export default {
 
 .tooltip-arrow {
 	@apply tw-m-1;
-	border-color: rgba(var(--bg-primary), var(--tw-bg-opacity, 1));
+}
+
+.tooltip-pane--light .tooltip-arrow {
+	border-color: theme('colors.white');
+}
+
+.tooltip-pane--dark .tooltip-arrow {
+	border-color: theme('colors.gray.800');
+}
+
+/* Slot content resolves --text-action against the page theme, whose green is illegible
+   on the dark chip. Covers the title and body, not just the action. */
+.tooltip-pane--dark :deep(.tw-text-link) {
+	color: theme('colors.eco-green.2');
+}
+
+.tooltip-pane--dark :deep(.tw-text-link:hover),
+.tooltip-pane--dark :deep(.tw-text-link:focus) {
+	color: theme('colors.white');
 }
 
 /* Top Tooltip Arrow appears on Bottom */
@@ -212,8 +254,6 @@ export default {
 	left: calc(50% - 8px);
 	@apply -tw-top-1 tw-mb-0 tw-mt-0;
 }
-
-/* TODO: TWEAK Inner Arrow Styles for Left + Right Orientations */
 
 /* Right Side Tooltip, Arrow appears on Left */
 .tooltip-pane[x-placement^="right"] {
