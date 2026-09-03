@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.1.1...@kiva/kv-components@9.2.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* close the tooltip action instead of retiring it ([8e86fdb](https://github.com/kiva/kv-ui-elements/commit/8e86fdb38dd350ee5d0a4fa2cd9240bac6460332))
+* dismiss the popper on an outside click rather than pointerdown ([a3ca771](https://github.com/kiva/kv-ui-elements/commit/a3ca7714e39873ab0c12d296fca039e119906535))
+* harden tooltip dismissal against modals and detached controllers ([3faba5b](https://github.com/kiva/kv-ui-elements/commit/3faba5bf6c49682c8540341cb35d5b979fcb2aaa))
+
+
+### Features
+
+* make KvTooltip with an action persistent and dismissible ([bcb4f7a](https://github.com/kiva/kv-ui-elements/commit/bcb4f7a23304052f608703265b6ff212e1ad1b7b))
+* replace KvTooltip themes with two fixed neutral variants ([a1ea475](https://github.com/kiva/kv-ui-elements/commit/a1ea4751cee7c8a91b92b50c284fa2dbc5fe91e5))
+
+
+
+
+
 ## [9.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.1.0...@kiva/kv-components@9.1.1) (2026-09-03)
 
 
