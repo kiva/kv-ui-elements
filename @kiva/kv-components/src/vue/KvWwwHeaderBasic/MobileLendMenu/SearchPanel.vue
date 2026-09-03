@@ -7,6 +7,7 @@
 	<search-bar
 		:search-suggestions="searchSuggestions"
 		:app-origin="appOrigin"
+		input-id="kv-www-header-basic-search-mobile"
 		is-mobile
 		@load-search-data="$emit('load-search-data')"
 		@search-submit="$emit('search-submit', $event)"

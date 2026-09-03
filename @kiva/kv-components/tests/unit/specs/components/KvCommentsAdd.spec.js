@@ -70,7 +70,7 @@ describe('KvCommentsAdd', () => {
 
 		await userEvent.type(textInput, TEST_INPUT);
 
-		userEvent.keyboard('{enter}');
+		await userEvent.keyboard('{enter}');
 
 		expect(emitted()[ADD_COMMENT_EVENT]).toEqual([[TEST_INPUT]]);
 	});

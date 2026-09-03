@@ -1,27 +1,6 @@
-import {
-	createApp,
-	defineComponent,
-	h,
-	ref,
-	nextTick,
-	type App,
-} from 'vue';
+import { ref, nextTick } from 'vue';
 import { useMapTourCycle } from '#utils/useMapTourCycle';
-
-// Run the composable inside a real component instance so its lifecycle hooks
-// attach to an active instance instead of warning.
-function withSetup<T>(composable: () => T): { result: T; app: App; el: HTMLElement } {
-	let result!: T;
-	const el = document.createElement('div');
-	const app = createApp(defineComponent({
-		setup() {
-			result = composable();
-			return () => h('div');
-		},
-	}));
-	app.mount(el);
-	return { result, app, el };
-}
+import withSetup from '../../utils/withSetup';
 
 interface TestCountry { id: string; }
 const COUNTRIES: TestCountry[] = [

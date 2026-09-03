@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { userEvent, waitFor, within } from 'storybook/test'; // eslint-disable-line import/no-extraneous-dependencies
 import KvWwwHeaderBasic from '../KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
 import KvPageContainer from '../KvPageContainer.vue';
 
@@ -305,3 +306,64 @@ export const WindowDerivedOrigin = story({
 	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
 	searchSuggestions: sampleSearchSuggestions,
 });
+
+// ── Open-menu stories ──────────────────────────────────────────────────────────
+// Each play clicks a trigger and waits for its identified panel to render the given text, so the
+// Chromatic snapshot captures the menu open in place.
+const openMenuPlay = (getTrigger, panelSelector, readyText) => async ({ canvasElement }) => {
+	await userEvent.click(getTrigger(within(canvasElement)));
+	await waitFor(() => {
+		const panel = canvasElement.querySelector(panelSelector);
+		if (!panel?.textContent?.includes(readyText)) throw new Error(`${panelSelector} not ready`);
+	});
+};
+
+export const LendMenuOpen = story({
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+LendMenuOpen.play = openMenuPlay(
+	(canvas) => canvas.getByLabelText('Lend menu'),
+	'#header-basic-menu-lend',
+	'Agriculture',
+);
+
+export const AboutMenuOpen = story({
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+AboutMenuOpen.play = openMenuPlay(
+	(canvas) => canvas.getByRole('button', { name: /about/i }),
+	'#header-basic-menu-about',
+	'How Kiva works',
+);
+
+export const MyKivaMenuOpen = story({
+	loggedIn: true,
+	balance: 7,
+	basketCount: 1,
+	userId: 12345,
+	lenderName: 'John Doe',
+	lenderImageUrl: 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg',
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+MyKivaMenuOpen.play = openMenuPlay(
+	(canvas) => canvas.getByLabelText('My Kiva menu'),
+	'#header-basic-menu-my-kiva',
+	'Portfolio',
+);
+
+export const MobileDrawerOpen = story({
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+MobileDrawerOpen.parameters = {
+	viewport: { defaultViewport: 'mobile1' },
+	chromatic: { viewports: [375] },
+};
+MobileDrawerOpen.play = openMenuPlay(
+	(canvas) => canvas.getByLabelText('Open menu'),
+	'#header-basic-menu-drawer',
+	'Partner with us',
+);

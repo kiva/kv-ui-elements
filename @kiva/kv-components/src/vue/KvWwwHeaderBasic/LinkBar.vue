@@ -1,18 +1,37 @@
 <template>
 	<div
-		class="link-bar tw-min-h-[4rem] tw-font-medium tw-relative"
-		@touchstart="handleEmptySpaceClick"
+		ref="rootRef"
+		class="link-bar tw-min-h-[4rem] tw-font-medium"
+		:style="menuTimingVars"
+		:data-pointer="pointerType"
 	>
-		<!-- hamburger (mobile only) -->
-		<button
-			type="button"
-			aria-label="Open menu"
-			class="header-link link-bar__hamburger tw-inline-flex md:tw-hidden"
-			@mouseover="handleOnHover('menuButton', MobileMenu)"
-			@touchstart.stop.prevent="handleTouchStart('menuButton', MobileMenu)"
+		<!-- hamburger → full-screen drawer (mobile only) -->
+		<header-menu-group
+			class="md:tw-hidden"
+			panel-id="header-basic-menu-drawer"
+			variant="drawer"
+			@open="track('hover-Mobile-menu', 'Mobile')"
+			@close="track('close-Mobile-menu', 'Mobile')"
 		>
-			<kv-material-icon :icon="mdiMenu" />
-		</button>
+			<template #default="{ trigger }">
+				<button
+					v-bind="trigger"
+					type="button"
+					aria-label="Open menu"
+					class="header-link menu-trigger link-bar__hamburger tw-inline-flex tw-p-0"
+				>
+					<kv-material-icon :icon="mdiMenu" />
+				</button>
+			</template>
+			<template #panel="{ close }">
+				<mobile-menu
+					:logged-in="loggedIn"
+					:login-url="loginUrl"
+					:is-mobile="isMobile"
+					@closing-menu="close"
+				/>
+			</template>
+		</header-menu-group>
 		<!-- logo: absolutely centered on mobile; in-flow grid item at md+. -->
 		<a
 			href="/"
@@ -22,21 +41,49 @@
 		>
 			<kv-header-logo />
 		</a>
-		<!-- Lend dropdown -->
-		<kv-header-dropdown-link
+		<!-- Lend link + disclosure chevron + mega menu -->
+		<header-menu-group
 			class="link-bar__lend"
-			ref-name="lendButton"
-			:href="lendUrl"
-			:menu-component="KvLendMenu"
-			:open-menu-item="lendOpenItem"
-			:dropdown-icon="mdiChevronDown"
-			base-class="tw-py-1"
-			@on-hover="handleOnHover"
-			@mouseleave="handleMouseOut('lendButton')"
-			@user-tap="handleTouchStart"
+			panel-id="header-basic-menu-lend"
+			variant="full"
+			@open="track('hover-Lend-menu', 'Lend')"
 		>
-			Lend
-		</kv-header-dropdown-link>
+			<template #default="{ trigger, toggle }">
+				<a
+					href="/lend-by-category"
+					class="header-link tw-py-1"
+					@click="toggle"
+				>Lend</a>
+				<button
+					v-bind="trigger"
+					type="button"
+					aria-label="Lend menu"
+					class="
+						menu-trigger tw-p-0 tw-py-1 tw-ml-0.5
+						tw-inline-flex tw-items-center
+						tw-text-primary hover:tw-text-action"
+				>
+					<kv-material-icon
+						class="chevron tw-w-3"
+						:icon="mdiChevronDown"
+					/>
+				</button>
+			</template>
+			<template #panel>
+				<kv-lend-menu
+					ref="lendMenuInstance"
+					:user-id="userId"
+					:show-m-g-upsell-link="showMGUpsellLink"
+					:countries-not-lent-to-url="countriesNotLentToUrl"
+					:use-mobile-mega-menu="true"
+					:search-suggestions="searchSuggestions"
+					:app-origin="appOrigin"
+					@load-lend-menu-data="$emit('load-lend-menu-data')"
+					@load-search-data="$emit('load-search-data')"
+					@search-submit="$emit('search-submit', $event)"
+				/>
+			</template>
+		</header-menu-group>
 		<!-- search: hidden at mobile; own full-width row at md; inline at lg+. -->
 		<search-bar
 			class="link-bar__search tw-min-w-0 tw-hidden md:tw-block"
@@ -62,20 +109,32 @@
 				@click="onPrimaryClick(link)"
 			>{{ link.label }}</a>
 			<!-- About dropdown (md+) -->
-			<kv-header-dropdown-link
-				ref-name="aboutLink"
-				class="tw-hidden md:tw-block"
-				:menu-component="AboutMenu"
-				:open-menu-item="aboutOpenItem"
-				:dropdown-icon="mdiChevronDown"
-				base-class="tw-py-1"
-				send-link-position
-				@on-hover="handleOnHover"
-				@mouseleave="handleMouseOut('aboutLink')"
-				@user-tap="handleTouchStart"
+			<header-menu-group
+				class="tw-hidden md:tw-flex"
+				panel-id="header-basic-menu-about"
+				variant="card"
+				@open="track('hover-About-menu', 'About')"
 			>
-				About
-			</kv-header-dropdown-link>
+				<template #default="{ trigger }">
+					<button
+						v-bind="trigger"
+						type="button"
+						class="header-link menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center"
+					>
+						About
+						<kv-material-icon
+							class="chevron tw-inline tw-w-3 tw-ml-0.5"
+							:icon="mdiChevronDown"
+						/>
+					</button>
+				</template>
+				<template #panel="{ close }">
+					<about-menu
+						:is-mobile="isMobile"
+						@closing-menu="close"
+					/>
+				</template>
+			</header-menu-group>
 			<!-- Log in (visitor) -->
 			<a
 				v-if="!loggedIn"
@@ -133,63 +192,84 @@
 				</kv-button>
 			</div>
 			<!-- balance + avatar → MyKiva menu (logged-in) -->
-			<div
+			<header-menu-group
 				v-if="loggedIn"
-				ref="avatarMenu"
-				data-testid="header-avatar-menu"
-				class="tw-flex tw-items-center tw-gap-1 tw-cursor-pointer tw-py-1"
-				:style="isUserDataLoading ? { display: 'var(--user-loading-display, flex)' } : undefined"
-				@mouseenter="
-					handleOnHover('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
-				"
-				@mouseleave="handleMouseOut('avatarMenu')"
-				@touchstart.stop="
-					handleTouchStart('avatarMenu', MyKivaMenu, getAvatarMenuPosition(), getAvatarTriggerCenterX())
-				"
+				panel-id="header-basic-menu-my-kiva"
+				variant="card"
+				@open="track('hover-User-menu', 'User')"
 			>
-				<div
-					v-if="isUserDataLoading"
-					class="tw-w-4 tw-h-3"
-				>
-					<kv-loading-placeholder />
-				</div>
-				<span
-					v-else
-					class="tw-text-eco-green-4"
-				>{{ formattedBalance }}</span>
-				<kv-material-icon
-					v-if="avatarMode === 'esi'"
-					:icon="mdiAccountCircle"
-					class="tw-w-3 tw-h-3 tw-text-primary"
-					data-testid="header-avatar-icon"
-					:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
-				/>
-				<div
-					v-if="avatarMode === 'skeleton'"
-					class="tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
-					data-testid="header-avatar-skeleton"
-				>
-					<kv-loading-placeholder />
-				</div>
-				<kv-user-avatar
-					v-if="avatarMode !== 'skeleton'"
-					class="tw-w-3 tw-h-3"
-					:data-testid="avatarMode === 'esi' ? 'header-avatar-esi' : null"
-					:style="avatarMode === 'esi' ? { display: 'var(--user-avatar-display, block)' } : undefined"
-					:lender-name="lenderName"
-					:lender-image-url="lenderImageUrl"
-					:show-css-placeholder="avatarMode === 'esi'"
-					use-icon-fallback
-					is-small
-				/>
-			</div>
+				<template #default="{ trigger }">
+					<button
+						v-bind="trigger"
+						type="button"
+						aria-label="My Kiva menu"
+						data-testid="header-avatar-menu"
+						class="menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center tw-gap-1 tw-cursor-pointer"
+						:style="isUserDataLoading ? { display: 'var(--user-loading-display, flex)' } : undefined"
+					>
+						<span
+							v-if="isUserDataLoading"
+							class="tw-block tw-w-4 tw-h-3"
+						>
+							<kv-loading-placeholder />
+						</span>
+						<span
+							v-else
+							class="tw-text-eco-green-4"
+						>{{ formattedBalance }}</span>
+						<kv-material-icon
+							v-if="avatarMode === 'esi'"
+							:icon="mdiAccountCircle"
+							class="tw-w-3 tw-h-3 tw-text-primary"
+							data-testid="header-avatar-icon"
+							:style="{ display: 'var(--user-avatar-legacy-display, inline-block)' }"
+						/>
+						<span
+							v-if="avatarMode === 'skeleton'"
+							class="tw-block tw-w-3 tw-h-3 tw-rounded-full tw-overflow-hidden"
+							data-testid="header-avatar-skeleton"
+						>
+							<kv-loading-placeholder />
+						</span>
+						<kv-user-avatar
+							v-if="avatarMode !== 'skeleton'"
+							class="tw-w-3 tw-h-3"
+							:data-testid="avatarMode === 'esi' ? 'header-avatar-esi' : null"
+							:style="avatarMode === 'esi' ? { display: 'var(--user-avatar-display, block)' } : undefined"
+							:lender-name="lenderName"
+							:lender-image-url="lenderImageUrl"
+							:show-css-placeholder="avatarMode === 'esi'"
+							use-icon-fallback
+							is-small
+						/>
+					</button>
+				</template>
+				<template #panel="{ close }">
+					<my-kiva-menu
+						:logged-in="loggedIn"
+						:user-id="userId"
+						:is-borrower="isBorrower"
+						:is-trustee="isTrustee"
+						:trustee-id="trusteeId"
+						:most-recent-borrowed-loan-id="mostRecentBorrowedLoanId"
+						:my-dashboard-url="myDashboardUrl"
+						:is-mobile="isMobile"
+						@closing-menu="close"
+					/>
+				</template>
+			</header-menu-group>
 		</div>
+		<!-- page-dimming backdrop -->
+		<div
+			class="backdrop"
+			aria-hidden="true"
+		></div>
 	</div>
 </template>
 
 <script lang="ts">
 import {
-	ref, computed, inject, defineAsyncComponent,
+	ref, computed, inject, provide, defineAsyncComponent, shallowRef,
 } from 'vue';
 import {
 	mdiMenu, mdiChevronDown, mdiBriefcase, mdiAccountCircle,
@@ -200,8 +280,12 @@ import KvUserAvatar from '#components/KvUserAvatar.vue';
 import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
-import KvHeaderDropdownLink from '#components/KvWwwHeader/KvHeaderDropdownLink.vue';
 import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
+import { MENU_TIMING_VARS } from '#utils/headerMenuTiming';
+import { useHeaderMenuState, HEADER_MENU_STATE } from '#utils/useHeaderMenuState';
+import { useHeaderMenuPlacement, HEADER_MENU_PLACEMENT } from '#utils/useHeaderMenuPlacement';
+import { usePointerType } from '#utils/usePointerType';
+import HeaderMenuGroup from './HeaderMenuGroup.vue';
 import SearchBar from './SearchBar.vue';
 
 interface TrackEvent {
@@ -209,7 +293,13 @@ interface TrackEvent {
 	(category: string, action: string, label?: string, value?: number): void;
 }
 
-// Drawer/dropdown menus are async-loaded; they render in the orchestrator's overlay, not inline here.
+// Public instance shape of the Lend menu (KvLendMenu exposes onLoad for its data fetch).
+interface LendMenuInstance {
+	// eslint-disable-next-line no-unused-vars
+	onLoad?(apollo: unknown): void;
+}
+
+// Menu panels are async-loaded and mounted lazily on first approach of their menu group.
 const KvLendMenu = defineAsyncComponent(() => import('#components/KvWwwHeader/LendMenu/KvLendMenu.vue'));
 const AboutMenu = defineAsyncComponent(() => import('./AboutMenu.vue'));
 const MyKivaMenu = defineAsyncComponent(() => import('./MyKivaMenu.vue'));
@@ -223,8 +313,12 @@ export default {
 		KvLoadingPlaceholder,
 		KvButton,
 		KvHeaderLogo,
-		KvHeaderDropdownLink,
+		HeaderMenuGroup,
 		SearchBar,
+		KvLendMenu,
+		AboutMenu,
+		MyKivaMenu,
+		MobileMenu,
 	},
 	props: {
 		loggedIn: { type: Boolean, default: false },
@@ -233,6 +327,8 @@ export default {
 		userId: { type: Number, default: null },
 		isBorrower: { type: Boolean, default: false },
 		isTrustee: { type: Boolean, default: false },
+		trusteeId: { type: Number, default: null },
+		mostRecentBorrowedLoanId: { type: Number, default: null },
 		lenderName: { type: String, default: '' },
 		lenderImageUrl: { type: String, default: '' },
 		isUserDataLoading: { type: Boolean, default: false },
@@ -245,35 +341,20 @@ export default {
 		appOrigin: { type: String, default: '' },
 		searchSuggestions: { type: Array, default: () => [] },
 		isMobile: { type: Boolean, default: false },
-		openMenuItem: { type: [Object, Function], default: null },
 	},
-	emits: ['item-hover', 'load-search-data', 'search-submit', 'login-click'],
+	emits: ['load-lend-menu-data', 'load-search-data', 'search-submit', 'login-click'],
 	setup(props, { emit }) {
 		const $kvTrackEvent = inject<TrackEvent>('$kvTrackEvent', () => {});
-		const openItem = ref<string | null>(null);
-		// Untyped ref (like KvHeaderLinkBar): keeps the heavy HTMLElement type out of the emitted .d.ts.
-		const avatarMenu = ref(null);
 
-		// Initial position for the MyKiva dropdown. Mobile pins to the viewport's right edge
-		// (matches the legacy KvWwwHeader drawer). Desktop seeds the position with the avatar's
-		// right edge — the orchestrator then re-centers the panel under the avatar after it
-		// measures the rendered panel width (see KvWwwHeaderBasic.vue).
-		function getAvatarMenuPosition(): { right: string } | null {
-			const el = avatarMenu.value as HTMLElement | null;
-			const rect = el?.getBoundingClientRect();
-			if (!rect) return null;
-			if (props.isMobile) return { right: '0' };
-			return { right: `${window.innerWidth - rect.right}px` };
-		}
+		const rootRef = shallowRef<HTMLElement | null>(null);
+		const lendMenuInstance = ref<LendMenuInstance | null>(null);
 
-		// Center-x of the avatar trigger in viewport coordinates. The orchestrator pairs this with
-		// the rendered panel width to compute a `right` offset that anchors the panel directly
-		// under the avatar. Returns null on mobile (mobile uses right:0 flush, no centering).
-		function getAvatarTriggerCenterX(): number | null {
-			if (props.isMobile) return null;
-			const el = avatarMenu.value as HTMLElement | null;
-			const rect = el?.getBoundingClientRect();
-			return rect ? rect.left + rect.width / 2 : null;
+		const { pointerType } = usePointerType(rootRef);
+		provide(HEADER_MENU_STATE, useHeaderMenuState(pointerType));
+		provide(HEADER_MENU_PLACEMENT, useHeaderMenuPlacement(rootRef));
+
+		function track(action: string, label: string): void {
+			$kvTrackEvent('TopNav', action, label);
 		}
 
 		const visiblePrimaryLinks = computed(() => PRIMARY_LINKS.filter((link) => {
@@ -282,7 +363,6 @@ export default {
 			return true;
 		}));
 
-		const lendUrl = computed(() => (!props.isMobile ? '/lend-by-category' : undefined));
 		const formattedBalance = computed(() => numeral(Math.floor(props.balance)).format('$0'));
 
 		// Three mutually exclusive avatar states: the real avatar once data lands, the ESI pair for
@@ -293,85 +373,9 @@ export default {
 			return props.useEsiAvatar ? 'esi' : 'skeleton';
 		});
 
-		// Disable sibling-link dimming entirely: each dropdown only ever sees its own
-		// menuComponent as the open item. The dim path in KvHeaderDropdownLink fires when
-		// `openMenuItem && openMenuItem !== menuComponent`, so by feeding each dropdown a
-		// value that's either its own menu (when active) or null (otherwise), we keep the
-		// chevron-rotate-when-active behavior while never tripping the dim class.
-		const lendOpenItem = computed(() => (props.openMenuItem === KvLendMenu ? props.openMenuItem : null));
-		const aboutOpenItem = computed(() => (props.openMenuItem === AboutMenu ? props.openMenuItem : null));
-
-		// One TopNav analytics event per menu, mirroring KvWwwHeader/KvHeaderLinkBar's menuTrackingMap.
-		// Fired on the open transition (hover or tap) of each dropdown/drawer. Keys are the item ids
-		// emitted by KvHeaderDropdownLink (its ref-name) and the hamburger/avatar handlers. The Lend
-		// entry reproduces the legacy host's onLendMenuShow event ('hover-Lend-menu', 'Lend').
-		const menuOpenTracking: Record<string, { action: string; label: string }> = {
-			menuButton: { action: 'hover-Mobile-menu', label: 'Mobile' },
-			lendButton: { action: 'hover-Lend-menu', label: 'Lend' },
-			aboutLink: { action: 'hover-About-menu', label: 'About' },
-			avatarMenu: { action: 'hover-User-menu', label: 'User' },
-		};
-
-		// Close-side counterpart. Only the mobile drawer tracks an explicit close today; the hover
-		// dropdowns close implicitly on mouseleave and have no close event in the legacy header.
-		const menuCloseTracking: Record<string, { action: string; label: string }> = {
-			menuButton: { action: 'close-Mobile-menu', label: 'Mobile' },
-		};
-
-		function trackMenuOpen(item: string): void {
-			const tracking = menuOpenTracking[item];
-			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-		}
-
-		function trackMenuClose(item: string): void {
-			const tracking = menuCloseTracking[item];
-			if (tracking) $kvTrackEvent('TopNav', tracking.action, tracking.label);
-		}
-
-		function handleOnHover(
-			item: string,
-			menu: unknown,
-			position: unknown = null,
-			triggerCenterX: number | null = null,
-		): void {
-			// Touch devices open via tap (handleTouchStart) rather than hover.
-			if (navigator.maxTouchPoints) return;
-			// Track only the open transition so re-entering an already-open menu doesn't re-fire.
-			if (openItem.value !== item) trackMenuOpen(item);
-			openItem.value = item;
-			emit('item-hover', item, menu, position, triggerCenterX);
-		}
-
-		function handleMouseOut(item: string): void {
-			if (navigator.maxTouchPoints) return;
-			if (openItem.value === item) {
-				trackMenuClose(item);
-				openItem.value = null;
-				emit('item-hover');
-			}
-		}
-
-		function handleTouchStart(
-			item: string,
-			menu: unknown,
-			position: unknown = null,
-			triggerCenterX: number | null = null,
-		): void {
-			if (openItem.value === item) {
-				trackMenuClose(item);
-				openItem.value = null;
-				emit('item-hover');
-			} else {
-				trackMenuOpen(item);
-				openItem.value = item;
-				emit('item-hover', item, menu, position, triggerCenterX);
-			}
-		}
-
-		function handleEmptySpaceClick(event: Event): void {
-			if (event.target === event.currentTarget) {
-				emit('item-hover');
-			}
+		// Forwards the apollo client to the mounted Lend menu's onLoad.
+		function loadMenuData(apollo: unknown): void {
+			lendMenuInstance.value?.onLoad?.(apollo);
 		}
 
 		function onPrimaryClick(link: NavLink): void {
@@ -402,24 +406,16 @@ export default {
 			mdiMenu,
 			mdiChevronDown,
 			mdiBriefcase,
+			rootRef,
+			lendMenuInstance,
+			menuTimingVars: MENU_TIMING_VARS,
+			pointerType,
 			mdiAccountCircle,
-			KvLendMenu,
-			AboutMenu,
-			MyKivaMenu,
-			MobileMenu,
-			avatarMenu,
-			getAvatarMenuPosition,
-			getAvatarTriggerCenterX,
 			visiblePrimaryLinks,
-			lendUrl,
 			formattedBalance,
+			track,
+			loadMenuData,
 			avatarMode,
-			lendOpenItem,
-			aboutOpenItem,
-			handleOnHover,
-			handleMouseOut,
-			handleTouchStart,
-			handleEmptySpaceClick,
 			onPrimaryClick,
 			onLoginClick,
 			onBasketClick,
@@ -439,6 +435,10 @@ export default {
  *  - Tablet (md ≤ vw < lg): logo (left) + Lend + right cluster on the top row, full-width
  *    search row beneath. Logo uses 1fr to push Lend + right cluster to the right.
  *  - Desktop (≥ lg): single row with inline search (auto auto 1fr auto).
+ *
+ * The bar and the menu groups carry no position: every .menu-panel, the .backdrop and the
+ * mobile logo position against the nav, the same box the placement variables (--nav-height,
+ * --trigger-gap-left/right, --trigger-width) measure against.
  */
 .link-bar {
 	@apply tw-flex tw-items-center tw-gap-1;
@@ -466,7 +466,10 @@ export default {
 		grid-area: search;
 		@apply tw-mb-1;
 	}
-	.link-bar__right { grid-area: right; }
+	.link-bar__right {
+		grid-area: right;
+		align-self: stretch;
+	}
 }
 
 @screen lg {
@@ -484,6 +487,50 @@ export default {
 .header-link {
 	@apply tw-py-2 tw-cursor-pointer tw-no-underline
 		hover:tw-no-underline tw-text-primary hover:tw-text-action;
+}
+
+.menu-trigger {
+	border: 0;
+	background: none;
+	font: inherit;
+	@apply tw-cursor-pointer;
+}
+
+/*
+ * The backdrop opens and closes on the same conditions and schedule as the menu panels
+ * (see HeaderMenuGroup.vue): an aria-expanded trigger, or a hovered group under a mouse pointer.
+ * Closed, it collapses to zero height.
+ */
+.backdrop {
+	@apply tw-absolute tw-z-overlay;
+	top: var(--nav-height, 4rem);
+	inset-inline: 0;
+	height: 0;
+	background-color: rgba(var(--bg-action-highlight), 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition:
+		opacity var(--menu-close-fade) ease var(--menu-open-delay),
+		visibility 0s calc(var(--menu-open-delay) + var(--menu-close-fade)),
+		height 0s calc(var(--menu-open-delay) + var(--menu-close-fade));
+}
+.link-bar:has(.menu-group > [aria-expanded="true"]) > .backdrop,
+.link-bar[data-pointer="mouse"]:has(.menu-group:hover) > .backdrop {
+	visibility: visible;
+	opacity: 1;
+	height: 100vh;
+	transition:
+		opacity 300ms ease var(--menu-open-delay),
+		visibility 0s var(--menu-open-delay),
+		height 0s var(--menu-open-delay);
+}
+
+.chevron {
+	@apply tw-transition-transform tw-duration-300;
+}
+.menu-group:has(> [aria-expanded="true"]) .chevron,
+[data-pointer="mouse"] .menu-group:hover .chevron {
+	@apply tw-rotate-180;
 }
 
 /* Font-relative so the panel is the size it will be once the count renders: 1.5ch ≈ a digit and
