@@ -55,14 +55,6 @@ import KvPopper from './KvPopper.vue';
 
 const VARIANTS = ['light', 'dark'];
 
-const DEPRECATED_THEMES = {
-	default: 'light',
-	ecoGreenLight: 'light',
-	ecoGreenDark: 'dark',
-	ecoLightMarigold: 'light',
-	ecoStoneLight: 'light',
-};
-
 export default {
 	name: 'KvTooltip',
 	components: {
@@ -97,25 +89,14 @@ export default {
 			default: false,
 		},
 		/**
-		 * Fixed neutral color of the tooltip. Defaults to `light`.
+		 * Fixed neutral color of the tooltip.
 		 * Use `dark` over light surfaces and `light` over dark surfaces.
 		 */
 		variant: {
 			type: String,
-			default: undefined,
+			default: 'light',
 			validator(value: string) {
-				return value === undefined || VARIANTS.indexOf(value) !== -1;
-			},
-		},
-		/**
-		 * @deprecated Use `variant` instead. Themed tooltips are being removed:
-		 * `ecoGreenDark` maps to `dark`, every other value maps to `light`.
-		 */
-		theme: {
-			type: String,
-			default: undefined,
-			validator(value: string) {
-				return Object.keys(DEPRECATED_THEMES).indexOf(value) !== -1;
+				return VARIANTS.indexOf(value) !== -1;
 			},
 		},
 	},
@@ -124,7 +105,6 @@ export default {
 		const {
 			modifiers,
 			showTooltip,
-			theme,
 			variant,
 		} = toRefs(props);
 
@@ -164,13 +144,7 @@ export default {
 			emit('dismiss');
 		};
 
-		const resolvedVariant = computed(() => {
-			if (variant.value) return variant.value;
-			if (theme.value) return DEPRECATED_THEMES[theme.value];
-			return 'light';
-		});
-
-		const paneClass = computed(() => (resolvedVariant.value === 'dark'
+		const paneClass = computed(() => (variant.value === 'dark'
 			? 'tooltip-pane--dark tw-bg-gray-800 tw-text-white'
 			: 'tooltip-pane--light tw-bg-white tw-text-gray-800'));
 
@@ -191,7 +165,6 @@ export default {
 			paneClass,
 			popperModifiers,
 			popperRef,
-			resolvedVariant,
 			triggerHover,
 		};
 	},

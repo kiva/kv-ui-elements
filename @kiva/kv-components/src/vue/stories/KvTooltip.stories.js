@@ -26,19 +26,6 @@ export default {
 			control: { type: 'select' },
 			description: 'Fixed neutral color. `dark` over light surfaces, `light` over dark surfaces.',
 		},
-		theme: {
-			options: [
-				undefined,
-				'default',
-				'ecoGreenLight',
-				'ecoGreenDark',
-				'ecoLightMarigold',
-				'ecoStoneLight',
-			],
-			control: { type: 'select' },
-			description: 'Deprecated. `ecoGreenDark` maps to `dark`, everything else maps to `light`.',
-			table: { category: 'deprecated' },
-		},
 		placement: {
 			options: [
 				'top',

@@ -1,7 +1,6 @@
 <template>
 	<kv-theme-provider
 		:theme="themeStyle"
-		class="kv-tailwind"
 	>
 		<div
 			class="
