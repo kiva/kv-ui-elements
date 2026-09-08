@@ -338,6 +338,22 @@ export const Default = {
 	}),
 };
 
+/**
+ * Links are sentence case. A surface that still wants the uppercase treatment adds
+ * `tw-uppercase` at the call site.
+ */
+export const CaseTreatments = {
+	render: () => ({
+		components: { KvTextLink },
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-flex tw-flex-col tw-gap-3 tw-items-start">
+				<kv-text-link href="/about">Learn more</kv-text-link>
+				<kv-text-link href="/about" class="tw-uppercase">Learn more</kv-text-link>
+			</div>
+		`,
+	}),
+};
+
 // Disabled State - explicit story for disabled state
 export const StateDisabled = {
 	args: {

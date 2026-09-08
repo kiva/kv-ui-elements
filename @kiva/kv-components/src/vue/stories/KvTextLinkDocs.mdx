@@ -76,7 +76,7 @@ When a trailing icon is provided, it animates to the right on hover and focus st
 
 The text link component consists of two main parts:
 
-- **Link Text**: The visible text content provided via the default slot, styled with `tw-text-upper` typography and link color
+- **Link Text**: The visible text content provided via the default slot, styled with `tw-text-label` typography and link color
 - **Icon (Optional)**: A trailing Material Design icon that animates on hover/focus, sized responsively (smaller on mobile, larger on desktop)
 
 ---
@@ -85,11 +85,21 @@ The text link component consists of two main parts:
 
 ### Typography
 
-The component uses the `tw-text-upper` class for consistent typography across all variants:
+The component uses the `tw-text-label` class for consistent typography across all variants:
 
-- Font weight and size are inherited from the h4 text style
+- 14px, medium weight, 18px line height
 - Color is set to the link color (`tw-text-link`)
 - Disabled state reduces opacity (`tw-opacity-low`)
+
+Links render in sentence case. For a surface that still wants the uppercase treatment, add `tw-uppercase` at the call site:
+
+```vue
+<kv-text-link href="/about" class="tw-uppercase">Learn more</kv-text-link>
+```
+
+`tw-text-label` sets no `text-transform`, so nothing competes with that class and its position in the stylesheet does not matter.
+
+<Story of={KvTextLinkStories.CaseTreatments} />
 
 ### Icon Sizing
 

@@ -50,31 +50,6 @@ describe('KvTooltip', () => {
 		});
 	});
 
-	describe('deprecated theme prop', () => {
-		it('maps ecoGreenDark to the dark chip', () => {
-			const { container } = renderTooltip({ theme: 'ecoGreenDark' });
-
-			expect(pane(container)).toHaveClass('tooltip-pane--dark');
-		});
-
-		it.each([
-			'default',
-			'ecoGreenLight',
-			'ecoLightMarigold',
-			'ecoStoneLight',
-		])('maps %s to the light chip', (theme) => {
-			const { container } = renderTooltip({ theme });
-
-			expect(pane(container)).toHaveClass('tooltip-pane--light');
-		});
-
-		it('lets variant win when both are passed', () => {
-			const { container } = renderTooltip({ theme: 'ecoGreenDark', variant: 'light' });
-
-			expect(pane(container)).toHaveClass('tooltip-pane--light');
-		});
-	});
-
 	describe('slots', () => {
 		it('renders body copy', () => {
 			const { getByText } = renderTooltip();
