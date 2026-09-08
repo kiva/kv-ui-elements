@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.2.0...@kiva/kv-components@10.0.0) (2026-09-08)
+
+
+### Features
+
+* drop the deprecated tooltip theme prop and uppercase text links ([e98fce0](https://github.com/kiva/kv-ui-elements/commit/e98fce0d516ec8980f605380b0d153fd6fadd2b5))
+
+
+### BREAKING CHANGES
+
+* KvTooltip no longer accepts `theme` — use `variant`, where
+`ecoGreenDark` becomes `dark` and every other value becomes `light`. KvTextLink
+renders sentence case rather than uppercase.
+
+
+
+
+
 # [9.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.1.1...@kiva/kv-components@9.2.0) (2026-09-03)
 
 
