@@ -26,6 +26,7 @@
 						:is-basket-data-loading="isBasketDataLoading"
 						:use-esi-avatar="useEsiAvatar"
 						:show-m-g-upsell-link="showMGUpsellLink"
+						:show-major-gifts-exp="showMajorGiftsExp"
 						:login-url="loginUrl"
 						:my-dashboard-url="myDashboardUrl"
 						:countries-not-lent-to-url="countriesNotLentToUrl"
@@ -109,6 +110,8 @@ export default {
 		// Only for hosts whose ESI emits --user-avatar; without it the avatar renders an empty image.
 		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
+		/** Adds the Major gifts nav link and relabels the support button "Give". */
+		showMajorGiftsExp: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },
 		countriesNotLentToUrl: { type: String, default: '/lend/countries-not-lent' },

@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { userEvent, waitFor, within } from 'storybook/test'; // eslint-disable-line import/no-extraneous-dependencies
 import KvWwwHeaderBasic from '../KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
 import KvPageContainer from '../KvPageContainer.vue';
@@ -137,6 +137,7 @@ export default {
 		isUserDataLoading: { control: { type: 'boolean' } },
 		useEsiAvatar: { control: { type: 'boolean' } },
 		showMGUpsellLink: { control: { type: 'boolean' } },
+		showMajorGiftsExp: { control: { type: 'boolean' } },
 		loginUrl: { control: { type: 'text' } },
 		myDashboardUrl: { control: { type: 'text' } },
 		countriesNotLentToUrl: { control: { type: 'text' } },
@@ -307,6 +308,64 @@ export const WindowDerivedOrigin = story({
 	searchSuggestions: sampleSearchSuggestions,
 });
 
+// ── Major gifts experiment ─────────────────────────────────────────────────────
+// The treatment arm, to compare against Default. The support button's href and click-Support-Kiva
+// event are deliberately unchanged, so one event count still covers both arms.
+export const MajorGiftsExperiment = story({
+	showMajorGiftsExp: true,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+
+// Mounts in the control arm and flips 1.5s later, as it does in the browser once the host resolves
+// assignment. Snapshot disabled; the timer would make it flaky.
+export const MajorGiftsExperimentFlip = (_args, { argTypes }) => ({
+	props: Object.keys(argTypes),
+	components: { KvWwwHeaderBasic, KvPageContainer },
+	setup() {
+		const headerRef = ref(null);
+		const flipped = ref(false);
+		const apollo = createMockApollo();
+		onMounted(() => { setTimeout(() => { flipped.value = true; }, 1500); });
+		return {
+			headerRef,
+			flipped,
+			onLoadLendMenuData: () => headerRef.value?.loadMenuData?.(apollo),
+			onLoadSearchData: () => headerRef.value?.loadSearchSuggestions?.(apollo),
+			replay: () => {
+				flipped.value = false;
+				setTimeout(() => { flipped.value = true; }, 600);
+			},
+		};
+	},
+	provide: {
+		$kvTrackEvent: (category, action, label) => {
+			// eslint-disable-next-line no-console
+			console.log(`${category}, ${action}, ${label}`);
+		},
+	},
+	template: `
+		<div class="tw-relative">
+			<kv-www-header-basic
+				ref="headerRef"
+				:show-major-gifts-exp="flipped"
+				app-origin="https://www.kiva.org"
+				@load-lend-menu-data="onLoadLendMenuData"
+				@load-search-data="onLoadSearchData"
+			/>
+			<kv-page-container>
+				<p class="tw-py-2">
+					The header mounts in the control arm and the experiment flips on after 1.5s, as it does
+					in the browser once the host resolves assignment. Watch the search bar give up its width
+					rather than jump. Widen past 734px — below that the link lives in the drawer instead.
+				</p>
+				<button class="tw-underline" type="button" @click="replay">Replay</button>
+			</kv-page-container>
+		</div>
+	`,
+});
+MajorGiftsExperimentFlip.parameters = { chromatic: { disableSnapshot: true } };
+
 // ── Open-menu stories ──────────────────────────────────────────────────────────
 // Each play clicks a trigger and waits for its identified panel to render the given text, so the
 // Chromatic snapshot captures the menu open in place.
@@ -366,4 +425,20 @@ MobileDrawerOpen.play = openMenuPlay(
 	(canvas) => canvas.getByLabelText('Open menu'),
 	'#header-basic-menu-drawer',
 	'Partner with us',
+);
+
+// Compare against MobileDrawerOpen, which also carries the larger link text — that ships to both arms.
+export const MajorGiftsMobileDrawerOpen = story({
+	showMajorGiftsExp: true,
+	searchSuggestions: sampleSearchSuggestions,
+	appOrigin: 'https://www.kiva.org',
+});
+MajorGiftsMobileDrawerOpen.parameters = {
+	viewport: { defaultViewport: 'mobile1' },
+	chromatic: { viewports: [375] },
+};
+MajorGiftsMobileDrawerOpen.play = openMenuPlay(
+	(canvas) => canvas.getByLabelText('Open menu'),
+	'#header-basic-menu-drawer',
+	'Major gifts',
 );

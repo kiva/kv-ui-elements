@@ -2,6 +2,7 @@
 	<div
 		ref="rootRef"
 		class="link-bar tw-min-h-[4rem] tw-font-medium"
+		:class="{ 'link-bar--major-gifts': showMajorGiftsExp }"
 		:style="menuTimingVars"
 		:data-pointer="pointerType"
 	>
@@ -28,6 +29,7 @@
 					:logged-in="loggedIn"
 					:login-url="loginUrl"
 					:is-mobile="isMobile"
+					:show-major-gifts-exp="showMajorGiftsExp"
 					@closing-menu="close"
 				/>
 			</template>
@@ -84,6 +86,18 @@
 				/>
 			</template>
 		</header-menu-group>
+		<transition
+			name="major-gifts"
+			appear
+		>
+			<a
+				v-if="showMajorGiftsExp"
+				:href="majorGiftsLink.href"
+				class="header-link link-bar__major-gifts tw-hidden md:tw-block tw-whitespace-nowrap"
+				data-testid="header-major-gifts"
+				@click="onPrimaryClick(majorGiftsLink)"
+			>{{ majorGiftsLink.label }}</a>
+		</transition>
 		<!-- search: hidden at mobile; own full-width row at md; inline at lg+. -->
 		<search-bar
 			class="link-bar__search tw-min-w-0 tw-hidden md:tw-block"
@@ -188,7 +202,7 @@
 					data-testid="header-support-kiva"
 					@click="onSupportKivaClick"
 				>
-					Support Kiva
+					{{ showMajorGiftsExp ? 'Give' : 'Support Kiva' }}
 				</kv-button>
 			</div>
 			<!-- balance + avatar → MyKiva menu (logged-in) -->
@@ -280,7 +294,7 @@ import KvUserAvatar from '#components/KvUserAvatar.vue';
 import KvLoadingPlaceholder from '#components/KvLoadingPlaceholder.vue';
 import KvButton from '#components/KvButton.vue';
 import KvHeaderLogo from '#components/KvWwwHeader/KvHeaderLogo.vue';
-import { PRIMARY_LINKS, type NavLink } from '#utils/headerNavLinks';
+import { PRIMARY_LINKS, MAJOR_GIFTS_LINK, type NavLink } from '#utils/headerNavLinks';
 import { MENU_TIMING_VARS } from '#utils/headerMenuTiming';
 import { useHeaderMenuState, HEADER_MENU_STATE } from '#utils/useHeaderMenuState';
 import { useHeaderMenuPlacement, HEADER_MENU_PLACEMENT } from '#utils/useHeaderMenuPlacement';
@@ -335,6 +349,7 @@ export default {
 		isBasketDataLoading: { type: Boolean, default: false },
 		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
+		showMajorGiftsExp: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },
 		countriesNotLentToUrl: { type: String, default: '/lend/countries-not-lent' },
@@ -411,6 +426,7 @@ export default {
 			menuTimingVars: MENU_TIMING_VARS,
 			pointerType,
 			mdiAccountCircle,
+			majorGiftsLink: MAJOR_GIFTS_LINK,
 			visiblePrimaryLinks,
 			formattedBalance,
 			track,
@@ -482,6 +498,38 @@ export default {
 	.link-bar__search {
 		@apply tw-mb-0;
 	}
+}
+
+/* Equal specificity with the base .link-bar rules, so these must stay after them. */
+@screen md {
+	.link-bar--major-gifts {
+		grid-template-areas: "logo lend majorgifts right" "search search search";
+		grid-template-columns: 1fr auto auto auto;
+	}
+}
+
+@screen lg {
+	.link-bar--major-gifts {
+		grid-template-areas: "logo lend majorgifts search right";
+		grid-template-columns: auto auto auto 1fr auto;
+	}
+}
+
+.link-bar__major-gifts {
+	grid-area: majorgifts;
+}
+
+/* An auto column is not animatable, so the width comes off the link and the column follows it. */
+.major-gifts-enter-active {
+	@apply tw-transition-all tw-duration-300 tw-ease-out tw-overflow-hidden;
+}
+.major-gifts-enter-from {
+	@apply tw-opacity-0;
+	max-width: 0;
+}
+.major-gifts-enter-to {
+	@apply tw-opacity-full;
+	max-width: 12rem;
 }
 
 .header-link {

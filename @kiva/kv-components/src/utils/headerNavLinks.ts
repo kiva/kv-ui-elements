@@ -7,6 +7,14 @@ export interface NavLink {
 	visibility: 'always' | 'visitor' | 'loggedIn';
 }
 
+export const MAJOR_GIFTS_LINK: NavLink = {
+	id: 'major-gifts',
+	label: 'Major gifts',
+	href: '/lp/major-gifts',
+	track: ['TopNav', 'click-Major-Gifts'],
+	visibility: 'always',
+};
+
 // Top-level text links in the desktop bar (Lend/About are dropdowns; Support Kiva is a button — handled separately).
 export const PRIMARY_LINKS: NavLink[] = [
 	{

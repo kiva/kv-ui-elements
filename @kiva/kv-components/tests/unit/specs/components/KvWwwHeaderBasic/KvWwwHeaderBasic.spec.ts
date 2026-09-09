@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { render, fireEvent } from '@testing-library/vue';
+import { render, fireEvent, within } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvWwwHeaderBasic from '#components/KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
@@ -159,5 +159,108 @@ describe('KvWwwHeaderBasic', () => {
 		await fireEvent.click(getByTestId('header-login'));
 		expect(emitted()['login-click']).toHaveLength(1);
 		expect(emitted()['login-click'][0][0]).toBeInstanceOf(MouseEvent);
+	});
+
+	describe('major gifts experiment', () => {
+		// The host flips show-major-gifts-exp on in the browser after the header has already been
+		// server-rendered in its control state, so both arms have to be correct from the same markup.
+		function renderArm(showMajorGiftsExp: boolean, props = {}) {
+			const trackEvent = jest.fn();
+			const utils = render(KvWwwHeaderBasic, {
+				props: { loggedIn: false, showMajorGiftsExp, ...props },
+				global: { provide: { $kvTrackEvent: trackEvent } },
+			});
+			return { trackEvent, ...utils };
+		}
+
+		it('has no accessibility violations in the experiment arm', async () => {
+			const { container } = renderArm(true);
+			expect(await axe(container)).toHaveNoViolations();
+		});
+
+		it('omits the Major gifts link in the control arm', () => {
+			const { queryByTestId } = renderArm(false);
+			expect(queryByTestId('header-major-gifts')).toBeNull();
+		});
+
+		it('renders the Major gifts link in the experiment arm', () => {
+			const { getByTestId } = renderArm(true);
+			expect(getByTestId('header-major-gifts')).toHaveAttribute('href', '/lp/major-gifts');
+		});
+
+		it('tracks the Major gifts click like the other top-level nav links', async () => {
+			const { getByTestId, trackEvent } = renderArm(true);
+			await fireEvent.click(getByTestId('header-major-gifts'));
+			expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Major-Gifts');
+		});
+
+		it('labels the support button "Support Kiva" in the control arm', () => {
+			const { getByTestId } = renderArm(false);
+			expect(getByTestId('header-support-kiva')).toHaveTextContent('Support Kiva');
+		});
+
+		it('labels the support button "Give" in the experiment arm', () => {
+			const { getByTestId } = renderArm(true);
+			expect(getByTestId('header-support-kiva')).toHaveTextContent('Give');
+		});
+
+		// Agreed on the ticket (comment 406971): the copy changes but the event does not, so a single
+		// event count covers both arms rather than splitting the metric across two action names.
+		it('keeps the click-Support-Kiva event when the button reads "Give"', async () => {
+			const { getByTestId, trackEvent } = renderArm(true);
+			await fireEvent.click(getByTestId('header-support-kiva'));
+			expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Support-Kiva');
+		});
+
+		it('keeps the support button pointing at the donate form in the experiment arm', () => {
+			const { getByTestId } = renderArm(true);
+			expect(getByTestId('header-support-kiva')).toHaveAttribute('href', '/donate/supportus');
+		});
+	});
+
+	describe('major gifts experiment (mobile drawer)', () => {
+		// The desktop right cluster keeps its own "Partner with us"/"Support Kiva" in the DOM at every
+		// breakpoint (CSS hides them), so every assertion here is scoped to the drawer panel.
+		async function openDrawer(showMajorGiftsExp: boolean) {
+			const { container, getByLabelText } = render(KvWwwHeaderBasic, {
+				props: { loggedIn: false, showMajorGiftsExp },
+				global,
+			});
+			await fireEvent.click(getByLabelText('Open menu'));
+			const panel = container.querySelector('#header-basic-menu-drawer') as HTMLElement;
+			const drawer = within(panel);
+			await drawer.findByText('Partner with us');
+			return drawer;
+		}
+
+		it('omits the Major gifts link and keeps "Support Kiva" in the control arm', async () => {
+			const drawer = await openDrawer(false);
+			expect(drawer.queryByText('Major gifts')).toBeNull();
+			expect(drawer.getByText('Support Kiva')).toBeTruthy();
+		});
+
+		it('renders Major gifts and "Give" in the experiment arm', async () => {
+			const drawer = await openDrawer(true);
+			expect(drawer.getByText('Major gifts')).toHaveAttribute('href', '/lp/major-gifts');
+			expect(drawer.getByText('Give')).toBeTruthy();
+			expect(drawer.queryByText('Support Kiva')).toBeNull();
+		});
+
+		it('orders Major gifts between Give and Borrow', async () => {
+			const drawer = await openDrawer(true);
+			const labels = drawer.getAllByRole('link').map((a) => a.textContent?.trim());
+			expect(labels).toEqual(['Partner with us', 'Give', 'Major gifts', 'Borrow']);
+		});
+
+		it('sizes the drawer links to match the mobile Lend menu tabs', async () => {
+			const drawer = await openDrawer(false);
+			expect(drawer.getByText('Partner with us')).toHaveClass('tw-text-title');
+		});
+
+		// 24px between the links, 20px off the About accordion above them (8px per scale unit).
+		it('spaces the primary drawer links 24px apart, clear of the About section', async () => {
+			const drawer = await openDrawer(false);
+			expect(drawer.getByRole('navigation')).toHaveClass('tw-gap-3', 'tw-pt-2.5');
+		});
 	});
 });
