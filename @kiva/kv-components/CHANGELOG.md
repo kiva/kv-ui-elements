@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.2.0...@kiva/kv-components@10.2.1) (2026-09-09)
+
+
+### Bug Fixes
+
+* **HeaderMenuGroup:** mount the mobile drawer's content before it can open ([632082a](https://github.com/kiva/kv-ui-elements/commit/632082a01f138d6c72b8bf11dd7141214cf2dbb2))
+* **LinkBar:** keep Major gifts on the Lend row at tablet ([fae0c30](https://github.com/kiva/kv-ui-elements/commit/fae0c3008abe1205b6fdfefe1b9829fdcd796820))
+
+
+
+
+
 # [10.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.1.0...@kiva/kv-components@10.2.0) (2026-09-09)
 
 
