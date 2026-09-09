@@ -116,6 +116,9 @@ export default {
 #header-basic-mobile-about-container :deep(nav) {
 	@apply tw-pb-0;
 }
+.about-accordion :deep(nav) {
+	@apply tw-mt-1.5;
+}
 .about-accordion :deep(nav a) {
 	@apply tw-ml-2;
 }
