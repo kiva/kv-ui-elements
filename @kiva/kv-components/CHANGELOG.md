@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.0.0...@kiva/kv-components@10.1.0) (2026-09-09)
+
+
+### Features
+
+* **KvWwwHeaderBasic:** add major gifts experiment toggle ([cba4991](https://github.com/kiva/kv-ui-elements/commit/cba4991ce3a8337c42a6d8dbcd206a390cfc0ca0))
+
+
+
+
+
 # [10.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@9.2.0...@kiva/kv-components@10.0.0) (2026-09-08)
 
 
