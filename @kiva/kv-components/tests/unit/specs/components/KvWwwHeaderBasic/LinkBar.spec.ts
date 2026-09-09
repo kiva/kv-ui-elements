@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 import { nextTick } from 'vue';
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
@@ -593,5 +595,22 @@ describe('LinkBar', () => {
 			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
 		});
 		expect(await axe(container)).toHaveNoViolations();
+	});
+
+	// A grid-template-areas value whose rows differ in length is invalid and dropped whole, with no
+	// console warning — the named areas silently stop existing and their items auto-place into new
+	// rows. jsdom cannot compute the grid, so guard the authored values instead.
+	it('declares every grid-template-areas row with the same number of columns', () => {
+		const source = readFileSync(
+			resolve(__dirname, '../../../../../src/vue/KvWwwHeaderBasic/LinkBar.vue'),
+			'utf8',
+		);
+		const declarations = source.match(/grid-template-areas:[^;]+;/g) ?? [];
+		expect(declarations.length).toBeGreaterThan(0);
+		declarations.forEach((declaration) => {
+			const widths = (declaration.match(/"([^"]*)"/g) ?? [])
+				.map((row) => row.slice(1, -1).trim().split(/\s+/).length);
+			expect(new Set(widths).size).toBe(1);
+		});
 	});
 });

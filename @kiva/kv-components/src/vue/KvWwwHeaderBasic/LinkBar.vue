@@ -11,6 +11,7 @@
 			class="md:tw-hidden"
 			panel-id="header-basic-menu-drawer"
 			variant="drawer"
+			:prewarm="isMobile"
 			@open="track('hover-Mobile-menu', 'Mobile')"
 			@close="track('close-Mobile-menu', 'Mobile')"
 		>
@@ -503,7 +504,7 @@ export default {
 /* Equal specificity with the base .link-bar rules, so these must stay after them. */
 @screen md {
 	.link-bar--major-gifts {
-		grid-template-areas: "logo lend majorgifts right" "search search search";
+		grid-template-areas: "logo lend majorgifts right" "search search search search";
 		grid-template-columns: 1fr auto auto auto;
 	}
 }

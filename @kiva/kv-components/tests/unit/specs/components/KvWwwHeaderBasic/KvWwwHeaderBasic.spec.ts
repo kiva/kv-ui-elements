@@ -1,5 +1,7 @@
 import { ref } from 'vue';
-import { render, fireEvent, within } from '@testing-library/vue';
+import {
+	render, fireEvent, waitFor, within,
+} from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import KvWwwHeaderBasic from '#components/KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
@@ -261,6 +263,45 @@ describe('KvWwwHeaderBasic', () => {
 		it('spaces the primary drawer links 24px apart, clear of the About section', async () => {
 			const drawer = await openDrawer(false);
 			expect(drawer.getByRole('navigation')).toHaveClass('tw-gap-3', 'tw-pt-2.5');
+		});
+	});
+
+	describe('mobile drawer content readiness', () => {
+		// The drawer panel opens from CSS the instant the hamburger is clicked, while its content is
+		// an async chunk. Without a head start the tap opens a full-screen empty white panel, so the
+		// drawer mounts its content as soon as the viewport is narrow enough to show the hamburger.
+		const originalWidth = window.innerWidth;
+
+		function setWidth(width: number) {
+			Object.defineProperty(window, 'innerWidth', { value: width, configurable: true });
+		}
+
+		afterEach(() => setWidth(originalWidth));
+
+		function drawerLinks(container: Element) {
+			const panel = container.querySelector('#header-basic-menu-drawer') as HTMLElement;
+			return within(panel).queryByText('Partner with us');
+		}
+
+		it('mounts the drawer content at mobile widths without waiting for a click', async () => {
+			setWidth(375);
+			const { container } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+			await waitFor(() => expect(drawerLinks(container)).not.toBeNull());
+		});
+
+		it('leaves the drawer content unmounted at desktop widths', () => {
+			setWidth(1200);
+			const { container } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+			expect(drawerLinks(container)).toBeNull();
+		});
+
+		it('mounts the drawer content when the window is resized down to mobile', async () => {
+			setWidth(1200);
+			const { container } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+			expect(drawerLinks(container)).toBeNull();
+			setWidth(375);
+			await fireEvent(window, new Event('resize'));
+			await waitFor(() => expect(drawerLinks(container)).not.toBeNull());
 		});
 	});
 });

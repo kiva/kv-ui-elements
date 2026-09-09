@@ -19,7 +19,7 @@
 			:class="`menu-panel--${variant}`"
 		>
 			<slot
-				v-if="approached"
+				v-if="approached || prewarm"
 				name="panel"
 				:close="close"
 			></slot>
@@ -37,10 +37,11 @@ import { useHeaderMenuGroup } from '#utils/useHeaderMenuGroup';
 
 /**
  * One menu group in KvWwwHeaderBasic's link bar: the trigger(s) in the default slot and a panel
- * whose content mounts on the group's first approach (pointer, focus or explicit open). The panel
- * opens while a direct child carries aria-expanded="true" or, for mouse pointers, while the group
- * is hovered; placement comes from the custom properties the placement pass writes (--nav-height
- * on the bar, --trigger-gap-left/right and --trigger-width on the group).
+ * whose content mounts on the group's first approach (pointer, focus or explicit open), or up front
+ * when `prewarm` is set. The panel opens while a direct child carries aria-expanded="true" or, for
+ * mouse pointers, while the group is hovered; placement comes from the custom properties the
+ * placement pass writes (--nav-height on the bar, --trigger-gap-left/right and --trigger-width on
+ * the group).
  *
  * Emits `open` once when the menu becomes expanded (toggled by the user, or a mouse hover that
  * outlasts the intent delay) and `close` once when it is no longer expanded by either path.
@@ -61,6 +62,12 @@ export default {
 			type: String as () => 'full' | 'card' | 'drawer',
 			default: 'card',
 		},
+		/**
+		 * Mounts the panel content without waiting for an approach. For a panel that opens straight
+		 * from a click there is no approach to mount on, so its async content would otherwise be
+		 * fetched only once the panel is already open and visibly empty.
+		 */
+		prewarm: { type: Boolean, default: false },
 	},
 	emits: ['open', 'close'],
 	setup(props, { emit }) {
