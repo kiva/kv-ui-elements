@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.1.0...@kiva/kv-components@10.2.0) (2026-09-09)
+
+
+### Bug Fixes
+
+* make KvChip colors fixed rather than themable ([3c00380](https://github.com/kiva/kv-ui-elements/commit/3c00380f65374af3676913ebd5bcf4ebeeb51fdc))
+
+
+### Features
+
+* restyle KvChip to the 2026 spec ([101de4d](https://github.com/kiva/kv-ui-elements/commit/101de4d9ca8b622b87d645dea91d1855bb50e486))
+
+
+
+
+
 # [10.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.0.0...@kiva/kv-components@10.1.0) (2026-09-09)
 
 
