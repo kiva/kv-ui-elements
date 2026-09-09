@@ -1,43 +1,97 @@
+import {
+	defaultTheme,
+	greenLightTheme,
+	greenDarkTheme,
+	marigoldLightTheme,
+	stoneLightTheme,
+} from '@kiva/kv-tokens';
 import KvChip from '../KvChip.vue';
+import KvThemeProvider from '../KvThemeProvider.vue';
 
 export default {
 	title: 'Interface Elements/KvChip',
 	component: KvChip,
 };
 
-const story = (args) => {
-	const template = (_args, { argTypes }) => ({
-		props: Object.keys(argTypes),
-		components: { KvChip },
-		template: `
-			<kv-chip
-			>
-			<p> Chip Title </p>
-			</kv-chip>
-		`,
-	});
-	template.args = args;
-	return template;
-};
-
-export const Default = story();
-export const LongChipTitle = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
+/**
+ * A chip is outlined by default and fills on hover. Hover one to see the second state.
+ */
+export const Default = () => ({
 	components: { KvChip },
 	template: `
-			<kv-chip
-			>
-			<p> Longer Chip Title </p>
-			</kv-chip>
-		`,
+		<kv-chip>Chip label</kv-chip>
+	`,
 });
-export const EmailAddress = (args, { argTypes }) => ({
-	props: Object.keys(argTypes),
+
+/**
+ * The common case: a row of removable filters. The chip sizes to its label, so a group
+ * wraps naturally.
+ */
+export const ChipGroup = () => ({
+	components: { KvChip },
+	data() {
+		return {
+			labels: ['Kenya', 'Agriculture', 'Women', 'Under $500', 'Ends this week'],
+		};
+	},
+	methods: {
+		remove(label) {
+			this.labels = this.labels.filter((l) => l !== label);
+		},
+	},
+	template: `
+		<div class="tw-flex tw-flex-wrap tw-gap-1">
+			<kv-chip
+				v-for="label in labels"
+				:key="label"
+				@click-chip="remove(label)"
+			>
+				{{ label }}
+			</kv-chip>
+			<p v-if="!labels.length" class="tw-text-small tw-text-secondary">All chips removed</p>
+		</div>
+	`,
+});
+
+/**
+ * The label does not wrap, so a long one makes the chip wide rather than tall.
+ */
+export const LongLabel = () => ({
 	components: { KvChip },
 	template: `
-			<kv-chip
+		<kv-chip>A considerably longer chip label than usual</kv-chip>
+	`,
+});
+
+/**
+ * The chip is themable rather than fixed: its surface, text and border all resolve
+ * against the surrounding theme. Every value in the 2026 spec lands on a default theme
+ * token, so the default column is the spec exactly. Hover any chip to see its fill.
+ */
+export const Themes = () => ({
+	components: { KvChip, KvThemeProvider },
+	data() {
+		return {
+			themes: [
+				{ name: 'default', tokens: defaultTheme },
+				{ name: 'greenLight', tokens: greenLightTheme },
+				{ name: 'greenDark', tokens: greenDarkTheme },
+				{ name: 'marigoldLight', tokens: marigoldLightTheme },
+				{ name: 'stoneLight', tokens: stoneLightTheme },
+			],
+		};
+	},
+	template: `
+		<div class="tw-flex tw-flex-col tw-gap-2">
+			<kv-theme-provider
+				v-for="theme in themes"
+				:key="theme.name"
+				:theme="theme.tokens"
+				class="tw-p-3 tw-rounded tw-bg-primary tw-flex tw-items-center tw-gap-3"
 			>
-			<h4 class="tw-text-upper"> @BankofAmerica.com </h4>
-			</kv-chip>
-		`,
+				<span class="tw-text-small tw-text-secondary" style="width: 8rem;">{{ theme.name }}</span>
+				<kv-chip>Chip label</kv-chip>
+			</kv-theme-provider>
+		</div>
+	`,
 });

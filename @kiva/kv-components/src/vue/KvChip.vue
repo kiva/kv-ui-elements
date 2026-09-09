@@ -1,34 +1,32 @@
 <template>
-	<div class="tw-inline-flex">
-		<button
-			class="
-			tw-bg-secondary
-			hover:tw-bg-tertiary
+	<button
+		type="button"
+		class="
+			tw-inline-flex
 			tw-items-center
-			tw-flex
-			tw-flex-row
-			tw-cursor-pointer
+			tw-gap-1
 			tw-whitespace-nowrap
-			tw-rounded
-			tw-h-2
-			tw-py-2
-			tw-px-2
 			tw-select-none
-			"
-			@click="handleClick"
-		>
-			<div
-				class="tw-text-base tw-pr-1"
-			>
-				<slot></slot>
-			</div>
-			<kv-material-icon
-				:icon="mdiClose"
-				class="tw-w-2 tw-h-2"
-				:from-sprite="true"
-			/>
-		</button>
-	</div>
+			tw-cursor-pointer
+			tw-rounded-sm
+			tw-border
+			tw-px-2
+			tw-py-1
+			tw-text-base
+			tw-bg-primary
+			hover:tw-bg-secondary
+			tw-text-primary
+			tw-border-gray-300
+		"
+		@click="handleClick"
+	>
+		<slot></slot>
+		<kv-material-icon
+			:icon="mdiClose"
+			class="tw-w-2 tw-h-2 tw-shrink-0"
+			:from-sprite="true"
+		/>
+	</button>
 </template>
 <script lang="ts">
 import { mdiClose } from '@mdi/js';
