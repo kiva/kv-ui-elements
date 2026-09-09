@@ -13,9 +13,9 @@
 			tw-px-2
 			tw-py-1
 			tw-text-base
-			tw-bg-primary
-			hover:tw-bg-secondary
-			tw-text-primary
+			tw-bg-white
+			hover:tw-bg-eco-green-1
+			tw-text-eco-green-4
 			tw-border-gray-300
 		"
 		@click="handleClick"

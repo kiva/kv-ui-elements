@@ -64,9 +64,9 @@ export const LongLabel = () => ({
 });
 
 /**
- * The chip is themable rather than fixed: its surface, text and border all resolve
- * against the surrounding theme. Every value in the 2026 spec lands on a default theme
- * token, so the default column is the spec exactly. Hover any chip to see its fill.
+ * The chip is fixed rather than themable, per design, so it renders identically on every
+ * surface. Each row below sits inside a different theme provider and every chip is the
+ * same. Hover any of them to see the fill.
  */
 export const Themes = () => ({
 	components: { KvChip, KvThemeProvider },
