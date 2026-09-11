@@ -43,6 +43,21 @@ Disabled.args = {
 	disabled: true,
 };
 
+export const Small = () => ({
+	components: {
+		KvSwitch,
+	},
+	data: () => ({
+		switchExampleModel: false,
+	}),
+	template: `
+		<div>
+			<kv-switch size="small" v-model="switchExampleModel">
+				Switch is switched: {{switchExampleModel}}
+			</kv-switch>
+		</div>`,
+});
+
 export const WithoutVModel = (args, {
 	argTypes,
 }) => ({

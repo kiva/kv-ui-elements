@@ -23,23 +23,24 @@
 			<!-- switch background -->
 			<div
 				class="
-					tw-w-7 tw-h-4 tw-rounded-full tw-relative tw-overflow-hidden
+					tw-rounded-full tw-relative tw-overflow-hidden
 					peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action
 					tw-bg-tertiary peer-checked:tw-bg-action
 					tw-transition-all tw-ease-in-out
 				"
+				:class="trackSizeClasses"
 			>
 			</div>
 			<!-- switch inner circle -->
 			<div
 				class="
-						tw-flex-shrink-0 tw-w-3 tw-h-3
+						tw-flex-shrink-0
 						tw-absolute tw-m-0.5 tw-top-0
 						tw-rounded-full
 						tw-bg-white
 						tw-transform tw-transition-all tw-ease-in-out
-						peer-checked:tw-translate-x-3
 					"
+				:class="knobSizeClasses"
 			></div>
 			<!-- label -->
 			<div class="tw-flex-1 peer-focus-visible:tw-ring-2 peer-focus-visible:tw-ring-action">
@@ -51,6 +52,7 @@
 
 <script lang="ts">
 import {
+	computed,
 	ref,
 	onMounted,
 } from 'vue';
@@ -99,6 +101,20 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Size of the switch.
+		 * `default` renders a 56x32px track (`tw-w-7 tw-h-4`) with a 24px
+		 * knob (`tw-w-3 tw-h-3`) travelling 24px when checked.
+		 * `small` renders a 48x28px track (`tw-w-6 tw-h-3.5`) with a 20px
+		 * knob (`tw-w-2.5 tw-h-2.5`) travelling 20px when checked.
+		 */
+		size: {
+			type: String,
+			default: 'default',
+			validator(value: string) {
+				return ['default', 'small'].includes(value);
+			},
+		},
 	},
 	emits,
 	setup(props, context) {
@@ -112,6 +128,16 @@ export default {
 			inputAttrs,
 			inputListeners,
 		} = useAttrs(context, emits);
+
+		const trackSizeClasses = computed(() => (props.size === 'small'
+			? 'tw-w-6 tw-h-3.5'
+			: 'tw-w-7 tw-h-4'));
+
+		// The knob travel is the track width minus the knob and its margins,
+		// so it shrinks along with the track
+		const knobSizeClasses = computed(() => (props.size === 'small'
+			? 'tw-w-2.5 tw-h-2.5 peer-checked:tw-translate-x-2.5'
+			: 'tw-w-3 tw-h-3 peer-checked:tw-translate-x-3'));
 
 		const onChange = (event) => {
 			emit('update:modelValue', event.target.checked);
@@ -137,6 +163,8 @@ export default {
 			styles,
 			inputAttrs,
 			inputListeners,
+			trackSizeClasses,
+			knobSizeClasses,
 		};
 	},
 };
