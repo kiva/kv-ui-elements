@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.3.0...@kiva/kv-components@10.4.0) (2026-09-11)
+
+
+### Bug Fixes
+
+* remove out of scope headingStyle, add docs ([913f916](https://github.com/kiva/kv-ui-elements/commit/913f916d39d9ef43c232e126f407f7b1b3487b59))
+
+
+### Features
+
+* add optional heading image to secondary nav ([6477e28](https://github.com/kiva/kv-ui-elements/commit/6477e283d0a62b392b7e77ec0ab7722c8cbfc14a))
+
+
+
+
+
 # [10.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.2.1...@kiva/kv-components@10.3.0) (2026-09-11)
 
 
