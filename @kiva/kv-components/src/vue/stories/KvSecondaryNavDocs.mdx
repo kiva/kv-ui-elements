@@ -1,0 +1,199 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvSecondaryNavStories from './KvSecondaryNav.stories.js';
+
+<Meta title="Page Frame/KvSecondaryNav" component={KvSecondaryNavStories.Component} />
+
+# KvSecondaryNav
+
+A theme-aware secondary navigation bar that sits below the primary header to link related pages or sections within an area of the site.
+
+## Component Overview
+
+Secondary navigation orients users inside a defined surface (e.g. the US experience, Kiva Cards, a partner area) without taking over the whole page chrome. It supports a text or image heading, an optional heading link, and a horizontal list of links that collapse behind a chevron toggle on mobile.
+
+<Story of={ KvSecondaryNavStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The component supports five canonical color themes (`default`, `greenLight`, `greenDark`, `marigoldLight`, `stoneLight`), an optional image heading in place of text, and three link alignments (`left`, `right`, `center`).
+
+<Story of={ KvSecondaryNavStories.AllVariations} />
+
+## Usage Information
+
+Use KvSecondaryNav as the navigation for a bounded set of pages or sections that share a common context. It's meant to sit at the top of that surface, directly under the site header, and stay consistent across every page in the group.
+
+### When to Use
+
+- Navigating between related pages inside a defined surface (e.g. US experience pages, Kiva Cards flow, partner profile tabs)
+- Providing a persistent way back to the surface's landing page via the heading link
+- Grouping 3–7 related destinations that share a page-level context
+- Marking the active page within the surface via the `isActive` link flag
+
+### When Not to Use
+
+- As the site's primary navigation — use `KvWwwHeader` for that
+- For in-page anchors or tab-style content switching within a single page — use tabs or an in-page nav
+- When there are more than ~8 links, since the row wraps or scrolls awkwardly at that count
+- For single-page marketing surfaces where a persistent nav row adds noise without navigation value
+
+---
+
+## Behavior
+
+The nav is a full-width horizontal band. Its heading and links behave differently by breakpoint, and its color roles come from an active theme applied via `KvThemeProvider`.
+
+### Theme
+
+Selecting a `theme` prop swaps the token bundle for the whole nav band and applies the appropriate background slot per palette. Light palettes surface a tinted band; dark palettes fill with the palette's primary dark. `default` (light) and `dark` (alias for `greenDark`) preserve legacy behavior.
+
+<Story of={ KvSecondaryNavStories.GreenDark} />
+
+### Heading Image
+
+Passing a `headingImage` object with a `url` renders the image in place of the `heading` text. The `heading` string still serves as the alt fallback if `headingImage.alt` isn't provided. Setting both `heading` and `headingImage` is legal — the image wins for render, the heading text becomes the accessible label.
+
+<Story of={ KvSecondaryNavStories.WithHeadingImage} />
+
+### Mobile Collapse
+
+Below `md`, the links stack vertically inside a collapsed drawer hidden behind a chevron toggle button. The heading (text or image) remains visible in the band header regardless of drawer state.
+
+## Anatomy
+
+The nav band contains three positional zones inside a `KvPageContainer` wrapper:
+
+- **Heading**: text (via `heading`) or image (via `headingImage`), optionally wrapped in an `<a>` or `<router-link>` if `headingLink` is set
+- **Toggle button** (mobile only, `< md`): chevron button that expands/collapses the links drawer
+- **Links list**: horizontal on `md+`, vertical stack in a collapsed drawer on mobile; each link renders as `<a>` (external) or `<router-link>` (SPA) and reflects `isActive` via an underline
+
+---
+
+## Specs
+
+### Height and Layout
+
+The nav band is a fixed 62px on all breakpoints. The inner content is absolute-positioned inside a 62px holder — content that exceeds this height (e.g. wrapped links from too many entries) will overflow the band visually. Aim for ≤ ~7 link entries at typical label lengths.
+
+<Story of={ KvSecondaryNavStories.Default} />
+
+### Link Alignment
+
+The `linkAlignment` prop accepts `left`, `right`, or `center`. On mobile, the alignment is overridden to accommodate the heading + toggle layout — the setting takes effect on `md` and up.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSecondaryNav/Do-keep-links-focused.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Keep the link count in the 3–7 range with short, scannable labels so the band stays a single row on desktop.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSecondaryNav/Do-not-cram-links.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Don't cram more than ~8 links or use long multi-word labels — the row wraps and overflows the fixed 62px band height.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSecondaryNav/Do-match-section-theme.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Match the nav's theme to the surface it sits above so the band reads as part of the section, not a foreign element.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSecondaryNav/Do-not-stack-conflicting-themes.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't pick a theme that clashes with the page — a Stone Light nav above a Green Dark hero fragments the visual hierarchy.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- Text heading uses `tw-text-primary` and inherits the active theme's contrast-tuned color pairing
+- `headingImage` requires an `alt` value; the `heading` text is used as the fallback alt when only an image URL is supplied
+- Links render as native `<a>` (external) or Vue Router `<router-link>` (internal), keeping default keyboard focus and Enter activation
+- Active link is communicated visually via underline (`isActive`) — consumers should also set `aria-current="page"` on the router link where semantically appropriate
+- The mobile toggle button is a native `<button>` with a chevron icon; expanded state is currently communicated by icon change only — pair with `aria-expanded` on the button and `aria-hidden` on the collapsed drawer at the consumer level if you need strict AT support
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={ KvSecondaryNavStories.Default} />
+<Controls of={ KvSecondaryNavStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Text Heading
+
+```vue
+<KvSecondaryNav
+	heading="Due Diligence"
+	:heading-link="{ href: '/partner/123', isExternal: false }"
+	:links="[
+		{ text: 'Overview', href: '/partner/123', isActive: true, isExternal: false },
+		{ text: 'Documents', href: '/partner/123/documents', isActive: false, isExternal: false },
+		{ text: 'Team', href: '/partner/123/team', isActive: false, isExternal: false },
+	]"
+	link-alignment="right"
+	theme="default"
+/>
+```
+
+### Image Heading
+
+```vue
+<KvSecondaryNav
+	heading="Kiva US"
+	:heading-image="{ url: '/img/kiva-us-logo.svg', alt: 'Kiva US' }"
+	:links="usExperienceLinks"
+	link-alignment="right"
+	theme="greenDark"
+/>
+```
+
+### Dark Theme with Router Links
+
+```vue
+<KvSecondaryNav
+	heading="Impact Dashboard"
+	:heading-link="{ href: '/impact', isExternal: false }"
+	:links="[
+		{ text: 'Live Now', href: '/impact/live', isActive: false, isExternal: false },
+		{ text: 'By Region', href: '/impact/region', isActive: true, isExternal: false },
+		{ text: 'By Sector', href: '/impact/sector', isActive: false, isExternal: false },
+	]"
+	link-alignment="center"
+	theme="greenDark"
+/>
+```

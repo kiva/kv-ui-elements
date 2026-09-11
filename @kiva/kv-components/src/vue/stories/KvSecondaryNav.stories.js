@@ -72,6 +72,44 @@ Default.args = {
 	theme: 'default',
 };
 
+export const ComponentOverview = Template.bind({});
+ComponentOverview.args = {
+	theme: 'default',
+};
+
+const AllVariationsTemplate = () => ({
+	components: { KvSecondaryNav },
+	setup() {
+		const sampleLinks = [
+			{
+				text: 'Overview', href: '#', isActive: false, isExternal: false,
+			},
+			{
+				text: 'Documents', href: '#', isActive: false, isExternal: false,
+			},
+			{
+				text: 'Team', href: '#', isActive: false, isExternal: false,
+			},
+		];
+		const themes = ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'];
+		return { sampleLinks, themes };
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 16px;">
+			<div v-for="themeName in themes" :key="themeName">
+				<KvSecondaryNav
+					:heading="themeName"
+					:links="sampleLinks"
+					link-alignment="right"
+					:theme="themeName"
+				/>
+			</div>
+		</div>
+	`,
+});
+
+export const AllVariations = AllVariationsTemplate.bind({});
+
 export const GreenLight = Template.bind({});
 GreenLight.args = {
 	theme: 'greenLight',

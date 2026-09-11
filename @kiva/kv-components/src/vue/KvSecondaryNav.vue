@@ -38,9 +38,9 @@
 								:href="hasHeadingLink
 									? (headingLink.isExternal ? headingLink.href : undefined)
 									: undefined"
-								class="kv-secondary-nav__heading tw-text-primary
+								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
 									tw-bg-transparent tw-border-none tw-no-underline"
-								:class="[headingStyleClass, { 'tw-cursor-pointer': hasHeadingLink }]"
+								:class="{ 'tw-cursor-pointer': hasHeadingLink }"
 							>
 								<img
 									v-if="headingImage && headingImage.url"
@@ -48,7 +48,9 @@
 									:alt="headingImage.alt || heading"
 									class="tw-max-h-2.5 tw-w-auto"
 								>
-								<template v-else>{{ heading }}</template>
+								<template v-else>
+									{{ heading }}
+								</template>
 							</component>
 						</div>
 						<button
@@ -192,13 +194,6 @@ export default {
 				].includes(value);
 			},
 		},
-		headingStyle: {
-			type: String,
-			default: 'subheadline',
-			validator(value: string) {
-				return ['subheadline', 'title'].includes(value);
-			},
-		},
 		headingImage: {
 			type: Object as PropType<{ url?: string; alt?: string }>,
 			default: () => ({}),
@@ -209,7 +204,7 @@ export default {
 	],
 	setup(props, { emit }) {
 		const {
-			heading, linkAlignment, theme, headingStyle, headingImage,
+			heading, linkAlignment, theme, headingImage,
 		} = toRefs(props);
 
 		const hasHeadingContent = computed(() => {
@@ -246,9 +241,6 @@ export default {
 		};
 		const themeStyle = computed(() => themeConfig[theme.value]?.style);
 		const bgClass = computed(() => themeConfig[theme.value]?.bgClass ?? 'tw-bg-primary');
-		const headingStyleClass = computed(() => (
-			headingStyle.value === 'title' ? 'tw-text-title' : 'tw-text-h3'
-		));
 
 		const toggleSubNavigation = () => {
 			subNavigationOpen.value = !subNavigationOpen.value;
@@ -269,7 +261,6 @@ export default {
 			subNavigation,
 			themeStyle,
 			bgClass,
-			headingStyleClass,
 			handleLinkClick,
 		};
 	},
