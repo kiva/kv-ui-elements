@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.2.1...@kiva/kv-components@10.3.0) (2026-09-11)
+
+
+### Features
+
+* mp-3203-add a small size to KvSwitch ([68f79ba](https://github.com/kiva/kv-ui-elements/commit/68f79baccd73e07995514a28efd6c585e10dc7d9))
+* mp-3203-add docs and fix disabled story ([f67ce83](https://github.com/kiva/kv-ui-elements/commit/f67ce83fa7728f0f4bfec29f9ddd3608b2d6c7e3))
+* mp-3203-add fix test ([86da54d](https://github.com/kiva/kv-ui-elements/commit/86da54d9b573a4f8841e2f0a41620fae030e1f80))
+
+
+
+
+
 ## [10.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.2.0...@kiva/kv-components@10.2.1) (2026-09-09)
 
 
