@@ -112,6 +112,30 @@ describe('KvSwitch', () => {
 		expect(container.firstChild.classList).toContain('test-class');
 	});
 
+	it('renders the default 56x32 track with a 24px knob and travel', () => {
+		const { container } = renderTestSwitch();
+		const track = container.querySelector('label > div:first-of-type');
+		const knob = container.querySelector('label > div:nth-of-type(2)');
+
+		expect(track.classList).toContain('tw-w-7');
+		expect(track.classList).toContain('tw-h-4');
+		expect(knob.classList).toContain('tw-w-3');
+		expect(knob.classList).toContain('tw-h-3');
+		expect(knob.classList).toContain('peer-checked:tw-translate-x-3');
+	});
+
+	it('renders a 48x28 track with a 20px knob and travel when small', () => {
+		const { container } = renderTestSwitch({ props: { size: 'small' } });
+		const track = container.querySelector('label > div:first-of-type');
+		const knob = container.querySelector('label > div:nth-of-type(2)');
+
+		expect(track.classList).toContain('tw-w-6');
+		expect(track.classList).toContain('tw-h-3.5');
+		expect(knob.classList).toContain('tw-w-2.5');
+		expect(knob.classList).toContain('tw-h-2.5');
+		expect(knob.classList).toContain('peer-checked:tw-translate-x-2.5');
+	});
+
 	it('has no automated accessibility violations', async () => {
 		const { container } = renderTestSwitch();
 		const results = await axe(container);

@@ -35,6 +35,10 @@ const Template = (args, {
 		KvSwitch,
 		KvTextInput,
 	},
+	// The spliced story templates (e.g. KvSwitch's) read from `args`
+	setup() {
+		return { args };
+	},
 	data: () => ({
 		...CheckboxDefault(args, { argTypes }).data(),
 		...RadioDefault(args, { argTypes }).data(),

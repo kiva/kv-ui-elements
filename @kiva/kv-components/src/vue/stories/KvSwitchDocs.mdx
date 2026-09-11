@@ -1,0 +1,191 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvSwitchStories from './KvSwitch.stories.js';
+
+<Meta title="Forms/KvSwitch" component={KvSwitchStories.Component} />
+
+# KvSwitch
+
+An accessible visual treatment of a checkbox element for handling on/off states in UI.
+
+## Component Overview
+
+Switches let users toggle a single setting on or off with an immediate effect. The component wraps a native checkbox with `role="switch"`, so it works with forms, keyboards, and assistive technologies out of the box. It comes in two sizes: `default` and `small`.
+
+<Story of={KvSwitchStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The switch supports two sizes (`default` and `small`), each available in on, off, and disabled states. Use the `small` size in dense layouts such as table rows, filter panels, or compact settings lists.
+
+<Story of={KvSwitchStories.AllVariations} />
+
+## Usage Information
+
+Switches are for binary settings that take effect immediately — no "Save" or "Submit" action should be required. The label passed through the default slot describes the setting being controlled, and clicking the label also toggles the switch.
+
+There are two ways to bind state: **v-model** (recommended) or manually via the `modelValue` prop with the `update:modelValue` event.
+
+### When to Use
+
+- For binary on/off settings that apply immediately (e.g., notification preferences, visibility toggles)
+- In settings pages, preference panels, and filter controls
+- Use the `small` size when vertical space is limited or the switch appears alongside compact text
+- When the state change is self-contained and doesn't require confirmation
+
+### When Not to Use
+
+- For options that require a form submission to take effect — use [KvCheckbox](/docs/forms-kvcheckbox--default) instead
+- For selecting one option among several — use radio buttons or a select
+- For actions (use a button); switches represent state, not commands
+- When the "on" and "off" meanings are ambiguous without additional explanation
+
+---
+
+## Behavior
+
+The switch toggles between on and off when clicked, tapped, or activated with the keyboard (Space). The knob slides between positions and the track color changes to communicate state.
+
+### Toggling with v-model
+
+The switch is on when `modelValue` / `v-model` is `true`. The bound value updates immediately on toggle, and a native `change` event is also emitted from the underlying checkbox.
+
+<Story of={KvSwitchStories.Default} />
+
+### Disabled State
+
+Setting the `disabled` prop prevents the switch from being toggled or focused. The whole control renders at reduced opacity, and the disabled state is communicated to assistive technologies through the native `disabled` attribute.
+
+<Story of={KvSwitchStories.Disabled} />
+
+## Anatomy
+
+The switch consists of four main parts:
+
+- **Input**: A visually hidden native checkbox with `role="switch"` that carries all interaction, focus, and form behavior
+- **Track**: The rounded-rectangle background (`tw-bg-tertiary` when off, `tw-bg-action` when on) whose dimensions are controlled by the `size` prop
+- **Knob**: The white circle that slides along the track; its size and travel distance scale with the `size` prop
+- **Label**: Content passed through the default slot, rendered beside the track and linked to the input so clicking it toggles the switch
+
+---
+
+## Specs
+
+### Sizes
+
+The `size` prop controls the dimensions of the track and knob:
+
+- **`default`**: 56 x 32px track (`tw-w-7 tw-h-4`) with a 24px knob (`tw-w-3 tw-h-3`) that travels 24px when checked
+- **`small`**: 48 x 28px track (`tw-w-6 tw-h-3.5`) with a 20px knob (`tw-w-2.5 tw-h-2.5`) that travels 20px when checked
+
+The knob travel is the track width minus the knob and its margins, so it shrinks along with the track.
+
+<Story of={KvSwitchStories.Small} />
+
+### Spacing
+
+- The label is separated from the track by a 16px gap (`tw-gap-2`)
+- The knob keeps a 4px margin (`tw-m-0.5`) inside the track in both sizes
+- Maintain adequate spacing between stacked switches so labels and touch areas don't crowd each other
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSwitch/do-use-for-immediate-settings.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use switches for settings that take effect immediately, with a clear label describing what is being turned on or off.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSwitch/do-not-use-in-forms-requiring-submission.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Don't use switches for options that only apply after submitting a form — use a checkbox instead.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSwitch/do-use-predefined-sizes.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Use the predefined <code>size</code> prop (<code>default</code> or <code>small</code>) to control the switch dimensions consistently.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvSwitch/do-not-manually-resize.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't override the track or knob dimensions with custom classes — the knob travel is calculated from the track size and will break.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- Built on a native `<input type="checkbox">` with `role="switch"`, so state is communicated as on/off to assistive technologies
+- The label slot content is programmatically associated with the input via a generated unique `id`/`for` pairing
+- Fully keyboard operable: Tab to focus, Space to toggle
+- A visible focus ring (`peer-focus-visible` ring) appears around both the track and the label when focused via keyboard
+- The disabled state uses the native `disabled` attribute, removing the switch from the tab order
+- Exposes `focus()` and `blur()` methods for programmatic focus management
+- State is conveyed by knob position and track color together, not color alone
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvSwitchStories.Default} />
+<Controls of={KvSwitchStories.Default} />
+
+---
+
+## Code Examples
+
+### Basic Switch with v-model
+
+```vue
+<kv-switch v-model="notificationsEnabled">
+  Enable notifications
+</kv-switch>
+```
+
+### Small Switch
+
+```vue
+<kv-switch size="small" v-model="compactSetting">
+  Show completed loans
+</kv-switch>
+```
+
+### Without v-model
+
+```vue
+<kv-switch
+  :model-value="isEnabled"
+  :disabled="isLocked"
+  @update:modelValue="(val) => isEnabled = val"
+>
+  Auto-lend my repayments
+</kv-switch>
+```
