@@ -1,4 +1,5 @@
 import KvSecondaryNav from '../KvSecondaryNav.vue';
+import KivaUsLogo from './assets/KivaUS_white.png';
 
 export default {
 	title: 'Page Frame/KvSecondaryNav',
@@ -17,6 +18,7 @@ export default {
 	},
 	args: {
 		heading: 'Due Diligence',
+		headingImage: {},
 		headingLink: {
 			href: 'https://www.kiva.org',
 			isExternal: true,
@@ -54,7 +56,7 @@ const Template = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 80vh; overflow: auto;position:relative;">
-			<KvSecondaryNav :headingLink="headingLink" :heading="heading" :links="links" :linkAlignment="linkAlignment" :theme="theme" />
+			<KvSecondaryNav :headingLink="headingLink" :heading="heading" :headingImage="headingImage" :links="links" :linkAlignment="linkAlignment" :theme="theme" />
 			Testing content
 		</div>
 	`,
@@ -69,6 +71,44 @@ export const Default = Template.bind({});
 Default.args = {
 	theme: 'default',
 };
+
+export const ComponentOverview = Template.bind({});
+ComponentOverview.args = {
+	theme: 'default',
+};
+
+const AllVariationsTemplate = () => ({
+	components: { KvSecondaryNav },
+	setup() {
+		const sampleLinks = [
+			{
+				text: 'Overview', href: '#', isActive: false, isExternal: false,
+			},
+			{
+				text: 'Documents', href: '#', isActive: false, isExternal: false,
+			},
+			{
+				text: 'Team', href: '#', isActive: false, isExternal: false,
+			},
+		];
+		const themes = ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'];
+		return { sampleLinks, themes };
+	},
+	template: `
+		<div style="display: flex; flex-direction: column; gap: 24px; padding: 16px;">
+			<div v-for="themeName in themes" :key="themeName">
+				<KvSecondaryNav
+					:heading="themeName"
+					:links="sampleLinks"
+					link-alignment="right"
+					:theme="themeName"
+				/>
+			</div>
+		</div>
+	`,
+});
+
+export const AllVariations = AllVariationsTemplate.bind({});
 
 export const GreenLight = Template.bind({});
 GreenLight.args = {
@@ -88,6 +128,16 @@ MarigoldLight.args = {
 export const StoneLight = Template.bind({});
 StoneLight.args = {
 	theme: 'stoneLight',
+};
+
+export const WithHeadingImage = Template.bind({});
+WithHeadingImage.args = {
+	theme: 'greenDark',
+	heading: 'Kiva US',
+	headingImage: {
+		url: KivaUsLogo,
+		alt: 'Kiva US',
+	},
 };
 
 export const Centered = Template.bind({});

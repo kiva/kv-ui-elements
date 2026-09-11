@@ -24,7 +24,7 @@
 						:class="navAlignmentClass"
 					>
 						<div
-							v-if="heading && heading.length > 0"
+							v-if="hasHeadingContent"
 							class="kv-secondary-nav__heading-container"
 							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
 						>
@@ -40,11 +40,17 @@
 									: undefined"
 								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
 									tw-bg-transparent tw-border-none tw-no-underline"
-								:class="{
-									'tw-cursor-pointer' : hasHeadingLink
-								}"
+								:class="{ 'tw-cursor-pointer': hasHeadingLink }"
 							>
-								{{ heading }}
+								<img
+									v-if="headingImage && headingImage.url"
+									:src="headingImage.url"
+									:alt="headingImage.alt || heading"
+									class="tw-max-h-2.5 tw-w-auto"
+								>
+								<template v-else>
+									{{ heading }}
+								</template>
 							</component>
 						</div>
 						<button
@@ -188,14 +194,22 @@ export default {
 				].includes(value);
 			},
 		},
+		headingImage: {
+			type: Object as PropType<{ url?: string; alt?: string }>,
+			default: () => ({}),
+		},
 	},
 	emits: [
 		'subnavLinkClicked',
 	],
 	setup(props, { emit }) {
 		const {
-			heading, linkAlignment, theme,
+			heading, linkAlignment, theme, headingImage,
 		} = toRefs(props);
+
+		const hasHeadingContent = computed(() => {
+			return (heading.value && heading.value.length > 0) || !!headingImage.value?.url;
+		});
 
 		const subNavigation = ref(null);
 		const subNavigationOpen = ref(false);
@@ -238,6 +252,7 @@ export default {
 
 		return {
 			hasHeadingLink,
+			hasHeadingContent,
 			navAlignmentClass,
 			toggleSubNavigation,
 			subNavigationOpen,
