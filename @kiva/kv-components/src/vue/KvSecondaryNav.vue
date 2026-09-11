@@ -24,7 +24,7 @@
 						:class="navAlignmentClass"
 					>
 						<div
-							v-if="heading && heading.length > 0"
+							v-if="hasHeadingContent"
 							class="kv-secondary-nav__heading-container"
 							:class="{ 'tw-block md:tw-hidden': linkAlignment === 'left' || linkAlignment === 'center' }"
 						>
@@ -38,13 +38,17 @@
 								:href="hasHeadingLink
 									? (headingLink.isExternal ? headingLink.href : undefined)
 									: undefined"
-								class="kv-secondary-nav__heading tw-text-h3 tw-text-primary
+								class="kv-secondary-nav__heading tw-text-primary
 									tw-bg-transparent tw-border-none tw-no-underline"
-								:class="{
-									'tw-cursor-pointer' : hasHeadingLink
-								}"
+								:class="[headingStyleClass, { 'tw-cursor-pointer': hasHeadingLink }]"
 							>
-								{{ heading }}
+								<img
+									v-if="headingImage && headingImage.url"
+									:src="headingImage.url"
+									:alt="headingImage.alt || heading"
+									class="tw-max-h-2.5 tw-w-auto"
+								>
+								<template v-else>{{ heading }}</template>
 							</component>
 						</div>
 						<button
@@ -188,14 +192,29 @@ export default {
 				].includes(value);
 			},
 		},
+		headingStyle: {
+			type: String,
+			default: 'subheadline',
+			validator(value: string) {
+				return ['subheadline', 'title'].includes(value);
+			},
+		},
+		headingImage: {
+			type: Object as PropType<{ url?: string; alt?: string }>,
+			default: () => ({}),
+		},
 	},
 	emits: [
 		'subnavLinkClicked',
 	],
 	setup(props, { emit }) {
 		const {
-			heading, linkAlignment, theme,
+			heading, linkAlignment, theme, headingStyle, headingImage,
 		} = toRefs(props);
+
+		const hasHeadingContent = computed(() => {
+			return (heading.value && heading.value.length > 0) || !!headingImage.value?.url;
+		});
 
 		const subNavigation = ref(null);
 		const subNavigationOpen = ref(false);
@@ -227,6 +246,9 @@ export default {
 		};
 		const themeStyle = computed(() => themeConfig[theme.value]?.style);
 		const bgClass = computed(() => themeConfig[theme.value]?.bgClass ?? 'tw-bg-primary');
+		const headingStyleClass = computed(() => (
+			headingStyle.value === 'title' ? 'tw-text-title' : 'tw-text-h3'
+		));
 
 		const toggleSubNavigation = () => {
 			subNavigationOpen.value = !subNavigationOpen.value;
@@ -238,6 +260,7 @@ export default {
 
 		return {
 			hasHeadingLink,
+			hasHeadingContent,
 			navAlignmentClass,
 			toggleSubNavigation,
 			subNavigationOpen,
@@ -246,6 +269,7 @@ export default {
 			subNavigation,
 			themeStyle,
 			bgClass,
+			headingStyleClass,
 			handleLinkClick,
 		};
 	},
