@@ -136,6 +136,17 @@ describe('KvSwitch', () => {
 		expect(knob.classList).toContain('peer-checked:tw-translate-x-2.5');
 	});
 
+	it('centers the knob on the track when the label wraps taller than it', () => {
+		const { container } = renderTestSwitch();
+		const knob = container.querySelector('label > div:nth-of-type(2)');
+
+		// Anchored to the label's vertical centre, which coincides with the track's at any
+		// label height; a top anchor only lines up while the label is one line tall
+		expect(knob.classList).toContain('tw-top-1/2');
+		expect(knob.classList).toContain('-tw-translate-y-1/2');
+		expect(knob.classList).not.toContain('tw-top-0');
+	});
+
 	it('has no automated accessibility violations', async () => {
 		const { container } = renderTestSwitch();
 		const results = await axe(container);

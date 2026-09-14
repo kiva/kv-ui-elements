@@ -128,12 +128,20 @@ export const Small = () => ({
 	},
 	data: () => ({
 		switchExampleModel: false,
+		wrappedExampleModel: true,
 	}),
 	template: `
 		<div>
 			<kv-switch size="small" v-model="switchExampleModel">
 				Switch is switched: {{switchExampleModel}}
 			</kv-switch>
+			<!-- At mobile widths the label wraps taller than the track, which must keep the
+				knob centred on the track rather than anchored to the label's top -->
+			<div class="tw-mt-4" style="width: 320px;">
+				<kv-switch size="small" v-model="wrappedExampleModel">
+					Use my balance to cover this donation instead of future loans.
+				</kv-switch>
+			</div>
 		</div>`,
 });
 

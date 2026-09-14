@@ -35,7 +35,7 @@
 			<div
 				class="
 						tw-flex-shrink-0
-						tw-absolute tw-m-0.5 tw-top-0
+						tw-absolute tw-mx-0.5 tw-top-1/2 -tw-translate-y-1/2
 						tw-rounded-full
 						tw-bg-white
 						tw-transform tw-transition-all tw-ease-in-out
