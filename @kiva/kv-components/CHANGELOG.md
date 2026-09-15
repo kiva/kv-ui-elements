@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.4.0...@kiva/kv-components@10.4.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* mp-3213-center the switch knob on the track when the label wraps ([9f5b20f](https://github.com/kiva/kv-ui-elements/commit/9f5b20f295856169b5f94c0c714791daf789d01f))
+
+
+
+
+
 # [10.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.3.0...@kiva/kv-components@10.4.0) (2026-09-11)
 
 
