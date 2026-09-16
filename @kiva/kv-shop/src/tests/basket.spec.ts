@@ -35,6 +35,13 @@ describe('basket.ts', () => {
 			testHasBasketExpiredWithErrorCode('shop.alreadyCheckedOut', true);
 		});
 
+		// These must stay out of the expired list: it drives createBasket-and-retry in
+		// callShopMutation/callShopQuery, and a locked basket is busy rather than broken.
+		it('should return false for a checkout in progress', () => {
+			testHasBasketExpiredWithErrorCode('checkout_in_progress', false);
+			testHasBasketExpiredWithErrorCode('shop.checkoutInProgress', false);
+		});
+
 		it('should return false for other inputs', () => {
 			testHasBasketExpiredWithErrorCode('shop.otherError', false);
 			expect(hasBasketExpired('test error')).toBe(false);
