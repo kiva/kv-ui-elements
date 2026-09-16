@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.8.32](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.31...@kiva/kv-shop@3.8.32) (2026-09-16)
+
+
+### Bug Fixes
+
+* **kv-shop:** map checkout-in-progress codes in parseShopError ([f1694c5](https://github.com/kiva/kv-ui-elements/commit/f1694c53a62d9e22cd11192b9023cabceb357811))
+
+
+
+
+
 ## [3.8.31](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.30...@kiva/kv-shop@3.8.31) (2026-09-15)
 
 **Note:** Version bump only for package @kiva/kv-shop
