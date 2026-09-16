@@ -92,6 +92,18 @@ export function parseShopError(error: any) {
 		}, 'There was a problem with your basket. Please, refresh the page and try again.');
 	}
 
+	// The lender's own checkout is still running, so the basket is locked rather than broken.
+	// Kept out of hasBasketExpired deliberately: that list drives a createBasket-and-retry.
+	// Placeholder copy pending design/content review (CIT-5181); the lock self-heals after
+	// 300s, so it must not imply a permanent state.
+	if (errorCode === 'checkout_in_progress' || errorCode === 'shop.checkoutInProgress') {
+		return new ShopError({
+			code: errorCode,
+			original: error,
+		}, 'Your checkout is being processed, so your basket can\u2019t be changed right now. '
+			+ 'Please wait a moment and refresh the page.');
+	}
+
 	// These errors have well-formed messages and just need to be passed through
 	if (
 		errorCode === 'donationAmountTooLarge'
