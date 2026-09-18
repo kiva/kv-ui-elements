@@ -18,6 +18,7 @@
         "./components/*": "./dist/components/*.js",
         "./components/*.js": "./dist/components/*.js"
     },
+    "sideEffects": ["**/*.css"],
     "scripts": {
         "build": "vite build",
         "lint": "eslint --ext .ts,.vue ./src",

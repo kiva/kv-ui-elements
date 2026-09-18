@@ -19,6 +19,7 @@
     "./vue/*": "./dist/vue/*.js",
     "./vue/*.js": "./dist/vue/*.js"
   },
+  "sideEffects": ["**/*.css"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kiva/kv-ui-elements.git"
