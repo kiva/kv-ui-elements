@@ -1,15 +1,17 @@
 <template>
 	<div
 		class="tw-flex tw-flex-col tw-items-start tw-justify-between tw-p-1
-			tw-bg-white tw-rounded-md tw-shadow-lg tw-w-full"
+			tw-bg-white tw-shadow-lg tw-w-full"
 		:class="{
-			'tw-relative': showRefreshButton,
+			'tw-relative': shouldShowRefreshButton,
 			'!tw-p-1.5': showLightView || isPostGoalVariant,
+			'tw-rounded-md': !isLightDetailedVariant,
+			'tw-rounded': isLightDetailedVariant,
 		}"
 		:aria-busy="isLoading ? 'true' : 'false'"
 	>
 		<button
-			v-if="showRefreshButton"
+			v-if="shouldShowRefreshButton"
 			class="tw-absolute tw--top-1 tw--right-1 tw-bg-white tw-rounded-full
 				tw-w-2.5 tw-h-2.5 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-drop-shadow-sm"
 			@click="handleRefreshButton"
@@ -24,7 +26,7 @@
 			<div
 				class="tw-flex tw-items-start tw-gap-2 tw-w-full loan-card-active-hover"
 				:class="{
-					'!tw-gap-1': showLightView,
+					'!tw-gap-1': showLightView || isLightDetailedVariant,
 					'!tw-gap-1.5 md:!tw-gap-2.5': isPostGoalVariant,
 				}"
 				:style="customStyle"
@@ -36,6 +38,7 @@
 						'!tw-w-7.5 !tw-h-7.5': showLightView,
 						'!tw-w-7.5 !tw-h-7.5 md:!tw-w-12.5 md:!tw-h-12.5':
 							isPostGoalVariant,
+						'!tw-w-9.5 !tw-h-9.5': isLightDetailedVariant,
 					}"
 					:style="borrowerImageStyle"
 				/>
@@ -59,6 +62,7 @@
 								'!tw-w-7.5 !tw-h-7.5': showLightView,
 								'!tw-w-7.5 !tw-h-7.5 md:!tw-w-12.5 md:!tw-h-12.5':
 									isPostGoalVariant,
+								'!tw-w-9.5 !tw-h-9.5': isLightDetailedVariant,
 							}"
 							:style="borrowerImageStyle"
 							:alt="`Photo of ${borrowerName}`"
@@ -75,7 +79,46 @@
 					:class="{ '!tw-gap-0': isPostGoalVariant }"
 				>
 					<div
-						v-if="businessName"
+						v-if="isLightDetailedVariant"
+						class="tw-w-full"
+					>
+						<template v-if="isLoading">
+							<kv-loading-placeholder class="tw-mb-0.5 !tw-w-full !tw-h-2" />
+							<kv-loading-placeholder class="!tw-w-9 !tw-h-2" />
+						</template>
+						<template v-else>
+							<p
+								:title="borrowerName"
+								class="tw-text-primary !tw-font-medium tw-text-small
+									tw-leading-normal tw-truncate tw-w-full"
+							>
+								{{ borrowerName }}
+							</p>
+							<div class="tw-flex tw-items-center tw-gap-0.5 tw-w-full tw-min-w-0">
+								<span
+									class="tw-text-gray-600 !tw-font-medium tw-text-small
+										tw-leading-normal tw-flex-shrink-0"
+								>
+									{{ lightDetailedAmount }}
+								</span>
+								<template v-if="formattedLocation">
+									<span
+										aria-hidden="true"
+										class="tw-w-0.5 tw-h-0.5 tw-rounded-full tw-bg-gray-600 tw-flex-shrink-0"
+									></span>
+									<span
+										:title="formattedLocation"
+										class="tw-text-gray-600 !tw-font-medium tw-text-small
+											tw-leading-normal tw-truncate tw-min-w-0"
+									>
+										{{ formattedLocation }}
+									</span>
+								</template>
+							</div>
+						</template>
+					</div>
+					<div
+						v-else-if="businessName"
 						class="tw-mb-0.5 tw-w-full"
 					>
 						<component
@@ -112,7 +155,7 @@
 
 					<component
 						:is="tag"
-						v-if="!isLoading"
+						v-if="!isLoading && !isLightDetailedVariant"
 						:to="readMorePath"
 						:href="readMorePath"
 						:target="externalLinksNewTab ? '_blank' : undefined"
@@ -155,6 +198,37 @@
 							<span>{{ visibleUseStatement }}</span>
 						</p>
 					</template>
+					<template v-else-if="isLightDetailedVariant">
+						<div
+							v-if="isLoading"
+							data-testid="loan-use-loading"
+							class="tw-w-full tw-overflow-hidden"
+						>
+							<div
+								v-for="row in loanUseLoadingRows"
+								:key="row"
+								class="tw-h-2 tw-mb-1"
+							>
+								<kv-loading-placeholder />
+							</div>
+						</div>
+						<div
+							v-else
+							class="loan-card-use-text-light-detailed tw-w-full tw-overflow-hidden"
+						>
+							<kv-loan-use
+								:use="loanUse"
+								:loan-amount="loanAmount"
+								:status="loanStatus"
+								:borrower-count="loanBorrowerCount"
+								:name="borrowerName"
+								:distribution-model="distributionModel"
+								:hide-borrower-details="true"
+								data-testid="loan-use-statement"
+								class="tw-text-small tw-leading-normal tw-text-primary"
+							/>
+						</div>
+					</template>
 					<component
 						:is="tag"
 						v-else-if="showLoanUse"
@@ -172,7 +246,7 @@
 					>
 						<div
 							v-if="isLoading"
-							class="loan-card-use-text tw-w-full tw-overflow-hidden"
+							class="tw-w-full tw-overflow-hidden"
 						>
 							<div
 								v-for="(_n, i) in [...Array(loanUseLoadingRows)]"
@@ -184,7 +258,7 @@
 						</div>
 						<div
 							v-else
-							class="loan-card-use-text tw-w-full tw-overflow-hidden"
+							class="tw-w-full tw-overflow-hidden"
 							:class="{ '!tw--mt-1': showTags && hasMatchingInfo && showLightView }"
 						>
 							<kv-loan-use
@@ -227,6 +301,7 @@
 			:class="{
 				'tw-gap-1': sharesAvailable,
 				'!tw-items-end !tw-gap-2': isPostGoalVariant,
+				'!tw-mt-1.5': isLightDetailedVariant,
 			}"
 		>
 			<!-- Loading State -->
@@ -249,6 +324,42 @@
 			</template>
 
 			<!-- Loaded State -->
+			<template v-else-if="isLightDetailedVariant">
+				<div
+					class="tw-flex-1 tw-min-w-0 tw-px-0.5"
+					style="max-width: 9.75rem;"
+				>
+					<kv-loan-progress-group
+						:money-left="unreservedAmount"
+						:progress-percent="fundraisingPercent"
+						class="tw-text-black light-detailed-progress-group"
+					/>
+				</div>
+				<div class="tw-flex tw-items-center tw-gap-2 tw-flex-shrink-0">
+					<span
+						data-testid="light-detailed-amount-pill"
+						class="tw-border tw-border-gray-100 tw-rounded-sm
+							tw-px-1 tw-py-0.5 tw-text-label tw-text-primary"
+					>
+						${{ customAmountLent }}
+					</span>
+					<component
+						:is="tag"
+						:to="readMorePath"
+						:href="readMorePath"
+						:target="externalLinksNewTab ? '_blank' : undefined"
+						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
+						class="tw-flex tw-items-center tw-justify-center"
+						:aria-label="`View ${borrowerName || 'this borrower'}'s loan details`"
+						@click="clickReadMore('Arrow', $event)"
+					>
+						<kv-material-icon
+							:icon="mdiArrowRight"
+							class="tw-w-2.5 tw-h-2.5 tw-text-action"
+						/>
+					</component>
+				</div>
+			</template>
 			<template v-else-if="isPostGoalVariant">
 				<div
 					class="tw-flex-1 tw-min-w-0"
@@ -363,7 +474,7 @@ import {
 	computed, ref, watch, type PropType,
 } from 'vue';
 import {
-	mdiMapMarker, mdiHome, mdiLink, mdiCached,
+	mdiLink, mdiCached, mdiArrowRight,
 } from '@mdi/js';
 import {
 	loanCardComputedProperties,
@@ -399,6 +510,7 @@ import KvSelect from './KvSelect.vue';
 const CARD_VARIANTS = {
 	default: 'default',
 	postGoal: 'post-goal',
+	lightDetailed: 'light-detailed',
 } as const;
 
 const isAmountBetween25And500 = (amount: number) => amount < 500 && amount >= 25;
@@ -614,11 +726,22 @@ export default {
 		const isPostGoalVariant = computed(
 			() => props.variant === CARD_VARIANTS.postGoal,
 		);
+		const isLightDetailedVariant = computed(
+			() => props.variant === CARD_VARIANTS.lightDetailed,
+		);
+		// post-goal and light detailed both let content determine the image size and card height,
+		// instead of the fixed values borrowerImageStyle/customStyle fall back to below.
+		const isFlexibleVariant = computed(
+			() => isPostGoalVariant.value || isLightDetailedVariant.value,
+		);
+		// The refresh/swap affordance never shows in the light detailed variant, regardless of what the
+		// consumer passes.
+		const shouldShowRefreshButton = computed(
+			() => props.showRefreshButton && !isLightDetailedVariant.value,
+		);
 		const {
 			allDataLoaded,
 			borrowerName,
-			city,
-			countryName,
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
@@ -631,7 +754,6 @@ export default {
 			loanStatus,
 			loanUse,
 			readMorePath,
-			state,
 			tag,
 			unreservedAmount,
 			sharesAvailable,
@@ -640,7 +762,7 @@ export default {
 		const { clickReadMore } = loanCardMethods(props, emit);
 
 		const borrowerImageStyle = computed(() => {
-			return isPostGoalVariant.value
+			return isFlexibleVariant.value
 				? undefined
 				: { width: '100px', height: '100px' };
 		});
@@ -657,13 +779,15 @@ export default {
 		});
 
 		const customStyle = computed(() => {
-			if (isPostGoalVariant.value) return {};
+			if (isFlexibleVariant.value) return {};
 
 			const height = props.showLightView ? 'auto' : '6.75rem';
 			const maxHeight = props.showLightView ? 'none' : '6.75rem';
 
 			return { height, maxHeight };
 		});
+
+		const lightDetailedAmount = computed(() => numeral(loanAmount.value).format('$0,0'));
 
 		const postGoalStatement = computed(() => computePostGoalLoanCardStatement({
 			anonymizationLevel: props.loan?.anonymizationLevel,
@@ -723,6 +847,9 @@ export default {
 		);
 
 		const loanUseLoadingRows = computed(() => {
+			// One fewer row than the 3-line clamp: the loaded text's line-height renders taller
+			// than a skeleton row + its margin, so 3 rows would visibly overshoot the loaded height.
+			if (isLightDetailedVariant.value) return 2;
 			return props.showLightView ? 3 : 4;
 		});
 
@@ -756,14 +883,14 @@ export default {
 			borrowerImageStyle,
 			borrowerName,
 			borrowerNameWithCountry,
-			city,
-			countryName,
+			lightDetailedAmount,
 			distributionModel,
 			formattedLocation,
 			formattedWebsite,
 			fundraisingPercent,
 			hasProgressData,
 			imageHash,
+			isLightDetailedVariant,
 			isLoading,
 			isPostGoalVariant,
 			loanAmount,
@@ -773,12 +900,11 @@ export default {
 			loanUse,
 			loanUsePrefixEnd,
 			loanUsePrefixStart,
-			mdiMapMarker,
-			mdiHome,
 			mdiLink,
 			mdiCached,
+			mdiArrowRight,
 			readMorePath,
-			state,
+			shouldShowRefreshButton,
 			tag,
 			unreservedAmount,
 			sharesAvailable,
@@ -794,13 +920,6 @@ export default {
 		};
 	},
 	computed: {
-		lendersNumber() {
-			return this.loan?.lenders?.totalCount ?? 0;
-		},
-		amountLent() {
-			const amount = this.loan?.loanFundraisingInfo?.fundedAmount ?? 0;
-			return numeral(amount).format('$0,0');
-		},
 		isInBasket() {
 			return this.basketItems
 			// eslint-disable-next-line no-underscore-dangle
@@ -827,13 +946,8 @@ export default {
 	@apply tw-no-underline;
 }
 
-.loan-card-use-text :deep(p) {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 4;
-	line-clamp: 4;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.loan-card-use-text-light-detailed :deep(p) {
+	@apply tw-line-clamp-3;
 }
 
 /* Override CTA component height to match Figma */
@@ -841,17 +955,11 @@ export default {
 .loan-card-cta :deep(fieldset),
 .loan-card-cta :deep(.tw-w-full),
 .loan-card-cta :deep(button) {
-	height: 40px !important;
-	max-height: 40px !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
+	@apply !tw-h-5 !tw-max-h-5 !tw-flex !tw-items-center !tw-justify-center;
 }
 
 .loan-card-cta :deep(.tw-inline-flex) {
-	height: 40px !important;
-	max-height: 40px !important;
-	min-height: 40px !important;
+	@apply !tw-h-5 !tw-max-h-5 !tw-min-h-5;
 }
 
 :deep(.amount-dropdown select) {
@@ -864,5 +972,11 @@ export default {
 
 .goal-variant-progress-group :deep(div[role=progressbar]) {
 	background-color: #D9D9D9;
+}
+
+/* KvLoanProgressGroup's label margin is 4px everywhere; Figma wants 8px for this variant.
+   :first-of-type avoids also restyling the goalText label it renders when amount-goal is set. */
+.light-detailed-progress-group :deep(p:first-of-type) {
+	@apply tw-mb-1;
 }
 </style>

@@ -13,6 +13,9 @@ import { truncateStringByWords } from '../utils/loanUtils';
 
 const DIRECT = 'direct';
 
+const capitalize = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+const lowerFirst = (value: string) => value.charAt(0).toLowerCase() + value.slice(1);
+
 export const KV_LOAN_USE_FRAGMENT = gql`
 	fragment KvLoanUse on LoanBasic {
 		id
@@ -66,6 +69,11 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		// Unlike hideLoanAmount, this drops the name and country too and never shows a read-more link.
+		hideBorrowerDetails: {
+			type: Boolean,
+			default: false,
+		},
 		boldName: {
 			type: Boolean,
 			default: false,
@@ -99,7 +107,7 @@ export default {
 		},
 		whySpecialSentence() {
 			return this.whySpecial
-				? ` This loan is special because ${this.whySpecial.charAt(0).toLowerCase() + this.whySpecial.slice(1)}`
+				? ` This loan is special because ${lowerFirst(this.whySpecial)}`
 				: '';
 		},
 		nameSpan() {
@@ -118,11 +126,14 @@ export default {
 				return 'For the borrower\'s privacy, this loan has been made anonymous.';
 			}
 
+			if (this.hideBorrowerDetails) {
+				return `${capitalize(this.helpLanguage)} ${lowerFirst(this.use)}${this.whySpecialSentence}`;
+			}
+
 			if (this.hideLoanAmount) {
 				const helpVerb = this.useIndicativeHelpText ? this.helpLanguage : 'Help';
-				const capitalizedHelpVerb = helpVerb.charAt(0).toUpperCase() + helpVerb.slice(1);
-				let useString = `${capitalizedHelpVerb} ${this.nameSpan} `
-					+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)} `
+				let useString = `${capitalize(helpVerb)} ${this.nameSpan} `
+					+ `${lowerFirst(this.use)} `
 				+ `${this.whySpecialSentence}`;
 
 				if (this.showReadMore) {
@@ -141,7 +152,7 @@ export default {
 				+ `${isGroup ? 'a member of ' : ''}`
 				+ `${this.nameSpan} `
 				+ `${this.isDirect ? `${this.helpLanguage} ` : ''}`
-				+ `${this.use.charAt(0).toLowerCase() + this.use.slice(1)}`
+				+ `${lowerFirst(this.use)}`
 				+ `${this.whySpecialSentence}`;
 
 			if (this.showReadMore) {
