@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.4.1...@kiva/kv-components@10.5.0) (2026-09-18)
+
+
+### Features
+
+* mp-3223-add light-detailed variant to kvcompactloancard ([#906](https://github.com/kiva/kv-ui-elements/issues/906)) ([3b4efa3](https://github.com/kiva/kv-ui-elements/commit/3b4efa3190772fb56ae74b01b19cbf15acb0907d))
+
+
+
+
+
 ## [10.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.4.0...@kiva/kv-components@10.4.1) (2026-09-15)
 
 
