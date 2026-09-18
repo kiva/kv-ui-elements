@@ -9,7 +9,7 @@ A compact loan card component that displays essential borrower and loan informat
 
 ## Component Overview
 
-KvCompactLoanCard provides a condensed view of loan information including borrower image, name, location, loan purpose, funding progress, and lending actions. It supports multiple display modes (standard and light view), handles loading states gracefully, and integrates with Kiva's basket and tracking systems. The component is highly configurable to support various use cases like matched loans, team picks, and US direct loans.
+KvCompactLoanCard provides a condensed view of loan information including borrower image, name, location, loan purpose, funding progress, and lending actions. It supports multiple display modes (standard, light view, post-goal, and light detailed), handles loading states gracefully, and integrates with Kiva's basket and tracking systems. The component is highly configurable to support various use cases like matched loans, team picks, and US direct loans.
 
 <Story of={KvCompactLoanCardStories.ComponentOverview} />
 
@@ -41,6 +41,7 @@ The component supports numerous variations to handle different loan states and d
 - **US Direct Loans**: Adapted layout for US-based borrowers with different location formatting
 - **Business View**: Alternative display showing business name and website links
 - **Post Goal Variant**: A compact post-goal-creation layout with the full loan use statement up to 200 characters and an amount dropdown instead of the full lending CTA
+- **Light Detailed Variant**: A larger layout with borrower name, amount, and country in their own block above a 3-line loan use statement, no orange funding-status tag or refresh button, and a bottom-right arrow (instead of a "View" CTA or "read more" link) that opens the borrower profile modal
 
 <Story of={KvCompactLoanCardStories.AllVariations} />
 
@@ -58,6 +59,7 @@ The component requires two essential props: `kvTrackFunction` for analytics and 
 - On user dashboards displaying saved or bookmarked loans
 - Within team pages showing team pick selections
 - For matched loan promotions where partner matching is highlighted
+- In loan bundle recommendations, where the `light-detailed` variant gives the borrower's identity and a longer loan use statement more room than the standard card allows
 
 ### When Not to Use
 
@@ -90,6 +92,12 @@ When a loan is in the user's basket, the component displays an "In basket" state
 
 <Story of={KvCompactLoanCardStories.InBasket} />
 
+### Light Detailed Variant Header and Navigation
+
+In the `light-detailed` variant, the borrower name and country truncate independently instead of wrapping or breaking the card's layout, and the loan use statement clamps to 3 lines instead of the word-count truncation and "read more" link the other variants use. The bottom-right arrow replaces the "View" CTA: it's a real link, reachable and activatable by keyboard as well as by click, with an `aria-label` naming whose loan it opens. When `customLoanDetails` is set, it emits `show-loan-details` to open the borrower profile modal instead of navigating.
+
+<Story of={KvCompactLoanCardStories.LightDetailedVariant} />
+
 ## Anatomy
 
 The compact loan card consists of several key sections:
@@ -102,6 +110,8 @@ The compact loan card consists of several key sections:
 - **CTA Section**: KvLendCta providing lending actions (Add to basket, View loan, etc.)
 - **Refresh Button** (Light View): Optional button for refreshing loan data
 - **Team Pick Badge**: Optional overlay for team-selected loans via KvLoanTeamPick
+- **Header Block** (Light Detailed Variant): Borrower name, funded amount, and country shown above the loan use statement instead of woven into a single sentence
+- **Navigation Arrow** (Light Detailed Variant): Bottom-right link that replaces the "View" CTA and opens the borrower profile modal
 
 ---
 
@@ -115,8 +125,10 @@ The standard card renders at 380px width with 20px padding in its container. The
 
 - **Standard View**: 100px × 100px borrower image
 - **Light View**: Smaller 60px × 60px (7.5 spacing units) image
+- **Light Detailed Variant**: 76px × 76px (9.5 spacing units) image, and the card itself uses a 16px corner radius instead of the standard card's 12px
 
 <Story of={KvCompactLoanCardStories.LightViewLoan} />
+<Story of={KvCompactLoanCardStories.LightDetailedVariant} />
 
 ### Progress and CTA Layout
 
@@ -158,6 +170,22 @@ The bottom section uses a flex layout with the progress information taking avail
     	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
     	<p style={{fontSize: '0.875rem', margin: 0}}>Use the standard card variant on light backgrounds—use the lightView variant instead for lighter contexts.</p>
   	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/do-use-light-detailed-for-bundles.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Use the light detailed variant where its taller card and larger image fit the layout, such as loan bundle recommendations.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCompactLoanCard/dont-mix-light-detailed-with-other-variants.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Mix the light detailed variant with the standard or light view in the same grid or carousel; the different card heights break visual alignment.</p>
+  	</div>
 </div>
 
 ---
@@ -171,6 +199,8 @@ The bottom section uses a flex layout with the progress information taking avail
 - **Color Contrast**: White card background against dark container ensures WCAG-compliant contrast ratios
 - **Focus Management**: Interactive elements are focusable and receive visible focus indicators
 - **Keyboard Navigation**: All interactive elements are accessible via keyboard
+- **Light Detailed Variant Arrow**: Rendered as a real link with a descriptive `aria-label` (falls back to "this borrower" if the name is empty), so it's reachable and activatable by keyboard as well as by click
+- **Truncated Text**: Truncated borrower name and country values carry a `title` attribute so the full value is available on hover
 
 ---
 
@@ -295,6 +325,34 @@ import { KvCompactLoanCard } from '@kiva/kv-components';
 
 const handleSelectedAmount = (amount) => {
   // Persist or forward selected lend amount
+};
+</script>
+```
+
+### Light Detailed Variant (Loan Bundles)
+
+```vue
+<template>
+  <div style="width: 290px;">
+    <KvCompactLoanCard
+      variant="light-detailed"
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      custom-loan-details
+      external-links
+      custom-amount-lent="25"
+      @show-loan-details="openBorrowerProfileModal"
+    />
+  </div>
+</template>
+
+<script setup>
+import { KvCompactLoanCard } from '@kiva/kv-components';
+
+const openBorrowerProfileModal = () => {
+  // Open the borrower profile modal for this loan
 };
 </script>
 ```

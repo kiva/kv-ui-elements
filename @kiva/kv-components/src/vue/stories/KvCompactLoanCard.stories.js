@@ -12,13 +12,14 @@ export default {
 	},
 };
 
-const story = (args) => {
+// Shared by any story whose only difference from the others is the preview container's style.
+const makeCardStory = (wrapperStyle) => (args) => {
 	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvCompactLoanCard },
 		setup() { return { args: templateArgs }; },
 		template: `
-			<div style="width: 380px; background: #27593cff; padding: 20px;">
+			<div style="${wrapperStyle}">
 				<kv-compact-loan-card v-bind="args" />
 			</div>
 		`,
@@ -26,6 +27,8 @@ const story = (args) => {
 	template.args = args;
 	return template;
 };
+
+const story = makeCardStory('width: 380px; background: #27593cff; padding: 20px;');
 
 const lightStory = (args) => {
 	const template = (templateArgs, { argTypes }) => ({
@@ -50,20 +53,9 @@ const lightStory = (args) => {
 	return template;
 };
 
-const postGoalStory = (args) => {
-	const template = (templateArgs, { argTypes }) => ({
-		props: Object.keys(argTypes),
-		components: { KvCompactLoanCard },
-		setup() { return { args: templateArgs }; },
-		template: `
-			<div style="width: 408px;">
-				<kv-compact-loan-card v-bind="args" />
-			</div>
-		`,
-	});
-	template.args = args;
-	return template;
-};
+const lightDetailedStory = makeCardStory('width: 290px;');
+
+const postGoalStory = makeCardStory('width: 408px;');
 
 const nextWeek = new Date();
 nextWeek.setDate(new Date().getDate() + 7);
@@ -414,6 +406,82 @@ export const LightViewRefreshButton = lightStory({
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
+export const LightDetailedVariant = lightDetailedStory({
+	variant: 'light-detailed',
+	loanId: loan.id,
+	loan,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customLoanDetails: true,
+	customAmountLent: '25',
+});
+
+export const LightDetailedVariantLoading = lightDetailedStory({
+	variant: 'light-detailed',
+	loanId: undefined,
+	loan: undefined,
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customLoanDetails: true,
+	customAmountLent: '25',
+});
+
+export const LightDetailedVariantLongUseStatement = lightDetailedStory({
+	variant: 'light-detailed',
+	loanId: loan.id,
+	loan: {
+		...loan,
+		// eslint-disable-next-line max-len
+		use: 'to purchase additional bags of feed, veterinary supplies, and other materials needed to expand her dairy operation and increase milk production for the coming season.',
+	},
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customLoanDetails: true,
+	customAmountLent: '25',
+});
+
+export const LightDetailedVariantLongNameAndCountry = lightDetailedStory({
+	variant: 'light-detailed',
+	loanId: loan.id,
+	loan: {
+		...loan,
+		name: 'Nomvuyiseko Anathi Buyisiwe Khumalo Dlamini',
+		geocode: {
+			...loan.geocode,
+			country: {
+				isoCode: 'CD',
+				name: 'Democratic Republic of the Congo',
+				region: 'Africa',
+				__typename: 'Country',
+			},
+		},
+		// eslint-disable-next-line max-len
+		use: 'to purchase additional bags of feed, veterinary supplies, and other materials needed to expand her dairy operation and increase milk production for the coming season.',
+	},
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customLoanDetails: true,
+	customAmountLent: '25',
+});
+
+export const LightDetailedVariantNoCountry = lightDetailedStory({
+	variant: 'light-detailed',
+	loanId: loan.id,
+	loan: {
+		...loan,
+		geocode: undefined,
+	},
+	kvTrackFunction,
+	photoPath,
+	externalLinks: true,
+	customLoanDetails: true,
+	customAmountLent: '25',
+});
+
 export const LendAgain = story({
 	loanId: loan.id,
 	loan: {
@@ -686,6 +754,14 @@ export const AllVariations = {
 				matchRatio: 1,
 				use: 'to deliver 24/7 clean energy access through solar micro-grids, expand maintenance staffing, buy replacement batteries, support customer training, improve reliable electricity service for families and small businesses.',
 			};
+			const lightDetailedLoan = {
+				...loan,
+				loanFundraisingInfo: {
+					id: loan.id,
+					fundedAmount: '875.00',
+					reservedAmount: '0.00',
+				},
+			};
 			return {
 				loan,
 				matchedLoan,
@@ -693,6 +769,7 @@ export const AllVariations = {
 				fullyReservedLoan,
 				usLoan,
 				postGoalLoan,
+				lightDetailedLoan,
 				kvTrackFunction,
 				photoPath,
 			};
@@ -782,6 +859,21 @@ export const AllVariations = {
 							external-links
 							custom-href="https://www.kiva.org/lend/1"
 							variant="post-goal"
+						/>
+					</div>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-2 tw-text-secondary">Light Detailed</p>
+					<div style="width: 290px;">
+						<kv-compact-loan-card
+							:loan-id="lightDetailedLoan.id"
+							:loan="lightDetailedLoan"
+							:kv-track-function="kvTrackFunction"
+							:photo-path="photoPath"
+							external-links
+							custom-loan-details
+							custom-amount-lent="25"
+							variant="light-detailed"
 						/>
 					</div>
 				</div>
