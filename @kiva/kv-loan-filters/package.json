@@ -17,6 +17,7 @@
             "types": "./dist/index.d.ts"
         }
     },
+    "sideEffects": false,
     "scripts": {
         "lint": "eslint --ext .ts ./src",
         "test": "jest",

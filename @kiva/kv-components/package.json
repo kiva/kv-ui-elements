@@ -10,7 +10,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./assets/*": "./dist/assets/*.js",
     "./assets/*.js": "./dist/assets/*.js",
@@ -19,6 +20,7 @@
     "./vue/*": "./dist/vue/*.js",
     "./vue/*.js": "./dist/vue/*.js"
   },
+  "sideEffects": ["**/*.css"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kiva/kv-ui-elements.git"

@@ -13,11 +13,13 @@
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
-            "import": "./dist/index.js"
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
         },
         "./components/*": "./dist/components/*.js",
         "./components/*.js": "./dist/components/*.js"
     },
+    "sideEffects": ["**/*.css"],
     "scripts": {
         "build": "vite build",
         "lint": "eslint --ext .ts,.vue ./src",
