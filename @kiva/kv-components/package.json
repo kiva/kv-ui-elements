@@ -1,6 +1,6 @@
 {
   "name": "@kiva/kv-components",
-  "version": "10.5.0",
+  "version": "10.5.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,9 @@
     "./vue/*": "./dist/vue/*.js",
     "./vue/*.js": "./dist/vue/*.js"
   },
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kiva/kv-ui-elements.git"
@@ -35,7 +37,7 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@figma/code-connect": "^1.4.9",
-    "@kiva/kv-tokens": "^5.0.0",
+    "@kiva/kv-tokens": "^5.0.1",
     "@kiva/vite-plugin-vue-lib-css": "^2.0.0",
     "@laynezh/vite-plugin-lib-assets": "^0.6.1",
     "@mdi/js": "^7.4.47",

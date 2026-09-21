@@ -1,6 +1,6 @@
 {
     "name": "@kiva/kv-shop",
-    "version": "3.8.33",
+    "version": "3.8.34",
     "type": "module",
     "publishConfig": {
         "access": "public"
@@ -19,7 +19,9 @@
         "./components/*": "./dist/components/*.js",
         "./components/*.js": "./dist/components/*.js"
     },
-    "sideEffects": ["**/*.css"],
+    "sideEffects": [
+        "**/*.css"
+    ],
     "scripts": {
         "build": "vite build",
         "lint": "eslint --ext .ts,.vue ./src",
@@ -35,8 +37,8 @@
     "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-shop#readme",
     "devDependencies": {
         "@apollo/client": "^3.13.1",
-        "@kiva/kv-analytics": "^1.4.0",
-        "@kiva/kv-components": "^10.5.0",
+        "@kiva/kv-analytics": "^1.4.1",
+        "@kiva/kv-components": "^10.5.1",
         "@kiva/vite-plugin-vue-lib-css": "^2.0.0",
         "@types/braintree-web-drop-in": "^1.39.3",
         "braintree-web-drop-in": "^1.44.1",
