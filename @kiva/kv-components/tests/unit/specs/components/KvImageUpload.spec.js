@@ -275,26 +275,21 @@ describe('KvImageUpload', () => {
 
 		describe('drag-overlay slot', () => {
 			const withOverlay = (props = {}) => renderUploader(props, {
-				slots: {
-					'drag-overlay': `
-						<template #drag-overlay="{ hasImage }">
-							<span>{{ hasImage ? 'Drop to replace' : 'Drop to upload' }}</span>
-						</template>
-					`,
-				},
+				slots: { 'drag-overlay': '<span>Drop to replace</span>' },
 			});
+			const withImage = { imageUrl: 'https://example.com/pic.png' };
 
 			it('renders nothing until a file is dragged over', async () => {
-				const { queryByText, container } = withOverlay();
-				expect(queryByText('Drop to upload')).toBeNull();
+				const { queryByText, container } = withOverlay(withImage);
+				expect(queryByText('Drop to replace')).toBeNull();
 
 				await fireEvent.dragEnter(getDropZone(container), fileDrag());
 
-				expect(queryByText('Drop to upload')).not.toBeNull();
+				expect(queryByText('Drop to replace')).not.toBeNull();
 			});
 
-			it('shows over an existing image, where fallback-image cannot reach', async () => {
-				const { container, getByText } = withOverlay({ imageUrl: 'https://example.com/pic.png' });
+			it('covers an existing preview, which fallback-image cannot reach', async () => {
+				const { container, getByText } = withOverlay(withImage);
 
 				await fireEvent.dragEnter(getDropZone(container), fileDrag());
 
@@ -303,28 +298,38 @@ describe('KvImageUpload', () => {
 				getByText('Drop to replace');
 			});
 
-			it('clears once the drag leaves', async () => {
+			// fallback-image owns the empty state and gets isDraggingOver, so rendering here too
+			// would stack two competing treatments.
+			it('stays out of the empty state entirely', async () => {
 				const { container, queryByText } = withOverlay();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to replace')).toBeNull();
+				expect(container.querySelector('.kv-image-upload__placeholder')).not.toBeNull();
+			});
+
+			it('clears once the drag leaves', async () => {
+				const { container, queryByText } = withOverlay(withImage);
 
 				await fireEvent.dragEnter(getDropZone(container), fileDrag());
 				await fireEvent.dragLeave(getDropZone(container), fileDrag());
 
-				expect(queryByText('Drop to upload')).toBeNull();
+				expect(queryByText('Drop to replace')).toBeNull();
 			});
 
 			// An overlay that took pointer events would land under the cursor mid-drag and churn
 			// the dragenter/dragleave pairs.
 			it('never takes pointer events', async () => {
-				const { container } = withOverlay();
+				const { container } = withOverlay(withImage);
 
 				await fireEvent.dragEnter(getDropZone(container), fileDrag());
 
-				const overlay = container.querySelector('.tw-pointer-events-none');
-				expect(overlay).not.toBeNull();
+				expect(container.querySelector('.tw-pointer-events-none')).not.toBeNull();
 			});
 
 			it('renders no overlay element for consumers that do not fill the slot', async () => {
-				const { container } = renderUploader();
+				const { container } = renderUploader(withImage);
 
 				await fireEvent.dragEnter(getDropZone(container), fileDrag());
 

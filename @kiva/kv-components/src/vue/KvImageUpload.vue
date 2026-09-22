@@ -91,22 +91,19 @@
 			</button>
 
 			<!--
-				Optional overlay, shown only while a file is dragged over the component and only
-				when a consumer fills the slot, so nothing changes for consumers that don't.
-				Unlike fallback-image this sits above the preview too, which is what lets a
-				consumer offer "drop to replace" over an existing image.
+				Optional "drop to replace" overlay, for the one state no slot could otherwise
+				reach: a drag over an existing preview. Deliberately not rendered in the empty
+				state — fallback-image owns that entirely and receives isDraggingOver, so letting
+				this render there too would stack two competing treatments.
 				It must never take pointer events: appearing under the cursor mid-drag would
 				churn the dragenter/dragleave pairs and flicker the state.
 			-->
 			<div
-				v-if="isDraggingOver && $slots['drag-overlay']"
+				v-if="isDraggingOver && previewImage && $slots['drag-overlay']"
 				class="tw-absolute tw-inset-0 tw-z-2 tw-pointer-events-none"
 				:class="shapeClass"
 			>
-				<slot
-					name="drag-overlay"
-					:has-image="!!previewImage"
-				></slot>
+				<slot name="drag-overlay"></slot>
 			</div>
 		</div>
 	</div>
