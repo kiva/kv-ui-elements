@@ -41,7 +41,7 @@
 							class="tw-w-3.5"
 						/>
 						<span class="tw-text-label">
-							Add a photo
+							{{ isDraggingOver ? 'Drop to upload' : 'Add a photo' }}
 						</span>
 					</div>
 				</div>

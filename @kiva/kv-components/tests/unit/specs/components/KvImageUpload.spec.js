@@ -244,6 +244,21 @@ describe('KvImageUpload', () => {
 			expect(getDropZone(container).className).not.toContain('kv-image-upload--dragging');
 		});
 
+		// Consumers on the stock placeholder get drop feedback without writing a slot.
+		it('swaps the default placeholder label while dragging', async () => {
+			const { container, getByText, queryByText } = renderUploader();
+			getByText('Add a photo');
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+			getByText('Drop to upload');
+			expect(queryByText('Add a photo')).toBeNull();
+
+			await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+			getByText('Add a photo');
+		});
+
 		it('highlights the default placeholder border while dragging', async () => {
 			const { container } = renderUploader();
 			const placeholderBorder = () => container.querySelector('.kv-image-upload__placeholder > div');
