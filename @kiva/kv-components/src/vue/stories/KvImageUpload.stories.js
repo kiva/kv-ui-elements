@@ -112,12 +112,15 @@ const CustomFallbackTemplate = (args, { argTypes }) => ({
 				@file-removed="onRemoved"
 				@file-error="onError"
 			>
-				<template #fallback-image>
+				<template #fallback-image="{ isDraggingOver }">
 					<div
-						class="tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-bg-secondary"
-						:class="args.shape === 'circle' ? 'tw-rounded-full' : 'tw-rounded'"
+						class="tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-border-2 tw-border-dashed"
+						:class="[
+							args.shape === 'circle' ? 'tw-rounded-full' : 'tw-rounded',
+							isDraggingOver ? 'tw-bg-eco-green-1 tw-border-action' : 'tw-bg-secondary tw-border-transparent',
+						]"
 					>
-						<span class="tw-text-small">Custom upload area</span>
+						<span class="tw-text-small">{{ isDraggingOver ? 'Drop to upload' : 'Custom upload area' }}</span>
 					</div>
 				</template>
 			</kv-image-upload>

@@ -2,8 +2,12 @@
 	<div class="tw-flex tw-flex-col">
 		<div
 			class="kv-image-upload tw-relative"
-			:class="shapeClass"
+			:class="[shapeClass, { 'kv-image-upload--dragging': isDraggingOver }]"
 			:style="containerStyle"
+			@dragenter="onDragEnter"
+			@dragover="onDragOver"
+			@dragleave="onDragLeave"
+			@drop="onDrop"
 		>
 			<img
 				v-if="previewImage"
@@ -13,13 +17,15 @@
 				:class="shapeClass"
 			>
 			<!--
-				Default empty-state placeholder (overridable via the fallback-image slot).
+				Default empty-state placeholder (overridable via the fallback-image slot, which
+				receives `isDraggingOver` so custom content can show its own drop affordance).
 				Presentational only: the transparent input below owns click/keyboard and the
 				accessible name, so this is a <div>, not a focusable <button>.
 			-->
 			<slot
 				v-else
 				name="fallback-image"
+				:is-dragging-over="isDraggingOver"
 			>
 				<div
 					class="kv-image-upload__placeholder tw-w-full tw-h-full tw-bg-eco-green-1 tw-p-0.5"
@@ -27,8 +33,8 @@
 				>
 					<div
 						class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-0.5
-							tw-w-full tw-h-full tw-border-2 tw-border-dashed tw-border-black"
-						:class="shapeClass"
+							tw-w-full tw-h-full tw-border-2 tw-border-dashed"
+						:class="[shapeClass, isDraggingOver ? 'tw-border-action' : 'tw-border-black']"
 					>
 						<kv-material-icon
 							:icon="mdiCameraPlusOutline"
@@ -42,8 +48,10 @@
 			</slot>
 
 			<!--
-				Transparent, full-area native file input: provides click, drag-drop and
-				keyboard (Tab + Enter/Space) for free, with a proper accessible name.
+				Transparent, full-area native file input: provides click and keyboard
+				(Tab + Enter/Space) for free, with a proper accessible name. Drops are handled
+				on the container rather than left to this input, so a dropped file runs the same
+				validation and emits the same events as one chosen through the picker.
 			-->
 			<input
 				ref="fileInput"
@@ -195,6 +203,10 @@ export default {
 
 		const previewImage = ref<string>(imageUrl.value || '');
 		const fileInput = ref<HTMLInputElement | null>(null);
+		const isDraggingOver = ref(false);
+		// dragenter/dragleave also fire when the pointer crosses a descendant, so counting the
+		// pairs keeps the highlight steady instead of flickering on every child boundary.
+		let dragEnterCount = 0;
 
 		watch(imageUrl, (newValue) => {
 			previewImage.value = newValue || '';
@@ -250,6 +262,55 @@ export default {
 			target.value = '';
 		};
 
+		// Ignore drags carrying no files, so the component can sit inside an element-reordering
+		// drag without the two gestures colliding.
+		const dragHasFiles = (event: DragEvent) => Array.from(event.dataTransfer?.types ?? []).includes('Files');
+
+		const onDragEnter = (event: DragEvent) => {
+			if (!dragHasFiles(event)) {
+				return;
+			}
+			dragEnterCount += 1;
+			isDraggingOver.value = true;
+		};
+
+		const onDragOver = (event: DragEvent) => {
+			if (!dragHasFiles(event)) {
+				return;
+			}
+			// Marks the container as a valid drop target; without it the browser rejects the
+			// drop and opens the file in the tab instead.
+			event.preventDefault();
+			const { dataTransfer } = event;
+			if (dataTransfer) {
+				dataTransfer.dropEffect = 'copy';
+			}
+		};
+
+		const onDragLeave = (event: DragEvent) => {
+			if (!dragHasFiles(event)) {
+				return;
+			}
+			dragEnterCount = Math.max(0, dragEnterCount - 1);
+			if (dragEnterCount === 0) {
+				isDraggingOver.value = false;
+			}
+		};
+
+		const onDrop = (event: DragEvent) => {
+			if (!dragHasFiles(event)) {
+				return;
+			}
+			// Cancels the file input's own drop handling so the file takes one path only.
+			event.preventDefault();
+			dragEnterCount = 0;
+			isDraggingOver.value = false;
+			const file = event.dataTransfer?.files?.[0];
+			if (file) {
+				processFile(file);
+			}
+		};
+
 		return {
 			mdiPencil,
 			mdiClose,
@@ -257,6 +318,7 @@ export default {
 			fileInput,
 			previewImage,
 			isCircle,
+			isDraggingOver,
 			shapeClass,
 			acceptAttr,
 			inputLabel,
@@ -264,6 +326,10 @@ export default {
 			openFileInput,
 			removeImage,
 			handleFileChange,
+			onDragEnter,
+			onDragOver,
+			onDragLeave,
+			onDrop,
 		};
 	},
 };
