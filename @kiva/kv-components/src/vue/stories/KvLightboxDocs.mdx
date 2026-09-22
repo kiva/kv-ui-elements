@@ -1,0 +1,287 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvLightboxStories from './KvLightbox.stories.js';
+
+<Meta title="Components/KvLightbox" component={KvLightboxStories.Component} />
+
+# KvLightbox
+
+A modal dialog that places focused content or a confirmation step above the page, with an optional title, header, body and action controls.
+
+## Component Overview
+
+KvLightbox covers the page with a dimmed screen and shows a dialog on top of it. It comes in two variants: a general-purpose **lightbox** for informational or interactive content, and an **alert** for short confirmations that need a decision. While open, it locks page scrolling, hides the rest of the page from screen readers and prints only its own contents.
+
+<Story of={KvLightboxStories.Lightbox} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The `variant` prop switches between the two dialog types. Each one changes both the layout and the ARIA role. The `blurBackground` prop can be added to either variant.
+
+### Lightbox
+
+The default variant (`variant="lightbox"`). On small screens it rises from the bottom of the viewport at full width, with rounded top corners and at least half the screen height. From the `md` breakpoint up it is centered with all corners rounded.
+
+<Story of={KvLightboxStories.Lightbox} />
+
+### Alert
+
+`variant="alert"` renders a centered, compact dialog with `role="alertdialog"`. Use it for destructive or irreversible confirmations. When it opens, focus moves to the first button in the `controls` slot.
+
+<Story of={KvLightboxStories.Alert} />
+
+### Blurred Background
+
+`blurBackground` adds a blur layer between the page and the dialog, on top of the standard dimmed screen.
+
+<Story of={KvLightboxStories.BlurBackground} />
+
+---
+
+## Usage Information
+
+Use KvLightbox when a task or message needs the user's full attention before they go back to the page. The parent owns the open state: pass `visible` and set it back to `false` when the component emits `lightbox-closed`.
+
+Always pass a `title`. It is the dialog's accessible name, even when the `header` slot replaces the visible heading.
+
+### When to Use
+
+- To confirm a destructive or irreversible action, such as deleting a saved payment method (use `variant="alert"`)
+- To show focused content that interrupts a flow on purpose, such as a feature announcement or a goal summary
+- To collect a short, self-contained input without leaving the current page
+- To show supporting detail that would clutter the page if shown inline
+
+### When Not to Use
+
+- For passive status or success messages; use `KvToast` instead
+- For long, multi-step flows that deserve their own page or route
+- For content the user needs to compare with the page underneath; the screen hides it
+- For add-to-basket feedback anchored to the header; use `KvCartModal` or `KvAtbModal`
+
+---
+
+## Behavior
+
+The lightbox opens and closes when `visible` changes. On open it locks page scroll, marks the rest of the page `aria-hidden` and starts listening for the ESC key. On close it undoes all of that, scrolls the body back to the top and emits `lightbox-closed` with the source of the close.
+
+### Closing
+
+By default, the user can close the lightbox three ways, each reported in the `lightbox-closed` payload:
+
+1. **Close X button**: emits `{ type: 'close-x' }`
+2. **Clicking the screen** behind the dialog: emits `{ type: 'background-click' }`
+3. **Pressing ESC**: emits `{ type: '' }`
+
+Two props restrict this:
+
+- `preventBackgroundClose` ignores clicks on the screen. The close X and ESC still work. Use it when an accidental click outside would lose the user's place.
+- `preventClose` removes the close X and disables both screen clicks and ESC. The dialog must then close from its own content, such as a button in the `controls` slot.
+
+<Story of={KvLightboxStories.PreventBackgroundClose} />
+
+<Story of={KvLightboxStories.PreventClose} />
+
+### Delayed Close Button
+
+`closeButtonShowDelay` keeps the close X hidden for the given number of milliseconds each time the lightbox opens, then fades it in over 500ms. Use it to give the first screen of content a moment before the user can dismiss it.
+
+- The delay restarts every time `visible` changes from `false` to `true`.
+- While hidden, the button uses `visibility: hidden`, so it takes up its usual space (the header layout doesn't shift) but can't be clicked, tabbed to or read by screen readers.
+- ESC still closes the lightbox during the delay, so keyboard users are never trapped.
+- Users with reduced motion enabled get no fade. The delay still applies.
+- With `preventClose`, there is no close X to delay.
+- The default, `0`, shows the close X immediately, with no transition.
+
+<Story of={KvLightboxStories.CloseButtonShowDelay} />
+
+## Anatomy
+
+The lightbox is made of layers and three content areas, most of them filled through slots:
+
+- **Screen**: The fixed, full-viewport dimmed layer (black at 75% opacity) that sits behind the dialog. Clicking it closes the lightbox unless `preventBackgroundClose` or `preventClose` is set.
+- **Blur layer** (optional): A backdrop blur between the page and the dialog, rendered when `blurBackground` is `true`.
+- **Dialog**: The container with `role="dialog"` (or `alertdialog`), `aria-modal="true"` and the `title` as its accessible name.
+- **Header**: Shows `title` as an `h2` by default. The `header` slot replaces it with custom content. The **close X button** sits at the end of the header unless `preventClose` is set; its appearance can be delayed with `closeButtonShowDelay`.
+- **Body**: The default slot. It grows to fill the available height and scrolls on its own when content is long.
+- **Controls** (optional): The `controls` slot, rendered only when provided. Buttons are aligned to the end with consistent spacing.
+
+---
+
+## Specs
+
+### Content Length
+
+The dialog is at most `55.55rem` wide and 90% of the viewport tall. When content is taller than that, only the body scrolls; the header and controls stay in view, and the page behind stays locked.
+
+<Story of={KvLightboxStories.ShortContentLightbox} />
+
+<Story of={KvLightboxStories.LongContentLightbox} />
+
+### Responsive Layout and Spacing
+
+- **Below `md`**: The lightbox variant is full width, anchored to the bottom of the viewport with rounded top corners and a minimum height of half the screen. Header, body and controls use `tw-p-2.5` padding.
+- **`md` and up**: The dialog is centered, sizes to its content and has all corners rounded. Padding increases to `tw-px-4`.
+- **Alert variant**: Always centered, with `tw-px-2` gutters around the dialog at every breakpoint.
+- **Close X button**: A 48 x 48px (`tw-w-6 tw-h-6`) target around a 24px icon. It changes to the action highlight color on hover.
+- **Controls**: Buttons are separated by a `tw-gap-x-2.5` gap and aligned to the end of the dialog.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Pass a short, descriptive `title` that says what the dialog is about, even when a custom `header` slot replaces the visible heading.</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Don't leave the title empty or generic, like "Modal". Screen reader users hear it as the dialog's name.</p>
+	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>When you restrict closing with `preventBackgroundClose` or `closeButtonShowDelay`, keep the delay short and make sure the close X or a control in the dialog lets the user leave.</p>
+  	</div>
+
+	<div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Don't use `preventClose` without a button in the dialog that closes it. The user would have no way out.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- **Roles**: The dialog has `role="dialog"`, or `role="alertdialog"` for the alert variant, plus `aria-modal="true"`.
+- **Accessible name**: `aria-label` is set from the `title` prop. The alert variant also sets `aria-describedby` to the body, so its message is read with the name.
+- **Hidden background**: While open, every element outside the lightbox gets `aria-hidden="true"`, so screen readers stay inside the dialog. It's removed on close.
+- **Keyboard**: ESC closes the lightbox unless `preventClose` is set. This includes while the close X is hidden by `closeButtonShowDelay`.
+- **Initial focus**: The alert variant moves focus to the first button in the `controls` slot so the user can respond right away.
+- **Focus trap**: The component sets up a focus trap, but it doesn't currently activate, so Tab can move focus outside the open dialog. Don't rely on it until it's fixed.
+- **Close button**: The icon-only close X has a visually hidden "Close" label and a 48 x 48px target.
+- **Delayed close button**: While hidden, the close X uses `visibility: hidden`, so it isn't clickable, focusable or announced. The fade-in is turned off for users who prefer reduced motion.
+- **Scrolling and printing**: Page scroll is locked while the lightbox is open, and printing outputs only the lightbox contents.
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvLightboxStories.Lightbox} />
+<Controls of={KvLightboxStories.Lightbox} />
+
+---
+
+## Code Examples
+
+### Basic Lightbox
+
+```vue
+<template>
+	<kv-button @click="isOpen = true">
+		Learn more
+	</kv-button>
+
+	<kv-lightbox
+		:visible="isOpen"
+		title="How lending on Kiva works"
+		@lightbox-closed="isOpen = false"
+	>
+		<p>You lend as little as $25 to a borrower, and they repay you over time.</p>
+		<template #controls>
+			<kv-button @click="isOpen = false">
+				Got it
+			</kv-button>
+		</template>
+	</kv-lightbox>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvButton, KvLightbox } from '@kiva/kv-components';
+
+const isOpen = ref(false);
+</script>
+```
+
+### Destructive Confirmation (Alert)
+
+```vue
+<template>
+	<kv-lightbox
+		:visible="isConfirmOpen"
+		variant="alert"
+		title="Delete credit card?"
+		@lightbox-closed="isConfirmOpen = false"
+	>
+		<p>The card will no longer be used for subscriptions or auto-deposit.</p>
+		<template #controls>
+			<kv-button variant="ghost" @click="isConfirmOpen = false">
+				Cancel
+			</kv-button>
+			<kv-button variant="danger" @click="deleteCard">
+				Delete
+			</kv-button>
+		</template>
+	</kv-lightbox>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvButton, KvLightbox } from '@kiva/kv-components';
+
+const isConfirmOpen = ref(true);
+
+const deleteCard = () => {
+	// remove the card, then close
+	isConfirmOpen.value = false;
+};
+</script>
+```
+
+### Restricted Closing with a Delayed Close Button
+
+```vue
+<template>
+	<kv-lightbox
+		:visible="isOpen"
+		title="Your year in review"
+		prevent-background-close
+		:close-button-show-delay="3500"
+		@lightbox-closed="onClosed"
+	>
+		<p>See what your goal says about you!</p>
+	</kv-lightbox>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { KvLightbox } from '@kiva/kv-components';
+
+const isOpen = ref(true);
+const trackClose = (type) => {
+	// send the close source to analytics
+};
+
+// type is 'close-x' or '' (ESC); background clicks are ignored
+const onClosed = ({ type }) => {
+	trackClose(type);
+	isOpen.value = false;
+};
+</script>
+```
