@@ -273,6 +273,65 @@ describe('KvImageUpload', () => {
 			getByText('Drop it');
 		});
 
+		describe('drag-overlay slot', () => {
+			const withOverlay = (props = {}) => renderUploader(props, {
+				slots: {
+					'drag-overlay': `
+						<template #drag-overlay="{ hasImage }">
+							<span>{{ hasImage ? 'Drop to replace' : 'Drop to upload' }}</span>
+						</template>
+					`,
+				},
+			});
+
+			it('renders nothing until a file is dragged over', async () => {
+				const { queryByText, container } = withOverlay();
+				expect(queryByText('Drop to upload')).toBeNull();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to upload')).not.toBeNull();
+			});
+
+			it('shows over an existing image, where fallback-image cannot reach', async () => {
+				const { container, getByText } = withOverlay({ imageUrl: 'https://example.com/pic.png' });
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				// The preview is still rendered; the overlay sits on top of it.
+				expect(container.querySelector('img')).not.toBeNull();
+				getByText('Drop to replace');
+			});
+
+			it('clears once the drag leaves', async () => {
+				const { container, queryByText } = withOverlay();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+				await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to upload')).toBeNull();
+			});
+
+			// An overlay that took pointer events would land under the cursor mid-drag and churn
+			// the dragenter/dragleave pairs.
+			it('never takes pointer events', async () => {
+				const { container } = withOverlay();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				const overlay = container.querySelector('.tw-pointer-events-none');
+				expect(overlay).not.toBeNull();
+			});
+
+			it('renders no overlay element for consumers that do not fill the slot', async () => {
+				const { container } = renderUploader();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(container.querySelector('.tw-pointer-events-none')).toBeNull();
+			});
+		});
+
 		it('ignores a drag that carries no files', async () => {
 			const { container, emitted } = renderUploader();
 

@@ -89,6 +89,25 @@
 					class="tw-w-2"
 				/>
 			</button>
+
+			<!--
+				Optional overlay, shown only while a file is dragged over the component and only
+				when a consumer fills the slot, so nothing changes for consumers that don't.
+				Unlike fallback-image this sits above the preview too, which is what lets a
+				consumer offer "drop to replace" over an existing image.
+				It must never take pointer events: appearing under the cursor mid-drag would
+				churn the dragenter/dragleave pairs and flicker the state.
+			-->
+			<div
+				v-if="isDraggingOver && $slots['drag-overlay']"
+				class="tw-absolute tw-inset-0 tw-z-1 tw-pointer-events-none"
+				:class="shapeClass"
+			>
+				<slot
+					name="drag-overlay"
+					:has-image="!!previewImage"
+				></slot>
+			</div>
 		</div>
 	</div>
 </template>
