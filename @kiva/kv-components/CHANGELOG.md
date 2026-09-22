@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.5.1...@kiva/kv-components@10.6.0) (2026-09-22)
+
+
+### Features
+
+* mp-3207 add preventBackgroundClose and closeButtonShowDelay to kvlightbox ([#908](https://github.com/kiva/kv-ui-elements/issues/908)) ([965d9ad](https://github.com/kiva/kv-ui-elements/commit/965d9adbe41c12fdaa3877e31397528a27bd2d70))
+
+
+
+
+
 ## [10.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.5.0...@kiva/kv-components@10.5.1) (2026-09-21)
 
 **Note:** Version bump only for package @kiva/kv-components
