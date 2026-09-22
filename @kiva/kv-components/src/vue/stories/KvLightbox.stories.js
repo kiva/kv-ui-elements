@@ -3,12 +3,22 @@ import KvLightbox from '../KvLightbox.vue';
 import KvMaterialIcon from '../KvMaterialIcon.vue';
 import KvButton from '../KvButton.vue';
 import KvToast from '../KvToast.vue';
+import KvLightboxDocsMdx from './KvLightboxDocs.mdx';
 
 export default {
 	title: 'Components/KvLightbox',
 	component: KvLightbox,
 	parameters: {
 		layout: 'fullscreen',
+		docs: {
+			page: KvLightboxDocsMdx,
+			title: 'KvLightbox Docs',
+			// one iframe per story, so an open lightbox can't cover the docs page or lock its scroll
+			story: {
+				inline: false,
+				height: '600px',
+			},
+		},
 	},
 	argTypes: {
 		variant: {
@@ -18,6 +28,12 @@ export default {
 		blurBackground: {
 			control: 'boolean',
 		},
+		preventBackgroundClose: {
+			control: 'boolean',
+		},
+		closeButtonShowDelay: {
+			control: 'number',
+		},
 	},
 	args: {
 		visible: true,
@@ -25,6 +41,8 @@ export default {
 		variant: 'lightbox',
 		preventClose: false,
 		blurBackground: false,
+		preventBackgroundClose: false,
+		closeButtonShowDelay: 0,
 	},
 };
 
@@ -43,6 +61,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
 				:variant="args.variant"
 				:prevent-close="args.preventClose"
 				:blur-background="args.blurBackground"
+				:prevent-background-close="args.preventBackgroundClose"
+				:close-button-show-delay="args.closeButtonShowDelay"
 				@lightbox-closed="isLightboxVisible = false"
 			>
 				<p class="tw-mb-2">Lorem ipsum aliquip labore commodo anim elit amet cupidatat do ex ipsum. Consectetur excepteur ea anim velit reprehenderit qui aliquip ullamco aliquip irure dolor ex. Occaecat excepteur enim eu incididunt ut consectetur aliqua magna et. Reprehenderit duis ex excepteur sit et cupidatat cillum cillum adipisicing ut adipisicing minim ad.</p>
@@ -191,6 +211,19 @@ export const PreventClose = DefaultTemplate.bind({});
 PreventClose.args = {
 	title: 'Prevent Close',
 	preventClose: true,
+};
+
+export const PreventBackgroundClose = DefaultTemplate.bind({});
+PreventBackgroundClose.args = {
+	title: 'Prevent Background Close',
+	preventBackgroundClose: true,
+};
+
+export const CloseButtonShowDelay = DefaultTemplate.bind({});
+CloseButtonShowDelay.args = {
+	title: 'Close Button Show Delay',
+	preventBackgroundClose: true,
+	closeButtonShowDelay: 3500,
 };
 
 export const BlurBackground = DefaultTemplate.bind({});

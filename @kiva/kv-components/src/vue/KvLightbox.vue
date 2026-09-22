@@ -90,6 +90,7 @@
 									tw-w-6 tw-h-6 tw--m-2
 									hover:tw-text-action-highlight
 								"
+								:class="closeButtonClasses"
 								@click.stop="hide('close-x')"
 							>
 								<kv-material-icon
@@ -221,6 +222,22 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Clicking the screen behind the dialog does not close it. The close X button and
+		 * pressing ESC still close it.
+		 * */
+		preventBackgroundClose: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * Milliseconds to keep the close X button hidden each time the dialog opens, after
+		 * which it fades in. Pressing ESC still closes the dialog during the delay.
+		 * */
+		closeButtonShowDelay: {
+			type: Number,
+			default: 0,
+		},
 	},
 	emits: [
 		'lightbox-closed',
@@ -230,6 +247,8 @@ export default {
 			visible,
 			variant,
 			preventClose,
+			preventBackgroundClose,
+			closeButtonShowDelay,
 		} = toRefs(props);
 
 		const kvLightbox = ref(null);
@@ -255,6 +274,33 @@ export default {
 
 		let makePageInertCallback = null;
 		let onKeyUp = null;
+		let closeButtonTimer = null;
+
+		// Start hidden so a delayed X doesn't flash on the first render
+		const isCloseButtonVisible = ref(false);
+
+		// visibility: hidden keeps the header from shifting and takes the X out of clicks and the tab order
+		const closeButtonClasses = computed(() => {
+			if (closeButtonShowDelay.value <= 0) {
+				return null;
+			}
+			return [
+				'tw-transition-opacity tw-duration-500 motion-reduce:tw-transition-none',
+				{ 'tw-invisible tw-opacity-0': !isCloseButtonVisible.value },
+			];
+		});
+
+		const startCloseButtonShowDelay = () => {
+			if (closeButtonShowDelay.value <= 0) {
+				// a delay turned on while open would otherwise leave the X hidden for good
+				isCloseButtonVisible.value = true;
+				return;
+			}
+			isCloseButtonVisible.value = false;
+			closeButtonTimer = setTimeout(() => {
+				isCloseButtonVisible.value = true;
+			}, closeButtonShowDelay.value);
+		};
 
 		const role = computed(() => {
 			if (variant.value === 'alert') {
@@ -264,6 +310,7 @@ export default {
 		});
 
 		const hide = (closedBy = '') => {
+			clearTimeout(closeButtonTimer);
 			// scroll any content inside the lightbox back to top
 			if (kvLightbox.value && kvLightboxBody.value) {
 				deactivateFocusTrap.value?.();
@@ -294,13 +341,15 @@ export default {
 		};
 
 		const onScreenClick = () => {
-			if (!preventClose.value) {
-				hide('background-click');
+			if (preventClose.value || preventBackgroundClose.value) {
+				return;
 			}
+			hide('background-click');
 		};
 
 		const show = () => {
 			if (visible.value) {
+				startCloseButtonShowDelay();
 				document.addEventListener('keyup', onKeyUp);
 
 				nextTick(() => {
@@ -348,6 +397,7 @@ export default {
 			hide,
 			show,
 			controlsRef,
+			closeButtonClasses,
 		};
 	},
 };
