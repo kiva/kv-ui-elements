@@ -64,7 +64,7 @@
 
 			<button
 				v-if="previewImage || showEditIcon"
-				class="image-upload-icon edit-icon tw-absolute tw-bottom-1 tw-right-1 tw-p-1 tw-z-10"
+				class="image-upload-icon edit-icon tw-absolute tw-bottom-1 tw-right-1 tw-p-1 tw-z-1"
 				:class="{ 'image-upload-icon--circle': isCircle }"
 				type="button"
 				aria-hidden="true"
@@ -78,7 +78,7 @@
 			</button>
 			<button
 				v-if="previewImage"
-				class="image-upload-icon remove-icon tw-absolute tw-top-1 tw-right-1 tw-p-1 tw-z-10"
+				class="image-upload-icon remove-icon tw-absolute tw-top-1 tw-right-1 tw-p-1 tw-z-1"
 				:class="{ 'image-upload-icon--circle': isCircle }"
 				type="button"
 				aria-label="Remove Image"
@@ -100,7 +100,7 @@
 			-->
 			<div
 				v-if="isDraggingOver && $slots['drag-overlay']"
-				class="tw-absolute tw-inset-0 tw-z-1 tw-pointer-events-none"
+				class="tw-absolute tw-inset-0 tw-z-2 tw-pointer-events-none"
 				:class="shapeClass"
 			>
 				<slot
