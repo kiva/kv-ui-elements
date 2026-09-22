@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.6.0...@kiva/kv-components@10.6.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* name vue sfc script blocks apart from compiled components ([a839856](https://github.com/kiva/kv-ui-elements/commit/a839856f3710cedbfeda97b8c781c6c836b7cd97))
+
+
+
+
+
 # [10.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.5.1...@kiva/kv-components@10.6.0) (2026-09-22)
 
 
