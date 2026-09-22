@@ -21,19 +21,22 @@ export default defineConfig({
 		lib: {
 			entry: 'src/index.ts',
 			formats: ['es'],
-			fileName: (format, entryName) => {
-				// Since we have declared type: module in package.json, we use .js for ES modules and .cjs for CommonJS modules
-				const suffix = format === 'es' ? '.js' : '.cjs';
-				// Rename node_modules directory from bundled dependencies to avoid module resolution issues
-				if (entryName.startsWith('node_modules')) {
-					return `${entryName.replace('node_modules/', 'vendor/')}${suffix}`;
-				}
-				// Remove .vue extension from entryName for SFCs
-				if (entryName.slice(-4) === '.vue') {
-					return `${entryName.slice(0, -4)}${suffix}`;
-				}
-				// Return default entryName
-				return `${entryName}${suffix}`;
+		},
+		rollupOptions: {
+			output: {
+				// An SFC and its `?vue&type=script` half share the chunk name `KvX.vue`; unless they're named apart,
+				// Rollup suffixes one with `2` by module order and `vue/KvX.js` can end up renderless.
+				entryFileNames: ({ name, facadeModuleId }) => {
+					// Rename node_modules directory from bundled dependencies to avoid module resolution issues
+					if (name.startsWith('node_modules')) {
+						return `${name.replace('node_modules/', 'vendor/')}.js`;
+					}
+					if (name.endsWith('.vue')) {
+						const isScriptBlock = facadeModuleId?.includes('?vue&type=script');
+						return `${name.slice(0, -4)}${isScriptBlock ? '.script' : ''}.js`;
+					}
+					return `${name}.js`;
+				},
 			},
 		},
 	},
