@@ -279,9 +279,11 @@ export default {
 		// Start hidden so a delayed X doesn't flash on the first render
 		const isCloseButtonVisible = ref(false);
 
+		const hasCloseButtonShowDelay = computed(() => closeButtonShowDelay.value > 0);
+
 		// visibility: hidden keeps the header from shifting and takes the X out of clicks and the tab order
 		const closeButtonClasses = computed(() => {
-			if (closeButtonShowDelay.value <= 0) {
+			if (!hasCloseButtonShowDelay.value) {
 				return null;
 			}
 			return [
@@ -291,7 +293,7 @@ export default {
 		});
 
 		const startCloseButtonShowDelay = () => {
-			if (closeButtonShowDelay.value <= 0) {
+			if (!hasCloseButtonShowDelay.value) {
 				// a delay turned on while open would otherwise leave the X hidden for good
 				isCloseButtonVisible.value = true;
 				return;
