@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.6.1...@kiva/kv-components@10.7.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* use a z-index class that exists on the KvImageUpload action buttons ([d38e051](https://github.com/kiva/kv-ui-elements/commit/d38e05152b778d7bc46b7c84e6fde2874e91e6dd))
+
+
+### Features
+
+* add a drag-overlay slot to KvImageUpload ([d60609f](https://github.com/kiva/kv-ui-elements/commit/d60609f5e7211c0705dc17b2c4594e478cac00f0))
+* handle file drops on the KvImageUpload container ([c9f73cf](https://github.com/kiva/kv-ui-elements/commit/c9f73cf379bbe1d93452242b1d744e832172a805))
+* show a drop prompt on the KvImageUpload default placeholder ([7a77e3d](https://github.com/kiva/kv-ui-elements/commit/7a77e3d33183561c5df7d37b79d1f8c4af716dc6))
+
+
+
+
+
 ## [10.6.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.6.0...@kiva/kv-components@10.6.1) (2026-09-22)
 
 
