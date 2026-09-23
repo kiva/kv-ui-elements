@@ -32,7 +32,7 @@ KvCompactLoanCard provides a condensed view of loan information including borrow
 The component supports numerous variations to handle different loan states and display contexts:
 
 - **Standard View**: Full-featured card with tags, callouts, and lending CTA on dark backgrounds
-- **Light View**: Simplified, compact version for lighter UI contexts with smaller dimensions
+- **Light View**: Simplified, compact version for lighter UI contexts with smaller dimensions; the loan use statement ends in a "read more" link and can be capped at a set number of lines
 - **Loading States**: Skeleton placeholders while loan data is being fetched
 - **Matched Loans**: Displays matching partner information and special styling
 - **Almost Funded**: Shows loans near completion with appropriate progress indicators
@@ -91,6 +91,16 @@ The loan progress bar updates based on `fundedAmount` and `reservedAmount` from 
 When a loan is in the user's basket, the component displays an "In basket" state with a modified CTA. The `basketItems` prop should contain the current basket contents to enable this detection.
 
 <Story of={KvCompactLoanCardStories.InBasket} />
+
+### Loan Use Statement and "read more"
+
+In the standard and light views the loan use statement is one sentence ("$375 helps Arfa in Pakistan to buy…") followed, in the light view, by a "read more" link. The statement is clamped to `loanUseMaxLines` lines (default 4). Because the link is part of the same paragraph, a plain CSS clamp would hide it on long statements; instead the card measures the rendered paragraph and trims the use text word by word until "… read more" ends the last visible line. Short statements render untouched. The fit runs again when the loan changes or the card is resized, so a card that gains room shows more of the statement.
+
+Only the use text is trimmed, never the amount, borrower name or country. If those alone fill the cap, as with `loanUseMaxLines` set to 1 in a 256px card, the link cannot be placed and stays hidden.
+
+`truncateWordsNumber` still applies a word cut before the fit for consumers that want it. It defaults to 0, so with a line cap the lines alone decide unless you set it.
+
+<Story of={KvCompactLoanCardStories.LightViewThreeLineLoanUse} />
 
 ### Light Detailed Variant Header and Navigation
 
@@ -264,6 +274,23 @@ const handleRefresh = () => {
   // Refresh loan data
 };
 </script>
+```
+
+### Light View with a Three-Line Loan Use
+
+```vue
+<template>
+  <div style="width: 256px;">
+    <KvCompactLoanCard
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :show-light-view="true"
+      :loan-use-max-lines="3"
+    />
+  </div>
+</template>
 ```
 
 ### Loan Card with Basket Integration

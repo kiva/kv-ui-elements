@@ -272,6 +272,7 @@
 								:country="formattedLocation"
 								:show-read-more="showLightView"
 								:truncate-words-number="truncateWordsNumber"
+								:max-lines="loanUseMaxLines"
 								class="tw-text-small tw-leading-tight"
 							/>
 						</div>
@@ -699,6 +700,15 @@ export default {
 		truncateWordsNumber: {
 			type: Number,
 			default: 0,
+		},
+		/**
+		 * Lines the loan use statement is clamped to. With `showLightView`, the "read more" link is
+		 * kept visible inside this cap by trimming the statement rather than hiding the link.
+		 * The `light-detailed` variant always clamps to 3 lines and ignores this prop.
+		 */
+		loanUseMaxLines: {
+			type: Number,
+			default: 4,
 		},
 		showRefreshButton: {
 			type: Boolean,

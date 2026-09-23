@@ -34,9 +34,8 @@ const lightDetailedLoan = {
 	},
 };
 
-const renderLightDetailed = (overrides = {}) => render(KvCompactLoanCard, {
+const renderCard = (overrides = {}) => render(KvCompactLoanCard, {
 	props: {
-		variant: 'light-detailed',
 		loanId: lightDetailedLoan.id,
 		loan: lightDetailedLoan,
 		photoPath,
@@ -48,8 +47,24 @@ const renderLightDetailed = (overrides = {}) => render(KvCompactLoanCard, {
 		...overrides,
 	},
 });
+const renderLightDetailed = (overrides = {}) => renderCard({ variant: 'light-detailed', ...overrides });
+const renderLightView = (overrides = {}) => renderCard({ showLightView: true, ...overrides });
 
 describe('KvCompactLoanCard', () => {
+	describe('light view loan use statement', () => {
+		it('clamps the statement to 4 lines by default', () => {
+			const { container } = renderLightView();
+			const statement = container.querySelector('[aria-label="Loan use"] p');
+			expect(statement.getAttribute('style')).toContain('--kv-loan-use-lines: 4');
+		});
+
+		it('passes loanUseMaxLines through to the statement', () => {
+			const { container } = renderLightView({ loanUseMaxLines: 3 });
+			const statement = container.querySelector('[aria-label="Loan use"] p');
+			expect(statement.getAttribute('style')).toContain('--kv-loan-use-lines: 3');
+		});
+	});
+
 	it('tracks the selected amount when the lend amount dropdown changes', async () => {
 		const kvTrackFunction = jest.fn();
 		const { getByRole } = render(KvCompactLoanCard, {
