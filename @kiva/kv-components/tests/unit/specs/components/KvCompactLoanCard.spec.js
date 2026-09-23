@@ -52,10 +52,18 @@ const renderLightView = (overrides = {}) => renderCard({ showLightView: true, ..
 
 describe('KvCompactLoanCard', () => {
 	describe('light view loan use statement', () => {
-		it('clamps the statement to 4 lines by default', () => {
+		it('keeps the plain 4-line clamp when loanUseMaxLines is unset', () => {
 			const { container } = renderLightView();
 			const statement = container.querySelector('[aria-label="Loan use"] p');
-			expect(statement.getAttribute('style')).toContain('--kv-loan-use-lines: 4');
+			expect(statement).toHaveClass('tw-line-clamp-4');
+			expect(statement.getAttribute('style')).toBeNull();
+		});
+
+		it('rejects a loanUseMaxLines that would hide the whole statement', () => {
+			const { validator } = KvCompactLoanCard.props.loanUseMaxLines;
+			expect(validator(null)).toBe(true);
+			expect(validator(3)).toBe(true);
+			expect(validator(0)).toBe(false);
 		});
 
 		it('passes loanUseMaxLines through to the statement', () => {

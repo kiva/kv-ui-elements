@@ -409,6 +409,20 @@ export const LightViewThreeLineLoanUse = lightStory({
 	loanUseMaxLines: 3,
 });
 
+// The statement fills the three lines on its own, so it is shown whole and the "read more" link is
+// dropped rather than trimming words to make room for it.
+export const LightViewLoanUseFillsThreeLines = lightStory({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		use: 'to buy a new set of pots and pans.',
+	},
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	loanUseMaxLines: 3,
+});
+
 export const LightViewRefreshButton = lightStory({
 	loanId: loan.id,
 	loan,

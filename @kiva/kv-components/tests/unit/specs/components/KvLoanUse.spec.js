@@ -21,12 +21,24 @@ let visibleLines = 3;
 // jsdom defines these on Element.prototype.
 const clientHeight = Object.getOwnPropertyDescriptor(Element.prototype, 'clientHeight');
 const scrollHeight = Object.getOwnPropertyDescriptor(Element.prototype, 'scrollHeight');
-// jsdom has no ResizeObserver; tests that need one install a stub and afterEach puts this back.
+// jsdom has no ResizeObserver; tests that need one install this stub and afterEach puts the original
+// back. The stub records what is observed and lets a test fire the callbacks by hand.
 const OriginalResizeObserver = window.ResizeObserver;
+const resizeCallbacks = [];
+const observed = [];
+class ResizeObserverStub {
+	constructor(callback) { resizeCallbacks.push(callback); }
+
+	observe(element) { observed.push(element); return this; }
+
+	disconnect() { observed.length = 0; return this; }
+}
 
 const SHORT_USE = 'buy seeds.';
 const LONG_USE = 'buy raw materials such as thread, sequins, pearls and other embroidery supplies '
 	+ 'in large quantities so that she can take on bigger orders from her regular customers.';
+// Fills the three fake lines on its own but leaves no room for " read more".
+const EXACT_USE = 'buy a new set of pots, pans and a gas stove so she can cook and sell more food each day.';
 
 const readMoreProps = {
 	loanAmount: '375.00',
@@ -126,6 +138,8 @@ describe('KvLoanUse', () => {
 	describe('maxLines and read more', () => {
 		beforeEach(() => {
 			visibleLines = 3;
+			resizeCallbacks.length = 0;
+			observed.length = 0;
 			Object.defineProperty(Element.prototype, 'clientHeight', {
 				configurable: true,
 				get() { return visibleLines * LINE; },
@@ -152,10 +166,24 @@ describe('KvLoanUse', () => {
 			expect(statement.textContent).toBe('$375 helps Arfa in Pakistan buy seeds.');
 		});
 
-		it('clamps to 4 lines by default and to the maxLines prop otherwise', () => {
-			expect(renderStatement({ use: SHORT_USE }).statement.getAttribute('style')).toContain('--kv-loan-use-lines: 4');
-			expect(renderStatement({ use: SHORT_USE, maxLines: 3 }).statement.getAttribute('style'))
-				.toContain('--kv-loan-use-lines: 3');
+		it('keeps the plain 4-line clamp when maxLines is unset', () => {
+			const { statement } = renderStatement({ use: SHORT_USE });
+			expect(statement).toHaveClass('tw-line-clamp-4');
+			expect(statement).not.toHaveClass('kv-loan-use-lines');
+			expect(statement.getAttribute('style')).toBeNull();
+		});
+
+		it('rejects a cap that would hide the whole statement', () => {
+			const { validator } = KvLoanUse.props.maxLines;
+			expect(validator(null)).toBe(true);
+			expect(validator(3)).toBe(true);
+			expect(validator(0)).toBe(false);
+		});
+
+		it('follows the maxLines prop when set', () => {
+			const { statement } = renderStatement({ use: SHORT_USE, maxLines: 3 });
+			expect(statement).toHaveClass('kv-loan-use-lines');
+			expect(statement.getAttribute('style')).toContain('--kv-loan-use-lines: 3');
 		});
 
 		it('appends the "read more" link when showReadMore is on', () => {
@@ -168,6 +196,12 @@ describe('KvLoanUse', () => {
 			it('leaves a statement that fits untouched', () => {
 				const { statement } = renderStatement({ use: SHORT_USE, showReadMore: true, maxLines: 3 });
 				expect(statement.textContent).toBe('$375 helps Arfa in Pakistan buy seeds. read more');
+			});
+
+			it('drops the link when the statement alone fills the lines', () => {
+				const { statement } = renderStatement({ use: EXACT_USE, showReadMore: true, maxLines: 3 });
+				expect(statement.textContent).toBe(`$375 helps Arfa in Pakistan ${EXACT_USE}`);
+				expect(statement.querySelector('.tw-text-action')).toBeNull();
 			});
 
 			it('trims an overflowing statement so "… read more" ends the last visible line', () => {
@@ -193,6 +227,13 @@ describe('KvLoanUse', () => {
 				});
 				expect(statement.textContent).toMatch(/[a-z]\u2026 read more$/);
 				expect(statement.textContent).not.toMatch(/[,;:]\u2026/);
+			});
+
+			it('runs no fit and attaches no observer when maxLines is unset', () => {
+				window.ResizeObserver = ResizeObserverStub;
+				const { statement } = renderStatement({ use: LONG_USE, showReadMore: true });
+				expect(statement.textContent).toBe(`$375 helps Arfa in Pakistan ${LONG_USE} read more`);
+				expect(observed).toEqual([]);
 			});
 
 			it('does not touch the statement when showReadMore is off', () => {
@@ -226,15 +267,7 @@ describe('KvLoanUse', () => {
 			});
 
 			it('fits once from the observer\'s initial notification, then again when the paragraph gains room', () => {
-				const resizeCallbacks = [];
-				const observed = [];
-				window.ResizeObserver = class {
-					constructor(callback) { resizeCallbacks.push(callback); }
-
-					observe(element) { observed.push(element); return this; }
-
-					disconnect() { observed.length = 0; return this; }
-				};
+				window.ResizeObserver = ResizeObserverStub;
 
 				const { statement, unmount } = renderStatement({ use: LONG_USE, showReadMore: true, maxLines: 3 });
 				// Mounting only registers the observer; a real one reports the initial size itself.

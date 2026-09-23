@@ -702,13 +702,15 @@ export default {
 			default: 0,
 		},
 		/**
-		 * Lines the loan use statement is clamped to. With `showLightView`, the "read more" link is
-		 * kept visible inside this cap by trimming the statement rather than hiding the link.
-		 * The `light-detailed` variant always clamps to 3 lines and ignores this prop.
+		 * Opt-in line cap for the loan use statement. Unset, the light view behaves as before: a 4-line
+		 * CSS clamp plus the `truncateWordsNumber` word cut. Set, a statement that runs past the cap is
+		 * trimmed so "… read more" stays visible; one that fills the cap on its own is shown whole
+		 * without the link. The `light-detailed` variant always clamps to 3 lines and ignores this prop.
 		 */
 		loanUseMaxLines: {
 			type: Number,
-			default: 4,
+			default: null,
+			validator: (value: number | null) => value === null || value > 0, // 0 would hide the whole statement
 		},
 		showRefreshButton: {
 			type: Boolean,
