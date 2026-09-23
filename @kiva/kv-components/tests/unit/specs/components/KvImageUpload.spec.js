@@ -53,8 +53,6 @@ describe('KvImageUpload', () => {
 		expect(queryByText('Add a photo')).toBeNull();
 	});
 
-	// A native <input type="file"> fires `change` when a file is dropped onto it as well,
-	// so the drop path and the picker path share the same handler.
 	it('emits file-uploaded with the original file for a valid image', async () => {
 		const { container, emitted } = renderUploader({ maxSizeMb: 1 });
 		const file = validPng();
@@ -144,5 +142,225 @@ describe('KvImageUpload', () => {
 		await fireEvent.change(getFileInput(container), { target: { files: [validPng()] } });
 		await waitFor(() => getByLabelText('Change image'));
 		expect(getByLabelText('Change image').type).toBe('file');
+	});
+
+	describe('drag and drop', () => {
+		// jsdom has no usable DataTransfer, so events carry the shape the handlers read.
+		const fileDrag = (files = []) => ({ dataTransfer: { types: ['Files'], files, dropEffect: '' } });
+		const plainDrag = () => ({ dataTransfer: { types: ['text/plain'], files: [], dropEffect: '' } });
+		const getDropZone = (container) => container.querySelector('.kv-image-upload');
+
+		it('processes a dropped file through the same validation as the picker', async () => {
+			const { container, emitted } = renderUploader();
+			const file = validPng();
+
+			await fireEvent.drop(getDropZone(container), fileDrag([file]));
+
+			await waitFor(() => expect(emitted()['file-uploaded']).toBeTruthy());
+			expect(emitted()['file-uploaded'][0][0]).toEqual({ file });
+		});
+
+		it('emits a format error for a dropped file of a disallowed type', async () => {
+			const { container, emitted } = renderUploader();
+			const txt = new File(['x'], 'a.txt', { type: 'text/plain' });
+
+			await fireEvent.drop(getDropZone(container), fileDrag([txt]));
+
+			expect(emitted()['file-error'][0][0]).toEqual({
+				type: 'format',
+				message: 'File format not supported',
+			});
+		});
+
+		it('emits a size error for an oversized dropped file', async () => {
+			const { container, emitted } = renderUploader({ maxSizeMb: 1 });
+			const big = new File([new ArrayBuffer(2 * 1024 * 1024)], 'big.png', { type: 'image/png' });
+
+			await fireEvent.drop(getDropZone(container), fileDrag([big]));
+
+			expect(emitted()['file-error'][0][0]).toEqual({
+				type: 'size',
+				message: 'File size must be less than 1MB',
+			});
+			expect(cropResizeImageToDataUrl).not.toHaveBeenCalled();
+		});
+
+		it('takes only the first of several dropped files', async () => {
+			const { container, emitted } = renderUploader();
+			const first = validPng();
+
+			await fireEvent.drop(getDropZone(container), fileDrag([first, new File(['y'], 'b.png', { type: 'image/png' })]));
+
+			await waitFor(() => expect(emitted()['file-uploaded']).toBeTruthy());
+			expect(emitted()['file-uploaded']).toHaveLength(1);
+			expect(emitted()['file-uploaded'][0][0]).toEqual({ file: first });
+		});
+
+		it('replaces the current image when a file is dropped on the preview', async () => {
+			const { container, emitted } = renderUploader({ imageUrl: 'https://example.com/pic.png' });
+			const replacement = validPng();
+
+			await fireEvent.drop(getDropZone(container), fileDrag([replacement]));
+
+			await waitFor(() => expect(emitted()['file-uploaded']).toBeTruthy());
+			expect(emitted()['file-uploaded'][0][0]).toEqual({ file: replacement });
+		});
+
+		it('marks the container while a file is dragged over it', async () => {
+			const { container } = renderUploader();
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+			expect(getDropZone(container).className).toContain('kv-image-upload--dragging');
+		});
+
+		it('keeps the marker while the pointer crosses a descendant', async () => {
+			const { container } = renderUploader();
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+			await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+			expect(getDropZone(container).className).toContain('kv-image-upload--dragging');
+		});
+
+		it('clears the marker once the drag has left every element', async () => {
+			const { container } = renderUploader();
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+			await fireEvent.dragLeave(getDropZone(container), fileDrag());
+			await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+			expect(getDropZone(container).className).not.toContain('kv-image-upload--dragging');
+		});
+
+		it('clears the marker on drop', async () => {
+			const { container } = renderUploader();
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+			await fireEvent.drop(getDropZone(container), fileDrag([validPng()]));
+
+			expect(getDropZone(container).className).not.toContain('kv-image-upload--dragging');
+		});
+
+		// Consumers on the stock placeholder get drop feedback without writing a slot.
+		it('swaps the default placeholder label while dragging', async () => {
+			const { container, getByText, queryByText } = renderUploader();
+			getByText('Add a photo');
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+			getByText('Drop to upload');
+			expect(queryByText('Add a photo')).toBeNull();
+
+			await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+			getByText('Add a photo');
+		});
+
+		it('highlights the default placeholder border while dragging', async () => {
+			const { container } = renderUploader();
+			const placeholderBorder = () => container.querySelector('.kv-image-upload__placeholder > div');
+
+			expect(placeholderBorder().className).toContain('tw-border-black');
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+			expect(placeholderBorder().className).toContain('tw-border-action');
+			expect(placeholderBorder().className).not.toContain('tw-border-black');
+		});
+
+		it('exposes the drag state to the fallback-image slot', async () => {
+			const { container, getByText } = renderUploader({}, {
+				slots: {
+					'fallback-image': `
+						<template #fallback-image="{ isDraggingOver }">
+							<span>{{ isDraggingOver ? 'Drop it' : 'Custom area' }}</span>
+						</template>
+					`,
+				},
+			});
+			getByText('Custom area');
+
+			await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+			getByText('Drop it');
+		});
+
+		describe('drag-overlay slot', () => {
+			const withOverlay = (props = {}) => renderUploader(props, {
+				slots: { 'drag-overlay': '<span>Drop to replace</span>' },
+			});
+			const withImage = { imageUrl: 'https://example.com/pic.png' };
+
+			it('renders nothing until a file is dragged over', async () => {
+				const { queryByText, container } = withOverlay(withImage);
+				expect(queryByText('Drop to replace')).toBeNull();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to replace')).not.toBeNull();
+			});
+
+			it('covers an existing preview, which fallback-image cannot reach', async () => {
+				const { container, getByText } = withOverlay(withImage);
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				// The preview is still rendered; the overlay sits on top of it.
+				expect(container.querySelector('img')).not.toBeNull();
+				getByText('Drop to replace');
+			});
+
+			// fallback-image owns the empty state and gets isDraggingOver, so rendering here too
+			// would stack two competing treatments.
+			it('stays out of the empty state entirely', async () => {
+				const { container, queryByText } = withOverlay();
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to replace')).toBeNull();
+				expect(container.querySelector('.kv-image-upload__placeholder')).not.toBeNull();
+			});
+
+			it('clears once the drag leaves', async () => {
+				const { container, queryByText } = withOverlay(withImage);
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+				await fireEvent.dragLeave(getDropZone(container), fileDrag());
+
+				expect(queryByText('Drop to replace')).toBeNull();
+			});
+
+			// An overlay that took pointer events would land under the cursor mid-drag and churn
+			// the dragenter/dragleave pairs.
+			it('never takes pointer events', async () => {
+				const { container } = withOverlay(withImage);
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(container.querySelector('.tw-pointer-events-none')).not.toBeNull();
+			});
+
+			it('renders no overlay element for consumers that do not fill the slot', async () => {
+				const { container } = renderUploader(withImage);
+
+				await fireEvent.dragEnter(getDropZone(container), fileDrag());
+
+				expect(container.querySelector('.tw-pointer-events-none')).toBeNull();
+			});
+		});
+
+		it('ignores a drag that carries no files', async () => {
+			const { container, emitted } = renderUploader();
+
+			await fireEvent.dragEnter(getDropZone(container), plainDrag());
+			expect(getDropZone(container).className).not.toContain('kv-image-upload--dragging');
+
+			await fireEvent.drop(getDropZone(container), plainDrag());
+			expect(emitted()['file-uploaded']).toBeUndefined();
+			expect(emitted()['file-error']).toBeUndefined();
+		});
 	});
 });
