@@ -396,6 +396,33 @@ export const MatchedLightViewLoan = lightStory({
 	truncateWordsNumber: TRUNCATE_WORDS_NUMBER,
 });
 
+export const LightViewThreeLineLoanUse = lightStory({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		use: 'to buy raw materials such as thread, sequins, pearls and other embroidery supplies in large '
+			+ 'quantities so that she can take on bigger orders from her regular customers.',
+	},
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	loanUseMaxLines: 3,
+});
+
+// The statement fills the three lines on its own, so it is shown whole and the "read more" link is
+// dropped rather than trimming words to make room for it.
+export const LightViewLoanUseFillsThreeLines = lightStory({
+	loanId: loan.id,
+	loan: {
+		...loan,
+		use: 'to buy a new set of pots and pans.',
+	},
+	kvTrackFunction,
+	photoPath,
+	showLightView: true,
+	loanUseMaxLines: 3,
+});
+
 export const LightViewRefreshButton = lightStory({
 	loanId: loan.id,
 	loan,

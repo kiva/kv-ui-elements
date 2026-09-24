@@ -2,6 +2,8 @@
 <template>
 	<p
 		class="tw-line-clamp-4"
+		:class="{ 'kv-loan-use-lines': hasMaxLines }"
+		:style="hasMaxLines ? { '--kv-loan-use-lines': maxLines } : undefined"
 		v-html="loanUse"
 	></p>
 </template>
@@ -10,6 +12,7 @@
 import gql from 'graphql-tag';
 import numeral from 'numeral';
 import { truncateStringByWords } from '../utils/loanUtils';
+import { READ_MORE_CLASS, fitStatement } from '../utils/loanUseFit';
 
 const DIRECT = 'direct';
 
@@ -94,8 +97,26 @@ export default {
 			type: Number,
 			default: 0,
 		},
+		/**
+		 * Opt-in line cap. Unset, the statement keeps the plain 4-line CSS clamp and none of the fit
+		 * logic runs. Set, the clamp follows this number and, with `showReadMore`, a statement that runs
+		 * past the cap is trimmed word by word after render so "… read more" ends the last visible line;
+		 * one that fills the cap on its own is shown whole without the link.
+		 */
+		maxLines: {
+			type: Number,
+			default: null,
+			validator: (value: number | null) => value === null || value > 0, // 0 would hide the whole statement
+		},
 	},
 	computed: {
+		hasMaxLines() {
+			return this.maxLines !== null;
+		},
+		// The fit only applies to an opted-in cap with a link to fit; hideBorrowerDetails never renders one.
+		fitsReadMore() {
+			return this.hasMaxLines && this.showReadMore && !this.hideBorrowerDetails;
+		},
 		helpLanguage() {
 			if (this.status === 'fundraising' || this.status === 'inactive' || this.status === 'reviewed') {
 				return 'helps';
@@ -139,7 +160,7 @@ export default {
 				if (this.showReadMore) {
 					const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
 					useString = `${truncatedUse} `
-					+ '<span class=" tw-text-action tw-underline">read more</span>';
+					+ `<span class="${READ_MORE_CLASS} tw-text-action tw-underline">read more</span>`;
 				}
 
 				return useString;
@@ -158,11 +179,54 @@ export default {
 			if (this.showReadMore) {
 				const truncatedUse = truncateStringByWords(useString, this.truncateWordsNumber);
 				useString = `${truncatedUse} `
-					+ '<span class=" tw-text-action tw-underline">read more</span>';
+					+ `<span class="${READ_MORE_CLASS} tw-text-action tw-underline">read more</span>`;
 			}
 
 			return useString;
 		},
 	},
+	watch: {
+		loanUse: {
+			// Runs after Vue has written the full statement to the DOM but within the same flush, so the
+			// fitted text is in place before the browser paints.
+			handler() {
+				this.fitReadMore();
+			},
+			flush: 'post',
+		},
+	},
+	mounted() {
+		if (!this.fitsReadMore) return;
+		if (typeof ResizeObserver === 'undefined') {
+			this.fitReadMore();
+			return;
+		}
+		// ResizeObserver reports the initial size on observe, so the first fit runs from there.
+		this.resizeObserver = new ResizeObserver(() => this.fitReadMore());
+		this.resizeObserver.observe(this.$el);
+	},
+	beforeUnmount() {
+		this.resizeObserver?.disconnect();
+	},
+	methods: {
+		fitReadMore() {
+			if (!this.fitsReadMore) return;
+			const statement = this.$el as HTMLElement;
+			// Hidden at the current breakpoint: nothing to measure until it is shown again.
+			if (!statement || statement.clientHeight === 0) return;
+			// Starts from the full statement so a paragraph that gained room shows more of it again.
+			fitStatement(statement, this.loanUse);
+		},
+	},
 };
 </script>
+
+<style lang="postcss" scoped>
+/* Only present when maxLines is set: tw-line-clamp-4 supplies the box setup and the line count follows
+   the prop. Consumers that force a count with an !important utility or a more specific ancestor rule
+   keep winning. */
+.kv-loan-use-lines {
+	-webkit-line-clamp: var(--kv-loan-use-lines);
+	line-clamp: var(--kv-loan-use-lines);
+}
+</style>

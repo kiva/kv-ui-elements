@@ -32,7 +32,7 @@ KvCompactLoanCard provides a condensed view of loan information including borrow
 The component supports numerous variations to handle different loan states and display contexts:
 
 - **Standard View**: Full-featured card with tags, callouts, and lending CTA on dark backgrounds
-- **Light View**: Simplified, compact version for lighter UI contexts with smaller dimensions
+- **Light View**: Simplified, compact version for lighter UI contexts with smaller dimensions; the loan use statement ends in a "read more" link and can be capped at a set number of lines, in which case the link only shows when the statement is cut short
 - **Loading States**: Skeleton placeholders while loan data is being fetched
 - **Matched Loans**: Displays matching partner information and special styling
 - **Almost Funded**: Shows loans near completion with appropriate progress indicators
@@ -91,6 +91,20 @@ The loan progress bar updates based on `fundedAmount` and `reservedAmount` from 
 When a loan is in the user's basket, the component displays an "In basket" state with a modified CTA. The `basketItems` prop should contain the current basket contents to enable this detection.
 
 <Story of={KvCompactLoanCardStories.InBasket} />
+
+### Loan Use Statement and "read more"
+
+In the standard and light views the loan use statement is one sentence ("$375 helps Arfa in Pakistan to buy…") followed, in the light view, by a "read more" link. Without `loanUseMaxLines` the light view behaves as it always has: a 4-line CSS clamp plus the `truncateWordsNumber` word cut, and none of what follows runs. Passing `loanUseMaxLines` opts in to a line cap. Because the link is part of the same paragraph, a plain CSS clamp would hide it on long statements; instead the card measures the rendered paragraph. A statement that fits with its link renders untouched. One that fills the cap on its own is shown whole and the link is dropped. Only a statement that runs past the cap by itself is trimmed word by word until "… read more" ends the last visible line. The fit runs again when the loan changes or the card is resized, so a card that gains room shows more of the statement.
+
+Only the use text is trimmed, never the amount, borrower name or country. If those alone fill the cap, as with `loanUseMaxLines` set to 1 in a 256px card, the link cannot be placed and stays hidden.
+
+`truncateWordsNumber` still applies a word cut before the fit for consumers that want it. It defaults to 0, so with a line cap the lines alone decide unless you set it. Loan cards that never pass `loanUseMaxLines` are untouched by this feature.
+
+<Story of={KvCompactLoanCardStories.LightViewThreeLineLoanUse} />
+
+When the statement fills the cap exactly on its own, it is shown whole and the "read more" link is dropped instead of trimming words to fit it.
+
+<Story of={KvCompactLoanCardStories.LightViewLoanUseFillsThreeLines} />
 
 ### Light Detailed Variant Header and Navigation
 
@@ -264,6 +278,23 @@ const handleRefresh = () => {
   // Refresh loan data
 };
 </script>
+```
+
+### Light View with a Three-Line Loan Use
+
+```vue
+<template>
+  <div style="width: 256px;">
+    <KvCompactLoanCard
+      :loan-id="loan.id"
+      :loan="loan"
+      :kv-track-function="trackEvent"
+      :photo-path="photoPath"
+      :show-light-view="true"
+      :loan-use-max-lines="3"
+    />
+  </div>
+</template>
 ```
 
 ### Loan Card with Basket Integration

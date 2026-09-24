@@ -5,16 +5,18 @@ export default {
 	component: KvLoanUse,
 };
 
-const story = (args) => {
+const story = (args, { width } = {}) => {
+	const loanUse = `
+			<kv-loan-use
+				v-bind="args"
+			/>
+		`;
 	const template = (templateArgs, { argTypes }) => ({
 		props: Object.keys(argTypes),
 		components: { KvLoanUse },
 		setup() { return { args: { ...templateArgs } }; },
-		template: `
-			<kv-loan-use
-				v-bind="args"
-			/>
-		`,
+		// Only a story that asks for a width gets a wrapper; the rest render exactly as before.
+		template: width ? `<div style="width: ${width};">${loanUse}</div>` : loanUse,
 	});
 	template.args = args;
 	return template;
@@ -89,3 +91,16 @@ export const ShowReadMore = story({
 	showReadMore: true,
 	truncateWordsNumber: 8,
 });
+
+export const ShowReadMoreFitsLines = story({
+	use: 'buy raw materials such as thread, sequins, pearls and other embroidery supplies in large '
+		+ 'quantities so that she can take on bigger orders from her regular customers.',
+	loanAmount: '375.00',
+	status: 'fundraising',
+	name: 'Arfa',
+	country: 'Pakistan',
+	boldName: true,
+	distributionModel: 'partner',
+	showReadMore: true,
+	maxLines: 3,
+}, { width: '256px' });
