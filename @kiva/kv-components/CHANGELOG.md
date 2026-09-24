@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.8.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.7.0...@kiva/kv-components@10.8.0) (2026-09-24)
+
+
+### Features
+
+* mp-3224-cap the loan use statement by lines and keep read more visible ([ee1b8aa](https://github.com/kiva/kv-ui-elements/commit/ee1b8aaf0f568fecaa1085a80c1d7aec366f5f82))
+* mp-3224-make the loan use line cap opt-in and drop read more when the statement fills it ([6ba469d](https://github.com/kiva/kv-ui-elements/commit/6ba469df556bcddb5326ff432f25aa424818e372))
+
+
+
+
+
 # [10.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.6.1...@kiva/kv-components@10.7.0) (2026-09-23)
 
 
