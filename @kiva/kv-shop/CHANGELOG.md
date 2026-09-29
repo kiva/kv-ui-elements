@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.38...@kiva/kv-shop@3.9.0) (2026-09-29)
+
+
+### Features
+
+* **kv-shop:** clear createBasket in-flight promise and return the new basket ID ([769daab](https://github.com/kiva/kv-ui-elements/commit/769daabfe9429ee5fcfd21bef23dee71eb2d4a7b))
+
+
+
+
+
 ## [3.8.38](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.8.37...@kiva/kv-shop@3.8.38) (2026-09-24)
 
 **Note:** Version bump only for package @kiva/kv-shop
