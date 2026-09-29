@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.22.2...@kiva/kv-loan-filters@1.23.0) (2026-09-29)
+
+
+### Features
+
+* **kv-loan-filters:** add FLSS to loan search state converter ([021791f](https://github.com/kiva/kv-ui-elements/commit/021791f8461ee907c032d6007eb57922f4ff2512))
+
+
+
+
+
 ## [1.22.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.22.1...@kiva/kv-loan-filters@1.22.2) (2026-09-21)
 
 **Note:** Version bump only for package @kiva/kv-loan-filters
