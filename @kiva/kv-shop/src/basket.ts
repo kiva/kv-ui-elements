@@ -10,7 +10,7 @@ export function setBasketID(basketId) {
 	setCookieValue('kvbskt', basketId, 'path=/;secure;');
 }
 
-async function createBasketHelper(apollo: ApolloClient<any>) {
+async function createBasketHelper(apollo: ApolloClient<any>): Promise<string | null> {
 	try {
 		return apollo.mutate({
 			mutation: gql`mutation createNewBasketForUser { shop { id createBasket } }`,
@@ -19,20 +19,23 @@ async function createBasketHelper(apollo: ApolloClient<any>) {
 			if (newBasketId) {
 				setBasketID(newBasketId);
 			}
+			return newBasketId;
 		});
 	} catch (error) {
 		throw parseShopError(error);
 	}
 }
 
-let activeBasketCreationQuery = null;
-export async function createBasket(apollo: ApolloClient<any>) {
+let activeBasketCreationQuery: Promise<string | null> | null = null;
+export async function createBasket(apollo: ApolloClient<any>): Promise<string | null> {
 	// Only allow one basket creation query at a time
 	if (activeBasketCreationQuery) {
 		return activeBasketCreationQuery;
 	}
 	// Create a new basket
-	activeBasketCreationQuery = createBasketHelper(apollo);
+	activeBasketCreationQuery = createBasketHelper(apollo).finally(() => {
+		activeBasketCreationQuery = null;
+	});
 	return activeBasketCreationQuery;
 }
 
