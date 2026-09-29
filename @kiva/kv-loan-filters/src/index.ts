@@ -8,6 +8,7 @@ import * as queryParamUtils from './queryParamUtils';
 import * as queryParseUtils from './queryParseUtils';
 import * as searchStateUtils from './searchStateUtils';
 import loanChannelQueryMap from './loanChannelQueryMap';
+import flssToLoanSearchState from './loanSearchStateFromFlss';
 
 export {
 	filterUiConfigs,
@@ -20,4 +21,5 @@ export {
 	queryParseUtils,
 	searchStateUtils,
 	loanChannelQueryMap,
+	flssToLoanSearchState,
 };
