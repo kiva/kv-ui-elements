@@ -1,6 +1,7 @@
 import type {
 	ApolloClient,
 	ApolloError,
+	ApolloQueryResult,
 	DocumentNode,
 	MutationOptions,
 	QueryOptions,
@@ -127,6 +128,31 @@ export function watchShopQuery<TData>(
 			completeFn = args[0]?.complete;
 		}
 
+		const newNextFn = (result: ApolloQueryResult<TData>) => {
+			// Retry recoverable basket expired errors
+			const basketErrors = result?.errors?.filter((e) => hasBasketExpired(e)) ?? [];
+			if (basketErrors.length) {
+				// Create a new basket and retry if retries remain
+				if (retries < maxretries) {
+					createBasket(apollo).then(() => {
+						retries += 1;
+						observable.refetch({
+							...observable.variables,
+							basketId: getBasketID(),
+						});
+					}).catch((e) => {
+						// Fail if a new basket could not be created
+						errorFn?.(parseShopError(e));
+					});
+				} else {
+					// Fail on basket expired errors if no retries remain
+					errorFn?.(parseShopError(basketErrors[0]));
+				}
+			} else {
+				nextFn?.(result);
+			}
+		};
+
 		const newErrorFn = (err: ApolloError) => {
 			// Retry recoverable basket expired errors
 			const basketErrors = err?.graphQLErrors?.filter((e) => hasBasketExpired(e));
@@ -139,6 +165,9 @@ export function watchShopQuery<TData>(
 							...observable.variables,
 							basketId: getBasketID(),
 						});
+					}).catch((e) => {
+						// Fail if a new basket could not be created
+						errorFn(parseShopError(e));
 					});
 				} else {
 					// Fail on basket expired errors if no retries remain
@@ -155,7 +184,7 @@ export function watchShopQuery<TData>(
 			}
 		};
 
-		return oldSubscribe(nextFn, newErrorFn, completeFn);
+		return oldSubscribe(newNextFn, newErrorFn, completeFn);
 	};
 
 	return observable;
