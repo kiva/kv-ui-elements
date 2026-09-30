@@ -1,3 +1,5 @@
+const MAX_GRAPHQL_INT = 2147483647;
+
 const unique = <T>(values: T[]): T[] => [...new Set(values)];
 
 const splitQueryParam = (param): string[] => (Array.isArray(param) ? param : [param])
@@ -28,7 +30,7 @@ export const getValidatedStrings = (values): string[] => {
 export const getValidatedIntegers = (values): number[] => {
 	if (!Array.isArray(values)) return [];
 
-	return unique(values.filter((v) => Number.isInteger(v) && v > 0));
+	return unique(values.filter((v) => Number.isInteger(v) && v > 0 && v <= MAX_GRAPHQL_INT));
 };
 
 /**

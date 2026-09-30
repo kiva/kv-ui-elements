@@ -33,6 +33,11 @@ describe('passThroughUtils.ts', () => {
 		it('should keep positive integers only and dedupe', () => {
 			expect(getValidatedIntegers([12, 12, 0, -3, 4.5, '7', NaN, 1487001])).toEqual([12, 1487001]);
 		});
+
+		it('should drop values outside the GraphQL Int range', () => {
+			expect(getValidatedIntegers([2147483647, 2147483648])).toEqual([2147483647]);
+			expect(getIntegersFromQueryParam('99999999999999999999,5')).toEqual([5]);
+		});
 	});
 
 	describe('getStringsFromQueryParam', () => {
