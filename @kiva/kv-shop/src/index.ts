@@ -14,5 +14,6 @@ export * from './subscriptionCheckout';
 export * from './trackTransaction';
 export { default as useBraintreeDropIn } from './useBraintreeDropIn';
 export * from './useBraintreeDropIn';
+export * from './useOneTimeCheckout';
 export * from './validatePreCheckout';
 export { default as KvPaymentSelect } from './components/KvPaymentSelect.vue';

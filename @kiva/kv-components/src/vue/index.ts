@@ -7,6 +7,7 @@ export { default as KvCarousel } from './KvCarousel.vue';
 export { default as KvCartModal } from './KvCartModal.vue';
 export { default as KvCartPill } from './KvCartPill.vue';
 export { default as KvCheckbox } from './KvCheckbox.vue';
+export { default as KvCheckoutLightbox } from './KvCheckoutLightbox.vue';
 export { default as KvCheckoutReceipt } from './KvCheckoutReceipt.vue';
 export { default as KvChip } from './KvChip.vue';
 export { default as KvClassicLoanCard } from './KvClassicLoanCard.vue';
