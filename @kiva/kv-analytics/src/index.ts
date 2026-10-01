@@ -402,6 +402,12 @@ export function trackFBTransaction(transactionData: TransactionData) {
 	}
 
 	const itemTotal = Number(transactionData.itemTotal) || 0;
+	// The backend says FTD for anyone who has made exactly one deposit, even on later checkouts
+	// paid with credit. So we only call it FTD when this checkout has a deposit.
+	const checkoutHasDeposit = Number(transactionData.depositTotal) > 0;
+	const isFTD = typeof transactionData.isFTD === 'boolean'
+		? transactionData.isFTD && checkoutHasDeposit
+		: undefined;
 	// Skip Purchase when there's no valid amount — better to omit than report a $0/invalid-value
 	// purchase that would dilute value-based optimization. (The FTD/Kiva-Card events below are
 	// count signals, so they still fire.)
@@ -412,8 +418,8 @@ export function trackFBTransaction(transactionData: TransactionData) {
 		};
 		// Only assert content_type when FTD status is actually known. For guest checkouts the
 		// FTD lookup returns no value, and defaulting to 'ReturningLender' would be a false claim.
-		if (typeof transactionData.isFTD === 'boolean') {
-			purchase.content_type = transactionData.isFTD ? 'FirstTimeDepositor' : 'ReturningLender';
+		if (typeof isFTD === 'boolean') {
+			purchase.content_type = isFTD ? 'FirstTimeDepositor' : 'ReturningLender';
 		}
 		fireFbq('track', 'Purchase', purchase);
 	}
@@ -431,7 +437,7 @@ export function trackFBTransaction(transactionData: TransactionData) {
 		);
 	}
 	// signify transaction ftd status — send standard value + currency when the amount is usable
-	if (transactionData.isFTD) {
+	if (isFTD) {
 		trackFBCustomEvent(
 			'firstTimeDepositorTransaction',
 			{

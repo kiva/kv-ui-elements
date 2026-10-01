@@ -288,7 +288,7 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 
 		it('still fires firstTimeDepositorTransaction when Purchase is skipped, without a 0 value', () => {
-			trackTransaction(baseTransaction({ isFTD: true, itemTotal: '' }));
+			trackTransaction(baseTransaction({ isFTD: true, depositTotal: '25.00', itemTotal: '' }));
 			expect(fbq).not.toHaveBeenCalledWith('track', 'Purchase', expect.anything());
 			// the count signal still fires, but omitting value/currency is the whole point of
 			// skipping Purchase — sending value: 0 here would dilute it just the same
@@ -342,6 +342,16 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 			});
 		});
 
+		it('marks a checkout paid only with credit as a returning lender, even if the user deposited once before', () => {
+			trackTransaction(baseTransaction({ isFTD: true, depositTotal: '0.00', itemTotal: '25' }));
+			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', {
+				currency: 'USD',
+				value: 25,
+				content_type: 'ReturningLender',
+			});
+			expect(fbq).not.toHaveBeenCalledWith('trackCustom', 'firstTimeDepositorTransaction', expect.anything());
+		});
+
 		it('omits content_type when FTD status is unknown (e.g. guest checkout)', () => {
 			trackTransaction(baseTransaction({
 				isFTD: undefined as unknown as boolean,
@@ -375,7 +385,7 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 		});
 
 		it('sends value + currency on firstTimeDepositorTransaction and FTD Purchase content_type', () => {
-			trackTransaction(baseTransaction({ isFTD: true, itemTotal: '100' }));
+			trackTransaction(baseTransaction({ isFTD: true, depositTotal: '100.00', itemTotal: '100' }));
 			// standard value+currency added; legacy itemTotal kept for backward compatibility
 			expect(fbq).toHaveBeenCalledWith('trackCustom', 'firstTimeDepositorTransaction', expect.objectContaining({
 				itemTotal: 100,
