@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.4.1...@kiva/kv-analytics@1.4.2) (2026-10-01)
+
+
+### Bug Fixes
+
+* **kv-analytics:** only label FTD when the checkout has a deposit ([dc08b3e](https://github.com/kiva/kv-ui-elements/commit/dc08b3e6f566d4855fbf74b942bf0e1976149876))
+
+
+
+
+
 ## [1.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.4.0...@kiva/kv-analytics@1.4.1) (2026-09-21)
 
 **Note:** Version bump only for package @kiva/kv-analytics
