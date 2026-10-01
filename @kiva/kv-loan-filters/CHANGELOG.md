@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.23.0...@kiva/kv-loan-filters@1.24.0) (2026-10-01)
+
+
+### Bug Fixes
+
+* **kv-loan-filters:** drop matcher account ids outside the GraphQL Int range ([2f7fb54](https://github.com/kiva/kv-ui-elements/commit/2f7fb54b48e31bd435d2959ee119d8f6ba15e5f7))
+
+
+### Features
+
+* **kv-loan-filters:** add matcherAccountIds pass-through filter ([058bbaa](https://github.com/kiva/kv-ui-elements/commit/058bbaae28ace6fcb819042efdb972fcd8d7353e))
+* **kv-loan-filters:** add pass-through filter helpers ([614ed74](https://github.com/kiva/kv-ui-elements/commit/614ed748b1fed70577a0144cd4f9f6981c0bebff))
+* **kv-loan-filters:** pass state, city and postal code through with pills and query params ([e81892e](https://github.com/kiva/kv-ui-elements/commit/e81892ef3141f62dacf856715d0e6c0448b0dc39))
+
+
+
+
+
 # [1.23.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.22.2...@kiva/kv-loan-filters@1.23.0) (2026-09-29)
 
 
