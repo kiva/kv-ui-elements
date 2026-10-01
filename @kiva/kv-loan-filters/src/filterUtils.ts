@@ -12,6 +12,7 @@ import isMatchable, { facetsKey as isMatchableKey } from './isMatchable';
 import keywordSearch, { facetsKey as keywordSearchKey } from './keywordSearch';
 import lenderRepaymentTerms, { facetsKey as lenderRepaymentTermsKey } from './lenderRepaymentTerms';
 import loanAmount, { facetsKey as loanAmountKey } from './loanAmount';
+import matcherAccountIds, { facetsKey as matcherAccountIdsKey } from './matcherAccountIds';
 import pageLimit, { facetsKey as pageLimitKey } from './pageLimit';
 import pageOffset, { facetsKey as pageOffsetKey } from './pageOffset';
 import partnerAvgProfitability, { facetsKey as partnerAvgProfitabilityKey } from './partnerAvgProfitability';
@@ -42,6 +43,7 @@ const filters = {
 	[keywordSearchKey]: keywordSearch,
 	[lenderRepaymentTermsKey]: lenderRepaymentTerms,
 	[loanAmountKey]: loanAmount,
+	[matcherAccountIdsKey]: matcherAccountIds,
 	[pageLimitKey]: pageLimit,
 	[pageOffsetKey]: pageOffset,
 	[partnerAvgProfitabilityKey]: partnerAvgProfitability,

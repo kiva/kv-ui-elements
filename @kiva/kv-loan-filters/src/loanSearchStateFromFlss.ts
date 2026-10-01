@@ -2,6 +2,7 @@ const ANY_KEYS = [
 	'activityId',
 	'city',
 	'countryIsoCode',
+	'matcherAccountIds',
 	'partnerId',
 	'postalCode',
 	'sectorId',

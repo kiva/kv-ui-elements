@@ -1,3 +1,5 @@
+import { getPassThroughChips, getStringsFromQueryParam, getValidatedStrings } from './passThroughUtils';
+
 export const facetsKey = 'state';
 
 export const stateKey = 'state';
@@ -24,15 +26,17 @@ export default {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 	getOptions: (allFacets: any = {}, filteredFacets: any = {}) => ([]),
 	showSavedSearch: () => (false),
-	getFilterChips: () => ([]),
-	getRemovedFacet: () => ({}),
+	getFilterChips: (loanSearchState) => getPassThroughChips(loanSearchState?.state),
+	getRemovedFacet: (loanSearchState, facet) => ({
+		state: (loanSearchState?.state ?? []).filter((s) => s !== facet?.id),
+	}),
 	getSavedSearch: () => ({}),
 	getFlssFilter: (loanSearchState) => ({
 		...(loanSearchState?.state?.length && { state: { any: loanSearchState.state } }),
 	}),
-	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		state: loanSearchState?.state?.filter((c) => allFacets?.state?.includes(c)) ?? [],
+	getValidatedSearchState: (loanSearchState) => ({ state: getValidatedStrings(loanSearchState?.state) }),
+	getFilterFromQuery: (query) => ({ state: getStringsFromQueryParam(query?.state) }),
+	getQueryFromFilter: (loanSearchState) => ({
+		...(loanSearchState?.state?.length && { state: loanSearchState.state.join() }),
 	}),
-	getFilterFromQuery: () => ({}),
-	getQueryFromFilter: () => ({}),
 };

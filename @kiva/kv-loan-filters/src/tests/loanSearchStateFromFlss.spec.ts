@@ -56,6 +56,11 @@ describe('loanSearchStateFromFlss.ts', () => {
 				.toEqual({ gender: ['male', 'female'] });
 		});
 
+		it('should convert matcherAccountIds', () => {
+			expect(flssToLoanSearchState({ filters: [{ matcherAccountIds: { any: [1487001, 1547025] } }] }))
+				.toEqual({ matcherAccountIds: [1487001, 1547025] });
+		});
+
 		it('should merge filter elements in order', () => {
 			const result = flssToLoanSearchState({
 				filters: [{ sectorId: { any: [1] }, city: { any: ['a'] } }, { sectorId: { any: [2] } }],
@@ -140,6 +145,7 @@ describe('loanSearchStateFromFlss.ts', () => {
 			keywordSearch: 'water tank',
 			lenderRepaymentTerm: createMinMaxRange(0, 16),
 			loanAmount: createMinMaxRange(25, 100),
+			matcherAccountIds: [1487001],
 			partnerAvgProfitability: createMinMaxRange(0, 10),
 			partnerDefaultRate: { max: 0.01, __typename: 'MinMaxRange' },
 			partnerId: [1, 2],
