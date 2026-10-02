@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from '@apollo/client/core';
+import { gql, type ApolloClient, type WatchQueryFetchPolicy } from '@apollo/client/core';
 import { watchShopQuery } from './shopQueries';
 
 export const basketTotalsQuery = gql`query basketTotals($basketId: String) {
@@ -61,8 +61,13 @@ export interface BasketTotalsData {
 	} | null,
 }
 
-export function watchBasketTotals(apollo: ApolloClient<any>) {
+export interface WatchBasketTotalsOptions {
+	fetchPolicy?: WatchQueryFetchPolicy,
+}
+
+export function watchBasketTotals(apollo: ApolloClient<any>, options: WatchBasketTotalsOptions = {}) {
 	return watchShopQuery<BasketTotalsData>(apollo, {
+		...options,
 		query: basketTotalsQuery,
 	});
 }

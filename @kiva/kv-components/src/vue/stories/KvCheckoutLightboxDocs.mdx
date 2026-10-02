@@ -1,0 +1,253 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvCheckoutLightboxStories from './KvCheckoutLightbox.stories.js';
+
+<Meta title="Checkout/KvCheckoutLightbox" component={KvCheckoutLightboxStories.Component} />
+
+# KvCheckoutLightbox
+
+The form half of a one-time checkout: a lightbox that shows the host's totals and payment method, collects and validates a guest's email and consent, and emits a single `submit` once everything is valid.
+
+## Component Overview
+
+KvCheckoutLightbox knows nothing about baskets, Apollo or Braintree. The host decides what is owed, supplies the totals list and the payment method through slots, and tells the lightbox four things through props: whether the totals are known, whether a deposit is due, whether the payment method is ready, and whether a submit is in progress. The lightbox turns those into a submit button state, owns the guest fields and their validation, and locks itself while the host is loading or paying. In Kiva's apps each host composes it with kv-shop's `useOneTimeCheckout`, which supplies the shop logic, and `KvPaymentSelect` in the payment slot.
+
+<Story of={KvCheckoutLightboxStories.Default} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+The lightbox has one layout; what changes is which parts show. `isLoggedIn` removes the guest fields, `depositRequired` adds the `payment` slot and the processing disclaimer in place of the "credit covers this" note, and `loading` replaces the whole form with the `loading` slot. The stories below show the two most common combinations; the Default story above shows a signed-out visitor whose credit covers the basket.
+
+### Deposit due
+
+A deposit is still owed, so the host's payment method renders in the `payment` slot and the disclaimer shows under the button.
+
+<Story of={KvCheckoutLightboxStories.DepositDue} />
+
+### Signed in
+
+A signed-in lender has an account already, so the guest fields are not rendered and the submit is available as soon as the totals are known and the payment method is ready.
+
+<Story of={KvCheckoutLightboxStories.SignedIn} />
+
+## Usage Information
+
+Use KvCheckoutLightbox when a page needs a checkout in place, without sending the lender to the basket or checkout page. It is the presentational layer only: the host provides the figures, the payment method and the checkout call, typically from kv-shop's `useOneTimeCheckout`, and reacts to `submit`.
+
+The guest fields are v-models owned by the host (`v-model:email`, `v-model:terms-agreement`, `v-model:email-updates`), so the host has the values when `submit` fires. Validation stays inside the lightbox: `submit` is emitted only when a signed-out visitor has entered a valid email and accepted the terms.
+
+### When to Use
+
+- An in-context checkout opened from a loan card, a banner or a thanks page, where the lender should stay on the page
+- A guest checkout that needs email, terms and marketing consent collected and validated consistently
+- Any flow that composes its own payment method and totals but wants Kiva's standard checkout form around them
+- With `useOneTimeCheckout` from kv-shop whenever the basket, credit and Braintree handling should be shared rather than rewritten
+
+### When Not to Use
+
+- The full checkout page, which has line-item editing, promo codes and Kiva Cards that this form does not cover
+- Donation flows that need participant name, visibility or DAF Pay controls; those belong around the form, not inside it
+- A confirmation or receipt after a successful checkout; the lightbox ends at `submit`
+- Any dialog that is not a checkout; use `KvLightbox` directly
+
+---
+
+## Behavior
+
+The lightbox is controlled by the host from start to finish. It opens when `visible` is true, shows the `loading` slot while `loading` is true, then the form. The submit button is disabled until the totals are known, until the payment method is ready when a deposit is due, and until the guest fields are valid for a signed-out visitor; it shows a spinner while `paying` is true. Submitting the form with Enter or the button marks the guest fields as touched, shows any errors, and emits `submit` only when the form is valid.
+
+### Guest validation
+
+Errors appear once a field has been left or a submit was attempted, never while the visitor is still typing. Enter an invalid email and press submit in the story below: both errors show and nothing is emitted. Fix the email and tick the terms: the button enables and submit is emitted.
+
+<Story of={KvCheckoutLightboxStories.Default} />
+
+### Loading and locking
+
+While the host prepares the basket, the `loading` slot replaces the form and the close control is removed, so the lender cannot dismiss a half-prepared checkout. The same lock applies while `paying` is true, and a host can hold it with `preventClose`.
+
+<Story of={KvCheckoutLightboxStories.Loading} />
+
+## Anatomy
+
+Inside a `KvLightbox`, the form stacks the host's content and the lightbox's own fields in a fixed order:
+
+- **Lightbox frame**: `KvLightbox` with the `title` prop and a close control, locked by `preventClose`, `loading` or `paying`
+- **Loading slot**: shown instead of the form while `loading` is true, for the host's skeleton
+- **Totals slot**: the host's list of what is being paid for, always first
+- **Payment slot**: the host's payment method, rendered only when `depositRequired` is true
+- **Guest fields**: email input, terms checkbox with links to `appUri/legal/terms` and `appUri/legal/privacy`, and the updates checkbox, rendered only when `isLoggedIn` is false; the email input id is prefixed by `idPrefix`
+- **Before-submit slot**: host copy right above the button, such as a charge notice
+- **Submit button**: `KvButton` with `submitLabel`, its state computed from the props and the guest fields
+- **Note**: the `disclaimer` slot under the button when a deposit is due, otherwise the `covered` slot once the totals are known
+
+---
+
+## Specs
+
+### Submit state
+
+The button is `disabled` while `totalsLoaded` is false, while `depositRequired` is true and `paymentReady` is false, or while the guest fields are invalid for a signed-out visitor. It is `loading` while `paying` is true. The story below has a deposit due and no payment method yet.
+
+<Story of={KvCheckoutLightboxStories.AwaitingPayment} />
+
+### Layout
+
+The form is centred with a maximum width of 520px and inherits the lightbox's responsive behaviour: full width from the bottom of the viewport on small screens, centred from the `md` breakpoint up. Spacing between fields uses the standard `tw-mb-1` and `tw-mb-2` steps, and the guest fields are left-aligned inside a `fieldset` with a visually hidden legend.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCheckoutLightbox/Do-render-totals-from-the-figures-you-already-have.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Render the totals slot from the figures the host already watches, and pass the same figures to the props, so the button state and the list never disagree.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCheckoutLightbox/Do-not-fetch-totals-inside-the-slot.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Start a second basket subscription inside the totals slot; the lightbox has no way to know when that one has loaded.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCheckoutLightbox/Do-open-with-loading-while-the-basket-is-prepared.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Open the lightbox immediately with <code>loading</code> on while the basket is still being prepared, then turn it off; the lender sees the response at once and cannot dismiss a half-made checkout.</p>
+  	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvCheckoutLightbox/Do-not-validate-the-guest-fields-again-in-the-host.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+    	<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+    	<p style={{fontSize: '0.875rem', margin: 0}}>Re-validate the email or terms in the host after <code>submit</code>; the event only fires when they are valid, and a second rule set will drift from the first.</p>
+  	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The dialog behaviour comes from `KvLightbox`: focus moves into the lightbox on open, page scrolling is locked, the rest of the page is hidden from screen readers, and Escape closes it unless the lightbox is locked
+- The guest fields sit in a `fieldset` with a visually hidden legend, "Contact information", so screen readers announce the group
+- The email input is labelled by a visible `label` through `for` and the `idPrefix`-based id; use a distinct `idPrefix` when two lightboxes share a page
+- Validation errors are rendered as text next to the field they belong to, and the inputs switch to their invalid style through the `valid` prop
+- The loading state carries `role="status"` and `aria-busy="true"` so the wait is announced
+- The submit button is a native `type="submit"` inside a `form`, so Enter submits from any field; while disabled or loading it is a real `disabled` button, not a styled one
+- The legal links open in a new tab and say so in their `title`
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvCheckoutLightboxStories.Default} />
+<Controls of={KvCheckoutLightboxStories.Default} />
+
+---
+
+## Code Examples
+
+### Signed-in lender with a deposit
+
+```vue
+<kv-checkout-lightbox
+  :visible="open"
+  is-logged-in
+  :totals-loaded="totalsLoaded"
+  :deposit-required="amountDue > 0"
+  :payment-ready="paymentReady"
+  :paying="paying"
+  :kv-track-function="$kvTrackEvent"
+  category="basket"
+  @submit="checkout"
+  @lightbox-closed="open = false"
+>
+  <template #totals>
+    <order-totals :amount-due="amountDue" />
+  </template>
+  <template #payment>
+    <kv-payment-select
+      :amount="amountDue"
+      :auth-token="clientToken"
+      @transactions-enabled="paymentReady = $event"
+    />
+  </template>
+</kv-checkout-lightbox>
+```
+
+### Guest checkout with the fields as v-models
+
+```vue
+<kv-checkout-lightbox
+  :visible="open"
+  :totals-loaded="totalsLoaded"
+  :deposit-required="false"
+  :paying="paying"
+  :app-uri="appUri"
+  :kv-track-function="$kvTrackEvent"
+  category="upc"
+  id-prefix="upc-checkout"
+  v-model:email="guestEmail"
+  v-model:terms-agreement="termsAgreement"
+  v-model:email-updates="emailUpdates"
+  @submit="checkoutAsGuest(guestEmail, emailUpdates)"
+  @lightbox-closed="open = false"
+>
+  <template #totals>
+    <order-totals :amount-due="0" :credit-applied="creditApplied" />
+  </template>
+</kv-checkout-lightbox>
+```
+
+### Opening before the basket is ready
+
+```vue
+<kv-checkout-lightbox
+  :visible="open"
+  :loading="addingToBasket"
+  :totals-loaded="totalsLoaded"
+  :deposit-required="amountDue > 0"
+  :payment-ready="paymentReady"
+  :paying="paying"
+  is-logged-in
+  title="Confirm payment"
+  submit-label="Complete order"
+  @submit="checkout"
+  @lightbox-closed="open = false"
+>
+  <template #loading>
+    <kv-loading-placeholder class="tw-h-16 tw-mb-2" />
+  </template>
+  <template #totals>
+    <express-checkout-totals :loan="loan" />
+  </template>
+  <template #payment>
+    <kv-payment-select :amount="amountDue" :auth-token="clientToken" @transactions-enabled="paymentReady = $event" />
+  </template>
+  <template #before-submit>
+    <p class="tw-text-caption">By clicking "Complete order" we'll charge your payment method for the selected amount.</p>
+  </template>
+</kv-checkout-lightbox>
+```
