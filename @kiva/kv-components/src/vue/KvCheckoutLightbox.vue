@@ -95,10 +95,7 @@
 					class="tw-mb-1"
 					@update:model-value="onEmailUpdatesChange"
 				>
-					<span class="tw-text-small">
-						Receive email updates from Kiva (including borrower updates and promos).
-						You can unsubscribe anytime.
-					</span>
+					<span class="tw-text-small">{{ emailUpdatesCopy }}</span>
 				</kv-checkbox>
 
 				<p
@@ -148,6 +145,8 @@ import KvLightbox from './KvLightbox.vue';
 import KvTextInput from './KvTextInput.vue';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// The analytics label for the terms checkbox. The template renders this copy itself because the
+// two legal links sit inside it.
 const TERMS_COPY = 'I have read and agree to the Terms of Use and Privacy Policy';
 const EMAIL_UPDATES_COPY = 'Receive email updates from Kiva (including borrower updates and promos). '
 	+ 'You can unsubscribe anytime.';
@@ -351,6 +350,7 @@ export default {
 
 		return {
 			emailTouched,
+			emailUpdatesCopy: EMAIL_UPDATES_COPY,
 			onEmailUpdatesChange,
 			onSubmit,
 			onTermsChange,
