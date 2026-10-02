@@ -101,8 +101,8 @@ const checkout = useOneTimeCheckout({
 
 Options: `valetInviter`, `deactivateRedirect`, `failedValidationRedirect` (optional path for a guest whose
 email already has an account; by default `onError` receives the `shop.failedCheckoutValidation` error and
-the host decides where to route). `trackGuestEmailSignUp` and `watchBasketTotals(apollo, { fetchPolicy })`
-are exported for hosts that need them on their own.
+the host decides where to route). `watchBasketTotals(apollo, { fetchPolicy })` is exported for hosts that
+watch the basket on their own.
 
 ## Lint
 

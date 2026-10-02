@@ -8,12 +8,12 @@ import {
 } from 'vue';
 import type { ApolloClient } from '@apollo/client/core';
 import numeral from 'numeral';
+import { META_EVENTS, trackMetaEvent } from '@kiva/kv-analytics';
 import useBraintreeDropIn, { getClientToken } from './useBraintreeDropIn';
 import { watchBasketTotals } from './basketTotals';
 import { executeOneTimeCheckout } from './oneTimeCheckout';
 import type { OneTimeCheckoutOptions, ValetInviter } from './oneTimeCheckout';
 import { ShopError } from './shopError';
-import { trackGuestEmailSignUp } from './trackTransaction';
 
 /**
  * Tracking callback shape, matching the `kvTrackFunction` prop kv-components expects:
@@ -166,8 +166,11 @@ export function useOneTimeCheckout(options: UseOneTimeCheckoutOptions) {
 					status?.errorMessage || 'Checkout failed',
 				);
 			}
-			// The sign-up only exists once the transaction carrying it completed.
-			trackGuestEmailSignUp(isLoggedIn, emailUpdates.value);
+			// A guest who opted in has signed up for email, but the sign-up only exists once the
+			// transaction carrying it completed, so it is reported here and never at submit.
+			if (!isLoggedIn && emailUpdates.value) {
+				trackMetaEvent(META_EVENTS.EMAIL_SIGN_UP);
+			}
 			onComplete(result);
 		} catch (e: any) {
 			const msg = (e?.code === 'shop.unknown' ? e?.original : e?.message) ?? e;

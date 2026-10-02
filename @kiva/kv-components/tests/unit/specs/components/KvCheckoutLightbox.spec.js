@@ -166,9 +166,22 @@ describe('KvCheckoutLightbox', () => {
 		await fireEvent.click(utils.getByRole('checkbox', { name: /Terms of Use/ }));
 		await fireEvent.click(utils.getByRole('checkbox', { name: /Receive email updates/ }));
 
-		expect(track).toHaveBeenCalledWith('upc', 'click', 'guest-checkout-email');
-		expect(track).toHaveBeenCalledWith('upc', 'click', 'guest-checkout-tos');
-		expect(track).toHaveBeenCalledWith('upc', 'click', 'guest-checkout-marketing-updates');
+		expect(track).toHaveBeenCalledWith('upc', 'click', 'guest-checkout-email', undefined, undefined);
+		// The checkbox events match the /checkout guest form: the copy as property, the selection as value.
+		expect(track).toHaveBeenCalledWith(
+			'upc', 'click', 'terms-of-use', 'I have read and agree to the Terms of Use and Privacy Policy', 1,
+		);
+		expect(track).toHaveBeenCalledWith(
+			'upc', 'click', 'marketing-updates', expect.stringMatching(/^Receive email updates from Kiva/), 1,
+		);
+	});
+
+	it('reports a cleared checkbox with a zero value', async () => {
+		const utils = renderLightbox();
+		const terms = utils.getByRole('checkbox', { name: /Terms of Use/ });
+		await fireEvent.click(terms);
+		await fireEvent.click(terms);
+		expect(track).toHaveBeenLastCalledWith('upc', 'click', 'terms-of-use', expect.any(String), 0);
 	});
 
 	describe('payment and notes', () => {

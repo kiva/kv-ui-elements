@@ -148,6 +148,9 @@ import KvLightbox from './KvLightbox.vue';
 import KvTextInput from './KvTextInput.vue';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TERMS_COPY = 'I have read and agree to the Terms of Use and Privacy Policy';
+const EMAIL_UPDATES_COPY = 'Receive email updates from Kiva (including borrower updates and promos). '
+	+ 'You can unsubscribe anytime.';
 
 /**
  * The visual half of a one-time checkout lightbox: totals, payment method and guest fields come in
@@ -294,8 +297,8 @@ export default {
 			termsAgreement,
 		} = toRefs(props);
 
-		const track = (action: string, label?: string) => {
-			props.kvTrackFunction(props.category, action, label);
+		const track = (action: string, label?: string, property?: string, value?: number) => {
+			props.kvTrackFunction(props.category, action, label, property, value);
 		};
 
 		// Validation is only required for a signed-out visitor, and errors show once a field has
@@ -323,14 +326,15 @@ export default {
 			return '';
 		});
 
+		// Same events as the /checkout guest form, with the selection as the value.
 		const onTermsChange = (value: boolean) => {
 			emit('update:termsAgreement', value);
-			track('click', 'guest-checkout-tos');
+			track('click', 'terms-of-use', TERMS_COPY, value ? 1 : 0);
 		};
 
 		const onEmailUpdatesChange = (value: boolean) => {
 			emit('update:emailUpdates', value);
-			track('click', 'guest-checkout-marketing-updates');
+			track('click', 'marketing-updates', EMAIL_UPDATES_COPY, value ? 1 : 0);
 		};
 
 		const onSubmit = () => {

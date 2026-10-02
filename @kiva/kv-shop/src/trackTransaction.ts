@@ -1,5 +1,4 @@
 import { gql, type ApolloClient } from '@apollo/client/core';
-import { META_EVENTS, trackMetaEvent } from '@kiva/kv-analytics';
 import { callShopMutation } from './shopQueries';
 import { getVisitorID } from './util/visitorId';
 
@@ -73,20 +72,4 @@ export async function trackTransactionEvent({
 	}, 0);
 	// return whether tracking was successful
 	return !!data?.shop?.trackTransaction;
-}
-
-/**
- * Reports a guest checkout's email sign-up to Meta.
- *
- * Guest checkout collects the email preference up front, but the sign-up only exists once the
- * transaction carrying it has completed, so call this on checkout success, never at submit. The
- * gate (guest AND opted in) is the same for every checkout surface, kept here so it lives once.
- *
- * @param isLoggedIn Whether the checkout was done as a signed-in user (no sign-up in that case)
- * @param optedIn Whether the guest opted into email updates
- */
-export function trackGuestEmailSignUp(isLoggedIn: boolean, optedIn: boolean): void {
-	if (!isLoggedIn && optedIn) {
-		trackMetaEvent(META_EVENTS.EMAIL_SIGN_UP);
-	}
 }
