@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.9.1...@kiva/kv-shop@3.10.0) (2026-10-02)
+
+
+### Features
+
+* mp-3306-add kvcheckoutlightbox to kv-components and a useonetimecheckout composable to kv-shop ([745da75](https://github.com/kiva/kv-ui-elements/commit/745da75460c9a37bd4c2d65acde2d70be520a2cb))
+
+
+
+
+
 ## [3.9.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.9.0...@kiva/kv-shop@3.9.1) (2026-10-01)
 
 **Note:** Version bump only for package @kiva/kv-shop
