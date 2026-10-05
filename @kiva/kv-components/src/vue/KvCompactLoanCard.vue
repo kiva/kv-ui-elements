@@ -212,22 +212,31 @@
 								<kv-loading-placeholder />
 							</div>
 						</div>
-						<div
+						<component
+							:is="tag"
 							v-else
-							class="loan-card-use-text-light-detailed tw-w-full tw-overflow-hidden"
+							:to="readMorePath"
+							:href="readMorePath"
+							:target="externalLinksNewTab ? '_blank' : undefined"
+							:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
+							class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
+							aria-label="Loan use"
+							@click="clickReadMore('Use', $event)"
 						>
-							<kv-loan-use
-								:use="loanUse"
-								:loan-amount="loanAmount"
-								:status="loanStatus"
-								:borrower-count="loanBorrowerCount"
-								:name="borrowerName"
-								:distribution-model="distributionModel"
-								:hide-borrower-details="true"
-								data-testid="loan-use-statement"
-								class="tw-text-small tw-leading-normal tw-text-primary"
-							/>
-						</div>
+							<div class="loan-card-use-text-light-detailed tw-w-full tw-overflow-hidden">
+								<kv-loan-use
+									:use="loanUse"
+									:loan-amount="loanAmount"
+									:status="loanStatus"
+									:borrower-count="loanBorrowerCount"
+									:name="borrowerName"
+									:distribution-model="distributionModel"
+									:hide-borrower-details="true"
+									data-testid="loan-use-statement"
+									class="tw-text-small tw-leading-normal tw-text-primary"
+								/>
+							</div>
+						</component>
 					</template>
 					<component
 						:is="tag"
