@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.9.0...@kiva/kv-components@10.10.0) (2026-10-05)
+
+
+### Features
+
+* borrower profile modal opening in light-detailed loan card variant ([8953f65](https://github.com/kiva/kv-ui-elements/commit/8953f65f1cd9f0c249b4500933611a80f26e5b6b))
+
+
+
+
+
 # [10.9.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.8.0...@kiva/kv-components@10.9.0) (2026-10-02)
 
 
