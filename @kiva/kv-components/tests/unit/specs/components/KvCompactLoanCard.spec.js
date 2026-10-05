@@ -200,6 +200,21 @@ describe('KvCompactLoanCard', () => {
 			expect(emitted()['show-loan-details']).toBeTruthy();
 		});
 
+		it('opens the borrower profile modal when the loan use statement is clicked', async () => {
+			const kvTrackFunction = jest.fn();
+			const { getByTestId, emitted } = renderLightDetailed({ kvTrackFunction });
+
+			await userEvent.click(getByTestId('loan-use-statement'));
+
+			expect(kvTrackFunction).toHaveBeenCalledWith(
+				'Lending',
+				'click-Read more',
+				'Use',
+				lightDetailedLoan.id,
+			);
+			expect(emitted()['show-loan-details']).toBeTruthy();
+		});
+
 		it('renders the arrow as a real link, reachable by keyboard, with a label screen readers can read', () => {
 			const { getByRole } = renderLightDetailed();
 
