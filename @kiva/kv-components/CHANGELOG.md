@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.10.0...@kiva/kv-components@11.0.0) (2026-10-09)
+
+
+### Features
+
+* update KvPill to new design spec ([ca5671a](https://github.com/kiva/kv-ui-elements/commit/ca5671a1e52ee84a55d894948ad6cf3282f8c4b5))
+
+
+### BREAKING CHANGES
+
+* KvPill no longer accepts bgClass or roundedClass; use variant and size instead.
+
+
+
+
+
 # [10.10.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.9.0...@kiva/kv-components@10.10.0) (2026-10-05)
 
 
