@@ -1,0 +1,144 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvPillStories from './KvPill.stories.js';
+
+<Meta title="Interface Elements/KvPill" component={KvPillStories.Component} />
+
+# KvPill
+
+Pills are compact, read-only status labels. They display a status, category, or metadata about content and are never interactive.
+
+## Component Overview
+
+A pill is a small, read-only label that displays a status, category, or piece of metadata about content. Pills are not interactive and present information the system already knows; users don't click, select, or dismiss them.
+
+<Story of={KvPillStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Anatomy](#anatomy)
+- [Properties](#properties)
+- [Best Practices](#best-practices)
+- [Specs](#specs)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+KvPill supports five variants — `default`, `muted`, `light`, `urgent`, and `caution` — each available in the `default` (34px tall) and `small` (26px tall) sizes.
+
+<Story of={KvPillStories.AllVariants} />
+
+## Anatomy
+
+<Story of={KvPillStories.Anatomy} />
+
+1. **Leading icon (optional)**: Passed through the `#icon` slot. Size it at 16px (`tw-w-2 tw-h-2`); it inherits the variant's text color.
+2. **Pill label**: The default slot content.
+3. **Pill container**: Background, padding, and corner radius, set by the `variant` and `size` props.
+
+---
+
+## Properties
+
+### Pill Label
+
+The label shown inside the pill. The label is the pill's only required content; the leading icon is optional. Because pills are read-only, the label should describe the content.
+
+### Writing Pill Labels
+
+- Short noun or adjective describing state or category — "Funded," "Ending soon," "Agriculture"
+- 1–3 words, sentence case, no ending punctuation
+- Consistent across the product — if one screen says "Funded," another shouldn't say "Fully funded"
+
+### Variant
+
+<Story of={KvPillStories.VariantGuide} />
+
+### Size
+
+<Story of={KvPillStories.SizeGuide} />
+
+---
+
+## Best Practices
+
+### Keep labels to one to three words
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use 1–3 words of short noun phrases, sentence case, and no ending punctuation — "Fully funded," "Ending soon."</p>
+	</div>
+
+	<div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use full sentences, instructions, or vague labels that make the pill's meaning harder to scan — "Currently in repayment...," "Finishing funding in 3 days." There is no wrap variant, so a long label overflows its container.</p>
+	</div>
+</div>
+
+---
+
+## Specs
+
+| | Default | Small | Class |
+|---|---|---|---|
+| Height | 34px | 26px | — |
+| Padding (horizontal × vertical) | 16 × 8px | 8 × 4px | `tw-px-2 tw-py-1` / `tw-px-1 tw-py-0.5` |
+| Icon gap | 8px | 4px | `tw-gap-1` / `tw-gap-0.5` |
+| Corner radius | 16px | 16px | `tw-rounded` |
+| Text | Kiva Post Grot Medium 14 / 18 | Kiva Post Grot Medium 14 / 18 | `tw-text-label` |
+| Icon | 16px | 16px | `tw-w-2 tw-h-2` |
+
+| Variant | Background | Text and icon |
+|---|---|---|
+| `default` | `tw-bg-secondary` | `tw-text-primary` |
+| `muted` | `tw-bg-gray-100` | `tw-text-primary` |
+| `light` | `tw-bg-primary` | `tw-text-primary` |
+| `urgent` | `tw-bg-danger-highlight` | `tw-text-danger-highlight` |
+| `caution` | `tw-bg-caution` | `tw-text-primary` |
+
+---
+
+## Accessibility
+
+- Pills are non-interactive: they render as a plain `div`, are not focusable, and expose no click handling
+- The label carries the meaning; never rely on the variant color alone to communicate status
+- `KvMaterialIcon` is `aria-hidden`, so a leading icon is decorative and the label must stand on its own
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvPillStories.Default} />
+<Controls of={KvPillStories.Default} />
+
+---
+
+## Code Examples
+
+### Default Pill
+
+```vue
+<kv-pill>Funded</kv-pill>
+```
+
+### Small Pill with a Variant
+
+```vue
+<kv-pill variant="urgent" size="small">Ending soon</kv-pill>
+```
+
+### Pill with a Leading Icon
+
+```vue
+<kv-pill variant="muted">
+  <template #icon>
+    <kv-material-icon :icon="mdiCheck" class="tw-w-2 tw-h-2" />
+  </template>
+  Fully funded
+</kv-pill>
+```
