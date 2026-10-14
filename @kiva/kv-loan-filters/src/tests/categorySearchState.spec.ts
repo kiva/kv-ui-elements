@@ -30,6 +30,20 @@ describe('category search state', () => {
 		});
 	});
 
+	it('should keep the user sort on a category with its own sort', () => {
+		const result = getValidatedSearchState(
+			{ category: 'ending-soon', sortBy: 'personalized' },
+			allFacets,
+			FLSS_QUERY_TYPE,
+		);
+
+		expect(result).toMatchObject({
+			category: 'ending-soon',
+			daysUntilExpiration: { min: 0, max: 7 },
+			sortBy: 'personalized',
+		});
+	});
+
 	it('should drop saved search keys that no filter module owns', () => {
 		const result = getValidatedSearchState({ category: 'new-backend-field' }, allFacets, FLSS_QUERY_TYPE);
 

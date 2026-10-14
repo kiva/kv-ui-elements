@@ -61,7 +61,12 @@ export default {
 
 		if (!resolved?.slug) return { category: null };
 
-		return { category: resolved.slug, ...flssToLoanSearchState(resolved.savedSearch ?? {}) };
+		const { filters, sortBy } = resolved.savedSearch ?? {};
+
+		return {
+			category: resolved.slug,
+			...flssToLoanSearchState({ filters, sortBy: loanSearchState?.sortBy ? null : sortBy }),
+		};
 	},
 	getFilterFromQuery: (query) => ({
 		category: query.category ?? null,

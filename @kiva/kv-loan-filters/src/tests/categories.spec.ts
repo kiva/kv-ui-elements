@@ -74,6 +74,12 @@ describe('categories.ts', () => {
 				});
 			});
 
+			it('should keep a sort already in state over the category sort', () => {
+				const result = categories.getValidatedSearchState({ category: 'agriculture', sortBy: 'amountLeft' }, allFacets);
+
+				expect(result).toEqual({ category: 'agriculture', sectorId: [1] });
+			});
+
 			it('should return null for an unresolved slug', () => {
 				expect(categories.getValidatedSearchState({ category: 'team-kiva' }, allFacets))
 					.toEqual({ category: null });
