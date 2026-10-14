@@ -1,4 +1,4 @@
-import categories, { stateKey as categoriesStateKey } from './categories';
+import categories, { facetsKey as categoriesKey, stateKey as categoriesStateKey } from './categories';
 import filterUtils from './filterUtils';
 
 /**
@@ -19,7 +19,12 @@ export const getValidatedSearchState = (loanSearchState, allFacets, queryType) =
 	}
 
 	return filterUtils.keys.reduce((prev, key) => {
-		return { ...prev, ...filterUtils.filters[key].getValidatedSearchState(loanSearchState, allFacets, queryType) };
+		const validated = filterUtils.filters[key].getValidatedSearchState(loanSearchState, allFacets, queryType);
+
+		return {
+			...prev,
+			...(key === categoriesKey ? { [categoriesStateKey]: validated[categoriesStateKey] } : validated),
+		};
 	}, {});
 };
 
