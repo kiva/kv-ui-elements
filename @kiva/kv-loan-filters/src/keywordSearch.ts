@@ -35,7 +35,10 @@ export default {
 	getFlssFilter: (loanSearchState) => ({
 		...(loanSearchState?.keywordSearch && { keywordSearch: { eq: loanSearchState.keywordSearch } }),
 	}),
-	getValidatedSearchState: (loanSearchState) => ({ keywordSearch: loanSearchState?.keywordSearch?.trim() || null }),
+	getValidatedSearchState: (loanSearchState) => ({
+		keywordSearch: (typeof loanSearchState?.keywordSearch === 'string' && loanSearchState.keywordSearch.trim())
+			|| null,
+	}),
 	getFilterFromQuery: (query) => ({ keywordSearch: query.queryString ?? null }),
 	getQueryFromFilter: (loanSearchState) => ({
 		...(loanSearchState.keywordSearch && { queryString: loanSearchState.keywordSearch }),

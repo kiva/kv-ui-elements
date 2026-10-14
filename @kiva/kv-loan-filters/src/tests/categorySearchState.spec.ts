@@ -37,6 +37,30 @@ describe('category search state', () => {
 		expect(result).not.toHaveProperty('notAFilterModule');
 	});
 
+	it.each([
+		['activityId', { none: [1] }, []],
+		['sectorId', { none: [1] }, []],
+		['themeId', { none: [1] }, []],
+		['tagId', { none: [1] }, []],
+		['partnerId', { none: [1] }, []],
+		['trusteeId', { none: [1] }, []],
+		['countryIsoCode', { none: ['US'] }, []],
+		['countryIsoCode', { any: [1] }, []],
+		['gender', { any: ['female', 'nonbinary'] }, null],
+		['distributionModel', { eq: 5 }, null],
+		['keywordSearch', { eq: 5 }, null],
+	])('should not throw on an unexpected saved search shape for %s %j', (key, modifier, expected) => {
+		const facets = {
+			...allFacets,
+			resolvedCategories: { odd: { slug: 'odd', savedSearch: { filters: [{ [key]: modifier }] } } },
+		};
+
+		const result = getValidatedSearchState({ category: 'odd' }, facets, FLSS_QUERY_TYPE);
+
+		expect(result).toHaveProperty('category', 'odd');
+		expect(result).toHaveProperty(key, expected);
+	});
+
 	it('should clear the category and its filters for an unresolved slug', () => {
 		const result = getValidatedSearchState({ category: 'team-kiva' }, allFacets, FLSS_QUERY_TYPE);
 

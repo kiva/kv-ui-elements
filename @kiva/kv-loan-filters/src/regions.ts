@@ -82,8 +82,8 @@ export default {
 		...(loanSearchState?.countryIsoCode?.length && { countryIsoCode: { any: loanSearchState.countryIsoCode } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		countryIsoCode: loanSearchState?.countryIsoCode
-			?.filter((c) => allFacets?.countryIsoCodes?.includes(c.toUpperCase())) ?? [],
+		countryIsoCode: (Array.isArray(loanSearchState?.countryIsoCode) ? loanSearchState.countryIsoCode : [])
+			.filter((c) => typeof c === 'string' && allFacets?.countryIsoCodes?.includes(c.toUpperCase())),
 	}),
 	getFilterFromQuery: (query, allFacets) => ({
 		countryIsoCode: getCountryIsoCodesFromQueryParam(query.country || query.countries, allFacets) ?? [],
