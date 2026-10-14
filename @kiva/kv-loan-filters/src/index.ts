@@ -7,7 +7,6 @@ import * as minMaxRangeUtils from './minMaxRangeUtils';
 import * as queryParamUtils from './queryParamUtils';
 import * as queryParseUtils from './queryParseUtils';
 import * as searchStateUtils from './searchStateUtils';
-import loanChannelQueryMap from './loanChannelQueryMap';
 import flssToLoanSearchState from './loanSearchStateFromFlss';
 
 export type { ResolvedCategory, ResolvedCategories } from './categories';
@@ -22,6 +21,5 @@ export {
 	queryParamUtils,
 	queryParseUtils,
 	searchStateUtils,
-	loanChannelQueryMap,
 	flssToLoanSearchState,
 };
