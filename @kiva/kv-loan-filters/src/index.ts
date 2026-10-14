@@ -10,6 +10,8 @@ import * as searchStateUtils from './searchStateUtils';
 import loanChannelQueryMap from './loanChannelQueryMap';
 import flssToLoanSearchState from './loanSearchStateFromFlss';
 
+export type { ResolvedCategory, ResolvedCategories } from './categories';
+
 export {
 	filterUiConfigs,
 	filterUtils,

@@ -1,5 +1,19 @@
-import loanChannelQueryMap from './loanChannelQueryMap';
 import { transformRadioGroupOptions } from './filterOptionUtils';
+import flssToLoanSearchState from './loanSearchStateFromFlss';
+
+export interface ResolvedCategory {
+	slug: string;
+	name?: string;
+	savedSearch?: { filters?: unknown[] | null; sortBy?: string | null } | null;
+}
+
+// A cache of categories the consumer already resolved by slug. It never decides whether a category exists.
+export type ResolvedCategories = Record<string, ResolvedCategory>;
+
+const getResolvedCategory = (category, resolvedCategories?: ResolvedCategories): ResolvedCategory | undefined => {
+	if (typeof category !== 'string' || !resolvedCategories) return undefined;
+	return resolvedCategories[category.trim().toLowerCase()];
+};
 
 export const facetsKey = 'categories';
 
@@ -35,7 +49,7 @@ export default {
 			},
 		);
 
-		return sortedCategories.map((c) => ({ key: c.id, title: c.name }));
+		return sortedCategories.map((c) => ({ key: c.slug, title: c.name }));
 	},
 	showSavedSearch: () => (false),
 	getFilterChips: () => ([]),
@@ -43,17 +57,11 @@ export default {
 	getSavedSearch: () => ({}),
 	getFlssFilter: () => ({}),
 	getValidatedSearchState: (loanSearchState, allFacets) => {
-		const parsedId = +loanSearchState?.category;
+		const resolved = getResolvedCategory(loanSearchState?.category, allFacets?.resolvedCategories);
 
-		const category = allFacets?.categoryIds?.includes(parsedId) ? parsedId : null;
-		let categoryFilters = {};
+		if (!resolved?.slug) return { category: null };
 
-		if (category) {
-			const queryMap = loanChannelQueryMap.data().loanChannelQueryMap;
-			categoryFilters = queryMap.find((c) => c.id === parsedId)?.flssLoanSearch ?? {};
-		}
-
-		return { category, ...categoryFilters };
+		return { category: resolved.slug, ...flssToLoanSearchState(resolved.savedSearch ?? {}) };
 	},
 	getFilterFromQuery: (query) => ({
 		category: query.category ?? null,
