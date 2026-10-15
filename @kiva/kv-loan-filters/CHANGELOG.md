@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.24.0...@kiva/kv-loan-filters@2.0.0) (2026-10-15)
+
+
+### Bug Fixes
+
+* **kv-loan-filters:** ignore saved search filter values of the wrong type ([a4fe773](https://github.com/kiva/kv-ui-elements/commit/a4fe7732f334bb27d2e420d3b6bde1109893b1fe))
+* **kv-loan-filters:** keep a sort already in state over the category sort ([199aa57](https://github.com/kiva/kv-ui-elements/commit/199aa57a84e0004c77b802ab37c3256401eafaa6))
+* **kv-loan-filters:** validate category filters through their own modules ([ecd8b54](https://github.com/kiva/kv-ui-elements/commit/ecd8b545178f71c1f0e012c94ec3836152e2b250))
+
+
+* feat(kv-loan-filters)!: remove loanChannelQueryMap ([a47382f](https://github.com/kiva/kv-ui-elements/commit/a47382fc4cb4ffb52097e1be11d5e32b9ab26960))
+* feat(kv-loan-filters)!: resolve the category filter by slug ([f12181d](https://github.com/kiva/kv-ui-elements/commit/f12181d61a472ef5f6e4e86ae916c3fe971f86d5))
+
+
+### BREAKING CHANGES
+
+* loanChannelQueryMap is no longer exported. Resolve categories
+with categoryBySlug and pass them as allFacets.resolvedCategories.
+* the category filter resolves from allFacets.resolvedCategories,
+keyed by slug, instead of a numeric loan channel id and allFacets.categoryIds.
+Category options are keyed by slug.
+
+
+
+
+
 # [1.24.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.23.0...@kiva/kv-loan-filters@1.24.0) (2026-10-01)
 
 
