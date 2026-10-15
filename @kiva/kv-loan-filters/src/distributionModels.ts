@@ -87,7 +87,8 @@ export default {
 			&& { distributionModel: { eq: loanSearchState.distributionModel.toUpperCase() } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		distributionModel: allFacets?.distributionModels?.includes(loanSearchState?.distributionModel?.toUpperCase())
+		distributionModel: typeof loanSearchState?.distributionModel === 'string'
+			&& allFacets?.distributionModels?.includes(loanSearchState.distributionModel.toUpperCase())
 			? loanSearchState.distributionModel
 			: null,
 	}),

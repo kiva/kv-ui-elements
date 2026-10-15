@@ -33,7 +33,7 @@ export default {
 	getValidatedSearchState: (loanSearchState) => ({
 		// Don't worry about validating activity ID filter for now against available facets
 		// We don't display the filter in the UI and only use it for a small number of categories
-		activityId: loanSearchState?.activityId ?? [],
+		activityId: Array.isArray(loanSearchState?.activityId) ? loanSearchState.activityId : [],
 	}),
 	getFilterFromQuery: () => ({}),
 	getQueryFromFilter: () => ({}),

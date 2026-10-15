@@ -31,7 +31,8 @@ export default {
 		...(loanSearchState?.trusteeId?.length && { trusteeId: { any: loanSearchState.trusteeId } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		trusteeId: loanSearchState?.trusteeId?.filter((c) => allFacets?.trusteeId?.includes(c)) ?? [],
+		trusteeId: (Array.isArray(loanSearchState?.trusteeId) ? loanSearchState.trusteeId : [])
+			.filter((c) => allFacets?.trusteeId?.includes(c)),
 	}),
 	getFilterFromQuery: () => ({}),
 	getQueryFromFilter: () => ({}),

@@ -89,7 +89,8 @@ export default {
 		...(loanSearchState?.partnerId?.length && { partnerId: { any: loanSearchState.partnerId } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		partnerId: loanSearchState?.partnerId?.filter((p) => allFacets?.partnerIds?.includes(p)) ?? [],
+		partnerId: (Array.isArray(loanSearchState?.partnerId) ? loanSearchState.partnerId : [])
+			.filter((p) => allFacets?.partnerIds?.includes(p)),
 	}),
 	getFilterFromQuery: (query, allFacets) => ({
 		partnerId: getIdsFromQueryParam(query.partner, allFacets?.partnerNames, allFacets?.partnerFacets) ?? [],

@@ -67,7 +67,8 @@ export default {
 		...(loanSearchState?.sectorId?.length && { sectorId: { any: loanSearchState.sectorId } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		sectorId: loanSearchState?.sectorId?.filter((s) => allFacets?.sectorIds?.includes(s)) ?? [],
+		sectorId: (Array.isArray(loanSearchState?.sectorId) ? loanSearchState.sectorId : [])
+			.filter((s) => allFacets?.sectorIds?.includes(s)),
 	}),
 	getFilterFromQuery: (query, allFacets) => ({
 		sectorId: getIdsFromQueryParam(query.sector, allFacets?.sectorNames, allFacets?.sectorFacets) ?? [],

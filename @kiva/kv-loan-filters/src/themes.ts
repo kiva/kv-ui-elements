@@ -79,7 +79,8 @@ export default {
 		...(loanSearchState?.themeId?.length && { themeId: { any: loanSearchState.themeId } }),
 	}),
 	getValidatedSearchState: (loanSearchState, allFacets) => ({
-		themeId: loanSearchState?.themeId?.filter((t) => allFacets?.themeIds?.includes(t)) ?? [],
+		themeId: (Array.isArray(loanSearchState?.themeId) ? loanSearchState.themeId : [])
+			.filter((t) => allFacets?.themeIds?.includes(t)),
 	}),
 	getFilterFromQuery: (query, allFacets) => ({
 		themeId: getIdsFromQueryParam(

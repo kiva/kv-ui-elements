@@ -115,7 +115,6 @@ export const mockAllFacets = {
 	state: ['Georgia', 'California'],
 	postalCode: ['30301', '90210'],
 	trusteeId: [1, 2],
-	categoryIds: [28],
 	sortOptions: [
 		{
 			name: 'amountHighToLow',
