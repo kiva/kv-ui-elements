@@ -134,4 +134,17 @@ describe('KvWideLoanCard', () => {
 		const countryTagElement = getByText('Uganda');
 		expect(countryTagElement).toBeDefined();
 	});
+
+	it('passes the preference to the lend CTA', async () => {
+		const { findByRole } = render(KvWideLoanCard, {
+			props: {
+				loanId: loan.id,
+				loan,
+				kvTrackFunction,
+				photoPath,
+				defaultLoanShareAmount: 100,
+			},
+		});
+		expect((await findByRole('combobox', { name: 'Lend amount' })).value).toBe('100');
+	});
 });

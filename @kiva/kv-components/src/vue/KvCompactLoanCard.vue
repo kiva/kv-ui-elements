@@ -455,6 +455,7 @@
 						:is-adding="isAdding"
 						:enable-five-dollars-notes="enableFiveDollarsNotes"
 						:five-dollars-selected="fiveDollarsSelected"
+						:default-loan-share-amount="defaultLoanShareAmount"
 						:kv-track-function="kvTrackFunction"
 						:show-view-loan="showViewLoan"
 						:custom-loan-details="customLoanDetails"
@@ -494,6 +495,7 @@ import {
 	LOAN_PROGRESS_FRAGMENT,
 } from '../utils/loanCard';
 import {
+	getDefaultLoanShareOption,
 	getDropdownPriceArray,
 	getLendCtaSelectedOption,
 	isLessThan25,
@@ -662,6 +664,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		defaultLoanShareAmount: {
+			type: Number,
+			default: undefined,
+		},
 		customCallouts: {
 			type: Array,
 			default: () => ([]),
@@ -744,6 +750,7 @@ export default {
 	],
 	setup(props, { emit }) {
 		const selectedAmount = ref('');
+		const hasLenderSelectedAmount = ref(false);
 		const isPostGoalVariant = computed(
 			() => props.variant === CARD_VARIANTS.postGoal,
 		);
@@ -841,11 +848,18 @@ export default {
 		});
 
 		watch(
-			amountOptions,
-			(options) => {
+			[amountOptions, () => props.defaultLoanShareAmount],
+			([options, defaultLoanShareAmount], [previousOptions] = []) => {
 				if (!isPostGoalVariant.value) return;
 				if (!options.length) {
 					selectedAmount.value = '';
+					return;
+				}
+				if (options === previousOptions && hasLenderSelectedAmount.value) return;
+
+				const preferredAmount = getDefaultLoanShareOption(defaultLoanShareAmount, options);
+				if (preferredAmount) {
+					selectedAmount.value = preferredAmount;
 					return;
 				}
 
@@ -889,6 +903,7 @@ export default {
 
 		const handleSelectedAmount = (amount: string) => {
 			selectedAmount.value = amount;
+			hasLenderSelectedAmount.value = true;
 			emit('update:selected-amount', amount);
 			props.kvTrackFunction(
 				'Lending',

@@ -301,4 +301,47 @@ describe('KvCompactLoanCard', () => {
 			getByText('Almost funded', { exact: false });
 		});
 	});
+
+	describe('defaultLoanShareAmount', () => {
+		const renderPostGoal = (props = {}) => render(KvCompactLoanCard, {
+			props: {
+				variant: 'post-goal',
+				loan,
+				photoPath,
+				kvTrackFunction: jest.fn(),
+				...props,
+			},
+		});
+
+		it('post-goal: opens the dropdown on the preferred amount', () => {
+			const { getByRole } = renderPostGoal({ defaultLoanShareAmount: 100 });
+			expect(getByRole('combobox', { name: 'Lend amount' }).value).toBe('100');
+		});
+
+		it('post-goal: applies a preference that arrives after mount', async () => {
+			const { getByRole, rerender } = renderPostGoal();
+			await rerender({ defaultLoanShareAmount: 100 });
+			expect(getByRole('combobox', { name: 'Lend amount' }).value).toBe('100');
+		});
+
+		it('post-goal: does not override the lender\'s choice', async () => {
+			const { getByRole, rerender } = renderPostGoal();
+			await userEvent.selectOptions(getByRole('combobox', { name: 'Lend amount' }), '75');
+			await rerender({ defaultLoanShareAmount: 100 });
+			expect(getByRole('combobox', { name: 'Lend amount' }).value).toBe('75');
+		});
+
+		it('default variant: passes the preference to the lend CTA', async () => {
+			const { findByRole } = render(KvCompactLoanCard, {
+				props: {
+					loanId: loan.id,
+					loan,
+					photoPath,
+					kvTrackFunction: jest.fn(),
+					defaultLoanShareAmount: 100,
+				},
+			});
+			expect((await findByRole('combobox', { name: 'Lend amount' })).value).toBe('100');
+		});
+	});
 });
