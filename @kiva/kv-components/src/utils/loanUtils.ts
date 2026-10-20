@@ -120,6 +120,32 @@ export function getLendCtaSelectedOption(
 	return '25';
 }
 
+/**
+ * Gets the option matching the lender's default loan share amount preference
+ *
+ * @param defaultLoanShareAmount The lender's preferred loan share amount
+ * @param options The lend amount options, as returned by getDropdownPriceArray
+ * @returns The largest option at or below the preference, or undefined when none qualifies
+ */
+export function getDefaultLoanShareOption(
+	defaultLoanShareAmount: number | undefined,
+	options: string[],
+): string | undefined {
+	if (!(defaultLoanShareAmount > 0)) return undefined;
+
+	let selected: string | undefined;
+	let selectedAmount = 0;
+	options.forEach((option) => {
+		const amount = Number(option.replace(/,/g, ''));
+		if (amount <= defaultLoanShareAmount && amount > selectedAmount) {
+			selected = option;
+			selectedAmount = amount;
+		}
+	});
+
+	return selected;
+}
+
 function buildHugePriceArray(amountLeft: number): string[] {
 	const priceArray: string[] = [];
 
