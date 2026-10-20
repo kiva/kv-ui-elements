@@ -602,7 +602,7 @@ export default {
 			);
 			// Limit price options based on the maxAmount
 			if (this.maxAmount) {
-				return priceArray.filter((price) => parseFloat(price) <= parseFloat(this.maxAmount));
+				return priceArray.filter((price) => Number(price.replace(/,/g, '')) <= parseFloat(this.maxAmount));
 			}
 			return priceArray;
 		},
