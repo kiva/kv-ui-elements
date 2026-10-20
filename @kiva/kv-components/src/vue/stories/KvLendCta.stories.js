@@ -97,6 +97,17 @@ export const HugeAmountUnder1000 = story({
 	isVisitor: false,
 });
 
+export const WithDefaultLoanShareAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+	},
+	unreservedAmount: '850.00',
+	kvTrackFunction,
+	isVisitor: false,
+	defaultLoanShareAmount: 550,
+});
+
 export const FiveDollar = story({
 	isLoading: false,
 	loan: {
@@ -173,6 +184,19 @@ export const WithPresetOptions = story({
 	unreservedAmount: '150.00',
 	kvTrackFunction,
 	showPresetAmounts: true,
+});
+
+export const WithPresetOptionsDefaultLoanShareAmount = story({
+	isLoading: false,
+	loan: {
+		id: 1,
+		name: 'John',
+		borrowerCount: 1,
+	},
+	unreservedAmount: '150.00',
+	kvTrackFunction,
+	showPresetAmounts: true,
+	defaultLoanShareAmount: 100,
 });
 
 export const WithPresetOptionsLongName = story({
