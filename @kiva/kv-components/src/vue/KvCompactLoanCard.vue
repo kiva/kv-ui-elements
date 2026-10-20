@@ -848,16 +848,15 @@ export default {
 		});
 
 		watch(
-			[amountOptions, () => props.defaultLoanShareAmount],
-			([options, defaultLoanShareAmount], [previousOptions] = []) => {
+			amountOptions,
+			(options) => {
 				if (!isPostGoalVariant.value) return;
 				if (!options.length) {
 					selectedAmount.value = '';
 					return;
 				}
-				if (options === previousOptions && hasLenderSelectedAmount.value) return;
 
-				const preferredAmount = getDefaultLoanShareOption(defaultLoanShareAmount, options);
+				const preferredAmount = getDefaultLoanShareOption(props.defaultLoanShareAmount, options);
 				if (preferredAmount) {
 					selectedAmount.value = preferredAmount;
 					return;
@@ -879,6 +878,18 @@ export default {
 					: options[0];
 			},
 			{ immediate: true },
+		);
+
+		watch(
+			() => props.defaultLoanShareAmount,
+			(defaultLoanShareAmount) => {
+				if (!isPostGoalVariant.value || hasLenderSelectedAmount.value) return;
+
+				const preferredAmount = getDefaultLoanShareOption(defaultLoanShareAmount, amountOptions.value);
+				if (preferredAmount) {
+					selectedAmount.value = preferredAmount;
+				}
+			},
 		);
 
 		const loanUseLoadingRows = computed(() => {
