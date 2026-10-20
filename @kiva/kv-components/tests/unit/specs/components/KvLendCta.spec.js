@@ -204,6 +204,12 @@ describe('KvLendCta', () => {
 				expect(queryAllByRole('combobox')).toHaveLength(0);
 			});
 
+			it('moves the preference to its button when a later maxAmount turns it into one', async () => {
+				const { getByRole, rerender } = renderPreset({ unreservedAmount: '500', defaultLoanShareAmount: 100 });
+				await rerender({ maxAmount: '100' });
+				expect(getByRole('button', { name: '$100' })).toHaveClass('selected-option');
+			});
+
 			it('never selects an amount over the cap for a preference above maxAmount', () => {
 				const { getAllByRole } = renderPreset({
 					unreservedAmount: '5000.00',

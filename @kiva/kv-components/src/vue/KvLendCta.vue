@@ -798,6 +798,9 @@ export default {
 			},
 			immediate: true,
 		},
+		presetButtonsPrices() {
+			this.applyDefaultLoanShareOption();
+		},
 	},
 	mounted() {
 		const updateWidth = () => {
