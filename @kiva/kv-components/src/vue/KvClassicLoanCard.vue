@@ -226,6 +226,7 @@
 				:is-adding="isAdding"
 				:enable-five-dollars-notes="enableFiveDollarsNotes"
 				:five-dollars-selected="fiveDollarsSelected"
+				:default-loan-share-amount="defaultLoanShareAmount"
 				:kv-track-function="kvTrackFunction"
 				:show-view-loan="showViewLoan"
 				:custom-loan-details="customLoanDetails"
@@ -268,6 +269,7 @@
 				:is-adding="isAdding"
 				:enable-five-dollars-notes="enableFiveDollarsNotes"
 				:five-dollars-selected="fiveDollarsSelected"
+				:default-loan-share-amount="defaultLoanShareAmount"
 				:show-view-loan="showViewLoan"
 				:custom-loan-details="customLoanDetails"
 				:external-links="externalLinks"
@@ -446,6 +448,10 @@ export default {
 		fiveDollarsSelected: {
 			type: Boolean,
 			default: false,
+		},
+		defaultLoanShareAmount: {
+			type: Number,
+			default: undefined,
 		},
 		customCallouts: {
 			type: Array,

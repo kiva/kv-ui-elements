@@ -248,4 +248,17 @@ describe('KvClassicLoanCard', () => {
 		expect(activityText).toBeDefined();
 		expect(activityBtn).toBeDefined();
 	});
+
+	it('passes the preference to the lend CTA', async () => {
+		const { findByRole } = render(KvClassicLoanCard, {
+			props: {
+				loanId: loan.id,
+				loan,
+				kvTrackFunction,
+				photoPath,
+				defaultLoanShareAmount: 100,
+			},
+		});
+		expect((await findByRole('combobox', { name: 'Lend amount' })).value).toBe('100');
+	});
 });

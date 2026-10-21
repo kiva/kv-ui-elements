@@ -67,6 +67,7 @@
 						:is-adding="isAdding"
 						:is-visitor="isVisitor"
 						:enable-five-dollars-notes="enableFiveDollarsNotes"
+						:default-loan-share-amount="defaultLoanShareAmount"
 						@add-to-basket="$emit('add-to-basket', $event)"
 					/>
 				</div>
@@ -191,6 +192,10 @@ export default {
 		enableFiveDollarsNotes: {
 			type: Boolean,
 			default: false,
+		},
+		defaultLoanShareAmount: {
+			type: Number,
+			default: undefined,
 		},
 		isVisitor: {
 			type: Boolean,

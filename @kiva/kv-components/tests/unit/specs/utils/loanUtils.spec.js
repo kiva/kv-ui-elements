@@ -2,6 +2,7 @@ import {
 	isBetween25And50,
 	isLessThan25,
 	getLendCtaSelectedOption,
+	getDefaultLoanShareOption,
 	getDropdownPriceArray,
 	ERL_COOKIE_NAME,
 	TOP_UP_CAMPAIGN,
@@ -313,6 +314,44 @@ describe('loanUtils', () => {
 		});
 	});
 
+	describe('getDefaultLoanShareOption', () => {
+		it('returns the exact option', () => {
+			expect(getDefaultLoanShareOption(100, ['25', '50', '75', '100', '125'])).toBe('100');
+		});
+
+		it('rounds down between steps', () => {
+			const options = getDropdownPriceArray(5000, false, 25, false, false);
+			expect(getDefaultLoanShareOption(550, options)).toBe('500');
+			expect(getDefaultLoanShareOption(1500, options)).toBe('1,000');
+		});
+
+		it('returns the highest option when the preference exceeds the remaining amount', () => {
+			expect(getDefaultLoanShareOption(500, ['25', '50', '75'])).toBe('75');
+			expect(getDefaultLoanShareOption(500, getDropdownPriceArray(130, true))).toBe('130');
+		});
+
+		it('returns comma-formatted options as given', () => {
+			expect(getDefaultLoanShareOption(2000, ['500', '1,000', '2,000', '3,000'])).toBe('2,000');
+		});
+
+		it('returns an option string from the list when formatted and unformatted values tie', () => {
+			const options = getDropdownPriceArray(1234, true, 25, false, false);
+			const option = getDefaultLoanShareOption(5000, options);
+			expect(options).toContain(option);
+			expect(Number(option.replace(/,/g, ''))).toBe(1234);
+		});
+
+		it('returns undefined below the smallest option', () => {
+			expect(getDefaultLoanShareOption(10, ['25', '50'])).toBeUndefined();
+		});
+
+		it('returns undefined for empty options or no preference', () => {
+			expect(getDefaultLoanShareOption(100, [])).toBeUndefined();
+			expect(getDefaultLoanShareOption(undefined, ['25'])).toBeUndefined();
+			expect(getDefaultLoanShareOption(0, ['25'])).toBeUndefined();
+		});
+	});
+
 	describe('getDropdownPriceArray', () => {
 		it('should return less than 25', () => {
 			const result = getDropdownPriceArray('15.00', true, 15);
@@ -440,33 +479,33 @@ describe('loanUtils', () => {
 		it('should return undefined for empty string', () => {
 			expect(truncateStringByWords('', 5)).toBeUndefined();
 		});
-	
+
 		it('should return original string when truncateWordsNumber is 0 or negative', () => {
 			const text = 'This is a test string';
 			expect(truncateStringByWords(text, 0)).toBe(text);
 			expect(truncateStringByWords(text, -1)).toBe(text);
 		});
-	
+
 		it('should return original string when word count is less than truncateWordsNumber', () => {
 			const text = 'Short text';
 			expect(truncateStringByWords(text, 5)).toBe(text);
 		});
-	
+
 		it('should return original string when word count equals truncateWordsNumber', () => {
 			const text = 'This has five words exactly';
 			expect(truncateStringByWords(text, 5)).toBe(text);
 		});
-	
+
 		it('should truncate string and add ellipsis when word count exceeds truncateWordsNumber', () => {
 			const text = 'This is a very long string with many words';
 			expect(truncateStringByWords(text, 3)).toBe('This is a...');
 		});
-	
+
 		it('should handle single word truncation', () => {
 			const text = 'One two three four five';
 			expect(truncateStringByWords(text, 1)).toBe('One...');
 		});
-	
+
 		it('should handle strings with single word', () => {
 			const text = 'SingleWord';
 			expect(truncateStringByWords(text, 5)).toBe('SingleWord');

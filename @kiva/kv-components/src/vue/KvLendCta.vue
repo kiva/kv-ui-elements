@@ -389,7 +389,11 @@ import { type PropType } from 'vue';
 import { mdiChevronRight } from '@mdi/js';
 import { throttle } from '../utils/throttle';
 import {
-	getLendCtaSelectedOption, getDropdownPriceArray, type GetCookieFn, type SetCookieFn,
+	getLendCtaSelectedOption,
+	getDefaultLoanShareOption,
+	getDropdownPriceArray,
+	type GetCookieFn,
+	type SetCookieFn,
 } from '../utils/loanUtils';
 import KvLendAmountButton from './KvLendAmountButton.vue';
 import KvUiSelect from './KvSelect.vue';
@@ -518,6 +522,14 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * The lender's preferred loan share amount. The control opens on the
+		 * largest amount option at or below it.
+		 */
+		defaultLoanShareAmount: {
+			type: Number,
+			default: undefined,
+		},
 		kvTrackCategory: {
 			type: String,
 			default: 'Lending',
@@ -557,6 +569,7 @@ export default {
 				this.fiveDollarsSelected,
 			),
 			selectedDropdownOption: OTHER_OPTION,
+			hasLenderSelectedAmount: false,
 			OTHER_OPTION,
 			// SSR-safe viewport width initialization
 			viewportWidth: typeof window !== 'undefined' ? window.innerWidth : 1024,
@@ -602,9 +615,12 @@ export default {
 			);
 			// Limit price options based on the maxAmount
 			if (this.maxAmount) {
-				return priceArray.filter((price) => parseFloat(price) <= parseFloat(this.maxAmount));
+				return priceArray.filter((price) => Number(price.replace(/,/g, '')) <= parseFloat(this.maxAmount));
 			}
 			return priceArray;
+		},
+		defaultLoanShareOption() {
+			return getDefaultLoanShareOption(this.defaultLoanShareAmount, this.prices);
 		},
 		presetButtonsPrices() {
 			const prices = this.prices.slice(0, 3);
@@ -774,6 +790,16 @@ export default {
 			if (this.showPresetAmounts) {
 				this.selectedOption = OTHER_OPTION;
 			}
+			this.applyDefaultLoanShareOption();
+		},
+		defaultLoanShareOption: {
+			handler() {
+				this.applyDefaultLoanShareOption();
+			},
+			immediate: true,
+		},
+		presetButtonsPrices() {
+			this.applyDefaultLoanShareOption();
 		},
 	},
 	mounted() {
@@ -825,7 +851,20 @@ export default {
 		isAmountBetween25And500(unreservedAmount) {
 			return unreservedAmount < 500 && unreservedAmount >= 25;
 		},
+		applyDefaultLoanShareOption() {
+			const option = this.defaultLoanShareOption;
+			if (this.hasLenderSelectedAmount || !option) return;
+
+			if (this.showPresetAmounts && !this.presetButtonsPrices.includes(option)) {
+				this.selectedOption = null;
+				this.selectedDropdownOption = option;
+			} else {
+				this.selectedOption = option;
+				this.selectedDropdownOption = OTHER_OPTION;
+			}
+		},
 		trackLendAmountSelection(selectedDollarAmount) {
+			this.hasLenderSelectedAmount = true;
 			if (this.showPresetAmounts) {
 				this.selectedOption = null;
 			}
@@ -858,6 +897,7 @@ export default {
 			this.kvTrackFunction(
 				this.kvTrackCategory, 'Modify lend amount', selectedDollarAmount, this.loanId, this.loanId,
 			);
+			this.hasLenderSelectedAmount = true;
 			this.selectedOption = selectedDollarAmount;
 			this.selectedDropdownOption = OTHER_OPTION;
 		},
