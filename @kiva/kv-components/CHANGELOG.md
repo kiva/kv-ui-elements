@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.0.0...@kiva/kv-components@11.1.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **kv-components:** apply KvLendCta maxAmount to comma-formatted amounts ([3a36454](https://github.com/kiva/kv-ui-elements/commit/3a36454f8f5107efaee1eee11e2cb5d215e99b13))
+* **kv-components:** reselect the preferred preset button when the buttons change ([bbded09](https://github.com/kiva/kv-ui-elements/commit/bbded093943b635d05094ae8d674c38c2c6af1a0))
+
+
+### Features
+
+* **kv-components:** add getDefaultLoanShareOption helper ([6a71e11](https://github.com/kiva/kv-ui-elements/commit/6a71e117747c4bbe5f59853c89db7cf135472f0f))
+* **kv-components:** open KvLendCta on the lender's default loan share amount ([14fb87a](https://github.com/kiva/kv-ui-elements/commit/14fb87a1e65fc00bb79af7befc58266ba11dd013))
+* **kv-components:** pass defaultLoanShareAmount through the loan cards ([24e6a67](https://github.com/kiva/kv-ui-elements/commit/24e6a67b2c35e6300b5d7c311dfc62deba1cf5bb))
+
+
+
+
+
 # [11.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@10.10.0...@kiva/kv-components@11.0.0) (2026-10-09)
 
 
