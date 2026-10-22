@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import { gql, type ApolloClient, type ApolloQueryResult } from '@apollo/client/core';
-import type { TransactionData } from '@kiva/kv-analytics';
+import { resolveFTDStatus, type FTDLookupResult, type TransactionData } from '@kiva/kv-analytics';
+import { getCookieValue } from './util/cookie';
 import { getVisitorID } from './util/visitorId';
 
-export async function getFTDStatus(apollo: ApolloClient<any>) {
-	const result = await apollo.query({
+async function getFTDLookup(apollo: ApolloClient<any>): Promise<FTDLookupResult | null> {
+	return apollo.query({
 		query: gql`
 			query ftdStatus {
 				my {
@@ -16,8 +17,9 @@ export async function getFTDStatus(apollo: ApolloClient<any>) {
 				}
 			}
 		`,
-	});
-	return result.data?.my?.userAccount?.isFirstTimeDepositor ?? false;
+		// A guest's lookup is an authentication error, which the resolver needs to see, not a throw
+		errorPolicy: 'all',
+	}).catch(() => null); // FTD status is optional, so a failed lookup mustn't drop the purchase tracking
 }
 
 interface ReceiptItem {
@@ -144,8 +146,8 @@ export async function getCheckoutTrackingData(
 	paymentType: string,
 ): Promise<TransactionData> {
 	const checkoutIdInt = parseInt(checkoutId, 10);
-	const [isFTD, items, totals] = await Promise.all([
-		getFTDStatus(apollo),
+	const [ftdLookup, items, totals] = await Promise.all([
+		getFTDLookup(apollo),
 		getReceiptItems(apollo, checkoutIdInt),
 		getReceiptTotals(apollo, checkoutIdInt),
 	]);
@@ -153,6 +155,8 @@ export async function getCheckoutTrackingData(
 	const loans = items.filter((item) => item.__typename === 'LoanReservation');
 	const donations = items.filter((item) => item.__typename === 'Donation');
 	const kivaCards = items.filter((item) => item.__typename === 'KivaCard');
+	const depositTotal = totals.depositTotals?.depositTotal ?? '0.00';
+	const isFTD = resolveFTDStatus(ftdLookup, getCookieValue, depositTotal);
 
 	return {
 		transactionId: checkoutId,
@@ -176,7 +180,7 @@ export async function getCheckoutTrackingData(
 
 		// Credit & deposit
 		kivaCreditAppliedTotal: totals.kivaCreditAppliedTotal,
-		depositTotal: totals.depositTotals?.depositTotal ?? '0.00',
+		depositTotal,
 		paymentType,
 		isFTD,
 	};
