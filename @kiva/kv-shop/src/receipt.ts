@@ -17,8 +17,11 @@ async function getFTDLookup(apollo: ApolloClient<any>): Promise<FTDLookupResult 
 				}
 			}
 		`,
-		// A guest's lookup is an authentication error, which the resolver needs to see, not a throw
+		// A guest's lookup is an authentication error, which the resolver needs to see, not a throw.
+		// The error is never cached, and host pages have usually cached a guest's `my` as null
+		// already, so the lookup always goes to the network.
 		errorPolicy: 'all',
+		fetchPolicy: 'network-only',
 	}).catch(() => null); // FTD status is optional, so a failed lookup mustn't drop the purchase tracking
 }
 
