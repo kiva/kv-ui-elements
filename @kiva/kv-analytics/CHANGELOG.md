@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.5.0...@kiva/kv-analytics@1.5.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* npm release fix ([#930](https://github.com/kiva/kv-ui-elements/issues/930)) ([c5b3e83](https://github.com/kiva/kv-ui-elements/commit/c5b3e8380ba9f371e7f1b602d97e9eb761d87594))
+
+
+
+
+
 # [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.4.2...@kiva/kv-analytics@1.5.0) (2026-10-22)
 
 
