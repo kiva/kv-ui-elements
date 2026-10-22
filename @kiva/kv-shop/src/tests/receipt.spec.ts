@@ -1,5 +1,5 @@
 import {
-	ApolloClient, ApolloLink, InMemoryCache, Observable,
+	ApolloClient, ApolloLink, InMemoryCache, Observable, gql,
 } from '@apollo/client/core';
 import { getCheckoutTrackingData } from '../receipt';
 
@@ -69,8 +69,11 @@ describe('getCheckoutTrackingData FTD status', () => {
 		expect(data.isFTD).toBeUndefined();
 	});
 
-	it('sees a guest\'s authentication error even when the client throws errors by default', async () => {
+	// A real client and cache, answering each operation the way the API answers a guest
+	function guestApolloClient(defaultErrorPolicy: 'none' | 'all') {
+		const requests: string[] = [];
 		const responses = {
+			hostPage: guestLookup,
 			ftdStatus: guestLookup,
 			receiptTotals: {
 				data: {
@@ -101,10 +104,32 @@ describe('getCheckoutTrackingData FTD status', () => {
 		};
 		const apollo = new ApolloClient({
 			cache: new InMemoryCache({ addTypename: false }),
-			link: new ApolloLink((operation) => Observable.of(responses[operation.operationName])),
-			defaultOptions: { query: { errorPolicy: 'none' }, watchQuery: { errorPolicy: 'none' } },
+			link: new ApolloLink((operation) => {
+				requests.push(operation.operationName);
+				return Observable.of(responses[operation.operationName]);
+			}),
+			defaultOptions: {
+				query: { errorPolicy: defaultErrorPolicy },
+				watchQuery: { errorPolicy: defaultErrorPolicy },
+			},
 		});
+		return { apollo, requests };
+	}
+
+	it('sees a guest\'s authentication error even when the client throws errors by default', async () => {
+		const { apollo } = guestApolloClient('none');
 		const data = await getCheckoutTrackingData(apollo, '123', 'card');
+		expect(data.isFTD).toBe(true);
+	});
+
+	// Host pages query `my` before checkout, which caches a guest's `my` as null without the error
+	it('sees a guest\'s authentication error when the page already cached their `my`', async () => {
+		const { apollo, requests } = guestApolloClient('all');
+		await apollo.query({ query: gql`query hostPage { my { id } }` });
+
+		const data = await getCheckoutTrackingData(apollo, '123', 'card');
+
+		expect(requests.filter((name) => name === 'ftdStatus')).toHaveLength(1);
 		expect(data.isFTD).toBe(true);
 	});
 
