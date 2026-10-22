@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.11.1...@kiva/kv-shop@3.11.2) (2026-10-22)
+
+
+### Bug Fixes
+
+* **kv-shop:** mp-3443 always fetch the FTD lookup from the network ([4510403](https://github.com/kiva/kv-ui-elements/commit/45104034ef15a0d3c30e4111084365cd60218c8e))
+
+
+
+
+
 ## [3.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.11.0...@kiva/kv-shop@3.11.1) (2026-10-22)
 
 **Note:** Version bump only for package @kiva/kv-shop
