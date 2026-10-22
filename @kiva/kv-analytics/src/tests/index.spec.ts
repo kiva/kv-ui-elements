@@ -3,6 +3,7 @@ import {
 	getUserType,
 	getUserTypeFromCookies,
 	recordTransactorSignals,
+	resolveFTDStatus,
 	HAS_LENT_BEFORE_COOKIE,
 	HAS_DEPOSIT_BEFORE_COOKIE,
 	trackFBAddToCart,
@@ -110,6 +111,55 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 
 		it('returns non-transactor when neither cookie is "true"', () => {
 			expect(getUserTypeFromCookies(() => 'false')).toBe('non-transactor');
+		});
+	});
+
+	describe('resolveFTDStatus', () => {
+		const noCookies = () => undefined;
+		const hasDepositedBefore = (name: string) => (name === 'kvu_db' ? 'true' : undefined);
+		const loggedIn = (isFirstTimeDepositor: boolean) => ({ data: { my: { userAccount: { isFirstTimeDepositor } } } });
+		// The API answers a guest's `my` with an authentication error, not a null `my`
+		const guest = {
+			data: { my: null },
+			errors: [{ message: 'You must be authenticated', extensions: { code: 'api.authenticationRequired' } }],
+		};
+
+		it('uses the account FTD status for a logged-in user', () => {
+			expect(resolveFTDStatus(loggedIn(false), noCookies, '5.00')).toBe(false);
+		});
+
+		it('ignores the guest rule for a logged-in user', () => {
+			expect(resolveFTDStatus(loggedIn(true), hasDepositedBefore, '0.00')).toBe(true);
+		});
+
+		it('treats a logged-in user without an account record as not FTD', () => {
+			expect(resolveFTDStatus({ data: { my: { userAccount: null } } }, noCookies, '5.00')).toBe(false);
+		});
+
+		it('leaves FTD unknown when the lookup threw', () => {
+			expect(resolveFTDStatus(null, noCookies, '5.00')).toBeUndefined();
+		});
+
+		it('leaves FTD unknown when the lookup returned a non-authentication error', () => {
+			const failed = { data: { my: null }, errors: [{ message: 'Internal error', extensions: { code: 'api.error' } }] };
+			expect(resolveFTDStatus(failed, noCookies, '5.00')).toBeUndefined();
+		});
+
+		it('marks a guest deposit from a browser that has not deposited before as FTD', () => {
+			expect(resolveFTDStatus(guest, noCookies, '5.00')).toBe(true);
+		});
+
+		it('accepts a numeric deposit total', () => {
+			expect(resolveFTDStatus(guest, noCookies, 5)).toBe(true);
+			expect(resolveFTDStatus(guest, noCookies, 0)).toBeUndefined();
+		});
+
+		it('leaves FTD unknown for a guest whose browser has deposited before', () => {
+			expect(resolveFTDStatus(guest, hasDepositedBefore, '5.00')).toBeUndefined();
+		});
+
+		it('leaves FTD unknown for a guest checkout with no deposit', () => {
+			expect(resolveFTDStatus(guest, noCookies, '0.00')).toBeUndefined();
 		});
 	});
 
@@ -354,13 +404,14 @@ describe('@kiva/kv-analytics facebook pixel', () => {
 
 		it('omits content_type when FTD status is unknown (e.g. guest checkout)', () => {
 			trackTransaction(baseTransaction({
-				isFTD: undefined as unknown as boolean,
+				isFTD: undefined,
 				itemTotal: '25',
 			}));
 			expect(fbq).toHaveBeenCalledWith('track', 'Purchase', {
 				currency: 'USD',
 				value: 25,
 			});
+			expect(fbq).not.toHaveBeenCalledWith('trackCustom', 'firstTimeDepositorTransaction', expect.anything());
 		});
 	});
 
