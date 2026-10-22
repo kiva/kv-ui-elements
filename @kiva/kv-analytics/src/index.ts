@@ -327,7 +327,7 @@ export function getUserTypeFromCookies(
 
 /**
  * The result of a `my { userAccount { isFirstTimeDepositor } }` query made with
- * `errorPolicy: 'all'`, so GraphQL errors arrive alongside the data instead of being thrown.
+ * errorPolicy: 'all', so GraphQL errors arrive alongside the data instead of being thrown.
  */
 export interface FTDLookupResult {
 	data?: { my?: { userAccount?: { isFirstTimeDepositor?: boolean | null } | null } | null } | null,
