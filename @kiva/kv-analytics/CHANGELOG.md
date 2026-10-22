@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.4.2...@kiva/kv-analytics@1.5.0) (2026-10-22)
+
+
+### Features
+
+* **kv-analytics:** mp-3443 resolve FTD status for guest checkouts ([cea305a](https://github.com/kiva/kv-ui-elements/commit/cea305ab3c5da932e868136dba1877c84da792bc))
+
+
+
+
+
 ## [1.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.4.1...@kiva/kv-analytics@1.4.2) (2026-10-01)
 
 
