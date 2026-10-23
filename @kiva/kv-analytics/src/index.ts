@@ -1,5 +1,7 @@
 import SimpleQueue from './SimpleQueue';
 
+export { default as collectWebVitals, type WebVitalsTrackEvent } from './webVitals';
+
 declare global {
 	interface Window {
 		gtag: any;

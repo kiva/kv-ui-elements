@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/kiva/kv-ui-elements/issues"
   },
-  "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-analytics#readme"
+  "homepage": "https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-analytics#readme",
+  "dependencies": {
+    "web-vitals": "^6.0.0"
+  }
 }
