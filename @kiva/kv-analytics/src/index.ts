@@ -28,7 +28,7 @@ export interface TransactionData {
 	depositTotal: string,
 	kivaCreditAppliedTotal: string,
 	paymentType: string,
-	isFTD: boolean,
+	isFTD?: boolean,
 	// Lifecycle data resolved by the consuming app before the transaction completes, since the
 	// purchase itself is what moves a lender out of an idle or lapsed stage.
 	lifecycleStage?: string | null,
@@ -328,6 +328,45 @@ export function getUserTypeFromCookies(
 }
 
 /**
+ * The result of a `my { userAccount { isFirstTimeDepositor } }` query made with
+ * errorPolicy: 'all', so GraphQL errors arrive alongside the data instead of being thrown.
+ */
+export interface FTDLookupResult {
+	data?: { my?: { userAccount?: { isFirstTimeDepositor?: boolean | null } | null } | null } | null,
+	errors?: ReadonlyArray<{ extensions?: { code?: unknown } | null }>,
+}
+
+/**
+ * Resolves `TransactionData.isFTD` from the `my` FTD lookup.
+ *
+ * The API answers a guest's `my` with an authentication error, which is how a guest is told apart
+ * from a failed lookup. A guest has no account to ask, so they count as a first-time depositor when
+ * this checkout has a deposit and the browser has no earlier deposit (`kvu_db`). `kvu_db` is
+ * written on the thanks page, after Purchase fires, so it only reflects earlier checkouts.
+ *
+ * @param lookup The lookup result, or nullish when the query threw.
+ * @param getCookie Returns a cookie's raw string value (or nullish when unset).
+ * @param depositTotal This checkout's deposit total.
+ * @returns The FTD status, or `undefined` when unknown so no `content_type` is asserted.
+ */
+export function resolveFTDStatus(
+	lookup: FTDLookupResult | null | undefined,
+	getCookie: (name: string) => string | null | undefined,
+	depositTotal: string | number,
+): boolean | undefined {
+	const isGuest = lookup?.errors?.some((error) => error?.extensions?.code === 'api.authenticationRequired');
+	if (isGuest) {
+		const { hasDepositBefore } = getTransactorFlagsFromCookies(getCookie);
+		return Number(depositTotal) > 0 && !hasDepositBefore ? true : undefined;
+	}
+	const my = lookup?.data?.my;
+	if (lookup?.errors?.length || !my) {
+		return undefined;
+	}
+	return my.userAccount?.isFirstTimeDepositor ?? false;
+}
+
+/**
  * The two cookies track whether the user has EVER lent or deposited, and feed the Meta `user_type`
  * segment. This function only ever turns a flag ON: it writes `'true'` when either the existing
  * cookie or this transaction says so, and otherwise leaves the cookie alone. It never writes `'false'`.
@@ -418,8 +457,8 @@ export function trackFBTransaction(transactionData: TransactionData) {
 			currency: 'USD',
 			value: itemTotal,
 		};
-		// Only assert content_type when FTD status is actually known. For guest checkouts the
-		// FTD lookup returns no value, and defaulting to 'ReturningLender' would be a false claim.
+		// Only assert content_type when FTD status is actually known. A guest who isn't a
+		// first-time depositor has no known status, and 'ReturningLender' would be a false claim.
 		if (typeof isFTD === 'boolean') {
 			purchase.content_type = isFTD ? 'FirstTimeDepositor' : 'ReturningLender';
 		}

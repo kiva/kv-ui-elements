@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.11.1...@kiva/kv-shop@3.11.2) (2026-10-22)
+
+
+### Bug Fixes
+
+* **kv-shop:** mp-3443 always fetch the FTD lookup from the network ([4510403](https://github.com/kiva/kv-ui-elements/commit/45104034ef15a0d3c30e4111084365cd60218c8e))
+
+
+
+
+
+## [3.11.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.11.0...@kiva/kv-shop@3.11.1) (2026-10-22)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
+# [3.11.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.10.4...@kiva/kv-shop@3.11.0) (2026-10-22)
+
+
+### Features
+
+* **kv-shop:** mp-3443 resolve FTD status for guest checkouts ([#929](https://github.com/kiva/kv-ui-elements/issues/929)) ([a5db7ef](https://github.com/kiva/kv-ui-elements/commit/a5db7ef72d0fe5a217c52bf32459ec52fba12167))
+
+
+
+
+
+## [3.10.4](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.10.3...@kiva/kv-shop@3.10.4) (2026-10-22)
+
+**Note:** Version bump only for package @kiva/kv-shop
+
+
+
+
+
 ## [3.10.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-shop@3.10.2...@kiva/kv-shop@3.10.3) (2026-10-21)
 
 **Note:** Version bump only for package @kiva/kv-shop
