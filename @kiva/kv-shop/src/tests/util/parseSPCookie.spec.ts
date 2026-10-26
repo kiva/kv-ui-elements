@@ -68,6 +68,21 @@ describe('parseSPCookie.ts', () => {
 			});
 		});
 
+		it('should take the session id from the 6th field, not the last, of the newer cookie format', () => {
+			// Newer trackers (3.5 and up) add four fields after the session id
+			setCookieValue('_sp_id.newer', [
+				'domain-user-id', 'created-timestamp', 'visit-count', 'current-timestamp', 'last-visit-timestamp',
+				'session-id', 'previous-session-id', 'first-event-id', 'first-event-timestamp', 'event-index',
+			].join('.'));
+
+			const result = parseSPCookie();
+
+			expect(result).toEqual({
+				snowplowUserId: 'domain-user-id',
+				snowplowSessionId: 'session-id',
+			});
+		});
+
 		it('should return object with null values when no Snowplow cookie exists', () => {
 			mockDocumentCookie('other_cookie=value; _ga=GA1.2.123456');
 
@@ -90,30 +105,35 @@ describe('parseSPCookie.ts', () => {
 			});
 		});
 
-		it('should handle single segment cookie', () => {
+		it('should return a null session id for a single segment cookie', () => {
 			setCookieValue('_sp_id.single', 'onlysegment');
 
 			const result = parseSPCookie();
 
 			expect(result).toEqual({
 				snowplowUserId: 'onlysegment',
-				snowplowSessionId: 'onlysegment',
+				snowplowSessionId: null,
 			});
 		});
 
 		it('should handle multi-segment cookie correctly', () => {
-			setCookieValue('_sp_id.multi', 'first.second.third.fourth.last');
+			setCookieValue('_sp_id.multi', [
+				'domain-user-id', 'created-timestamp', 'visit-count', 'current-timestamp', 'last-visit-timestamp',
+				'session-id',
+			].join('.'));
 
 			const result = parseSPCookie();
 
 			expect(result).toEqual({
-				snowplowUserId: 'first',
-				snowplowSessionId: 'last',
+				snowplowUserId: 'domain-user-id',
+				snowplowSessionId: 'session-id',
 			});
 		});
 
 		it('should handle encoded cookie values', () => {
-			setCookieValue('_sp_id.encoded', 'user id.session-id');
+			setCookieValue('_sp_id.encoded', [
+				'user id', 'created-timestamp', 'visit-count', 'current-timestamp', 'last-visit-timestamp', 'session-id',
+			].join('.'));
 
 			const result = parseSPCookie();
 

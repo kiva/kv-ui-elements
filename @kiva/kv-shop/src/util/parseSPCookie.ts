@@ -1,5 +1,8 @@
 import { getCookieValue } from './cookie';
 
+// newer Snowplow trackers add fields after the session id
+const SESSION_ID_FIELD_INDEX = 5;
+
 // Helper function to find the Snowplow cookie name
 export const findSnowplowCookieName = (): string | null => {
 	if (typeof document === 'undefined') {
@@ -43,7 +46,7 @@ export default function parseSPCookie(): { snowplowUserId: string | null; snowpl
 	if (data.length > 0) {
 		// eslint-disable-next-line prefer-destructuring
 		spCookieData.snowplowUserId = data?.[0] ?? null;
-		spCookieData.snowplowSessionId = data?.[data.length - 1] ?? null;
+		spCookieData.snowplowSessionId = data?.[SESSION_ID_FIELD_INDEX] ?? null;
 	}
 
 	return spCookieData;
