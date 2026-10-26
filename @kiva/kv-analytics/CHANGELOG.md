@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.5.1...@kiva/kv-analytics@1.6.0) (2026-10-26)
+
+
+### Features
+
+* mp-3408 add collectWebVitals to kv-analytics ([d4285a4](https://github.com/kiva/kv-ui-elements/commit/d4285a49d61e457bc2e2a1cab66bf6e5288da5e0))
+
+
+
+
+
 ## [1.5.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.5.0...@kiva/kv-analytics@1.5.1) (2026-10-22)
 
 
