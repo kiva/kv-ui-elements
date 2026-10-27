@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.1.0...@kiva/kv-components@11.1.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* **KvWwwHeaderBasic:** fit the major gifts link row at tablet widths (CIT-5498) ([2d7a459](https://github.com/kiva/kv-ui-elements/commit/2d7a459851ff550f11892ea9cb00343edfef5bb6))
+* **KvWwwHeaderBasic:** keep the "Support Kiva" label in the major gifts experiment (CIT-5498) ([901b352](https://github.com/kiva/kv-ui-elements/commit/901b3522b9025c3223aa48c18afd6bcd1e4d84cf))
+
+
+
+
+
 # [11.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.0.0...@kiva/kv-components@11.1.0) (2026-10-21)
 
 
