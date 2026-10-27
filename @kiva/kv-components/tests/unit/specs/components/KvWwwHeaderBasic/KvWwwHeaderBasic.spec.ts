@@ -163,17 +163,11 @@ describe('KvWwwHeaderBasic', () => {
 		expect(emitted()['login-click'][0][0]).toBeInstanceOf(MouseEvent);
 	});
 
-	it('renders a small Support Kiva button for tablet that tracks and links like the desktop one', async () => {
-		const trackEvent = jest.fn();
-		const { getByTestId } = render(KvWwwHeaderBasic, {
-			props: { loggedIn: false },
-			global: { provide: { $kvTrackEvent: trackEvent } },
-		});
-		const button = getByTestId('header-support-kiva-small');
-		expect(button).toHaveTextContent(/^\s*Support Kiva\s*$/);
-		expect(button).toHaveAttribute('href', '/donate/supportus');
-		await fireEvent.click(button);
-		expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Support-Kiva');
+	it('renders one Support Kiva button outside the mobile drawer', () => {
+		const { container } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
+		const buttons = [...container.querySelectorAll('a[href="/donate/supportus"]')]
+			.filter((a) => !a.closest('#header-basic-menu-drawer'));
+		expect(buttons).toHaveLength(1);
 	});
 
 	describe('major gifts experiment', () => {

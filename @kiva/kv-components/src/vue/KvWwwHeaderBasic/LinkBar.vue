@@ -195,19 +195,7 @@
 				</span>
 			</a>
 			<!-- Support Kiva: small at md, default at lg+ -->
-			<div class="tw-hidden md:tw-block lg:tw-hidden">
-				<kv-button
-					variant="secondary"
-					size="small"
-					href="/donate/supportus"
-					class="tw-whitespace-nowrap"
-					data-testid="header-support-kiva-small"
-					@click="onSupportKivaClick"
-				>
-					Support Kiva
-				</kv-button>
-			</div>
-			<div class="tw-hidden lg:tw-block">
+			<div class="link-bar__support tw-hidden md:tw-block">
 				<kv-button
 					variant="secondary"
 					href="/donate/supportus"
@@ -531,6 +519,18 @@ export default {
 	}
 	.link-bar--major-gifts:not(.link-bar--logged-in) .header-link {
 		@apply tw-whitespace-nowrap;
+	}
+}
+
+/* KvButton's size prop can't vary by breakpoint, so its small-size classes are applied at md only. */
+@screen md {
+	@media not all and (min-width: theme('screens.lg')) {
+		.link-bar__support :deep(a > span) {
+			@apply tw-min-h-4 tw-rounded-sm;
+		}
+		.link-bar__support :deep(a > span > span) {
+			@apply tw-py-0.5 tw-px-2 tw-text-label;
+		}
 	}
 }
 
