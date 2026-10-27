@@ -316,6 +316,11 @@ export const MajorGiftsExperiment = story({
 	appOrigin: 'https://www.kiva.org',
 });
 
+export const MajorGiftsExperimentLoggedIn = story({
+	...LoggedIn.args,
+	showMajorGiftsExp: true,
+});
+
 // Mounts in the control arm and flips 1.5s later, as it does in the browser once the host resolves
 // assignment. Snapshot disabled; the timer would make it flaky.
 export const MajorGiftsExperimentFlip = (_args, { argTypes }) => ({

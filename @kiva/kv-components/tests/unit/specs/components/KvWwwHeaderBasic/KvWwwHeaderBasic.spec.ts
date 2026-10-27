@@ -163,6 +163,19 @@ describe('KvWwwHeaderBasic', () => {
 		expect(emitted()['login-click'][0][0]).toBeInstanceOf(MouseEvent);
 	});
 
+	it('renders a small Support Kiva button for tablet that tracks and links like the desktop one', async () => {
+		const trackEvent = jest.fn();
+		const { getByTestId } = render(KvWwwHeaderBasic, {
+			props: { loggedIn: false },
+			global: { provide: { $kvTrackEvent: trackEvent } },
+		});
+		const button = getByTestId('header-support-kiva-small');
+		expect(button).toHaveTextContent(/^\s*Support Kiva\s*$/);
+		expect(button).toHaveAttribute('href', '/donate/supportus');
+		await fireEvent.click(button);
+		expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Support-Kiva');
+	});
+
 	describe('major gifts experiment', () => {
 		// The host flips show-major-gifts-exp on in the browser after the header has already been
 		// server-rendered in its control state, so both arms have to be correct from the same markup.
