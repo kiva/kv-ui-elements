@@ -196,19 +196,12 @@ describe('KvWwwHeaderBasic', () => {
 			expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Major-Gifts');
 		});
 
-		it('labels the support button "Support Kiva" in the control arm', () => {
-			const { getByTestId } = renderArm(false);
-			expect(getByTestId('header-support-kiva')).toHaveTextContent('Support Kiva');
+		it.each([false, true])('labels the support button "Support Kiva" (experiment: %s)', (exp) => {
+			const { getByTestId } = renderArm(exp);
+			expect(getByTestId('header-support-kiva')).toHaveTextContent(/^\s*Support Kiva\s*$/);
 		});
 
-		it('labels the support button "Give" in the experiment arm', () => {
-			const { getByTestId } = renderArm(true);
-			expect(getByTestId('header-support-kiva')).toHaveTextContent('Give');
-		});
-
-		// Agreed on the ticket (comment 406971): the copy changes but the event does not, so a single
-		// event count covers both arms rather than splitting the metric across two action names.
-		it('keeps the click-Support-Kiva event when the button reads "Give"', async () => {
+		it('keeps the click-Support-Kiva event in the experiment arm', async () => {
 			const { getByTestId, trackEvent } = renderArm(true);
 			await fireEvent.click(getByTestId('header-support-kiva'));
 			expect(trackEvent).toHaveBeenCalledWith('TopNav', 'click-Support-Kiva');
@@ -241,17 +234,16 @@ describe('KvWwwHeaderBasic', () => {
 			expect(drawer.getByText('Support Kiva')).toBeTruthy();
 		});
 
-		it('renders Major gifts and "Give" in the experiment arm', async () => {
+		it('renders Major gifts and keeps "Support Kiva" in the experiment arm', async () => {
 			const drawer = await openDrawer(true);
 			expect(drawer.getByText('Major gifts')).toHaveAttribute('href', '/lp/major-gifts');
-			expect(drawer.getByText('Give')).toBeTruthy();
-			expect(drawer.queryByText('Support Kiva')).toBeNull();
+			expect(drawer.getByText('Support Kiva')).toBeTruthy();
 		});
 
-		it('orders Major gifts between Give and Borrow', async () => {
+		it('orders Major gifts between Support Kiva and Borrow', async () => {
 			const drawer = await openDrawer(true);
 			const labels = drawer.getAllByRole('link').map((a) => a.textContent?.trim());
-			expect(labels).toEqual(['Partner with us', 'Give', 'Major gifts', 'Borrow']);
+			expect(labels).toEqual(['Partner with us', 'Support Kiva', 'Major gifts', 'Borrow']);
 		});
 
 		it('sizes the drawer links to match the mobile Lend menu tabs', async () => {

@@ -110,7 +110,7 @@ export default {
 		// Only for hosts whose ESI emits --user-avatar; without it the avatar renders an empty image.
 		useEsiAvatar: { type: Boolean, default: false },
 		showMGUpsellLink: { type: Boolean, default: false },
-		/** Adds the Major gifts nav link and relabels the support button "Give". */
+		/** Adds the Major gifts nav link. */
 		showMajorGiftsExp: { type: Boolean, default: false },
 		loginUrl: { type: String, default: '/ui-login' },
 		myDashboardUrl: { type: String, default: '/mykiva' },

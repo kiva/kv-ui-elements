@@ -309,8 +309,7 @@ export const WindowDerivedOrigin = story({
 });
 
 // ── Major gifts experiment ─────────────────────────────────────────────────────
-// The treatment arm, to compare against Default. The support button's href and click-Support-Kiva
-// event are deliberately unchanged, so one event count still covers both arms.
+// The treatment arm, to compare against Default.
 export const MajorGiftsExperiment = story({
 	showMajorGiftsExp: true,
 	searchSuggestions: sampleSearchSuggestions,

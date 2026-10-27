@@ -203,7 +203,7 @@
 					data-testid="header-support-kiva"
 					@click="onSupportKivaClick"
 				>
-					{{ showMajorGiftsExp ? 'Give' : 'Support Kiva' }}
+					Support Kiva
 				</kv-button>
 			</div>
 			<!-- balance + avatar → MyKiva menu (logged-in) -->
