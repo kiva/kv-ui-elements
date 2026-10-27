@@ -309,12 +309,16 @@ export const WindowDerivedOrigin = story({
 });
 
 // ── Major gifts experiment ─────────────────────────────────────────────────────
-// The treatment arm, to compare against Default. The support button's href and click-Support-Kiva
-// event are deliberately unchanged, so one event count still covers both arms.
+// The treatment arm, to compare against Default.
 export const MajorGiftsExperiment = story({
 	showMajorGiftsExp: true,
 	searchSuggestions: sampleSearchSuggestions,
 	appOrigin: 'https://www.kiva.org',
+});
+
+export const MajorGiftsExperimentLoggedIn = story({
+	...LoggedIn.args,
+	showMajorGiftsExp: true,
 });
 
 // Mounts in the control arm and flips 1.5s later, as it does in the browser once the host resolves

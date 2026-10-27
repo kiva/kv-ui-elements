@@ -2,7 +2,7 @@
 	<div
 		ref="rootRef"
 		class="link-bar tw-min-h-[4rem] tw-font-medium"
-		:class="{ 'link-bar--major-gifts': showMajorGiftsExp }"
+		:class="{ 'link-bar--major-gifts': showMajorGiftsExp, 'link-bar--logged-in': loggedIn }"
 		:style="menuTimingVars"
 		:data-pointer="pointerType"
 	>
@@ -119,7 +119,7 @@
 				v-for="link in visiblePrimaryLinks"
 				:key="link.id"
 				:href="link.href"
-				class="header-link tw-hidden md:tw-block"
+				class="header-link tw-hidden md:tw-block tw-text-center"
 				:data-testid="`header-link-${link.id}`"
 				@click="onPrimaryClick(link)"
 			>{{ link.label }}</a>
@@ -154,7 +154,7 @@
 			<a
 				v-if="!loggedIn"
 				:href="loginUrl"
-				class="header-link"
+				class="header-link tw-text-center"
 				data-testid="header-login"
 				@click="onLoginClick"
 			>Log in</a>
@@ -194,8 +194,8 @@
 					<span class="tw-sr-only">Basket</span>
 				</span>
 			</a>
-			<!-- Support Kiva (md+) -->
-			<div class="tw-hidden md:tw-block">
+			<!-- Support Kiva: small at md, default at lg+ -->
+			<div class="link-bar__support tw-hidden md:tw-block">
 				<kv-button
 					variant="secondary"
 					href="/donate/supportus"
@@ -203,7 +203,7 @@
 					data-testid="header-support-kiva"
 					@click="onSupportKivaClick"
 				>
-					{{ showMajorGiftsExp ? 'Give' : 'Support Kiva' }}
+					Support Kiva
 				</kv-button>
 			</div>
 			<!-- balance + avatar → MyKiva menu (logged-in) -->
@@ -506,6 +506,31 @@ export default {
 	.link-bar--major-gifts {
 		grid-template-areas: "logo lend majorgifts right" "search search search search";
 		grid-template-columns: 1fr auto auto auto;
+	}
+}
+
+/* Narrowest tablet widths can't fit the Major gifts link at the default spacing. */
+@media (min-width: theme('screens.md')) and (max-width: 53.75rem) {
+	.link-bar--major-gifts {
+		@apply tw-gap-x-1;
+	}
+	.link-bar--major-gifts .link-bar__right {
+		@apply tw-gap-1;
+	}
+	.link-bar--major-gifts:not(.link-bar--logged-in) .header-link {
+		@apply tw-whitespace-nowrap;
+	}
+}
+
+/* KvButton's size prop can't vary by breakpoint, so its small-size classes are applied at md only. */
+@screen md {
+	@media not all and (min-width: theme('screens.lg')) {
+		.link-bar__support :deep(a > span) {
+			@apply tw-min-h-4 tw-rounded-sm;
+		}
+		.link-bar__support :deep(a > span > span) {
+			@apply tw-py-0.5 tw-px-2 tw-text-label;
+		}
 	}
 }
 

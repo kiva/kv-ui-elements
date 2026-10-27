@@ -31,7 +31,7 @@
 				href="/donate/supportus"
 				class="mobile-link tw-text-title"
 				@click="onLinkClick('click-Support-Kiva')"
-			>{{ showMajorGiftsExp ? 'Give' : 'Support Kiva' }}</a>
+			>Support Kiva</a>
 			<a
 				v-if="showMajorGiftsExp"
 				:href="majorGiftsLink.href"
