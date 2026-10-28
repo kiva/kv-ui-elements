@@ -60,13 +60,6 @@ jobs:
       - name: Build projects
         run: npm run build
 
-      # Upload static asssets
-      - name: Upload static assets
-        uses: ./.github/actions/upload-static-assets
-        with:
-          source_dir: "dist"
-          include: "kvui/*"
-
       # Reset the git working directory to the last commit before publishing with lerna
       - name: Reset git working directory
         run: git reset --hard HEAD
@@ -80,12 +73,13 @@ jobs:
         if: contains(fromJSON('["next","alpha","beta"]'), github.ref_name)
         run: npm run publish-prerelease -- --yes --no-verify-access --preid ${{ github.ref_name }} --dist-tag ${{ github.ref_name }}
 
-      # Stage the kv-analytics browser bundle under the version lerna just published and upload it
+      # Stage the kv-analytics browser bundle under the version lerna just published
       - name: Stage kv-analytics browser bundle
         run: npm run stage:browser -w @kiva/kv-analytics
 
-      - name: Upload kv-analytics browser bundle
+      # Upload static assets
+      - name: Upload static assets
         uses: ./.github/actions/upload-static-assets
         with:
           source_dir: "dist"
-          include: "kvui/kv-analytics.*"
+          include: "kvui/*"
