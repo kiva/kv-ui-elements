@@ -16,11 +16,13 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./browser": "./dist/browser.global.js"
   },
   "sideEffects": false,
   "scripts": {
-    "build": "tsup src/*.ts --format cjs,esm --dts --clean",
+    "build": "tsup src/*.ts --format cjs,esm --dts --clean && npm run build:browser",
+    "build:browser": "tsup --config tsup.browser.config.ts",
     "lint": "eslint --ext .ts,.vue ./src",
     "test": "jest"
   },
