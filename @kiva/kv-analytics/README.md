@@ -41,10 +41,10 @@ The build produces three outputs in `dist/`:
 
 ### Browser bundle
 
-`dist/browser.global.js` declares a `kvAnalytics` global with every export of the package and has no `require()` or `import` at runtime, so it can be served inline or from a CDN with a pinned version:
+`dist/browser.global.js` declares a `kvAnalytics` global with every export of the package and has no `require()` or `import` at runtime, so it can be served inline or from a plain script tag. The release workflow uploads it to the kvui static assets bucket as `kv-analytics.<version>.js`, so pin the version you tested against:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@kiva/kv-analytics@1.7.0/dist/browser.global.js"></script>
+<script src="https://www.kiva.org/kvui/kv-analytics.1.7.0.js"></script>
 <script>
 	// Report Core Web Vitals through an existing Snowplow v2 tracker
 	kvAnalytics.collectWebVitals(function (category, action, label, property, value) {

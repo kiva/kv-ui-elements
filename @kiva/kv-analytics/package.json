@@ -23,6 +23,7 @@
   "scripts": {
     "build": "tsup src/*.ts --format cjs,esm --dts --clean && npm run build:browser",
     "build:browser": "tsup --config tsup.browser.config.ts",
+    "stage:browser": "mkdir -p ../../dist/kvui && cp dist/browser.global.js ../../dist/kvui/kv-analytics.$npm_package_version.js",
     "lint": "eslint --ext .ts,.vue ./src",
     "test": "jest"
   },
