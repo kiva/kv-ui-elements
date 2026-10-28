@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.6.0...@kiva/kv-analytics@1.7.0) (2026-10-28)
+
+
+### Features
+
+* mp-3408 add a browser bundle of kv-analytics for pages without … ([#935](https://github.com/kiva/kv-ui-elements/issues/935)) ([172a11f](https://github.com/kiva/kv-ui-elements/commit/172a11f4f557c6eb98cb8001898d94f6f5068516))
+
+
+
+
+
 # [1.6.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-analytics@1.5.1...@kiva/kv-analytics@1.6.0) (2026-10-26)
 
 
