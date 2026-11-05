@@ -19,3 +19,4 @@ export * from './themeUtils';
 export * from './throttle';
 export * from './touchEvents';
 export * from './treemap';
+export * from './useExpandableRegion';
