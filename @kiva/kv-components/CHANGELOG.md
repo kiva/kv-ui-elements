@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.1.1...@kiva/kv-components@11.2.0) (2026-11-05)
+
+
+### Features
+
+* **useExpandableRegion:** add a composable for expandable content regions ([37161a0](https://github.com/kiva/kv-ui-elements/commit/37161a0ebb8e0a85dd21ce900d8fba47125548d9))
+
+
+
+
+
 ## [11.1.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.1.0...@kiva/kv-components@11.1.1) (2026-10-27)
 
 
