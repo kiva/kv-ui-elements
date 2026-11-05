@@ -92,7 +92,7 @@ export default {
 		const titleSlugified = computed(() => kebabCase(title.value));
 
 		const toggleFAQ = () => {
-			props.kvTrackFunction('faq', 'toggle', titleSlugified.value, open.value ? 'expand' : 'collapse');
+			props.kvTrackFunction('faq', 'toggle', titleSlugified.value, open.value ? 'collapse' : 'expand');
 			open.value = !open.value;
 			emit('toggle', { title: titleSlugified.value });
 		};

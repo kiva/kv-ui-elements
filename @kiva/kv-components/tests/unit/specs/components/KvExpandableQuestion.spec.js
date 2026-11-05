@@ -52,4 +52,23 @@ describe('KvExpandableQuestion', () => {
 		const lastLineClosed = getByText('Test Question');
 		expect(lastLineClosed).not.toBeVisible();
 	});
+
+	it('tracks the action the click performs: expand when opening, collapse when closing', async () => {
+		const kvTrackFunction = jest.fn();
+		const { getByText } = render(KvExpandableQuestion, {
+			props: {
+				title: 'Kv Expandable Question',
+				id: 'kv-expandable-question',
+				kvTrackFunction,
+			},
+			slots: { default: 'Test Question' },
+		});
+		const titleContent = getByText('Kv Expandable Question');
+
+		await fireEvent.click(titleContent);
+		expect(kvTrackFunction).toHaveBeenLastCalledWith('faq', 'toggle', 'kv-expandable-question', 'expand');
+
+		await fireEvent.click(titleContent);
+		expect(kvTrackFunction).toHaveBeenLastCalledWith('faq', 'toggle', 'kv-expandable-question', 'collapse');
+	});
 });
