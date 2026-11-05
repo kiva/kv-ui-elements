@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.2.0...@kiva/kv-components@11.2.1) (2026-11-05)
+
+
+### Bug Fixes
+
+* [MP-3484] - KvExpandableQuestion.vue toggle events ([4fb50a6](https://github.com/kiva/kv-ui-elements/commit/4fb50a6edb0405df0e6c39b947c11d0110407256))
+
+
+
+
+
 # [11.2.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.1.1...@kiva/kv-components@11.2.0) (2026-11-05)
 
 
