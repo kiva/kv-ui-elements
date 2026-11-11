@@ -1,6 +1,16 @@
 import { render } from '@testing-library/vue';
 import { axe } from 'jest-axe';
+import kvTokensPrimitives from '@kiva/kv-tokens';
 import KvSimpleMap from '#components/KvSimpleMap.vue';
+import countryPaths from '../../../../src/data/simpleMapCountryPaths';
+
+const { brand } = kvTokensPrimitives.colors;
+const TIER_COLORS = [brand[400], brand[500], brand.DEFAULT, brand[800], brand[1000]];
+
+function fillOf(container: Element, id: string) {
+	const index = countryPaths.findIndex((entry) => entry.id === id);
+	return container.querySelectorAll('.kv-simple-map__pan-layer path')[index].getAttribute('fill');
+}
 
 const KIVA_MARKETS = [
 	{ id: 'KE', name: 'Kenya', loanCount: 142 },
@@ -70,5 +80,34 @@ describe('KvSimpleMap', () => {
 		});
 		// Smoke check only: component mounts with a 1-loan country in the list.
 		expect(container.querySelector('svg')).not.toBeNull();
+	});
+
+	it('fills countries across five brand tiers by default', () => {
+		const { container } = render(KvSimpleMap, {
+			props: {
+				countries: [
+					{ id: 'KH', loanCount: 3 },
+					{ id: 'UG', loanCount: 4 },
+					{ id: 'PE', loanCount: 7 },
+					{ id: 'SN', loanCount: 12 },
+					{ id: 'KE', loanCount: 13 },
+				],
+			},
+		});
+		expect(fillOf(container, 'KH')).toBe(TIER_COLORS[0]);
+		expect(fillOf(container, 'UG')).toBe(TIER_COLORS[1]);
+		expect(fillOf(container, 'PE')).toBe(TIER_COLORS[2]);
+		expect(fillOf(container, 'SN')).toBe(TIER_COLORS[3]);
+		expect(fillOf(container, 'KE')).toBe(TIER_COLORS[4]);
+	});
+
+	it('uses only the first tiers when fewer bounds are passed', () => {
+		const { container } = render(KvSimpleMap, {
+			props: {
+				countries: [{ id: 'KE', loanCount: 100 }],
+				loanCountTiers: [1, 4, 9, 15],
+			},
+		});
+		expect(fillOf(container, 'KE')).toBe(TIER_COLORS[3]);
 	});
 });
