@@ -1,11 +1,12 @@
 <template>
 	<figure
-		class="kv-pie-chart-v2 tw-flex tw-flex-col tw-items-center tw-gap-1"
+		class="kv-pie-chart-v2 tw-flex tw-items-center"
+		:class="isTwoColumn ? 'tw-flex-row tw-gap-3' : 'tw-flex-col tw-gap-1'"
 		:style="{ '--segment-grow-duration': `${growDuration}ms` }"
 		aria-label="Pie chart"
 	>
 		<!-- Donut chart SVG -->
-		<div class="tw-px-2">
+		<div :class="isTwoColumn ? 'tw-w-2/5 tw-shrink-0' : 'tw-px-2'">
 			<svg
 				viewBox="0 0 262 262"
 				fill="none"
@@ -65,87 +66,114 @@
 			</svg>
 		</div>
 
-		<!-- Legend: 2-column grid -->
 		<div
 			v-if="hasData && !loading"
-			class="tw-flex tw-flex-wrap tw-justify-center tw-gap-0.5 tw-w-full tw-pt-0.5"
+			:class="isTwoColumn ? 'tw-flex-1 tw-min-w-0' : 'tw-w-full'"
 		>
-			<!-- Visible segment pills -->
-			<div
-				v-for="(segment, index) in visibleSegments"
-				:key="segment.label"
-				class="
-					tw-bg-gray-100
-					tw-flex tw-gap-0.5 tw-items-center
-					tw-px-1 tw-py-0.5
-					tw-rounded-xs
-				"
+			<p
+				v-if="listHeader"
+				class="legend-header tw-text-h4 tw-text-primary tw-mb-1"
+				:class="{ 'tw-text-center': !isTwoColumn }"
 			>
-				<div class="tw-flex tw-gap-0.5 tw-items-center tw-min-w-0 tw-overflow-hidden">
-					<span
-						class="tw-shrink-0 tw-w-1 tw-h-1 tw-rounded-full legend-dot"
-						:style="{
-							backgroundColor: segment.isVisible ? segment.color : '#d1d5db',
-							transitionDelay: `${segment.delay}ms`,
-						}"
-					></span>
+				{{ listHeader }}
+			</p>
+
+			<!-- Legend -->
+			<div
+				class="tw-flex tw-gap-0.5 tw-w-full"
+				:class="isTwoColumn
+					? 'tw-flex-col tw-items-start'
+					: 'tw-flex-wrap tw-justify-center tw-pt-0.5'"
+			>
+				<!-- Visible segment pills -->
+				<div
+					v-for="(segment, index) in visibleSegments"
+					:key="segment.label"
+					class="legend-item tw-flex tw-gap-0.5 tw-items-center"
+					:class="{ 'tw-bg-gray-100 tw-px-1 tw-py-0.5 tw-rounded-xs': !isTwoColumn }"
+				>
+					<div class="tw-flex tw-gap-0.5 tw-items-center tw-min-w-0 tw-overflow-hidden">
+						<span
+							class="tw-shrink-0 tw-w-1 tw-h-1 tw-rounded-full legend-dot"
+							:style="{
+								backgroundColor: segment.isVisible ? segment.color : '#d1d5db',
+								transitionDelay: `${segment.delay}ms`,
+							}"
+						></span>
+						<span
+							class="
+								tw-font-medium tw-text-small tw-text-primary
+								tw-whitespace-nowrap tw-truncate
+							"
+						>
+							{{ segment.label }}
+						</span>
+					</div>
 					<span
 						class="
-							tw-font-medium tw-text-small tw-text-primary
-							tw-whitespace-nowrap tw-truncate
+							legend-value
+							tw-font-light tw-text-small tw-text-primary
+							tw-shrink-0 tw-tabular-nums
 						"
+						:class="isTwoColumn ? 'tw-text-left' : 'tw-text-right'"
+						:style="{ minWidth: valueMinWidth }"
 					>
-						{{ segment.label }}
+						{{ formatDisplayValue(index) }}
 					</span>
 				</div>
-				<span
-					class="
-						tw-font-light tw-text-small tw-text-primary
-						tw-text-right tw-shrink-0 tw-tabular-nums
-					"
-					:style="{ minWidth: valueMinWidth }"
-				>
-					{{ formatDisplayValue(index) }}
-				</span>
-			</div>
 
-			<!-- "Other" pill -->
-			<button
-				v-if="otherItems.length > 0"
-				class="
-					tw-bg-gray-100
-					tw-flex tw-gap-0.5 tw-items-center
-					tw-px-1 tw-py-0.5
-					tw-rounded-xs
-					tw-cursor-pointer
-					tw-border-0
-					tw-text-left
-				"
-				type="button"
-				@click="showOtherLightbox = true"
-			>
-				<div class="tw-flex tw-gap-0.5 tw-items-center tw-shrink-0">
-					<span
-						class="tw-shrink-0 tw-w-1 tw-h-1 tw-rounded-full legend-dot"
-						:style="{
-							backgroundColor: otherSegment?.isVisible ? '#C4C4C4' : '#d1d5db',
-							transitionDelay: `${otherSegment?.delay ?? 0}ms`,
-						}"
-					></span>
-					<span class="tw-font-medium tw-text-small tw-text-primary tw-whitespace-nowrap">
-						Other
-					</span>
-				</div>
-				<span
+				<!-- "More" link -->
+				<button
+					v-if="otherItems.length > 0 && moreLinkLabel"
 					class="
-						tw-font-light tw-text-small tw-text-primary
-						tw-text-right tw-shrink-0 tw-tabular-nums
+						tw-text-small tw-text-secondary hover:tw-underline
+						tw-cursor-pointer tw-border-0 tw-p-0 tw-text-left
 					"
-					:style="{ minWidth: valueMinWidth }"
+					type="button"
+					@click="showOtherLightbox = true"
 				>
-					{{ formatOtherDisplayValue() }}
-				</span>
-			</button>
+					{{ moreLinkText }}
+				</button>
+
+				<!-- "Other" pill -->
+				<button
+					v-else-if="otherItems.length > 0"
+					class="
+						legend-item
+						tw-flex tw-gap-0.5 tw-items-center
+						tw-cursor-pointer
+						tw-border-0
+						tw-text-left
+					"
+					:class="{ 'tw-bg-gray-100 tw-px-1 tw-py-0.5 tw-rounded-xs': !isTwoColumn }"
+					type="button"
+					@click="showOtherLightbox = true"
+				>
+					<div class="tw-flex tw-gap-0.5 tw-items-center tw-shrink-0">
+						<span
+							class="tw-shrink-0 tw-w-1 tw-h-1 tw-rounded-full legend-dot"
+							:style="{
+								backgroundColor: otherSegment?.isVisible ? '#C4C4C4' : '#d1d5db',
+								transitionDelay: `${otherSegment?.delay ?? 0}ms`,
+							}"
+						></span>
+						<span class="tw-font-medium tw-text-small tw-text-primary tw-whitespace-nowrap">
+							Other
+						</span>
+					</div>
+					<span
+						class="
+							legend-value
+							tw-font-light tw-text-small tw-text-primary
+							tw-shrink-0 tw-tabular-nums
+						"
+						:class="isTwoColumn ? 'tw-text-left' : 'tw-text-right'"
+						:style="{ minWidth: valueMinWidth }"
+					>
+						{{ formatOtherDisplayValue() }}
+					</span>
+				</button>
+			</div>
 		</div>
 
 		<!-- "Other" lightbox -->
@@ -224,6 +252,8 @@ export interface KvPieChartV2Item {
 }
 
 export type PieChartUnit = 'percent' | 'amount' | 'count';
+
+export type PieChartLayout = 'stacked' | 'two-column';
 
 // ── Donut geometry ──
 // The donut renders inside a fixed 262x262 viewBox. The radius is derived from
@@ -328,6 +358,32 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Heading shown above the legend.
+		 */
+		listHeader: {
+			type: String,
+			default: '',
+		},
+		/**
+		 * `stacked` puts the legend under the chart as pills. `two-column` puts it
+		 * beside the chart as plain rows.
+		 * @values stacked, two-column
+		 */
+		layout: {
+			type: String as PropType<PieChartLayout>,
+			default: 'stacked',
+			validator: (value: string) => ['stacked', 'two-column'].includes(value),
+		},
+		/**
+		 * When set, replaces the "Other" pill with a text link that opens the same lightbox.
+		 * `{count}` is replaced with the number of collapsed items, e.g. `'+{count} more'`.
+		 * The link shows no value, whatever `unit` is.
+		 */
+		moreLinkLabel: {
+			type: String,
+			default: '',
+		},
 	},
 	setup(props) {
 		const {
@@ -340,7 +396,11 @@ export default {
 			initialDelay,
 			growDuration,
 			animateOut,
+			layout,
+			moreLinkLabel,
 		} = toRefs(props);
+
+		const isTwoColumn = computed(() => layout.value === 'two-column');
 
 		const showOtherLightbox = ref(false);
 		const animatedIn = ref(false);
@@ -382,6 +442,10 @@ export default {
 				color: getPieChartColor(i, item.color),
 			}));
 		});
+
+		const moreLinkText = computed(
+			() => moreLinkLabel.value.replace(/\{count\}/g, String(otherItems.value.length)),
+		);
 
 		const otherTotal = computed(() => {
 			return otherItems.value.reduce((sum, item) => sum + item.value, 0);
@@ -609,6 +673,8 @@ export default {
 			animatedIn,
 			displayValues,
 			// Computed
+			isTwoColumn,
+			moreLinkText,
 			hasData,
 			visibleSegments,
 			otherSegment,

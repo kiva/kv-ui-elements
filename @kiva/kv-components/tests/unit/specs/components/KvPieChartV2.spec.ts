@@ -201,4 +201,130 @@ describe('KvPieChartV2', () => {
 		expect(segments[1].style.transitionDelay).toBe('250ms');
 		expect(segments[2].style.transitionDelay).toBe('500ms');
 	});
+
+	describe('listHeader', () => {
+		it('renders no header by default', () => {
+			const { container } = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: false },
+			});
+			expect(container.querySelector('.legend-header')).toBeNull();
+		});
+
+		it('renders the header above the legend', () => {
+			const { container, getByText } = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: false, listHeader: 'Lent to' },
+			});
+			const header = getByText('Lent to');
+			const firstItem = container.querySelector('.legend-item') as Element;
+			// eslint-disable-next-line no-bitwise
+			expect(header.compareDocumentPosition(firstItem) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+		});
+
+		it('hides the header while loading', () => {
+			const { queryByText } = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: true, listHeader: 'Lent to' },
+			});
+			expect(queryByText('Lent to')).toBeNull();
+		});
+	});
+
+	describe('layout', () => {
+		it('defaults to stacked, with the legend under the chart as pills', () => {
+			const { container } = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: false },
+			});
+			const root = container.querySelector('.kv-pie-chart-v2');
+			expect(root).toHaveClass('tw-flex-col');
+			expect(root).not.toHaveClass('tw-flex-row');
+			container.querySelectorAll('.legend-item').forEach((item) => {
+				expect(item).toHaveClass('tw-bg-gray-100');
+			});
+		});
+
+		it('two-column puts the legend beside the chart without pill backgrounds', () => {
+			const { container } = render(KvPieChartV2, {
+				props: { values: manyValues, loading: false, layout: 'two-column' },
+			});
+			const root = container.querySelector('.kv-pie-chart-v2');
+			expect(root).toHaveClass('tw-flex-row');
+			expect(root).not.toHaveClass('tw-flex-col');
+			const items = container.querySelectorAll('.legend-item');
+			expect(items.length).toBe(6);
+			items.forEach((item) => {
+				expect(item).not.toHaveClass('tw-bg-gray-100');
+			});
+		});
+
+		it('right-aligns values in stacked and left-aligns them in two-column', () => {
+			const stacked = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: false },
+			});
+			expect(stacked.container.querySelector('.legend-value')).toHaveClass('tw-text-right');
+			const twoColumn = render(KvPieChartV2, {
+				props: { values: defaultValues, loading: false, layout: 'two-column' },
+			});
+			expect(twoColumn.container.querySelector('.legend-value')).toHaveClass('tw-text-left');
+		});
+
+		it('rejects unknown layouts', () => {
+			const { validator } = (KvPieChartV2 as any).props.layout;
+			expect(validator('stacked')).toBe(true);
+			expect(validator('two-column')).toBe(true);
+			expect(validator('grid')).toBe(false);
+		});
+
+		it('has no accessibility violations in two-column with header and more link', async () => {
+			const { container } = render(KvPieChartV2, {
+				props: {
+					values: manyValues,
+					loading: false,
+					layout: 'two-column',
+					listHeader: 'Lent to',
+					moreLinkLabel: '+{count} more',
+				},
+			});
+			const results = await axe(container);
+			expect(results).toHaveNoViolations();
+		});
+	});
+
+	describe('moreLinkLabel', () => {
+		it.each(['percent', 'amount', 'count'])('replaces the Other pill with a count link for unit %s', (unit) => {
+			const { getByRole, queryByRole } = render(KvPieChartV2, {
+				props: {
+					values: manyValues, loading: false, unit, moreLinkLabel: '+{count} more',
+				},
+			});
+			const link = getByRole('button', { name: '+3 more' });
+			expect(link.textContent?.trim()).toBe('+3 more');
+			expect(link).not.toHaveClass('tw-bg-gray-100');
+			expect(queryByRole('button', { name: /Other/ })).toBeNull();
+		});
+
+		it('replaces every {count} token', () => {
+			const { getByRole } = render(KvPieChartV2, {
+				props: {
+					values: manyValues, loading: false, moreLinkLabel: '{count} more ({count})',
+				},
+			});
+			getByRole('button', { name: '3 more (3)' });
+		});
+
+		it('still opens the lightbox', async () => {
+			const { getByRole } = render(KvPieChartV2, {
+				props: { values: manyValues, loading: false, moreLinkLabel: '+{count} more' },
+			});
+			await fireEvent.click(getByRole('button', { name: '+3 more' }));
+			getByRole('dialog');
+		});
+
+		it('is not rendered when nothing overflows', () => {
+			const { queryByRole } = render(KvPieChartV2, {
+				props: {
+					values: defaultValues, loading: false, shownSegments: 6, moreLinkLabel: '+{count} more',
+				},
+			});
+			expect(queryByRole('button')).toBeNull();
+		});
+	});
 });

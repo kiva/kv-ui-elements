@@ -37,6 +37,9 @@ The component exposes several axes of customization:
 - **Segment Cap**: `shownSegments` caps the number of distinct segments before the rest collapse into "Other"
 - **Custom Colors**: Each item can override its assigned palette color via an optional `color` field
 - **Animation Timing**: `initialDelay` postpones the entrance animation; `growDuration` sets how fast each segment draws — and the stagger and count-up, kept in sync; `animateOut` reverses it
+- **Layout**: `layout="two-column"` puts the legend beside the chart as plain rows instead of pills under it
+- **List Header**: `listHeader` adds a heading above the legend
+- **More Link**: `moreLinkLabel` replaces the "Other" pill with a link such as "+3 more"
 
 <Story of={KvPieChartV2Stories.AllVariations} />
 
@@ -75,6 +78,22 @@ When `loading` is true, the chart renders a neutral gray skeleton ring in place 
 When the number of items exceeds `shownSegments`, all overflow items are merged into a single gray "Other" segment in the ring and a corresponding "Other" pill in the legend. Clicking the pill opens a lightbox showing **every** item — both visible and collapsed — sorted in descending order with their assigned colors. This lets consumers scan the long tail without inflating the chart itself.
 
 <Story of={KvPieChartV2Stories.DataDensity} />
+
+### Two-Column Layout
+
+`layout="two-column"` places the legend beside the chart at every width. The chart takes two fifths of the width and the legend the rest. Legend rows drop the pill background.
+
+<Story of={KvPieChartV2Stories.TwoColumnLayout} />
+
+### List Header and More Link
+
+`listHeader` renders a heading above the legend. `moreLinkLabel` turns the "Other" pill into a text link that opens the same lightbox; `{count}` in the label becomes the number of collapsed items, and no value is shown whatever the `unit`.
+
+<Story of={KvPieChartV2Stories.MoreLink} />
+
+Together they cover the impact page's "Lent to" breakdown:
+
+<Story of={KvPieChartV2Stories.ImpactBreakdown} />
 
 ## Anatomy
 
@@ -271,4 +290,17 @@ export default {
   },
 };
 </script>
+```
+
+### Two-Column Breakdown with Header and More Link
+
+```vue
+<template>
+  <KvPieChartV2
+    :values="loansBySector"
+    layout="two-column"
+    list-header="Lent to"
+    more-link-label="+{count} more"
+  />
+</template>
 ```

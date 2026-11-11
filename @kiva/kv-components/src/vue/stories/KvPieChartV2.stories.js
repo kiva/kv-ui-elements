@@ -33,6 +33,16 @@ const manyValues = [
 	{ label: 'Wholesale', value: 5 },
 ];
 
+const sectorValues = [
+	{ label: 'Agriculture', value: 32 },
+	{ label: 'Education', value: 24 },
+	{ label: 'Housing', value: 18 },
+	{ label: 'Food', value: 14 },
+	{ label: 'Health', value: 7 },
+	{ label: 'Retail', value: 3 },
+	{ label: 'Arts', value: 2 },
+];
+
 const customColorValues = [
 	{ label: 'Category A', value: 40, color: '#FF6B6B' },
 	{ label: 'Category B', value: 30, color: '#4ECDC4' },
@@ -160,6 +170,31 @@ export default {
 				defaultValue: { summary: 'false' },
 			},
 		},
+		listHeader: {
+			control: 'text',
+			description: 'Heading shown above the legend.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
+		layout: {
+			control: { type: 'radio' },
+			options: ['stacked', 'two-column'],
+			description: '`stacked` puts the legend under the chart as pills; `two-column` beside it as plain rows.',
+			table: {
+				type: { summary: "'stacked' | 'two-column'" },
+				defaultValue: { summary: "'stacked'" },
+			},
+		},
+		moreLinkLabel: {
+			control: 'text',
+			description: 'Replaces the "Other" pill with a link. `{count}` becomes the number of collapsed items.',
+			table: {
+				type: { summary: 'string' },
+				defaultValue: { summary: "''" },
+			},
+		},
 	},
 };
 
@@ -177,6 +212,9 @@ export const Default = {
 		initialDelay: 1000,
 		growDuration: 500,
 		animateOut: false,
+		listHeader: '',
+		layout: 'stacked',
+		moreLinkLabel: '',
 	},
 	render: (args) => ({
 		components: { KvPieChartV2 },
@@ -520,6 +558,126 @@ export const DrawSpeed = {
 				<div style="width: 262px;">
 					<KvPieChartV2 :values="manyValues" :shown-segments="6" :initial-delay="0" :grow-duration="120" />
 					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">growDuration: 120 (snappy)</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * List Header - Optional heading above the legend.
+ */
+export const ListHeader = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { sampleValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="sampleValues" list-header="Lent to" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">stacked</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="sampleValues" list-header="Lent to" layout="two-column" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">two-column</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * Two-Column Layout - Legend beside the chart as plain rows, at any width.
+ */
+export const TwoColumnLayout = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { sampleValues, fewValues, manyValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="sampleValues" layout="two-column" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Default (6 items)</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="fewValues" layout="two-column" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Few items</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="manyValues" layout="two-column" unit="count" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Many items (Other row)</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * More Link - moreLinkLabel turns the "Other" pill into a "+N more" link that opens the
+ * same lightbox. It shows no value, whatever the unit.
+ */
+export const MoreLink = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { manyValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="manyValues" more-link-label="+{count} more" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">stacked, percent</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="manyValues" layout="two-column" unit="amount" more-link-label="+{count} more" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">two-column, amount</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="manyValues" layout="two-column" unit="count" more-link-label="See {count} more" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">two-column, count, custom copy</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * Impact Breakdown - All three options together, approximating the impact page's
+ * "Lent to" breakdown at desktop and mobile widths.
+ */
+export const ImpactBreakdown = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { sectorValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div class="tw-bg-white tw-rounded-md tw-p-3" style="width: 400px;">
+					<KvPieChartV2
+						:values="sectorValues"
+						layout="two-column"
+						list-header="Lent to"
+						more-link-label="+{count} more"
+						:stroke-width="48"
+						:segment-gap="6"
+					/>
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Desktop</p>
+				</div>
+				<div class="tw-bg-white tw-rounded-md tw-p-2" style="width: 300px;">
+					<KvPieChartV2
+						:values="sectorValues"
+						layout="two-column"
+						list-header="Lent to"
+						more-link-label="+{count} more"
+						:stroke-width="48"
+						:segment-gap="6"
+					/>
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Mobile</p>
 				</div>
 			</div>
 		`,
