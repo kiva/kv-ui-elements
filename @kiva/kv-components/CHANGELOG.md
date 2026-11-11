@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.3.0...@kiva/kv-components@11.4.0) (2026-11-11)
+
+
+### Features
+
+* **KvSimpleMap:** five brand loan-count tiers by default (CIT-5644) ([5824fa7](https://github.com/kiva/kv-ui-elements/commit/5824fa713f5ccdf3ffd3531224385aaf90fda613))
+
+
+
+
+
 # [11.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.2.1...@kiva/kv-components@11.3.0) (2026-11-11)
 
 
