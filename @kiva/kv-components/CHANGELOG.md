@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.2.1...@kiva/kv-components@11.3.0) (2026-11-11)
+
+
+### Features
+
+* **KvPieChartV2:** add list header, two-column layout and more link options (CIT-5645) ([38e7dc7](https://github.com/kiva/kv-ui-elements/commit/38e7dc722c8b07952b1ba0f61ebe9e68a0c507a2))
+* **KvPieChartV2:** add listGap to control the chart-to-list gap (CIT-5645) ([6cd31cf](https://github.com/kiva/kv-ui-elements/commit/6cd31cf04c6ef2b16e924541bedd2c5368bb71d9))
+* **KvPieChartV2:** default the two-column listGap to 3 (CIT-5645) ([8bdfeca](https://github.com/kiva/kv-ui-elements/commit/8bdfecafc296b824c250042df9039c401d5600f4))
+
+
+
+
+
 ## [11.2.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.2.0...@kiva/kv-components@11.2.1) (2026-11-05)
 
 
