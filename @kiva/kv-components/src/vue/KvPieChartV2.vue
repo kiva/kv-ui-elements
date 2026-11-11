@@ -381,7 +381,7 @@ export default {
 		},
 		/**
 		 * Gap between the chart and the legend, in design-system spacing steps (1 = 8px).
-		 * Defaults to 1 for `stacked` and 5 for `two-column`.
+		 * Defaults to 1 for `stacked` and 3 for `two-column`.
 		 */
 		listGap: {
 			type: Number,
@@ -416,7 +416,7 @@ export default {
 
 		const isTwoColumn = computed(() => layout.value === 'two-column');
 		const chartListGap = computed(() => {
-			const steps = listGap.value ?? (isTwoColumn.value ? 5 : 1);
+			const steps = listGap.value ?? (isTwoColumn.value ? 3 : 1);
 			return `${steps * SPACING_STEP_REM}rem`;
 		});
 

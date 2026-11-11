@@ -268,7 +268,7 @@ describe('KvPieChartV2', () => {
 
 		it.each([
 			['stacked', undefined, '0.5rem'],
-			['two-column', undefined, '2.5rem'],
+			['two-column', undefined, '1.5rem'],
 			['stacked', 3, '1.5rem'],
 			['two-column', 0, '0rem'],
 			['two-column', 2.5, '1.25rem'],
