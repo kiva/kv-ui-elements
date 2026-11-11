@@ -266,6 +266,28 @@ describe('KvPieChartV2', () => {
 			expect(twoColumn.container.querySelector('.legend-value')).toHaveClass('tw-text-left');
 		});
 
+		it.each([
+			['stacked', undefined, '0.5rem'],
+			['two-column', undefined, '2.5rem'],
+			['stacked', 3, '1.5rem'],
+			['two-column', 0, '0rem'],
+			['two-column', 2.5, '1.25rem'],
+		])('%s layout with listGap %s sets a %s gap between chart and list', (layout, listGap, expected) => {
+			const { container } = render(KvPieChartV2, {
+				props: {
+					values: defaultValues, loading: false, layout, listGap,
+				},
+			});
+			const root = container.querySelector('.kv-pie-chart-v2') as HTMLElement;
+			expect(root.style.gap).toBe(expected);
+		});
+
+		it('rejects a negative listGap', () => {
+			const { validator } = (KvPieChartV2 as any).props.listGap;
+			expect(validator(0)).toBe(true);
+			expect(validator(-1)).toBe(false);
+		});
+
 		it('rejects unknown layouts', () => {
 			const { validator } = (KvPieChartV2 as any).props.layout;
 			expect(validator('stacked')).toBe(true);

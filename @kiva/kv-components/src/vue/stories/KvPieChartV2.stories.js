@@ -187,6 +187,16 @@ export default {
 				defaultValue: { summary: "'stacked'" },
 			},
 		},
+		listGap: {
+			control: {
+				type: 'range', min: 0, max: 10, step: 0.5,
+			},
+			description: 'Gap between chart and legend in spacing steps (1 = 8px).',
+			table: {
+				type: { summary: 'number' },
+				defaultValue: { summary: '1 (stacked), 5 (two-column)' },
+			},
+		},
 		moreLinkLabel: {
 			control: 'text',
 			description: 'Replaces the "Other" pill with a link. `{count}` becomes the number of collapsed items.',
@@ -610,6 +620,35 @@ export const TwoColumnLayout = {
 				<div style="width: 380px;">
 					<KvPieChartV2 :values="manyValues" layout="two-column" unit="count" />
 					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">Many items (Other row)</p>
+				</div>
+			</div>
+		`,
+	}),
+};
+
+/**
+ * List Gap - listGap sets the space between chart and legend in spacing steps (1 = 8px).
+ * Defaults to 1 for stacked and 5 for two-column.
+ */
+export const ListGap = {
+	render: () => ({
+		components: { KvPieChartV2 },
+		setup() {
+			return { sampleValues };
+		},
+		template: `
+			<div class="tw-flex tw-items-start tw-gap-6 tw-flex-wrap tw-p-6 tw-bg-gray-50 tw-rounded-md">
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="sampleValues" layout="two-column" :list-gap="2" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">two-column, listGap: 2</p>
+				</div>
+				<div style="width: 380px;">
+					<KvPieChartV2 :values="sampleValues" layout="two-column" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">two-column, default (5)</p>
+				</div>
+				<div style="width: 262px;">
+					<KvPieChartV2 :values="sampleValues" :list-gap="4" />
+					<p class="tw-text-small tw-mt-2 tw-text-center tw-text-secondary">stacked, listGap: 4</p>
 				</div>
 			</div>
 		`,

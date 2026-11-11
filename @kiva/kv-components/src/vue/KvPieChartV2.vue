@@ -1,8 +1,8 @@
 <template>
 	<figure
 		class="kv-pie-chart-v2 tw-flex tw-items-center"
-		:class="isTwoColumn ? 'tw-flex-row tw-gap-3' : 'tw-flex-col tw-gap-1'"
-		:style="{ '--segment-grow-duration': `${growDuration}ms` }"
+		:class="isTwoColumn ? 'tw-flex-row' : 'tw-flex-col'"
+		:style="{ '--segment-grow-duration': `${growDuration}ms`, gap: chartListGap }"
 		aria-label="Pie chart"
 	>
 		<!-- Donut chart SVG -->
@@ -263,6 +263,10 @@ const VIEWBOX = 262;
 const CX = VIEWBOX / 2;
 const CY = VIEWBOX / 2;
 
+// Tailwind can't generate tw-gap-* from a runtime value, so the gap is set inline
+// on kv-tokens' linear spacing scale (1 step = 8px).
+const SPACING_STEP_REM = 0.5;
+
 // ── Animation timing ──
 // The `growDuration` prop (ms) drives three things kept in lockstep so the sweep stays
 // continuous and the ring stays in sync with its count-up numbers:
@@ -376,6 +380,15 @@ export default {
 			validator: (value: string) => ['stacked', 'two-column'].includes(value),
 		},
 		/**
+		 * Gap between the chart and the legend, in design-system spacing steps (1 = 8px).
+		 * Defaults to 1 for `stacked` and 5 for `two-column`.
+		 */
+		listGap: {
+			type: Number,
+			default: undefined,
+			validator: (value: number) => value >= 0,
+		},
+		/**
 		 * When set, replaces the "Other" pill with a text link that opens the same lightbox.
 		 * `{count}` is replaced with the number of collapsed items, e.g. `'+{count} more'`.
 		 * The link shows no value, whatever `unit` is.
@@ -397,10 +410,15 @@ export default {
 			growDuration,
 			animateOut,
 			layout,
+			listGap,
 			moreLinkLabel,
 		} = toRefs(props);
 
 		const isTwoColumn = computed(() => layout.value === 'two-column');
+		const chartListGap = computed(() => {
+			const steps = listGap.value ?? (isTwoColumn.value ? 5 : 1);
+			return `${steps * SPACING_STEP_REM}rem`;
+		});
 
 		const showOtherLightbox = ref(false);
 		const animatedIn = ref(false);
@@ -674,6 +692,7 @@ export default {
 			displayValues,
 			// Computed
 			isTwoColumn,
+			chartListGap,
 			moreLinkText,
 			hasData,
 			visibleSegments,
