@@ -243,10 +243,10 @@ const props = defineProps({
 		type: Number,
 		default: 0.5,
 	},
-	/** Highlight color for active / hovered countries. Defaults to eco-green DEFAULT. */
+	/** Highlight color for active / hovered countries. Defaults to brand DEFAULT. */
 	highlightColor: {
 		type: String,
-		default: kvTokensPrimitives.colors['eco-green'].DEFAULT,
+		default: kvTokensPrimitives.colors.brand.DEFAULT,
 	},
 	/** Base color for countries that aren't in the `countries` list. */
 	baseColor: {
@@ -254,14 +254,14 @@ const props = defineProps({
 		default: kvTokensPrimitives.colors.gray[200],
 	},
 	/**
-	 * Loan-count thresholds that bucket each country into one of the four
-	 * eco-green tiers. The default mirrors the design spec:
-	 *   1–3 → tier 1, 4–8 → tier 2, 9–14 → tier 3, 15+ → tier 4.
-	 * Pass an array of four ascending lower-bounds to customize.
+	 * Ascending loan-count lower-bounds, one per tier (up to five). Tiers fill
+	 * with brand 400, 500, DEFAULT, 800 and 1000. The default mirrors the design:
+	 *   1–3, 4–6, 7–9, 10–12, 13+.
 	 */
 	loanCountTiers: {
-		type: Array as unknown as PropType<[number, number, number, number]>,
-		default: () => [1, 4, 9, 15],
+		type: Array as PropType<number[]>,
+		default: () => [1, 4, 7, 10, 13],
+		validator: (v: number[]) => v.length > 0 && v.length <= 5,
 	},
 	/** Background color of the ocean / unfilled area. */
 	oceanColor: {
@@ -565,12 +565,12 @@ function isInteractive(id: string) {
 	return hasName(id);
 }
 
-const ecoGreen = kvTokensPrimitives.colors['eco-green'];
-const TIER_COLORS = [ecoGreen[1], ecoGreen[2], ecoGreen[3], ecoGreen[4]];
-const resolvedHighlightColor = computed(() => props.highlightColor ?? ecoGreen.DEFAULT);
+const { brand } = kvTokensPrimitives.colors;
+const TIER_COLORS = [brand[400], brand[500], brand.DEFAULT, brand[800], brand[1000]];
+const resolvedHighlightColor = computed(() => props.highlightColor ?? brand.DEFAULT);
 const resolvedBaseColor = computed(() => props.baseColor ?? kvTokensPrimitives.colors.gray[200]);
 // Hover color for countries that have no loans — neutral gray, distinct from
-// both the loan-tier hover (eco-green) and the resting base fill.
+// both the loan-tier hover (brand) and the resting base fill.
 const NEUTRAL_HOVER_COLOR = kvTokensPrimitives.colors.gray[300];
 
 function tierColorFor(loanCount: number | undefined): string | null {

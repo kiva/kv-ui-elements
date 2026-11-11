@@ -1,3 +1,4 @@
+import kvTokensPrimitives from '@kiva/kv-tokens';
 import KvSimpleMap from '../KvSimpleMap.vue';
 import KvSimpleMapDocsMdx from './KvSimpleMapDocs.mdx';
 
@@ -10,16 +11,27 @@ const KIVA_MARKETS = [
 ];
 
 // A broader sample that exercises every loan-count tier. Used by
-// ComponentOverview / AllVariations to illustrate the eco-green ramp.
+// ComponentOverview / AllVariations to illustrate the brand tier ramp.
 const TIERED_MARKETS = [
-	{ id: 'KE', name: 'Kenya', loanCount: 54 }, // tier 4 (15+)
-	{ id: 'PE', name: 'Peru', loanCount: 12 }, // tier 3 (9–14)
-	{ id: 'KH', name: 'Cambodia', loanCount: 6 }, // tier 2 (4–8)
+	{ id: 'KE', name: 'Kenya', loanCount: 54 }, // tier 5 (13+)
+	{ id: 'PE', name: 'Peru', loanCount: 12 }, // tier 4 (10–12)
+	{ id: 'KH', name: 'Cambodia', loanCount: 6 }, // tier 2 (4–6)
 	{ id: 'SN', name: 'Senegal', loanCount: 2 }, // tier 1 (1–3)
 	{ id: 'TZ', name: 'Tanzania', loanCount: 1 }, // tier 1, singular "loan"
-	{ id: 'CO', name: 'Colombia', loanCount: 9 }, // tier 3
-	{ id: 'PH', name: 'Philippines', loanCount: 18 }, // tier 4
+	{ id: 'CO', name: 'Colombia', loanCount: 9 }, // tier 3 (7–9)
+	{ id: 'PH', name: 'Philippines', loanCount: 18 }, // tier 5
 	{ id: 'UG', name: 'Uganda', loanCount: 4 }, // tier 2
+];
+
+const { brand } = kvTokensPrimitives.colors;
+const TIER_COLORS = [brand[400], brand[500], brand.DEFAULT, brand[800], brand[1000]];
+const TIER_BOUNDS = [1, 4, 7, 10, 13];
+const TIER_MARKETS = [
+	{ id: 'SN', name: 'Senegal', loanCount: 2 },
+	{ id: 'UG', name: 'Uganda', loanCount: 5 },
+	{ id: 'KH', name: 'Cambodia', loanCount: 8 },
+	{ id: 'PE', name: 'Peru', loanCount: 11 },
+	{ id: 'KE', name: 'Kenya', loanCount: 20 },
 ];
 
 export default {
@@ -73,7 +85,7 @@ export default {
 		oceanColor: { control: 'color' },
 		loanCountTiers: {
 			control: 'object',
-			description: 'Four ascending lower-bounds bucketing countries into eco-green tiers 1–4.',
+			description: 'One to five ascending lower-bounds; tiers fill brand 400, 500, DEFAULT, 800, 1000.',
 		},
 		popupPlacement: {
 			control: 'select',
@@ -219,6 +231,42 @@ NameOnly.parameters = {
 	},
 };
 
+export const TierKey = {
+	render: () => ({
+		components: { KvSimpleMap },
+		setup() {
+			const key = TIER_BOUNDS.map((bound, i) => ({
+				color: TIER_COLORS[i],
+				label: i === TIER_BOUNDS.length - 1
+					? `${bound}+`
+					: `${bound}–${TIER_BOUNDS[i + 1] - 1}`,
+			}));
+			return { TIER_MARKETS, key };
+		},
+		template: `
+			<div>
+				<kv-simple-map
+					:countries="TIER_MARKETS"
+					class="tw-rounded tw-overflow-hidden"
+				/>
+				<ul class="tw-flex tw-flex-wrap tw-gap-2 tw-list-none tw-p-0 tw-mt-2">
+					<li v-for="item in key" :key="item.label" class="tw-flex tw-items-center tw-gap-1">
+						<span class="tw-inline-block tw-w-2 tw-h-2 tw-rounded-full" :style="{ backgroundColor: item.color }"></span>
+						<span class="tw-text-small">{{ item.label }}</span>
+					</li>
+				</ul>
+			</div>
+		`,
+	}),
+	parameters: {
+		docs: {
+			description: {
+				story: 'One country per default tier, with a key drawn from the matching brand tokens.',
+			},
+		},
+	},
+};
+
 export const PopupBottomRight = Template.bind({});
 PopupBottomRight.args = {
 	popupPlacement: 'bottom-right',
@@ -309,8 +357,8 @@ export const AllVariations = {
 					<div>
 						<h4 class="tw-text-upper tw-mb-2">Loan-count tiers</h4>
 						<p class="tw-text-small tw-mb-3">
-							Countries fill by loan count: tier 1 (1–3), tier 2 (4–8), tier 3 (9–14), tier 4 (15+).
-							Hover lifts loan-bearing countries to eco-green; loan-less countries hover gray-300.
+							Countries fill by loan count: tier 1 (1–3), tier 2 (4–6), tier 3 (7–9), tier 4 (10–12), tier 5 (13+).
+							Hover lifts loan-bearing countries to brand; loan-less countries hover gray-300.
 						</p>
 						<kv-simple-map :countries="TIERED_MARKETS" class="tw-rounded tw-overflow-hidden" />
 					</div>

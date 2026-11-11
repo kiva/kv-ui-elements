@@ -9,7 +9,7 @@ A lightweight, interactive world map rendered from inline SVG paths — no third
 
 ## Component Overview
 
-KvSimpleMap surfaces a list of countries (with optional loan counts) on a static SVG world. Every country with a known ISO-2 code is hover-able and shows its name in a popup; countries supplied via the `countries` prop additionally fill with one of four eco-green tiers based on their loan count. Consumers can opt into an `autoplay` tour that pans and zooms through the supplied list, with a built-in pause / resume affordance.
+KvSimpleMap surfaces a list of countries (with optional loan counts) on a static SVG world. Every country with a known ISO-2 code is hover-able and shows its name in a popup; countries supplied via the `countries` prop additionally fill with a brand-green tier based on their loan count. Consumers can opt into an `autoplay` tour that pans and zooms through the supplied list, with a built-in pause / resume affordance.
 
 <Story of={KvSimpleMapStories.ComponentOverview} />
 
@@ -55,7 +55,7 @@ Use KvSimpleMap to give a quick visual sense of where Kiva activity is concentra
 
 ## Behavior
 
-KvSimpleMap is interactive by default — every country with a known ISO-2 code gets a hover popup and pointer cursor. Loan-bearing countries supplied via the `countries` prop fill with an eco-green tier and lift to the brand colour on hover; loan-less countries hover to a neutral gray. The optional autoplay tour overlays a scripted camera path on top of all of this.
+KvSimpleMap is interactive by default — every country with a known ISO-2 code gets a hover popup and pointer cursor. Loan-bearing countries supplied via the `countries` prop fill with a brand-green tier and lift to brand DEFAULT on hover; loan-less countries hover to a neutral gray. The optional autoplay tour overlays a scripted camera path on top of all of this.
 
 ### Autoplay Tour
 
@@ -67,9 +67,13 @@ The user can exit the tour at any time by clicking or dragging the map — the c
 
 ### Hover Popups & Loan-Count Tiers
 
-Every country that has a known name (sourced from `ALL_COUNTRIES_ISO_MAP`) shows a popup on hover. Countries supplied via the `countries` prop fill with one of four eco-green tiers based on their loan count — by default `1–3` → tier 1, `4–8` → tier 2, `9–14` → tier 3, `15+` → tier 4. The hover state lifts loan-bearing countries to eco-green DEFAULT and pluralises the loan count in the popup ("1 loan" vs "12 loans").
+Every country that has a known name (sourced from `ALL_COUNTRIES_ISO_MAP`) shows a popup on hover. Countries supplied via the `countries` prop fill with a tier color based on their loan count — by default `1–3` → tier 1, `4–6` → tier 2, `7–9` → tier 3, `10–12` → tier 4, `13+` → tier 5. The hover state lifts loan-bearing countries to brand DEFAULT and pluralises the loan count in the popup ("1 loan" vs "12 loans").
 
 <Story of={KvSimpleMapStories.NameOnly} />
+
+Tier colors run brand 400, 500, DEFAULT, 800, 1000. `loanCountTiers` takes one to five ascending lower-bounds; fewer bounds use only the lighter tiers.
+
+<Story of={KvSimpleMapStories.TierKey} />
 
 ## Anatomy
 
@@ -143,7 +147,7 @@ The default popup template renders the country's name and pluralised loan count 
 - The world SVG carries `aria-hidden="true"` because the country paths are decorative — meaningful content is surfaced via the hover popup.
 - Zoom buttons (`Zoom in`, `Zoom out`) and the resume button (`Resume tour`) use descriptive `aria-label`s.
 - Disabled control buttons set the native `disabled` attribute so screen readers and keyboard users skip them.
-- Tier colours meet WCAG contrast against the ocean backdrop; the eco-green hover state preserves contrast against neighbouring countries.
+- Tier colours are not the only signal: the lighter tiers sit below 3:1 against the ocean and base fills, so the loan count is always given in the popup.
 - Country names for hover popups come from a complete ISO-3166-1 alpha-2 lookup, so every visible country surfaces a name (no silent-on-hover regions).
 
 > **Note:** Country paths are pointer-driven only; there is no per-country keyboard focus path. For keyboard-first audiences, surface the underlying loan-list separately rather than relying on the map alone.
