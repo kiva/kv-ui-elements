@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@5.0.1...@kiva/kv-tokens@5.0.2) (2026-11-13)
+
+
+### Bug Fixes
+
+* **kv-tokens:** match default theme secondary and tertiary text to the design system ([7b5dad0](https://github.com/kiva/kv-ui-elements/commit/7b5dad026344f2b04250605c92b5159de2e26ecb))
+
+
+
+
+
 ## [5.0.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@5.0.0...@kiva/kv-tokens@5.0.1) (2026-09-21)
 
 **Note:** Version bump only for package @kiva/kv-tokens
