@@ -173,7 +173,7 @@ Tokens are namespaced in the Figma variable picker by role. Search keywords:
 - `text` for foregrounds, `background` (or `bg`) for surfaces, `border` for outlines.
 - Add the slot to narrow further: `text/action`, `background/primary-inverse`, `border/danger-highlight`.
 
-If the variable picker shows two tokens with the same hex value, pick by *role*, not by value — `border/secondary` and `text/secondary` resolve to the same gray today but will diverge if the secondary text ramp shifts.
+If the variable picker shows two tokens with the same hex value, pick by *role*, not by value — `border/primary` and `text/secondary` resolve to the same gray (`color/gray/600`) today but will diverge if either ramp shifts.
 
 ### Theming a section
 
