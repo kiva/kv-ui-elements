@@ -61,6 +61,8 @@ The fully populated theme. Every other theme inherits from this one and only red
 | `background/primary-inverse` | `#223829` | `color/eco-green/4` | High-contrast dark surface. Use for high-emphasis containers like dark headers, sidebars, or hero cards. |
 | `background/secondary` | `#EDF4F1` | `color/eco-green/1` | Subtle secondary surface. Use for section backgrounds, form inputs, or to differentiate cards from the main page. |
 | `background/tertiary` | `#C4C4C4` | `color/gray/300` | Low-priority decorative surface. Use inside a component (e.g., the track behind a progress bar) or for a disabled button surface. Not for page or section backgrounds. |
+| `background/neutral` | `#F5F5F5` | `color/gray/100` | A subtle neutral gray for low-emphasis surfaces. |
+| `background/accent` | `#2AA967` | `color/eco-green/default` | High-emphasis decorative surface. Use to highlight small areas within a component or draw attention to key content. Not for page or section backgrounds. |
 | `background/action` | `#276A43` | `color/eco-green/3` | Brand-colored action surface. The base color for primary buttons, active toggles, and brand-heavy elements. Pair text with `text/primary-inverse`. |
 | `background/action-highlight` | `#223829` | `color/eco-green/4` | Hover state for action surfaces. Specifically for primary button hover and interactive brand surfaces. |
 | `background/action-secondary` | `#FFFFFF` | `color/neutral/white` | Surface color for secondary button default state within Default sections. |
