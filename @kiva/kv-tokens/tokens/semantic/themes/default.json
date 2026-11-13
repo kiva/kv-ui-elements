@@ -4,8 +4,8 @@
 			"text": {
 				"primary":           { "$type": "color", "$value": "#223829" },
 				"primary-inverse":   { "$type": "color", "$value": "#EDF4F1" },
-				"secondary":         { "$type": "color", "$value": "#757575" },
-				"tertiary":          { "$type": "color", "$value": "#9E9E9E" },
+				"secondary":         { "$type": "color", "$value": "#505050" },
+				"tertiary":          { "$type": "color", "$value": "#757575" },
 				"action":            { "$type": "color", "$value": "#276A43" },
 				"action-highlight":  { "$type": "color", "$value": "#223829" },
 				"caution":           { "$type": "color", "$value": "#593207" },
