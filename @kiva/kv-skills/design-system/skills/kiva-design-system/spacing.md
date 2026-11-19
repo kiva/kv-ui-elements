@@ -147,9 +147,11 @@ The mobile variant of the same card shifts insets down a tier (XL â†’ 20px, L â†
 Apply spacing tokens using Figma's **variable modes**. The token holds responsive values; switching modes refreshes everything bound to it.
 
 1. Find **Appearance** in the right panel.
-2. Click the component and select the variable mode (`lg` for desktop, `md` for tablet, `sm` for mobile).
+2. Click the component and select the variable mode (`desktop (xl)` or `desktop (lg)` for desktop, `tablet (md)` for tablet, `mobile (sm)` for mobile).
 3. When switching a frame's tier, change the mode to match the breakpoint.
 4. Responsive tokens then update automatically.
+
+These mode names exist only in Figma. In code, mobile is the unprefixed default and larger tiers use the `md:` and `lg:` prefixes. See [Using with Tailwind](#using-with-tailwind) for what to type.
 
 ### Finding the right token
 

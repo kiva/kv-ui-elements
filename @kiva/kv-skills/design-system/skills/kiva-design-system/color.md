@@ -65,7 +65,7 @@ Five themes are supported. Each is suited to a specific page atmosphere; choose 
 | **Default** | White background, neutral and trustworthy | Forms, dashboards, primary content surfaces. The required theme for any form or text field. |
 | **Green Light** | Light green tinted surfaces | Secondary sections that lean on brand color without dominating. Inherits Default's text, action, and caution tokens. |
 | **Green Dark** | Dark green sections | High-emphasis brand moments (impact stats, partner CTAs). Section-level only — never the whole page. |
-| **Marigold** | Warm amber accents | Marketing, donation, warmth-forward stories. |
+| **Marigold Light** | Warm amber accents | Marketing, donation, warmth-forward stories. |
 | **Stone Light** | Neutral warm stone | Editorial / story content where green would compete with imagery. |
 
 ## Token grammar
@@ -93,7 +93,7 @@ A quick orientation before you load it:
 
 - **Default** is the base. Every other theme inherits Default and only redefines the tokens that differ.
 - **Green Light** is the smallest theme — only two unique tokens (`background/primary`, `background/primary-inverse`). Everything else falls back to Default.
-- **Green Dark**, **Marigold**, and **Stone Light** each define their own full set of text / background / border tokens plus `heading-underline-primary`.
+- **Green Dark**, **Marigold Light**, and **Stone Light** each define their own full set of text / background / border tokens plus `heading-underline-primary`.
 - **Alert tokens** (`text/caution(+-highlight)`, `text/danger(+-highlight)`, `background/caution(+-highlight)`, `background/danger(+-highlight)`, `border/caution(+-highlight)`, `border/danger(+-highlight)`) are defined on Default only and used unchanged across themes — caution stays amber, danger stays desert-rose. See "Preserve semantic color meaning" below.
 
 The companion file also documents `shadow/default`, `shadow/hover`, and `shadow/click-active` and calls out the (several) Figma copy-paste errors in the source table.
@@ -126,7 +126,7 @@ Notable real-world callouts from the Figma rating tables:
 - **Default theme:** `text/tertiary` on `background/secondary` is `4.1:1` and on `background/tertiary` is `2.6:1` — both flagged **Fail** in Figma with the note "Does not pass AA at any text size." Don't use `text/tertiary` for readable copy on those surfaces; use `text/primary` or `text/secondary` instead. (The 4.1:1 ratio technically clears 3:1 for large text, but the design system team is explicit that this pairing should not be used for readable text — heed the explicit guidance.)
 - **Green Light:** inherits Default's text/action/caution ratings — refer to Default for those, not duplicated in the Green Light table.
 - **Green Dark:** has a critically low pairing (`text/primary` on `background/tertiary` at `1.5:1`) explicitly flagged "must never be used." Treat the warning as load-bearing.
-- **Marigold:** `text/tertiary` pairings drop into Large-only or Fail; keep tertiary text off Marigold body surfaces.
+- **Marigold Light:** `text/tertiary` pairings drop into Large-only or Fail; keep tertiary text off Marigold Light body surfaces.
 - **Stone Light:** similar caution around `text/tertiary` — Large-only on `background/primary`, Fail on `background/tertiary`.
 - **Alerts:** the alert tokens (`text/caution(+-highlight)`, `text/danger(+-highlight)`) are defined on Default and used across themes. They pass AA on their paired alert backgrounds.
 
@@ -137,7 +137,7 @@ When in doubt, look the pairing up in the Figma table before approving it for bo
 ### Limit 1–2 primary themes per page
 
 - **Do** keep a page visually cohesive by anchoring it in one to two primary themes, with an optional tertiary theme for emphasis if needed.
-- **Don't** stack multiple themed sections (Default → Green Dark → Stone Light → Marigold) in a single page — the page reads as a swatchbook.
+- **Don't** stack multiple themed sections (Default → Green Dark → Stone Light → Marigold Light) in a single page — the page reads as a swatchbook.
 
 ### Buttons adapt to their theme context
 
@@ -178,7 +178,7 @@ If the variable picker shows two tokens with the same hex value, pick by *role*,
 ### Theming a section
 
 1. Wrap the section frame in a component or auto-layout container themed via Figma variable modes.
-2. Switch the mode to the target theme (`default`, `green-light`, `green-dark`, `marigold`, `stone-light`).
+2. Switch the mode to the target theme (`default`, `green-light`, `green-dark`, `marigold-light`, `stone-light`).
 3. Every variable-bound color in that subtree updates automatically.
 4. Forms inside the section still use Default — re-wrap form children in a Default-themed container.
 
@@ -194,14 +194,14 @@ The color utilities come from the `@kiva/kv-tokens` Tailwind preset. Haven't reg
 
 **Primitive (non-themed) utilities** — `tw-bg-eco-green-3`, `tw-text-marigold-DEFAULT`, `tw-bg-gray-100`, etc. — resolve directly to primitive values and do **not** change with theme. Use sparingly; components should consume semantic tokens, not primitives.
 
-**Theme names: type the code name, not the Figma name.** When importing themes from `@kiva/kv-tokens` (e.g. `marigoldLightTheme`) or referencing one in code:
+**Theme names.** Figma variable modes and code use the same names, except Default, which is `DEFAULT` in code. When importing themes from `@kiva/kv-tokens` (e.g. `marigoldLightTheme`) or referencing one in code:
 
 | Figma (design intent) | Code (what to type) |
 |---|---|
 | Default | `DEFAULT` |
 | Green Light | `green-light` |
 | Green Dark | `green-dark` |
-| Marigold | `marigold-light` *(code suffixes `-light`)* |
+| Marigold Light | `marigold-light` |
 | Stone Light | `stone-light` |
 
 Legacy themes still exported in code (`dark`, `dark-green`, `dark-mint`, `dark-stone`, `mint`, `stone-dark`) predate the five-theme system and are kept for backwards compatibility — **don't pick them for new work.**
@@ -221,12 +221,12 @@ Legacy themes still exported in code (`dark`, `dark-green`, `dark-mint`, `dark-s
 
 ## Outstanding discrepancies
 
-- **`heading-underline/primary` is the only `heading-underline` token shipped,** and only Default, Marigold, and Stone Light (plus legacy `stone-dark`) define it; other themes fall back to whatever the parent provides.
+- **`heading-underline/primary` is the only `heading-underline` token shipped,** and only Default, Marigold Light, and Stone Light (plus legacy `stone-dark`) define it; other themes fall back to whatever the parent provides.
 - **Semantic tokens defined in Figma but not yet in the shipped `colors.theme.*` tree:**
   - `text/action-disabled` (all themes)
   - `background/action-secondary`, `background/action-secondary-highlight`, `background/primary-disabled` (all themes except Green Light)
-  - `border/secondary-disabled`, `border/tertiary` (Green Dark, Marigold, Stone Light)
-  - `text/secondary`, `text/tertiary`, `background/tertiary`, `border/tertiary` (Green Dark, Marigold, Stone Light)
+  - `border/secondary-disabled`, `border/tertiary` (Green Dark, Marigold Light, Stone Light)
+  - `text/secondary`, `text/tertiary`, `background/tertiary`, `border/tertiary` (Green Dark, Marigold Light, Stone Light)
 
   These can be added without breaking changes since they're new entries.
 - **Shadow tokens are not yet color-tokenized.** `boxShadow.DEFAULT` and `boxShadow.lg` in `tailwind.config.js` are hardcoded `rgb(0 0 0 / 0.08)`; the `shadow/default`, `shadow/hover`, `shadow/click-active` semantic tokens described in Figma have no code entry yet.

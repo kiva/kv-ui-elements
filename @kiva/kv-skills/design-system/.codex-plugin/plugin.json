@@ -1,7 +1,7 @@
 {
   "name": "kiva-design-system",
-  "version": "0.2.0",
-  "description": "Using Kiva's design system: the router skill over design tokens — typography, color, spacing, radius, layout, and color-themes.",
+  "version": "0.2.1",
+  "description": "Using Kiva's design system: the router skill over design tokens — typography, color, spacing, radius, layout, border, elevation, and color-themes.",
   "author": {
     "name": "Kiva"
   },
@@ -9,8 +9,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Kiva Design System",
-    "shortDescription": "Use Kiva's design system: tokens, type, color, spacing, radius, layout",
-    "longDescription": "The entry point for using Kiva's design system. A router skill over the design tokens — typography, color, spacing, radius, layout, and color-themes — for auditing code for design-system compliance, generating new UI with the correct tokens and utilities, and Figma-to-code handoff.",
+    "shortDescription": "Use Kiva's design system: tokens, type, color, spacing, radius, layout, border, elevation",
+    "longDescription": "The entry point for using Kiva's design system. A router skill over the design tokens — typography, color, spacing, radius, layout, border, elevation, and color-themes — for auditing code for design-system compliance, generating new UI with the correct tokens and utilities, and Figma-to-code handoff.",
     "developerName": "Kiva",
     "category": "Development",
     "capabilities": ["Read", "Write"]

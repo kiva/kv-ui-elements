@@ -14,7 +14,7 @@ installable plugins: `kiva-design-system`, `kiva-design-to-code`, and
 |----------|-----|
 | **Claude Code CLI** | `/plugin marketplace add kiva/kv-ui-elements` then `/plugin install <plugin>@kv-ui-elements` for each plugin you want. No clone needed. |
 | **Codex CLI** | `codex plugin marketplace add kiva/kv-ui-elements`, then open `codex`, run `/plugins`, and install the plugins you want. Restart Codex after installing. No clone needed. |
-| **claude.ai / web (no CLI)** | On GitHub, use **Code → Download ZIP** (or clone). Open `@kiva/kv-skills/<category>/skills/`, pick the skill folder you want, and upload it to a Project / Capability. The `kiva-design-system` router is the one suited to the app; the developer-tooling plugins assume a repo. |
+| **claude.ai / web (no CLI)** | On GitHub, use **Code → Download ZIP** (or clone). Open `@kiva/kv-skills/<category>/skills/`, pick the skill folder you want, zip it, and upload the `.zip` in the Claude app under **Settings → Customize → Skills → Add → Upload skill**. The `kiva-design-system` router is the one suited to the app; the developer-tooling plugins assume a repo. |
 
 ### Claude Code
 
@@ -54,14 +54,14 @@ restart Codex (or reload the session) so it picks up the updated plugin cache.
 1. On <https://github.com/kiva/kv-ui-elements>, click **Code → Download ZIP** (or clone the repo).
 2. Open `@kiva/kv-skills/<category>/skills/` and choose the skill folder you
    need (e.g. `design-system/skills/kiva-design-system`).
-3. Upload that folder to your claude.ai Project or Capability per the
-   [claude.ai skills docs](https://support.anthropic.com/).
+3. Zip that folder and upload the `.zip` in the Claude app under
+   **Settings → Customize → Skills → Add → Upload skill**.
 
 ## Plugin categories
 
 | Category (folder) | Plugin | Skills |
 |---|---|---|
-| `@kiva/kv-skills/design-system` | `kiva-design-system` | `kiva-design-system` (router + color, typography, spacing, radius, layout, color-themes) |
+| `@kiva/kv-skills/design-system` | `kiva-design-system` | `kiva-design-system` (router + color, color-themes, typography, spacing, radius, layout, border, elevation) |
 | `@kiva/kv-skills/design-to-code` | `kiva-design-to-code` | `kiva-tailwind-css`, `audit-page-design`, `publish-code-connect` |
 | `@kiva/kv-skills/skill-builder-utils` | `kiva-skill-builder-utils` | `figma-design-system-to-skill` |
 
