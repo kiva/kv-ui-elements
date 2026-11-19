@@ -51,6 +51,7 @@
 					:model-value="email"
 					type="email"
 					:valid="!showEmailError"
+					:disabled="paying"
 					class="tw-w-full tw-mb-2"
 					@update:model-value="$emit('update:email', $event)"
 					@focus="track('click', 'guest-checkout-email')"
@@ -68,6 +69,7 @@
 					name="termsAgreement"
 					class="tw-mb-1"
 					:valid="!showTermsError"
+					:disabled="paying"
 					@update:model-value="onTermsChange"
 				>
 					<span class="tw-text-small">
@@ -93,6 +95,7 @@
 					:model-value="emailUpdates"
 					name="emailUpdates"
 					class="tw-mb-1"
+					:disabled="paying"
 					@update:model-value="onEmailUpdatesChange"
 				>
 					<span class="tw-text-small">{{ emailUpdatesCopy }}</span>
@@ -222,8 +225,8 @@ export default {
 			default: false,
 		},
 		/**
-		 * The host is carrying out the submit: the button shows its loading state and the lightbox
-		 * cannot be dismissed.
+		 * The host is carrying out the submit: the button shows its loading state, the guest fields
+		 * are disabled and the lightbox cannot be dismissed.
 		 */
 		paying: {
 			type: Boolean,

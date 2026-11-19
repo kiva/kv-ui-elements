@@ -144,6 +144,13 @@ describe('KvCheckoutLightbox', () => {
 			expect(utils.emitted('submit')).toHaveLength(1);
 		});
 
+		it('stops the guest from changing the email and checkboxes while paying', () => {
+			const utils = renderLightbox({ paying: true });
+			expect(utils.getByLabelText('Email address')).toBeDisabled();
+			expect(utils.getByRole('checkbox', { name: /Terms of Use/ })).toBeDisabled();
+			expect(utils.getByRole('checkbox', { name: /Receive email updates/ })).toBeDisabled();
+		});
+
 		it('ignores a submit while paying', async () => {
 			const utils = renderLightbox({ isLoggedIn: true, paying: true });
 			await fireEvent.submit(utils.container.querySelector('form'));
