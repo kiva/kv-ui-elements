@@ -11,7 +11,7 @@ for skill-authoring tooling see
 
 | Skill | What it does |
 |-------|--------------|
-| `kiva-design-system` | Router/index for the design system, with token sub-skills: color, color-themes, typography, spacing, radius, layout, border, elevation. |
+| `kiva-design-system` | Router/index for the design system, with token sub-skills: color, color-themes, typography, spacing, radius, layout, border, elevation, plus a list of finalized Figma components. |
 
 ## Install
 
@@ -54,6 +54,7 @@ folder**. To add the design-system skill:
      radius.md
      border.md
      elevation.md
+     components.md
    ```
 
    The simplest path: clone the repo and copy just
@@ -102,6 +103,6 @@ runs until those edits are committed and pushed, then re-pulled. The flow:
 
 > **Note:** sub-skill content files (`color.md`, `color-themes.md`,
 > `typography.md`, `spacing.md`, `radius.md`, `layout.md`, `border.md`,
-> `elevation.md`) are supporting files loaded by
+> `elevation.md`, `components.md`) are supporting files loaded by
 > the `kiva-design-system` router on demand — editing them follows the same
 > commit → push → bump → refresh flow as `SKILL.md`.

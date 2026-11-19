@@ -1,6 +1,6 @@
 {
   "name": "kiva-design-system",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Using Kiva's design system: the router skill over design tokens — typography, color, spacing, radius, layout, border, elevation, and color-themes.",
   "author": {
     "name": "Kiva"
