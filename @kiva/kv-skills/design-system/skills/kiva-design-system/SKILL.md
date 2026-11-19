@@ -28,6 +28,7 @@ Load only the sub-skill(s) relevant to the current task. Do not load all of them
 | **radius** | [radius.md](radius.md) | Border-radius token scale (`none` → `full`), per-component use cases, the `inner = outer − gap` concentric formula, and the `tw-rounded` = 16px gotcha. |
 | **border** | [border.md](border.md) | Border stroke-weight scale (1px resting → 2px emphasis → dashed → none), the weight-as-signal model, width + color pairing for states, per-component usage recommendations, and `tw-border-*` mappings. |
 | **elevation** | [elevation.md](elevation.md) | Interaction-state shadow tokens (`elevation/default` / `hover` / `click-active`), their exact shadow values, the rest → lift → settle flow, Do/Don't rules, and `tw-shadow-*` mappings. Elevation = interaction state, not depth. |
+| **components** | [components.md](components.md) | List of finalized Ecosystem 2026 components in Figma (KvButton, KvIconButton, KvTextLink, KvPill, KvChip, KvTooltip, KvTourStep) with links to each component's guidelines, and rules for picking the right library component. |
 
 ---
 
@@ -46,6 +47,7 @@ Load only the sub-skill(s) relevant to the current task. Do not load all of them
 | Answer a token question about corners | radius |
 | Answer a token question about borders / strokes | border (+ color for the border-color slot) |
 | Answer a token question about shadows / elevation | elevation |
+| Pick a Figma library component, or check whether one is final | components |
 | Answer a question about the grid / breakpoints | layout |
 | Figma-to-code handoff involving color | color + color-themes |
 | Figma-to-code handoff involving a full component | All sub-skills that the component's design touches |
@@ -58,6 +60,7 @@ Load only the sub-skill(s) relevant to the current task. Do not load all of them
 - **"radius", "rounded", "corner"** → radius
 - **"border", "stroke", "outline", "border width", "tw-border-"** → border (+ color for the border-color slot)
 - **"elevation", "shadow", "drop shadow", "box-shadow", "tw-shadow-", "hover lift"** → elevation
+- **"component", "KvButton", "KvTextLink", "KvPill", "KvChip", "KvTooltip", "which component", "finalized"** → components
 - **"grid", "column", "breakpoint", "responsive", "layout"** → layout
 
 ---

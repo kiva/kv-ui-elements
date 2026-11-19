@@ -31,7 +31,7 @@ instructions for every audience live in the repo-root
 
 | Category (folder) | Plugin name | Description |
 |---|---|---|
-| `design-system` | `kiva-design-system` | Using the design system: the router skill over design tokens — typography, color, spacing, radius, layout, border, elevation, color-themes. |
+| `design-system` | `kiva-design-system` | Using the design system: the router skill over design tokens — typography, color, spacing, radius, layout, border, elevation, color-themes. Also lists the finalized Figma components. |
 | `design-to-code` | `kiva-design-to-code` | Turning designs into compliant code: the Kiva Tailwind preset, plus a page-design audit (typography & spacing) with before/after screenshots. |
 | `skill-builder-utils` | `kiva-skill-builder-utils` | Meta-tooling for building Kiva skills, starting with Figma-to-skill extraction. |
 
