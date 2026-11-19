@@ -63,6 +63,8 @@ Fallbacks are tuned to closely match the metrics of the primary typefaces to min
 
 Each style is responsive across three style groups: **Desktop (L, XL)**, **Tablet (M)**, **Mobile (S)**. `Base` and the small-tier utility styles (Button, Label, Caption, Upper) are universal across all devices.
 
+These group names exist only in Figma. In code there is one class per style (e.g. `tw-text-headline`), and it changes size at each breakpoint on its own — do not use the group names in code. See [Heading hierarchy & semantic HTML mapping](#heading-hierarchy--semantic-html-mapping) for what to type.
+
 ### Display — `Dovetail MVB Medium`
 
 Expressive, large-scale text reserved for the single most important headline on a marketing page (homepage hero, campaign title). Limit to one per page; marketing pages only.

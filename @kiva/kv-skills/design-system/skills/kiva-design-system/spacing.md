@@ -151,6 +151,8 @@ Apply spacing tokens using Figma's **variable modes**. The token holds responsiv
 3. When switching a frame's tier, change the mode to match the breakpoint.
 4. Responsive tokens then update automatically.
 
+These mode names exist only in Figma. In code, mobile is the unprefixed default and larger tiers use the `md:` and `lg:` prefixes. See [Using with Tailwind](#using-with-tailwind) for what to type.
+
 ### Finding the right token
 
 Spacing tokens are organized by category in Figma's variable picker. Use the category to narrow results quickly.

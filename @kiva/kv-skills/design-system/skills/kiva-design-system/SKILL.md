@@ -20,7 +20,7 @@ Load only the sub-skill(s) relevant to the current task. Do not load all of them
 
 | Sub-skill | File | What it covers |
 |---|---|---|
-| **color** | [color.md](color.md) | Primitive palettes, the five themes (Default, Green Light, Green Dark, Marigold, Stone Light), the role/slot/state token grammar, accessibility levels per pairing, and decision rules for picking a token by purpose. |
+| **color** | [color.md](color.md) | Primitive palettes, the five themes (Default, Green Light, Green Dark, Marigold Light, Stone Light), the role/slot/state token grammar, accessibility levels per pairing, and decision rules for picking a token by purpose. |
 | **color-themes** | [color-themes.md](color-themes.md) | Full per-theme token tables (name → hex → primitive source → description) for every text, background, border, underline, and shadow slot. Load alongside `color` when you need canonical token data for a specific theme. |
 | **typography** | [typography.md](typography.md) | Type scale (Display → Caption), heading hierarchy, font families (Dovetail MVB / Kiva Post Grotesk), pairing rules, and Tailwind utility class mappings (`tw-text-*`). |
 | **layout** | [layout.md](layout.md) | Breakpoint tiers (XS/SM/MD/LG/XL), column/gutter/margin specs, content max-width rules, nested grids, and rules for aligning content on the grid. |
