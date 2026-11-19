@@ -1,16 +1,14 @@
 ---
 name: components
-description: List of finalized Ecosystem 2026 components in Figma, with links to each component's guidelines. Use it to pick the right library component and to find its usage rules.
-when_to_use: When a design or implementation needs a button, link, pill, chip, tooltip or tour step, or when checking whether a Figma component is final.
+description: Which Ecosystem 2026 components in Figma are final, with a link to each one's guidelines.
+when_to_use: When you need a button, link, pill, chip, tooltip or tour step, or want to know if a Figma component is final.
 ---
 
 # Components
 
-The Ecosystem 2026 Figma library holds finalized components next to work-in-progress ones, 2024 reference components and some duplicates. Use the components listed here. Each one has a Guidelines frame in Figma that says which variant fits which use.
+Not everything in the Ecosystem 2026 Figma library is ready to use. Some components are still in progress, some are old 2024 references, and a few exist twice. These are the ones that are final.
 
 File: `TPmBUB4olYPMF6glEhBGDG` (Ecosystem 2026 — WIP)
-
-## Finalized components
 
 | Component | Figma page | Guidelines | Component set |
 |---|---|---|---|
@@ -21,12 +19,12 @@ File: `TPmBUB4olYPMF6glEhBGDG` (Ecosystem 2026 — WIP)
 | KvChip | Chip and Pill | [20355:2](https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/?node-id=20355-2) | [20961:22768](https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/?node-id=20961-22768) |
 | KvTooltip, KvTourStep | Tooltip and Tourstep | [20354:113](https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/?node-id=20354-113) | [20715:191](https://www.figma.com/design/TPmBUB4olYPMF6glEhBGDG/?node-id=20715-191) |
 
-## Rules
+## Before you use one
 
-- Read the component's Guidelines frame before using it.
-- If two components have the same name, use the one on the page listed above.
-- Components on other pages (Lightbox, Forms, Navigation and footer, Loading, Loan cards, Carousel, Utility components) are not finalized yet. They can be used, but say so in the handoff.
-- Component sets whose name starts with `.` or `_` are internal parts. Do not place them directly.
-- Components described as "2024 reference only" are not for new work.
+- Open its Guidelines first. They cover which variant to use and when.
+- Same name in two places? Use the one on the page in the table.
+- Anything on the other pages (Lightbox, Forms, Navigation and footer, Loading, Loan cards, Carousel, Utility components) is still in progress. Fine to use, just mention it at handoff.
+- Names starting with `.` or `_` are building blocks for other components. Don't place them on their own.
+- Skip anything marked "2024 reference only".
 
-Per-component docs will live in a `components/` folder, one file per component.
+A doc per component will come later, in a `components/` folder.
