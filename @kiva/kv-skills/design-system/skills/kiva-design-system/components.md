@@ -6,7 +6,7 @@ when_to_use: When you need a button, link, pill, chip, tooltip or tour step, or 
 
 # Components
 
-Not everything in the Ecosystem 2026 Figma library is ready to use. Some components are still in progress, some are old 2024 references, and a few exist twice. These are the ones that are final.
+The finalized Ecosystem 2026 components in Figma.
 
 File: `TPmBUB4olYPMF6glEhBGDG` (Ecosystem 2026 — WIP)
 
