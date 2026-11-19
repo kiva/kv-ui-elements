@@ -11,7 +11,7 @@ for skill-authoring tooling see
 
 | Skill | What it does |
 |-------|--------------|
-| `kiva-design-system` | Router/index for the design system, with token sub-skills: color, typography, spacing, radius, layout, color-themes. |
+| `kiva-design-system` | Router/index for the design system, with token sub-skills: color, color-themes, typography, spacing, radius, layout, border, elevation. |
 
 ## Install
 
@@ -36,8 +36,8 @@ developer-experience skills aimed at Claude Code / Codex, where a repo is
 present — they assume access to files in the monorepo and aren't useful in the
 app.
 
-The Claude app has no marketplace; you upload a skill as a **folder**. To add
-the design-system skill:
+The Claude app has no marketplace; you upload a skill as a **.zip of its
+folder**. To add the design-system skill:
 
 1. **Get the files.** Either download/clone this repo, or download the single
    skill folder. Keep the folder structure intact — the router `SKILL.md` and
@@ -52,16 +52,22 @@ the design-system skill:
      layout.md
      spacing.md
      radius.md
+     border.md
+     elevation.md
    ```
 
    The simplest path: clone the repo and copy just
    `@kiva/kv-skills/design-system/skills/kiva-design-system/` — that one folder
    is the whole skill.
 
-2. **Upload it.** In the Claude app, go to **Settings → Capabilities → Skills**
-   and add the `kiva-design-system` folder. The app reads `SKILL.md` and loads
-   the supporting `.md` files on demand, so the folder must be uploaded whole —
-   don't flatten or split it.
+2. **Zip it.** Compress the `kiva-design-system` folder into a `.zip`. The
+   upload accepts a `.zip` (or `.skill`) that contains `SKILL.md`, not a bare
+   folder.
+
+3. **Upload it.** In the Claude app, go to **Settings → Customize → Skills**,
+   choose **Add → Upload skill**, and drop in the `.zip`. The app reads
+   `SKILL.md` and loads the supporting `.md` files on demand, so zip the whole
+   folder. Don't flatten or split it.
 
 > The folder structure is load-bearing: the router reads its sibling `.md`
 > files by relative name. Uploading `SKILL.md` alone, or renaming/moving the
@@ -94,7 +100,8 @@ runs until those edits are committed and pushed, then re-pulled. The flow:
    # then: codex → /plugins → reinstall "Kiva Design System"
    ```
 
-> **Note:** sub-skill content files (`color.md`, `typography.md`, `spacing.md`,
-> `radius.md`, `layout.md`, `color-themes.md`) are supporting files loaded by
+> **Note:** sub-skill content files (`color.md`, `color-themes.md`,
+> `typography.md`, `spacing.md`, `radius.md`, `layout.md`, `border.md`,
+> `elevation.md`) are supporting files loaded by
 > the `kiva-design-system` router on demand — editing them follows the same
 > commit → push → bump → refresh flow as `SKILL.md`.

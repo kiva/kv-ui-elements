@@ -61,7 +61,7 @@ Fallbacks are tuned to closely match the metrics of the primary typefaces to min
 
 ## Type scale
 
-Each style is responsive across three device tiers: **Large** (desktop), **Medium** (tablet), **Small** (mobile). `Base` and the small-tier utility styles (Button, Label, Caption, Upper) are universal across all devices.
+Each style is responsive across three style groups: **Desktop (L, XL)**, **Tablet (M)**, **Mobile (S)**. `Base` and the small-tier utility styles (Button, Label, Caption, Upper) are universal across all devices.
 
 ### Display — `Dovetail MVB Medium`
 
@@ -76,9 +76,9 @@ Expressive, large-scale text reserved for the single most important headline on 
 
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
-| Large (desktop) | 44px | 57px (1.3) | -0.88px (-0.02em) | Homepage hero, campaign hero |
-| Medium (tablet) | 40px | 52px (1.3) | -0.80px (-0.02em) | Same content, tablet |
-| Small (mobile) | 36px | 52px (1.3) | -0.72px (-0.02em) | Same content, mobile |
+| Desktop (L, XL) | 44px | 57px (1.3) | -0.88px (-0.02em) | Homepage hero, campaign hero |
+| Tablet (M) | 40px | 52px (1.3) | -0.80px (-0.02em) | Same content, tablet |
+| Mobile (S) | 36px | 52px (1.3) | -0.72px (-0.02em) | Same content, mobile |
 
 ### Headline 1 — `Dovetail MVB Medium`
 
@@ -86,11 +86,11 @@ Primary section headers that establish top-level hierarchy within a page below t
 
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
-| Large | 26px | 36px (1.4) | -0.52px (-0.02em) | Section headers |
-| Medium | 22px | 31px (1.4) | -0.22px (-0.01em) | Section headers, tablet |
-| Small | 22px | 31px (1.4) | -0.22px (-0.01em) | Section headers, mobile |
+| Desktop (L, XL) | 26px | 36px (1.4) | -0.52px (-0.02em) | Section headers |
+| Tablet (M) | 22px | 31px (1.4) | -0.22px (-0.01em) | Section headers, tablet |
+| Mobile (S) | 22px | 31px (1.4) | -0.22px (-0.01em) | Section headers, mobile |
 
-> **Why are Medium and Small identical?** At this level of hierarchy, further size reduction from tablet to mobile interferes with rather than improves readability.
+> **Why are Tablet (M) and Mobile (S) identical?** At this level of hierarchy, further size reduction from tablet to mobile interferes with rather than improves readability.
 
 ### Headline 2 — `Dovetail MVB Medium`
 
@@ -98,9 +98,9 @@ Secondary headers that organize and support content within a section.
 
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
-| Large | 22px | 31px (1.4) | -0.22px (-0.01em) | Category labels, subsection titles |
-| Medium | 20px | 26px (1.3) | -0.20px (-0.01em) | Same content, tablet |
-| Small | 20px | 26px (1.3) | -0.20px (-0.01em) | Same content, mobile |
+| Desktop (L, XL) | 22px | 31px (1.4) | -0.22px (-0.01em) | Category labels, subsection titles |
+| Tablet (M) | 20px | 26px (1.3) | -0.20px (-0.01em) | Same content, tablet |
+| Mobile (S) | 20px | 26px (1.3) | -0.20px (-0.01em) | Same content, mobile |
 
 ### Subheadline — `Kiva Post Grotesk Book`
 
@@ -108,9 +108,9 @@ Supporting text that sits below a Headline to expand on it.
 
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
-| Large | 20px | 26px (1.3) | 0 | Subheading below the headline |
-| Medium | 18px | 23px (1.3) | 0 | Same content, tablet |
-| Small | 18px | 23px (1.3) | 0 | Same content, mobile |
+| Desktop (L, XL) | 20px | 26px (1.3) | 0 | Subheading below the headline |
+| Tablet (M) | 18px | 23px (1.3) | 0 | Same content, tablet |
+| Mobile (S) | 18px | 23px (1.3) | 0 | Same content, mobile |
 
 ### Title — `Kiva Post Grotesk Medium`
 
@@ -118,9 +118,9 @@ Component-level headings used to label cards, modules, or distinct content block
 
 | Tier | Size | Line height | Letter spacing | Example use |
 |---|---|---|---|---|
-| Large | 20px | 26px (1.3) | 0 | Card headers, modal titles, list titles |
-| Medium | 18px | 23px (1.3) | 0 | Same content, tablet |
-| Small | 18px | 23px (1.3) | 0 | Same content, mobile |
+| Desktop (L, XL) | 20px | 26px (1.3) | 0 | Card headers, modal titles, list titles |
+| Tablet (M) | 18px | 23px (1.3) | 0 | Same content, tablet |
+| Mobile (S) | 18px | 23px (1.3) | 0 | Same content, mobile |
 
 ### Base — `Kiva Post Grotesk Book`
 
@@ -218,7 +218,7 @@ The semantic distinction worth remembering: **Subheadline** and **Title** share 
 
 ### Do
 
-- Use the correct size tier (Large / Medium / Small) for the target device.
+- Use the correct style group (Desktop (L, XL) / Tablet (M) / Mobile (S)) for the target device.
 - Respect the Dovetail MVB / Kiva Post Grotesk family boundary — serif for Display and Headlines, sans for everything else.
 - Limit Display to one per page, and only on marketing pages.
 - Default to Base for any paragraph content.
@@ -237,10 +237,10 @@ Open a request with the design system team. Include the use case, the component,
 
 All tokens are published as text styles in the Kiva Ecosystem library.
 
-- Match the size tier to your frame: Desktop frames get Large variants, Tablet frames get Medium, Mobile frames get Small. Utility styles and Base are universal.
+- Match the style group to your frame: Desktop frames use Desktop (L, XL), Tablet frames use Tablet (M), Mobile frames use Mobile (S). Utility styles and Base have the same values in every group.
 - A detached style breaks the connection to the library — the element stops receiving updates and becomes an undocumented variant.
 - Hover over a text style to see a description of where it's used.
-- Before handing off, inspect every text layer. If a layer shows raw values (e.g. "Dovetail / 26px / Medium") instead of a style name (e.g. "Headline 1 Large"), it's detached — reapply the matching style from the library.
+- Before handing off, inspect every text layer. If a layer shows raw values (e.g. "Dovetail / 26px / Medium") instead of a style name (e.g. "Desktop (L, XL)/headline 1"), it's detached — reapply the matching style from the library.
 
 ## Using with Tailwind
 
