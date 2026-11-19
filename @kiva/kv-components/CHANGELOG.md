@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.4.1...@kiva/kv-components@11.4.2) (2026-11-19)
+
+
+### Bug Fixes
+
+* **MP-3536:** disable the email and checkboxes while paying ([8325de0](https://github.com/kiva/kv-ui-elements/commit/8325de05006b4e5dbbf0e09d03c6ededcf076e98))
+
+
+
+
+
 ## [11.4.1](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.4.0...@kiva/kv-components@11.4.1) (2026-11-13)
 
 **Note:** Version bump only for package @kiva/kv-components
