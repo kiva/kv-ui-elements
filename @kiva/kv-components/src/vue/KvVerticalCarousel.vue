@@ -16,8 +16,7 @@
 					role="group"
 					:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
 					:aria-current="currentIndex === index ? 'true' : 'false'"
-					:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
-					:tab-index="isAriaHidden(index) ? '-1' : false"
+					:inert="isSlideInert(index)"
 				>
 					<slot
 						:name="slotName"
@@ -90,7 +89,7 @@
 					class="tw-w-4"
 					:icon="mdiPlay"
 				/>
-				<span class="tw-sr-only">Show previous slide</span>
+				<span class="tw-sr-only">{{ isAutoplaying ? 'Pause autoplay' : 'Start autoplay' }}</span>
 			</button>
 		</div>
 	</div>
@@ -170,8 +169,8 @@ export default {
 			embla,
 			goToSlide,
 			handleUserInteraction,
-			isAriaHidden,
 			isAutoplaying,
+			isSlideInert,
 			nextIndex,
 			previousIndex,
 			reInit,
@@ -193,8 +192,8 @@ export default {
 			embla,
 			goToSlide,
 			handleUserInteraction,
-			isAriaHidden,
 			isAutoplaying,
+			isSlideInert,
 			mdiPause,
 			mdiPlay,
 			mdiChevronDown,

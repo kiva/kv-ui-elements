@@ -20,8 +20,7 @@
 				role="group"
 				:aria-label="`slide ${index + 1} of ${componentSlotKeys.length}`"
 				:aria-current="currentIndex === index ? 'true' : 'false'"
-				:aria-hidden="isAriaHidden(index)? 'true' : 'false'"
-				:tab-index="isAriaHidden(index) ? '-1' : false"
+				:inert="isSlideInert(index)"
 				:class="{ 'tw-w-full': !multipleSlidesVisible || slideMaxWidth, 'circle-slide': inCircle }"
 				:style="slideMaxWidth ? `max-width:${slideMaxWidth}` :''"
 			>
@@ -91,11 +90,13 @@
 		<!-- Dotted Controls -->
 		<div
 			v-else-if="slideIndicatorCount > 1"
-			class="kv-carousel__controls tw-flex tw-justify-center tw-items-center tw-gap-1.5 tw-mt-4 tw-w-full"
+			class="kv-carousel__controls tw-flex tw-justify-center tw-items-center tw-mt-3 tw-w-full"
 		>
 			<button
 				v-for="slide in slideIndicatorCount"
 				:key="slide"
+				class="tw-flex tw-items-center tw-justify-center tw-w-3 tw-h-3"
+				:aria-label="`Go to slide ${slide}`"
 				@click="goToSlide(slide - 1)"
 			>
 				<div
@@ -265,8 +266,8 @@ export default {
 			embla,
 			goToSlide,
 			handleUserInteraction,
-			isAriaHidden,
 			isAutoplaying,
+			isSlideInert,
 			nextIndex,
 			previousIndex,
 			reInit,
@@ -284,8 +285,8 @@ export default {
 			embla,
 			goToSlide,
 			handleUserInteraction,
-			isAriaHidden,
 			isAutoplaying,
+			isSlideInert,
 			mdiArrowLeft,
 			mdiArrowRight,
 			mdiChevronLeft,

@@ -23,6 +23,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	const embla = ref(null);
 	const slides = ref([]);
 	const isAutoplaying = ref(false);
+	const inViewSlideIndexes = ref<number[] | null>(null);
 
 	const startIndex = emblaOptions.value?.startIndex ?? 0;
 	const currentIndex = ref(startIndex);
@@ -92,6 +93,16 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 	};
 
 	/**
+	 * Whether a slide is out of view and should be inert.
+	 * Every slide is treated as in view until embla first reports which slides are visible.
+	 *
+	 * @param index The index of the slide
+	 * @returns Boolean
+	 */
+	const isSlideInert = (index: number): boolean => inViewSlideIndexes.value !== null
+		&& !inViewSlideIndexes.value.includes(index);
+
+	/**
 	 * Returns number of slides in the carousel
 	 *
 	 * @returns Number
@@ -125,20 +136,6 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		}
 		slides.value = embla.value.slideNodes();
 		slideIndicatorListLength();
-	};
-
-	/**
-	 * If the slide is not completely in view in the carousel
-	 * it should be aria-hidden
-	 *
-	 * @param index The current index of the slide
-	 * @returns Boolean
-	 */
-	const isAriaHidden = (index: number): boolean => {
-		if (embla.value) {
-			return !embla.value.slidesInView(true).includes(index);
-		}
-		return false;
 	};
 
 	const combinedPluginOptions = computed(() => {
@@ -181,6 +178,10 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		// get slide components
 		slides.value = embla.value.slideNodes();
 		slideIndicatorListLength();
+
+		embla?.value?.on('slidesInView', () => {
+			inViewSlideIndexes.value = embla.value.slidesInView();
+		});
 
 		embla?.value?.on('select', () => {
 			currentIndex.value = embla.value.selectedScrollSnap();
@@ -226,6 +227,7 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 
 	onUnmounted(async () => {
 		embla?.value?.off('select');
+		embla?.value?.off('slidesInView');
 		embla?.value?.off('autoplay:play');
 		embla?.value?.off('autoplay:stop');
 		embla?.value?.destroy();
@@ -244,8 +246,8 @@ export function carouselUtil(props, { emit, slots }, extraEmblaOptions) {
 		goToSlide,
 		reInit,
 		reInitVisible,
-		isAriaHidden,
 		isAutoplaying,
+		isSlideInert,
 		slideIndicatorListLength,
 		toggleAutoPlay,
 	};

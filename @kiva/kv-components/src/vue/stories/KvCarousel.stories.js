@@ -36,7 +36,7 @@ const generateLoanCardTemplate = (index) => {
 
 	return `
 		<div style="width: 336px">
-			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
+			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" alt="Placeholder image" class="tw-w-full tw-rounded tw-mb-2">
 			<h3>Card Title</h3>
 			<h4 class="tw-text-upper tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
 			<p class="tw-mt-1 tw-mb-9">${cardCopy?.[index] || cardCopy?.[1]}</p>
@@ -50,16 +50,16 @@ const generateLoanCardTemplate = (index) => {
 
 const defaultCarouselSlides = `
 	<template #slide1>
-		<img src="https://placehold.co/300x220/${randomHexColor(1)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(1)}/000000" alt="Placeholder image" class="tw-w-full">
 	</template>
 	<template #slide2>
-		<img src="https://placehold.co/300x220/${randomHexColor(2)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(2)}/000000" alt="Placeholder image" class="tw-w-full">
 	</template>
 	<template #slide3>
-		<img src="https://placehold.co/300x220/${randomHexColor(3)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(3)}/000000" alt="Placeholder image" class="tw-w-full">
 	</template>
 	<template #slide4>
-		<img src="https://placehold.co/300x220/${randomHexColor(4)}/000000" class="tw-w-full">
+		<img src="https://placehold.co/300x220/${randomHexColor(4)}/000000" alt="Placeholder image" class="tw-w-full">
 	</template>
 `;
 
@@ -203,7 +203,7 @@ export const MultipleLoanCardsReInit = () => ({
 					${generateLoanCardTemplate(8)}
 				</template>
 			</kv-carousel>
-			<kv-button @click.native.prevent="removeSlide()" role="removeSlideButton">Remove Slide</kv-button>
+			<kv-button @click.native.prevent="removeSlide()">Remove Slide</kv-button>
 			<p>Slide Count: {{ slideCount }} | Indicator Count: {{ slideIndicatorCount }} | Removed Slides: {{ removedSlides.length }}</p>
 		</div>
 	`,
@@ -463,7 +463,7 @@ export const AutoPlayButton = () => ({
 			>
 				${defaultCarouselSlides}
 			</kv-carousel>
-			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()">Toggle AutoPlay</a>
 			<br/>
 			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 		</div>
