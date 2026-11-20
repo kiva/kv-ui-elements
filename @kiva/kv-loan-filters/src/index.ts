@@ -9,6 +9,7 @@ import * as queryParseUtils from './queryParseUtils';
 import * as searchStateUtils from './searchStateUtils';
 import flssToLoanSearchState from './loanSearchStateFromFlss';
 import lscToFlssFilters from './lscToFlssFilters';
+import autolendLscSelection from './lscSelection';
 
 export type { ResolvedCategory, ResolvedCategories } from './categories';
 export type {
@@ -37,4 +38,5 @@ export {
 	searchStateUtils,
 	flssToLoanSearchState,
 	lscToFlssFilters,
+	autolendLscSelection,
 };

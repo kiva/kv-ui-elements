@@ -3,6 +3,7 @@ import type {
 	FlssRange,
 	FundraisingLoanSearchFilterInput,
 	IdNameFacet,
+	LscChange,
 	LscConversion,
 	LscFacets,
 	LscRange,
@@ -68,18 +69,80 @@ const convertThemes = (names: (string | null)[] | null | undefined, themeFacets:
 	return { themeId: ids.length ? { any: ids } : undefined, unconverted };
 };
 
+const unique = <T>(values: T[]): T[] => values.filter((value, index) => values.indexOf(value) === index);
+
+const TRAILING_STATE = /^(.+?)\s+([A-Za-z]{2})$/;
+
+const splitCityState = (entry: string): [string, string] | undefined => {
+	const comma = entry.lastIndexOf(',');
+	if (comma >= 0) {
+		const city = entry.slice(0, comma).trim();
+		const state = entry.slice(comma + 1).trim();
+		return city && state ? [city, state] : undefined;
+	}
+	// The monolith also stores "City ST" entries without a comma.
+	const match = entry.match(TRAILING_STATE);
+	return match ? [match[1].trim(), match[2].toUpperCase()] : undefined;
+};
+
+const convertCityStates = (entries: (string | null)[] | null | undefined) => {
+	const cities: string[] = [];
+	const states: string[] = [];
+	const unconverted: LscUnconverted[] = [];
+	compact(entries).map((entry) => entry.trim()).filter(Boolean).forEach((entry) => {
+		const parts = splitCityState(entry);
+		if (!parts) {
+			unconverted.push({ field: 'cityState', label: 'Cities', value: entry });
+			return;
+		}
+		cities.push(parts[0]);
+		states.push(parts[1]);
+	});
+	return {
+		city: cities.length ? { any: unique(cities) } : undefined,
+		state: states.length ? { any: unique(states) } : undefined,
+		unconverted,
+	};
+};
+
+const KEYWORD_NOTE = 'Keyword matching in a saved search may differ from the legacy loan search.';
+const CITY_NOTE = 'Matches any listed city in any listed state, not only the listed city and state pairs.';
+
 const withoutUndefined = <T extends object>(obj: T): T => Object.keys(obj)
 	.reduce((acc, key) => (obj[key] === undefined ? acc : { ...acc, [key]: obj[key] }), {} as T);
 
 /**
  * Converts an auto-lend profile's graph `loanSearchCriteria` into FLSS saved-search filters.
  *
- * Fields shared with subscription-service's `processLsc` produce the same keys, operators and bounds, except
- * where the graph's reshaping of the stored LSC makes that impossible (noted at each branch).
+ * Fields that subscription-service's `processLsc` converts produce the same keys, operators and bounds, except where
+ * the graph's reshaping of the stored LSC prevents it. Fields `processLsc` reports as failures are converted as a
+ * best guess, since those lenders lend today with every criterion applied.
  *
- * @param lsc The graph `loanSearchCriteria` (`{ queryString, filters }`). Null or missing filters yield `[{}]`.
+ * Adjustments:
+ * - Loan term and risk rating drop bounds of 0. Risk rating "All" (stored 0–5, hidden by the graph) becomes
+ *   `lte: 5`, as in `processLsc`; a stored max of 0 with a non-zero min arrives padded to 5 and is kept as `lte: 5`.
+ * - Default rate, delinquency, profitability and borrower cost keep a min of 0, and treat a max of 0 above a
+ *   positive min as unset. "All" (stored 0/null) is hidden by the graph, so nothing is emitted where `processLsc`
+ *   emits `gte: 0`.
+ * - Empty lists are omitted where `processLsc` emits an empty modifier (`{}`).
+ * - Theme names resolve to ids through `allFacets.themeFacets`. Unmatched names go to `unconverted`.
+ * - `queryString` becomes `keywordSearch`, with a `changes` note: FLSS keyword matching may differ.
+ * - `cityState` entries split into separate `city` and `state` lists, with a `changes` note: any listed city matches
+ *   in any listed state. Entries that don't split go to `unconverted`.
+ *
+ * Dropped without an `unconverted` entry:
+ * - Not criteria: `sortBy`, `loanLimit` (a profile setting), `status`, `loanIds`, `lenderFavorite`.
+ * - Dropped by subscription-service before conversion, so these lenders aren't matched on them today: `isMatched`,
+ *   `matcherAccountId` (the monolith's expansion of "matched only"), `expiringSoon`, `excludeNonRated` (no FLSS
+ *   filter). FLSS `isMatchable: { eq: true }` is the candidate if "matched only" is ever converted.
+ * - Search-only, never stored on an LSC: `hasResearchScore`, `anonymizationLevel`.
+ * - Never returned by the graph, so undetectable: amount, borrower age, states, zips, social performance badges.
+ *
+ * Query the criteria with `autolendLscSelection`: a field missing from the query reads as unset.
+ *
+ * @param lsc The graph `loanSearchCriteria` (`{ queryString, filters }`).
  * @param allFacets `themeFacets` resolves theme names to ids; the other facets are not read.
- * @returns `filters`: one group, ready to pass to `createFundraisingLoanSavedSearch`.
+ * @returns `filters`: one group, ready to pass to `createFundraisingLoanSavedSearch`. `[{}]` when nothing converts.
  * `changes`: keys whose saved search may match differently from the LSC.
  * `unconverted`: criteria present in the LSC that could not be carried over, ready to render.
  */
@@ -87,10 +150,18 @@ export default function lscToFlssFilters(
 	lsc?: AutolendLoanSearchCriteria | null,
 	allFacets?: LscFacets,
 ): LscConversion {
+	const keyword = typeof lsc?.queryString === 'string' ? lsc.queryString.trim() : '';
+	const keywordSearch = keyword ? { eq: keyword } : undefined;
+	const changes: LscChange[] = keywordSearch ? [{ key: 'keywordSearch', note: KEYWORD_NOTE }] : [];
+
 	const filters = lsc?.filters;
-	if (!filters) return { filters: [{}], changes: [], unconverted: [] };
+	// Without a filters object there is no stored LSC row, so no 0–5 risk default either.
+	if (!filters) return { filters: [withoutUndefined({ keywordSearch })], changes, unconverted: [] };
 
 	const themes = convertThemes(filters.theme, allFacets?.themeFacets);
+	// The graph resolver populates the deprecated city_state rather than cityState.
+	const cityStates = convertCityStates(compact(filters.cityState).length ? filters.cityState : filters.city_state);
+	if (cityStates.city) changes.push({ key: 'city', note: CITY_NOTE });
 
 	const group = withoutUndefined<FundraisingLoanSearchFilterInput>({
 		countryIsoCode: anyOf(filters.country),
@@ -106,7 +177,15 @@ export default function lscToFlssFilters(
 		partnerRiskRating: riskRange(filters.riskRating),
 		partnerDefaultRate: rateRange(filters.defaultRate),
 		delinquencyRate: rateRange(filters.arrearsRate),
+		keywordSearch,
+		trusteeId: anyOf(filters.trustee),
+		partnerAvgProfitability: rateRange(filters.profitability),
+		partnerAvgBorrowerCost: rateRange(filters.avgBorrowerCost),
+		dafEligible: filters.dafEligible === true ? { eq: true } : undefined,
+		isCurrencyLossPossible: filters.currencyLossPossible === false ? { eq: false } : undefined,
+		city: cityStates.city,
+		state: cityStates.state,
 	});
 
-	return { filters: [group], changes: [], unconverted: themes.unconverted };
+	return { filters: [group], changes, unconverted: [...themes.unconverted, ...cityStates.unconverted] };
 }
