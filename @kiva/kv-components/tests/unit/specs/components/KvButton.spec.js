@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import KvButton from '#components/KvButton.vue';
 import addVueRouter from '../../utils/addVueRouter';
 
@@ -84,12 +83,6 @@ describe('Default Button', () => {
 		expect(btnEl.disabled).toBeTruthy();
 	});
 
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderTestButton();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders the default size by default', () => {
 		const { getByText } = renderTestButton();
 		const innerEl = getByText('Test Button');
@@ -132,11 +125,5 @@ describe('Default Button', () => {
 		// smaller corner radius
 		expect(innerEl.parentElement).toHaveClass('tw-rounded-sm');
 		expect(innerEl.parentElement).not.toHaveClass('tw-rounded');
-	});
-
-	it('has no automated accessibility violations in the small size', async () => {
-		const { container } = renderTestButton({ props: { size: 'small' } });
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

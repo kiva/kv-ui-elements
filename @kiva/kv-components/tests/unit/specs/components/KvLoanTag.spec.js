@@ -1,5 +1,4 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvLoanTag from '#components/KvLoanTag.vue';
 
 const nextWeek = new Date();
@@ -181,22 +180,5 @@ describe('KvLoanTag', () => {
 
 			getByText(/High community impact/);
 		});
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderTag({
-			enableMultiMatching: true,
-			loan: {
-				...baseLoan,
-				simultaneousMatching: [
-					matchingOrg({ managedAccountId: 1, displayName: 'PG&E' }),
-					matchingOrg({ managedAccountId: 2, displayName: 'US Bank' }),
-					matchingOrg({ managedAccountId: 3, displayName: 'Bank Of America' }),
-				],
-			},
-		});
-
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

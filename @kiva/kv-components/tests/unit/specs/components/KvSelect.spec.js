@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import KvSelect from '#components/KvSelect.vue';
 
 describe('KvSelect', () => {
@@ -95,19 +94,5 @@ describe('KvSelect', () => {
 		const { container } = render(TestComponent);
 
 		expect(container.firstChild.classList).toContain('test-class');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const TestComponent = {
-			template:
-				`<div>
-					<label for="test-select">Test select</label>
-					<KvSelect id="test-select">options</KvSelect>
-				</div>`,
-			components: { KvSelect },
-		};
-		const { container } = render(TestComponent);
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

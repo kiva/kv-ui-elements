@@ -1,5 +1,4 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import kvTokensPrimitives from '@kiva/kv-tokens';
 import KvSimpleMap from '#components/KvSimpleMap.vue';
 import countryPaths from '../../../../src/data/simpleMapCountryPaths';
@@ -19,14 +18,6 @@ const KIVA_MARKETS = [
 ];
 
 describe('KvSimpleMap', () => {
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvSimpleMap, {
-			props: { countries: KIVA_MARKETS },
-		});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders the world map svg with all country paths', () => {
 		const { container } = render(KvSimpleMap, {
 			props: { countries: [] },

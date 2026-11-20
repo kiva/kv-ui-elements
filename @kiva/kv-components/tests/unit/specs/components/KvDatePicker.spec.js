@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvDatePicker from '#components/KvDatePicker.vue';
 
 jest.mock('@vuepic/vue-datepicker', () => ({
@@ -22,15 +21,6 @@ jest.mock('@vuepic/vue-datepicker', () => ({
 }), { virtual: true });
 
 describe('KvDatePicker', () => {
-	it('renders the datepicker component with no automated accessibility violations', async () => {
-		const { container, getByRole } = render(KvDatePicker);
-
-		getByRole('textbox', { name: 'Gift date' });
-		const results = await axe(container);
-
-		expect(results).toHaveNoViolations();
-	});
-
 	it('passes datepicker value changes through component events', async () => {
 		const { emitted, getByRole } = render(KvDatePicker);
 

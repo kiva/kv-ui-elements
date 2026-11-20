@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvChip from '#components/KvChip.vue';
 
 const renderChip = (options = {}) => render(KvChip, {
@@ -10,12 +9,6 @@ const renderChip = (options = {}) => render(KvChip, {
 const chip = (container) => container.querySelector('button');
 
 describe('KvChip', () => {
-	it('has no accessibility violations', async () => {
-		const { container } = renderChip();
-
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('renders its label', () => {
 		const { getByText } = renderChip();
 

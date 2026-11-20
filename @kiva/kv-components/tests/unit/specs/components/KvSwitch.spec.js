@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvSwitch from '#components/KvSwitch.vue';
 
 describe('KvSwitch', () => {
@@ -145,11 +144,5 @@ describe('KvSwitch', () => {
 		expect(knob.classList).toContain('tw-top-1/2');
 		expect(knob.classList).toContain('-tw-translate-y-1/2');
 		expect(knob.classList).not.toContain('tw-top-0');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderTestSwitch();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

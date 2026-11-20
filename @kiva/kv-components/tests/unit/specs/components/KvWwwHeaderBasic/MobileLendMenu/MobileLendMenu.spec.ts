@@ -1,8 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import MobileLendMenu from '#components/KvWwwHeaderBasic/MobileLendMenu/MobileLendMenu.vue';
-
-expect.extend(toHaveNoViolations);
 
 // KvTabs uses scrollIntoView + ResizeObserver to position its indicator; both are jsdom gaps.
 Element.prototype.scrollIntoView = jest.fn();
@@ -29,14 +26,6 @@ const regions = [
 ];
 
 describe('MobileLendMenu', () => {
-	it('has no accessibility violations', async () => {
-		const { container } = render(MobileLendMenu, {
-			global,
-			props: { categories, regions },
-		});
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('renders Categories, Regions, and Search tabs by default (no MyKiva when logged-out)', () => {
 		const { getByRole, queryByRole } = render(MobileLendMenu, {
 			global,

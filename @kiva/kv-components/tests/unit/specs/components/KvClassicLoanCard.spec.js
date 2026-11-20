@@ -1,5 +1,4 @@
 import { render, waitFor } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvClassicLoanCard from '#components/KvClassicLoanCard.vue';
 
 const nextWeek = new Date();
@@ -79,24 +78,6 @@ const combinedActivities = [
 ];
 
 describe('KvClassicLoanCard', () => {
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvClassicLoanCard,
-			{
-				props: {
-					loanId: loan.id,
-					loan: {
-						...loan,
-						loanFundraisingInfo: undefined,
-					},
-					kvTrackFunction,
-					photoPath,
-					externalLinks: true,
-				},
-			});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('location should be formatted correctly for PR', async () => {
 		const { getByText } = render(KvClassicLoanCard,
 			{

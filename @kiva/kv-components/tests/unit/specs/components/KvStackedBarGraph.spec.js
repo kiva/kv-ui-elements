@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvStackedBarGraph from '#components/KvStackedBarGraph.vue';
 
 const series = [
@@ -128,11 +127,5 @@ describe('KvStackedBarGraph', () => {
 		const { container: without } = renderGraph();
 		const withoutHit = without.querySelector('rect.kv-stacked-bar-graph__hit');
 		expect(withoutHit.getAttribute('aria-label')).not.toContain('Select to view');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderGraph();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

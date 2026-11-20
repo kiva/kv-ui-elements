@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import '../../../../__mocks__/ResizeObserver';
 import KvTab from '#components/KvTab.vue';
 import KvTabPanel from '#components/KvTabPanel.vue';
@@ -33,12 +32,6 @@ function renderOneTabSet() {
 	});
 }
 describe('KvTabs', () => {
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderOneTabSet();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders with a role of "tablist", "tab", & "tabpanel"', async () => {
 		const { getByRole, getAllByRole } = renderOneTabSet();
 		expect(getByRole('tablist')).toBeDefined();

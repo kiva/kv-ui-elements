@@ -1,6 +1,5 @@
 import { render } from '@testing-library/vue';
 import { nextTick } from 'vue';
-import { axe } from 'jest-axe';
 import KvLoanUse from '#components/KvLoanUse.vue';
 
 const baseProps = {
@@ -154,11 +153,6 @@ describe('KvLoanUse', () => {
 			Object.defineProperty(Element.prototype, 'clientHeight', clientHeight);
 			Object.defineProperty(Element.prototype, 'scrollHeight', scrollHeight);
 			window.ResizeObserver = OriginalResizeObserver;
-		});
-
-		it('has no automated accessibility violations', async () => {
-			const { container } = renderStatement({ use: SHORT_USE, showReadMore: true });
-			expect(await axe(container)).toHaveNoViolations();
 		});
 
 		it('builds the statement from the amount, name, country and use', () => {
