@@ -1,5 +1,6 @@
 <template>
 	<nav
+		aria-label="My Kiva"
 		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1 tw-px-2"
 	>
 		<kv-header-menu-link

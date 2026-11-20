@@ -32,6 +32,7 @@
 				<a
 					v-kv-track-event="['TopNav', 'click-Logo']"
 					href="/"
+					aria-label="Kiva home"
 					class="
 							tw-px-1 tw-py-2
 							tw-cursor-pointer
