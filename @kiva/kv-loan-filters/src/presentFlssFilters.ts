@@ -31,7 +31,9 @@ const LABELS: [string, string][] = [
 
 const OPERATORS = ['any', 'all', 'eq', 'range', 'ne', 'none'];
 
-const PERCENT_KEYS = ['partnerDefaultRate', 'delinquencyRate'];
+const FRACTION_KEYS = ['partnerDefaultRate', 'delinquencyRate'];
+
+const PERCENT_KEYS = ['partnerAvgProfitability', 'partnerAvgBorrowerCost'];
 
 const isFiniteNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
 
@@ -47,16 +49,16 @@ const idFacets = (key: string, allFacets: LscFacets): IdNameFacet[] | undefined 
 	}
 };
 
-const facetName = (key: string, value: unknown, allFacets: LscFacets): string | undefined => {
+const facetName = (key: string, value: unknown, allFacets: LscFacets): string | null | undefined => {
 	if (key === 'countryIsoCode') {
-		return allFacets.countryFacets?.find((facet) => facet.country.isoCode === value)?.country.name;
+		return allFacets.countryFacets?.find((facet) => facet?.country?.isoCode === value)?.country?.name;
 	}
-	return idFacets(key, allFacets)?.find((facet) => facet.id === value)?.name;
+	return idFacets(key, allFacets)?.find((facet) => facet?.id === value)?.name;
 };
 
 const formatValue = (key: string, value: unknown, allFacets: LscFacets): string => {
 	const name = facetName(key, value, allFacets);
-	if (name !== undefined) return name;
+	if (name) return name;
 	if (key === 'gender' && typeof value === 'string') return value.charAt(0).toUpperCase() + value.slice(1);
 	if (key === 'isIndividual' && typeof value === 'boolean') return value ? 'Individuals' : 'Groups';
 	if (key === 'distributionModel' && value === 'DIRECT') return 'Direct';
@@ -65,9 +67,11 @@ const formatValue = (key: string, value: unknown, allFacets: LscFacets): string 
 	return String(value);
 };
 
-const formatBound = (key: string, value: number) => (
-	PERCENT_KEYS.includes(key) ? `${Number((value * 100).toFixed(2))}%` : String(value)
-);
+const formatBound = (key: string, value: number) => {
+	if (FRACTION_KEYS.includes(key)) return `${Number((value * 100).toFixed(2))}%`;
+	if (PERCENT_KEYS.includes(key)) return `${value}%`;
+	return String(value);
+};
 
 const formatRange = (key: string, range: unknown): string | undefined => {
 	if (!range || typeof range !== 'object') return undefined;
@@ -114,10 +118,11 @@ const operatorLabel = (label: string, operator: string) => {
  */
 export default function presentFlssFilters(
 	filters?: Record<string, Record<string, unknown>> | null,
-	allFacets: LscFacets = {},
-	changes: LscChange[] = [],
+	allFacets?: LscFacets | null,
+	changes?: LscChange[] | null,
 ): PresentedCriterion[] {
 	if (!filters) return [];
+	const facets = allFacets || {};
 	const keys = Object.keys(filters);
 	const ordered: [string, string][] = [
 		...LABELS.filter(([key]) => keys.includes(key)),
@@ -127,13 +132,13 @@ export default function presentFlssFilters(
 	return ordered.reduce((criteria: PresentedCriterion[], [key, label]) => {
 		const modifier = filters[key];
 		if (!modifier || typeof modifier !== 'object') return criteria;
-		const notes = changes.filter((change) => change.key === key).map((change) => change.note);
+		const notes = (changes || []).filter((change) => change.key === key).map((change) => change.note);
 		const presented = OPERATORS
 			.filter((operator) => hasOwn(modifier, operator))
 			.map((operator) => ({
 				key,
 				label: operatorLabel(label, operator),
-				values: operandValues(key, operator, modifier[operator], allFacets),
+				values: operandValues(key, operator, modifier[operator], facets),
 			}))
 			.filter((criterion) => criterion.values.length)
 			.map((criterion) => (notes.length ? { ...criterion, note: notes.join(' ') } : criterion));

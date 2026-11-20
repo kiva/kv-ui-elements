@@ -102,7 +102,7 @@ beneath them. It also accepts an existing saved search's filter group.
 | `distributionModel` | `distributionModel: { eq: DIRECT \| FIELDPARTNER }` | `both`/null → omit. |
 | `lenderTerm` | `lenderRepaymentTerm: { range }` | A bound of 0 or null is omitted. |
 | `riskRating` | `partnerRiskRating: { range }` | Absent ("All") → `{ lte: 5 }`. `{ min: 0, max: 5 }` → omit. Otherwise bounds of 0 are omitted. |
-| `defaultRate` | `partnerDefaultRate: { range }` | A min of 0 is kept. A max of 0 above a positive min is unset. |
+| `defaultRate` | `partnerDefaultRate: { range }` | A min of 0 is kept. A max of 0 above a positive min is unset. Absent ("All") → omit, where `processLsc` emits `gte: 0`. |
 | `arrearsRate` | `delinquencyRate: { range }` | Same as default rate. |
 
 ### Beyond `processLsc`
@@ -123,7 +123,7 @@ beneath them. It also accepts an existing saved search's filter group.
 - **Dropped by subscription-service before conversion:** `isMatched`, `matcherAccountId`, `expiringSoon`,
   `excludeNonRated`. FLSS `isMatchable` is the candidate if "matched only" is ever converted.
 - **Search-only, never stored on an LSC:** `hasResearchScore`, `anonymizationLevel`.
-- **Never returned by the graph:** amount, borrower age, states, zips, social performance badges.
+- **Never returned by the graph:** amount, borrower age, states, zips, social performance badges, `noTrustee`.
 
 ## Contribution Guidelines
 

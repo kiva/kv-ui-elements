@@ -9,6 +9,7 @@ const RISK_ALL = { partnerRiskRating: { range: { lte: 5 } } };
 const themeFacets = [{ id: 1, name: 'Green' }, { id: 42, name: 'Water and Sanitation' }];
 
 describe('lscToFlssFilters', () => {
+	// subscription-service's |!42| tag-exclusion case has no graph equivalent, so it is not mirrored here.
 	describe('subscription-service fixtures', () => {
 		it('matches processLsc for the active example, except its empty modifiers', () => {
 			const { sectorId, partnerId, ...expected } = fixtures.active.processLsc;
@@ -122,6 +123,11 @@ describe('lscToFlssFilters', () => {
 			expect(result.unconverted).toEqual([{ field: 'theme', label: 'Attributes', value: 'Unknown' }]);
 		});
 
+		it('skips null theme facets and names', () => {
+			const facets = { themeFacets: [null, { id: 3, name: null }, ...themeFacets] } as unknown as { themeFacets };
+			expect(group({ theme: ['Green'] }, facets).themeId).toEqual({ any: [1] });
+		});
+
 		it('lists every theme when no facets are given', () => {
 			const result = lscToFlssFilters({ filters: { theme: ['Green'] } });
 			expect(result.filters[0].themeId).toBeUndefined();
@@ -182,6 +188,10 @@ describe('lscToFlssFilters', () => {
 			expect(result.filters[0].state).toEqual({ any: ['OR', 'MO', 'CA'] });
 			expect(result.unconverted).toEqual([{ field: 'cityState', label: 'Cities', value: 'Nowhere' }]);
 			expect(result.changes.map((c) => c.key)).toEqual(['city']);
+		});
+
+		it('uppercases states from either split', () => {
+			expect(group({ cityState: ['portland,or', 'salem or'] }).state).toEqual({ any: ['OR'] });
 		});
 
 		it('reads city_state when cityState is empty', () => {

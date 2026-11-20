@@ -46,6 +46,7 @@ describe('presentFlssFilters', () => {
 			partnerDefaultRate: { range: { gte: 0, lte: 0.07 } },
 			delinquencyRate: { range: { lte: 0.035 } },
 			distributionModel: { eq: 'FIELDPARTNER' },
+			partnerAvgProfitability: { range: { gte: -10, lte: 0 } },
 			partnerAvgBorrowerCost: { range: { gte: 3 } },
 			dafEligible: { eq: true },
 			isCurrencyLossPossible: { eq: false },
@@ -58,7 +59,8 @@ describe('presentFlssFilters', () => {
 			'Default rate: 0% to 7%',
 			'Delinquency rate: 3.5% or less',
 			'Distribution model: Field partner',
-			'Average borrower cost: 3 or more',
+			'Average profitability: -10% to 0%',
+			'Average borrower cost: 3% or more',
 			'DAF eligible: Yes',
 			'Currency loss possible: No',
 		]);
@@ -70,6 +72,16 @@ describe('presentFlssFilters', () => {
 			{ key: 'gender', label: 'Gender', values: ['Female', 'Male'] },
 			{ key: 'tagId', label: 'Excluded tags', values: ['3'] },
 		]);
+	});
+
+	it('tolerates null facets, facet entries, names and changes', () => {
+		const facets = {
+			countryFacets: [null, { country: { isoCode: 'KE', name: null } }],
+			sectorFacets: [null, { id: 1, name: null }],
+		} as unknown as typeof allFacets;
+		const filters = { countryIsoCode: { any: ['KE'] }, sectorId: { any: [1] } };
+		expect(presentFlssFilters(filters, null, null).map((c) => c.values)).toEqual([['KE'], ['1']]);
+		expect(presentFlssFilters(filters, facets).map((c) => c.values)).toEqual([['KE'], ['1']]);
 	});
 
 	it('attaches change notes by key', () => {

@@ -35,11 +35,12 @@ const riskRange = (range?: LscRange | null) => {
 	if (!range) return { range: { lte: 5 } };
 	// The graph pads a stored max of 0 to 5, so 0–5 means no bound was set.
 	if (nonZero(range.min) === undefined && range.max === 5) return undefined;
+	// A stored max of 0 with a non-zero min also arrives as 5, so it becomes lte: 5 where processLsc has no max.
 	return termRange(range);
 };
 
 const rateRange = (range?: LscRange | null) => {
-	// "All" is stored as 0/null, which processLsc sends as gte: 0; the graph hides it, so emit nothing.
+	// The graph hides a range whose bounds are both 0 or null, so there is nothing to emit.
 	if (!range) return undefined;
 	const min = isFiniteNumber(range.min) ? range.min : undefined;
 	// The graph casts an unset max to 0, which can't sit above a positive min.
@@ -55,11 +56,11 @@ const toDistributionModel = (value?: string | null): { eq: 'DIRECT' | 'FIELDPART
 
 const normalizeName = (name: string) => name.trim().toLowerCase();
 
-const convertThemes = (names: (string | null)[] | null | undefined, themeFacets: IdNameFacet[] = []) => {
+const convertThemes = (names: (string | null)[] | null | undefined, themeFacets?: IdNameFacet[] | null) => {
 	const ids: number[] = [];
 	const unconverted: LscUnconverted[] = [];
 	compact(names).forEach((name) => {
-		const facet = themeFacets.find((f) => normalizeName(f.name) === normalizeName(name));
+		const facet = (themeFacets || []).find((f) => !!f?.name && normalizeName(f.name) === normalizeName(name));
 		if (!facet) {
 			unconverted.push({ field: 'theme', label: 'Attributes', value: name });
 		} else if (!ids.includes(facet.id)) {
@@ -77,7 +78,7 @@ const splitCityState = (entry: string): [string, string] | undefined => {
 	const comma = entry.lastIndexOf(',');
 	if (comma >= 0) {
 		const city = entry.slice(0, comma).trim();
-		const state = entry.slice(comma + 1).trim();
+		const state = entry.slice(comma + 1).trim().toUpperCase();
 		return city && state ? [city, state] : undefined;
 	}
 	// The monolith also stores "City ST" entries without a comma.
@@ -122,8 +123,9 @@ const withoutUndefined = <T extends object>(obj: T): T => Object.keys(obj)
  * - Loan term and risk rating drop bounds of 0. Risk rating "All" (stored 0–5, hidden by the graph) becomes
  *   `lte: 5`, as in `processLsc`; a stored max of 0 with a non-zero min arrives padded to 5 and is kept as `lte: 5`.
  * - Default rate, delinquency, profitability and borrower cost keep a min of 0, and treat a max of 0 above a
- *   positive min as unset. "All" (stored 0/null) is hidden by the graph, so nothing is emitted where `processLsc`
- *   emits `gte: 0`.
+ *   positive min as unset. The graph hides a range whose bounds are both 0 or null, so "All" (stored 0/null) and a
+ *   0% max (0/0) emit nothing. For default rate and delinquency, `processLsc` emits `gte: 0` (or `gte: 0, lte: 0`)
+ *   there, which FLSS also uses to exclude loans without partner stats, such as direct loans.
  * - Empty lists are omitted where `processLsc` emits an empty modifier (`{}`).
  * - Theme names resolve to ids through `allFacets.themeFacets`. Unmatched names go to `unconverted`.
  * - `queryString` becomes `keywordSearch`, with a `changes` note: FLSS keyword matching may differ.
@@ -136,7 +138,8 @@ const withoutUndefined = <T extends object>(obj: T): T => Object.keys(obj)
  *   `matcherAccountId` (the monolith's expansion of "matched only"), `expiringSoon`, `excludeNonRated` (no FLSS
  *   filter). FLSS `isMatchable: { eq: true }` is the candidate if "matched only" is ever converted.
  * - Search-only, never stored on an LSC: `hasResearchScore`, `anonymizationLevel`.
- * - Never returned by the graph, so undetectable: amount, borrower age, states, zips, social performance badges.
+ * - Never returned by the graph, so undetectable: amount, borrower age, states, zips, social performance badges,
+ *   `noTrustee`.
  *
  * Query the criteria with `autolendLscSelection`: a field missing from the query reads as unset.
  *
@@ -148,7 +151,7 @@ const withoutUndefined = <T extends object>(obj: T): T => Object.keys(obj)
  */
 export default function lscToFlssFilters(
 	lsc?: AutolendLoanSearchCriteria | null,
-	allFacets?: LscFacets,
+	allFacets?: LscFacets | null,
 ): LscConversion {
 	const keyword = typeof lsc?.queryString === 'string' ? lsc.queryString.trim() : '';
 	const keywordSearch = keyword ? { eq: keyword } : undefined;
@@ -175,6 +178,7 @@ export default function lscToFlssFilters(
 		distributionModel: toDistributionModel(filters.distributionModel),
 		lenderRepaymentTerm: termRange(filters.lenderTerm),
 		partnerRiskRating: riskRange(filters.riskRating),
+		// For these two, processLsc sends a hidden "All" as gte: 0, which also excludes loans without partner stats.
 		partnerDefaultRate: rateRange(filters.defaultRate),
 		delinquencyRate: rateRange(filters.arrearsRate),
 		keywordSearch,
