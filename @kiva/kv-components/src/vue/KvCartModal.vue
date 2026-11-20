@@ -22,6 +22,7 @@
 						tabindex="-1"
 						data-test="kv-cart-modal"
 						class="modal"
+						role="dialog"
 						aria-modal="true"
 						aria-label="Added to basket"
 						@click.stop
