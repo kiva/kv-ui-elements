@@ -37,11 +37,8 @@
 						tw-flex
 						tw-absolute
 						tw-inset-0
+						md:tw-px-2
 					"
-					:class="{
-						'md:tw-px-2' : variant === 'lightbox',
-						'tw-px-2' : variant === 'alert',
-					}"
 				>
 					<!-- the lightbox itself -->
 					<div
@@ -52,14 +49,11 @@
 							tw-bg-primary
 							tw-flex tw-flex-col
 							tw-mx-auto md:tw-my-auto
+							tw-w-full md:tw-w-auto
+							tw-mt-auto
+							tw-min-h-half-screen md:tw-min-h-0
+							tw-rounded-t md:tw-rounded
 						"
-						:class="{
-							'tw-w-full md:tw-w-auto' : variant === 'lightbox',
-							'tw-mt-auto md:tw-my-auto' : variant === 'lightbox',
-							'tw-min-h-half-screen md:tw-min-h-0' : variant === 'lightbox',
-							'tw-rounded-t md:tw-rounded' : variant === 'lightbox',
-							'tw-my-auto tw-rounded' : variant === 'alert',
-						}"
 						style="max-width: 55.55rem; max-height: 90%"
 						aria-modal="true"
 						:aria-label="title ? title : null"
@@ -71,13 +65,13 @@
 						<div
 							class="
 								tw-flex
-								tw-p-2.5 md:tw-px-4 md:tw-pt-4 md:tw-pb-3.5
+								tw-p-2.5 md:tw-p-3 lg:tw-px-4 lg:tw-pt-4 lg:tw-pb-3
 							"
 						>
 							<div class="tw-flex-grow">
 								<!-- @slot header -->
 								<slot name="header">
-									<h2	class="tw-flex-1">
+									<h2 class="tw-flex-1 tw-text-headline-two">
 										{{ title }}
 									</h2>
 								</slot>
@@ -107,8 +101,8 @@
 							ref="kvLightboxBody"
 							class="
 								tw-flex-1
-								tw-px-2.5 md:tw-px-4
-								tw-pb-2.5 md:tw-pb-4
+								tw-px-2.5 md:tw-px-3 lg:tw-px-4
+								tw-pb-2.5 md:tw-pb-3 lg:tw-pb-4
 								tw-overflow-auto
 							"
 						>
@@ -121,8 +115,8 @@
 							v-if="$slots.controls"
 							ref="controlsRef"
 							class="
-								tw-flex-shrink-0 tw-flex tw-justify-end tw-gap-x-2.5
-								tw-p-2.5 md:tw-px-4 md:tw-pb-4 md:tw-pt-1
+								tw-flex-shrink-0 tw-flex tw-justify-end tw-gap-x-2
+								tw-pt-1 tw-px-2.5 tw-pb-2.5 md:tw-px-3 md:tw-pb-3 lg:tw-px-4 lg:tw-pb-4
 							"
 						>
 							<!-- @slot controls -->
