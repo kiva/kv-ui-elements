@@ -37,7 +37,8 @@ const BreakingOutTemplate = () => ({
 
 				<img
 					class="tw-w-full"
-					src="https://via.placeholder.com/2000x400">
+					src="https://via.placeholder.com/2000x400"
+					alt="Full-width image">
 
 				<kv-page-container>
 					<p>I'm constrained!</p>

@@ -8,7 +8,7 @@ export default {
 		fallbackFormat: 'jpg',
 		width: 200,
 		height: null,
-		alt: null,
+		alt: 'Descriptive alt text',
 		loading: 'lazy',
 		sourceSizes: null,
 	},

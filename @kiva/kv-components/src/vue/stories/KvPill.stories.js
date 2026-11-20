@@ -95,7 +95,7 @@ export const AllVariants = () => ({
 			<table class="tw-border-separate" style="border-spacing: 24px 16px;">
 				<thead>
 					<tr>
-						<th></th>
+						<td></td>
 						<th v-for="variant in variants" :key="variant" class="tw-text-label tw-capitalize tw-text-center">
 							{{ variant }}
 						</th>

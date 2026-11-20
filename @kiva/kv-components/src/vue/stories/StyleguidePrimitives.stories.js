@@ -134,7 +134,10 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 										<td class="tw-py-1 tw-min-w-[300px]">
 											<button
 												class="hover:tw-text-action-highlight"
-												:class="buildClassName('tw-text', color[0])"
+												:class="[
+													buildClassName('tw-text', color[0]),
+													{ 'tw-bg-primary-inverse': color[0] === 'primary-inverse' },
+												]"
 												@click="copy(buildClassName('tw-text', color[0]))"
 											>.{{buildClassName('tw-text', color[0])}}</button>
 										</td>
@@ -464,7 +467,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 		<hr>
 		<section id="breakpoints" class="tw-py-8">
 			<h2 class="tw-mb-4">Breakpoints</h2>
-			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4 tw-overflow-x-auto">
+			<ul class="tw-flex tw-flex-wrap tw-flex-col tw-gap-4 tw-overflow-x-auto" tabindex="0">
 				<li
 					v-for="breakpoint in breakpoints"
 					:key="buildClassName('tw-breakpoint', breakpoint[0])"
@@ -498,7 +501,7 @@ export const Primitives = (templateArgs, { argTypes }) => ({
 					>
 						<span>
 							{{buildClassName('tw-z', zIndex[0])}}
-							<small class="tw-text-tertiary">({{zIndex[1]}})</small>
+							<small>({{zIndex[1]}})</small>
 						</span>
 					</button>
 				</li>
