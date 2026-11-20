@@ -14,6 +14,7 @@
 			v-if="shouldShowRefreshButton"
 			class="tw-absolute tw--top-1 tw--right-1 tw-bg-white tw-rounded-full
 				tw-w-2.5 tw-h-2.5 tw-flex tw-items-center tw-justify-center tw-cursor-pointer tw-drop-shadow-sm"
+			aria-label="Refresh loan"
 			@click="handleRefreshButton"
 		>
 			<kv-material-icon
@@ -53,7 +54,6 @@
 						:target="externalLinksNewTab ? '_blank' : undefined"
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="tw-flex"
-						aria-label="Borrower image"
 						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
@@ -127,8 +127,7 @@
 							:href="readMorePath"
 							:target="externalLinksNewTab ? '_blank' : undefined"
 							:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
-							class="tw-no-underline hover:tw-underline focus:tw-no-underline"
-							aria-label="Business name"
+							class="tw-block tw-min-h-3 tw-no-underline hover:tw-underline focus:tw-no-underline"
 							@click="clickReadMore('Business', $event)"
 						>
 							<h3
@@ -142,7 +141,7 @@
 							:href="formattedWebsite"
 							target="_blank"
 							class="tw-flex tw-items-center tw-gap-0.5 tw-text-secondary tw-text-small tw-font-light
-								tw-leading-normal tw-no-underline hover:tw-underline"
+								tw-min-h-3 tw-leading-normal tw-no-underline hover:tw-underline"
 							@click.stop="trackWebsiteClick"
 						>
 							<kv-material-icon
@@ -155,7 +154,7 @@
 
 					<component
 						:is="tag"
-						v-if="!isLoading && !isLightDetailedVariant"
+						v-if="showTags && hasLoanTag && !isLoading && !isLightDetailedVariant"
 						:to="readMorePath"
 						:href="readMorePath"
 						:target="externalLinksNewTab ? '_blank' : undefined"
@@ -165,11 +164,9 @@
 								: undefined
 						"
 						class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline -tw-mt-1"
-						aria-label="Loan tag"
 						@click="clickReadMore('Tag', $event)"
 					>
 						<kv-loan-tag
-							v-if="showTags"
 							:class="{
 								'tw-mb-1 !tw-font-medium': isPostGoalVariant,
 							}"
@@ -220,7 +217,6 @@
 							:target="externalLinksNewTab ? '_blank' : undefined"
 							:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 							class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
-							aria-label="Loan use"
 							@click="clickReadMore('Use', $event)"
 						>
 							<div class="loan-card-use-text-light-detailed tw-w-full tw-overflow-hidden">
@@ -238,6 +234,18 @@
 							</div>
 						</component>
 					</template>
+					<div
+						v-else-if="showLoanUse && isLoading"
+						class="tw-w-full tw-overflow-hidden"
+					>
+						<div
+							v-for="(_n, i) in [...Array(loanUseLoadingRows)]"
+							:key="i"
+							class="tw-h-2 tw-mb-1"
+						>
+							<kv-loading-placeholder />
+						</div>
+					</div>
 					<component
 						:is="tag"
 						v-else-if="showLoanUse"
@@ -250,23 +258,9 @@
 								: undefined
 						"
 						class="loan-card-use tw-no-underline tw-text-primary tw-block tw-w-full"
-						aria-label="Loan use"
 						@click="clickReadMore('Use', $event)"
 					>
 						<div
-							v-if="isLoading"
-							class="tw-w-full tw-overflow-hidden"
-						>
-							<div
-								v-for="(_n, i) in [...Array(loanUseLoadingRows)]"
-								:key="i"
-								class="tw-h-2 tw-mb-1"
-							>
-								<kv-loading-placeholder />
-							</div>
-						</div>
-						<div
-							v-else
 							class="tw-w-full tw-overflow-hidden"
 							:class="{ '!tw--mt-1': showTags && hasMatchingInfo && showLightView }"
 						>
@@ -411,7 +405,6 @@
 						:target="externalLinksNewTab ? '_blank' : undefined"
 						:rel="externalLinksNewTab ? 'noopener noreferrer' : undefined"
 						class="loan-card-progress tw-no-underline tw-block"
-						aria-label="Loan progress"
 						@click="clickReadMore('Progress', $event)"
 					>
 						<kv-loan-progress-group
@@ -505,6 +498,7 @@ import {
 import {
 	computePostGoalLoanCardStatement,
 } from '../utils/postGoalStatement';
+import { isMatchedLoan } from '../utils/loanTag';
 import KvLoanUse, { KV_LOAN_USE_FRAGMENT } from './KvLoanUse.vue';
 import KvBorrowerImage from './KvBorrowerImage.vue';
 import KvLoanCallouts from './KvLoanCallouts.vue';
@@ -773,6 +767,7 @@ export default {
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
+			hasLoanTag,
 			hasProgressData,
 			imageHash,
 			isLoading,
@@ -935,6 +930,7 @@ export default {
 			formattedLocation,
 			formattedWebsite,
 			fundraisingPercent,
+			hasLoanTag,
 			hasProgressData,
 			imageHash,
 			isLightDetailedVariant,
@@ -973,8 +969,7 @@ export default {
 				?.some((item) => item.__typename === 'LoanReservation' && item.id === this.loanId) ?? false;
 		},
 		hasMatchingInfo() {
-			return !!this.loan?.matchingText
-				|| (this.enableMultiMatching && (this.loan?.simultaneousMatching?.length ?? 0) > 0);
+			return isMatchedLoan(this.loan, this.enableMultiMatching);
 		},
 	},
 };

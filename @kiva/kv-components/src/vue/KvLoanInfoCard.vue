@@ -24,7 +24,6 @@
 						:to="readMorePath"
 						:href="readMorePath"
 						class="tw-flex"
-						aria-label="Borrower image"
 						@click="clickReadMore('Photo', $event)"
 					>
 						<kv-borrower-image
@@ -82,30 +81,34 @@
 					</component>
 				</div>
 
+				<!-- Loan use  -->
+				<div
+					v-if="isLoading"
+					class="tw-mb-1.5 tw-pt-1"
+				>
+					<div
+						class="tw-w-full"
+						style="height: 5.5rem;"
+					>
+						<div
+							v-for="(_n, i) in [...Array(4)]"
+							:key="i"
+							class="tw-h-2 tw-mb-1"
+						>
+							<kv-loading-placeholder />
+						</div>
+					</div>
+				</div>
 				<component
 					:is="tag"
+					v-else
 					:to="readMorePath"
 					:href="readMorePath"
 					class="loan-card-use tw-no-underline tw-text-primary"
-					aria-label="Loan use"
 					@click="clickReadMore('Use', $event)"
 				>
-					<!-- Loan use  -->
 					<div class="tw-mb-1.5 tw-pt-1">
-						<div
-							v-if="isLoading"
-							class="tw-w-full"
-							style="height: 5.5rem;"
-						>
-							<div
-								v-for="(_n, i) in [...Array(4)]"
-								:key="i"
-								class="tw-h-2 tw-mb-1"
-							>
-								<kv-loading-placeholder />
-							</div>
-						</div>
-						<div v-else>
+						<div>
 							<kv-loan-use
 								:use="loanUse"
 								:hide-loan-amount="true"
