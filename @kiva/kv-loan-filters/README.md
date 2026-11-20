@@ -66,6 +66,65 @@ For an example of how to handle filtering and the changes to the Apollo cache, l
 
 Facets are the available filters, and the legacy lend API is the source of truth. The loans per facet count is provided by FLSS.
 
+## Auto-lend LSC conversion
+
+`lscToFlssFilters` converts an auto-lend profile's legacy loan search criteria (LSC) into FLSS saved-search filters. It
+matches subscription-service's `processLsc` where that handles a field, and makes a documented best guess beyond it.
+
+```js
+import { autolendLscSelection, lscToFlssFilters } from '@kiva/kv-loan-filters';
+
+const query = gql`query { my { autolendProfile { loanSearchCriteria { ${autolendLscSelection} } } } }`;
+
+const { filters, changes, unconverted } = lscToFlssFilters(loanSearchCriteria, { themeFacets });
+// filters is ready for createFundraisingLoanSavedSearch(filters: $filters)
+```
+
+`changes` lists keys whose saved search may match differently from the LSC. `unconverted` lists criteria present in
+the LSC that could not be carried over, ready to show to the user.
+
+To show the result as a list, call `presentFlssFilters(conversion.filters[0], allFacets, conversion.changes)`. It
+returns ordered `{ key, label, values, note? }` criteria with names resolved from `allFacets`; render `unconverted`
+beneath them. It also accepts an existing saved search's filter group.
+
+### Matching `processLsc`
+
+| LSC (graph) | FLSS | Rule |
+|---|---|---|
+| `country` | `countryIsoCode: { any }` | Omit when empty. |
+| `sector` | `sectorId: { any }` | Omit when empty. |
+| `partner` | `partnerId: { any }` | Omit when empty. |
+| `activity` | `activityId: { any }` | Omit when empty. |
+| `loanTags` | `tagId: { any }` | Omit when empty. |
+| `theme` (names) | `themeId: { any }` | Match `themeFacets` by trimmed, case-insensitive name. Unmatched names go to `unconverted`. |
+| `gender` | `gender: { eq }` | `both`/null → omit. |
+| `isGroup` | `isIndividual: { eq: !isGroup }` | null → omit. |
+| `distributionModel` | `distributionModel: { eq: DIRECT \| FIELDPARTNER }` | `both`/null → omit. |
+| `lenderTerm` | `lenderRepaymentTerm: { range }` | A bound of 0 or null is omitted. |
+| `riskRating` | `partnerRiskRating: { range }` | Absent ("All") → `{ lte: 5 }`. `{ min: 0, max: 5 }` → omit. Otherwise bounds of 0 are omitted. |
+| `defaultRate` | `partnerDefaultRate: { range }` | A min of 0 is kept. A max of 0 above a positive min is unset. Absent ("All") → omit, where `processLsc` emits `gte: 0`. |
+| `arrearsRate` | `delinquencyRate: { range }` | Same as default rate. |
+
+### Beyond `processLsc`
+
+| LSC (graph) | FLSS | Rule |
+|---|---|---|
+| `queryString` | `keywordSearch: { eq }` | Trimmed. Empty → omit. Noted in `changes`. |
+| `trustee` | `trusteeId: { any }` | Omit when empty. |
+| `profitability` | `partnerAvgProfitability: { range }` | Default-rate rules. |
+| `avgBorrowerCost` | `partnerAvgBorrowerCost: { range }` | Default-rate rules. |
+| `dafEligible: true` | `dafEligible: { eq: true }` | false/null → omit. |
+| `currencyLossPossible: false` | `isCurrencyLossPossible: { eq: false }` | true/null → omit. |
+| `cityState`, else `city_state` | `city: { any }`, `state: { any }` | Split `"Portland,OR"` or `"St. Louis MO"`. Unsplittable entries go to `unconverted`. Noted in `changes`. |
+
+### Dropped without an entry
+
+- **Not criteria:** `sortBy`, `loanLimit`, `status`, `loanIds`, `lenderFavorite`.
+- **Dropped by subscription-service before conversion:** `isMatched`, `matcherAccountId`, `expiringSoon`,
+  `excludeNonRated`. FLSS `isMatchable` is the candidate if "matched only" is ever converted.
+- **Search-only, never stored on an LSC:** `hasResearchScore`, `anonymizationLevel`.
+- **Never returned by the graph:** amount, borrower age, states, zips, social performance badges, `noTrustee`.
+
 ## Contribution Guidelines
 
 The Kiva UI project is bound by a [Code of Conduct](https://github.com/kiva/ui/blob/master/code_of_conduct.md).

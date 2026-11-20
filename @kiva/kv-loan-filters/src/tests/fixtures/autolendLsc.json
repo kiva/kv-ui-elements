@@ -1,0 +1,48 @@
+{
+	"active": {
+		"lsc": {
+			"queryString": null,
+			"filters": {
+				"gender": "female",
+				"riskRating": { "min": 4, "max": 5 },
+				"lenderTerm": { "min": 0, "max": 24 },
+				"country": ["AL", "AM", "KH", "CR", "DO", "GE", "GH", "GT", "HT", "HN", "ID", "IL", "JO", "KE", "XK", "KG", "LB", "MD", "PS", "PE", "TZ", "TR", "UG"],
+				"defaultRate": { "min": 0, "max": 0.01 },
+				"arrearsRate": { "min": 0, "max": 0.1 },
+				"distributionModel": "fieldPartner",
+				"isGroup": null,
+				"loanLimit": 25,
+				"status": "fundraising"
+			}
+		},
+		"processLsc": {
+			"distributionModel": { "eq": "FIELDPARTNER" },
+			"gender": { "eq": "female" },
+			"sectorId": {},
+			"partnerId": {},
+			"countryIsoCode": { "any": ["AL", "AM", "KH", "CR", "DO", "GE", "GH", "GT", "HT", "HN", "ID", "IL", "JO", "KE", "XK", "KG", "LB", "MD", "PS", "PE", "TZ", "TR", "UG"] },
+			"lenderRepaymentTerm": { "range": { "lte": 24 } },
+			"partnerRiskRating": { "range": { "gte": 4, "lte": 5 } },
+			"partnerDefaultRate": { "range": { "gte": 0, "lte": 0.01 } },
+			"delinquencyRate": { "range": { "gte": 0, "lte": 0.1 } }
+		}
+	},
+	"passive": {
+		"lsc": {
+			"queryString": null,
+			"filters": {
+				"sector": [12, 4, 9, 14, 1],
+				"country": ["MX", "AI", "AG", "BS", "BM", "CA", "KY", "CU", "DO", "GL", "HT", "PR", "PM", "VC", "US", "UM", "VI", "NI", "HN", "AW", "BB", "BZ", "CR", "DM", "SV", "GT", "JM", "PA", "KN", "LC", "TT", "TC", "VG", "EC", "AR", "BO", "BR", "CL", "CO", "FK", "GF", "GD", "GP", "GY", "MQ", "MS", "AN", "PY", "PE", "GS", "SR", "UY", "VE"],
+				"distributionModel": "both",
+				"excludeNonRated": true,
+				"loanLimit": 25,
+				"status": "fundraising"
+			}
+		},
+		"processLsc": {
+			"sectorId": { "any": [12, 4, 9, 14, 1] },
+			"countryIsoCode": { "any": ["MX", "AI", "AG", "BS", "BM", "CA", "KY", "CU", "DO", "GL", "HT", "PR", "PM", "VC", "US", "UM", "VI", "NI", "HN", "AW", "BB", "BZ", "CR", "DM", "SV", "GT", "JM", "PA", "KN", "LC", "TT", "TC", "VG", "EC", "AR", "BO", "BR", "CL", "CO", "FK", "GF", "GD", "GP", "GY", "MQ", "MS", "AN", "PY", "PE", "GS", "SR", "UY", "VE"] },
+			"partnerRiskRating": { "range": { "lte": 5 } }
+		}
+	}
+}
