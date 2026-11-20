@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@2.0.0...@kiva/kv-loan-filters@2.1.0) (2026-11-20)
+
+
+### Features
+
+* **kv-loan-filters:** convert auto-lend LSC to FLSS filters ([d174e2e](https://github.com/kiva/kv-ui-elements/commit/d174e2e6cd81a83b8c95f2c161403648653a3199))
+* **kv-loan-filters:** convert LSC criteria beyond subscription-service's mapping ([3f19106](https://github.com/kiva/kv-ui-elements/commit/3f191060f83d5949ef19354f121224e5edb0374d))
+* **kv-loan-filters:** percent units, null facets and state case in LSC conversion ([078584b](https://github.com/kiva/kv-ui-elements/commit/078584b82d5bf2ab1ca0e871bcbc57e76aca50b1))
+* **kv-loan-filters:** present FLSS filters as labelled criteria ([d55382f](https://github.com/kiva/kv-ui-elements/commit/d55382f9e81afd20bfddb539b6320e0d673b6ad0))
+
+
+
+
+
 # [2.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-loan-filters@1.24.0...@kiva/kv-loan-filters@2.0.0) (2026-10-15)
 
 
