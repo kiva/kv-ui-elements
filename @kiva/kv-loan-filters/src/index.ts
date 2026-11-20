@@ -10,6 +10,7 @@ import * as searchStateUtils from './searchStateUtils';
 import flssToLoanSearchState from './loanSearchStateFromFlss';
 import lscToFlssFilters from './lscToFlssFilters';
 import autolendLscSelection from './lscSelection';
+import presentFlssFilters from './presentFlssFilters';
 
 export type { ResolvedCategory, ResolvedCategories } from './categories';
 export type {
@@ -39,4 +40,5 @@ export {
 	flssToLoanSearchState,
 	lscToFlssFilters,
 	autolendLscSelection,
+	presentFlssFilters,
 };

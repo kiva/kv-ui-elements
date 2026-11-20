@@ -83,6 +83,10 @@ const { filters, changes, unconverted } = lscToFlssFilters(loanSearchCriteria, {
 `changes` lists keys whose saved search may match differently from the LSC. `unconverted` lists criteria present in
 the LSC that could not be carried over, ready to show to the user.
 
+To show the result as a list, call `presentFlssFilters(conversion.filters[0], allFacets, conversion.changes)`. It
+returns ordered `{ key, label, values, note? }` criteria with names resolved from `allFacets`; render `unconverted`
+beneath them. It also accepts an existing saved search's filter group.
+
 ### Matching `processLsc`
 
 | LSC (graph) | FLSS | Rule |
