@@ -9,6 +9,7 @@ export * from './event';
 export * from './expander';
 export * from './imageUtils';
 export * from './loanCard';
+export * from './loanTag';
 export * from './loanUtils';
 export * from './mapUtils';
 export * from './markMatches';

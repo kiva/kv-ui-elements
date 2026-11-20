@@ -45,7 +45,7 @@ The [Quick Reference: Porting Checklist](#quick-reference-porting-checklist) at 
 | 2 (Translation) | Component renders in Storybook with representative data and no console errors. |
 | 3 (Structure) | Component is exported in `src/vue/index.ts` and visible in Storybook sidebar under the correct folder prefix. |
 | 4 (Design system) | No raw hex colors or pixel spacing remain unless the user explicitly approved them. |
-| 5 (Testing) | `npm run test` passes (lint + jest), including `jest-axe` accessibility check. |
+| 5 (Testing) | `npm run test` passes (lint, Jest, story tests). |
 | 6 (Storybook) | Default + edge-case stories render correctly under visual review. |
 
 If a verification fails, fix the underlying issue before continuing — do not paper over it to keep moving.
@@ -265,33 +265,31 @@ Convert pixel values to the 8px spacing scale:
 
 Every ported component must have:
 
-1. **Accessibility test** — jest-axe `toHaveNoViolations()`
-2. **Rendering tests** — correct output for various prop combinations
-3. **Interaction tests** — click/hover/keyboard behaviors
-4. **Edge cases** — empty data, single item, maximum items
-5. **Utility tests** — independent tests for extracted composables/helpers
+1. **Rendering tests** — correct output for various prop combinations
+2. **Interaction tests** — click/hover/keyboard behaviors
+3. **Edge cases** — empty data, single item, maximum items
+4. **Utility tests** — independent tests for extracted composables/helpers
 
 ### 5.2 Test Structure
 
 ```ts
-import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
+import { render, fireEvent } from '@testing-library/vue';
 import KvComponentName from '#components/KvComponentName.vue';
 
 describe('KvComponentName', () => {
-  it('should have no automated accessibility violations', async () => {
-    const { container } = render(KvComponentName, { props: { /* ... */ } });
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
+  it('emits select when the option is clicked', async () => {
+    const { getByRole, emitted } = render(KvComponentName, { props: { label: 'Option' } });
+    await fireEvent.click(getByRole('button', { name: 'Option' }));
+    expect(emitted().select).toHaveLength(1);
   });
 
-  // ... rendering, interaction, edge case tests
+  // ... rendering and edge case tests
 });
 ```
 
 ## Phase 6: Storybook
 
-Create stories early in the process for visual review:
+Create stories early in the process for visual review. Every story also runs as an axe accessibility test, so cover each state a user can reach (use a `play` function for states that need interaction, such as an open menu):
 
 1. **Default story** with representative data
 2. **Loading/skeleton state**
@@ -310,7 +308,7 @@ Create stories early in the process for visual review:
 - [ ] Replace animation libraries with CSS transitions
 - [ ] Extract complex logic into `src/utils/` composables
 - [ ] Export component in `src/vue/index.ts`
-- [ ] Write component tests with jest-axe accessibility check
+- [ ] Write component tests
 - [ ] Write utility tests for extracted logic
 - [ ] Review in Storybook across stories
-- [ ] Run `npm run test` (lint + jest)
+- [ ] Run `npm run test` (lint, Jest, story tests)

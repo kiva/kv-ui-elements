@@ -8,7 +8,8 @@ Accessible UI component library built with Vue 3 Composition API, Tailwind CSS, 
 - **TypeScript** - All components and utilities use TypeScript with type definitions
 - **Tailwind CSS** - Custom `tw-` prefix for all utility classes
 - **Vite** - Build tool configured for library mode
-- **Jest + Vue Testing Library** - Testing framework
+- **Jest + Vue Testing Library** - Unit testing framework
+- **Vitest + Playwright** - Runs every Storybook story as an accessibility test in a real browser
 - **Storybook 10** - Component documentation and development
 
 ## Getting Started
@@ -75,9 +76,9 @@ See [.eslintrc.cjs](.eslintrc.cjs) for full rules:
 
 ### Test Framework
 
-- **Jest** configured in [jest.config.cjs](jest.config.cjs)
+- **Jest** configured in [jest.config.cjs](jest.config.cjs) for unit specs
 - **Vue Testing Library** for component testing
-- **jest-axe** for automated accessibility testing (MANDATORY)
+- **Story tests** configured in [vitest.config.ts](vitest.config.ts): `@storybook/addon-vitest` runs every story in Vitest browser mode with Playwright Chromium, and `@storybook/addon-a11y` runs axe on each one. `parameters.a11y.test` is `'error'` in [preview.js](src/vue/.storybook/preview.js), so any axe violation fails the run (MANDATORY)
 - **Test files**: Supports both `.spec.js` and `.spec.ts` extensions
 
 ### Test Pattern
@@ -85,26 +86,27 @@ See [.eslintrc.cjs](.eslintrc.cjs) for full rules:
 Reference [tests/unit/specs/components/KvButton.spec.js](tests/unit/specs/components/KvButton.spec.js) for structure:
 
 1. Import component, `render`, `fireEvent` from `@testing-library/vue`
-2. Import `axe` from `jest-axe`
-3. Write accessibility test with `toHaveNoViolations()` matcher
-4. Test user interactions with `fireEvent`
-5. Test props, slots, and emitted events
-6. Use [tests/fixtures/](tests/fixtures/) for mock data as needed
+2. Test user interactions with `fireEvent`
+3. Test props, slots, and emitted events
+4. Use [tests/fixtures/](tests/fixtures/) for mock data as needed
 
 ### Running Tests
 
 ```bash
-npm run test  # Runs lint + jest
+npm run test  # Runs lint, jest, and the story tests
 npm run lint  # ESLint check
+npx vitest run --project=storybook  # Story tests only
 ```
+
+The story tests need Playwright's Chromium. Install it once with `npx playwright install chromium`.
 
 ## Storybook Development
 
 ### Configuration
 
-- **Version**: 10.1.10
+- **Version**: 10.6
 - **Config**: [src/vue/.storybook/main.js](src/vue/.storybook/main.js)
-- **Addons**: a11y, docs, links
+- **Addons**: a11y, docs, links, vitest
 - **Port**: 6006
 
 ### Story Format (CSF)
@@ -152,9 +154,8 @@ npm run build     # Vite library build
 2. **Export the component** in [src/vue/index.ts](src/vue/index.ts) - use `export * from` for named exports of types/interfaces
 3. Write Storybook story in [src/vue/stories/](src/vue/stories/) following [KvButton.stories.js](src/vue/stories/KvButton.stories.js)
 4. Write tests in [tests/unit/specs/components/](tests/unit/specs/components/) following [KvButton.spec.js](tests/unit/specs/components/KvButton.spec.js)
-5. Ensure jest-axe accessibility tests pass
-6. Run `npm run test` to validate linting and tests
-7. Review in Storybook with `npm run storybook`
+5. Run `npm run test` to validate linting and tests
+6. Review in Storybook with `npm run storybook`
 
 ## Design System Integration
 
@@ -175,7 +176,7 @@ Import design primitives from [@kiva/kv-tokens](../kv-tokens/):
 
 All components MUST:
 
-- Pass automated jest-axe testing
+- Pass the automated axe check in every story
 - Include proper ARIA attributes
 - Support keyboard navigation
 - Use semantic HTML elements

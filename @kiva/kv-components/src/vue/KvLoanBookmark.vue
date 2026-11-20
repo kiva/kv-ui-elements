@@ -3,6 +3,8 @@
 		<button
 			style="border-radius: 8px; padding: 3px;"
 			class="tw-cursor-pointer tw-font-medium tw-bg-white tw-flex tw-justify-center"
+			aria-label="Bookmark loan"
+			:aria-pressed="isBookmarked"
 			@click="$emit('toggle-bookmark')"
 		>
 			<kv-material-icon

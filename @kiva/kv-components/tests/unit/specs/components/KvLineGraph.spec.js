@@ -1,5 +1,4 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvLineGraph from '#components/KvLineGraph.vue';
 
 describe('KvLineGraph', () => {
@@ -47,12 +46,5 @@ describe('KvLineGraph', () => {
 
 		expect(pointElements.length).toBe(points.length * 2);
 		expect(label.length).toBe(1);
-	});
-
-	it('should have no automated accessibility violations', async () => {
-		const { container } = render(KvLineGraph, { props: { points } });
-		const results = await axe(container);
-
-		expect(results).toHaveNoViolations();
 	});
 });

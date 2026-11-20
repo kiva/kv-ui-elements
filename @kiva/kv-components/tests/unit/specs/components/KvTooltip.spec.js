@@ -1,5 +1,4 @@
 import { fireEvent, render, waitFor } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvTooltip from '#components/KvTooltip.vue';
 
 const CONTROLLER_ID = 'tooltip-controller';
@@ -26,14 +25,6 @@ const visibility = (utils) => (utils.emitted()['tool-tip-visible'] ?? []).map(([
 describe('KvTooltip', () => {
 	afterEach(() => {
 		document.body.innerHTML = '';
-	});
-
-	it.each(['light', 'dark'])('has no accessibility violations on the %s chip', async (variant) => {
-		const { container } = renderTooltip({ variant }, {
-			slots: { title: 'Tooltip title', action: '<button>Got it</button>' },
-		});
-
-		expect(await axe(container)).toHaveNoViolations();
 	});
 
 	describe('variant', () => {

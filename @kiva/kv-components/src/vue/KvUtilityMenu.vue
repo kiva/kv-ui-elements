@@ -26,6 +26,7 @@
 					'tw-w-6 tw-h-6': buttonSize === 'large',
 				}
 			]"
+			aria-label="Open menu"
 			@click.stop="handleMenuAnchorClick"
 		>
 			<KvMaterialIcon

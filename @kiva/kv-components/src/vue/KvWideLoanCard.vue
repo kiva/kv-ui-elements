@@ -34,7 +34,6 @@
 					:to="readMorePath"
 					:href="readMorePath"
 					class="tw-flex"
-					aria-label="Borrower image"
 					@click="clickReadMore('Photo', $event)"
 				>
 					<kv-borrower-image
@@ -105,49 +104,55 @@
 		<div
 			class="tw-flex tw-flex-col tw-flex-1 tw-px-1"
 		>
-			<h3 class="tw-hidden md:tw-inline-block tw-text-title">
+			<h3
+				v-if="borrowerName"
+				class="tw-hidden md:tw-inline-block tw-text-title"
+			>
 				{{ borrowerName }}
 			</h3>
 			<!-- Loan tag -->
 			<component
 				:is="tag"
+				v-if="showTags && !isLoading && hasLoanTag"
 				:to="readMorePath"
 				:href="readMorePath"
 				class="tw-flex tw-no-underline hover:tw-no-underline focus:tw-no-underline"
-				aria-label="Loan tag"
 				@click="clickReadMore('Tag', $event)"
 			>
 				<kv-loan-tag
-					v-if="showTags && !isLoading"
 					:loan="loan"
 					:enable-multi-matching="enableMultiMatching"
 				/>
 			</component>
 
+			<!-- Loan use  -->
+			<div
+				v-if="isLoading"
+				class="tw-pt-1"
+			>
+				<div
+					class="tw-w-full"
+					style="height: 5.5rem;"
+				>
+					<div
+						v-for="(_n, i) in [...Array(4)]"
+						:key="i"
+						class="tw-h-2 tw-mb-1"
+					>
+						<kv-loading-placeholder />
+					</div>
+				</div>
+			</div>
 			<component
 				:is="tag"
+				v-else
 				:to="readMorePath"
 				:href="readMorePath"
 				class="loan-card-use tw-no-underline tw-text-primary"
-				aria-label="Loan use"
 				@click="clickReadMore('Use', $event)"
 			>
-				<!-- Loan use  -->
 				<div class="tw-pt-1">
-					<div
-						v-if="isLoading"
-						class="tw-w-full"
-						style="height: 5.5rem;"
-					>
-						<div
-							v-for="(_n, i) in [...Array(4)]"
-							:key="i"
-							class="tw-h-2 tw-mb-1"
-						>
-							<kv-loading-placeholder />
-						</div>
-					</div>
-					<div v-else>
+					<div>
 						<kv-loan-use
 							:use="loanUse"
 							:loan-amount="loanAmount"
@@ -194,7 +199,6 @@
 					:to="readMorePath"
 					:href="readMorePath"
 					class="loan-card-progress tw-mt-1 tw-flex-grow"
-					aria-label="Loan progress"
 					@click="clickReadMore('Progress', $event)"
 				>
 					<kv-loan-progress-group
@@ -420,6 +424,7 @@ export default {
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
+			hasLoanTag,
 			hasProgressData,
 			imageHash,
 			isLoading,
@@ -453,6 +458,7 @@ export default {
 			distributionModel,
 			formattedLocation,
 			fundraisingPercent,
+			hasLoanTag,
 			hasProgressData,
 			imageHash,
 			isLoading,

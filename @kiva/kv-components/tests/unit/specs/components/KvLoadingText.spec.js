@@ -1,14 +1,7 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvLoadingText from '#components/KvLoadingText.vue';
 
 describe('KvLoadingText', () => {
-	it('has no accessibility violations', async () => {
-		const { container } = render(KvLoadingText, { props: { lines: 3 } });
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders a single line by default', () => {
 		const { container } = render(KvLoadingText);
 		expect(container.querySelectorAll('.kv-loading-text-line')).toHaveLength(1);

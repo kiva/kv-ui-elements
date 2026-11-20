@@ -3,10 +3,8 @@ import {
 	render, fireEvent, waitFor, within,
 } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import KvWwwHeaderBasic from '#components/KvWwwHeaderBasic/KvWwwHeaderBasic.vue';
 
-expect.extend(toHaveNoViolations);
 const global = { provide: { $kvTrackEvent: () => {} } };
 
 const SAMPLE_SUGGESTIONS = [
@@ -54,11 +52,6 @@ function resultText(label: string) {
 }
 
 describe('KvWwwHeaderBasic', () => {
-	it('has no accessibility violations (visitor)', async () => {
-		const { container } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('renders a navigation landmark and the Kiva logo home link', () => {
 		const { getByRole } = render(KvWwwHeaderBasic, { props: { loggedIn: false }, global });
 		expect(getByRole('navigation')).toBeTruthy();
@@ -181,11 +174,6 @@ describe('KvWwwHeaderBasic', () => {
 			});
 			return { trackEvent, ...utils };
 		}
-
-		it('has no accessibility violations in the experiment arm', async () => {
-			const { container } = renderArm(true);
-			expect(await axe(container)).toHaveNoViolations();
-		});
 
 		it('omits the Major gifts link in the control arm', () => {
 			const { queryByTestId } = renderArm(false);

@@ -21,18 +21,41 @@ const buildTailwindClasses = (prefix) => {
 	return Object.keys(defaultThemeTokens[prefix]).map((key) => `tw-${twPrefix}-${key}`);
 };
 
+const TEXT_BACKGROUNDS = {
+	'tw-text-primary-inverse': 'tw-bg-primary-inverse',
+	'tw-text-caution': 'tw-bg-caution',
+	'tw-text-caution-highlight': 'tw-bg-caution-highlight',
+	'tw-text-danger': 'tw-bg-danger',
+	'tw-text-danger-highlight': 'tw-bg-danger-highlight',
+};
+
+const TEXT_BACKGROUNDS_TERTIARY_ON_SECONDARY = {
+	...TEXT_BACKGROUNDS,
+	'tw-text-tertiary': 'tw-bg-secondary',
+};
+
 export default {
 	title: 'Base Styling/KvThemeProvider',
 	component: KvThemeProvider,
 	args: {
-		theme: {},
+		theme: 'default',
 		customTheme: null,
 	},
 	argTypes: {
 		theme: {
 			control: 'select',
-			options: ['', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'],
+			options: ['default', 'greenLight', 'greenDark', 'marigoldLight', 'stoneLight'],
+			mapping: {
+				default: defaultTheme,
+				greenLight: greenLightTheme,
+				greenDark: greenDarkTheme,
+				marigoldLight: marigoldLightTheme,
+				stoneLight: stoneLightTheme,
+			},
 		},
+	},
+	parameters: {
+		textBackgrounds: TEXT_BACKGROUNDS,
 	},
 };
 
@@ -43,10 +66,9 @@ const demoTemplate = `
 				v-for="textVariable in textVariables"
 				:key="textVariable"
 				class="tw-text-h2 tw-mb-2"
-				:class="textVariable"
+				:class="[textVariable, textBackgrounds[textVariable]]"
 			>
-				<span>{{textVariable}}</span>
-				<span class="tw-text-opacity-low" :class="textVariable">text-opacity-low</span>
+				{{ textVariable }}
 			</p>
 			<h1 class="tw-text-jumbo tw-mb-2">Jumbo: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h1>
 			<h1 class="tw-mb-2">H1: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h1>
@@ -54,43 +76,29 @@ const demoTemplate = `
 			<h3 class="tw-mb-2">H3: The quick <u>brown fox</u> jumped <u>over the lazy dog</u></h3>
 			<p>Body text: Voluptate culpa qui excepteur irure ad. Culpa commodo aliquip irure sunt do. Irure incididunt consequat reprehenderit ipsum mollit esse. Ex veniam nulla consequat deserunt fugiat est do in do sint sint ex.</p>
 		</section>
-		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2" style="background-color: gray;">
+		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2">
 			<template
 				v-for="bgVariable in bgVariables"
+				:key="bgVariable"
 			>
 				<div
-
 					class="tw-h-4"
 					:class="bgVariable"
-				>
-					{{bgVariable}}
-				</div>
-				<div
-
-					class="tw-h-4 tw-bg-opacity-low"
-					:class="bgVariable"
-				>
-					{{bgVariable}}
+				></div>
+				<div class="tw-flex tw-items-center">
+					{{ bgVariable }}
 				</div>
 			</template>
 		</kv-grid>
 		<kv-grid as="section" class="tw-grid-cols-2 tw-p-4 tw-gap-2">
-			<template
+			<div
 				v-for="borderVariable in borderVariables"
+				:key="borderVariable"
+				class="tw-border-2 tw-h-4"
+				:class="borderVariable"
 			>
-				<div
-					class="tw-border-2 tw-h-4"
-					:class="borderVariable"
-				>
-					{{ borderVariable }}
-				</div>
-				<div
-					class="tw-border-2 tw-h-4 tw-border-opacity-low"
-					:class="borderVariable"
-				>
-					{{ borderVariable }}
-				</div>
-			</template>
+				{{ borderVariable }}
+			</div>
 		</kv-grid>
 		<section>
 			<ul>
@@ -110,6 +118,7 @@ const demoTemplate = `
 
 const Template = (templateArgs, {
 	argTypes,
+	parameters,
 }) => ({
 	props: Object.keys(argTypes),
 	components: {
@@ -125,6 +134,7 @@ const Template = (templateArgs, {
 			bgVariables: buildTailwindClasses('background'),
 			textVariables: buildTailwindClasses('text'),
 			borderVariables: buildTailwindClasses('border'),
+			textBackgrounds: parameters.textBackgrounds,
 			defaultTheme,
 		};
 	},
@@ -138,34 +148,29 @@ export const Default = Template.bind({});
 
 export const GreenLight = Template.bind({});
 GreenLight.args = {
-	theme: greenLightTheme,
+	theme: 'greenLight',
+};
+GreenLight.parameters = {
+	textBackgrounds: TEXT_BACKGROUNDS_TERTIARY_ON_SECONDARY,
 };
 
 export const GreenDark = Template.bind({});
 GreenDark.args = {
-	theme: greenDarkTheme,
+	theme: 'greenDark',
 };
 
 export const MarigoldLight = Template.bind({});
 MarigoldLight.args = {
-	theme: marigoldLightTheme,
+	theme: 'marigoldLight',
+};
+MarigoldLight.parameters = {
+	textBackgrounds: TEXT_BACKGROUNDS_TERTIARY_ON_SECONDARY,
 };
 
 export const StoneLight = Template.bind({});
 StoneLight.args = {
-	theme: stoneLightTheme,
+	theme: 'stoneLight',
 };
-
-export const Custom = Template.bind({});
-Custom.args = {
-	theme: {
-		'--text-primary': '255, 0, 0',
-		'--text-secondary': '0, 255, 255',
-		'--text-action': '255, 255, 0',
-		'--text-action-highlight': '255, 200, 0',
-		'--bg-primary': '100, 199, 209',
-		'--bg-secondary': '191, 255, 191',
-		'--bg-action': '0, 0, 100',
-		'--bg-action-highlight': '0, 0, 150',
-	},
+StoneLight.parameters = {
+	textBackgrounds: TEXT_BACKGROUNDS_TERTIARY_ON_SECONDARY,
 };

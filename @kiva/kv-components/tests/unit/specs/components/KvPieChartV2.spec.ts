@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvPieChartV2 from '#components/KvPieChartV2.vue';
 
 const defaultValues = [
@@ -23,14 +22,6 @@ const manyValues = [
 ];
 
 describe('KvPieChartV2', () => {
-	it('should have no automated accessibility violations', async () => {
-		const { container } = render(KvPieChartV2, {
-			props: { values: defaultValues, loading: false },
-		});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders the correct number of segment circles for given data', () => {
 		const { container } = render(KvPieChartV2, {
 			props: { values: defaultValues, loading: false, shownSegments: 6 },
@@ -293,20 +284,6 @@ describe('KvPieChartV2', () => {
 			expect(validator('stacked')).toBe(true);
 			expect(validator('two-column')).toBe(true);
 			expect(validator('grid')).toBe(false);
-		});
-
-		it('has no accessibility violations in two-column with header and more link', async () => {
-			const { container } = render(KvPieChartV2, {
-				props: {
-					values: manyValues,
-					loading: false,
-					layout: 'two-column',
-					listHeader: 'Lent to',
-					moreLinkLabel: '+{count} more',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
 		});
 	});
 

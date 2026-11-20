@@ -306,7 +306,7 @@ export const AllVariations = {
 							<p class="tw-text-small tw-mb-2">action</p>
 							<kv-card-frame bg-color-class="tw-bg-action">
 								<div class="tw-p-3 tw-text-center">
-									<p class="tw-text-small tw-text-primary">Action</p>
+									<p class="tw-text-small tw-text-primary-inverse">Action</p>
 								</div>
 							</kv-card-frame>
 						</div>

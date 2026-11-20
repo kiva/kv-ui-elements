@@ -1,3 +1,4 @@
+import { userEvent, waitFor, within } from 'storybook/test'; // eslint-disable-line import/no-extraneous-dependencies
 import MobileLendMenu from '../KvWwwHeaderBasic/MobileLendMenu/MobileLendMenu.vue';
 import KvThemeProvider from '../KvThemeProvider.vue';
 
@@ -143,6 +144,18 @@ LoggedOut.args = {
 	regions: sampleRegions,
 	searchSuggestions: sampleSearchSuggestions,
 	appOrigin: 'https://www.kiva.org',
+};
+
+export const SearchTabOpen = Template.bind({});
+SearchTabOpen.args = { ...LoggedOut.args };
+SearchTabOpen.play = async ({ canvasElement }) => {
+	await userEvent.click(within(canvasElement).getByRole('tab', { name: 'Search' }));
+	await waitFor(() => {
+		const panel = canvasElement.querySelector('#kv-tab-panel-mobile-lend-search');
+		if (!panel || panel.style.display === 'none' || panel.classList.contains('tw-transition-opacity')) {
+			throw new Error('Search panel not ready');
+		}
+	}, { timeout: 5000 });
 };
 
 export const LoggedIn = Template.bind({});

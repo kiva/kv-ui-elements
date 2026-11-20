@@ -37,6 +37,7 @@
 						<button
 							v-if="showBackButton"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							aria-label="Back"
 							@click="closeSideSheet"
 						>
 							<kv-material-icon
@@ -55,6 +56,7 @@
 						<button
 							v-if="showGoToLink"
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							aria-label="Open link"
 							@click="goToLink"
 						>
 							<kv-material-icon
@@ -64,6 +66,7 @@
 						</button>
 						<button
 							class="hover:tw-text-action-highlight tw-flex tw-items-center tw-justify-center"
+							aria-label="Close"
 							@click="closeSideSheet"
 						>
 							<kv-material-icon
@@ -75,6 +78,9 @@
 				</div>
 				<div
 					id="sidesheet-content"
+					tabindex="0"
+					role="region"
+					:aria-label="headline || 'Side sheet content'"
 					class="tw-overflow-y-auto tw-overscroll-y-contain"
 					:style="[
 						{ 'min-height': loadingContentMinHeight },

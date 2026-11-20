@@ -1,5 +1,6 @@
 <template>
 	<nav
+		aria-label="About"
 		class="tw-flex tw-flex-col tw-items-start tw-font-medium tw-mt-0.5 tw-pb-1"
 		:class="isMobile ? 'tw-px-0' : 'tw-px-2'"
 	>

@@ -1,5 +1,4 @@
 import { render, waitFor } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvFormAssemblyForm from '#components/KvFormAssemblyForm.vue';
 
 // KvLoadingSpinner is a dependency-free SVG, so it is rendered for real rather than
@@ -28,14 +27,6 @@ function getIframeQuery(container) {
 }
 
 describe('KvFormAssemblyForm', () => {
-	// awaited so the iframe is present — otherwise axe never exercises frame-title,
-	// which is the rule the title prop exists to satisfy
-	it('has no automated accessibility violations', async () => {
-		const { container } = await renderForm();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('renders an iframe pointing at the FA form URL', async () => {
 		const { container } = await renderForm();
 		expect(getIframe(container).getAttribute('src')).toBe('https://kiva.tfaforms.net/658');

@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvCheckbox from '#components/KvCheckbox.vue';
 
 describe('KvCheckbox', () => {
@@ -99,14 +98,6 @@ describe('KvCheckbox', () => {
 		expect(container.firstChild.classList).toContain('test-class');
 	});
 
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvCheckbox, {
-			slots: { default: 'Test Checkbox' },
-		});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	// ----------- ROUND VARIANT TESTS -----------
 	it('renders round variant with a role of "checkbox"', () => {
 		const { getByRole } = render(KvCheckbox, {
@@ -200,14 +191,5 @@ describe('KvCheckbox', () => {
 		const { container } = render(TestComponent);
 
 		expect(container.firstChild.classList).toContain('test-class');
-	});
-
-	it('has no automated accessibility violations (round)', async () => {
-		const { container } = render(KvCheckbox, {
-			props: { variant: 'round' },
-			slots: { default: 'Round Checkbox' },
-		});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

@@ -4,6 +4,7 @@
 		class="tw-bg-primary"
 	>
 		<nav
+			aria-label="Main"
 			class="tw-font-medium tw-relative"
 			:style="{ minHeight: MIN_HEADER_HEIGHT }"
 		>

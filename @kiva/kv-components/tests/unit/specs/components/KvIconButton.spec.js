@@ -1,7 +1,6 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import {
-	mdiDotsVertical, mdiClose, mdiBookmark, mdiBookmarkOutline,
+	mdiClose, mdiBookmark, mdiBookmarkOutline,
 } from '@mdi/js';
 import KvIconButton from '#components/KvIconButton.vue';
 
@@ -257,82 +256,6 @@ describe('KvIconButton', () => {
 			await fireEvent.click(button);
 			expect(onUpdate).toHaveBeenCalledWith(true);
 			expect(onClick).toHaveBeenCalledTimes(1);
-		});
-	});
-
-	describe('Accessibility', () => {
-		it('has no automated accessibility violations', async () => {
-			const { container } = renderIconButton({
-				props: {
-					icon: mdiDotsVertical,
-				},
-				attrs: {
-					'aria-label': 'More options',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
-		});
-
-		it('has no accessibility violations with background', async () => {
-			const { container } = renderIconButton({
-				props: {
-					icon: mdiClose,
-					showBackground: true,
-				},
-				attrs: {
-					'aria-label': 'Close',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
-		});
-
-		it('has no accessibility violations with border', async () => {
-			const { container } = renderIconButton({
-				props: {
-					icon: mdiClose,
-					showBackground: true,
-					showBorder: true,
-					borderColor: 'tertiary',
-				},
-				attrs: {
-					'aria-label': 'Close',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
-		});
-
-		it('has no accessibility violations when disabled', async () => {
-			const { container } = renderIconButton({
-				props: {
-					icon: mdiDotsVertical,
-					disabled: true,
-				},
-				attrs: {
-					'aria-label': 'More options',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
-		});
-
-		it('has no accessibility violations when toggleable', async () => {
-			const { container } = renderIconButton({
-				props: {
-					icon: mdiBookmarkOutline,
-					activeIcon: mdiBookmark,
-					toggleable: true,
-					modelValue: false,
-					showBackground: true,
-				},
-				attrs: {
-					'aria-label': 'Bookmark',
-				},
-			});
-			const results = await axe(container);
-			expect(results).toHaveNoViolations();
 		});
 	});
 

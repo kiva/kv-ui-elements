@@ -35,7 +35,7 @@ const generateLoanCardTemplate = (index) => {
 
 	return `
 		<div style="width: 336px">
-			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" class="tw-w-full tw-rounded tw-mb-2">
+			<img src="https://placehold.co/336x252/${randomHexColor(index)}/000000" alt="Placeholder image" class="tw-w-full tw-rounded tw-mb-2">
 			<h3>Card Title</h3>
 			<h4 class="tw-text-upper tw-my-1">$${amounts?.[index] || amounts?.[1]} to go</h4>
 			<p class="tw-mt-1 tw-mb-9">${cardCopy?.[index] || cardCopy?.[1]}</p>
@@ -49,16 +49,16 @@ const generateLoanCardTemplate = (index) => {
 
 const defaultCarouselSlides = `
 	<template #slide1>
-		<img src="https://placehold.co/400x150/${randomHexColor(1)}/000000">
+		<img src="https://placehold.co/400x150/${randomHexColor(1)}/000000" alt="Placeholder image">
 	</template>
 	<template #slide2>
-		<img src="https://placehold.co/400x150/${randomHexColor(2)}/000000">
+		<img src="https://placehold.co/400x150/${randomHexColor(2)}/000000" alt="Placeholder image">
 	</template>
 	<template #slide3>
-		<img src="https://placehold.co/400x150/${randomHexColor(3)}/000000">
+		<img src="https://placehold.co/400x150/${randomHexColor(3)}/000000" alt="Placeholder image">
 	</template>
 	<template #slide4>
-		<img src="https://placehold.co/400x150/${randomHexColor(4)}/000000">
+		<img src="https://placehold.co/400x150/${randomHexColor(4)}/000000" alt="Placeholder image">
 	</template>
 `;
 
@@ -212,7 +212,7 @@ export const AutoPlayButton = () => ({
 			>
 				${defaultCarouselSlides}
 			</kv-vertical-carousel>
-			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()">Toggle AutoPlay</a>
 			<br/>
 			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 			<a href="#" @click.native.prevent="$refs.sampleCarousel.goToSlide(0)">Go To Slide 0</a>
@@ -249,23 +249,23 @@ export const AutoPlayWithDynamicSlides = () => ({
 				@change="changeEvent"
 			>
 					<template #slide1 >
-						<img src="https://placehold.co/400x150/${randomHexColor(1)}/000000">
-						<p style="background-color: #${randomHexColor(1)};" v-if="currentSlide === 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						<img src="https://placehold.co/400x150/${randomHexColor(1)}/000000" alt="Placeholder image">
+						<p style="background-color: #${randomHexColor(3)};" v-if="currentSlide === 0" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 					</template>
 					<template #slide2>
-						<img src="https://placehold.co/400x150/${randomHexColor(2)}/000000">
-						<p style="background-color: #${randomHexColor(2)};" v-if="currentSlide === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						<img src="https://placehold.co/400x150/${randomHexColor(2)}/000000" alt="Placeholder image">
+						<p style="background-color: #${randomHexColor(4)};" v-if="currentSlide === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 					</template>
 					<template #slide3>
-						<img src="https://placehold.co/400x150/${randomHexColor(3)}/000000">
-						<p style="background-color: #${randomHexColor(3)};" v-if="currentSlide === 2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						<img src="https://placehold.co/400x150/${randomHexColor(3)}/000000" alt="Placeholder image">
+						<p style="background-color: #${randomHexColor(5)};" v-if="currentSlide === 2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 					</template>
 					<template #slide4>
-						<img src="https://placehold.co/400x150/${randomHexColor(4)}/000000">
-						<p style="background-color: #${randomHexColor(4)};" v-if="currentSlide === 3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+						<img src="https://placehold.co/400x150/${randomHexColor(4)}/000000" alt="Placeholder image">
+						<p style="background-color: #${randomHexColor(6)};" v-if="currentSlide === 3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 					</template>
 			</kv-vertical-carousel>
-			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()" role="toggleAutoPlayButton">Toggle AutoPlay</a>
+			<a href="#" @click.native.prevent="$refs.sampleCarousel.toggleAutoPlay()">Toggle AutoPlay</a>
 			<br/>
 			<p>AutoPlay is: {{ isAutoplaying ? 'ON' : 'OFF' }}</p>
 			<a href="#" @click.native.prevent="$refs.sampleCarousel.goToSlide(0)">Go To Slide 0</a>

@@ -1,5 +1,4 @@
 import { render, fireEvent, waitFor } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvImageUpload from '#components/KvImageUpload.vue';
 import { cropResizeImageToDataUrl } from '#utils/imageUtils';
 
@@ -20,12 +19,6 @@ const getFileInput = (container) => container.querySelector('input[type="file"]'
 describe('KvImageUpload', () => {
 	beforeEach(() => {
 		cropResizeImageToDataUrl.mockResolvedValue('data:image/png;base64,preview');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderUploader();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 
 	it('exposes a focusable, labelled native file input (keyboard accessible)', () => {

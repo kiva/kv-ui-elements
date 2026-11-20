@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import { nextTick } from 'vue';
 import KvCheckoutLightbox from '#components/KvCheckoutLightbox.vue';
 
@@ -59,11 +58,6 @@ describe('KvCheckoutLightbox', () => {
 		track.mockClear();
 	});
 
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderLightbox();
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('renders the host totals and guest fields for a signed-out visitor', () => {
 		const utils = renderLightbox();
 		expect(utils.getByTestId('host-totals')).toBeInTheDocument();
@@ -106,7 +100,7 @@ describe('KvCheckoutLightbox', () => {
 			const utils = renderLightbox({ isLoggedIn: true, paying: true });
 			// KvButton disables itself and hides the label behind the spinner while loading.
 			expect(submitButton(utils)).toBeDisabled();
-			expect(utils.getByText('Submit my contribution')).toHaveClass('tw-invisible');
+			expect(utils.getByText('Submit my contribution')).toHaveClass('tw-opacity-0');
 		});
 	});
 

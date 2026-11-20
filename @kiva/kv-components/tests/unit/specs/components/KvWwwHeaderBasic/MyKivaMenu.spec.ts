@@ -1,8 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import MyKivaMenu from '#components/KvWwwHeaderBasic/MyKivaMenu.vue';
-
-expect.extend(toHaveNoViolations);
 
 function renderMenu(props = {}, track = () => {}) {
 	return render(MyKivaMenu, {
@@ -12,13 +9,6 @@ function renderMenu(props = {}, track = () => {}) {
 }
 
 describe('MyKivaMenu', () => {
-	it('has no accessibility violations', async () => {
-		const { container } = renderMenu({
-			isBorrower: true, isTrustee: true, trusteeId: 77, mostRecentBorrowedLoanId: 123,
-		});
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('links to the dashboard url', () => {
 		const { getByText } = renderMenu();
 		expect(getByText('My Dashboard').getAttribute('href')).toBe('/mykiva');

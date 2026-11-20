@@ -3,12 +3,17 @@ import {
 	setup
 } from '@storybook/vue3';
 import { addons } from 'storybook/preview-api';
+import { createMemoryHistory, createRouter } from 'vue-router';
 import KvThemeProvider from '#components/KvThemeProvider.vue';
 import { defaultTheme, greenDarkTheme } from '@kiva/kv-tokens';
 
 setup((app) => {
 	// Mock analytics
 	app.directive('kv-track-event', () => { });
+	app.use(createRouter({
+		history: createMemoryHistory(),
+		routes: [{ path: '/:path(.*)', component: {} }],
+	}));
 });
 
 export const parameters = {
@@ -29,6 +34,15 @@ export const parameters = {
 
     docs: {
         codePanel: true,
+    },
+
+    a11y: {
+        test: 'error',
+        config: {
+            rules: [
+                { id: 'target-size', enabled: true },
+            ],
+        },
     },
 }
 

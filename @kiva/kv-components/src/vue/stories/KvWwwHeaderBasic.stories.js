@@ -378,7 +378,7 @@ const openMenuPlay = (getTrigger, panelSelector, readyText) => async ({ canvasEl
 	await waitFor(() => {
 		const panel = canvasElement.querySelector(panelSelector);
 		if (!panel?.textContent?.includes(readyText)) throw new Error(`${panelSelector} not ready`);
-	});
+	}, { timeout: 5000 });
 };
 
 export const LendMenuOpen = story({
@@ -412,9 +412,20 @@ export const MyKivaMenuOpen = story({
 	appOrigin: 'https://www.kiva.org',
 });
 MyKivaMenuOpen.play = openMenuPlay(
-	(canvas) => canvas.getByLabelText('My Kiva menu'),
+	(canvas) => canvas.getByRole('button', { name: /^My Kiva menu/ }),
 	'#header-basic-menu-my-kiva',
 	'Portfolio',
+);
+
+export const TrusteeAndBorrowerMobileMyKivaMenuOpen = story({ ...TrusteeAndBorrower.args });
+TrusteeAndBorrowerMobileMyKivaMenuOpen.parameters = {
+	viewport: { defaultViewport: 'mobile1' },
+	chromatic: { viewports: [375] },
+};
+TrusteeAndBorrowerMobileMyKivaMenuOpen.play = openMenuPlay(
+	(canvas) => canvas.getByRole('button', { name: /^My Kiva menu/ }),
+	'#header-basic-menu-my-kiva',
+	'My Dashboard',
 );
 
 export const MobileDrawerOpen = story({

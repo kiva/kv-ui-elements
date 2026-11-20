@@ -217,11 +217,13 @@
 					<button
 						v-bind="trigger"
 						type="button"
-						aria-label="My Kiva menu"
 						data-testid="header-avatar-menu"
 						class="menu-trigger tw-p-0 tw-py-1 tw-flex tw-items-center tw-gap-1 tw-cursor-pointer"
 						:style="isUserDataLoading ? { display: 'var(--user-loading-display, flex)' } : undefined"
 					>
+						<span class="tw-sr-only">
+							{{ isUserDataLoading ? 'My Kiva menu' : 'My Kiva menu, balance' }}
+						</span>
 						<span
 							v-if="isUserDataLoading"
 							class="tw-block tw-w-4 tw-h-3"
