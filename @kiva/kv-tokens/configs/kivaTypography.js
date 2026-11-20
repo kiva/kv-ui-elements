@@ -541,6 +541,7 @@ export const proseOverrides = () => ({
 				// fontSize: false,
 				// lineHeight: false,
 				...textStyles.textCaption,
+				color: false,
 			},
 			label: {
 				...textStyles.textLabel,
