@@ -79,12 +79,14 @@ export const ComponentOverview = {
 					<div class="tw-text-center">
 						<kv-icon-button
 							:icon="mdiDotsVertical"
+							aria-label="More options"
 						/>
 						<p class="tw-text-small tw-mt-2">Bare</p>
 					</div>
 					<div class="tw-text-center">
 						<kv-icon-button
 							:icon="mdiDotsVertical"
+							aria-label="More options"
 							show-background
 						/>
 						<p class="tw-text-small tw-mt-2">Background</p>
@@ -92,6 +94,7 @@ export const ComponentOverview = {
 					<div class="tw-text-center">
 						<kv-icon-button
 							:icon="mdiClose"
+							aria-label="Close"
 							show-background
 							show-border
 							border-color="tertiary"
@@ -102,6 +105,7 @@ export const ComponentOverview = {
 						<kv-icon-button
 							:active-icon="mdiBookmark"
 							:icon="mdiBookmarkOutline"
+							aria-label="Bookmark"
 							show-background
 							toggleable
 							v-model="isToggled"
@@ -144,6 +148,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="small"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 								/>
 								<p class="tw-text-small tw-mt-1">Small</p>
 							</div>
@@ -151,6 +156,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="medium"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 								/>
 								<p class="tw-text-small tw-mt-1">Medium</p>
 							</div>
@@ -158,6 +164,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="large"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 								/>
 								<p class="tw-text-small tw-mt-1">Large</p>
 							</div>
@@ -172,6 +179,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="small"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 									show-background
 								/>
 								<p class="tw-text-small tw-mt-1">Small</p>
@@ -180,6 +188,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="medium"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 									show-background
 								/>
 								<p class="tw-text-small tw-mt-1">Medium</p>
@@ -188,6 +197,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="large"
 									:icon="mdiDotsVertical"
+									aria-label="More options"
 									show-background
 								/>
 								<p class="tw-text-small tw-mt-1">Large</p>
@@ -203,6 +213,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="small"
 									:icon="mdiClose"
+									aria-label="Close"
 									show-background
 									show-border
 									border-color="tertiary"
@@ -213,6 +224,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="medium"
 									:icon="mdiClose"
+									aria-label="Close"
 									show-background
 									show-border
 									border-color="tertiary"
@@ -223,6 +235,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="large"
 									:icon="mdiClose"
+									aria-label="Close"
 									show-background
 									show-border
 									border-color="tertiary"
@@ -240,6 +253,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="small"
 									:icon="mdiBookmarkOutline"
+									aria-label="Bookmark"
 									:active-icon="mdiBookmark"
 									show-background
 									toggleable
@@ -251,6 +265,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="medium"
 									:icon="mdiBookmarkOutline"
+									aria-label="Bookmark"
 									:active-icon="mdiBookmark"
 									show-background
 									toggleable
@@ -262,6 +277,7 @@ export const AllVariations = {
 								<kv-icon-button
 									size="large"
 									:icon="mdiBookmarkOutline"
+									aria-label="Bookmark"
 									:active-icon="mdiBookmark"
 									show-background
 									toggleable
@@ -307,6 +323,7 @@ export const ToggleableButton = {
 							size="small"
 							:icon="args.icon"
 							:active-icon="args.activeIcon"
+							aria-label="Bookmark"
 							:show-background="args.showBackground"
 							toggleable
 							v-model="isToggledSmall"
@@ -316,6 +333,7 @@ export const ToggleableButton = {
 							size="medium"
 							:icon="args.icon"
 							:active-icon="args.activeIcon"
+							aria-label="Bookmark"
 							:show-background="args.showBackground"
 							toggleable
 							v-model="isToggledMedium"
@@ -325,6 +343,7 @@ export const ToggleableButton = {
 							size="large"
 							:icon="args.icon"
 							:active-icon="args.activeIcon"
+							aria-label="Bookmark"
 							:show-background="args.showBackground"
 							toggleable
 							v-model="isToggledLarge"
@@ -365,6 +384,7 @@ export const IconButtonStates = {
 							<kv-icon-button
 								size="medium"
 								:icon="args.icon"
+								aria-label="More options"
 								:show-background="args.showBackground"
 								:show-border="args.showBorder"
 								:border-color="args.borderColor"
@@ -376,6 +396,7 @@ export const IconButtonStates = {
 							<kv-icon-button
 								size="medium"
 								:icon="args.icon"
+								aria-label="More options"
 								:show-background="args.showBackground"
 								:show-border="args.showBorder"
 								:border-color="args.borderColor"
@@ -413,19 +434,19 @@ export const TouchTargetVisualization = {
 				<div class="tw-flex tw-gap-4 tw-items-center">
 					<div class="tw-text-center">
 						<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-							<kv-icon-button size="small" :icon="args.icon" :show-background="args.showBackground" @click="onClick" />
+							<kv-icon-button size="small" :icon="args.icon" aria-label="More options" :show-background="args.showBackground" @click="onClick" />
 						</div>
 						<p class="tw-text-small tw-mt-1">Small (16px)</p>
 					</div>
 					<div class="tw-text-center">
 						<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-							<kv-icon-button size="medium" :icon="args.icon" :show-background="args.showBackground" @click="onClick" />
+							<kv-icon-button size="medium" :icon="args.icon" aria-label="More options" :show-background="args.showBackground" @click="onClick" />
 						</div>
 						<p class="tw-text-small tw-mt-1">Medium (20px)</p>
 					</div>
 					<div class="tw-text-center">
 						<div class="tw-border tw-border-dashed tw-border-tertiary tw-inline-block">
-							<kv-icon-button size="large" :icon="args.icon" :show-background="args.showBackground" @click="onClick" />
+							<kv-icon-button size="large" :icon="args.icon" aria-label="More options" :show-background="args.showBackground" @click="onClick" />
 						</div>
 						<p class="tw-text-small tw-mt-1">Large (24px)</p>
 					</div>
@@ -457,6 +478,7 @@ export const Default = {
 			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-inline-block">
 				<kv-icon-button
 					:icon="args.icon"
+					aria-label="More options"
 					:size="args.size"
 					:show-border="args.showBorder"
 					:border-color="args.borderColor"

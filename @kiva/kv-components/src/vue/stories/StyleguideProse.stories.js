@@ -60,7 +60,7 @@ export const ProseDemo = (args, { argTypes }) => ({
 				<p>We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a <code>p</code> element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look <em>awesome</em>, not awful.</p>
 				<p>The <code>@tailwindcss/typography</code> plugin is our attempt to give you what you <em>actually</em> want, without any of the downsides of doing something stupid like disabling our base styles.</p>
 				<p>It adds a new <code>prose</code> class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:</p>
-				<pre><code class="language-html">&lt;article class="prose"&gt;
+				<pre tabindex="0"><code class="language-html">&lt;article class="prose"&gt;
 			&lt;h1&gt;Garlic bread with cheese: What the science tells us&lt;/h1&gt;
 			&lt;p&gt;
 				For years parents have espoused the health benefits of eating garlic bread with cheese to their
@@ -127,7 +127,7 @@ export const ProseDemo = (args, { argTypes }) => ({
 				<h2>Code should look okay by default.</h2>
 				<p>I think most people are going to use <a href="https://highlightjs.org/">highlight.js</a> or <a href="https://prismjs.com/">Prism</a> or something if they want to style their code blocks but it wouldn't hurt to make them look <em>okay</em> out of the box, even with no syntax highlighting.</p>
 				<p>Here's what a default <code>tailwind.config.js</code> file looks like at the time of writing:</p>
-				<pre><code class="language-js">module.exports = {
+				<pre tabindex="0"><code class="language-js">module.exports = {
 			purge: [],
 			theme: {
 				extend: {},

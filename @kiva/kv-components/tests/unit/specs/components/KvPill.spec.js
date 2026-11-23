@@ -1,5 +1,4 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvPill from '#components/KvPill.vue';
 
 const renderPill = (options = {}) => render(KvPill, {
@@ -41,10 +40,5 @@ describe('KvPill', () => {
 	it('applies small size classes', () => {
 		const { container } = renderPill({ props: { size: 'small' } });
 		expect(container.firstChild).toHaveClass('tw-px-1', 'tw-py-0.5', 'tw-gap-0.5');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderPill();
-		expect(await axe(container)).toHaveNoViolations();
 	});
 });

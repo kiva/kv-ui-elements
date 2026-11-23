@@ -101,19 +101,20 @@
 							class="loan kcard"
 						>
 							<template v-if="card.kivaCardObject.deliveryType === 'print'">
-								<div>
+								<div class="tw-flex tw-items-baseline -tw-mt-1">
 									<h3
 										class="loan__name loan__name--inline tw-text-title"
 										data-testid="kcard-type-print"
 									>
 										Print-it-yourself Kiva Card
 									</h3>
-									<kv-material-icon
+									<kv-icon-button
 										:id="`print-card-${card.id}`"
 										:icon="infoIcon"
+										size="small"
 										data-testid="kcard-tool-tip-control"
-										name="question"
-										class="tw-fill-current tw-text-tertiary tw-h-2.5 tw-w-2.5 tw-ml-0.5"
+										aria-label="About Print-it-yourself Kiva Cards"
+										class="tw-ml-0.5 tw-text-tertiary"
 									/>
 									<kv-tooltip
 										data-testid="kcard-tool-tip-text"
@@ -357,6 +358,7 @@ import { format } from 'date-fns';
 import { mdiInformation, mdiPrinter } from '@mdi/js';
 import { computed } from 'vue';
 import KvButton from './KvButton.vue';
+import KvIconButton from './KvIconButton.vue';
 import KvTooltip from './KvTooltip.vue';
 import KvMaterialIcon from './KvMaterialIcon.vue';
 
@@ -379,6 +381,7 @@ export default {
 	name: 'KvCheckoutReceipt',
 	components: {
 		KvButton,
+		KvIconButton,
 		KvTooltip,
 		KvMaterialIcon,
 	},

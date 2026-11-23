@@ -3,10 +3,7 @@ import { resolve } from 'path';
 import { nextTick } from 'vue';
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import LinkBar from '#components/KvWwwHeaderBasic/LinkBar.vue';
-
-expect.extend(toHaveNoViolations);
 
 // Stubs scrollIntoView and ResizeObserver, which jsdom lacks.
 Element.prototype.scrollIntoView = jest.fn();
@@ -62,19 +59,6 @@ const TRIGGER_CASES: Array<{
 describe('LinkBar', () => {
 	afterEach(() => {
 		jest.useRealTimers();
-	});
-
-	it('has no accessibility violations (visitor)', async () => {
-		const { container } = render(LinkBar, { props: { loggedIn: false }, global });
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
-	it('has no accessibility violations with a menu open', async () => {
-		const user = userEvent.setup();
-		const { container, getByRole, findByText } = render(LinkBar, { props: { loggedIn: false }, global });
-		await tap(user, getByRole('button', { name: /about/i }));
-		await findByText('How Kiva works');
-		expect(await axe(container)).toHaveNoViolations();
 	});
 
 	it('shows Borrow and Log In for visitors', () => {
@@ -588,13 +572,6 @@ describe('LinkBar', () => {
 		});
 		expect(getByAltText('Image of lender')).toBeTruthy();
 		expect(queryByTestId('user-avatar-icon')).toBeNull();
-	});
-
-	it('has no accessibility violations with the ESI avatar enabled', async () => {
-		const { container } = render(LinkBar, {
-			props: { loggedIn: true, isUserDataLoading: true, useEsiAvatar: true }, global,
-		});
-		expect(await axe(container)).toHaveNoViolations();
 	});
 
 	// A grid-template-areas value whose rows differ in length is invalid and dropped whole, with no

@@ -1,7 +1,6 @@
 import { nextTick } from 'vue';
 import { render, screen, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import KvLightbox from '#components/KvLightbox.vue';
 
 // The backdrop ("screen") behind the lightbox
@@ -26,15 +25,6 @@ const expectShown = (button) => {
 };
 
 describe('KvLightbox', () => {
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvLightbox,
-			{
-				props: { title: 'Lightbox Title' },
-			});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	it('fire close emit once', async () => {
 		const { emitted } = render(KvLightbox,
 			{

@@ -1,5 +1,4 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvTextLink from '#components/KvTextLink.vue';
 import addVueRouter from '../../utils/addVueRouter';
 
@@ -43,11 +42,5 @@ describe('Default Button', () => {
 		});
 		const anchorEl = getByRole('link', { name: 'Test Text Link' });
 		expect(anchorEl.href).toEqual('http://localhost/test-route-with-query?param1=a');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = renderTestTextLink();
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

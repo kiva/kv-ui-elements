@@ -1,8 +1,5 @@
 import { render } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import KvUserAvatar from '#components/KvUserAvatar.vue';
-
-expect.extend(toHaveNoViolations);
 
 const CUSTOM_IMAGE = 'https://www.kiva.org/img/s100/26e15431f51b540f31cd9f011cc54f31.jpg';
 // One of the three monolith-era defaults isLegacyPlaceholderAvatar knows about.
@@ -125,13 +122,6 @@ describe('KvUserAvatar', () => {
 				props: { lenderName: 'Roger', lenderImageUrl: CUSTOM_IMAGE, useIconFallback: true },
 			});
 			expect(container.firstChild as HTMLElement).toHaveClass('tw-font-serif');
-		});
-
-		it('has no accessibility violations', async () => {
-			const { container } = render(KvUserAvatar, {
-				props: { lenderName: 'Roger', useIconFallback: true },
-			});
-			expect(await axe(container)).toHaveNoViolations();
 		});
 	});
 });

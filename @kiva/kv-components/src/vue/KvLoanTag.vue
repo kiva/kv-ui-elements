@@ -3,7 +3,7 @@
 		v-if="!!variation"
 		class="tw-text-small tw-font-medium tw-pt-0.5"
 		:class="{ 'tw-line-clamp-1': !isMultipleMatch }"
-		:style="{ color: tagColor }"
+		style="color: #CE4A00;"
 	>
 		<template v-if="isMultipleMatch">
 			{{ totalMatchRatio }}x match by&#160;<span
@@ -38,20 +38,11 @@
 </template>
 
 <script lang="ts">
-import { differenceInDays, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 import gql from 'graphql-tag';
-import numeral from 'numeral';
+import { getLoanTagVariation, LOAN_TAG_VARIATION as VARIATION } from '../utils/loanTag';
 import KvCountdownTimer from './KvCountdownTimer.vue';
 import KvTooltip from './KvTooltip.vue';
-
-const LSE_LOAN_KEY = 'N/A';
-
-const VARIATION = {
-	almostFunded: 'almost-funded',
-	endingSoon: 'ending-soon',
-	matchedLoan: 'matched-loan',
-	lseLoan: 'lse-loan',
-};
 
 export const KV_LOAN_TAG_FRAGMENT = gql`
 	fragment KvLoanTag on LoanBasic {
@@ -87,10 +78,6 @@ export default {
 			type: Object,
 			required: true,
 		},
-		useExpandedStyles: {
-			type: Boolean,
-			default: false,
-		},
 		enableMultiMatching: {
 			type: Boolean,
 			default: false,
@@ -99,14 +86,6 @@ export default {
 	computed: {
 		deadline() {
 			return parseISO(this.loan?.plannedExpirationDate);
-		},
-		isLseLoan() {
-			return this.loan?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY) ?? false;
-		},
-		amountLeft() {
-			const loanFundraisingInfo = this.loan?.loanFundraisingInfo ?? { fundedAmount: 0, reservedAmount: 0 };
-			const { fundedAmount, reservedAmount } = loanFundraisingInfo;
-			return numeral(this.loan?.loanAmount).subtract(fundedAmount).subtract(reservedAmount).value();
 		},
 		multiMatchingOrgs() {
 			return this.loan?.simultaneousMatching ?? [];
@@ -120,44 +99,21 @@ export default {
 			return this.multiMatchingOrgs.reduce((sum, org) => sum + org.ratio, 1);
 		},
 		variation() {
-			const hasLegacyMatch = !!this.loan?.matchingText;
-			const hasMultiMatch = this.enableMultiMatching && this.multiMatchingOrgs.length > 0;
-			if (hasLegacyMatch || hasMultiMatch) {
-				return VARIATION.matchedLoan;
-			} if (this.isLseLoan) {
-				return VARIATION.lseLoan;
-			} if (differenceInDays(parseISO(this.loan?.plannedExpirationDate), Date.now()) <= 3) {
-				return VARIATION.endingSoon;
-			} if (this.amountLeft < 100 && this.amountLeft >= 0) {
-				return VARIATION.almostFunded;
-			}
-			return null;
+			return getLoanTagVariation(this.loan, this.enableMultiMatching);
 		},
 		tagText() {
 			switch (this.variation) {
-				case VARIATION.lseLoan: return `${this.useExpandedStyles ? '⚡ ' : ''}High community impact`;
-				case VARIATION.almostFunded: return `${this.useExpandedStyles ? '💸 ' : ''}Almost funded`;
+				case VARIATION.lseLoan: return 'High community impact';
+				case VARIATION.almostFunded: return 'Almost funded';
 				case VARIATION.matchedLoan: {
 					if (this.enableMultiMatching && this.multiMatchingOrgs.length === 1) {
 						const org = this.multiMatchingOrgs[0];
-						// eslint-disable-next-line max-len
-						return `${this.useExpandedStyles ? '🤝 ' : ''}${org.ratio + 1}x matching by ${this.orgDisplayName(org)}`;
+						return `${org.ratio + 1}x matching by ${this.orgDisplayName(org)}`;
 					}
-					// eslint-disable-next-line max-len
-					return `${this.useExpandedStyles ? '🤝 ' : ''}${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
+					return `${this.matchRatio + 1}x matching by ${this.loan?.matchingText}`;
 				}
-				default: return `${this.useExpandedStyles ? '⏰ ' : ''}Ending soon: `;
+				default: return 'Ending soon: ';
 			}
-		},
-		tagColor() {
-			if (this.useExpandedStyles) {
-				switch (this.variation) {
-					case VARIATION.almostFunded: return '#AF741C';
-					case VARIATION.endingSoon: return '#CE2626';
-					default: return '#2B7C5F';
-				}
-			}
-			return '#CE4A00';
 		},
 		matchRatio() {
 			return this.loan?.matchRatio;

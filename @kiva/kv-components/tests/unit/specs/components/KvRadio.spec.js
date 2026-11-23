@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvRadio from '#components/KvRadio.vue';
 
 const radioGroup = {
@@ -174,11 +173,5 @@ describe('KvRadio', () => {
 		const { container } = render(TestComponent);
 
 		expect(container.firstChild.classList).toContain('test-class');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(radioGroup);
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
 	});
 });

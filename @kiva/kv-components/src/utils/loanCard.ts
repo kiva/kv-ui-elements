@@ -10,6 +10,7 @@ import {
 } from 'vue';
 import { mdiMapMarker } from '@mdi/js';
 import Alea from './Alea';
+import { getLoanTagVariation, isLseLoan } from './loanTag';
 
 export interface Callout {
 	id: number | null;
@@ -17,7 +18,6 @@ export interface Callout {
 	type: 'tag' | 'attribute' | 'activity' | 'sector';
 }
 
-const LSE_LOAN_KEY = 'N/A';
 const ECO_FRIENDLY_KEY = 'ECO-FRIENDLY';
 const SUSTAINABLE_AG_KEY = 'SUSTAINABLE AG';
 const SINGLE_PARENT_KEY = 'SINGLE PARENT';
@@ -79,6 +79,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		categoryPageName,
 		customCallouts,
 		customHref,
+		enableMultiMatching,
 	} = toRefs(props);
 
 	const tag = computed(() => (externalLinks.value ? 'a' : 'router-link'));
@@ -102,6 +103,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 			&& typeof loan.value?.loanFundraisingInfo?.fundedAmount !== 'undefined'
 			&& typeof loan.value?.loanFundraisingInfo?.reservedAmount !== 'undefined';
 	});
+	const hasLoanTag = computed(() => !!getLoanTagVariation(loan.value, enableMultiMatching?.value));
 
 	const allDataLoaded = computed(() => !isLoading.value && hasProgressData.value);
 
@@ -157,7 +159,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 			singleParents: !!tags.filter((t) => t.toUpperCase() === SINGLE_PARENT_KEY).length,
 		};
 
-		const isLseLoan = loan.value?.partnerName?.toUpperCase().includes(LSE_LOAN_KEY);
+		const lseLoan = isLseLoan(loan.value);
 
 		const tagsData = loan.value?.tagsData ?? [];
 		const themesData = loan.value?.themesData ?? [];
@@ -165,7 +167,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		// P1 Category
 		// Exp limited to: Eco-friendly, Refugees and IDPs, Single Parents
 		// Tag as first option for LSE loans
-		if (isLseLoan && tags.length) {
+		if (lseLoan && tags.length) {
 			const position = Math.floor(rng() * tags.length);
 			const p1Tag = tags[position];
 			const tagData = findCalloutData(tagsData, p1Tag);
@@ -223,7 +225,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		}
 
 		// Only show one callout for LSE loans
-		if (isLseLoan && callouts.length > 1) return [callouts.shift()];
+		if (lseLoan && callouts.length > 1) return [callouts.shift()];
 
 		// Add all custom callouts if available
 		const customTags = customCallouts.value?.map((c) => ({ label: c })) ?? [];
@@ -235,6 +237,7 @@ export function loanCardComputedProperties(props, hideUnitedStatesText = false) 
 		tag,
 		readMorePath,
 		isLoading,
+		hasLoanTag,
 		borrowerName,
 		countryName,
 		countryCode,

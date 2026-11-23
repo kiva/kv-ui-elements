@@ -28,7 +28,7 @@
 			</template>
 			<span
 				class="tw-z-10"
-				:class="[paddingClass, textClass, { 'tw-invisible': state === 'loading' }]"
+				:class="[paddingClass, textClass, { 'tw-opacity-0': state === 'loading' }]"
 			>
 				<slot></slot>
 			</span>

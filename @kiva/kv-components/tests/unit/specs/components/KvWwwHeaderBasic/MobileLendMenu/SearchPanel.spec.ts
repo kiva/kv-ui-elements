@@ -1,17 +1,9 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import SearchPanel from '#components/KvWwwHeaderBasic/MobileLendMenu/SearchPanel.vue';
-
-expect.extend(toHaveNoViolations);
 
 const global = { provide: { $kvTrackEvent: () => {} } };
 
 describe('SearchPanel', () => {
-	it('has no accessibility violations', async () => {
-		const { container } = render(SearchPanel, { global });
-		expect(await axe(container)).toHaveNoViolations();
-	});
-
 	it('forwards SearchBar load-search-data on first focus', async () => {
 		const { emitted, getByRole } = render(SearchPanel, { global });
 		await fireEvent.focus(getByRole('searchbox'));

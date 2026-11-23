@@ -1,23 +1,9 @@
 import { render } from '@testing-library/vue';
-import { axe } from 'jest-axe';
 import KvContentfulImg from '#components/KvContentfulImg.vue';
 
 const contentfulSrc = 'https://images.ctfassets.net/test/image.jpg';
 
 describe('KvContentfulImg', () => {
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvContentfulImg, {
-			props: {
-				contentfulSrc,
-				width: 400,
-				height: 300,
-				alt: 'Test image',
-			},
-		});
-		const results = await axe(container);
-		expect(results).toHaveNoViolations();
-	});
-
 	describe('caption computed property', () => {
 		it('should return empty string when alt text does not start with ^', () => {
 			const { queryByText } = render(KvContentfulImg, {

@@ -34,8 +34,6 @@ export { default as KvImpactDashboardHeader } from './KvImpactDashboardHeader.vu
 export { default as KvImpactVerticalSelector } from './KvImpactVerticalSelector.vue';
 export { default as KvInlineActivityCard } from './KvInlineActivityCard.vue';
 export { default as KvInlineActivityFeed } from './KvInlineActivityFeed.vue';
-export { default as KvIntroductionLoanCard } from './KvIntroductionLoanCard.vue';
-export * from './KvIntroductionLoanCard.vue';
 export { default as KvLendAmountButton } from './KvLendAmountButton.vue';
 export { default as KvLendCta } from './KvLendCta.vue';
 export * from './KvLendCta.vue';

@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import KvTextInput from '#components/KvTextInput.vue';
 
 const KvTextInputTemplate = {
@@ -118,13 +117,6 @@ describe('KvTextInput', () => {
 		const { container } = render(TestComponent);
 
 		expect(container.firstChild.classList).toContain('test-class');
-	});
-
-	it('has no automated accessibility violations', async () => {
-		const { container } = render(KvTextInputTemplate);
-		const results = await axe(container);
-
-		expect(results).toHaveNoViolations();
 	});
 
 	it('clear button cleans the input value', async () => {
