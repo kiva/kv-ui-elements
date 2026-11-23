@@ -64,8 +64,10 @@
 						<!-- header -->
 						<div
 							class="
-								tw-flex
-								tw-p-2.5 md:tw-p-3 lg:tw-px-4 lg:tw-pt-4 lg:tw-pb-3
+								tw-flex tw-items-start
+								tw-px-2.5 tw-pt-2.5 tw-pb-2
+								md:tw-px-3 md:tw-pt-3
+								lg:tw-px-4 lg:tw-pt-4
 							"
 						>
 							<div class="tw-flex-grow">
@@ -79,9 +81,11 @@
 							<button
 								v-if="!preventClose"
 								class="
+									tw-flex-shrink-0
 									tw-grid tw-content-center tw-justify-center
 									tw-ml-auto
-									tw-w-6 tw-h-6 tw--m-2
+									tw-w-6 tw-h-6
+									tw--mr-2 tw--mb-2 tw--mt-1.5 lg:tw--mt-1
 									hover:tw-text-action-highlight
 								"
 								:class="closeButtonClasses"
@@ -102,7 +106,7 @@
 							class="
 								tw-flex-1
 								tw-px-2.5 md:tw-px-3 lg:tw-px-4
-								tw-pb-2.5 md:tw-pb-3 lg:tw-pb-4
+								tw-pb-2
 								tw-overflow-auto
 							"
 						>

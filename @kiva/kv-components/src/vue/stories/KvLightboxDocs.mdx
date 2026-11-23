@@ -132,9 +132,11 @@ The dialog is at most `55.55rem` wide and 90% of the viewport tall. When content
 
 ### Responsive Layout and Spacing
 
-- **Below `md`**: Both variants are a bottom sheet: full width, anchored to the bottom of the viewport, rounded top corners and a minimum height of half the screen. Header, body and controls use 20px (`tw-*-2.5`) padding.
-- **`md` to `lg`**: The dialog is centered, sizes to its content and has all corners rounded. Padding is 24px (`tw-*-3`).
-- **`lg` and up**: Padding is 32px (`tw-*-4`), with 24px (`tw-pb-3`) below the header.
+- **Below `md`**: Both variants are a bottom sheet: full width, anchored to the bottom of the viewport, rounded top corners and a minimum height of half the screen. Header, body and controls use 20px (`tw-*-2.5`) padding on the sides.
+- **`md` to `lg`**: The dialog is centered, sizes to its content and has all corners rounded. Side padding is 24px (`tw-*-3`).
+- **`lg` and up**: Side padding is 32px (`tw-*-4`).
+- **At every size**: 16px (`tw-pb-2`) below the header and below the body. The header's top padding matches the side padding.
+- **Close button**: Lined up with the first line of the title, so it stays in the top corner when a long title wraps. It never shrinks (`tw-flex-shrink-0`), keeping a 48px tap target.
 - **Title**: Uses `tw-text-headline-two` (20px, 22px from `lg`).
 - **Close X button**: A 48 x 48px (`tw-w-6 tw-h-6`) target around a 24px icon. It changes to the action highlight color on hover.
 - **Controls**: Buttons are separated by a 16px (`tw-gap-x-2`) gap, sit 8px (`tw-pt-1`) below the body and are aligned to the end of the dialog.
