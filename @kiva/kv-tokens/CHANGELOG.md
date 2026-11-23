@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@5.0.2...@kiva/kv-tokens@5.0.3) (2026-11-23)
+
+
+### Bug Fixes
+
+* **kv-tokens:** use the prose text color for figcaptions ([375d394](https://github.com/kiva/kv-ui-elements/commit/375d3944b991c8c18c2f43252218827ee6988c54))
+
+
+
+
+
 ## [5.0.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-tokens@5.0.1...@kiva/kv-tokens@5.0.2) (2026-11-13)
 
 

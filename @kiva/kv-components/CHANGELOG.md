@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.4.2...@kiva/kv-components@12.0.0) (2026-11-23)
+
+
+### Bug Fixes
+
+* **kv-components:** name KvSideSheet and KvUtilityMenu icon buttons ([c064da1](https://github.com/kiva/kv-ui-elements/commit/c064da1d4fb771cf4d5f39ed736456160d32e3b4))
+* **KvButton:** keep the label available to screen readers when loading ([98fe75a](https://github.com/kiva/kv-ui-elements/commit/98fe75a2d37d266aee1784eca4f92b18c4421262))
+* **KvCartModal:** add the dialog role ([5a0aeed](https://github.com/kiva/kv-ui-elements/commit/5a0aeed232ef57601622c5773c615f9943f01318))
+* **KvCheckoutReceipt:** use a labeled icon button as tooltip trigger ([ea65ee3](https://github.com/kiva/kv-ui-elements/commit/ea65ee307d03c0df6316f2c4909508daeb2de4c3))
+* **KvWwwHeaderBasic:** name header landmarks, logo and avatar button ([dcf0e1e](https://github.com/kiva/kv-ui-elements/commit/dcf0e1e751bc0816f706ff43c995cdbd349b5cbc))
+* **loan-card:** name loan card links from their content ([2ed480c](https://github.com/kiva/kv-ui-elements/commit/2ed480ce2403b0755fef16cefc55006f0edf3dce))
+
+
+* fix(carousel)!: hide only off-screen slides from assistive technology ([69acb9a](https://github.com/kiva/kv-ui-elements/commit/69acb9a3a7ae46d7c75d085508dcf9e90dc13a0c))
+* refactor(KvLoanTag)!: remove KvIntroductionLoanCard and expanded styles ([00a5fdc](https://github.com/kiva/kv-ui-elements/commit/00a5fdc9517b06eaee72f2120c6522b9232482ab))
+
+
+### BREAKING CHANGES
+
+* carouselUtil no longer returns isAriaHidden; it returns isSlideInert instead.
+
+AD-676
+* KvIntroductionLoanCard is no longer exported and KvLoanTag no longer accepts
+useExpandedStyles.
+
+AD-676
+
+
+
+
+
 ## [11.4.2](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.4.1...@kiva/kv-components@11.4.2) (2026-11-19)
 
 
