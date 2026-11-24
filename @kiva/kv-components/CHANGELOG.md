@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@12.0.0...@kiva/kv-components@13.0.0) (2026-11-24)
+
+
+### Bug Fixes
+
+* **kv-components:** align KvLightbox close button and tighten bottom spacing ([33d2512](https://github.com/kiva/kv-ui-elements/commit/33d2512d561bac4fe30a3074a445e19f41173bde))
+
+
+* feat(kv-components)!: update KvLightbox to Ecosystem 2026 spec ([8124310](https://github.com/kiva/kv-ui-elements/commit/812431027a358a695f0f550ea8cad6118f56a80c))
+
+
+### BREAKING CHANGES
+
+* new spacing and title style; variant="alert" is a bottom sheet on mobile
+
+
+
+
+
 # [12.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@11.4.2...@kiva/kv-components@12.0.0) (2026-11-23)
 
 
