@@ -504,7 +504,8 @@ export default {
 					this.countriesLayer.addTo(this.mapInstance);
 					this.applySelectedCountry();
 
-					if (this.showFundraisingLoans) {
+					// Only clickable maps bring a country to front, so only they need the dots lifted
+					if (this.showFundraisingLoans && this.countriesClickable) {
 						this.mapInstance.createPane(FUNDRAISING_PANE).style.zIndex = FUNDRAISING_PANE_Z_INDEX;
 					}
 
@@ -516,7 +517,7 @@ export default {
 								fillColor: kvTokensPrimitives.colors.brand[900],
 								fillOpacity: 1,
 								radius: 130000,
-								pane: FUNDRAISING_PANE,
+								...(this.countriesClickable && { pane: FUNDRAISING_PANE }),
 								className: NO_FOCUS_RING_CLASS,
 							}).addTo(this.mapInstance);
 

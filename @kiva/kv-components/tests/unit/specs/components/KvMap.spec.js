@@ -187,6 +187,13 @@ describe('KvMap', () => {
 			expect(circles.every((circle) => circle.options.pane === pane)).toBe(true);
 		});
 
+		it('keeps dots in the default pane when countries are not clickable', async () => {
+			const { circles, panes } = await renderLeafletMap({ showFundraisingLoans: true });
+
+			expect(Object.keys(panes)).toEqual([]);
+			expect(circles.every((circle) => circle.options.pane === undefined)).toBe(true);
+		});
+
 		it('keeps the outline when the map is rebuilt for fundraising dots', async () => {
 			const { layers, rerender } = await renderLeafletMap({ countriesClickable: true });
 			layers.get('MX').handlers.click();
