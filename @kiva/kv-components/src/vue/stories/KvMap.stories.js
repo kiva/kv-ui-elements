@@ -1,5 +1,7 @@
+import { ref } from 'vue';
 import mockLenderCountries from '#fixtures/mockLenderCountries';
 import KvMap from '../KvMap.vue';
+import KvMapDocsMdx from './KvMapDocs.mdx';
 
 export default {
 	title: 'Components/KvMap',
@@ -18,7 +20,34 @@ export default {
 		showTooltips: true,
 		optimizeInitialMapZoom: false,
 	},
+	argTypes: {
+		aspectRatio: { control: 'number' },
+		autoZoomDelay: { control: 'number' },
+		height: { control: 'number' },
+		width: { control: 'number' },
+		initialZoom: { control: 'number' },
+		lat: { control: 'number' },
+		long: { control: 'number' },
+		mapId: { control: 'number' },
+		useLeaflet: { control: 'boolean' },
+		zoomLevel: { control: 'number' },
+		advancedAnimation: { control: 'object' },
+		showZoomControl: { control: 'boolean' },
+		allowDragging: { control: 'boolean' },
+		showLabels: { control: 'boolean' },
+		countriesData: { control: 'object' },
+		showFundraisingLoans: { control: 'boolean' },
+		showTooltips: { control: 'boolean' },
+		defaultBaseColor: { control: 'color' },
+		optimizeInitialMapZoom: { control: 'boolean' },
+		countriesClickable: { control: 'boolean' },
+		fundraisingTooltip: { control: false },
+	},
 	parameters: {
+		docs: {
+			page: KvMapDocsMdx,
+			title: 'KvMap Docs',
+		},
 		chromatic: {
 			// Default threshold is 0.63 (0 is most strict, 1 is least strict)
 			// Increase threshold to 0.75 to allow for more variation in the map
@@ -239,4 +268,107 @@ OptimizedZoomWithExplicitOverride.parameters = {
 			story: 'Explicit lat/long (0, 0) overrides computed center, but zoom is still optimized from countriesData.',
 		},
 	},
+};
+
+const loansMapProps = {
+	class: 'tw-rounded tw-overflow-hidden',
+	aspectRatio: 1.8,
+	lat: 20,
+	long: 10,
+	zoomLevel: 1,
+	useLeaflet: true,
+	showZoomControl: true,
+	allowDragging: true,
+	showLabels: false,
+	countriesData: mockLenderCountries,
+	showFundraisingLoans: true,
+};
+
+const factsTooltip = (country) => `See facts about ${country.label}`;
+
+export const ComponentOverview = {
+	render: () => ({
+		components: { KvMap },
+		setup() {
+			return { loansMapProps };
+		},
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-grid md:tw-grid-cols-2 tw-gap-4">
+				<div>
+					<p class="tw-text-small tw-mb-1">Location map (MapLibre)</p>
+					<kv-map
+						class="tw-rounded tw-overflow-hidden"
+						:map-id="12"
+						:lat="-0.023559"
+						:long="37.906193"
+						:zoom-level="5"
+						:aspect-ratio="1.8"
+					/>
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-1">Loans map (Leaflet)</p>
+					<kv-map :map-id="13" v-bind="loansMapProps" />
+				</div>
+			</div>
+		`,
+	}),
+};
+
+export const CountryPicker = {
+	render: () => ({
+		components: { KvMap },
+		setup() {
+			const selected = ref('none yet');
+			const onCountryLendFilter = (isoCode) => {
+				console.log('country-lend-filter', isoCode);
+				selected.value = isoCode;
+			};
+			return {
+				loansMapProps, factsTooltip, selected, onCountryLendFilter,
+			};
+		},
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-max-w-xl">
+				<p class="tw-text-small tw-mb-1">
+					Click a green country or a fundraising dot. Last clicked: <strong>{{ selected }}</strong>
+				</p>
+				<kv-map
+					:map-id="14"
+					v-bind="loansMapProps"
+					countries-clickable
+					:show-tooltips="false"
+					:fundraising-tooltip="factsTooltip"
+					@country-lend-filter="onCountryLendFilter"
+				/>
+			</div>
+		`,
+	}),
+};
+CountryPicker.parameters = {
+	docs: {
+		description: {
+			story: 'Country shapes and dots both pick a country. The last clicked country gets the action-highlight outline.',
+		},
+	},
+};
+
+export const FundraisingTooltip = {
+	render: () => ({
+		components: { KvMap },
+		setup() {
+			return { loansMapProps, factsTooltip };
+		},
+		template: `
+			<div class="tw-bg-gray-50 tw-rounded-md tw-p-6 tw-grid md:tw-grid-cols-2 tw-gap-4">
+				<div>
+					<p class="tw-text-small tw-mb-1">Default text</p>
+					<kv-map :map-id="16" v-bind="loansMapProps" />
+				</div>
+				<div>
+					<p class="tw-text-small tw-mb-1">fundraisingTooltip: "See facts about …"</p>
+					<kv-map :map-id="17" v-bind="loansMapProps" :fundraising-tooltip="factsTooltip" />
+				</div>
+			</div>
+		`,
+	}),
 };

@@ -1,0 +1,222 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import * as KvMapStories from './KvMap.stories.js';
+
+<Meta title="Components/KvMap" component={KvMapStories.Component} />
+
+# KvMap
+
+A tile-based world map that shows a location, colors countries by lending activity, and can let people pick a country.
+
+## Component Overview
+
+KvMap loads MapLibre GL when the browser supports WebGL and falls back to Leaflet otherwise (or when `useLeaflet` is set). As a location map it centers on `lat` / `long`, with an optional auto zoom when it scrolls into view. As a loans map (Leaflet) it colors each country in `countriesData` by its `value`, can draw a dot on countries with fundraising loans, and can make country shapes clickable, outlining the last one clicked.
+
+<Story of={KvMapStories.ComponentOverview} />
+
+## Table of Contents
+
+- [Variations](#variations)
+- [Usage Information](#usage-information)
+- [Behavior](#behavior)
+- [Anatomy](#anatomy)
+- [Specs](#specs)
+- [Best Practices](#best-practices)
+- [Accessibility](#accessibility)
+- [Component Properties + Demo](#component-properties)
+- [Code Examples](#code-examples)
+
+---
+
+## Variations
+
+KvMap has two families. Location maps show a place with MapLibre (`Default`, in the demo below) or Leaflet (`Leaflet`). Loans maps use Leaflet with `countriesData`: countries are colored by loan count, fundraising dots are optional (`LoansMap`), and `defaultBaseColor` sets the fill for countries without loans (`highlightedCountry`, which is about base color, not selection).
+
+<Story of={KvMapStories.Leaflet} />
+
+<Story of={KvMapStories.LoansMap} />
+
+<Story of={KvMapStories.highlightedCountry} />
+
+## Usage Information
+
+Use KvMap when a real map with tiles adds meaning: showing where a borrower is, or where a lender's loans went. For a lightweight country footprint with no tile server, use `KvSimpleMap`.
+
+### When to Use
+
+- Showing a borrower's or partner's location
+- Showing where a lender's loans went, colored by country
+- Letting people pick a country on a map, alongside a list or panel that also lets them pick
+- Pointing people to fundraising loans by country
+
+### When Not to Use
+
+- A decorative footprint of Kiva markets: use `KvSimpleMap`, which needs no tile server
+- The only way to choose a country: the map can't be used with a keyboard
+- Dense data where a chart or table reads better than a map
+
+---
+
+## Behavior
+
+Maps are static by default: dragging, zoom buttons and click handling are all opt-in. Loans map interactions (tooltips, dots, clickable countries and the outline) are Leaflet only.
+
+### Auto Zoom
+
+With `initialZoom` set, the map starts at that zoom and zooms to `zoomLevel` after `autoZoomDelay` once it enters the viewport.
+
+<Story of={KvMapStories.AutoZoom} />
+
+### Choosing a Country
+
+With `countriesClickable`, clicking a country shape in `countriesData` emits `country-lend-filter` with its ISO code, the same event the fundraising dots emit. Countries without data don't respond. Clicks work with `showTooltips` off.
+
+### Selected Country
+
+With `countriesClickable`, KvMap outlines the last country clicked, from its shape or its fundraising dot, in the action-highlight theme color (`tw-stroke-current tw-text-action-highlight tw-stroke-2`) and draws it above its neighbors. The fill keeps its loan color and the outline stays through hover. Nothing is outlined until the first click, and maps without `countriesClickable` never show an outline.
+
+<Story of={KvMapStories.CountryPicker} />
+
+### Tooltip Text and Placement
+
+Fundraising dots say "Click to see N fundraising loans in X" by default. When a click does something else, pass `fundraisingTooltip` to match it. Leaflet opens each tooltip to the left or right of the point, on the side facing the map's center. Tooltips are drawn inside the map, so when one would open past an edge, KvMap shifts it back inside with a small gap, and a tooltip wider than the map wraps onto more lines to fit. Country tooltips then follow the cursor, so only where they open is adjusted. Short `fundraisingTooltip` text still reads best on narrow maps.
+
+<Story of={KvMapStories.FundraisingTooltip} />
+
+## Anatomy
+
+KvMap is a sized wrapper around a map library container.
+
+- **Wrapper**: sets the size from `aspectRatio`, or from `width` / `height`
+- **Tile layer**: MapTiler tiles, with or without place labels (`showLabels`)
+- **Country shapes** (Leaflet, `countriesData`): filled by loan count, with optional tooltip, click and selected outline
+- **Fundraising dots** (Leaflet, `showFundraisingLoans`): one per country with fundraising loans; clicking emits `country-lend-filter`
+- **Tooltips**: country name and loan count on shapes, fundraising text on dots
+- **Zoom control** (`showZoomControl`): + / − buttons in a corner of the map
+
+---
+
+## Specs
+
+### Sizing
+
+By default the height is the container width divided by `aspectRatio`. Set `width` and `height` for a fixed size. Leaflet only re-measures on window resize, so a map in a resizable panel needs its parent to call `mapInstance.invalidateSize()`.
+
+<Story of={KvMapStories.FixedDimensions} />
+
+### Leaflet and MapLibre
+
+MapLibre is used when WebGL is available, unless `useLeaflet` is set. `advancedAnimation` is MapLibre only. `countriesData`, `showFundraisingLoans`, `showTooltips`, `defaultBaseColor`, `countriesClickable` and `fundraisingTooltip` are Leaflet only, so loans maps should set `useLeaflet`.
+
+---
+
+## Best Practices
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', margin: '2rem 0'}}>
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvMap/do-pair-click-with-selection.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Turn on `countriesClickable` so the picked country is outlined and people can see what they picked.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvMap/dont-click-without-feedback.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Handle `country-lend-filter` on a map without `countriesClickable` and leave people guessing which country they picked.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvMap/do-match-tooltip-to-click.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#2e7d32'}}>✓ Do</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Use `fundraisingTooltip` so the dot text says what a click does on your page.</p>
+	</div>
+
+	<div>
+		<div style={{marginBottom: '0.5rem'}}>
+			<img src="KvMap/dont-promise-a-different-action.png" alt="" style={{borderRadius: '8px'}} />
+		</div>
+		<div style={{fontWeight: 600, marginBottom: '0.5rem', color: '#c62828'}}>✗ Don't</div>
+		<p style={{fontSize: '0.875rem', margin: 0}}>Keep the default "Click to see N fundraising loans" text when a click doesn't go to loans.</p>
+	</div>
+</div>
+
+---
+
+## Accessibility
+
+- The zoom buttons are native Leaflet / MapLibre controls and work with the keyboard.
+- Country shapes and fundraising dots can't be reached with the keyboard, and tooltips only show on hover or tap. Always give another way to choose a country, such as a list or a facts panel.
+- The selected country is shown with an outline, not only a color change.
+- Country fills encode loan counts by color alone; put the numbers in tooltips or nearby text.
+
+---
+
+## Component Properties + Demo
+
+<Canvas of={KvMapStories.Default} />
+<Controls of={KvMapStories.Default} />
+
+---
+
+## Code Examples
+
+### Location map
+
+```vue
+<kv-map
+	class="tw-rounded tw-overflow-hidden"
+	:lat="-0.023559"
+	:long="37.906193"
+	:zoom-level="6"
+	:initial-zoom="2"
+	:aspect-ratio="1.8"
+/>
+```
+
+### Loans map with fundraising dots
+
+```vue
+<kv-map
+	class="tw-rounded tw-overflow-hidden"
+	use-leaflet
+	:lat="30"
+	:long="1"
+	:zoom-level="2"
+	:aspect-ratio="1.8"
+	show-zoom-control
+	allow-dragging
+	:show-labels="false"
+	:countries-data="countriesData"
+	show-fundraising-loans
+	@country-lend-filter="goToLoans"
+/>
+```
+
+### Country picker
+
+```vue
+<template>
+	<kv-map
+		class="tw-rounded tw-overflow-hidden"
+		use-leaflet
+		:lat="20"
+		:long="10"
+		:zoom-level="1"
+		:aspect-ratio="1.75"
+		allow-dragging
+		show-zoom-control
+		:show-labels="false"
+		:countries-data="countriesData"
+		show-fundraising-loans
+		:show-tooltips="false"
+		countries-clickable
+		:fundraising-tooltip="(country) => `See facts about ${country.label}`"
+		@country-lend-filter="showCountryFacts"
+	/>
+</template>
+```
