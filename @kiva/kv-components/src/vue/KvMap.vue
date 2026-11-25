@@ -27,11 +27,32 @@ import {
 declare const L: typeof Leaflet;
 declare const maplibregl: typeof MapLibreGl;
 
+// Classes beat Leaflet's stroke attributes, so hover resets keep the outline
+const SELECTED_COUNTRY_CLASSES = ['tw-stroke-current', 'tw-text-action-highlight', 'tw-stroke-2'];
+
+// Above the overlay pane (400) so a country brought to front can't cover the dots
+const FUNDRAISING_PANE = 'kvFundraisingLoans';
+const FUNDRAISING_PANE_Z_INDEX = '450';
+
+const TOOLTIP_EDGE_GAP = 4;
+
+// Important: leaflet.css loads after Tailwind and sets nowrap
+const TOOLTIP_WRAP_CLASS = '!tw-whitespace-normal';
+
+// Hides the ring Chrome draws around a clicked path
+const NO_FOCUS_RING_CLASS = 'tw-outline-none';
+
+const shiftInside = (start: number, end: number, min: number, max: number): number => {
+	if (start < min + TOOLTIP_EDGE_GAP) return min + TOOLTIP_EDGE_GAP - start;
+	if (end > max - TOOLTIP_EDGE_GAP) return max - TOOLTIP_EDGE_GAP - end;
+	return 0;
+};
+
 export default {
 	name: 'KvMap',
 	props: {
 		/**
-		 * Aspect Ration for computed map dimensions
+		 * Aspect Ratio for computed map dimensions
 		 * We'll divide the container width by this to determine the height
 		 */
 		aspectRatio: {
@@ -166,7 +187,7 @@ export default {
 			default: false,
 		},
 		/**
-		 * Show tooltips on fundraising loan circles
+		 * Show a name and loan count tooltip, with a hover highlight, on country shapes
 		 * Working for leaflet only
 		 */
 		showTooltips: {
@@ -191,6 +212,22 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		/**
+		 * Country shapes in countriesData emit country-lend-filter on click, and the last clicked country is outlined
+		 * Working for leaflet only
+		 */
+		countriesClickable: {
+			type: Boolean,
+			default: false,
+		},
+		/**
+		 * `(country) => string` for the fundraising dot tooltip. Defaults to "Click to see N fundraising loans in X"
+		 * Working for leaflet only
+		 */
+		fundraisingTooltip: {
+			type: Function,
+			default: null,
+		},
 	},
 	emits: [
 		'country-lend-filter',
@@ -205,6 +242,8 @@ export default {
 			zoomActive: false,
 			countriesBorders: null,
 			countriesBordersPromise: null,
+			countriesLayer: null,
+			selectedIsoCode: null,
 		};
 	},
 	computed: {
@@ -437,6 +476,7 @@ export default {
 				attributionControl: false,
 				worldCopyJump: true,
 			});
+			this.mapInstance.on('tooltipopen', this.keepTooltipInside);
 			/* eslint-disable quotes */
 			// Add our tileset to the mapInstance
 			let tileLayer = 'https://api.maptiler.com/maps/landscape/{z}/{x}/{y}.png?key=n1Mz5ziX3k6JfdjFe7mx';
@@ -453,13 +493,21 @@ export default {
 			if (this.countriesData.length > 0) {
 				await this.ensureCountriesBordersLoaded();
 				if (this.countriesBorders) {
-					L.geoJson(
+					this.countriesLayer = L.geoJson(
 						this.getCountriesData(),
 						{
 							style: this.countryStyle,
 							onEachFeature: this.onEachCountryFeature,
+							className: NO_FOCUS_RING_CLASS,
 						},
-					).addTo(this.mapInstance);
+					);
+					this.countriesLayer.addTo(this.mapInstance);
+					this.applySelectedCountry();
+
+					// Only clickable maps bring a country to front, so only they need the dots lifted
+					if (this.showFundraisingLoans && this.countriesClickable) {
+						this.mapInstance.createPane(FUNDRAISING_PANE).style.zIndex = FUNDRAISING_PANE_Z_INDEX;
+					}
 
 					this.countriesData.forEach((country) => {
 						if (country.numLoansFundraising > 0 && this.showFundraisingLoans) {
@@ -469,13 +517,17 @@ export default {
 								fillColor: kvTokensPrimitives.colors.brand[900],
 								fillOpacity: 1,
 								radius: 130000,
+								...(this.countriesClickable && { pane: FUNDRAISING_PANE }),
+								className: NO_FOCUS_RING_CLASS,
 							}).addTo(this.mapInstance);
 
-							const tooltipText = `Click to see ${country.numLoansFundraising} fundraising loans in ${country.label}`;
+							const tooltipText = this.fundraisingTooltip
+								? this.fundraisingTooltip(country)
+								: `Click to see ${country.numLoansFundraising} fundraising loans in ${country.label}`;
 							circle.bindTooltip(tooltipText);
 
 							circle.on('click', () => {
-								this.circleMapClicked(country.isoCode);
+								this.countryClicked(country.isoCode);
 							});
 						}
 					});
@@ -653,6 +705,13 @@ export default {
 			};
 		},
 		onEachCountryFeature(feature, layer) {
+			const isoCode = feature.properties.iso_a2;
+			if (this.countriesClickable && this.countriesData.some((country) => country.isoCode === isoCode)) {
+				layer.on({
+					click: () => this.countryClicked(isoCode),
+				});
+			}
+
 			if (!this.showTooltips) return;
 			const loansString = feature.lenderLoans
 				? `${feature.lenderLoans} loan${feature.lenderLoans > 1 ? 's' : ''}`
@@ -666,6 +725,47 @@ export default {
 			layer.on({
 				mouseover: this.highlightFeature,
 				mouseout: this.resetHighlight,
+			});
+		},
+		keepTooltipInside({ tooltip }) {
+			const map = this.mapInstance.getContainer().getBoundingClientRect();
+			const element = tooltip.getElement();
+			const maxWidth = map.right - map.left - 2 * TOOLTIP_EDGE_GAP;
+
+			// Undo an earlier open's wrap before measuring
+			if (element.classList.contains(TOOLTIP_WRAP_CLASS)) {
+				element.classList.remove(TOOLTIP_WRAP_CLASS);
+				element.style.width = '';
+				tooltip.update();
+			}
+			const natural = element.getBoundingClientRect();
+			if (natural.right - natural.left > maxWidth) {
+				element.classList.add(TOOLTIP_WRAP_CLASS);
+				// Measured, so not a class; border-box (Tailwind preflight) keeps padding inside it
+				element.style.width = `${maxWidth}px`;
+				tooltip.update();
+			}
+
+			// One-off nudge; Leaflet's next reposition starts fresh
+			const box = element.getBoundingClientRect();
+			const dx = shiftInside(box.left, box.right, map.left, map.right);
+			const dy = shiftInside(box.top, box.bottom, map.top, map.bottom);
+			if (dx || dy) {
+				const position = L.DomUtil.getPosition(element);
+				L.DomUtil.setPosition(element, L.point(position.x + dx, position.y + dy));
+			}
+		},
+		applySelectedCountry() {
+			if (!this.countriesLayer || !this.selectedIsoCode) return;
+			this.countriesLayer.eachLayer((layer) => {
+				const isSelected = layer.feature.properties.iso_a2 === this.selectedIsoCode;
+				SELECTED_COUNTRY_CLASSES.forEach((className) => {
+					layer.getElement()?.classList.toggle(className, isSelected);
+				});
+				if (isSelected) {
+					// Keep the outline above neighbors' borders
+					layer.bringToFront();
+				}
 			});
 		},
 		highlightFeature(e) {
@@ -684,7 +784,12 @@ export default {
 				fillColor: getCountryColor(feature.lenderLoans, this.countriesData, kvTokensPrimitives, this.defaultBaseColor),
 			});
 		},
-		circleMapClicked(countryIso) {
+		countryClicked(countryIso) {
+			// Outline only where clicking picks a country
+			if (this.countriesClickable) {
+				this.selectedIsoCode = countryIso;
+				this.applySelectedCountry();
+			}
 			this.$emit('country-lend-filter', countryIso);
 		},
 	},
