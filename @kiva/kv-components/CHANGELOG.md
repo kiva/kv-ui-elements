@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@13.0.0...@kiva/kv-components@13.1.0) (2026-11-25)
+
+
+### Features
+
+* **kv-components:** mp-3608 clickable KvMap countries with selection outline ([#947](https://github.com/kiva/kv-ui-elements/issues/947)) ([c28257b](https://github.com/kiva/kv-ui-elements/commit/c28257b613c3407418d422370778254f170c8349))
+
+
+
+
+
 # [13.0.0](https://github.com/kiva/kv-ui-elements/compare/@kiva/kv-components@12.0.0...@kiva/kv-components@13.0.0) (2026-11-24)
 
 
